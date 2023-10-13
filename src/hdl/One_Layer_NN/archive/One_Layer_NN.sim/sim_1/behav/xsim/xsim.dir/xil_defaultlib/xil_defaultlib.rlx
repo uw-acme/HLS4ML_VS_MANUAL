@@ -1,0 +1,20 @@
+0.7
+v2020.2.2
+Nov 18 2020
+09:47:47
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v,1622789183,verilog,,,,clk_wiz_0,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v,1622789183,verilog,,C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v,,clk_wiz_0_clk_wiz,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.sim/sim_1/behav/xsim/glbl.v,1605673889,verilog,,,,glbl,,uvm,,,,,,
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/DFF.sv,1621030506,systemVerilog,,C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/adder_tree.sv,,DFF;DFF_2D;DFF_3D;DFF_testbench,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/One_Layer_NN.sv,1622846756,systemVerilog,,C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/fp_mult.sv,,One_Layer_NN;One_Layer_NN_testbench,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/Sigmoid.sv,1622792208,systemVerilog,,C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/DFF.sv,,Sigmoid_testbench;sigmoidLayer,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/adder_tree.sv,1622790679,systemVerilog,,,,adder_tree,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/denseLatencyLayer.sv,1622791907,systemVerilog,,C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/Sigmoid.sv,,denseLatencyLayer,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/fp_mult.sv,1619823653,systemVerilog,,C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/denseLatencyLayer.sv,,fp_mult,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/reluLayer.sv,1622791986,systemVerilog,,C:/Users/aidan/Documents/hls4ml_customml/One_Layer_NN/One_Layer_NN.srcs/sources_1/new/One_Layer_NN.sv,,reluLayer;reluLayer_testbench,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/VerilogNN/sigmoid/sigmoid.gen/sources_1/ip/PLL_clk_wiz_0/PLL_clk_wiz_0.v,1614036611,verilog,,,,PLL_clk_wiz_0,,uvm,../../../../../sigmoid/sigmoid.gen/sources_1/ip/PLL_clk_wiz_0,,,,,
+C:/VerilogNN/sigmoid/sigmoid.gen/sources_1/ip/PLL_clk_wiz_0/PLL_clk_wiz_0_clk_wiz.v,1614036611,verilog,,C:/VerilogNN/sigmoid/sigmoid.gen/sources_1/ip/PLL_clk_wiz_0/PLL_clk_wiz_0.v,,PLL_clk_wiz_0_clk_wiz,,uvm,../../../../../sigmoid/sigmoid.gen/sources_1/ip/PLL_clk_wiz_0,,,,,
+C:/VerilogNN/verilog_fixed_point_math_library/trunk/qadd.v,1619214490,verilog,,,,qadd,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/VerilogNN/verilog_fixed_point_math_library/trunk/qdiv.v,1401061259,verilog,,C:/VerilogNN/verilog_fixed_point_math_library/trunk/qadd.v,,qdiv,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/VerilogNN/verilog_fixed_point_math_library/trunk/qmult.v,1619744297,verilog,,C:/VerilogNN/verilog_fixed_point_math_library/trunk/qdiv.v,,qmult,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,
+C:/VerilogNN/verilog_fixed_point_math_library/trunk/qmults.v,1388966686,verilog,,C:/VerilogNN/verilog_fixed_point_math_library/trunk/qmult.v,,qmults,,uvm,../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0,,,,,

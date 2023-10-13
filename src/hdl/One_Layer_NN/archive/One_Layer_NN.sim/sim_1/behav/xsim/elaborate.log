@@ -1,0 +1,42 @@
+Vivado Simulator v2020.2.2
+Copyright 1986-1999, 2001-2021 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 1525d914e6bc4b2e833cad3199758e84 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot One_Layer_NN_testbench_behav xil_defaultlib.One_Layer_NN_testbench xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module unisims_ver.IBUFDS
+Compiling module unisims_ver.PLLE2_ADV(CLKFBOUT_MULT=32,CLKIN...
+Compiling module unisims_ver.BUFG
+Compiling module xil_defaultlib.clk_wiz_0_clk_wiz
+Compiling module xil_defaultlib.clk_wiz_0
+Compiling module xil_defaultlib.DFF(WIDTH=17)
+Compiling module xil_defaultlib.DFF_2D(WIDTH=17,SIZE=10)
+Compiling module xil_defaultlib.DFF_2D(WIDTH=17)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=32,DEPTH=10...
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=32,DEPTH=8)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=32,DEPTH=4)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=32,DEPTH=2)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=32,DEPTH=1)
+Compiling module xil_defaultlib.adder_tree(N=16,INPUT_SIZE=10,OU...
+Compiling module xil_defaultlib.denseLatencyLayer(INPUT_SIZE=10,...
+Compiling module xil_defaultlib.reluLayer
+Compiling module xil_defaultlib.DFF_2D(WIDTH=17,SIZE=1)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=1,DEPTH=32)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=1,DEPTH=16)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=1,DEPTH=8)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=1,DEPTH=4)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=1,DEPTH=2)
+Compiling module xil_defaultlib.DFF_3D(WIDTH=17,SIZE=1,DEPTH=1)
+Compiling module xil_defaultlib.adder_tree_default
+Compiling module xil_defaultlib.denseLatencyLayer_default
+Compiling module xil_defaultlib.fp_mult(N=28)
+Compiling module xil_defaultlib.DFF(WIDTH=28)
+Compiling module xil_defaultlib.sigmoidLayer_default
+Compiling module xil_defaultlib.One_Layer_NN
+Compiling module xil_defaultlib.One_Layer_NN_testbench
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot One_Layer_NN_testbench_behav

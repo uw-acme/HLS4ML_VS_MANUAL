@@ -1,0 +1,27 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0" \
+"../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" \
+"../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v" \
+
+sv xil_defaultlib  --include "../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0" \
+"../../../../One_Layer_NN.srcs/sources_1/new/reluLayer.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/One_Layer_NN.sv" \
+
+verilog xil_defaultlib  --include "../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0" \
+"../../../../../verilog_fixed_point_math_library/trunk/qmults.v" \
+"../../../../../verilog_fixed_point_math_library/trunk/qmult.v" \
+"../../../../../verilog_fixed_point_math_library/trunk/qdiv.v" \
+"../../../../../verilog_fixed_point_math_library/trunk/qadd.v" \
+
+sv xil_defaultlib  --include "../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0" \
+"../../../../One_Layer_NN.srcs/sources_1/new/updateCurr.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/resetCurr.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/fp_mult.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/denseLatencyLayer.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/Sigmoid.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

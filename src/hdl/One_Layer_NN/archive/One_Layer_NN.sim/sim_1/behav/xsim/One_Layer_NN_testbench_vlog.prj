@@ -1,0 +1,19 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  --include "../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0" \
+"../../../../One_Layer_NN.srcs/sources_1/new/reluLayer.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/One_Layer_NN.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/fp_mult.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/denseLatencyLayer.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/Sigmoid.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/DFF.sv" \
+"../../../../One_Layer_NN.srcs/sources_1/new/adder_tree.sv" \
+
+verilog xil_defaultlib  --include "../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0" \
+"../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" \
+"../../../../One_Layer_NN.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
