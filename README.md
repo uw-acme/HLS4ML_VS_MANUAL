@@ -1,3 +1,7 @@
 # HLS4ML_VS_MANUAL
 
-Blah.. blah.. blah
+## Contents
+
+- **Source Code**: All hand-written benchmark code is included under the `src` directory.
+
+- **Documentation**: Detailed documentation for benchmarks and instructions on running the code can be found under the `documentation` directory. If you have questions or need guidance, this is the place to look.
