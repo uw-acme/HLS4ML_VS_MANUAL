@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
 
+// OPTIMIZED DENSE LATENCY LAYER 
 module denseOptimized #(parameter ITER=0)(
     input logic clk,
     input logic reset,
@@ -20,6 +21,7 @@ module denseOptimized #(parameter ITER=0)(
 );
 
 
+    // handles reuse stages
     enum {start, first, second, third, finish} ps, ns, ls;
     
     logic signed [15:0] sum;
@@ -42,7 +44,7 @@ module denseOptimized #(parameter ITER=0)(
     logic signed [31:0] temp1, temp2, temp3;
     logic signed [15:0] temp4, temp5, temp6;
 
-    
+    // hold onto values
     assign temp1 = currentData[0] * weights[0];
     assign temp2 = currentData[1] * weights[1];
     assign temp3 = currentData[2] * weights[2];
@@ -51,7 +53,7 @@ module denseOptimized #(parameter ITER=0)(
     assign temp5 = temp2[25:10];
     assign temp6 = temp3[25:10];
     
-    
+    // do running rum
     always_ff@(posedge clk)begin
         if(ps ==start) sum <= 0;
         else if (ps == finish) sum <= 0;
@@ -60,8 +62,10 @@ module denseOptimized #(parameter ITER=0)(
         else if (ps == third) sum <= sum + temp4 + temp5;
     end
 
+    // final value adds bias
     assign outputSum = sum + bias;
     
+    // calculates correct weights to use from weights file
     logic signed [15:0] weights [2:0];
     always_comb begin
         if(ps == first) begin

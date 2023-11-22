@@ -1,5 +1,7 @@
 `timescale 1ns / 1ps
 
+// handles reading from the RAM in the order we want for conv of stride 2
+// based on wAddr and rAddr
 module ramController(
     input logic clk, 
     input logic reset, 
@@ -38,6 +40,7 @@ module ramController(
     enum { start, initialReads, processingEven1, processingEven2, delayEven, processingOdd, processingOddTemp, finished1,
             finished2, finished3} ps, ns;
     
+    // handles states
     always_comb begin
         case (ps)
         start: if(wAddr < 1 ) ns = start;
@@ -62,7 +65,7 @@ module ramController(
         endcase  
     end
     
-    
+    // determines rAddr
     always_ff @(posedge clk) begin
         case (ps)
         start: rAddr <= 0;

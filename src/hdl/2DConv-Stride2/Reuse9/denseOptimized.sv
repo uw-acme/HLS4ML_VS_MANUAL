@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
 
+// dense optimized for reuse of 9
 module denseOptimized #(parameter ITER=0)(
     input logic clk,
     input logic reset,
@@ -47,6 +48,7 @@ module denseOptimized #(parameter ITER=0)(
     logic signed [31:0] temp1;
     logic signed [15:0] temp4;
     
+    // calculates which weight we are on
     assign weights = data16_10::dlWeights[2047 - counter2 - (counter1)*8 - 128*ITER];
 
 
@@ -56,6 +58,7 @@ module denseOptimized #(parameter ITER=0)(
     assign temp4 = temp1[25:10];
 
 
+    // running sum
     assign outputSum = sum + bias;
     
 //    always_comb begin

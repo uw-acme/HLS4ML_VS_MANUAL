@@ -1,5 +1,7 @@
 `timescale 1ns / 1ps
 import data16_10::*;
+
+// running sum for values of a 9 stage dense for conv layer
 module nineStageDense(
     input logic clock,
     input logic reset,

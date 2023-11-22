@@ -1,16 +1,22 @@
 `timescale 1ns / 1ps
 
+// connects the FSMs and RAMs for the convolution layer
+// also implements the relu layer, optimized dense latency layer and final relu layer
 module ramConnector(
     input logic clk,
     input logic reset,
     input logic signed [15:0] inputPixel,
-//    output logic signed [15:0] outputMatrix [127:0],
-      output logic signed [15:0] overallOut [15:0]
+//    output logic signed [15:0] outputMatrix [127:0], // not needed since new dense
+      output logic signed [15:0] overallOut [15:0] // outputs the 16 outputs of the whole layer
     );
+
+    // internal logic for handling the RAMS
     logic [9:0] wAddr, rAddr1, rAddr2, rAddr3;
     logic [15:0] rData1, rData2, rData3;
     logic [9:0] rAddrMin;
     //logic writing1Active, reading1Active, writing2Active, reading2Active;
+
+    // handshake signals for the RAMs
     logic validToWrite, validToRead;
     logic validData;
     logic delay;
@@ -21,10 +27,18 @@ module ramConnector(
 //    assign reading1Active = (rAddr1 > 0 && rAddr1 < 81);
 //    assign reading2Active = (rAddr1 > 81 && rAddr1 <= 161);
     
+    // all RAMs are of size 162. can write to two images a time but will never overwrite
+    // one of the images
+    // handshake signals control when it is okay to write (validToWrite) and
+    // okay to read (validToRead)
+    
+    // writing to the RAMs
     ramWriter writer (.clk, .reset, .validData(1'b1), .rAddr(rAddr1), .wAddr, .validToWrite, .validToRead);
     
+    // reamding from the RAMs
     readController reader (.clk, .reset, .validToRead, .rAddr1, .rAddr2, .rAddr3, .delay);
     
+    // three identical copies of the RAMs
     rams_tdp_rf_rf RAM1 (.clka(clk),.clkb(clk),.ena(1'b1),.enb(1'b1),.wea(validToWrite),.web(1'b0),.addra(wAddr),
                         .addrb(rAddr1),.dia(inputPixel),.dib(16'bx),.doa(),.dob(rData1));
     rams_tdp_rf_rf RAM2 (.clka(clk),.clkb(clk),.ena(1'b1),.enb(1'b1),.wea(validToWrite),.web(1'b0),.addra(wAddr),
@@ -32,6 +46,7 @@ module ramConnector(
     rams_tdp_rf_rf RAM3 (.clka(clk),.clkb(clk),.ena(1'b1),.enb(1'b1),.wea(validToWrite),.web(1'b0),.addra(wAddr),
                         .addrb(rAddr3),.dia(inputPixel),.dib(16'bx),.doa(),.dob(rData3));
   
+  // managing handshake signals
 //   logic signed [15:0] tempOutput [7:0];
    logic signed [15:0] reluOutput [7:0];
    logic valid;
@@ -44,13 +59,16 @@ module ramConnector(
     else delayValidToReadTwice <= delayValidToRead;
    end
    
+   // reuse 3 convolution multipliers
    genvar i; 
    generate 
     for(i = 0; i <8; i++) begin
     threeStageDense denseTest (.clock(clk),. reset, .inputData({rData1, rData2, rData3}),.weights({16'b1, 16'b1, 16'b1}),
                             .outputData(reluOutput[i]),.valid, .start(delayValidToRead), .rAddr(rAddr1), .delay, .index(i));
     end
-   endgenerate               
+   endgenerate   
+
+   // handles wriitng to the output            
     logic [4:0] outputCounter;         
     always_ff @(posedge clk) begin
         if(reset) outputCounter <= 0;
@@ -58,6 +76,7 @@ module ramConnector(
                         else outputCounter <= outputCounter + 1;
         else if((rAddr1 == 81&&delayThree) || rAddr1 ==0) outputCounter <= 0;
     end   
+
     logic delayTemp, delayTwice, delayThree;
     always_ff @(posedge clk) begin 
         if(reset) delayTemp <= 0;
@@ -92,6 +111,7 @@ module ramConnector(
      end
      assign delayTempContinue = (ps==one);
     
+    // output of conv layer
     always_ff @(posedge clk) begin
     if(rAddr1 == 0 && prevAddr1 != 0) begin
         temp[0] <= reluOutput[0];
@@ -138,6 +158,7 @@ module ramConnector(
         counter4 <= counter3;
     end
     
+    // optimized dense latency layers
     logic signed [15:0] currentData [2:0];
     logic [15:0] first, second, third;
     logic [15:0] validOut;
@@ -166,6 +187,7 @@ module ramConnector(
 //                            .firstSignal(first), .secondSignal(second), .thirdSignal(third), .delayTemp(delayTemp), .rAddr(prevAddr1),
 //                            .finished(counter2 == 0), .counter2(counter3));
      
+     // handles it with a reuse of 3
      always_comb begin
         if(first[0]) begin
             currentData[0] = test[0];

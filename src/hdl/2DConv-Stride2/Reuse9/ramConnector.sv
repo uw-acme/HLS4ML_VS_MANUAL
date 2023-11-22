@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
 
+// all the layers of the module are wrapped up here
 module ramConnector(
     input logic clk,
     input logic reset,
@@ -25,6 +26,9 @@ module ramConnector(
 //    assign reading1Active = (rAddr1 > 0 && rAddr1 < 81);
 //    assign reading2Active = (rAddr1 > 81 && rAddr1 <= 161);
     
+    // FSMS to handle reading and writing of the two FSMS
+    // RAM of size 162, holds 2 images 
+    // uses validToRead and validToWrite to never overwrite an image
     ramWriter writer (.clk, .reset, .validData(1'b1), .rAddr(rAddr1), .wAddr, .validToWrite, .validToRead);
     
     readController reader (.clk, .reset, .validToRead, .rAddr1, .rAddr2, .rAddr3, .delay, .delayThree(delayThreeCycles));
@@ -40,7 +44,7 @@ module ramConnector(
     
     end
     
-    
+    // only need 1 RAM for the reuse of 9 implementation
     rams_tdp_rf_rf RAM1 (.clka(clk),.clkb(clk),.ena(1'b1),.enb(1'b1),.wea(validToWrite),.web(1'b0),.addra(wAddr),
                         .addrb(rAddrCurrent),.dia(inputPixel),.dib(16'bx),.doa(),.dob(rData1));
 //    rams_tdp_rf_rf RAM2 (.clka(clk),.clkb(clk),.ena(1'b1),.enb(1'b1),.wea(validToWrite),.web(1'b0),.addra(wAddr),
@@ -69,7 +73,7 @@ module ramConnector(
     rAddrTest <= rAddrCurrent;
    end
    
-   
+   // nine stage sum and multiplier for conv layers
    genvar i; 
    generate 
     for(i = 0; i <8; i++) begin
@@ -123,6 +127,7 @@ module ramConnector(
      end
      assign delayTempContinue = (ps==one);
     
+    // organizes output for relu layer
     always_ff @(posedge clk) begin
     if(rAddr1 == 0 && prevAddr1 != 0) begin
         test[0] <= reluOutput[0];
@@ -179,6 +184,7 @@ module ramConnector(
         else counter2 <= counter2 + 1;
     end
     
+    // optimized dense latency for reuse of 9
     logic signed [15:0] currentData;
 //    logic [15:0] first, second, third;
     logic [15:0] validOut;

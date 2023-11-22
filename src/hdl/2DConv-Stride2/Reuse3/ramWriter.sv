@@ -1,5 +1,9 @@
 `timescale 1ns / 1ps
 
+// handles writing to the RAM
+// RAM of size 162 to handle writing of 2 images
+// validToWrite must be used to know if the ram can accept new data
+// validToRead must be used to know when valid to read from the RAM
 module ramWriter(
     input logic clk,
     input logic reset,

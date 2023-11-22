@@ -1,5 +1,7 @@
 `timescale 1ns / 1ps
 import data16_10::*;
+
+// three stage multiplication running sum for convolution with reuse of 3
 module threeStageDense(
     input logic clock,
     input logic reset,
@@ -12,11 +14,14 @@ module threeStageDense(
     output logic valid,
     input logic [3:0] index
     );
+
     logic signed [15:0] tempOutputData;
     logic signed[15:0] temp [2:0];
     logic [1:0] weightCount;
     logic signed [15:0] weights1 [2:0];
     int i;
+
+    // determines which weight to use from weights file
     always_comb begin
         for(i=0; i<3; i++) begin
         if(weightCount == 0) begin
@@ -35,7 +40,7 @@ module threeStageDense(
     logic signed [15:0] test;
     logic signed [15:0] bias;
     logic signed [31:0] mult1, mult2, mult3, mult4, mult5, mult6, mult7;
-    logic signed [15:0] wtf;
+
  
 //    enum {firstAdd, secondAdd, thirdAdd} ps, ns;
     
@@ -52,6 +57,7 @@ module threeStageDense(
 //        else ps <= ns;
 //    end
     
+    // sum values
     threeCycleMultAdd topRow    (.clock,.reset,.inputData(inputData[2]),.weight(weights1[0]),.outputData(temp[2]), .alternate(ps==firstAdd),
     .start(rAddr % 3 ==0), .rAddr, .delay, .weightCount(weightCount));
     threeCycleMultAdd middleRow (.clock,.reset,.inputData(inputData[1]),.weight(weights1[1]),.outputData(temp[1]), .alternate(ps==firstAdd), 
@@ -59,15 +65,13 @@ module threeStageDense(
     threeCycleMultAdd bottomRow (.clock,.reset,.inputData(inputData[0]),.weight(weights1[2]),.outputData(temp[0]), .alternate(ps==firstAdd),
      .start(rAddr % 3 ==0), .rAddr, .delay, .weightCount() );
  
-    
+    // calculate output
     assign tempOutputData = temp[2] + temp[1] + temp[0] + data16_10::convBiases[7-index];
     assign outputData = tempOutputData[15] ? 16'd0 : tempOutputData;
     
-    
-   
-    
 endmodule
 
+// three stage adder and multiplier
 module threeCycleMultAdd(
     input logic clock,
     input logic reset,
@@ -82,8 +86,7 @@ module threeCycleMultAdd(
     );
     logic [9:0] tempRAddr;
     logic delayTemp;
-    logic wtf;
-    assign wtf = delayTemp && ~(((rAddr-1) %9) ==0);
+
     logic signed [15:0] temp;
     always_ff@(posedge clock) begin
         delayTemp <= delay;
@@ -91,7 +94,6 @@ module threeCycleMultAdd(
         if(reset) temp <= 0;
         else if (rAddr ==0) temp <= 0;
         else if ((delayTemp || tempRAddr == 81)) temp <= tempSum[25:10];
-        //else if (wtf) temp <= tempSum[25:10];
         //else if ((rAddr) % 9 ==0) temp <= temp +tempSum[25:10]; 
         //else if (rAddr % 9 ==0) temp <= inputData;
         
@@ -104,12 +106,14 @@ module threeCycleMultAdd(
     logic signed [31:0] tempSum;
     assign tempSum = inputData * weight;
     
+    // calculates which weight to use
     always_ff @(posedge clock) begin
         if(reset) weightCount <= 32'd0;
         else if (rAddr ==0) weightCount <= 32'd0;
         else if (delay || rAddr == 81) weightCount <= 32'd0;
         else weightCount <= weightCount + 32'b1;
     end
+    
     assign outputData = temp;
 endmodule
 

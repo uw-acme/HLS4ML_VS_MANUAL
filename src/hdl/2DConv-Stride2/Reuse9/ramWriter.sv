@@ -1,5 +1,9 @@
 `timescale 1ns / 1ps
 
+// handles writing to the RAM
+// handshake signals: validToWrite and validToRead
+// RAM of size 162, can hold 2 images 
+// uses handshake signals to never overwrite an image
 module ramWriter(
     input logic clk,
     input logic reset,

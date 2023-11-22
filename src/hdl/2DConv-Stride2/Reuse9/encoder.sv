@@ -1,5 +1,8 @@
 `timescale 1ns / 1ps
 // top level encoder module
+// reuse of 9 and stride 2 convolution layer
+// relu layer, optimized dense latency layer, relu layer
+// bitwidth of 16,10
 module encoder(
     input logic clk_p,
     input logic reset,
@@ -8,10 +11,11 @@ module encoder(
     );
     
     // layer 1 + 2: convolution (stride 2 & reuse 3) and relu
+    // also contains optimized dense latency layer and then the next relu
     logic signed [15:0] outputConv [127:0];
     ramConnector conv(.clk(clk_p), .reset(reset),.inputPixel(inputData),.overallOut(outputData));
     
-    
+    // REMOVED ONCE OPTIMIZED DENSE IMPLEMENTED
 //    // layer 3: dense latency (input 128, output 16)
 //    // includes layer 4: reluLayer
 //	denseLatencyParameterized #(16, 10, 128, 16) dense
