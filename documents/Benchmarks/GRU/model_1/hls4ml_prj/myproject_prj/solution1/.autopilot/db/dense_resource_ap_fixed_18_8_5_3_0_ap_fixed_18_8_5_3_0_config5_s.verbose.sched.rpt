@@ -1,0 +1,145 @@
+
+
+================================================================
+== Vivado HLS Report for 'dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s'
+================================================================
+* Date:           Wed Feb 21 03:47:09 2024
+
+* Version:        2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)
+* Project:        myproject_prj
+* Solution:       solution1
+* Product family: virtexuplus
+* Target device:  xcvu13p-flga2577-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 5.00 ns | 3.797 ns |   0.62 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        1|        1| 5.000 ns | 5.000 ns |    1|    1|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.21>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%data_4_V_read_5 = call i17 @_ssdm_op_Read.ap_auto.i17(i17 %data_4_V_read)" [firmware/nnet_utils/nnet_dense_resource.h:246]   --->   Operation 3 'read' 'data_4_V_read_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%data_3_V_read_5 = call i17 @_ssdm_op_Read.ap_auto.i17(i17 %data_3_V_read)" [firmware/nnet_utils/nnet_dense_resource.h:246]   --->   Operation 4 'read' 'data_3_V_read_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%zext_ln1118_3 = zext i17 %data_3_V_read_5 to i28" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 5 'zext' 'zext_ln1118_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (2.53ns) (root node of the DSP)   --->   "%mul_ln1118_7 = mul i28 %zext_ln1118_3, -2348" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 6 'mul' 'mul_ln1118_7' <Predicate = true> <Delay = 2.53> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%trunc_ln708_2 = call i18 @_ssdm_op_PartSelect.i18.i28.i32.i32(i28 %mul_ln1118_7, i32 10, i32 27)" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 7 'partselect' 'trunc_ln708_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%zext_ln1118_4 = zext i17 %data_4_V_read_5 to i28" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 8 'zext' 'zext_ln1118_4' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (2.53ns) (root node of the DSP)   --->   "%mul_ln1118_8 = mul i28 %zext_ln1118_4, -1818" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 9 'mul' 'mul_ln1118_8' <Predicate = true> <Delay = 2.53> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%trunc_ln708_3 = call i18 @_ssdm_op_PartSelect.i18.i28.i32.i32(i28 %mul_ln1118_8, i32 10, i32 27)" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 10 'partselect' 'trunc_ln708_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln703_2 = add i18 %trunc_ln708_3, -62" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 11 'add' 'add_ln703_2' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 12 [1/1] (0.68ns) (root node of TernaryAdder)   --->   "%add_ln703_3 = add i18 %add_ln703_2, %trunc_ln708_2" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 12 'add' 'add_ln703_3' <Predicate = true> <Delay = 0.68> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 2 <SV = 1> <Delay = 3.79>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%data_2_V_read_5 = call i17 @_ssdm_op_Read.ap_auto.i17(i17 %data_2_V_read)" [firmware/nnet_utils/nnet_dense_resource.h:246]   --->   Operation 13 'read' 'data_2_V_read_5' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%data_1_V_read_5 = call i17 @_ssdm_op_Read.ap_auto.i17(i17 %data_1_V_read)" [firmware/nnet_utils/nnet_dense_resource.h:246]   --->   Operation 14 'read' 'data_1_V_read_5' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%data_0_V_read_5 = call i17 @_ssdm_op_Read.ap_auto.i17(i17 %data_0_V_read)" [firmware/nnet_utils/nnet_dense_resource.h:246]   --->   Operation 15 'read' 'data_0_V_read_5' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%zext_ln1118 = zext i17 %data_0_V_read_5 to i28" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 16 'zext' 'zext_ln1118' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (2.53ns) (root node of the DSP)   --->   "%mul_ln1118 = mul i28 %zext_ln1118, 1484" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 17 'mul' 'mul_ln1118' <Predicate = true> <Delay = 2.53> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%trunc_ln = call i18 @_ssdm_op_PartSelect.i18.i28.i32.i32(i28 %mul_ln1118, i32 10, i32 27)" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 18 'partselect' 'trunc_ln' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln1118_1 = zext i17 %data_1_V_read_5 to i28" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 19 'zext' 'zext_ln1118_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (2.53ns) (root node of the DSP)   --->   "%mul_ln1118_5 = mul i28 %zext_ln1118_1, -3082" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 20 'mul' 'mul_ln1118_5' <Predicate = true> <Delay = 2.53> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%trunc_ln708_s = call i18 @_ssdm_op_PartSelect.i18.i28.i32.i32(i28 %mul_ln1118_5, i32 10, i32 27)" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 21 'partselect' 'trunc_ln708_s' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%zext_ln1118_2 = zext i17 %data_2_V_read_5 to i28" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 22 'zext' 'zext_ln1118_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 23 [1/1] (2.53ns) (root node of the DSP)   --->   "%mul_ln1118_6 = mul i28 %zext_ln1118_2, 1371" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 23 'mul' 'mul_ln1118_6' <Predicate = true> <Delay = 2.53> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.53> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%trunc_ln708_1 = call i18 @_ssdm_op_PartSelect.i18.i28.i32.i32(i28 %mul_ln1118_6, i32 10, i32 27)" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 24 'partselect' 'trunc_ln708_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.58ns)   --->   "%add_ln703 = add i18 %trunc_ln708_s, %trunc_ln708_1" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 25 'add' 'add_ln703' <Predicate = true> <Delay = 0.58> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.58> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 26 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln703_1 = add i18 %add_ln703, %trunc_ln" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 26 'add' 'add_ln703_1' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 27 [1/1] (0.68ns) (root node of TernaryAdder)   --->   "%add_ln703_4 = add i18 %add_ln703_3, %add_ln703_1" [firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253]   --->   Operation 27 'add' 'add_ln703_4' <Predicate = true> <Delay = 0.68> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.34> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "ret i18 %add_ln703_4" [firmware/nnet_utils/nnet_dense_resource.h:259]   --->   Operation 28 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5ns, clock uncertainty: 0.625ns.
+
+ <State 1>: 3.21ns
+The critical path consists of the following:
+	wire read on port 'data_4_V_read' (firmware/nnet_utils/nnet_dense_resource.h:246) [6]  (0 ns)
+	'mul' operation of DSP[24] ('mul_ln1118_8', firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253) [24]  (2.53 ns)
+	'add' operation ('add_ln703_2', firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253) [28]  (0 ns)
+	'add' operation ('add_ln703_3', firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253) [29]  (0.682 ns)
+
+ <State 2>: 3.8ns
+The critical path consists of the following:
+	wire read on port 'data_2_V_read' (firmware/nnet_utils/nnet_dense_resource.h:246) [8]  (0 ns)
+	'mul' operation of DSP[18] ('mul_ln1118_6', firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253) [18]  (2.53 ns)
+	'add' operation ('add_ln703', firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253) [26]  (0.582 ns)
+	'add' operation ('add_ln703_1', firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253) [27]  (0 ns)
+	'add' operation ('res.V', firmware/nnet_utils/nnet_dense_resource.h:56->firmware/nnet_utils/nnet_dense_resource.h:253) [30]  (0.682 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

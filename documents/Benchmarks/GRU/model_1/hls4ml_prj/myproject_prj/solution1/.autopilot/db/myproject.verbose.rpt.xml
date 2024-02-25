@@ -1,0 +1,205 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'myproject'" level="0">
+<item name = "Date">Wed Feb 21 03:47:15 2024
+</item>
+<item name = "Version">2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)</item>
+<item name = "Project">myproject_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcvu13p-flga2577-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 4.273 ns, 0.62 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">226, 226, 1.130 us, 1.130 us, 222, 222, dataflow</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_U0">gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s, 221, 221, 1.105 us, 1.105 us, 221, 221, none</column>
+<column name="dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_U0">dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, none</column>
+<column name="relu_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_relu_config4_U0">relu_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_relu_config4_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="sigmoid_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_sigmoid_config6_U0">sigmoid_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_sigmoid_config6_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_U0">dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 74, -</column>
+<column name="FIFO">0, -, 80, 475, -</column>
+<column name="Instance">9, 179, 2855, 20540, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 135, -</column>
+<column name="Register">-, -, 15, -, -</column>
+<specialColumn name="Available SLR">1344, 3072, 864000, 432000, 320</specialColumn>
+<specialColumn name="Utilization SLR (%)">~0, 5, ~0, 4, 0</specialColumn>
+<specialColumn name="Available">5376, 12288, 3456000, 1728000, 1280</specialColumn>
+<specialColumn name="Utilization (%)">~0, 1, ~0, 1, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
+<column name="dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_U0">dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s, 0, 24, 245, 549, 0</column>
+<column name="dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_U0">dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s, 0, 5, 39, 125, 0</column>
+<column name="gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_U0">gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s, 8, 150, 2481, 19470, 0</column>
+<column name="relu_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_relu_config4_U0">relu_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_relu_config4_s, 0, 0, 87, 241, 0</column>
+<column name="sigmoid_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_sigmoid_config6_U0">sigmoid_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_sigmoid_config6_s, 1, 0, 3, 155, 0</column>
+</table>
+</item>
+<item name = "DSP48E"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+<column name="layer2_out_0_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer2_out_1_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer2_out_2_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer2_out_3_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer2_out_4_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer3_out_0_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer3_out_1_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer3_out_2_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer3_out_3_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer3_out_4_V_U">0, 5, 0, -, 2, 18, 36</column>
+<column name="layer4_out_0_V_U">0, 5, 0, -, 2, 17, 34</column>
+<column name="layer4_out_1_V_U">0, 5, 0, -, 2, 17, 34</column>
+<column name="layer4_out_2_V_U">0, 5, 0, -, 2, 17, 34</column>
+<column name="layer4_out_3_V_U">0, 5, 0, -, 2, 17, 34</column>
+<column name="layer4_out_4_V_U">0, 5, 0, -, 2, 17, 34</column>
+<column name="layer5_out_0_V_U">0, 5, 0, -, 2, 18, 36</column>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="ap_channel_done_layer2_out_0_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer2_out_1_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer2_out_2_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer2_out_3_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer2_out_4_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer3_out_0_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer3_out_1_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer3_out_2_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer3_out_3_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer3_out_4_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer4_out_0_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer4_out_1_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer4_out_2_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer4_out_3_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_channel_done_layer4_out_4_V">and, 0, 0, 2, 1, 1</column>
+<column name="ap_idle">and, 0, 0, 2, 1, 1</column>
+<column name="dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_U0_ap_continue">and, 0, 0, 2, 1, 1</column>
+<column name="dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_U0_ap_start">and, 0, 0, 2, 1, 1</column>
+<column name="dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_U0_ap_start">and, 0, 0, 2, 1, 1</column>
+<column name="gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_U0_ap_continue">and, 0, 0, 2, 1, 1</column>
+<column name="relu_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_relu_config4_U0_ap_continue">and, 0, 0, 2, 1, 1</column>
+<column name="relu_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_relu_config4_U0_ap_start">and, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer2_out_0_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer2_out_1_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer2_out_2_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer2_out_3_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer2_out_4_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer3_out_0_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer3_out_1_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer3_out_2_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer3_out_3_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer3_out_4_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer4_out_0_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer4_out_1_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer4_out_2_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer4_out_3_V">or, 0, 0, 2, 1, 1</column>
+<column name="ap_sync_channel_write_layer4_out_4_V">or, 0, 0, 2, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_sync_reg_channel_write_layer2_out_0_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer2_out_1_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer2_out_2_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer2_out_3_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer2_out_4_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer3_out_0_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer3_out_1_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer3_out_2_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer3_out_3_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer3_out_4_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer4_out_0_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer4_out_1_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer4_out_2_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer4_out_3_V">9, 2, 1, 2</column>
+<column name="ap_sync_reg_channel_write_layer4_out_4_V">9, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_sync_reg_channel_write_layer2_out_0_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer2_out_1_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer2_out_2_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer2_out_3_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer2_out_4_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer3_out_0_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer3_out_1_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer3_out_2_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer3_out_3_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer3_out_4_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer4_out_0_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer4_out_1_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer4_out_2_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer4_out_3_V">1, 0, 1, 0</column>
+<column name="ap_sync_reg_channel_write_layer4_out_4_V">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="layer1_input_V">in, 2160, ap_vld, layer1_input_V, pointer</column>
+<column name="layer1_input_V_ap_vld">in, 1, ap_vld, layer1_input_V, pointer</column>
+<column name="layer6_out_0_V">out, 18, ap_vld, layer6_out_0_V, pointer</column>
+<column name="layer6_out_0_V_ap_vld">out, 1, ap_vld, layer6_out_0_V, pointer</column>
+<column name="ap_clk">in, 1, ap_ctrl_hs, myproject, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, myproject, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, myproject, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, myproject, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, myproject, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, myproject, return value</column>
+</table>
+</item>
+</section>
+</profile>
