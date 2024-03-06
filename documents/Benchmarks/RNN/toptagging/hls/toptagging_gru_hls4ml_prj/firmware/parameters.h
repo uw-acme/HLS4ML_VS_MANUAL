@@ -30,7 +30,7 @@ struct config2_1 : nnet::dense_config {
     static const unsigned n_in = N_INPUT_2_1;
     static const unsigned n_out = N_OUT_2 * 3;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 360;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
@@ -47,7 +47,7 @@ struct config2_2 : nnet::dense_config {
     static const unsigned n_in = N_OUT_2;
     static const unsigned n_out = N_OUT_2 * 3;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 20;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 1200;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
@@ -64,7 +64,7 @@ struct sigmoid_config2_recr : nnet::activ_config {
     static const unsigned n_in = N_OUT_2 * 2;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_parallel;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     typedef layer1_table_t table_t;
 };
 
@@ -72,7 +72,7 @@ struct tanh_config2 : nnet::activ_config {
     static const unsigned n_in = N_OUT_2;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_parallel;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     typedef layer1_table_t table_t;
 };
 
@@ -94,7 +94,7 @@ struct config2 : nnet::gru_config {
     static const unsigned n_sequence = N_INPUT_1_1;
     static const unsigned n_sequence_out = 1;
     static const unsigned io_type = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     static const bool store_weights_in_bram = false;
     static const bool use_static = true;
 };
@@ -105,7 +105,7 @@ struct config3 : nnet::dense_config {
     static const unsigned n_out = 64;
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 20;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 1280;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
@@ -123,7 +123,7 @@ struct relu_config4 : nnet::activ_config {
     static const unsigned n_in = 64;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_parallel;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     typedef layer3_relu_table_t table_t;
 };
 
@@ -133,7 +133,7 @@ struct config5 : nnet::dense_config {
     static const unsigned n_out = 1;
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 32;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 64;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
@@ -151,7 +151,7 @@ struct sigmoid_config6 : nnet::activ_config {
     static const unsigned n_in = 1;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_parallel;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     typedef output_sigmoid_sigmoid_table_t table_t;
 };
 

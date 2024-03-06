@@ -44,7 +44,7 @@
     "ClockPeriod": "5",
     "IsCombLogic": "0",
     "II": "x",
-    "Latency": "4208",
+    "Latency": "4308",
     "Uncertainty": "0.625"
   },
   "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 5.000 [get_ports ap_clk]"]},
@@ -62,91 +62,91 @@
   "Files": {
     "CSource": ["..\/..\/firmware\/myproject.cpp"],
     "Vhdl": [
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s_outidx.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s_w2_V.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_2_s.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_2_s_wr2_V.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s_w3_V.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s_w5_V.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config7_s.vhd",
-      "impl\/vhdl\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config7_s_w7_V.vhd",
-      "impl\/vhdl\/fifo_w18_d2_A.vhd",
-      "impl\/vhdl\/gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s.vhd",
-      "impl\/vhdl\/gru_static_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s.vhd",
-      "impl\/vhdl\/myproject_mac_muladd_18s_18s_28s_28_1_1.vhd",
-      "impl\/vhdl\/myproject_mul_mul_18s_8s_26_1_1.vhd",
-      "impl\/vhdl\/myproject_mul_mul_18s_9s_27_1_1.vhd",
-      "impl\/vhdl\/myproject_mul_mul_18s_10s_28_1_1.vhd",
-      "impl\/vhdl\/myproject_mul_mul_18s_11s_28_1_1.vhd",
-      "impl\/vhdl\/myproject_mul_mul_18s_12s_28_1_1.vhd",
-      "impl\/vhdl\/myproject_mul_mul_18s_17ns_28_1_1.vhd",
-      "impl\/vhdl\/myproject_mul_mul_18s_18s_28_1_1.vhd",
-      "impl\/vhdl\/myproject_mul_mul_19s_18s_28_1_1.vhd",
-      "impl\/vhdl\/myproject_mux_32_18_1_1.vhd",
-      "impl\/vhdl\/myproject_mux_83_18_1_1.vhd",
-      "impl\/vhdl\/myproject_mux_325_18_1_1.vhd",
-      "impl\/vhdl\/myproject_mux_646_18_1_1.vhd",
-      "impl\/vhdl\/myproject_mux_1287_18_1_1.vhd",
-      "impl\/vhdl\/myproject_mux_2568_18_1_1.vhd",
-      "impl\/vhdl\/sigmoid_ap_fixed_ap_fixed_18_8_5_3_0_sigmoid_config2_recr_s.vhd",
-      "impl\/vhdl\/sigmoid_ap_fixed_ap_fixed_18_8_5_3_0_sigmoid_config2_recr_s_sigmoid_table4.vhd",
-      "impl\/vhdl\/softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s.vhd",
-      "impl\/vhdl\/softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s_exp_table1.vhd",
-      "impl\/vhdl\/softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s_invert_table2.vhd",
-      "impl\/vhdl\/tanh_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_tanh_config2_s.vhd",
-      "impl\/vhdl\/tanh_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_tanh_config2_s_tanh_table3.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_outidx.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_w2_V.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s_wr2_V.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s_w3_V.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s_w5_V.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s.vhd",
+      "impl\/vhdl\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s_w7_V.vhd",
+      "impl\/vhdl\/fifo_w16_d2_A.vhd",
+      "impl\/vhdl\/gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s.vhd",
+      "impl\/vhdl\/gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s.vhd",
+      "impl\/vhdl\/myproject_mac_muladd_16s_16s_26s_26_1_1.vhd",
+      "impl\/vhdl\/myproject_mul_mul_16s_8s_24_1_1.vhd",
+      "impl\/vhdl\/myproject_mul_mul_16s_9s_25_1_1.vhd",
+      "impl\/vhdl\/myproject_mul_mul_16s_10s_26_1_1.vhd",
+      "impl\/vhdl\/myproject_mul_mul_16s_11s_26_1_1.vhd",
+      "impl\/vhdl\/myproject_mul_mul_16s_12s_26_1_1.vhd",
+      "impl\/vhdl\/myproject_mul_mul_16s_16s_26_1_1.vhd",
+      "impl\/vhdl\/myproject_mul_mul_17s_16s_26_1_1.vhd",
+      "impl\/vhdl\/myproject_mul_mul_18s_17ns_26_1_1.vhd",
+      "impl\/vhdl\/myproject_mux_32_16_1_1.vhd",
+      "impl\/vhdl\/myproject_mux_83_16_1_1.vhd",
+      "impl\/vhdl\/myproject_mux_325_16_1_1.vhd",
+      "impl\/vhdl\/myproject_mux_646_16_1_1.vhd",
+      "impl\/vhdl\/myproject_mux_1287_16_1_1.vhd",
+      "impl\/vhdl\/myproject_mux_2568_16_1_1.vhd",
+      "impl\/vhdl\/sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s.vhd",
+      "impl\/vhdl\/sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s_sigmoid_table4.vhd",
+      "impl\/vhdl\/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s.vhd",
+      "impl\/vhdl\/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_exp_table1.vhd",
+      "impl\/vhdl\/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_invert_table2.vhd",
+      "impl\/vhdl\/tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s.vhd",
+      "impl\/vhdl\/tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_tanh_table3.vhd",
       "impl\/vhdl\/myproject.vhd"
     ],
     "Verilog": [
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s_outidx.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s_outidx_rom.dat",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s_w2_V.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s_w2_V_rom.dat",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_2_s.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_2_s_wr2_V.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_2_s_wr2_V_rom.dat",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s_w3_V.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s_w3_V_rom.dat",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s_w5_V.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s_w5_V_rom.dat",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config7_s.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config7_s_w7_V.v",
-      "impl\/verilog\/dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config7_s_w7_V_rom.dat",
-      "impl\/verilog\/fifo_w18_d2_A.v",
-      "impl\/verilog\/gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s.v",
-      "impl\/verilog\/gru_static_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s.v",
-      "impl\/verilog\/myproject_mac_muladd_18s_18s_28s_28_1_1.v",
-      "impl\/verilog\/myproject_mul_mul_18s_8s_26_1_1.v",
-      "impl\/verilog\/myproject_mul_mul_18s_9s_27_1_1.v",
-      "impl\/verilog\/myproject_mul_mul_18s_10s_28_1_1.v",
-      "impl\/verilog\/myproject_mul_mul_18s_11s_28_1_1.v",
-      "impl\/verilog\/myproject_mul_mul_18s_12s_28_1_1.v",
-      "impl\/verilog\/myproject_mul_mul_18s_17ns_28_1_1.v",
-      "impl\/verilog\/myproject_mul_mul_18s_18s_28_1_1.v",
-      "impl\/verilog\/myproject_mul_mul_19s_18s_28_1_1.v",
-      "impl\/verilog\/myproject_mux_32_18_1_1.v",
-      "impl\/verilog\/myproject_mux_83_18_1_1.v",
-      "impl\/verilog\/myproject_mux_325_18_1_1.v",
-      "impl\/verilog\/myproject_mux_646_18_1_1.v",
-      "impl\/verilog\/myproject_mux_1287_18_1_1.v",
-      "impl\/verilog\/myproject_mux_2568_18_1_1.v",
-      "impl\/verilog\/sigmoid_ap_fixed_ap_fixed_18_8_5_3_0_sigmoid_config2_recr_s.v",
-      "impl\/verilog\/sigmoid_ap_fixed_ap_fixed_18_8_5_3_0_sigmoid_config2_recr_s_sigmoid_table4.v",
-      "impl\/verilog\/sigmoid_ap_fixed_ap_fixed_18_8_5_3_0_sigmoid_config2_recr_s_sigmoid_table4_rom.dat",
-      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s.v",
-      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s_exp_table1.v",
-      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s_exp_table1_rom.dat",
-      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s_invert_table2.v",
-      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s_invert_table2_rom.dat",
-      "impl\/verilog\/tanh_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_tanh_config2_s.v",
-      "impl\/verilog\/tanh_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_tanh_config2_s_tanh_table3.v",
-      "impl\/verilog\/tanh_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_tanh_config2_s_tanh_table3_rom.dat",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_outidx.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_outidx_rom.dat",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_w2_V.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_w2_V_rom.dat",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s_wr2_V.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s_wr2_V_rom.dat",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s_w3_V.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s_w3_V_rom.dat",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s_w5_V.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s_w5_V_rom.dat",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s_w7_V.v",
+      "impl\/verilog\/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s_w7_V_rom.dat",
+      "impl\/verilog\/fifo_w16_d2_A.v",
+      "impl\/verilog\/gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s.v",
+      "impl\/verilog\/gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s.v",
+      "impl\/verilog\/myproject_mac_muladd_16s_16s_26s_26_1_1.v",
+      "impl\/verilog\/myproject_mul_mul_16s_8s_24_1_1.v",
+      "impl\/verilog\/myproject_mul_mul_16s_9s_25_1_1.v",
+      "impl\/verilog\/myproject_mul_mul_16s_10s_26_1_1.v",
+      "impl\/verilog\/myproject_mul_mul_16s_11s_26_1_1.v",
+      "impl\/verilog\/myproject_mul_mul_16s_12s_26_1_1.v",
+      "impl\/verilog\/myproject_mul_mul_16s_16s_26_1_1.v",
+      "impl\/verilog\/myproject_mul_mul_17s_16s_26_1_1.v",
+      "impl\/verilog\/myproject_mul_mul_18s_17ns_26_1_1.v",
+      "impl\/verilog\/myproject_mux_32_16_1_1.v",
+      "impl\/verilog\/myproject_mux_83_16_1_1.v",
+      "impl\/verilog\/myproject_mux_325_16_1_1.v",
+      "impl\/verilog\/myproject_mux_646_16_1_1.v",
+      "impl\/verilog\/myproject_mux_1287_16_1_1.v",
+      "impl\/verilog\/myproject_mux_2568_16_1_1.v",
+      "impl\/verilog\/sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s.v",
+      "impl\/verilog\/sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s_sigmoid_table4.v",
+      "impl\/verilog\/sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s_sigmoid_table4_rom.dat",
+      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s.v",
+      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_exp_table1.v",
+      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_exp_table1_rom.dat",
+      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_invert_table2.v",
+      "impl\/verilog\/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_invert_table2_rom.dat",
+      "impl\/verilog\/tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s.v",
+      "impl\/verilog\/tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_tanh_table3.v",
+      "impl\/verilog\/tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_tanh_table3_rom.dat",
       "impl\/verilog\/myproject.v"
     ],
     "Misc": ["impl\/misc\/logo.png"],
@@ -187,11 +187,11 @@
     "input_16_V": {
       "type": "data",
       "dir": "in",
-      "width": "5400",
+      "width": "4800",
       "ctype": {"DATA": {
           "Type": "real fixed signed 10",
           "Width": "18",
-          "Bits": "5400"
+          "Bits": "4800"
         }},
       "bundle_name": "input_16_V",
       "bundle_role": "default"
@@ -199,10 +199,11 @@
     "layer8_out_0_V": {
       "type": "data",
       "dir": "out",
-      "width": "18",
+      "width": "16",
       "ctype": {"DATA": {
           "Type": "real fixed signed 10",
-          "Width": "18"
+          "Width": "18",
+          "Bits": "16"
         }},
       "bundle_name": "layer8_out_0_V",
       "bundle_role": "default"
@@ -210,10 +211,11 @@
     "layer8_out_1_V": {
       "type": "data",
       "dir": "out",
-      "width": "18",
+      "width": "16",
       "ctype": {"DATA": {
           "Type": "real fixed signed 10",
-          "Width": "18"
+          "Width": "18",
+          "Bits": "16"
         }},
       "bundle_name": "layer8_out_1_V",
       "bundle_role": "default"
@@ -221,10 +223,11 @@
     "layer8_out_2_V": {
       "type": "data",
       "dir": "out",
-      "width": "18",
+      "width": "16",
       "ctype": {"DATA": {
           "Type": "real fixed signed 10",
-          "Width": "18"
+          "Width": "18",
+          "Bits": "16"
         }},
       "bundle_name": "layer8_out_2_V",
       "bundle_role": "default"
@@ -232,10 +235,11 @@
     "layer8_out_3_V": {
       "type": "data",
       "dir": "out",
-      "width": "18",
+      "width": "16",
       "ctype": {"DATA": {
           "Type": "real fixed signed 10",
-          "Width": "18"
+          "Width": "18",
+          "Bits": "16"
         }},
       "bundle_name": "layer8_out_3_V",
       "bundle_role": "default"
@@ -243,10 +247,11 @@
     "layer8_out_4_V": {
       "type": "data",
       "dir": "out",
-      "width": "18",
+      "width": "16",
       "ctype": {"DATA": {
           "Type": "real fixed signed 10",
-          "Width": "18"
+          "Width": "18",
+          "Bits": "16"
         }},
       "bundle_name": "layer8_out_4_V",
       "bundle_role": "default"
@@ -255,7 +260,7 @@
   "RtlPorts": {
     "input_16_V": {
       "dir": "in",
-      "width": "5400"
+      "width": "4800"
     },
     "input_16_V_ap_vld": {
       "dir": "in",
@@ -263,7 +268,7 @@
     },
     "layer8_out_0_V": {
       "dir": "out",
-      "width": "18"
+      "width": "16"
     },
     "layer8_out_0_V_ap_vld": {
       "dir": "out",
@@ -271,7 +276,7 @@
     },
     "layer8_out_1_V": {
       "dir": "out",
-      "width": "18"
+      "width": "16"
     },
     "layer8_out_1_V_ap_vld": {
       "dir": "out",
@@ -279,7 +284,7 @@
     },
     "layer8_out_2_V": {
       "dir": "out",
-      "width": "18"
+      "width": "16"
     },
     "layer8_out_2_V_ap_vld": {
       "dir": "out",
@@ -287,7 +292,7 @@
     },
     "layer8_out_3_V": {
       "dir": "out",
-      "width": "18"
+      "width": "16"
     },
     "layer8_out_3_V_ap_vld": {
       "dir": "out",
@@ -295,7 +300,7 @@
     },
     "layer8_out_4_V": {
       "dir": "out",
-      "width": "18"
+      "width": "16"
     },
     "layer8_out_4_V_ap_vld": {
       "dir": "out",
@@ -331,114 +336,114 @@
       "ModuleName": "myproject",
       "Instances": [
         {
-          "ModuleName": "gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s",
-          "InstanceName": "gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_U0",
+          "ModuleName": "gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s",
+          "InstanceName": "gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0",
           "Instances": [{
-              "ModuleName": "gru_static_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s",
-              "InstanceName": "grp_gru_static_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s_fu_589",
+              "ModuleName": "gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s",
+              "InstanceName": "grp_gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s_fu_601",
               "Instances": [
                 {
-                  "ModuleName": "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_2_s",
-                  "InstanceName": "grp_dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_2_s_fu_322"
+                  "ModuleName": "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s",
+                  "InstanceName": "grp_dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s_fu_322"
                 },
                 {
-                  "ModuleName": "sigmoid_ap_fixed_ap_fixed_18_8_5_3_0_sigmoid_config2_recr_s",
-                  "InstanceName": "grp_sigmoid_ap_fixed_ap_fixed_18_8_5_3_0_sigmoid_config2_recr_s_fu_456"
+                  "ModuleName": "sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s",
+                  "InstanceName": "grp_sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s_fu_456"
                 },
                 {
-                  "ModuleName": "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s",
-                  "InstanceName": "grp_dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s_fu_718"
+                  "ModuleName": "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s",
+                  "InstanceName": "grp_dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_fu_718"
                 },
                 {
-                  "ModuleName": "tanh_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_tanh_config2_s",
-                  "InstanceName": "grp_tanh_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_tanh_config2_s_fu_732"
+                  "ModuleName": "tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s",
+                  "InstanceName": "grp_tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_fu_732"
                 }
               ]
             }]
         },
         {
-          "ModuleName": "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s",
-          "InstanceName": "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_U0"
+          "ModuleName": "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s",
+          "InstanceName": "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0"
         },
         {
-          "ModuleName": "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s",
-          "InstanceName": "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_U0"
+          "ModuleName": "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s",
+          "InstanceName": "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0"
         },
         {
-          "ModuleName": "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config7_s",
-          "InstanceName": "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config7_U0"
+          "ModuleName": "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s",
+          "InstanceName": "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0"
         },
         {
-          "ModuleName": "softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s",
-          "InstanceName": "softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_U0"
+          "ModuleName": "softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s",
+          "InstanceName": "softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0"
         }
       ]
     },
     "Info": {
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "1",
         "isCombinational": "0",
         "isOneStateSeq": "0"
       },
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_2_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "1",
         "isCombinational": "0",
         "isOneStateSeq": "0"
       },
-      "sigmoid_ap_fixed_ap_fixed_18_8_5_3_0_sigmoid_config2_recr_s": {
+      "sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "1",
         "isCombinational": "0",
         "isOneStateSeq": "0"
       },
-      "tanh_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_tanh_config2_s": {
+      "tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "1",
         "isCombinational": "0",
         "isOneStateSeq": "0"
       },
-      "gru_static_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s": {
+      "gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "0",
         "isCombinational": "0",
         "isOneStateSeq": "0"
       },
-      "gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s": {
+      "gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "0",
         "isCombinational": "0",
         "isOneStateSeq": "0"
       },
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "1",
         "isCombinational": "0",
         "isOneStateSeq": "0"
       },
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "1",
         "isCombinational": "0",
         "isOneStateSeq": "0"
       },
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config7_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "1",
         "isCombinational": "0",
         "isOneStateSeq": "0"
       },
-      "softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s": {
+      "softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s": {
         "FunctionProtocol": "ap_ctrl_hs",
         "isTaskLevelControl": "1",
         "isPipelined": "1",
@@ -454,7 +459,7 @@
       }
     },
     "Metrics": {
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_1_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s": {
         "Latency": {
           "LatencyBest": "25",
           "LatencyAvg": "25",
@@ -466,7 +471,7 @@
         "Timing": {
           "Target": "5.00",
           "Uncertainty": "0.62",
-          "Estimate": "3.752"
+          "Estimate": "3.778"
         },
         "Loops": [{
             "Name": "ReuseLoop",
@@ -476,14 +481,14 @@
             "PipelineDepth": "3"
           }],
         "Area": {
-          "BRAM_18K": "24",
+          "BRAM_18K": "22",
           "DSP48E": "48",
-          "FF": "14963",
-          "LUT": "20440",
+          "FF": "13313",
+          "LUT": "19686",
           "URAM": "0"
         }
       },
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_2_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s": {
         "Latency": {
           "LatencyBest": "33",
           "LatencyAvg": "33",
@@ -505,14 +510,14 @@
             "PipelineDepth": "3"
           }],
         "Area": {
-          "BRAM_18K": "768",
+          "BRAM_18K": "683",
           "DSP48E": "1536",
-          "FF": "48401",
-          "LUT": "458593",
+          "FF": "43025",
+          "LUT": "455521",
           "URAM": "0"
         }
       },
-      "sigmoid_ap_fixed_ap_fixed_18_8_5_3_0_sigmoid_config2_recr_s": {
+      "sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s": {
         "Latency": {
           "LatencyBest": "1",
           "LatencyAvg": "1",
@@ -524,17 +529,17 @@
         "Timing": {
           "Target": "5.00",
           "Uncertainty": "0.62",
-          "Estimate": "4.146"
+          "Estimate": "3.754"
         },
         "Area": {
           "BRAM_18K": "128",
           "FF": "2",
-          "LUT": "35844",
+          "LUT": "32516",
           "DSP48E": "0",
           "URAM": "0"
         }
       },
-      "tanh_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_tanh_config2_s": {
+      "tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s": {
         "Latency": {
           "LatencyBest": "1",
           "LatencyAvg": "1",
@@ -546,17 +551,17 @@
         "Timing": {
           "Target": "5.00",
           "Uncertainty": "0.62",
-          "Estimate": "4.055"
+          "Estimate": "3.968"
         },
         "Area": {
           "BRAM_18K": "64",
           "FF": "2",
-          "LUT": "18948",
+          "LUT": "17156",
           "DSP48E": "0",
           "URAM": "0"
         }
       },
-      "gru_static_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s": {
+      "gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s": {
         "Latency": {
           "LatencyBest": "39",
           "LatencyAvg": "39",
@@ -570,52 +575,52 @@
         "Timing": {
           "Target": "5.00",
           "Uncertainty": "0.62",
-          "Estimate": "4.334"
+          "Estimate": "4.362"
         },
         "Area": {
-          "BRAM_18K": "984",
+          "BRAM_18K": "897",
           "DSP48E": "1968",
-          "FF": "85395",
-          "LUT": "545516",
+          "FF": "80161",
+          "LUT": "535290",
           "URAM": "0"
         }
       },
-      "gru_stack_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config2_s": {
+      "gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s": {
         "Latency": {
-          "LatencyBest": "4101",
-          "LatencyAvg": "4101",
-          "LatencyWorst": "4201",
-          "PipelineIIMin": "4101",
-          "PipelineIIMax": "4201",
-          "PipelineII": "4101 ~ 4201",
+          "LatencyBest": "4201",
+          "LatencyAvg": "4201",
+          "LatencyWorst": "4301",
+          "PipelineIIMin": "4201",
+          "PipelineIIMax": "4301",
+          "PipelineII": "4201 ~ 4301",
           "PipelineDepth": "",
           "PipelineType": "none"
         },
         "Timing": {
           "Target": "5.00",
           "Uncertainty": "0.62",
-          "Estimate": "4.334"
+          "Estimate": "4.362"
         },
         "Loops": [{
             "Name": "Loop 1",
             "TripCount": "100",
-            "LatencyMin": "4100",
-            "LatencyMax": "4200",
-            "Latency": "4100 ~ 4200",
+            "LatencyMin": "4200",
+            "LatencyMax": "4300",
+            "Latency": "4200 ~ 4300",
             "PipelineII": "",
-            "PipelineDepthMin": "41",
-            "PipelineDepthMax": "42",
-            "PipelineDepth": "41 ~ 42"
+            "PipelineDepthMin": "42",
+            "PipelineDepthMax": "43",
+            "PipelineDepth": "42 ~ 43"
           }],
         "Area": {
-          "BRAM_18K": "984",
+          "BRAM_18K": "897",
           "DSP48E": "1968",
-          "FF": "87773",
-          "LUT": "552168",
+          "FF": "82278",
+          "LUT": "573313",
           "URAM": "0"
         }
       },
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config3_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s": {
         "Latency": {
           "LatencyBest": "33",
           "LatencyAvg": "33",
@@ -637,14 +642,14 @@
             "PipelineDepth": "3"
           }],
         "Area": {
-          "BRAM_18K": "512",
+          "BRAM_18K": "455",
           "DSP48E": "1024",
-          "FF": "34583",
-          "LUT": "307308",
+          "FF": "30743",
+          "LUT": "305260",
           "URAM": "0"
         }
       },
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config5_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s": {
         "Latency": {
           "LatencyBest": "33",
           "LatencyAvg": "33",
@@ -666,14 +671,14 @@
             "PipelineDepth": "3"
           }],
         "Area": {
-          "BRAM_18K": "512",
+          "BRAM_18K": "455",
           "DSP48E": "1024",
-          "FF": "36886",
-          "LUT": "309612",
+          "FF": "32790",
+          "LUT": "307564",
           "URAM": "0"
         }
       },
-      "dense_resource_ap_fixed_18_8_5_3_0_ap_fixed_18_8_5_3_0_config7_s": {
+      "dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s": {
         "Latency": {
           "LatencyBest": "33",
           "LatencyAvg": "33",
@@ -695,14 +700,14 @@
             "PipelineDepth": "3"
           }],
         "Area": {
-          "BRAM_18K": "10",
+          "BRAM_18K": "9",
           "DSP48E": "20",
-          "FF": "7473",
-          "LUT": "10626",
+          "FF": "6645",
+          "LUT": "10586",
           "URAM": "0"
         }
       },
-      "softmax_stable_ap_fixed_ap_fixed_18_8_5_3_0_softmax_config8_s": {
+      "softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s": {
         "Latency": {
           "LatencyBest": "4",
           "LatencyAvg": "4",
@@ -714,37 +719,37 @@
         "Timing": {
           "Target": "5.00",
           "Uncertainty": "0.62",
-          "Estimate": "4.165"
+          "Estimate": "3.971"
         },
         "Area": {
           "BRAM_18K": "4",
           "DSP48E": "5",
           "FF": "237",
-          "LUT": "719",
+          "LUT": "673",
           "URAM": "0"
         }
       },
       "myproject": {
         "Latency": {
-          "LatencyBest": "4208",
-          "LatencyAvg": "4208",
-          "LatencyWorst": "4311",
-          "PipelineIIMin": "4102",
-          "PipelineIIMax": "4202",
-          "PipelineII": "4102 ~ 4202",
+          "LatencyBest": "4308",
+          "LatencyAvg": "4308",
+          "LatencyWorst": "4411",
+          "PipelineIIMin": "4202",
+          "PipelineIIMax": "4302",
+          "PipelineII": "4202 ~ 4302",
           "PipelineDepth": "",
           "PipelineType": "dataflow"
         },
         "Timing": {
           "Target": "5.00",
           "Uncertainty": "0.62",
-          "Estimate": "4.334"
+          "Estimate": "4.362"
         },
         "Area": {
-          "BRAM_18K": "2022",
+          "BRAM_18K": "1820",
           "DSP48E": "4041",
-          "FF": "170054",
-          "LUT": "1202682",
+          "FF": "155795",
+          "LUT": "1218611",
           "URAM": "0"
         }
       }
@@ -760,7 +765,7 @@
   },
   "GenData": {
     "DataVersion": "0.2",
-    "Time": "2024-02-28 06:43:14 PST",
+    "Time": "2024-03-06 02:02:00 PST",
     "ToolName": "vivado_hls",
     "ToolVersion": "2019.2"
   }

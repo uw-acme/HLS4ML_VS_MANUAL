@@ -4,7 +4,7 @@
 <CType>
 <TypeName>ap_fixed 18 8 5 3 0</TypeName>
 <TypeWidth>18</TypeWidth>
-<PhysicalWidth>5400</PhysicalWidth>
+<PhysicalWidth>4800</PhysicalWidth>
 </CType>
 <CFractionWidth>10</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -14,7 +14,7 @@
 <CType>
 <TypeName>ap_fixed 18 8 5 3 0</TypeName>
 <TypeWidth>18</TypeWidth>
-<PhysicalWidth>18</PhysicalWidth>
+<PhysicalWidth>16</PhysicalWidth>
 </CType>
 <CFractionWidth>10</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -24,7 +24,7 @@
 <CType>
 <TypeName>ap_fixed 18 8 5 3 0</TypeName>
 <TypeWidth>18</TypeWidth>
-<PhysicalWidth>18</PhysicalWidth>
+<PhysicalWidth>16</PhysicalWidth>
 </CType>
 <CFractionWidth>10</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -34,7 +34,7 @@
 <CType>
 <TypeName>ap_fixed 18 8 5 3 0</TypeName>
 <TypeWidth>18</TypeWidth>
-<PhysicalWidth>18</PhysicalWidth>
+<PhysicalWidth>16</PhysicalWidth>
 </CType>
 <CFractionWidth>10</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -44,7 +44,7 @@
 <CType>
 <TypeName>ap_fixed 18 8 5 3 0</TypeName>
 <TypeWidth>18</TypeWidth>
-<PhysicalWidth>18</PhysicalWidth>
+<PhysicalWidth>16</PhysicalWidth>
 </CType>
 <CFractionWidth>10</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -54,7 +54,7 @@
 <CType>
 <TypeName>ap_fixed 18 8 5 3 0</TypeName>
 <TypeWidth>18</TypeWidth>
-<PhysicalWidth>18</PhysicalWidth>
+<PhysicalWidth>16</PhysicalWidth>
 </CType>
 <CFractionWidth>10</CFractionWidth>
 <InvalidType>0</InvalidType>

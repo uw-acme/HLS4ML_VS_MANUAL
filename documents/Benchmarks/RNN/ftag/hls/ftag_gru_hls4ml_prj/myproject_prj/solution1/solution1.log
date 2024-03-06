@@ -250,3 +250,940 @@ INFO: [HLS 200-489] Unrolling loop 'InitAccum' (firmware/nnet_utils/nnet_dense_r
 INFO: [HLS 200-489] Unrolling loop 'MultLoop' (firmware/nnet_utils/nnet_dense_resource.h:52) in function 'nnet::dense_resource<ap_fixed<18, 8, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<18, 8, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' completely with a factor of 360.
 INFO: [HLS 200-489] Unrolling loop 'Result' (firmware/nnet_utils/nnet_dense_resource.h:77) in function 'nnet::dense_resource<ap_fixed<18, 8, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<18, 8, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' completely with a factor of 360.
 INFO: [XFORM 203-102] Partitioning array 'd_xi_xmax.V' (firmware/nnet_utils/nnet_activation.h:242) automatically.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.2 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 0.625ns.
+INFO: [HLS 200-10] Setting target device to 'xcu250-figd2104-2L-e'
+INFO: [XFORM 203-101] Allowed max sub elements number after partition is 4096.
+INFO: [XFORM 203-1161] The maximum of name length is set into 80.
+INFO: [XFORM 203-101] Allowed max sub elements number after partition is 4096.
+INFO: [XFORM 203-1161] The maximum of name length is set into 80.
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'firmware/myproject.cpp' ... 
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:43:67
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:43:71
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:43:76
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:43:80
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:47:67
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:47:71
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:55:67
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:55:71
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:63:67
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body: firmware/myproject.cpp:63:71
+WARNING: [HLS 200-471] Dataflow form checks found 10 issue(s) in file firmware/myproject.cpp
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 908.246 ; gain = 459.035 ; free physical = 23202 ; free virtual = 35935
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 908.246 ; gain = 459.035 ; free physical = 23202 ; free virtual = 35935
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-489] Unrolling loop 'MultLoop' (firmware/nnet_utils/nnet_dense_resource.h:136) in function 'void nnet::dense_resource_rf_gt_nin_rem0<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>(FORWARD_REFERENCE*, FORWARD_REFERENCE*, FORWARD_REFERENCE::weight_t*, FORWARD_REFERENCE::bias_t*)' completely with a factor of 1.
+INFO: [XFORM 203-603] Inlining function 'nnet::product::mult<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::product' into 'nnet::dense_resource_rf_gt_nin_rem0<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' (firmware/nnet_utils/nnet_dense_resource.h:139).
+INFO: [XFORM 203-603] Inlining function 'nnet::product::mult<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::product' into 'nnet::dense_resource_rf_gt_nin_rem0<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' (firmware/nnet_utils/nnet_dense_resource.h:139).
+INFO: [XFORM 203-603] Inlining function 'nnet::product::mult<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::product' into 'nnet::dense_resource_rf_leq_nin<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' (firmware/nnet_utils/nnet_dense_resource.h:56).
+INFO: [XFORM 203-603] Inlining function 'nnet::product::mult<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::product' into 'nnet::dense_resource_rf_leq_nin<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' (firmware/nnet_utils/nnet_dense_resource.h:56).
+INFO: [XFORM 203-603] Inlining function 'nnet::product::mult<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::product' into 'nnet::dense_resource_rf_leq_nin<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' (firmware/nnet_utils/nnet_dense_resource.h:56).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense_resource_rf_gt_nin_rem0<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' (firmware/nnet_utils/nnet_dense_resource.h:255).
+INFO: [XFORM 203-603] Inlining function 'nnet::cast<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' (firmware/nnet_utils/nnet_dense_resource.h:158->firmware/nnet_utils/nnet_dense_resource.h:255).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' into 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' (firmware/nnet_utils/nnet_recurrent.h:426).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense_resource_rf_leq_nin<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' (firmware/nnet_utils/nnet_dense_resource.h:253).
+INFO: [XFORM 203-603] Inlining function 'nnet::cast<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' (firmware/nnet_utils/nnet_dense_resource.h:79->firmware/nnet_utils/nnet_dense_resource.h:253).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' into 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' (firmware/nnet_utils/nnet_recurrent.h:427).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense_resource_rf_leq_nin<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' (firmware/nnet_utils/nnet_dense_resource.h:253).
+INFO: [XFORM 203-603] Inlining function 'nnet::cast<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' (firmware/nnet_utils/nnet_dense_resource.h:79->firmware/nnet_utils/nnet_dense_resource.h:253).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' into 'myproject' (firmware/myproject.cpp:47).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense_resource_rf_leq_nin<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' (firmware/nnet_utils/nnet_dense_resource.h:253).
+INFO: [XFORM 203-603] Inlining function 'nnet::cast<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' (firmware/nnet_utils/nnet_dense_resource.h:79->firmware/nnet_utils/nnet_dense_resource.h:253).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' into 'myproject' (firmware/myproject.cpp:55).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense_resource_rf_gt_nin_rem0<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' (firmware/nnet_utils/nnet_dense_resource.h:255).
+INFO: [XFORM 203-603] Inlining function 'nnet::cast<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' into 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' (firmware/nnet_utils/nnet_dense_resource.h:158->firmware/nnet_utils/nnet_dense_resource.h:255).
+INFO: [XFORM 203-603] Inlining function 'nnet::dense<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' into 'myproject' (firmware/myproject.cpp:63).
+INFO: [XFORM 203-603] Inlining function 'nnet::softmax<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' into 'myproject' (firmware/myproject.cpp:65).
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:01:45 ; elapsed = 00:01:47 . Memory (MB): peak = 1228.246 ; gain = 779.035 ; free physical = 22678 ; free virtual = 35309
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'nnet::activation::sigmoid<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, sigmoid_config2_recr>::activation' into 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' (firmware/nnet_utils/nnet_recurrent.h:439) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::activation::tanh<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, tanh_config2>::activation' into 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' (firmware/nnet_utils/nnet_recurrent.h:458) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::operator()' into 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 2, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' (firmware/nnet_utils/nnet_common.h:43) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 2, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' into 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 3, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' into 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 3, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::operator()' into 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 3, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 2, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' into 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 3, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 1, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' into 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 3, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 3, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' into 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' (firmware/nnet_utils/nnet_activation.h:239) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::softmax_idx_from_real_val<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' into 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' (firmware/nnet_utils/nnet_activation.h:254) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 3, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' into 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' (firmware/nnet_utils/nnet_activation.h:262) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::softmax_idx_from_real_val<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, softmax_config8>' into 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' (firmware/nnet_utils/nnet_activation.h:265) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:01:47 ; elapsed = 00:01:48 . Memory (MB): peak = 1228.246 ; gain = 779.035 ; free physical = 22617 ; free virtual = 35249
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' (firmware/nnet_utils/nnet_activation.h:217:46).
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'nnet::relu<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, relu_config6>' (firmware/nnet_utils/nnet_activation.h:40:43).
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'ReuseLoop' (firmware/nnet_utils/nnet_dense_resource.h:43) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' for pipelining.
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'nnet::relu<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, relu_config4>' (firmware/nnet_utils/nnet_activation.h:40:43).
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'ReuseLoop' (firmware/nnet_utils/nnet_dense_resource.h:43) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' for pipelining.
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'nnet::tanh<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, tanh_config2>' (firmware/nnet_utils/nnet_activation.h:427:43).
+INFO: [XFORM 203-502] Unrolling all loops for pipelining in function 'nnet::sigmoid<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, sigmoid_config2_recr>' (firmware/nnet_utils/nnet_activation.h:109:43).
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'ReuseLoop' (firmware/nnet_utils/nnet_dense_resource.h:43) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'ReuseLoop' (firmware/nnet_utils/nnet_dense_resource.h:129) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (firmware/nnet_utils/nnet_activation.h:243) in function 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2' (firmware/nnet_utils/nnet_activation.h:252) in function 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3' (firmware/nnet_utils/nnet_activation.h:266) in function 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'InitAccum' (firmware/nnet_utils/nnet_dense_resource.h:108) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Result' (firmware/nnet_utils/nnet_dense_resource.h:156) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (firmware/nnet_utils/nnet_activation.h:43) in function 'nnet::relu<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, relu_config6>' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'InitAccum' (firmware/nnet_utils/nnet_dense_resource.h:37) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'MultLoop' (firmware/nnet_utils/nnet_dense_resource.h:52) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' completely with a factor of 20.
+INFO: [HLS 200-489] Unrolling loop 'Result' (firmware/nnet_utils/nnet_dense_resource.h:77) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' completely with a factor of 10.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (firmware/nnet_utils/nnet_activation.h:43) in function 'nnet::relu<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, relu_config4>' completely with a factor of 50.
+INFO: [HLS 200-489] Unrolling loop 'InitAccum' (firmware/nnet_utils/nnet_dense_resource.h:37) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' completely with a factor of 50.
+INFO: [HLS 200-489] Unrolling loop 'MultLoop' (firmware/nnet_utils/nnet_dense_resource.h:52) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' completely with a factor of 200.
+INFO: [HLS 200-489] Unrolling loop 'Result' (firmware/nnet_utils/nnet_dense_resource.h:77) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' completely with a factor of 50.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (firmware/nnet_utils/nnet_recurrent.h:483) in function 'nnet::gru_stack<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 120.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.1' (firmware/nnet_utils/nnet_recurrent.h:488) in function 'nnet::gru_stack<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 6.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3' (firmware/nnet_utils/nnet_recurrent.h:504) in function 'nnet::gru_stack<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 120.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (firmware/nnet_utils/nnet_recurrent.h:420) in function 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 120.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2' (firmware/nnet_utils/nnet_recurrent.h:432) in function 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 240.
+INFO: [HLS 200-489] Unrolling loop 'Loop-3' (firmware/nnet_utils/nnet_recurrent.h:445) in function 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 120.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4' (firmware/nnet_utils/nnet_recurrent.h:451) in function 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 120.
+INFO: [HLS 200-489] Unrolling loop 'Loop-5' (firmware/nnet_utils/nnet_recurrent.h:462) in function 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' completely with a factor of 120.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (firmware/nnet_utils/nnet_activation.h:432) in function 'nnet::tanh<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, tanh_config2>' completely with a factor of 120.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (firmware/nnet_utils/nnet_activation.h:114) in function 'nnet::sigmoid<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, sigmoid_config2_recr>' completely with a factor of 240.
+INFO: [HLS 200-489] Unrolling loop 'InitAccum' (firmware/nnet_utils/nnet_dense_resource.h:37) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' completely with a factor of 360.
+INFO: [HLS 200-489] Unrolling loop 'MultLoop' (firmware/nnet_utils/nnet_dense_resource.h:52) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' completely with a factor of 1440.
+INFO: [HLS 200-489] Unrolling loop 'Result' (firmware/nnet_utils/nnet_dense_resource.h:77) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' completely with a factor of 360.
+INFO: [HLS 200-489] Unrolling loop 'InitAccum' (firmware/nnet_utils/nnet_dense_resource.h:108) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' completely with a factor of 360.
+INFO: [HLS 200-489] Unrolling loop 'MultLoop' (firmware/nnet_utils/nnet_dense_resource.h:136) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' completely with a factor of 72.
+INFO: [HLS 200-489] Unrolling loop 'Result' (firmware/nnet_utils/nnet_dense_resource.h:156) in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' completely with a factor of 360.
+INFO: [XFORM 203-102] Partitioning array 'd_xi_xmax.V' (firmware/nnet_utils/nnet_activation.h:242) automatically.
+WARNING: [XFORM 203-135] Cannot reshape array 'w7.V' : incorrect reshape factor 1.
+WARNING: [XFORM 203-135] Cannot reshape array 'w7.V' : incorrect reshape factor 1.
+INFO: [XFORM 203-131] Reshaping array 'input_1.V' (firmware/myproject.cpp:7) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'w5.V'  in dimension 1 with a block factor of 20.
+INFO: [XFORM 203-131] Reshaping array 'w3.V'  in dimension 1 with a block factor of 200.
+INFO: [XFORM 203-131] Reshaping array 'wr2.V'  in dimension 1 with a block factor of 1440.
+INFO: [XFORM 203-131] Reshaping array 'w2.V'  in dimension 1 with a block factor of 72.
+INFO: [XFORM 203-101] Partitioning array 'layer8_out.V' (firmware/myproject.cpp:8) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'layer2_out.V' (firmware/myproject.cpp:41) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'layer3_out.V' (firmware/myproject.cpp:45) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'layer4_out.V' (firmware/myproject.cpp:49) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'layer5_out.V' (firmware/myproject.cpp:53) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'layer6_out.V' (firmware/myproject.cpp:57) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'layer7_out.V' (firmware/myproject.cpp:61) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'h_state.V159'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'data_in.V' (firmware/nnet_utils/nnet_recurrent.h:477) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'exp_res.V' (firmware/nnet_utils/nnet_activation.h:249) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'b7.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'acc.V' (firmware/nnet_utils/nnet_dense_resource.h:104) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'b5.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'acc.V' (firmware/nnet_utils/nnet_dense_resource.h:33) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'b3.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'acc.V' (firmware/nnet_utils/nnet_dense_resource.h:33) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'h_state.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmpres'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmpres_state_zr'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmpres_state_h.V' (firmware/nnet_utils/nnet_recurrent.h:403) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmpres_zr'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmpres_h'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'inputacc_zr.V' (firmware/nnet_utils/nnet_recurrent.h:406) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'inputacc_h.V' (firmware/nnet_utils/nnet_recurrent.h:407) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'br2.V'  in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'acc.V' (firmware/nnet_utils/nnet_dense_resource.h:33) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'b2.V'  in dimension 1 completely.
+WARNING: [XFORM 203-104] Completely partitioning array 'acc.V' (firmware/nnet_utils/nnet_dense_resource.h:104) accessed through non-constant indices on dimension 1 (firmware/nnet_utils/nnet_dense_resource.h:139:17), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+INFO: [XFORM 203-101] Partitioning array 'acc.V' (firmware/nnet_utils/nnet_dense_resource.h:104) in dimension 1 completely.
+WARNING: [XFORM 203-104] Completely partitioning array 'layer4_out.V' (firmware/myproject.cpp:49) accessed through non-constant indices on dimension 1 (firmware/nnet_utils/nnet_dense_resource.h:56:17), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+WARNING: [XFORM 203-104] Completely partitioning array 'layer2_out.V' (firmware/myproject.cpp:41) accessed through non-constant indices on dimension 1 (firmware/nnet_utils/nnet_dense_resource.h:56:17), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+WARNING: [XFORM 203-104] Completely partitioning array 'h_state.V'  accessed through non-constant indices on dimension 1 (firmware/nnet_utils/nnet_dense_resource.h:56:17), which may result in long runtime and suboptimal QoR due to large multiplexers. Please consider wrapping the array access into a function or using a register file core instead.
+INFO: [XFORM 203-602] Inlining function 'nnet::activation::sigmoid<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, sigmoid_config2_recr>::activation' into 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' (firmware/nnet_utils/nnet_recurrent.h:439) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::activation::tanh<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, tanh_config2>::activation' into 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' (firmware/nnet_utils/nnet_recurrent.h:458) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::operator()' into 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 2, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' (firmware/nnet_utils/nnet_common.h:43) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 2, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' into 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 3, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 1, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' into 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 3, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::operator()' into 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 3, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> >::operator()' into 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 2, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' (firmware/nnet_utils/nnet_common.h:43) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 2, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' into 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 3, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 1, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' into 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 3, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> >::operator()' into 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 3, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' (firmware/nnet_utils/nnet_common.h:45) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, 3, nnet::Op_max<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > >' into 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' (firmware/nnet_utils/nnet_activation.h:239) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::softmax_idx_from_real_val<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' into 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' (firmware/nnet_utils/nnet_activation.h:254) automatically.
+INFO: [XFORM 203-602] Inlining function 'nnet::softmax_idx_from_real_val<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, softmax_config8>' into 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' (firmware/nnet_utils/nnet_activation.h:265) automatically.
+INFO: [XFORM 203-712] Applying dataflow to function 'myproject', detected/extracted 7 process function(s): 
+	 'nnet::gru_stack<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>'
+	 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>'
+	 'nnet::relu<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, relu_config4>'
+	 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>'
+	 'nnet::relu<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, relu_config6>'
+	 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>'
+	 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (firmware/nnet_utils/nnet_activation.h:413:74) to (firmware/nnet_utils/nnet_activation.h:442:1) in function 'nnet::tanh<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, tanh_config2>'... converting 241 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (firmware/nnet_utils/nnet_activation.h:216:28) to (firmware/nnet_utils/nnet_activation.h:270:1) in function 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>'... converting 13 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (firmware/nnet_utils/nnet_activation.h:95:21) to (firmware/nnet_utils/nnet_activation.h:123:1) in function 'nnet::sigmoid<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, sigmoid_config2_recr>'... converting 481 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (firmware/nnet_utils/nnet_common.h:45:44) in function 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 3, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >'... converting 5 basic blocks.
+INFO: [XFORM 203-602] Inlining function 'nnet::reduce<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0>, 3, nnet::Op_add<ap_fixed<18, 8, (ap_q_mode)0, (ap_o_mode)0, 0> > >' into 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' (firmware/nnet_utils/nnet_activation.h:262) automatically.
+INFO: [XFORM 203-11] Balancing expressions in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' (firmware/nnet_utils/nnet_mult.h:43:9)...200 expression(s) balanced.
+INFO: [XFORM 203-11] Balancing expressions in function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' (firmware/nnet_utils/nnet_dense_resource.h:43:17)...1440 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:15:39 ; elapsed = 00:15:41 . Memory (MB): peak = 2575.422 ; gain = 2126.211 ; free physical = 18961 ; free virtual = 31592
+WARNING: [XFORM 203-631] Renaming function 'nnet::tanh<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, tanh_config2>' to 'tanh<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, tanh_config2>' (firmware/nnet_utils/nnet_activation.h:413)
+WARNING: [XFORM 203-631] Renaming function 'nnet::softmax_stable<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, softmax_config8>' to 'softmax_stable<ap_fixed,ap_fixed<16,6,5,3,0>,softmax_config8>' (firmware/nnet_utils/nnet_activation.h:36:1)
+WARNING: [XFORM 203-631] Renaming function 'nnet::sigmoid<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, sigmoid_config2_recr>' to 'sigmoid<ap_fixed,ap_fixed<16,6,5,3,0>,sigmoid_config2_recr>' (firmware/nnet_utils/nnet_activation.h:109:22)
+WARNING: [XFORM 203-631] Renaming function 'nnet::relu<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, relu_config6>' to 'relu<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, relu_config6>' (firmware/nnet_utils/nnet_activation.h:39)
+WARNING: [XFORM 203-631] Renaming function 'nnet::relu<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, relu_config4>' to 'relu<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, relu_config4>' (firmware/nnet_utils/nnet_activation.h:39)
+WARNING: [XFORM 203-631] Renaming function 'nnet::gru_static<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' to 'gru_static<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2>' (firmware/nnet_utils/nnet_recurrent.h:393)
+WARNING: [XFORM 203-631] Renaming function 'nnet::gru_stack<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2>' to 'gru_stack<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2>' (firmware/nnet_utils/nnet_recurrent.h:470)
+WARNING: [XFORM 203-631] Renaming function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config7>' to 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config7>' (firmware/nnet_utils/nnet_dense_resource.h:246)
+WARNING: [XFORM 203-631] Renaming function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config5>' to 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config5>' (firmware/nnet_utils/nnet_dense_resource.h:246)
+WARNING: [XFORM 203-631] Renaming function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config3>' to 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config3>' (firmware/nnet_utils/nnet_dense_resource.h:246)
+WARNING: [XFORM 203-631] Renaming function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_2>' to 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2_2>' (firmware/nnet_utils/nnet_dense_resource.h:246)
+WARNING: [XFORM 203-631] Renaming function 'nnet::dense_resource<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, config2_1>' to 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2_1>' (firmware/nnet_utils/nnet_dense_resource.h:246)
+INFO: [XFORM 203-531] Rewinding loop 'ReuseLoop' (firmware/nnet_utils/nnet_dense_resource.h:129) in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config7>'.
+INFO: [XFORM 203-531] Rewinding loop 'ReuseLoop' (firmware/nnet_utils/nnet_dense_resource.h:43) in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config5>'.
+INFO: [XFORM 203-531] Rewinding loop 'ReuseLoop' (firmware/nnet_utils/nnet_dense_resource.h:43) in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config3>'.
+INFO: [XFORM 203-531] Rewinding loop 'ReuseLoop' (firmware/nnet_utils/nnet_dense_resource.h:43) in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2_2>'.
+INFO: [XFORM 203-531] Rewinding loop 'ReuseLoop' (firmware/nnet_utils/nnet_dense_resource.h:129) in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2_1>'.
+WARNING: [XFORM 203-561] Ignored multiple trip count directives for loop 'ReuseLoop' in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config7>'.
+WARNING: [XFORM 203-561] Ignored multiple trip count directives for loop 'ReuseLoop' in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config5>'.
+WARNING: [XFORM 203-561] Ignored multiple trip count directives for loop 'ReuseLoop' in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config3>'.
+WARNING: [XFORM 203-561] Ignored multiple trip count directives for loop 'ReuseLoop' in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2_2>'.
+WARNING: [XFORM 203-561] Ignored multiple trip count directives for loop 'ReuseLoop' in function 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2_1>'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:21:55 ; elapsed = 00:21:57 . Memory (MB): peak = 2575.422 ; gain = 2126.211 ; free physical = 18533 ; free virtual = 31167
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'myproject' ...
+WARNING: [SYN 201-103] Legalizing function name 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2_1>' to 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s'.
+WARNING: [SYN 201-103] Legalizing function name 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2_2>' to 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s'.
+WARNING: [SYN 201-103] Legalizing function name 'sigmoid<ap_fixed,ap_fixed<16,6,5,3,0>,sigmoid_config2_recr>' to 'sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s'.
+WARNING: [SYN 201-103] Legalizing function name 'tanh<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, tanh_config2>' to 'tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s'.
+WARNING: [SYN 201-103] Legalizing function name 'gru_static<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2>' to 'gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s'.
+WARNING: [SYN 201-103] Legalizing function name 'gru_stack<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config2>' to 'gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s'.
+WARNING: [SYN 201-103] Legalizing function name 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config3>' to 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s'.
+WARNING: [SYN 201-103] Legalizing function name 'relu<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, relu_config4>' to 'relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_s'.
+WARNING: [SYN 201-103] Legalizing function name 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config5>' to 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s'.
+WARNING: [SYN 201-103] Legalizing function name 'relu<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, relu_config6>' to 'relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_s'.
+WARNING: [SYN 201-103] Legalizing function name 'dense_resource<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, config7>' to 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s'.
+WARNING: [SYN 201-103] Legalizing function name 'softmax_stable<ap_fixed,ap_fixed<16,6,5,3,0>,softmax_config8>' to 'softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'ReuseLoop'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 1326.91 seconds; current allocated memory: 1.587 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 19.11 seconds; current allocated memory: 1.598 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'ReuseLoop'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 56.54 seconds; current allocated memory: 1.640 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 140.47 seconds; current allocated memory: 1.822 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'sigmoid<ap_fixed,ap_fixed<16,6,5,3,0>,sigmoid_config2_recr>'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 102.94 seconds; current allocated memory: 1.841 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 59.25 seconds; current allocated memory: 1.874 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'tanh<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, tanh_config2>'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 59.02 seconds; current allocated memory: 1.886 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 29.32 seconds; current allocated memory: 1.898 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 29.81 seconds; current allocated memory: 1.909 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 36.98 seconds; current allocated memory: 1.928 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 35.1 seconds; current allocated memory: 1.935 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 6.8 seconds; current allocated memory: 1.939 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'ReuseLoop'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 11.78 seconds; current allocated memory: 1.950 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 16.75 seconds; current allocated memory: 1.963 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'relu<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, relu_config4>'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 1.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 16.43 seconds; current allocated memory: 1.964 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 2.21 seconds; current allocated memory: 1.965 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'ReuseLoop'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 2.42 seconds; current allocated memory: 1.966 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 2.79 seconds; current allocated memory: 1.968 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'relu<ap_fixed<16, 6, 5, 3, 0>, ap_fixed<16, 6, 5, 3, 0>, relu_config6>'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 1.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 2.89 seconds; current allocated memory: 1.968 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.54 seconds; current allocated memory: 1.969 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'ReuseLoop'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.59 seconds; current allocated memory: 1.969 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.7 seconds; current allocated memory: 1.970 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'softmax_stable<ap_fixed,ap_fixed<16,6,5,3,0>,softmax_config8>'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.74 seconds; current allocated memory: 1.970 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.89 seconds; current allocated memory: 1.970 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'myproject' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.9 seconds; current allocated memory: 1.971 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 11.08 seconds; current allocated memory: 1.983 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-104] Estimated max fanout for 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s' is 11520 from HDL expression: ((1'b0 == ap_block_pp0_stage0_11001) & (icmp_ln129_reg_21219_pp0_iter1_reg == 1'd1) & (ap_enable_reg_pp0_iter2 == 1'b1))
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_16s_13s_26_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_16s_16s_26_1_1': 71 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mux_63_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mux_83_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s'.
+INFO: [HLS 200-111]  Elapsed time: 14.58 seconds; current allocated memory: 2.286 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-104] Estimated max fanout for 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s' is 46074 from HDL expression: ((1'b0 == ap_block_pp0_stage0) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_16s_10s_26_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_16s_16s_26_1_1': 1439 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mux_1287_16_1_1': 1439 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mux_325_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s'.
+INFO: [HLS 200-111]  Elapsed time: 47.9 seconds; current allocated memory: 3.328 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s'.
+INFO: [HLS 200-111]  Elapsed time: 123.06 seconds; current allocated memory: 3.867 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s'.
+INFO: [HLS 200-111]  Elapsed time: 67.65 seconds; current allocated memory: 3.994 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Register 'h_state_V_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_7' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_8' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_9' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_10' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_11' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_12' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_13' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_14' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_15' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_16' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_17' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_18' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_19' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_20' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_21' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_22' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_23' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_24' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_25' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_26' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_27' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_28' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_29' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_30' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_31' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_32' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_33' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_34' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_35' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_36' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_37' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_38' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_39' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_40' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_41' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_42' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_43' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_44' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_45' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_46' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_47' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_48' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_49' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_50' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_51' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_52' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_53' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_54' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_55' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_56' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_57' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_58' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_59' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_60' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_61' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_62' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_63' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_64' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_65' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_66' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_67' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_68' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_69' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_70' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_71' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_72' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_73' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_74' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_75' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_76' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_77' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_78' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_79' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_80' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_81' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_82' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_83' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_84' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_85' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_86' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_87' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_88' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_89' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_90' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_91' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_92' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_93' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_94' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_95' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_96' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_97' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_98' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_99' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_100' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_101' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_102' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_103' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_104' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_105' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_106' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_107' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_108' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_109' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_110' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_111' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_112' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_113' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_114' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_115' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_116' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_117' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_118' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V_119' is power-on initialization.
+INFO: [RTGEN 206-104] Estimated max fanout for 'gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s' is 11520 from HDL expression: ((1'b1 == ap_CS_fsm_state2) & (1'b0 == ap_block_state2_on_subcall_done))
+INFO: [RTGEN 206-100] Generating core module 'myproject_mac_muladd_16s_16s_26s_26_1_1': 120 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_16s_16s_26_1_1': 120 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_17s_16s_26_1_1': 120 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s'.
+INFO: [HLS 200-111]  Elapsed time: 49.03 seconds; current allocated memory: 485.307 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Register 'h_state_V159_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_7' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_8' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_9' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_10' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_11' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_12' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_13' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_14' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_15' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_16' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_17' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_18' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_19' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_20' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_21' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_22' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_23' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_24' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_25' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_26' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_27' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_28' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_29' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_30' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_31' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_32' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_33' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_34' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_35' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_36' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_37' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_38' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_39' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_40' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_41' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_42' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_43' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_44' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_45' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_46' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_47' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_48' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_49' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_50' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_51' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_52' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_53' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_54' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_55' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_56' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_57' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_58' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_59' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_60' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_61' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_62' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_63' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_64' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_65' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_66' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_67' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_68' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_69' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_70' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_71' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_72' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_73' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_74' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_75' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_76' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_77' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_78' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_79' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_80' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_81' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_82' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_83' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_84' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_85' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_86' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_87' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_88' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_89' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_90' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_91' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_92' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_93' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_94' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_95' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_96' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_97' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_98' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_99' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_100' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_101' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_102' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_103' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_104' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_105' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_106' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_107' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_108' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_109' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_110' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_111' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_112' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_113' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_114' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_115' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_116' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_117' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_118' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'h_state_V159_119' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s'.
+INFO: [HLS 200-111]  Elapsed time: 45.44 seconds; current allocated memory: 587.771 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_16s_16s_26_1_1': 199 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_9s_16s_25_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mux_325_16_1_1': 200 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s'.
+INFO: [HLS 200-111]  Elapsed time: 15.19 seconds; current allocated memory: 642.054 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_s'.
+INFO: [HLS 200-111]  Elapsed time: 22.91 seconds; current allocated memory: 688.681 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_10s_15ns_25_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_15ns_16s_26_1_1': 19 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mux_325_15_1_1': 20 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s'.
+INFO: [HLS 200-111]  Elapsed time: 6.62 seconds; current allocated memory: 697.347 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_s'.
+INFO: [HLS 200-111]  Elapsed time: 7.2 seconds; current allocated memory: 704.865 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_12s_16s_26_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mux_104_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'myproject_mux_32_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s'.
+INFO: [HLS 200-111]  Elapsed time: 4.59 seconds; current allocated memory: 706.522 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'myproject_mul_mul_17ns_18s_26_1_1': 3 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s'.
+INFO: [HLS 200-111]  Elapsed time: 4.87 seconds; current allocated memory: 708.937 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'myproject' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'myproject/input_1_V' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'myproject/layer8_out_0_V' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'myproject/layer8_out_1_V' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'myproject/layer8_out_2_V' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'myproject' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'myproject'.
+INFO: [HLS 200-111]  Elapsed time: 5.79 seconds; current allocated memory: 721.251 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 229.04 MHz
+INFO: [RTMG 210-279] Implementing memory 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_outidx5_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_w2_V_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s_wr2_V_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s_sigmoid_table4_rom' using block ROMs.
+INFO: [RTMG 210-279] Implementing memory 'tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_tanh_table3_rom' using block ROMs.
+INFO: [RTMG 210-279] Implementing memory 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s_w3_V_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s_w5_V_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s_outidx_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s_w7_V_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_exp_table1_rom' using block ROMs.
+INFO: [RTMG 210-279] Implementing memory 'softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_invert_table2_rom' using auto ROMs.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_0_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_1_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_2_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_3_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_4_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_5_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_6_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_7_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_8_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_9_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_10_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_11_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_12_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_13_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_14_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_15_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_16_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_17_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_18_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_19_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_20_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_21_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_22_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_23_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_24_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_25_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_26_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_27_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_28_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_29_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_30_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_31_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_32_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_33_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_34_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_35_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_36_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_37_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_38_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_39_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_40_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_41_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_42_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_43_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_44_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_45_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_46_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_47_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_48_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_49_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_50_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_51_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_52_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_53_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_54_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_55_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_56_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_57_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_58_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_59_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_60_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_61_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_62_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_63_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_64_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_65_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_66_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_67_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_68_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_69_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_70_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_71_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_72_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_73_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_74_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_75_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_76_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_77_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_78_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_79_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_80_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_81_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_82_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_83_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_84_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_85_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_86_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_87_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_88_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_89_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_90_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_91_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_92_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_93_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_94_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_95_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_96_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_97_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_98_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_99_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_100_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_101_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_102_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_103_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_104_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_105_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_106_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_107_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_108_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_109_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_110_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_111_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_112_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_113_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_114_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_115_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_116_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_117_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_118_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer2_out_119_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_0_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_1_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_2_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_3_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_4_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_5_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_6_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_7_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_8_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_9_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_10_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_11_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_12_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_13_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_14_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_15_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_16_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_17_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_18_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_19_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_20_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_21_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_22_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_23_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_24_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_25_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_26_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_27_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_28_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_29_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_30_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_31_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_32_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_33_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_34_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_35_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_36_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_37_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_38_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_39_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_40_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_41_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_42_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_43_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_44_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_45_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_46_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_47_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_48_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer3_out_49_V_U(fifo_w16_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_0_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_1_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_2_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_3_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_4_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_5_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_6_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_7_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_8_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_9_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_10_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_11_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_12_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_13_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_14_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_15_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_16_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_17_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_18_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_19_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_20_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_21_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_22_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_23_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_24_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_25_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_26_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_27_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_28_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_29_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_30_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_31_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_32_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_33_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_34_V_U(fifo_w15_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'layer4_out_35_V_U(fifo_w15_d2_A)' using Shift Registers.

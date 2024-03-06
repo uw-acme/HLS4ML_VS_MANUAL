@@ -30810,18 +30810,18 @@ template <typename T, unsigned N, T (*func)(T)> class lookup_table {
 # 41 "/tools/Xilinx/Vivado/2019.2/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/cstdio" 3
 # 9 "firmware/defines.h" 2
 # 20 "firmware/defines.h"
-typedef ap_fixed<18,8> input_t;
-typedef ap_fixed<18,8> model_default_t;
-typedef ap_fixed<18,8> layer2_t;
+typedef ap_fixed<16,6> input_t;
+typedef ap_fixed<16,6> model_default_t;
+typedef ap_fixed<16,6> layer2_t;
 typedef ap_fixed<18,8> layer1_table_t;
 typedef ap_uint<1> layer2_index;
-typedef ap_fixed<18,8> layer3_t;
+typedef ap_fixed<16,6> layer3_t;
 typedef ap_uint<1> layer3_index;
-typedef ap_fixed<18,8> layer4_t;
+typedef ap_fixed<16,6> layer4_t;
 typedef ap_fixed<18,8> layer3_relu_table_t;
-typedef ap_fixed<18,8> layer5_t;
+typedef ap_fixed<16,6> layer5_t;
 typedef ap_uint<1> layer5_index;
-typedef ap_fixed<18,8> result_t;
+typedef ap_fixed<16,6> result_t;
 typedef ap_fixed<18,8> output_sigmoid_sigmoid_table_t;
 # 9 "firmware/myproject.h" 2
 
@@ -62935,7 +62935,7 @@ struct config2_1 : nnet::dense_config {
     static const unsigned n_in = 6;
     static const unsigned n_out = 20 * 3;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 360;
     static const unsigned multiplier_limit = ((n_in * n_out + reuse_factor - 1) / reuse_factor) - n_zeros / reuse_factor;
@@ -62952,7 +62952,7 @@ struct config2_2 : nnet::dense_config {
     static const unsigned n_in = 20;
     static const unsigned n_out = 20 * 3;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 20;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 1200;
     static const unsigned multiplier_limit = ((n_in * n_out + reuse_factor - 1) / reuse_factor) - n_zeros / reuse_factor;
@@ -62969,7 +62969,7 @@ struct sigmoid_config2_recr : nnet::activ_config {
     static const unsigned n_in = 20 * 2;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_parallel;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     typedef layer1_table_t table_t;
 };
 
@@ -62977,7 +62977,7 @@ struct tanh_config2 : nnet::activ_config {
     static const unsigned n_in = 20;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_parallel;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     typedef layer1_table_t table_t;
 };
 
@@ -62999,7 +62999,7 @@ struct config2 : nnet::gru_config {
     static const unsigned n_sequence = 20;
     static const unsigned n_sequence_out = 1;
     static const unsigned io_type = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     static const bool store_weights_in_bram = false;
     static const bool use_static = true;
 };
@@ -63010,7 +63010,7 @@ struct config3 : nnet::dense_config {
     static const unsigned n_out = 64;
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 20;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 1280;
     static const unsigned multiplier_limit = ((n_in * n_out + reuse_factor - 1) / reuse_factor) - n_zeros / reuse_factor;
@@ -63028,7 +63028,7 @@ struct relu_config4 : nnet::activ_config {
     static const unsigned n_in = 64;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_parallel;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     typedef layer3_relu_table_t table_t;
 };
 
@@ -63038,7 +63038,7 @@ struct config5 : nnet::dense_config {
     static const unsigned n_out = 1;
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned strategy = nnet::resource;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 32;
     static const unsigned n_zeros = 0;
     static const unsigned n_nonzeros = 64;
     static const unsigned multiplier_limit = ((n_in * n_out + reuse_factor - 1) / reuse_factor) - n_zeros / reuse_factor;
@@ -63056,7 +63056,7 @@ struct sigmoid_config6 : nnet::activ_config {
     static const unsigned n_in = 1;
     static const unsigned table_size = 1024;
     static const unsigned io_type = nnet::io_parallel;
-    static const unsigned reuse_factor = 1;
+    static const unsigned reuse_factor = 30;
     typedef output_sigmoid_sigmoid_table_t table_t;
 };
 # 5 "firmware/myproject.cpp" 2

@@ -2,9 +2,9 @@
 <RtlPorts>
 <name>layer1_input_V</name>
 <CType>
-<TypeName>ap_fixed 18 8 5 3 0</TypeName>
-<TypeWidth>18</TypeWidth>
-<PhysicalWidth>2160</PhysicalWidth>
+<TypeName>ap_fixed 16 6 5 3 0</TypeName>
+<TypeWidth>16</TypeWidth>
+<PhysicalWidth>1920</PhysicalWidth>
 </CType>
 <CFractionWidth>10</CFractionWidth>
 <InvalidType>0</InvalidType>
@@ -12,9 +12,9 @@
 <RtlPorts>
 <name>layer6_out_0_V</name>
 <CType>
-<TypeName>ap_fixed 18 8 5 3 0</TypeName>
-<TypeWidth>18</TypeWidth>
-<PhysicalWidth>18</PhysicalWidth>
+<TypeName>ap_fixed 16 6 5 3 0</TypeName>
+<TypeWidth>16</TypeWidth>
+<PhysicalWidth>16</PhysicalWidth>
 </CType>
 <CFractionWidth>10</CFractionWidth>
 <InvalidType>0</InvalidType>

@@ -1,0 +1,49 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s'" level="0">
+<item name = "Date">Wed Mar  6 01:31:05 2024
+</item>
+<item name = "Version">2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)</item>
+<item name = "Project">myproject_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcu250-figd2104-2L-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 4.362 ns, 0.62 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">39, 40, 0.195 us, 0.200 us, 39, 40, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s_fu_322">dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s, 33, 34, 0.165 us, 0.170 us, 32, 32, loop rewind(delay=0 initiation interval(s))</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s_fu_456">sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_fu_718">dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s, 25, 26, 0.125 us, 0.130 us, 24, 24, loop rewind(delay=0 initiation interval(s))</column>
+<column name="grp_tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_fu_732">tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

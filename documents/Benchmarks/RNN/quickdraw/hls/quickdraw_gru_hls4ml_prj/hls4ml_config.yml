@@ -3,7 +3,7 @@ ClockPeriod: 5
 HLSConfig:
   Model:
     BramFactor: 1000000000
-    Precision: ap_fixed<18,8>
+    Precision: ap_fixed<16,6>
     ReuseFactor: 30
     Strategy: Resource
     TraceOutput: false
@@ -14,5 +14,5 @@ OutputDir: hls/quickdraw_gru_hls4ml_prj
 OutputPredictions: null
 Part: xcu250-figd2104-2L-e
 ProjectName: myproject
-Stamp: 5c9fDb5f
+Stamp: eF961c7e
 Version: 1.0.0

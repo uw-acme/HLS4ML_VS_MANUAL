@@ -3,6 +3,7 @@
         <config_array_partition maximum_size="4096"/>
         <config_compile name_max_length="80"/>
         <config_schedule enable_dsp_full_reg="0"/>
+        <schedule model="myproject"/>
     </config>
     <name>
         <value string="solution1"/>

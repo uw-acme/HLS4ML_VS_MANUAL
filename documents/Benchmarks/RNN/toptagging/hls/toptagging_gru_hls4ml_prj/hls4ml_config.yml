@@ -3,8 +3,8 @@ ClockPeriod: 5
 HLSConfig:
   Model:
     BramFactor: 1000000000
-    Precision: ap_fixed<18,8>
-    ReuseFactor: 1
+    Precision: ap_fixed<16,6>
+    ReuseFactor: 30
     Strategy: Resource
     TraceOutput: false
 IOType: io_parallel
@@ -14,5 +14,5 @@ OutputDir: hls/toptagging_gru_hls4ml_prj
 OutputPredictions: null
 Part: xcu250-figd2104-2L-e
 ProjectName: myproject
-Stamp: Ae9F18D3
+Stamp: 88cc8Be8
 Version: 1.0.0

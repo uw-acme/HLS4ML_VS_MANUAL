@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Wed Feb 28 07:14:21 2024
+| Date         : Wed Mar  6 02:34:33 2024
 | Host         : Duo16 running 64-bit Ubuntu 18.04.6 LTS
 | Command      : report_utilization -file vivado_synth.rpt
 | Design       : myproject
@@ -35,15 +35,15 @@ Table of Contents
 +-------------------------+--------+-------+-----------+-------+
 |        Site Type        |  Used  | Fixed | Available | Util% |
 +-------------------------+--------+-------+-----------+-------+
-| CLB LUTs*               | 119805 |     0 |   1728000 |  6.93 |
-|   LUT as Logic          | 119805 |     0 |   1728000 |  6.93 |
+| CLB LUTs*               | 111525 |     0 |   1728000 |  6.45 |
+|   LUT as Logic          | 111525 |     0 |   1728000 |  6.45 |
 |   LUT as Memory         |      0 |     0 |    791040 |  0.00 |
-| CLB Registers           | 115674 |     0 |   3456000 |  3.35 |
-|   Register as Flip Flop | 115674 |     0 |   3456000 |  3.35 |
+| CLB Registers           | 107382 |     0 |   3456000 |  3.11 |
+|   Register as Flip Flop | 107382 |     0 |   3456000 |  3.11 |
 |   Register as Latch     |      0 |     0 |   3456000 |  0.00 |
-| CARRY8                  |   7416 |     0 |    216000 |  3.43 |
-| F7 Muxes                |   4170 |     0 |    864000 |  0.48 |
-| F8 Muxes                |    726 |     0 |    432000 |  0.17 |
+| CARRY8                  |   4891 |     0 |    216000 |  2.26 |
+| F7 Muxes                |   5632 |     0 |    864000 |  0.65 |
+| F8 Muxes                |   1552 |     0 |    432000 |  0.36 |
 | F9 Muxes                |      0 |     0 |    216000 |  0.00 |
 +-------------------------+--------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -52,20 +52,20 @@ Table of Contents
 1.1 Summary of Registers by Type
 --------------------------------
 
-+--------+--------------+-------------+--------------+
-|  Total | Clock Enable | Synchronous | Asynchronous |
-+--------+--------------+-------------+--------------+
-| 0      |            _ |           - |            - |
-| 0      |            _ |           - |          Set |
-| 0      |            _ |           - |        Reset |
-| 0      |            _ |         Set |            - |
-| 0      |            _ |       Reset |            - |
-| 0      |          Yes |           - |            - |
-| 0      |          Yes |           - |          Set |
-| 0      |          Yes |           - |        Reset |
-| 11326  |          Yes |         Set |            - |
-| 104348 |          Yes |       Reset |            - |
-+--------+--------------+-------------+--------------+
++-------+--------------+-------------+--------------+
+| Total | Clock Enable | Synchronous | Asynchronous |
++-------+--------------+-------------+--------------+
+| 0     |            _ |           - |            - |
+| 0     |            _ |           - |          Set |
+| 0     |            _ |           - |        Reset |
+| 0     |            _ |         Set |            - |
+| 0     |            _ |       Reset |            - |
+| 0     |          Yes |           - |            - |
+| 0     |          Yes |           - |          Set |
+| 0     |          Yes |           - |        Reset |
+| 10219 |          Yes |         Set |            - |
+| 97163 |          Yes |       Reset |            - |
++-------+--------------+-------------+--------------+
 
 
 2. BLOCKRAM
@@ -100,7 +100,7 @@ Table of Contents
 +------------+------+-------+-----------+--------+
 |  Site Type | Used | Fixed | Available |  Util% |
 +------------+------+-------+-----------+--------+
-| Bonded IOB | 5502 |     0 |       676 | 813.91 |
+| Bonded IOB | 4892 |     0 |       676 | 723.67 |
 +------------+------+-------+-----------+--------+
 
 
@@ -157,27 +157,27 @@ Table of Contents
 8. Primitives
 -------------
 
-+----------+--------+---------------------+
-| Ref Name |  Used  | Functional Category |
-+----------+--------+---------------------+
-| FDRE     | 104348 |            Register |
-| LUT4     |  44533 |                 CLB |
-| LUT3     |  41402 |                 CLB |
-| LUT6     |  35768 |                 CLB |
-| LUT5     |  26313 |                 CLB |
-| FDSE     |  11326 |            Register |
-| LUT2     |  10696 |                 CLB |
-| CARRY8   |   7416 |                 CLB |
-| INBUF    |   5404 |                 I/O |
-| IBUFCTRL |   5404 |              Others |
-| MUXF7    |   4170 |                 CLB |
-| DSP48E2  |   4041 |          Arithmetic |
-| LUT1     |   1798 |                 CLB |
-| RAMB18E2 |   1175 |           Block Ram |
-| MUXF8    |    726 |                 CLB |
-| OBUF     |     98 |                 I/O |
-| BUFGCE   |      1 |               Clock |
-+----------+--------+---------------------+
++----------+-------+---------------------+
+| Ref Name |  Used | Functional Category |
++----------+-------+---------------------+
+| FDRE     | 97163 |            Register |
+| LUT4     | 45391 |                 CLB |
+| LUT3     | 37374 |                 CLB |
+| LUT6     | 35739 |                 CLB |
+| LUT5     | 15204 |                 CLB |
+| LUT2     | 13612 |                 CLB |
+| FDSE     | 10219 |            Register |
+| MUXF7    |  5632 |                 CLB |
+| CARRY8   |  4891 |                 CLB |
+| INBUF    |  4804 |                 I/O |
+| IBUFCTRL |  4804 |              Others |
+| DSP48E2  |  4041 |          Arithmetic |
+| MUXF8    |  1552 |                 CLB |
+| RAMB18E2 |  1175 |           Block Ram |
+| LUT1     |   519 |                 CLB |
+| OBUF     |    88 |                 I/O |
+| BUFGCE   |     1 |               Clock |
++----------+-------+---------------------+
 
 
 9. Black Boxes
