@@ -1,4 +1,0 @@
-#!/bin/sh
-lli=${LLVMINTERP-lli}
-exec $lli \
-    /home/jiuyal2/HLS4ML_VS_MANUAL/documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/.autopilot/db/a.g.0.bc ${1+"$@"}
