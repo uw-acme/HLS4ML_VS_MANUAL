@@ -11,7 +11,7 @@
 // Determines whether multipliers in dense latency layer translate
 // to a single cycle or 3 cycle configuration
 `ifndef THREE_CYCLE_MULT
-    `define THREE_CYCLE_MULT 1
+    `define THREE_CYCLE_MULT 0
 `endif
 
 // Shift-Add module depth
