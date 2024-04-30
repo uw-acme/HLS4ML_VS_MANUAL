@@ -1,9 +1,7 @@
 documents/Benchmarks/RNN/ftag/hls/ftag_gru_hls4ml_prj/myproject_prj/solution1/.autopilot
 documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/.autopilot
 documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/.autopilot
-documents/Benchmarks/RNN/ftag/hls/ftag_gru_testbench_prj/ftag_gru_testbench_prj.sim
-documents/Benchmarks/RNN/ftag/hls/ftag_gru_testbench_prj/ftag_gru_testbench_prj.ip_user_files
-documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_testbench_prj/quickdraw_gru_testbench_prj.sim
-documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_testbench_prj/quickdraw_gru_testbench_prj.ip_user_files
-documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_testbench_prj/toptagging_gru_testbench_prj.sim
-documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_testbench_prj/toptagging_gru_testbench_prj.ip_user_files
+documents/Benchmarks/RNN/ftag/hls/ftag_gru_testbench_prj/
+documents/Benchmarks/RNN/ftag/hls/ftag_gru_handwritten_prj/
+documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_testbench_prj/
+documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_testbench_prj/

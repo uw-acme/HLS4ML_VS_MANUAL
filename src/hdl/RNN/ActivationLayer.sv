@@ -1,4 +1,3 @@
-
 /*
     Parameters:
         WIDTH: Width of fixed point numbers
@@ -43,11 +42,11 @@
 */
 
 `timescale 1ns / 1ps
-module activation #(parameter
+module ActivationLayer #(parameter
                     WIDTH           = 10,
                     NFRAC           = 5,
-                    MEM_WIDTH       = 10, // precision of BRAM entries
                     INPUT_SIZE      = 32,
+                    MEM_WIDTH       = 10, // precision of BRAM entries
                     TABLE_SIZE_POW  = 10, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
                     BRAM_FILE       = "memw10_size1024_sigmoidBRAM.mem"
                  )(
@@ -81,22 +80,25 @@ module activation #(parameter
     ////////////////////////////////////////////
     ///// Apply Inverse Transfer Function //////
     ////////////////////////////////////////////
-    always_comb begin
+    genvar i;
+    generate
+   
+      for (i = 0; i < INPUT_SIZE; i++) begin
+        always_comb begin
         // (Input value times TABLE_SIZE/16) + 8*TABLE_SIZE/16
         // Since these multiplications are powers of 2, shifting by the exponents
         // has the same overall result.
-        genvar i;
-        generate
-            for (i = 0; i < INPUT_SIZE; i++) begin
+
                 if (TABLE_SIZE_POW < 4)
                     index[i] = ($signed(input_val[i]) >>> (4-TABLE_SIZE_POW)) + (TABLE_SIZE << (NFRAC-1));
                 else
                     index[i] = (input_val[i] << (TABLE_SIZE_POW-4)) + (TABLE_SIZE << (NFRAC-1));
             end
-        endgenerate
+        
         // note: tablesize shifted over NFRAC bits to put result in
         // fixed point notation and divided by 2
     end
+    endgenerate
     
     // note to self: may end up putting a pipeline stage here from index -> final_index
     // if this path becomes critical
@@ -109,51 +111,61 @@ module activation #(parameter
     ////////////////////////////////////////////
     //// Extract final_index and Read BRAM /////
     ////////////////////////////////////////////
-    always_ff @(posedge clk) begin
-        // negative index
-        if ($signed(index[WIDTH+TABLE_SIZE_POW:NFRAC]) <= 0)                            // hits floor
-            final_index <= '0;
-        // index greater than table size
-        else if ($unsigned(index[WIDTH+TABLE_SIZE_POW:NFRAC]) > $unsigned(TABLE_SIZE-1))// hits ceiling
-            final_index <= TABLE_SIZE-1;
-        else                                                                            // something in the middle
-            final_index <= index[TABLE_SIZE_POW+NFRAC:NFRAC]
-                + (((input_val[WIDTH-1] == 1) & index[NFRAC-1:0] != '0) ? 1 : 0);
-            // round up the index for negative input values (rounds towards zero)
-        
-        // read bram
-        // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
-        if (MEM_WIDTH == NFRAC)
-            output_data <= bram[final_index];
-        else if (MEM_WIDTH < NFRAC)
-            output_data <= {bram[final_index], {(NFRAC-MEM_WIDTH){'0}}};
-        else
-            output_data <= {bram[final_index][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};
-        
+    generate
+      for (i = 0; i < INPUT_SIZE; i++) begin
+        always_ff @(posedge clk) begin
+
+                // negative index
+                if ($signed(index[i][WIDTH+TABLE_SIZE_POW:NFRAC]) <= 0)                            // hits floor
+                    final_index[i] <= '0;
+                // index greater than table size
+                else if ($unsigned(index[i][WIDTH+TABLE_SIZE_POW:NFRAC]) > $unsigned(TABLE_SIZE-1))// hits ceiling
+                    final_index[i] <= TABLE_SIZE-1;
+                else                                                                            // something in the middle
+                    final_index[i] <= index[i][TABLE_SIZE_POW+NFRAC:NFRAC]
+                        + (((input_val[i][WIDTH-1] == 1) & index[i][NFRAC-1:0] != '0) ? 1 : 0);
+                    // round up the index for negative input values (rounds towards zero)
+        end
+
+                
     end
+    endgenerate
+
+    always_ff @(posedge clk) begin
     
+                // read bram
+            // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
+            if (MEM_WIDTH == NFRAC)
+                output_data[i] <= bram[final_index[i]];
+            else if (MEM_WIDTH < NFRAC)
+                output_data[i] <= {bram[final_index[i]], {(NFRAC-MEM_WIDTH){'0}}};
+            else
+                output_data[i] <= {bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};    
+    end
     
 endmodule
 
 
 
-module activation_tb();
+module ActivationLayer_tb();
 
-    localparam  WIDTH           = 16,
+    localparam  WIDTH           = 8,
                 NFRAC           = 12,
                 MEM_WIDTH       = 10,
+                INPUT_SIZE      = 8,
                 TABLE_SIZE_POW  = 10,
                 BRAM_FILE       = "memw10_tsize1024_sigmoidBRAM.mem";
     logic clk;
     logic reset;
-    logic signed [WIDTH-1:0] input_data;
-    logic signed [WIDTH-1:0] output_data;
+    logic signed [WIDTH-1:0] input_data[0:INPUT_SIZE-1];
+    logic signed [WIDTH-1:0] output_data[0:INPUT_SIZE-1];
     
     
     // device under test
-    activation #( 
+    ActivationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
+        .INPUT_SIZE     ( INPUT_SIZE        ),
         .MEM_WIDTH      ( MEM_WIDTH         ),
         .TABLE_SIZE_POW ( TABLE_SIZE_POW    ),
         .BRAM_FILE      ( BRAM_FILE         )
@@ -176,13 +188,19 @@ module activation_tb();
     
     // Main stimulus
     initial begin
-        reset = 1; input_data = 'h7fff; repeat(3) @(posedge clk);
+        reset = 1;
+        input_data =   {{8'd1}, {8'd2}, {8'd3}, {8'd4}, {8'd5}, //{8'd6}, {8'd7},
+                        {8'd3}, {8'd4}, {8'd5}, {8'd6}, {8'd7}, //{8'd8}, {8'd9},
+                        {8'd5}, {8'd6}, {8'd7}, {8'd8}, {8'd9}, //{8'd0}, {8'd1},
+                        {8'd7}, {8'd8}, {8'd9}, {8'd0}, {8'd1}, //{8'd2}, {8'd3},
+                        {8'd9}, {8'd0}, {8'd1}, {8'd2}, {8'd3}, //{8'd4}, {8'd5},
+                        {8'd1}, {8'd2}, {8'd3}, {8'd4}, {8'd5}, //{8'd6}, {8'd7},
+                        {8'd3}, {8'd4}, {8'd5}, {8'd6}, {8'd7}//, //{8'd8}, {8'd9}
+                        };
+        repeat(3) @(posedge clk);
         reset = 0;
         
-        for (int i = 0; i < 2**WIDTH; i++) begin
-            input_data = i;
-            repeat(1) @(posedge clk);
-        end
+        repeat(30) @(posedge clk);
         
         
 //        input_data = 'hb900;

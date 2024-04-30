@@ -19,7 +19,7 @@
 `include "pkg_sel.svh"
 
 // Computes the dot product of the inputs and weights then adds that to the biases
-module DenseLatencyLayer
+module DenseLayer
     #(          parameter WIDTH           = 17,
                 NFRAC           = 10,
                 INPUT_SIZE      = 32,
@@ -30,10 +30,11 @@ module DenseLatencyLayer
     input  logic signed [WIDTH-1:0] input_data  [0:INPUT_SIZE-1],
     // weigth faltened to 1D array, shape before flatten is (INPUT_SIZE, OUTPUT_SIZE)
     input  logic signed [WIDTH-1:0] weights     [0:INPUT_SIZE*OUTPUT_SIZE-1],
+    input  logic signed [WIDTH-1:0] bias        [0:OUTPUT_SIZE-1],
     output logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1]
 );
     // check that the right package is being used
-    initial assert($bits(`SIGMOID_PKG::weights[0]) == WIDTH-1);
+    initial assert($bits(weights[0]) == WIDTH);
     
     
     logic signed [WIDTH-1:0]   mult         [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
@@ -42,6 +43,8 @@ module DenseLatencyLayer
     logic signed [WIDTH-1:0]   result       [0:OUTPUT_SIZE-1];
     
     genvar  col, row;
+    // multiplication doubles NFRAC bits in output, we only need NFRAC bits of fractional part,
+    // select top NFRAC bits of the fractional part
     localparam TOP      = WIDTH+NFRAC-1,
                BOTTOM   = NFRAC;
     // Generate a shift add module for each multiplication, shift-add will do optimizations
@@ -49,10 +52,10 @@ module DenseLatencyLayer
     generate 
         for(row=0; row<INPUT_SIZE; row++) begin : INPUT_SIZE_rows
             for(col=0; col<OUTPUT_SIZE; col++) begin : OUTPUT_SIZE_cols
-                shift_add #(.WEIGHT ( `SIGMOID_PKG::weights[row*OUTPUT_SIZE + col]  ),
-                            .DEPTH  ( `SA_DEPTH                                     ),
-                            .BITS   ( WIDTH                                         ),
-                            .NFRAC  ( NFRAC                                         )
+                shift_add #(.WEIGHT ( weights[row*OUTPUT_SIZE + col]    ),
+                            .DEPTH  ( `SA_DEPTH                         ),
+                            .BITS   ( WIDTH                             ),
+                            .NFRAC  ( NFRAC                             )
                             ) sa (
                     .clk,
                     .data_in    ( input_data[row]       ),
@@ -106,12 +109,12 @@ endmodule
 
 
 
-module DenseLatencyLayer_testbench();
+module DenseLayer_testbench();
     parameter WIDTH = 8, NFRAC = 0, INPUT_SIZE = 7, OUTPUT_SIZE = 5;
     logic clk, reset;
     logic signed [WIDTH-1:0] input_data [0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] weights [0:INPUT_SIZE*OUTPUT_SIZE-1];
-    logic signed [WIDTH-1:0] biases [0:OUTPUT_SIZE-1];
+    logic signed [WIDTH-1:0] bias [0:OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1];
     
     localparam PERIOD = 10;
@@ -120,11 +123,11 @@ module DenseLatencyLayer_testbench();
         forever #(PERIOD/2) clk <= ~clk;
     end
     
-    DenseLatencyLayer #(.WIDTH(WIDTH), .NFRAC(NFRAC), .INPUT_SIZE(INPUT_SIZE), .OUTPUT_SIZE(OUTPUT_SIZE)) dut (
+    DenseLayer #(.WIDTH(WIDTH), .NFRAC(NFRAC), .INPUT_SIZE(INPUT_SIZE), .OUTPUT_SIZE(OUTPUT_SIZE)) dut (
         .clk(clk),  .reset(reset),
         .input_data(input_data),
         .weights(weights),
-        .biases(biases),
+        .bias(bias),
         .output_data(output_data)
     );
     
