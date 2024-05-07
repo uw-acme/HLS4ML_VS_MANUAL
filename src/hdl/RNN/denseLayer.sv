@@ -19,7 +19,7 @@
 `include "pkg_sel.svh"
 
 // Computes the dot product of the inputs and weights then adds that to the biases
-module DenseLayer #(parameter
+module denseLayer #(parameter
                     WIDTH           = 17, // width of fixed point numbers
                     NFRAC           = 10, // number of fractional bits (must be <= width)
                     INPUT_SIZE      = 32, // number of fixed point numbers going into dense latency layer
@@ -110,7 +110,7 @@ endmodule
 
 
 
-module DenseLayer_testbench();
+module denseLayer_tb();
     parameter WIDTH = 8, NFRAC = 0, INPUT_SIZE = 7, OUTPUT_SIZE = 5;
     logic clk, reset;
     logic signed [WIDTH-1:0] input_data [0:INPUT_SIZE-1];
@@ -126,7 +126,7 @@ module DenseLayer_testbench();
         forever #(PERIOD/2) clk <= ~clk;
     end
     
-    DenseLayer #(
+    denseLayer #(
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
         .INPUT_SIZE     ( INPUT_SIZE        ),

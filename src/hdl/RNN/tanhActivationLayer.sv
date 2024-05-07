@@ -42,7 +42,7 @@
 */
 
 `timescale 1ns / 1ps
-module ActivationLayer #(parameter
+module activationLayer #(parameter
                     WIDTH           = 10, // width of fixed point numbers
                     NFRAC           = 5,  // number of fractional bits (must be <= width)
                     SIZE            = 32, // number of fixed point numbers going into dense latency layer
@@ -144,14 +144,12 @@ module ActivationLayer #(parameter
     
 endmodule
 
-
-
-module ActivationLayer_tb();
+module activationLayer_tb();
 
     localparam  WIDTH           = 16,
                 NFRAC           = 12,
-                MEM_WIDTH       = 10,
                 SIZE            = 8,
+                MEM_WIDTH       = 10,
                 TABLE_SIZE_POW  = 10,
                 BRAM_FILE       = "memw10_tsize1024_sigmoidBRAM.mem";
     logic clk;
@@ -161,7 +159,7 @@ module ActivationLayer_tb();
     
     
     // device under test
-    ActivationLayer #( 
+    activationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
         .SIZE           ( SIZE              ),
@@ -189,6 +187,8 @@ module ActivationLayer_tb();
     initial begin
         reset = 1;
         input_data =   {
+            'h0000, 'h0001, 'h0002, 'h0003,
+            'h0004, 'h0005, 'h0006, 'h0007
                         };
         repeat(3) @(posedge clk);
         reset = 0;

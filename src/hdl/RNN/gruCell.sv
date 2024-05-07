@@ -28,10 +28,6 @@ module gruCell #(parameter
     NFRAC               = 10,   // Number of fractional bits
     x_SIZE              = 32,   // diminsion: d
     h_SIZE              = 32,    // diminsion: e
-    MEM_WIDTH           = 10,   // Precision of BRAM entries
-    TABLE_SIZE_POW      = 10,   // Power of 2 of the number of table entries (e.g. 5 = 32 entries)
-    sigmoid_BRAM_FILE   = "memw10_size1024_sigmoidBRAM.mem",
-    tanh_BRAM_FILE      = "memw10_size1024_tanhBRAM.mem"
 )
 (
     input clk,
@@ -39,7 +35,7 @@ module gruCell #(parameter
     input signed        [WIDTH-1:0] x_t [0:x_SIZE-1],               // x_t: R^{d}
     input signed        [WIDTH-1:0] h_t_minus_1 [0:h_SIZE-1],       // h_t_minus_1: R^{e}
 
-    output logic signed       [WIDTH-1:0] h_t [0:h_SIZE-1],         // h_t: R^{e}
+    output logic signed       [WIDTH-1:0] h_t [0:h_SIZE-1]          // h_t: R^{e}
 );
 
     logic signed [WIDTH-1:0] r_t [0:h_SIZE-1];                      // r_t: R^{e}
@@ -55,16 +51,16 @@ module gruCell #(parameter
     logic signed [WIDTH-1:0] tanh_out [0:h_SIZE-1];                 // tanh_out: R^{e}
 
     // Reset gate weights and biases
-    logic signed [WIDTH-1:0] W_r [0:h_SIZE-1][0:x_SIZE+h_SIZE-1],   // W_r: R^{e x (e+d)}
-    logic signed [WIDTH-1:0] b_r [0:h_SIZE-1],                      // b_r: R^{e}
+    logic signed [WIDTH-1:0] W_r [0:h_SIZE-1][0:x_SIZE+h_SIZE-1];   // W_r: R^{e x (e+d)}
+    logic signed [WIDTH-1:0] b_r [0:h_SIZE-1];                      // b_r: R^{e}
 
     // Update gate weights and biases
-    logic signed [WIDTH-1:0] W_z [0:h_SIZE-1][0:x_SIZE+h_SIZE-1],   // W_z: R^{e x (e+d)}
-    logic signed [WIDTH-1:0] b_z [0:h_SIZE-1],                      // b_z: R^{e}
+    logic signed [WIDTH-1:0] W_z [0:h_SIZE-1][0:x_SIZE+h_SIZE-1];   // W_z: R^{e x (e+d)}
+    logic signed [WIDTH-1:0] b_z [0:h_SIZE-1];                      // b_z: R^{e}
 
     // Candidate hidden state weights and biases
-    logic signed [WIDTH-1:0] W_h [0:h_SIZE-1][0:x_SIZE+h_SIZE-1],   // W_h: R^{e x (e+d)}
-    logic signed [WIDTH-1:0] b_h [0:h_SIZE-1]                       // b_h: R^{e}
+    logic signed [WIDTH-1:0] W_h [0:h_SIZE-1][0:x_SIZE+h_SIZE-1];   // W_h: R^{e x (e+d)}
+    logic signed [WIDTH-1:0] b_h [0:h_SIZE-1];                       // b_h: R^{e}
 
 
     // Assign weights and biases from packages
@@ -78,12 +74,12 @@ module gruCell #(parameter
     assign b_h = `CANDIDATE_HIDDEN_STATE_PKG::biases;
 
     // Reset gate
-    DenseLatencyLayer #(
+    denseLatencyLayer #(
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
         .INPUT_SIZE     ( x_SIZE+h_SIZE     ),
-        .OUTPUT_SIZE    ( h_SIZE            ),
-    ) reset_gate (
+        .OUTPUT_SIZE    ( h_SIZE            )
+    ) reset_gate_dense (
         .clk(clk),
         .reset(reset),
         .input_data({h_t_minus_1, x_t}),
@@ -92,13 +88,10 @@ module gruCell #(parameter
         .biases(b_r)
     );
 
-    ActivationLayer #( 
+    sigmoidActivationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
         .INPUT_SIZE     ( x_SIZE+h_SIZE     ),
-        .MEM_WIDTH      ( MEM_WIDTH         ),
-        .TABLE_SIZE_POW ( TABLE_SIZE_POW    ),
-        .BRAM_FILE      ( sigmoid_BRAM_FILE )
     ) reset_gate_sigmoid (
         .clk            ( clk               ),
         .reset          ( reset             ),
@@ -107,12 +100,12 @@ module gruCell #(parameter
     );
 
     // Update gate
-    DenseLatencyLayer #(
+    denseLatencyLayer #(
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
         .INPUT_SIZE     ( x_SIZE+h_SIZE     ),
-        .OUTPUT_SIZE    ( h_SIZE            ),
-    ) update_gate (
+        .OUTPUT_SIZE    ( h_SIZE            )
+    ) update_gate_dense (
         .clk(clk),
         .reset(reset),
         .input_data({h_t_minus_1, x_t}),
@@ -121,13 +114,10 @@ module gruCell #(parameter
         .biases(b_z)
     );
 
-    ActivationLayer #( 
+    sigmoidActivationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
         .INPUT_SIZE     ( x_SIZE+h_SIZE     ),
-        .MEM_WIDTH      ( MEM_WIDTH         ),
-        .TABLE_SIZE_POW ( TABLE_SIZE_POW    ),
-        .BRAM_FILE      ( sigmoid_BRAM_FILE )
     ) update_gate_sigmoid (
         .clk            ( clk               ),
         .reset          ( reset             ),
@@ -147,12 +137,12 @@ module gruCell #(parameter
     
     endgenerate
 
-    DenseLatencyLayer #(
+    denseLatencyLayer #(
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
         .INPUT_SIZE     ( x_SIZE+h_SIZE     ),
-        .OUTPUT_SIZE    ( h_SIZE            ),  
-    ) candidate_hidden_state (
+        .OUTPUT_SIZE    ( h_SIZE            )
+    ) candidate_hidden_state_dense (
         .clk(clk),
         .reset(reset),
         .input_data({r_h_mult, x_t}),
@@ -161,13 +151,10 @@ module gruCell #(parameter
         .biases(b_h)
     );
 
-    ActivationLayer #( 
+    tanhActivationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
         .INPUT_SIZE     ( h_SIZE            ),
-        .MEM_WIDTH      ( MEM_WIDTH         ),
-        .TABLE_SIZE_POW ( TABLE_SIZE_POW    ),
-        .BRAM_FILE      ( tanh_BRAM_FILE    )
     ) candidate_hidden_state_tanh (
         .clk            ( clk               ),
         .reset          ( reset             ),
