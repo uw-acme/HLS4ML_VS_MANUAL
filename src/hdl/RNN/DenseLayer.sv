@@ -19,19 +19,20 @@
 `include "pkg_sel.svh"
 
 // Computes the dot product of the inputs and weights then adds that to the biases
-module DenseLayer
-    #(          parameter WIDTH           = 17,
-                NFRAC           = 10,
-                INPUT_SIZE      = 32,
-                OUTPUT_SIZE     = 1
-                )  (
+module DenseLayer #(parameter
+                    WIDTH           = 17, // width of fixed point numbers
+                    NFRAC           = 10, // number of fractional bits (must be <= width)
+                    INPUT_SIZE      = 32, // number of fixed point numbers going into dense latency layer
+                    OUTPUT_SIZE     = 32  // number of fixed point numbers coming out of dense latency layer
+)  (
     input  logic                    clk, 
     input  logic                    reset,
     input  logic signed [WIDTH-1:0] input_data  [0:INPUT_SIZE-1],
+    output logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1],
     // weigth faltened to 1D array, shape before flatten is (INPUT_SIZE, OUTPUT_SIZE)
     input  logic signed [WIDTH-1:0] weights     [0:INPUT_SIZE*OUTPUT_SIZE-1],
-    input  logic signed [WIDTH-1:0] bias        [0:OUTPUT_SIZE-1],
-    output logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1]
+    input  logic signed [WIDTH-1:0] bias        [0:OUTPUT_SIZE-1]
+    
 );
     // check that the right package is being used
     initial assert($bits(weights[0]) == WIDTH);
@@ -116,6 +117,8 @@ module DenseLayer_testbench();
     logic signed [WIDTH-1:0] weights [0:INPUT_SIZE*OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0] bias [0:OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1];
+    logic signed [WIDTH-1:0] weights [0:INPUT_SIZE*OUTPUT_SIZE-1];
+    logic signed [WIDTH-1:0] bias [0:OUTPUT_SIZE-1];
     
     localparam PERIOD = 10;
     initial begin
@@ -123,12 +126,17 @@ module DenseLayer_testbench();
         forever #(PERIOD/2) clk <= ~clk;
     end
     
-    DenseLayer #(.WIDTH(WIDTH), .NFRAC(NFRAC), .INPUT_SIZE(INPUT_SIZE), .OUTPUT_SIZE(OUTPUT_SIZE)) dut (
+    DenseLayer #(
+        .WIDTH          ( WIDTH             ),
+        .NFRAC          ( NFRAC             ),
+        .INPUT_SIZE     ( INPUT_SIZE        ),
+        .OUTPUT_SIZE    ( OUTPUT_SIZE       )
+    ) dut (
         .clk(clk),  .reset(reset),
         .input_data(input_data),
+        .output_data(output_data),
         .weights(weights),
         .bias(bias),
-        .output_data(output_data)
     );
     
     initial begin

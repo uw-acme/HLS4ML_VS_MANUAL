@@ -43,17 +43,17 @@
 
 `timescale 1ns / 1ps
 module ActivationLayer #(parameter
-                    WIDTH           = 10,
-                    NFRAC           = 5,
-                    INPUT_SIZE      = 32,
+                    WIDTH           = 10, // width of fixed point numbers
+                    NFRAC           = 5,  // number of fractional bits (must be <= width)
+                    SIZE            = 32, // number of fixed point numbers going into dense latency layer
                     MEM_WIDTH       = 10, // precision of BRAM entries
                     TABLE_SIZE_POW  = 10, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
                     BRAM_FILE       = "memw10_size1024_sigmoidBRAM.mem"
                  )(
     input clk,
     input reset,
-    input logic signed [WIDTH-1:0] input_data [INPUT_SIZE-1:0],
-    output logic signed [WIDTH-1:0] output_data [INPUT_SIZE-1:0]
+    input logic signed [WIDTH-1:0] input_data [SIZE-1:0],
+    output logic signed [WIDTH-1:0] output_data [SIZE-1:0]
 );
     initial begin
         assert(WIDTH >= NFRAC);
@@ -67,14 +67,14 @@ module ActivationLayer #(parameter
     logic signed [MEM_WIDTH-1:0] bram [TABLE_SIZE];
     
     // input_data*TABLE_SIZE/16 + TABLE_SIZE/2
-    logic [WIDTH+TABLE_SIZE_POW:0] index [INPUT_SIZE-1:0];
+    logic [WIDTH+TABLE_SIZE_POW:0] index [SIZE-1:0];
     
     // Read in sigmoid values into bram
     initial begin
         $readmemb(BRAM_FILE, bram);
     end
     
-    logic signed [WIDTH-1:0] input_val [INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] input_val [SIZE-1:0];
     assign input_val = input_data;
     
     ////////////////////////////////////////////
@@ -83,7 +83,7 @@ module ActivationLayer #(parameter
     genvar i;
     generate
    
-      for (i = 0; i < INPUT_SIZE; i++) begin
+      for (i = 0; i < SIZE; i++) begin
         always_comb begin
         // (Input value times TABLE_SIZE/16) + 8*TABLE_SIZE/16
         // Since these multiplications are powers of 2, shifting by the exponents
@@ -103,8 +103,8 @@ module ActivationLayer #(parameter
     // note to self: may end up putting a pipeline stage here from index -> final_index
     // if this path becomes critical
     
-    logic [TABLE_SIZE_POW-1:0] final_index [INPUT_SIZE-1:0];
-    logic unsigned [NFRAC-1:0] result [INPUT_SIZE-1:0];
+    logic [TABLE_SIZE_POW-1:0] final_index [SIZE-1:0];
+    // logic unsigned [NFRAC-1:0] result [SIZE-1:0];
     
     
     
@@ -112,7 +112,7 @@ module ActivationLayer #(parameter
     //// Extract final_index and Read BRAM /////
     ////////////////////////////////////////////
     generate
-      for (i = 0; i < INPUT_SIZE; i++) begin
+      for (i = 0; i < SIZE; i++) begin
         always_ff @(posedge clk) begin
 
                 // negative index
@@ -132,8 +132,7 @@ module ActivationLayer #(parameter
     endgenerate
 
     always_ff @(posedge clk) begin
-    
-                // read bram
+            // read bram
             // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
             if (MEM_WIDTH == NFRAC)
                 output_data[i] <= bram[final_index[i]];
@@ -149,23 +148,23 @@ endmodule
 
 module ActivationLayer_tb();
 
-    localparam  WIDTH           = 8,
+    localparam  WIDTH           = 16,
                 NFRAC           = 12,
                 MEM_WIDTH       = 10,
-                INPUT_SIZE      = 8,
+                SIZE            = 8,
                 TABLE_SIZE_POW  = 10,
                 BRAM_FILE       = "memw10_tsize1024_sigmoidBRAM.mem";
     logic clk;
     logic reset;
-    logic signed [WIDTH-1:0] input_data[0:INPUT_SIZE-1];
-    logic signed [WIDTH-1:0] output_data[0:INPUT_SIZE-1];
+    logic signed [WIDTH-1:0] input_data[0:SIZE-1];
+    logic signed [WIDTH-1:0] output_data[0:SIZE-1];
     
     
     // device under test
     ActivationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
-        .INPUT_SIZE     ( INPUT_SIZE        ),
+        .SIZE           ( SIZE              ),
         .MEM_WIDTH      ( MEM_WIDTH         ),
         .TABLE_SIZE_POW ( TABLE_SIZE_POW    ),
         .BRAM_FILE      ( BRAM_FILE         )
@@ -189,13 +188,7 @@ module ActivationLayer_tb();
     // Main stimulus
     initial begin
         reset = 1;
-        input_data =   {{8'd1}, {8'd2}, {8'd3}, {8'd4}, {8'd5}, //{8'd6}, {8'd7},
-                        {8'd3}, {8'd4}, {8'd5}, {8'd6}, {8'd7}, //{8'd8}, {8'd9},
-                        {8'd5}, {8'd6}, {8'd7}, {8'd8}, {8'd9}, //{8'd0}, {8'd1},
-                        {8'd7}, {8'd8}, {8'd9}, {8'd0}, {8'd1}, //{8'd2}, {8'd3},
-                        {8'd9}, {8'd0}, {8'd1}, {8'd2}, {8'd3}, //{8'd4}, {8'd5},
-                        {8'd1}, {8'd2}, {8'd3}, {8'd4}, {8'd5}, //{8'd6}, {8'd7},
-                        {8'd3}, {8'd4}, {8'd5}, {8'd6}, {8'd7}//, //{8'd8}, {8'd9}
+        input_data =   {
                         };
         repeat(3) @(posedge clk);
         reset = 0;
