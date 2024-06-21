@@ -30,7 +30,7 @@ module denseLayer #(parameter
     input  logic signed [WIDTH-1:0] input_data  [0:INPUT_SIZE-1],
     output logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1],
     // weigth faltened to 1D array, shape before flatten is (INPUT_SIZE, OUTPUT_SIZE)
-    input  logic signed [WIDTH-1:0] weights     [0:INPUT_SIZE*OUTPUT_SIZE-1],
+    input  logic signed [WIDTH-1:0] weights     [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1],
     input  logic signed [WIDTH-1:0] bias        [0:OUTPUT_SIZE-1]
     
 );
@@ -53,7 +53,7 @@ module denseLayer #(parameter
     generate 
         for(row=0; row<INPUT_SIZE; row++) begin : INPUT_SIZE_rows
             for(col=0; col<OUTPUT_SIZE; col++) begin : OUTPUT_SIZE_cols
-                shift_add #(.WEIGHT ( weights[row*OUTPUT_SIZE + col]    ),
+                shift_add #(.WEIGHT ( weights[row][col]                 ),
                             .DEPTH  ( `SA_DEPTH                         ),
                             .BITS   ( WIDTH                             ),
                             .NFRAC  ( NFRAC                             )

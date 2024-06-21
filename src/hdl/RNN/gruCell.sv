@@ -1,16 +1,19 @@
 
 // Single GRU cell
 // reset gate:
-// r_t = sigmoid(W_r * [h_t-1, x_t] + b_r)
+// r_t = sigmoid(W_r * [x_t, h_t-1] + b_r)
 //
 // update gate:
-// z_t = sigmoid(W_z * [h_t-1, x_t] + b_z)
+// z_t = sigmoid(W_z * [x_t, h_t-1] + b_z)
 //
 // candidate hidden state:
-// h_tilde = tanh(W_h * [r_t * h_t-1, x_t] + b_h)
+// h_tilde = tanh(W_h * [x_t, r_t * h_t-1] + b_h)
 //
 // hidden state (output):
 // h_t = (1 - z_t) * h_t-1 + z_t * h_tilde
+//
+// Notice we concatenate W and U matrices into a single matrix for the dense layer
+// Matrix W comes first so x should be the first in concatenated input.
 
 // ------------------------------------ */
 //
@@ -27,7 +30,7 @@ module gruCell #(parameter
     WIDTH               = 32,   // Data width
     NFRAC               = 10,   // Number of fractional bits
     x_SIZE              = 32,   // diminsion: d
-    h_SIZE              = 32,    // diminsion: e
+    h_SIZE              = 32    // diminsion: e
 )
 (
     input clk,
@@ -51,15 +54,15 @@ module gruCell #(parameter
     logic signed [WIDTH-1:0] tanh_out [0:h_SIZE-1];                 // tanh_out: R^{e}
 
     // Reset gate weights and biases
-    logic signed [WIDTH-1:0] W_r [0:h_SIZE-1][0:x_SIZE+h_SIZE-1];   // W_r: R^{e x (e+d)}
+    logic signed [WIDTH-1:0] W_r [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_r: R^{e x (e+d)}
     logic signed [WIDTH-1:0] b_r [0:h_SIZE-1];                      // b_r: R^{e}
 
     // Update gate weights and biases
-    logic signed [WIDTH-1:0] W_z [0:h_SIZE-1][0:x_SIZE+h_SIZE-1];   // W_z: R^{e x (e+d)}
+    logic signed [WIDTH-1:0] W_z [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_z: R^{e x (e+d)}
     logic signed [WIDTH-1:0] b_z [0:h_SIZE-1];                      // b_z: R^{e}
 
     // Candidate hidden state weights and biases
-    logic signed [WIDTH-1:0] W_h [0:h_SIZE-1][0:x_SIZE+h_SIZE-1];   // W_h: R^{e x (e+d)}
+    logic signed [WIDTH-1:0] W_h [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_h: R^{e x (e+d)}
     logic signed [WIDTH-1:0] b_h [0:h_SIZE-1];                       // b_h: R^{e}
 
 
@@ -82,7 +85,7 @@ module gruCell #(parameter
     ) reset_gate_dense (
         .clk(clk),
         .reset(reset),
-        .input_data({h_t_minus_1, x_t}),
+        .input_data({x_t, h_t_minus_1}),
         .output_data(r_t_raw),
         .weights(W_r),
         .biases(b_r)
@@ -91,7 +94,7 @@ module gruCell #(parameter
     sigmoidActivationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
-        .INPUT_SIZE     ( x_SIZE+h_SIZE     ),
+        .INPUT_SIZE     ( x_SIZE+h_SIZE     )
     ) reset_gate_sigmoid (
         .clk            ( clk               ),
         .reset          ( reset             ),
@@ -108,7 +111,7 @@ module gruCell #(parameter
     ) update_gate_dense (
         .clk(clk),
         .reset(reset),
-        .input_data({h_t_minus_1, x_t}),
+        .input_data({x_t, h_t_minus_1}),
         .output_data(z_t_raw),
         .weights(W_z),
         .biases(b_z)
@@ -117,7 +120,7 @@ module gruCell #(parameter
     sigmoidActivationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
-        .INPUT_SIZE     ( x_SIZE+h_SIZE     ),
+        .INPUT_SIZE     ( x_SIZE+h_SIZE     )
     ) update_gate_sigmoid (
         .clk            ( clk               ),
         .reset          ( reset             ),
@@ -145,7 +148,7 @@ module gruCell #(parameter
     ) candidate_hidden_state_dense (
         .clk(clk),
         .reset(reset),
-        .input_data({r_h_mult, x_t}),
+        .input_data({x_t, r_h_mult}),
         .output_data(h_tilde_raw),
         .weights(W_h),
         .biases(b_h)
@@ -154,7 +157,7 @@ module gruCell #(parameter
     tanhActivationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
-        .INPUT_SIZE     ( h_SIZE            ),
+        .INPUT_SIZE     ( h_SIZE            )
     ) candidate_hidden_state_tanh (
         .clk            ( clk               ),
         .reset          ( reset             ),

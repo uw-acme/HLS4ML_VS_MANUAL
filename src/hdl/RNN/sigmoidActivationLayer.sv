@@ -1,4 +1,6 @@
 /*
+    This layer takes SIZE number of fixed point numbers and applies the sigmoid.
+
     Parameters:
         WIDTH: Width of fixed point numbers
         NFRAC: Number of fractional bits (must be <= width)
@@ -88,6 +90,7 @@ module sigmoidActivationLayer #(parameter
         // (Input value times TABLE_SIZE/16) + 8*TABLE_SIZE/16
         // Since these multiplications are powers of 2, shifting by the exponents
         // has the same overall result.
+        // (TABLE_SIZE << (NFRAC-1): add fractional parts to table size
 
                 if (TABLE_SIZE_POW < 4)
                     index[i] = ($signed(input_val[i]) >>> (4-TABLE_SIZE_POW)) + (TABLE_SIZE << (NFRAC-1));

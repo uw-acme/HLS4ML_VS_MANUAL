@@ -5,3 +5,5 @@ documents/Benchmarks/RNN/ftag/hls/ftag_gru_testbench_prj/
 documents/Benchmarks/RNN/ftag/hls/ftag_gru_handwritten_prj/
 documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_testbench_prj/
 documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_testbench_prj/
+src/hdl/RNN/pkg_gen_gru/weights/
+src/hdl/RNN/pkg_gen_gru/*.txt

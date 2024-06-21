@@ -1,4 +1,7 @@
 /*
+    This layer takes SIZE number of fixed point numbers and applies the tanh.
+
+
     Parameters:
         WIDTH: Width of fixed point numbers
         NFRAC: Number of fractional bits (must be <= width)
@@ -23,26 +26,26 @@
                 -8 ---------------- 0 -------------------- +8     (bram range)
                 ^                   ^                       ^
                 |                   |                       |
-                0 ----------- TABLE_SIZE/2 ----------- TABLE_SIZE (index)
+                N/A --------------- 0 ----------- TABLE_SIZE (index)
             
-        The value stored at bram[index] is sigmoid(val) or 1/(1+e^(-val)).
+        The value stored at bram[index] is tanh(vald).
         The floating point value must be converted to the appropriate binary
         when stored in bram (see associated jupyter notebook to generate 
         binary files).
         
     What sigmoid does:
         Given an input value X, the sigmoid layer applies the inverse of the
-        transfer function:
-                index = X*TABLE_SIZE/16 + TABLE_SIZE/2
+        transfer function for abs value.
+                index = X*TABLE_SIZE/8
             
-        This index holds sigmoid(X) without the work of calculating the
-        sigmoid function. If the input is outside [-8, 8], the index value
+        This index holds tanh(X) without the work of calculating the
+        tanh function. If the input is outside [-8, 8], the index value
         will map to a negative index or an index greater than TABLE_SIZE
         and will be set to floor (0) or (TABLE_SIZE-1) respectivly.
 */
 
 `timescale 1ns / 1ps
-module activationLayer #(parameter
+module tanhActivationLayer #(parameter
                     WIDTH           = 10, // width of fixed point numbers
                     NFRAC           = 5,  // number of fractional bits (must be <= width)
                     SIZE            = 32, // number of fixed point numbers going into dense latency layer
@@ -68,6 +71,10 @@ module activationLayer #(parameter
     
     // input_data*TABLE_SIZE/16 + TABLE_SIZE/2
     logic [WIDTH+TABLE_SIZE_POW:0] index [SIZE-1:0];
+
+    // unsigned tanh(val) value from bram
+    logic signed [WIDTH-1:0] output_data_unsigned [SIZE-1:0];
+
     
     // Read in sigmoid values into bram
     initial begin
@@ -75,7 +82,16 @@ module activationLayer #(parameter
     end
     
     logic signed [WIDTH-1:0] input_val [SIZE-1:0];
+    logic signed [WIDTH-1:0] input_val_abs [SIZE-1:0];
+
     assign input_val = input_data;
+
+    always_comb begin
+        if (input_val[i][WIDTH-1] == 1)
+            input_val_abs[i] = -input_val[i];
+        else
+            input_val_abs[i] = input_val[i];
+    end
     
     ////////////////////////////////////////////
     ///// Apply Inverse Transfer Function //////
@@ -90,9 +106,9 @@ module activationLayer #(parameter
         // has the same overall result.
 
                 if (TABLE_SIZE_POW < 4)
-                    index[i] = ($signed(input_val[i]) >>> (4-TABLE_SIZE_POW)) + (TABLE_SIZE << (NFRAC-1));
+                    index[i] = ($signed(input_val_abs[i]) >>> (2-TABLE_SIZE_POW));
                 else
-                    index[i] = (input_val[i] << (TABLE_SIZE_POW-4)) + (TABLE_SIZE << (NFRAC-1));
+                    index[i] = (input_val_abs[i] << (TABLE_SIZE_POW-2));
             end
         
         // note: tablesize shifted over NFRAC bits to put result in
@@ -135,23 +151,37 @@ module activationLayer #(parameter
             // read bram
             // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
             if (MEM_WIDTH == NFRAC)
-                output_data[i] <= bram[final_index[i]];
+                output_data_unsigned[i] <= bram[final_index[i]];
             else if (MEM_WIDTH < NFRAC)
-                output_data[i] <= {bram[final_index[i]], {(NFRAC-MEM_WIDTH){'0}}};
+                output_data_unsigned[i] <= {bram[final_index[i]], {(NFRAC-MEM_WIDTH){'0}}};
             else
-                output_data[i] <= {bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};    
+                output_data_unsigned[i] <= {bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};
     end
     
+    // Convert unsigned output to signed out, if index is greater than half of TABLE_SIZE, output is positive
+    // otherwise, output is negative
+    generate
+        for (i = 0; i < SIZE; i++) begin
+            always_comb begin
+                if (input_val[i][WIDTH-1] == 1)
+                    output_data[i] = output_data_unsigned[i];
+                else
+                    output_data[i] = -output_data_unsigned[i];
+            end
+        end
+    endgenerate
+
+
 endmodule
 
-module activationLayer_tb();
+module tanhActivationLayer_tb();
 
     localparam  WIDTH           = 16,
                 NFRAC           = 12,
                 SIZE            = 8,
                 MEM_WIDTH       = 10,
                 TABLE_SIZE_POW  = 10,
-                BRAM_FILE       = "memw10_tsize1024_sigmoidBRAM.mem";
+                BRAM_FILE       = "memw10_tsize1024_tanhBRAM.mem";
     logic clk;
     logic reset;
     logic signed [WIDTH-1:0] input_data[0:SIZE-1];
