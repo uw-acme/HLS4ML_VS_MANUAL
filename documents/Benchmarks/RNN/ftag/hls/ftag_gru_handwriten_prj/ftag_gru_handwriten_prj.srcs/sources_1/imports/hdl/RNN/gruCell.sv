@@ -53,20 +53,20 @@ module gruCell #(parameter
 
     logic signed [WIDTH-1:0] tanh_out [0:h_SIZE-1];                 // tanh_out: R^{e}
 
-    // Reset gate weights and biases
-    wire signed [WIDTH-1:0] W_r [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_r: R^{e x (e+d)}
-    wire signed [WIDTH-1:0] b_r [0:h_SIZE-1];                      // b_r: R^{e}
+//    // Reset gate weights and biases
+//    wire signed [WIDTH-1:0] W_r [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_r: R^{e x (e+d)}
+//    wire signed [WIDTH-1:0] b_r [0:h_SIZE-1];                      // b_r: R^{e}
 
-    // Update gate weights and biases
-    wire signed [WIDTH-1:0] W_z [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_z: R^{e x (e+d)}
-    wire signed [WIDTH-1:0] b_z [0:h_SIZE-1];                      // b_z: R^{e}
+//    // Update gate weights and biases
+//    wire signed [WIDTH-1:0] W_z [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_z: R^{e x (e+d)}
+//    wire signed [WIDTH-1:0] b_z [0:h_SIZE-1];                      // b_z: R^{e}
 
-    // Candidate hidden state weights and biases
-    wire signed [WIDTH-1:0] W_h [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_h: R^{e x (e+d)}
-    wire signed [WIDTH-1:0] b_h [0:h_SIZE-1];                       // b_h: R^{e}
+//    // Candidate hidden state weights and biases
+//    wire signed [WIDTH-1:0] W_h [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_h: R^{e x (e+d)}
+//    wire signed [WIDTH-1:0] b_h [0:h_SIZE-1];                       // b_h: R^{e}
 
     // Reset gate
-    denseLatencyLayer #(
+    denseLayer #(
         .WIDTH          ( WIDTH                     ),
         .NFRAC          ( NFRAC                     ),
         .INPUT_SIZE     ( x_SIZE+h_SIZE             ),
@@ -92,7 +92,7 @@ module gruCell #(parameter
     );
 
     // Update gate
-    denseLatencyLayer #(
+    denseLayer #(
         .WIDTH          ( WIDTH                                 ),
         .NFRAC          ( NFRAC                                 ),
         .INPUT_SIZE     ( x_SIZE+h_SIZE                         ),
@@ -129,7 +129,7 @@ module gruCell #(parameter
     
     endgenerate
 
-    denseLatencyLayer #(
+    denseLayer #(
         .WIDTH          ( WIDTH                                 ),
         .NFRAC          ( NFRAC                                 ),
         .INPUT_SIZE     ( x_SIZE+h_SIZE                         ),
@@ -204,7 +204,7 @@ module gruCell_tb();
 
     initial begin
         reset <= 0;
-        x_t = {{-8'd1},
+        x_t <= {{-8'd1},
                 {8'd2},
                 {-8'd3},
                 {8'd4},

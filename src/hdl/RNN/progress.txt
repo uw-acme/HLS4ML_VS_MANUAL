@@ -1,0 +1,8 @@
+1. add new shift_add_gru that moves weight from parameter to port.
+2. Preserve the shift_add module (Vivado cannot perserve the multiplier if we pass a port?)
+
+
+
+Solution:
+
+    parameter a, parameter array b[a:0];
