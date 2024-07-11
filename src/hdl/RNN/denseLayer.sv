@@ -24,8 +24,8 @@ module denseLayer #(parameter
                     NFRAC           = 10, // number of fractional bits (must be <= width)
                     INPUT_SIZE      = 32, // number of fixed point numbers going into dense latency layer
                     OUTPUT_SIZE     = 32, // number of fixed point numbers coming out of dense latency layer
-                    [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default:0}, // WEIGHTS for each input to each output
-                    [WIDTH-1:0] BIAS   [0:OUTPUT_SIZE-1] = '{default:0} // BIASes for each output
+                    signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default:0}, // WEIGHTS for each input to each output
+                    signed [WIDTH-1:0] BIAS   [0:OUTPUT_SIZE-1] = '{default:0} // BIASes for each output
 )  (
     input  logic                    clk, 
     input  logic                    reset,

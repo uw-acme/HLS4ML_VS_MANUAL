@@ -47,7 +47,7 @@ function automatic int_array determineShifts(input integer signed number, input 
 endfunction
 
 // The actual shiftAdd module
-module shift_add #(parameter signed WEIGHT  = 17'd1,
+module shift_add_general #(parameter signed WEIGHT  = 17'd1,
                    parameter        DEPTH   = 3,
                                     BITS    = 17,
                                     NFRAC   = 8

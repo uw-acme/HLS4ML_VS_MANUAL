@@ -101,7 +101,8 @@ module adderTree_1D_p4_tb();
         forever #(CLOCK_PERIOD/2) clk = ~clk;
     end
     
-    adderTree_1D_p4 #(.N            ( N          ),
+//    adderTree_1D_p4 #(.N            ( N          ),
+    adderTree_1D_p4 #(
                       .WIDTH        ( WIDTH      ),
                       .INPUT_SIZE   ( INPUT_SIZE )
     ) dut (

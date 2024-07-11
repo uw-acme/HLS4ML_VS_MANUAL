@@ -86,19 +86,23 @@ module tanhActivationLayer #(parameter
 
     assign input_val = input_data;
 
-    always_comb begin
-        if (input_val[i][WIDTH-1] == 1)
-            input_val_abs[i] = -input_val[i];
-        else
-            input_val_abs[i] = input_val[i];
-    end
+    genvar i;
+
+    generate
+      for (i = 0; i < SIZE; i++) begin
+        always_comb begin
+            if (input_val[i][WIDTH-1] == 1)
+                input_val_abs[i] = -input_val[i];
+            else
+                input_val_abs[i] = input_val[i];
+        end
+      end
+    endgenerate
     
     ////////////////////////////////////////////
     ///// Apply Inverse Transfer Function //////
     ////////////////////////////////////////////
-    genvar i;
     generate
-   
       for (i = 0; i < SIZE; i++) begin
         always_comb begin
         // (Input value times TABLE_SIZE/16) + 8*TABLE_SIZE/16
@@ -146,17 +150,21 @@ module tanhActivationLayer #(parameter
                 
     end
     endgenerate
-
-    always_ff @(posedge clk) begin
-            // read bram
-            // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
-            if (MEM_WIDTH == NFRAC)
-                output_data_unsigned[i] <= bram[final_index[i]];
-            else if (MEM_WIDTH < NFRAC)
-                output_data_unsigned[i] <= {bram[final_index[i]], {(NFRAC-MEM_WIDTH){'0}}};
-            else
-                output_data_unsigned[i] <= {bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};
-    end
+    generate
+      for (i = 0; i < SIZE; i++) begin
+        always_ff @(posedge clk) begin
+                // read bram
+                // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
+                if (MEM_WIDTH == NFRAC)
+                    output_data_unsigned[i] <= bram[final_index[i]];
+                else if (MEM_WIDTH < NFRAC)
+                    output_data_unsigned[i] <= {bram[final_index[i]], {(NFRAC-MEM_WIDTH){'0}}};
+                else
+//                    output_data_unsigned[i] <= {bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};
+                    output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};  
+        end
+      end
+    endgenerate
     
     // Convert unsigned output to signed out, if index is greater than half of TABLE_SIZE, output is positive
     // otherwise, output is negative

@@ -134,17 +134,23 @@ module sigmoidActivationLayer #(parameter
     end
     endgenerate
 
-    always_ff @(posedge clk) begin
-            // read bram
-            // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
-            // Notice that the sign bit and the integer bit is always 0
-            if (MEM_WIDTH == NFRAC)
-                output_data[i] <= bram[final_index[i]];
-            else if (MEM_WIDTH < NFRAC)
-                output_data[i] <= {bram[final_index[i]], {(NFRAC-MEM_WIDTH){'0}}};
-            else
-                output_data[i] <= {bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};    
-    end
+    generate
+      for (i = 0; i < SIZE; i++) begin
+        always_ff @(posedge clk) begin
+                // read bram
+                // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
+                // Notice that the sign bit and the integer bit is always 0
+                if (MEM_WIDTH == NFRAC)
+                    output_data[i] <= bram[final_index[i]];
+                else if (MEM_WIDTH < NFRAC)
+                    output_data[i] <= {bram[final_index[i]], {(NFRAC-MEM_WIDTH){'0}}};
+                else
+//                    output_data[i] <= {bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};    
+                    output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};    
+
+        end
+      end
+    endgenerate
     
 endmodule
 
