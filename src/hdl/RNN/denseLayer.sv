@@ -17,16 +17,17 @@
 
 `timescale 1ns / 1ps
 `include "pkg_sel_gru.svh"
+`include "pkg_sel.svh"
 
 // Computes the dot product of the inputs and WEIGHTS then adds that to the BIASes
-module denseLayer #(parameter
-                    WIDTH           = 17, // width of fixed point numbers
-                    NFRAC           = 10, // number of fractional bits (must be <= width)
-                    INPUT_SIZE      = 32, // number of fixed point numbers going into dense latency layer
-                    OUTPUT_SIZE     = 32, // number of fixed point numbers coming out of dense latency layer
-                    signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default:0}, // WEIGHTS for each input to each output
-                    signed [WIDTH-1:0] BIAS   [0:OUTPUT_SIZE-1] = '{default:0} // BIASes for each output
-)  (
+module denseLayer #(
+    parameter int WIDTH = 17, // width of fixed point numbers
+    parameter int NFRAC = 10, // number of fractional bits (must be <= WIDTH)
+    parameter int INPUT_SIZE = 32, // number of fixed point numbers going into dense latency layer
+    parameter int OUTPUT_SIZE = 32, // number of fixed point numbers coming out of dense latency layer
+    parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: '{default: 17'sd0}}, // WEIGHTS for each input to each output
+    parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0} // BIASes for each output
+) (
     input  logic                    clk, 
     input  logic                    reset,
     input  logic signed [WIDTH-1:0] input_data  [0:INPUT_SIZE-1],

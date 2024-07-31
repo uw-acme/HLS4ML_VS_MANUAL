@@ -145,7 +145,7 @@ module sigmoidActivationLayer #(parameter
                 else if (MEM_WIDTH < NFRAC)
                     output_data[i] <= {bram[final_index[i]], {(NFRAC-MEM_WIDTH){'0}}};
                 else
-//                    output_data[i] <= {bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};    
+//                    output_data[i] <={bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};    
                     output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};    
 
         end

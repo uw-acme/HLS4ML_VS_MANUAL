@@ -1,27 +1,33 @@
 // Package with weights and biases for reset gate dense latency layer
 `ifndef RESET_GATE_PKG
-    `define RESET_GATE_PKG reset_gate_4_2
+    `define RESET_GATE_PKG reset_gate_11_6
 `endif
 
 // Package with weights and biases for update gate dense latency layer
 `ifndef UPDATE_GATE_PKG
-    `define UPDATE_GATE_PKG update_gate_4_2
+    `define UPDATE_GATE_PKG update_gate_11_6
 `endif
 
 // Package with weights and biases for candidate gate dense latency layer
 `ifndef CANDIDATE_HIDDEN_STATE_PKG
-    `define CANDIDATE_HIDDEN_STATE_PKG candidate_gate_4_2
+    `define CANDIDATE_HIDDEN_STATE_PKG candidate_gate_11_6
 `endif
 
-// Shift-Add module depth
-// The higher the depth, the more complex the weights that will be transformed
-// into shift-adds (done in LUTs) rather than DSPs
-`ifndef SA_DEPTH
-    `define SA_DEPTH 4
+// Dense 0
+`ifndef DENSE_0_PKG
+    `define DENSE_0_PKG dense_0_11_6
 `endif
 
-// Determines whether multipliers in dense latency layer translate
-// to a single cycle or 3 cycle configuration
-`ifndef THREE_CYCLE_MULT
-    `define THREE_CYCLE_MULT 0
+// Dense 1
+`ifndef DENSE_1_PKG
+    `define DENSE_1_PKG dense_1_11_6
 `endif
+
+// OUTPUT Layer
+`ifndef OUTPUT_LAYER_PKG
+    `define OUTPUT_LAYER_PKG dense_1_11_6
+`endif
+
+
+
+

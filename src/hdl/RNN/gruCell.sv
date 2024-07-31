@@ -27,14 +27,14 @@ import `UPDATE_GATE_PKG::*;
 import `CANDIDATE_HIDDEN_STATE_PKG::*;
 
 module gruCell #(parameter
-    WIDTH               = 32,   // Data width
-    NFRAC               = 10,   // Number of fractional bits
-    x_SIZE              = 32,   // diminsion: d
-    h_SIZE              = 32,    // diminsion: e
+    WIDTH               = 11,   // Data width
+    NFRAC               = 6,   // Number of fractional bits
+    x_SIZE              = 6,   // diminsion: d
+    h_SIZE              = 120,    // diminsion: e
     SIGMOID_TABLE_SIZE_POW = 10,
     TANH_TABLE_SIZE_POW    = 9,
     SIGMOID_BRAM_FILE   = "memw10_size1024_sigmoidBRAM.mem",
-    TANH_BRAM_FILE      = "memw10_size1024_tanhBRAM.mem"
+    TANH_BRAM_FILE      = "memw10_size512_tanhBRAM.mem"
 )
 (
     input clk,
@@ -175,62 +175,62 @@ module gruCell #(parameter
 
 endmodule
 
-module gruCell_tb();
+//module gruCell_tb();
 
-    localparam  WIDTH           = 4,
-                NFRAC           = 2,
-                x_SIZE          = 6,
-                h_SIZE          = 120,
-                MEM_WIDTH       = 10,
-                sigmoid_TABLE_SIZE_POW  = 10,
-                tanh_TABLE_SIZE_POW = 9,
-                sigmoid_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/sigmoid_BRAM_binaries/memw10_size1024_sigmoidBRAM.mem",
-                tanh_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem";
-    logic clk;
-    logic reset;
-    logic signed [WIDTH-1:0] x_t [0:x_SIZE-1];
-    logic signed [WIDTH-1:0] h_t_minus_1 [0:h_SIZE-1];
-    logic signed [WIDTH-1:0] h_t [0:h_SIZE-1];
-    integer i;
+//    localparam  WIDTH           = 4,
+//                NFRAC           = 2,
+//                x_SIZE          = 6,
+//                h_SIZE          = 120,
+//                MEM_WIDTH       = 10,
+//                sigmoid_TABLE_SIZE_POW  = 10,
+//                tanh_TABLE_SIZE_POW = 9,
+//                sigmoid_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/sigmoid_BRAM_binaries/memw10_size1024_sigmoidBRAM.mem",
+//                tanh_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem";
+//    logic clk;
+//    logic reset;
+//    logic signed [WIDTH-1:0] x_t [0:x_SIZE-1];
+//    logic signed [WIDTH-1:0] h_t_minus_1 [0:h_SIZE-1];
+//    logic signed [WIDTH-1:0] h_t [0:h_SIZE-1];
+//    integer i;
 
-    localparam PERIOD = 10;
-    initial begin
-        clk <= 1'b1;
-        forever #(PERIOD/2) clk <= ~clk;
-    end
+//    localparam PERIOD = 10;
+//    initial begin
+//        clk <= 1'b1;
+//        forever #(PERIOD/2) clk <= ~clk;
+//    end
 
-    gruCell #(
-        .WIDTH              ( WIDTH             ),
-        .NFRAC              ( NFRAC             ),
-        .x_SIZE             ( x_SIZE            ),
-        .h_SIZE             ( h_SIZE            ),
-        .SIGMOID_TABLE_SIZE_POW     (sigmoid_TABLE_SIZE_POW                 ),
-        .TANH_TABLE_SIZE_POW        (tanh_TABLE_SIZE_POW                    ),
-        .SIGMOID_BRAM_FILE  (sigmoid_BRAM_FILE  ),
-        .TANH_BRAM_FILE     (tanh_BRAM_FILE     )
-    ) dut (
-        .clk(clk),  .reset(reset),
-        .x_t(x_t),  .h_t_minus_1(h_t_minus_1),
-        .h_t(h_t)
-    );
+//    gruCell #(
+//        .WIDTH              ( WIDTH             ),
+//        .NFRAC              ( NFRAC             ),
+//        .x_SIZE             ( x_SIZE            ),
+//        .h_SIZE             ( h_SIZE            ),
+//        .SIGMOID_TABLE_SIZE_POW     (sigmoid_TABLE_SIZE_POW                 ),
+//        .TANH_TABLE_SIZE_POW        (tanh_TABLE_SIZE_POW                    ),
+//        .SIGMOID_BRAM_FILE  (sigmoid_BRAM_FILE  ),
+//        .TANH_BRAM_FILE     (tanh_BRAM_FILE     )
+//    ) dut (
+//        .clk(clk),  .reset(reset),
+//        .x_t(x_t),  .h_t_minus_1(h_t_minus_1),
+//        .h_t(h_t)
+//    );
 
-    initial begin
-        reset <= 0;
-        x_t <= {{-8'd1},
-                {8'd2},
-                {-8'd3},
-                {8'd4},
-                {-8'd5},
-                {8'd6}
-                };
+//    initial begin
+//        reset <= 0;
+//        x_t <= {{-8'd1},
+//                {8'd2},
+//                {-8'd3},
+//                {8'd4},
+//                {-8'd5},
+//                {8'd6}
+//                };
         
-        for (i = 0; i < h_SIZE; i = i + 1) begin
-            h_t_minus_1[i] = 4'b0001;
-        end
+//        for (i = 0; i < h_SIZE; i = i + 1) begin
+//            h_t_minus_1[i] = 4'b0001;
+//        end
         
-        repeat(30) @(posedge clk);
+//        repeat(30) @(posedge clk);
 
-    end
+//    end
 
 
-endmodule
+//endmodule

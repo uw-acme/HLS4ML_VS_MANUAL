@@ -51,7 +51,7 @@ module tanhActivationLayer #(parameter
                     SIZE            = 32, // number of fixed point numbers going into dense latency layer
                     MEM_WIDTH       = 10, // precision of BRAM entries
                     TABLE_SIZE_POW  = 10, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
-                    BRAM_FILE       = "memw10_size1024_sigmoidBRAM.mem"
+                    BRAM_FILE       = "memw10_size512_tanhBRAM.mem"
                  )(
     input clk,
     input reset,
@@ -160,8 +160,8 @@ module tanhActivationLayer #(parameter
                 else if (MEM_WIDTH < NFRAC)
                     output_data_unsigned[i] <= {bram[final_index[i]], {(NFRAC-MEM_WIDTH){'0}}};
                 else
-//                    output_data_unsigned[i] <= {bram[final_index[i][MEM_WIDTH-1:MEM_WIDTH-NFRAC]]};
-                    output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};  
+                    output_data_unsigned[i] <= bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC];
+//                    output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};  
         end
       end
     endgenerate
