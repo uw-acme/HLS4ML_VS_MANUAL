@@ -1,130 +1,205 @@
 `timescale 1ns / 1ps
 
-// module softmaxLayer # (parameter N=10, WIDTH=16, SIZE=10, NFRAC=10) (
-//     input logic signed [WIDTH-1:0] dataIn [N-1:0],
-//     input logic clk,
-//     output logic signed [WIDTH-1:0] dataOut [N-1:0]
-//     );
-
-module softmaxLayer #(parameter
-                    WIDTH           = 10, // width of fixed point numbers
-                    NFRAC           = 5,  // number of fractional bits (must be <= width)
-                    SIZE            = 32, // number of fixed point numbers going into dense latency layer
-                    MEM_WIDTH       = 10, // precision of BRAM entries
-                    TABLE_SIZE_POW  = 10, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
-                    exp_BRAM_FILE       = "memw10_size512_tanhBRAM.mem", // TODO: change file path
-                    invert_BRAM_FILE       = "memw10_size512_tanhBRAM.mem"
-                 )(
-    input clk,
-    input logic signed [WIDTH-1:0] dataIn [SIZE-1:0],
-    output logic signed [WIDTH-1:0] dataOut [SIZE-1:0]
+module softmaxLayer # (
+    parameter N = 10,                // Number of inputs
+    parameter WIDTH = 16,            // Width of input words
+    parameter NFRAC = 10,            // Number of fractional bits
+    parameter MEM_WIDTH = 10,        // Width of the memory lookup indices
+    parameter MEM_NFRAC_EXP = 4,        // Number of fractional bits in the memory lookup indices
+    parameter MEM_NFRAC_INV = 2,        // Number of fractional bits in the memory lookup indices
+    parameter TABLE_WIDTH = 18,      // Width of the table entries
+    parameter TABLE_NFRAC = 10             // Number of fractional bits
+) (
+    input logic signed [WIDTH-1:0] dataIn [N-1:0],
+    input logic clk,
+    input logic reset,
+    output logic signed [WIDTH-1:0] dataOut [N-1:0]
 );
 
-    // logic signed [2*N-1:0] exp_table [2**N-1:0];
-    // logic signed [2*N-1:0] invert_table [2**N-1:0]; // the tables are 1024 values of 20 bit numbers
-    // logic signed [WIDTH-1:0] dataIn1 [N-1:0];
-    // localparam MEM_WIDTH = 10;
-    // logic signed [2*MEM_WIDTH-1:0] tempSum;
+    // Lookup tables
+    logic signed [TABLE_WIDTH-1:0] exp_table [2**MEM_WIDTH-1:0];
+    logic signed [TABLE_WIDTH-1:0] invert_table [2**MEM_WIDTH-1:0];
 
-    logic signed [MEM_WIDTH-1:0] exp_table [2**TABLE_SIZE_POW-1:0];
-    logic signed [MEM_WIDTH-1:0] invert_table [2**TABLE_SIZE_POW-1:0]; // the tables are 1024 values of 20 bit numbers
-    logic signed [WIDTH-1:0] dataIn1 [SIZE-1:0];
-    logic signed [MEM_WIDTH-1:0] tempSum;
-    
-    // Init tables
+    // Intermediate signals
+    wire signed [(2 * TABLE_WIDTH) - 1:0] buffer [N-1:0];
+    logic signed [2*TABLE_WIDTH-1:0] expResult [N-1:0];  // notice that exp table is unsigned, we will need to add a positive sign bit to the result
+    logic signed [2*TABLE_WIDTH-1:0] tempSum;
+    logic signed [2*TABLE_WIDTH-1:0] expSum;
+    logic [MEM_WIDTH-1:0] lookupIndex [N-1:0];
+    logic signed [MEM_WIDTH-1:0] invertIndex;
+    logic signed [TABLE_WIDTH-1:0] invertVal;
+    // logic signed [MEM_WIDTH-1:0] lookupIndexes [N-1:0];
+    // Initialize tables
     initial begin
-        $readmemh("C:/Users/stlp/Desktop/HLS_SOFTMAX_FILES/expTable20_10.txt", exp_table, 0, 2**TABLE_SIZE_POW-1); // default table size
-        $readmemh("C:/Users/stlp/Desktop/HLS_SOFTMAX_FILES/invertTable20_10.txt", invert_table, 0, 2**TABLE_SIZE_POW-1); // default table size
+        // assert that the integer width of word is smaller than that of memory lookup index
+        assert(WIDTH - NFRAC <= MEM_WIDTH - MEM_NFRAC_EXP);
+        // assert that Invert table entry have greater integer width than that of exp table entry
+        assert(MEM_NFRAC_EXP - MEM_NFRAC_INV > 0);
+        $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/exp_table_18_10.txt", exp_table, 0, 2**MEM_WIDTH-1);
+        $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/invert_table_18_10.txt", invert_table, 0, 2**MEM_WIDTH-1);
     end
-    logic signed [(20+(WIDTH/2))-1:0] buffer [SIZE-1:0];    // TODO: determine the best value for the mult buffer.
-    logic signed [MEM_WIDTH-1:0] expResult [SIZE-1:0];      // exp value for each score.
-    logic signed [17:0] expSum;                             // sum of all exp values for all scores.
-    logic signed [13:0] invertVal;                          // invert of sum of all exp values.
-    logic signed [TABLE_SIZE_POW-1:0] lookupIndexes [SIZE-1:0]; // index for the exp table.
-    logic [TABLE_SIZE_POW-1:0] lookupIndex;
-    logic [TABLE_SIZE_POW-1:0] invertIndex;
+
+    // Calculate exponentials and sum
     always_comb begin
-        
-        //expSum = 0;
-        for (int i = 0; i < SIZE; i++) begin
-            // Notice: the table here is defined to be input -> output
-            if(MEM_WIDTH == NFRAC) lookupIndex = dataIn[i][WIDTH-1:WIDTH-NFRAC]; // default : 15:5
-            else if (MEM_WIDTH < NFRAC) lookupIndex = dataIn[i][17:8];//dataIn[i][WIDTH-2:WIDTH-MEM_WIDTH-1]; // top 10 bits
-            else begin
-                if(WIDTH < MEM_WIDTH) lookupIndex = dataIn[i][WIDTH-1];//{dataIn[i][WIDTH-1:0], {(MEM_WIDTH - WIDTH){'0}}};
-                else lookupIndex = dataIn[i][WIDTH-1:WIDTH-MEM_WIDTH];//{dataIn1[i][WIDTH-1:WIDTH-NFRAC], {(MEM_WIDTH-NFRAC){'0}}}; // too small,fill with zeros at the end, NEED TO CHECK
-            end
-            lookupIndexes[i] = lookupIndex;
-            expResult[i] = exp_table[lookupIndex];
-           // expSum = expSum + expResult[i];
+        for (int i = 0; i < N; i++) begin
+            if (MEM_NFRAC_EXP == NFRAC) 
+                lookupIndex[i] = dataIn[i];
+            else if (MEM_NFRAC_EXP < NFRAC)
+                lookupIndex[i] = (dataIn[i] >> (NFRAC - MEM_NFRAC_EXP));
+            else
+                lookupIndex[i] = (dataIn[i] << (MEM_NFRAC_EXP - NFRAC));
+
+            expResult[i] = {{(TABLE_WIDTH){1'b0}}, exp_table[lookupIndex[i]]};
         end
     end
-    
-    adderTree_1D #(32, 2*MEM_WIDTH, SIZE) add (.clk,.input_data(expResult),.output_data(tempSum));
 
-    assign  invertIndex = tempSum[17:8]; ///always the same
-    
-    assign  invertVal = invert_table[invertIndex];
-    
-    //CHANGED
-//    always_ff @(posedge clk) begin
-//        for(int i=0; i<N; i++) begin
-//            buffer[i] <= invertVal * expResult[i];
-//        end
-//    end
-        
+    // Adder Tree
+    adderTree_1D_p4 #(
+        .WIDTH(TABLE_WIDTH * 2),
+        .INPUT_SIZE(N)
+    ) add (
+        .clk(clk),
+        .reset(reset),
+        .input_data(expResult),
+        .output_data(tempSum)
+    );
+
+    // Inverse lookup
+    // TODO: maybe we don't need invert value for negative values.
+    // first cap extreme value (if tempSum >> (TABLE_NFRAC - MEM_NFRAC_INV) is out of range of MEM_WIDTH bit signed value, pick the max / min value)
+
+    assign expSum = tempSum >> (TABLE_NFRAC - MEM_NFRAC_INV);
+
+
+    always_comb begin
+        if (expSum >= 2**(MEM_WIDTH-1))
+            invertIndex = {1'b0, {(MEM_WIDTH-1){1'b1}}};
+        else if (expSum < -2**(MEM_WIDTH-1))
+            invertIndex = {1'b1, {(MEM_WIDTH-1){1'b0}}};
+        else
+            invertIndex = expSum[MEM_WIDTH:0];
+    end
+
+    assign invertVal = invert_table[invertIndex];
+
+    // Multiply and store the results
     genvar i;
-        generate
-            for(i=0; i<N; i++)begin
-                mult_op_wrap #(.din_WIDTH       ( 2*MEM_WIDTH      ),
-                               .dweight_WIDTH   ( 14        ),
-                               .dout_WIDTH      ( 20+(WIDTH/2))
-                               ) mow(
-                            .clk,
-                            .reset  ( '0            ),
-                            .ce     ( '1            ), // constant enable
-                            .din    ( expResult[i]      ),
-                            .dweight( invertVal  ),
-                            .dout   ( buffer[i]  )
-                        );    
+    generate
+        for (i = 0; i < N; i++) begin : multiply_and_store
+            mult_op_wrap #(
+                .din_WIDTH(TABLE_WIDTH),
+                .dweight_WIDTH(TABLE_WIDTH),
+                .dout_WIDTH(2 * TABLE_WIDTH)
+            ) mow (
+                .clk(clk),
+                .reset(1'b0),
+                .ce(1'b1),
+                .din(expResult[i][TABLE_WIDTH-1:0]),
+                .dweight(invertVal),
+                .dout(buffer[i])
+            );
         end
     endgenerate
-    
+
+    // Output assignment
     always_ff @(posedge clk) begin
-        for(int i=0; i<N; i++) begin
-            dataOut[i] <= buffer[i][(20+(WIDTH/2))-1:(20+(WIDTH/2))-WIDTH]; //25:10 for 16 bits, 26:9 for 18 bits //24:11 for 14 bits //23:12 for 12 bits //21:14 for 8 bits
-            // 16 + 9, 18 + 8, 14 + 10
+        for (int i = 0; i < N; i++) begin
+            // // cap max and min values
+            // if (buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC] >= 2**(TABLE_WIDTH-1))
+            //     dataOut[i] = {1'b0, {(WIDTH-1){1'b1}}};
+            // else if (buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC] < -(2**(TABLE_WIDTH-1)))
+            //     dataOut[i] = {1'b1, {(WIDTH-1){1'b0}}};
+            // else
+
+            // cap disabled
+            dataOut[i] = buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC];
         end
     end
 endmodule
 
-//module softmax_testbench();
-//    logic signed[15:0] dataIn [0:9];
-//    logic signed [15:0] dataOut [0:9];
-//    logic clk;
-    
-//    parameter CLOCK_PERIOD = 100;
-//    initial begin
-//		clk <= 0;
-//		forever #(CLOCK_PERIOD/2) clk <= ~clk;
-//	end
-    
-//    softmaxFunction2 sf(.dataIn(dataIn), .clk(clk), .dataOut(dataOut));
-//    initial begin
-//        dataIn = { 16'h00c4,
-//16'hff5b,
-//16'h00d6,
-//16'h00ea,
-//16'hfe09,
-//                 16'hfed9,
-//16'hff29,16'h0145,
-//16'hff0c, 
-//16'hfec1}; @(posedge clk);
-//        @(posedge clk);
-//        @(posedge clk);
-//        @(posedge clk);
-//        @(posedge clk);
-//        @(posedge clk);
-//        $stop;
-//    end
-//endmodule
+module softmaxLayer_tb;
+
+    // Parameters
+    localparam N = 4;                // Number of inputs
+    localparam WIDTH = 16;        // Width of input words
+    localparam NFRAC = 10;            // Number of fractional bits
+
+    // Testbench signals
+    logic signed [WIDTH-1:0] dataIn [N-1:0];
+    logic clk;
+    logic signed [WIDTH-1:0] dataOut [N-1:0];
+
+    // Instantiate the softmaxParameterized module
+    softmaxLayer #(
+        .N(N),
+        .WIDTH(WIDTH),
+        .NFRAC(NFRAC)
+    ) uut (
+        .dataIn(dataIn),
+        .clk(clk),
+        .dataOut(dataOut)
+    );
+
+    // Clock generation
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk;  // 100 MHz clock
+    end
+
+    // Test stimulus
+    initial begin
+        // Initialize inputs
+//        for (int i = 0; i < N; i++) begin
+//            dataIn[i] = $signed(i * 2); // Example data
+//        end
+        
+//        // Wait for a few clock cycles to observe the results
+//        #10;
+
+//        // Apply new data
+//        for (int i = 0; i < N; i++) begin
+//            dataIn[i] = $signed((i + 1) * 3); // Example data
+//        end
+
+//        // Wait for a few clock cycles to observe the results
+//        #10;
+        
+        dataIn[0] = 16'sh0000;
+        dataIn[1] = 16'sh0000;
+        dataIn[2] = 16'sh0000;
+        dataIn[3] = 16'sh0000;
+        
+        # 200
+
+        dataIn[0] = 16'sh1fff;
+        dataIn[1] = 16'sh0001;
+        dataIn[2] = 16'sh0001;
+        dataIn[3] = 16'sh0001;
+
+        # 100
+
+        // dataIn[0] = -16'sh1005;
+        // dataIn[1] = -16'sh0005;
+        // dataIn[2] = -16'sh0005;
+        // dataIn[3] = -16'sh0005;
+
+        // # 100
+
+        // dataIn[0] = 16'sh0005;
+        // dataIn[1] = 16'sh0005;
+        // dataIn[2] = 16'sh000a;
+        // dataIn[3] = 16'sh000a;
+
+        // # 100
+
+        // End the simulation
+        $finish;
+    end
+
+    // Monitor the outputs
+    initial begin
+        $monitor("Time = %0t | dataIn = %p | dataOut = %p", $time, dataIn, dataOut);
+    end
+
+endmodule
+

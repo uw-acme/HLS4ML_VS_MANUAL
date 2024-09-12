@@ -197,18 +197,20 @@ module ftag_gru #(parameter
         .output_data(output_temp)
     );
 
-    // TODO: the softmax layer is not implemented yet, temporarily remove this layer
-    // softmaxLayer #(
-    //     .WIDTH          ( WIDTH             ),
-    //     .NFRAC          ( NFRAC             ),
-    //     .INPUT_SIZE     ( OUTPUT_SIZE        ),
-    //     .OUTPUT_SIZE    ( OUTPUT_SIZE       )
-    // ) softmax (
-    //     .clk(clk),
-    //     .reset(reset),
-    //     .input_data(output_temp),
-    //     .output_data(output)
+    // Softmax
+    // module softmaxParameterized # (
+    //     parameter N = 10,                // Number of inputs
+    //     parameter WORD_SIZE = 16,        // Width of input words
+    //     parameter MEM_WIDTH = 10,        // Width of the memory lookup indices
+    //     parameter TABLE_WIDTH = 20,      // Width of the table entries
+    //     parameter NFRAC = 10             // Number of fractional bits
+    // ) (
+    //     input logic signed [WORD_SIZE-1:0] dataIn [N-1:0],
+    //     input logic clk,
+    //     output logic signed [WORD_SIZE-1:0] dataOut [N-1:0]
     // );
+
+    sof
 
     always_ff @(posedge clk) begin
         output <= output_temp;
