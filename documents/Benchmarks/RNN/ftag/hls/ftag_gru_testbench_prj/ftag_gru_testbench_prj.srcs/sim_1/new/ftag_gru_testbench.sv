@@ -78,11 +78,11 @@ initial begin
     @(posedge ap_done);
 
     repeat(10) @(posedge ap_clk);
-    ap_start <= 1;
-    input_1_V_ap_vld <= 1; 
+//    ap_start <= 1;
+//    input_1_V_ap_vld <= 1; 
     
-    @(posedge ap_ready);
-    input_1_V_ap_vld <= 0;
+//    @(posedge ap_ready);
+//    input_1_V_ap_vld <= 0;
 
     @(posedge ap_done);
 

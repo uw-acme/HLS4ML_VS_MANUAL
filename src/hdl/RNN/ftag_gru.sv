@@ -27,30 +27,28 @@ import `DENSE_1_PKG::*;
 import `OUTPUT_LAYER_PKG::*;
 
 module ftag_gru #(parameter
-    WIDTH               = 4,   // Data width
-    NFRAC               = 2,   // Number of fractional bits
+    x_SIZE              = 6,
+    h_SIZE              = 120,
+    OUTPUT_SIZE         = 3,
+    DENSE_0_INPUT_SIZE  = h_SIZE,
+    DENSE_0_OUTPUT_SIZE = 50,
+    DENSE_1_INPUT_SIZE  = DENSE_0_OUTPUT_SIZE,
+    DENSE_1_OUTPUT_SIZE = 10,
+
+    WIDTH               = 16,   // Data width
+    NFRAC               = 10,   // Number of fractional bits
 
     SIGMOID_TABLE_SIZE_POW = 10,
     TANH_TABLE_SIZE_POW    = 9,
     SIGMOID_BRAM_FILE   = "memw10_size1024_sigmoidBRAM.mem",
     TANH_BRAM_FILE      = "memw10_size512_tanhBRAM.mem"
-)
-(
-    // Hardcoded model architecture
-    localparam x_SIZE = 6,
-    localparam h_SIZE = 120,
-    localparam OUTPUT_SIZE = 3,
-    localparam DENSE_0_INPUT_SIZE = h_SIZE,
-    localparam DENSE_0_OUTPUT_SIZE = 50,
-    localparam DENSE_1_INPUT_SIZE = DENSE_0_OUTPUT_SIZE,
-    localparam DENSE_1_OUTPUT_SIZE = 10,
-
+) (
     input clk,
     input reset,
 
     // Input of the model, sequence length of 15 and diminsion of 6
-    input signed        [WIDTH-1:0] x_t [0:x_SIZE-1],
-    output signed       [WIDTH-1:0] output [0:OUTPUT_SIZE]
+    input  logic signed [WIDTH-1:0] x_t [0:x_SIZE-1],
+    output logic signed [WIDTH-1:0] y_t [0:OUTPUT_SIZE]
 );
 
     // Internal signals
@@ -63,14 +61,20 @@ module ftag_gru #(parameter
     logic signed [WIDTH-1:0] dense_1_temp [0:DENSE_1_OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0] dense_1_out [0:DENSE_1_OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0] output_temp [0:OUTPUT_SIZE-1];
+    logic signed [WIDTH-1:0] output_buffer [0:OUTPUT_SIZE-1];
 
-    always_ff @(posedge clk) begin
-        if (reset) begin
-            x_t_buffer <= 0;
-        end else begin
-            x_t_buffer <= x_t;
+    genvar i;
+    generate
+        for (i = 0; i < x_SIZE; i = i + 1) begin
+            always_ff @(posedge clk) begin
+                if (reset) begin
+                    x_t_buffer[i] <= 0;
+                end else begin
+                    x_t_buffer[i] <= x_t[i];
+                end
+            end
         end
-    end
+    endgenerate
 
     // This file uses static methods to implement the GRU model
     // One gru cell, reuse 15 times for each sequence of inputs
@@ -111,20 +115,39 @@ module ftag_gru #(parameter
     end
 
     // Feed x and h_t_minus_1 to the gru cell for 15 times, update h_t_minus_1 with h_t
-    always_ff @(posedge clk) begin
-        if (reset) begin
-            h_t_minus_1 <= 0;
-        end else begin
-            if (seq_counter == 0) begin
-                h_t_minus_1 <= 0;
-                gru_out <= h_t;
-            end else begin
-                h_t_minus_1 <= h_t;
-                // set output of gru to random value
-                gru_out <= {h_SIZE{1'bx}};
+    // always_ff @(posedge clk) begin
+    //     if (reset) begin
+    //         h_t_minus_1 <= 0;
+    //     end else begin
+    //         if (seq_counter == 0) begin
+    //             h_t_minus_1 <= 0;
+    //             gru_out <= h_t;
+    //         end else begin
+    //             h_t_minus_1 <= h_t;
+    //             // set output of gru to random value
+    //             gru_out <= {h_SIZE{1'bx}};
+    //         end
+    //     end
+    // end
+
+    generate
+        for (i = 0; i < h_SIZE; i = i + 1) begin
+            always_ff @(posedge clk) begin
+                if (reset) begin
+                    h_t_minus_1[i] <= 0;
+                end else begin
+                    if (seq_counter == 0) begin
+                        h_t_minus_1[i] <= 0;
+                        gru_out[i] <= h_t[i];
+                    end else begin
+                        h_t_minus_1[i] <= h_t[i];
+                        // set output of gru to random value
+                        gru_out[i] <= {h_SIZE{1'bx}};
+                    end
+                end
             end
         end
-    end
+    endgenerate
 
     // Dense 0 
     denseLayer #(
@@ -197,23 +220,96 @@ module ftag_gru #(parameter
         .output_data(output_temp)
     );
 
-    // Softmax
-    // module softmaxParameterized # (
-    //     parameter N = 10,                // Number of inputs
-    //     parameter WORD_SIZE = 16,        // Width of input words
-    //     parameter MEM_WIDTH = 10,        // Width of the memory lookup indices
-    //     parameter TABLE_WIDTH = 20,      // Width of the table entries
-    //     parameter NFRAC = 10             // Number of fractional bits
-    // ) (
-    //     input logic signed [WORD_SIZE-1:0] dataIn [N-1:0],
-    //     input logic clk,
-    //     output logic signed [WORD_SIZE-1:0] dataOut [N-1:0]
-    // );
 
-    sof
+    // Softmax
+    //    parameter N = 10,                // Number of inputs
+    // parameter WIDTH = 16,            // Width of input words
+    // parameter NFRAC = 10,            // Number of fractional bits
+    // parameter MEM_WIDTH = 10,        // Width of the memory lookup indices
+    // parameter MEM_NFRAC_EXP = 4,        // Number of fractional bits in the memory lookup indices
+    // parameter MEM_NFRAC_INV = 2,        // Number of fractional bits in the memory lookup indices
+    // parameter TABLE_WIDTH = 18,      // Width of the table entries
+    // parameter TABLE_NFRAC = 10             // Number of fractional bits
+    softmaxLayer # (
+        .N             ( OUTPUT_SIZE ),
+        .WIDTH         ( WIDTH       ),
+        .NFRAC         ( NFRAC       ),
+        .MEM_WIDTH     ( 10          ),
+        .MEM_NFRAC_EXP( 4           ),
+        .MEM_NFRAC_INV( 2           ),
+        .TABLE_WIDTH   ( 18          ),
+        .TABLE_NFRAC   ( 10          )
+    ) softmax_layer (
+        .dataIn ( output_temp ),
+        .clk    ( clk        ),
+        .reset  ( reset      ),
+        .dataOut( output_buffer )
+);
 
     always_ff @(posedge clk) begin
-        output <= output_temp;
+        y_t <= output_buffer;
+    end
+
+endmodule
+
+module ftag_gru_tb;
+    // Parameters
+    localparam N = 6;                // Number of inputs
+    localparam WIDTH = 16;        // Width of input words
+    localparam NFRAC = 10;            // Number of fractional bits
+
+    // Testbench signals
+    logic signed [WIDTH-1:0] dataIn [N-1:0];
+    logic clk;
+    logic reset;
+
+    // Instantiate the DUT
+    ftag_gru #(
+        .x_SIZE              ( 6 ),
+        .h_SIZE              ( 120 ),
+        .OUTPUT_SIZE         ( 3 ),
+        .DENSE_0_INPUT_SIZE  ( 120 ),
+        .DENSE_0_OUTPUT_SIZE ( 50 ),
+        .DENSE_1_INPUT_SIZE  ( 50 ),
+        .DENSE_1_OUTPUT_SIZE ( 10 ),
+        .WIDTH               ( 16 ),
+        .NFRAC               ( 10 ),
+        .SIGMOID_TABLE_SIZE_POW ( 10 ),
+        .TANH_TABLE_SIZE_POW    ( 9 ),
+        .SIGMOID_BRAM_FILE   ( "memw10_size1024_sigmoidBRAM.mem" ),
+        .TANH_BRAM_FILE      ( "memw10_size512_tanhBRAM.mem" )
+    ) dut (
+        .clk(clk),
+        .reset(reset),
+        .x_t(dataIn),
+        .y_t()
+    );
+
+    // Clock generation
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk;  // 100 MHz clock
+    end
+
+    // Testbench
+    initial begin
+
+        reset <= 1'b1;
+
+        #100;
+        reset <= 1'b0;
+
+        // Initialize inputs
+        dataIn[0] <= 16'b1111;
+        dataIn[1] <= 16'b1111;
+        dataIn[2] <= 16'b1111;
+        dataIn[3] <= 16'b1111;
+        dataIn[4] <= 16'b1111;
+        dataIn[5] <= 16'b1111;
+
+        // Run the simulation
+        #1000;
+        $finish;
     end
 
 endmodule
