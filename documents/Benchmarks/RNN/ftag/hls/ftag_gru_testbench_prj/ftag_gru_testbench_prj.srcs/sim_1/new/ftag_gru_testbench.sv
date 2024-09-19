@@ -62,7 +62,7 @@ initial begin
 end
 
 initial begin
-    input_1_V <= 0;
+    input_1_V <= {1440{1'b1}};
     ap_rst <= 1;
     ap_start <= 0; 
     
@@ -73,7 +73,7 @@ initial begin
     
     @(posedge ap_ready);
     input_1_V_ap_vld <= 0;
-    input_1_V <= {1440{1'b1}};
+    
 
     @(posedge ap_done);
 
@@ -84,9 +84,9 @@ initial begin
 //    @(posedge ap_ready);
 //    input_1_V_ap_vld <= 0;
 
-    @(posedge ap_done);
+//    @(posedge ap_done);
 
-    repeat(10) @(posedge ap_clk);
+//    repeat(10) @(posedge ap_clk);
 
 
     $stop;

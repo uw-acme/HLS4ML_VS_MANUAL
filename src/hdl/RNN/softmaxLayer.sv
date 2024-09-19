@@ -26,7 +26,7 @@ module softmaxLayer # (
     logic signed [2*TABLE_WIDTH-1:0] tempSum;
     logic signed [2*TABLE_WIDTH-1:0] expSum;
     logic [MEM_WIDTH-1:0] lookupIndex [N-1:0];
-    logic signed [MEM_WIDTH-1:0] invertIndex;
+    logic [MEM_WIDTH-1:0] invertIndex;
     logic signed [TABLE_WIDTH-1:0] invertVal;
     // logic signed [MEM_WIDTH-1:0] lookupIndexes [N-1:0];
     // Initialize tables
@@ -72,12 +72,13 @@ module softmaxLayer # (
 
 
     always_comb begin
-        if (expSum >= 2**(MEM_WIDTH-1))
+        if (expSum >= 2**(MEM_WIDTH - 1)) // our table's positve portion only have 512 (2**(MEM_WIDTH-1)) entries
             invertIndex = {1'b0, {(MEM_WIDTH-1){1'b1}}};
-        else if (expSum < -2**(MEM_WIDTH-1))
-            invertIndex = {1'b1, {(MEM_WIDTH-1){1'b0}}};
-        else
-            invertIndex = expSum[MEM_WIDTH:0];
+        else // notice: since expSum could only be positive, we don't need to consider negative values
+        // else if (expSum < -2**(MEM_WIDTH))
+        //     invertIndex = {1'b1, {(MEM_WIDTH-1){1'b0}}};
+        // else
+            invertIndex = expSum[MEM_WIDTH-1:0];
     end
 
     assign invertVal = invert_table[invertIndex];
@@ -120,7 +121,7 @@ endmodule
 module softmaxLayer_tb;
 
     // Parameters
-    localparam N = 4;                // Number of inputs
+    localparam N = 3;                // Number of inputs
     localparam WIDTH = 16;        // Width of input words
     localparam NFRAC = 10;            // Number of fractional bits
 
@@ -167,23 +168,28 @@ module softmaxLayer_tb;
         dataIn[0] = 16'sh0000;
         dataIn[1] = 16'sh0000;
         dataIn[2] = 16'sh0000;
-        dataIn[3] = 16'sh0000;
+//        dataIn[3] = 16'sh0000;
         
         # 200
 
         dataIn[0] = 16'sh1fff;
         dataIn[1] = 16'sh0001;
         dataIn[2] = 16'sh0001;
-        dataIn[3] = 16'sh0001;
+//        dataIn[3] = 16'sh0001;
 
-        # 100
+        # 200
+        
+        dataIn[0] = 16'sh1c4a;
+        dataIn[1] = 16'sh117f;
+        dataIn[2] = 16'sha27b;
+//        dataIn[3] = 16'sh0001;
 
         // dataIn[0] = -16'sh1005;
         // dataIn[1] = -16'sh0005;
         // dataIn[2] = -16'sh0005;
         // dataIn[3] = -16'sh0005;
 
-        // # 100
+        # 100
 
         // dataIn[0] = 16'sh0005;
         // dataIn[1] = 16'sh0005;

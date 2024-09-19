@@ -6,13 +6,13 @@
 module reluActivationLayer #(parameter
                     WIDTH           = 10, // width of fixed point numbers
                     NFRAC           = 5,  // number of fractional bits (must be <= width)
-                    SIZE            = 32, // number of fixed point numbers going into dense latency layer
+                    SIZE            = 32  // number of fixed point numbers going into dense latency layer
                  )(
     input clk,
     input logic signed [WIDTH-1:0] input_data [SIZE-1:0],
     output logic signed [WIDTH-1:0] output_data [SIZE-1:0]
 );
-    signed [WIDTH-1:0] out_buffer [SIZE-1:0];
+    logic signed [WIDTH-1:0] out_buffer [SIZE-1:0];
 
     // Activation fuction
     integer j;

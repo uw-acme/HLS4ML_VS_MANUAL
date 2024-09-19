@@ -49,7 +49,7 @@ module ftag_gru #(parameter
     // Input of the model, sequence length of 15 and diminsion of 6
     // For now the x_t should be change every 18 cycles
     input  logic signed [WIDTH-1:0] x_t [0:x_SIZE-1],
-    output logic signed [WIDTH-1:0] y_t [0:OUTPUT_SIZE]
+    output logic signed [WIDTH-1:0] y_t [0:OUTPUT_SIZE-1]
 );
 
     // Internal signals
@@ -183,14 +183,12 @@ module ftag_gru #(parameter
     );
 
     // relu activation
-    reluLayer #(
+    reluActivationLayer #(
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
-        .INPUT_SIZE     ( DENSE_0_OUTPUT_SIZE       ),
-        .OUTPUT_SIZE    ( DENSE_0_OUTPUT_SIZE       )
+        .SIZE           ( DENSE_0_OUTPUT_SIZE       )
     ) relu_0 (
         .clk(clk),
-        .reset(reset),
         .input_data(dense_0_temp),
         .output_data(dense_0_out)
     );
@@ -211,14 +209,12 @@ module ftag_gru #(parameter
     );
 
     // relu activation
-    reluLayer #(
+    reluActivationLayer #(
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
-        .INPUT_SIZE     ( DENSE_1_OUTPUT_SIZE       ),
-        .OUTPUT_SIZE    ( DENSE_1_OUTPUT_SIZE       )
+        .SIZE           ( DENSE_1_OUTPUT_SIZE       )
     ) relu_1 (
         .clk(clk),
-        .reset(reset),
         .input_data(dense_1_temp),
         .output_data(dense_1_out)
     );
@@ -318,12 +314,12 @@ module ftag_gru_tb;
         reset <= 1'b0;
 
         // Initialize inputs
-        dataIn[0] <= 16'b1111;
-        dataIn[1] <= 16'b1111;
-        dataIn[2] <= 16'b1111;
-        dataIn[3] <= 16'b1111;
-        dataIn[4] <= 16'b1111;
-        dataIn[5] <= 16'b1111;
+        dataIn[0] <= 16'b1111111111111111;
+        dataIn[1] <= 16'b1111111111111111;
+        dataIn[2] <= 16'b1111111111111111;
+        dataIn[3] <= 16'b1111111111111111;
+        dataIn[4] <= 16'b1111111111111111;
+        dataIn[5] <= 16'b1111111111111111;
 
         // Run the simulation
         repeat(10000) @(posedge clk);
