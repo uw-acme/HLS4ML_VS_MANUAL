@@ -15,6 +15,8 @@
 // Notice we concatenate W and U matrices into a single matrix for the dense layer
 // Matrix W comes first so x should be the first in concatenated input.
 
+// This version of GRU cell has delay of 18 cycles
+
 // ------------------------------------ */
 //
 
@@ -56,18 +58,6 @@ module gruCell #(parameter
     logic signed [WIDTH-1:0] r_h_mult [0:h_SIZE-1];                 // r_t pointwise multiply h_t_minus_1: R^{e}
 
     logic signed [WIDTH-1:0] tanh_out [0:h_SIZE-1];                 // tanh_out: R^{e}
-
-    // Reset gate weights and biases
-    wire signed [WIDTH-1:0] W_r [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_r: R^{e x (e+d)}
-    wire signed [WIDTH-1:0] b_r [0:h_SIZE-1];                      // b_r: R^{e}
-
-    // Update gate weights and biases
-    wire signed [WIDTH-1:0] W_z [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_z: R^{e x (e+d)}
-    wire signed [WIDTH-1:0] b_z [0:h_SIZE-1];                      // b_z: R^{e}
-
-    // Candidate hidden state weights and biases
-    wire signed [WIDTH-1:0] W_h [0:x_SIZE+h_SIZE-1][0:h_SIZE-1];   // W_h: R^{e x (e+d)}
-    wire signed [WIDTH-1:0] b_h [0:h_SIZE-1];                       // b_h: R^{e}
 
     // Reset gate
     denseLayer #(
@@ -175,62 +165,74 @@ module gruCell #(parameter
 
 endmodule
 
-//module gruCell_tb();
+module gruCell_tb();
 
-//    localparam  WIDTH           = 4,
-//                NFRAC           = 2,
-//                x_SIZE          = 6,
-//                h_SIZE          = 120,
-//                MEM_WIDTH       = 10,
-//                sigmoid_TABLE_SIZE_POW  = 10,
-//                tanh_TABLE_SIZE_POW = 9,
-//                sigmoid_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/sigmoid_BRAM_binaries/memw10_size1024_sigmoidBRAM.mem",
-//                tanh_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem";
-//    logic clk;
-//    logic reset;
-//    logic signed [WIDTH-1:0] x_t [0:x_SIZE-1];
-//    logic signed [WIDTH-1:0] h_t_minus_1 [0:h_SIZE-1];
-//    logic signed [WIDTH-1:0] h_t [0:h_SIZE-1];
-//    integer i;
+   localparam  WIDTH           = 4,
+               NFRAC           = 2,
+               x_SIZE          = 6,
+               h_SIZE          = 120,
+               MEM_WIDTH       = 10,
+               sigmoid_TABLE_SIZE_POW  = 10,
+               tanh_TABLE_SIZE_POW = 9,
+               sigmoid_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/sigmoid_BRAM_binaries/memw10_size1024_sigmoidBRAM.mem",
+               tanh_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem";
+   logic clk;
+   logic reset;
+   logic signed [WIDTH-1:0] x_t [0:x_SIZE-1];
+   logic signed [WIDTH-1:0] h_t_minus_1 [0:h_SIZE-1];
+   logic signed [WIDTH-1:0] h_t [0:h_SIZE-1];
+   integer i;
 
-//    localparam PERIOD = 10;
-//    initial begin
-//        clk <= 1'b1;
-//        forever #(PERIOD/2) clk <= ~clk;
-//    end
+   localparam PERIOD = 10;
+   initial begin
+       clk <= 1'b1;
+       forever #(PERIOD/2) clk <= ~clk;
+   end
 
-//    gruCell #(
-//        .WIDTH              ( WIDTH             ),
-//        .NFRAC              ( NFRAC             ),
-//        .x_SIZE             ( x_SIZE            ),
-//        .h_SIZE             ( h_SIZE            ),
-//        .SIGMOID_TABLE_SIZE_POW     (sigmoid_TABLE_SIZE_POW                 ),
-//        .TANH_TABLE_SIZE_POW        (tanh_TABLE_SIZE_POW                    ),
-//        .SIGMOID_BRAM_FILE  (sigmoid_BRAM_FILE  ),
-//        .TANH_BRAM_FILE     (tanh_BRAM_FILE     )
-//    ) dut (
-//        .clk(clk),  .reset(reset),
-//        .x_t(x_t),  .h_t_minus_1(h_t_minus_1),
-//        .h_t(h_t)
-//    );
+   gruCell #(
+       .WIDTH              ( WIDTH             ),
+       .NFRAC              ( NFRAC             ),
+       .x_SIZE             ( x_SIZE            ),
+       .h_SIZE             ( h_SIZE            ),
+       .SIGMOID_TABLE_SIZE_POW     (sigmoid_TABLE_SIZE_POW                 ),
+       .TANH_TABLE_SIZE_POW        (tanh_TABLE_SIZE_POW                    ),
+       .SIGMOID_BRAM_FILE  (sigmoid_BRAM_FILE  ),
+       .TANH_BRAM_FILE     (tanh_BRAM_FILE     )
+   ) dut (
+       .clk(clk),  .reset(reset),
+       .x_t(x_t),  .h_t_minus_1(h_t_minus_1),
+       .h_t(h_t)
+   );
 
-//    initial begin
-//        reset <= 0;
-//        x_t <= {{-8'd1},
-//                {8'd2},
-//                {-8'd3},
-//                {8'd4},
-//                {-8'd5},
-//                {8'd6}
-//                };
+   initial begin
+       reset <= 0;
+       x_t <= {{-8'd1},
+               {8'd2},
+               {-8'd3},
+               {8'd4},
+               {-8'd5},
+               {8'd6}
+               };
         
-//        for (i = 0; i < h_SIZE; i = i + 1) begin
-//            h_t_minus_1[i] = 4'b0001;
-//        end
+       for (i = 0; i < h_SIZE; i = i + 1) begin
+           h_t_minus_1[i] = 4'b0001;
+       end
         
-//        repeat(30) @(posedge clk);
+       repeat(30) @(posedge clk);
 
-//    end
+       x_t <= {{-8'd2},
+               {8'd2},
+               {-8'd3},
+               {8'd4},
+               {-8'd5},
+               {8'd6}
+               };
+
+        for (i = 0; i < h_SIZE; i = i + 1) begin
+            h_t_minus_1[i] <= h_t[i];
+        end
+
+   end
 
 
-//endmodule
+endmodule

@@ -142,7 +142,7 @@ module softmaxLayer_tb;
 
     // Clock generation
     initial begin
-        clk = 0;
+        clk = 1;
         forever #5 clk = ~clk;  // 100 MHz clock
     end
 

@@ -19,7 +19,7 @@
 // Trainable params: 52,673
 // Non-trainable params: 0
 
-`timescale 1ns / 1ps
+`timescale 1ns / 10ps
 `include "pkg_sel_gru.svh"
 
 import `DENSE_0_PKG::*;
@@ -47,6 +47,7 @@ module ftag_gru #(parameter
     input reset,
 
     // Input of the model, sequence length of 15 and diminsion of 6
+    // For now the x_t should be change every 18 cycles
     input  logic signed [WIDTH-1:0] x_t [0:x_SIZE-1],
     output logic signed [WIDTH-1:0] y_t [0:OUTPUT_SIZE]
 );
@@ -81,7 +82,7 @@ module ftag_gru #(parameter
 
     // for now, ignore the handshake between layers
 
-    // GRU cell
+    // GRU cell (delay 18 cycles)
     gruCell #(
         .WIDTH              ( WIDTH                     ),
         .NFRAC              ( NFRAC                     ),
@@ -94,19 +95,36 @@ module ftag_gru #(parameter
     ) gru_cell (
         .clk(clk),
         .reset(reset),
-        .x_t(x_t),
+        .x_t(x_t_buffer),
         .h_t_minus_1(h_t_minus_1),
         .h_t(h_t)
     );
 
-    // logics counter that keeps track of the sequence length
-    logic [4:0] seq_counter = 0;
+
+    logic [4:0] gru_delay_counter = 0;
 
     always_ff @(posedge clk) begin
         if (reset) begin
+            gru_delay_counter <= 0;
+        end else begin
+            if (gru_delay_counter == 18) begin
+                gru_delay_counter <= 0;
+            end else begin
+                gru_delay_counter <= gru_delay_counter + 1;
+            end
+        end
+    end
+
+    // logics counter that keeps track of the sequence length
+    logic [3:0] seq_counter = 0;
+
+    // every time when gru_delay_counter is set to 0, increment the seq_counter
+
+    always_ff @(negedge gru_delay_counter[4]) begin
+        if (reset) begin
             seq_counter <= 0;
         end else begin
-            if (seq_counter == 15) begin
+            if (seq_counter == 14) begin // Notice that the sequence length is 15 (hardcoded by the model architecture)
                 seq_counter <= 0;
             end else begin
                 seq_counter <= seq_counter + 1;
@@ -132,7 +150,7 @@ module ftag_gru #(parameter
 
     generate
         for (i = 0; i < h_SIZE; i = i + 1) begin
-            always_ff @(posedge clk) begin
+            always_ff @(negedge gru_delay_counter[4]) begin
                 if (reset) begin
                     h_t_minus_1[i] <= 0;
                 end else begin
@@ -142,7 +160,7 @@ module ftag_gru #(parameter
                     end else begin
                         h_t_minus_1[i] <= h_t[i];
                         // set output of gru to random value
-                        gru_out[i] <= {h_SIZE{1'bx}};
+                        gru_out[i] <= gru_out[i];
                     end
                 end
             end
@@ -244,7 +262,7 @@ module ftag_gru #(parameter
         .clk    ( clk        ),
         .reset  ( reset      ),
         .dataOut( output_buffer )
-);
+    );
 
     always_ff @(posedge clk) begin
         y_t <= output_buffer;
@@ -287,7 +305,7 @@ module ftag_gru_tb;
 
     // Clock generation
     initial begin
-        clk = 0;
+        clk = 1;
         forever #5 clk = ~clk;  // 100 MHz clock
     end
 
@@ -296,7 +314,7 @@ module ftag_gru_tb;
 
         reset <= 1'b1;
 
-        #100;
+        @(posedge clk);
         reset <= 1'b0;
 
         // Initialize inputs
@@ -308,7 +326,7 @@ module ftag_gru_tb;
         dataIn[5] <= 16'b1111;
 
         // Run the simulation
-        #1000;
+        repeat(10000) @(posedge clk);
         $finish;
     end
 
