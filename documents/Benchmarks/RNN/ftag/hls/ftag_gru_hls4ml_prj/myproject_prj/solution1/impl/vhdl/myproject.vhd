@@ -11,10 +11,10 @@ use IEEE.numeric_std.all;
 
 entity myproject is
 port (
-    input_1_V : IN STD_LOGIC_VECTOR (1439 downto 0);
-    layer8_out_0_V : OUT STD_LOGIC_VECTOR (15 downto 0);
-    layer8_out_1_V : OUT STD_LOGIC_VECTOR (15 downto 0);
-    layer8_out_2_V : OUT STD_LOGIC_VECTOR (15 downto 0);
+    input_1_V : IN STD_LOGIC_VECTOR (359 downto 0);
+    layer8_out_0_V : OUT STD_LOGIC_VECTOR (3 downto 0);
+    layer8_out_1_V : OUT STD_LOGIC_VECTOR (3 downto 0);
+    layer8_out_2_V : OUT STD_LOGIC_VECTOR (3 downto 0);
     ap_clk : IN STD_LOGIC;
     ap_rst : IN STD_LOGIC;
     input_1_V_ap_vld : IN STD_LOGIC;
@@ -31,137 +31,137 @@ end;
 architecture behav of myproject is 
     attribute CORE_GENERATION_INFO : STRING;
     attribute CORE_GENERATION_INFO of behav : architecture is
-    "myproject,hls_ip_2019_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=1,HLS_INPUT_PART=xcu250-figd2104-2L-e,HLS_INPUT_CLOCK=5.000000,HLS_INPUT_ARCH=dataflow,HLS_SYN_CLOCK=4.366000,HLS_SYN_LAT=696,HLS_SYN_TPT=602,HLS_SYN_MEM=953,HLS_SYN_DSP=2096,HLS_SYN_FF=93652,HLS_SYN_LUT=198723,HLS_VERSION=2019_2}";
-    constant ap_const_lv16_0 : STD_LOGIC_VECTOR (15 downto 0) := "0000000000000000";
+    "myproject,hls_ip_2019_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=1,HLS_INPUT_PART=xcu250-figd2104-2L-e,HLS_INPUT_CLOCK=5.000000,HLS_INPUT_ARCH=dataflow,HLS_SYN_CLOCK=4.287778,HLS_SYN_LAT=649,HLS_SYN_TPT=557,HLS_SYN_MEM=374,HLS_SYN_DSP=123,HLS_SYN_FF=14906,HLS_SYN_LUT=122749,HLS_VERSION=2019_2}";
+    constant ap_const_lv4_0 : STD_LOGIC_VECTOR (3 downto 0) := "0000";
     constant ap_const_logic_1 : STD_LOGIC := '1';
     constant ap_const_logic_0 : STD_LOGIC := '0';
     constant ap_const_boolean_1 : BOOLEAN := true;
 
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_start : STD_LOGIC;
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done : STD_LOGIC;
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue : STD_LOGIC;
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_idle : STD_LOGIC;
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_ready : STD_LOGIC;
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_0 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_1 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_2 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_3 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_4 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_5 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_6 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_7 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_8 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_9 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_10 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_11 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_12 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_13 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_14 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_15 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_16 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_17 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_18 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_19 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_20 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_21 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_22 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_23 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_24 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_25 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_26 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_27 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_28 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_29 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_30 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_31 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_32 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_33 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_34 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_35 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_36 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_37 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_38 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_39 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_40 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_41 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_42 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_43 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_44 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_45 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_46 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_47 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_48 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_49 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_50 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_51 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_52 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_53 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_54 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_55 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_56 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_57 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_58 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_59 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_60 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_61 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_62 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_63 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_64 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_65 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_66 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_67 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_68 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_69 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_70 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_71 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_72 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_73 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_74 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_75 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_76 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_77 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_78 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_79 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_80 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_81 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_82 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_83 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_84 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_85 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_86 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_87 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_88 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_89 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_90 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_91 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_92 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_93 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_94 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_95 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_96 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_97 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_98 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_99 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_100 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_101 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_102 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_103 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_104 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_105 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_106 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_107 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_108 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_109 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_110 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_111 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_112 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_113 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_114 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_115 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_116 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_117 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_118 : STD_LOGIC_VECTOR (15 downto 0);
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_119 : STD_LOGIC_VECTOR (15 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_start : STD_LOGIC;
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done : STD_LOGIC;
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue : STD_LOGIC;
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_idle : STD_LOGIC;
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_ready : STD_LOGIC;
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_0 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_1 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_2 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_3 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_4 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_5 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_6 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_7 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_8 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_9 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_10 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_11 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_12 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_13 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_14 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_15 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_16 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_17 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_18 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_19 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_20 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_21 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_22 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_23 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_24 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_25 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_26 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_27 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_28 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_29 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_30 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_31 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_32 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_33 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_34 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_35 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_36 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_37 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_38 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_39 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_40 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_41 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_42 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_43 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_44 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_45 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_46 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_47 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_48 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_49 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_50 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_51 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_52 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_53 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_54 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_55 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_56 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_57 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_58 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_59 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_60 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_61 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_62 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_63 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_64 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_65 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_66 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_67 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_68 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_69 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_70 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_71 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_72 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_73 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_74 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_75 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_76 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_77 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_78 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_79 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_80 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_81 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_82 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_83 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_84 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_85 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_86 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_87 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_88 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_89 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_90 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_91 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_92 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_93 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_94 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_95 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_96 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_97 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_98 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_99 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_100 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_101 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_102 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_103 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_104 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_105 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_106 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_107 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_108 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_109 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_110 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_111 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_112 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_113 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_114 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_115 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_116 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_117 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_118 : STD_LOGIC_VECTOR (3 downto 0);
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_119 : STD_LOGIC_VECTOR (3 downto 0);
     signal ap_channel_done_layer2_out_119_V : STD_LOGIC;
     signal layer2_out_119_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer2_out_119_V : STD_LOGIC := '0';
@@ -642,61 +642,61 @@ architecture behav of myproject is
     signal layer2_out_0_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer2_out_0_V : STD_LOGIC := '0';
     signal ap_sync_channel_write_layer2_out_0_V : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_start : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_idle : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_0 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_1 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_2 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_3 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_4 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_5 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_6 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_7 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_8 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_9 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_10 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_11 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_12 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_13 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_14 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_15 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_16 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_17 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_18 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_19 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_20 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_21 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_22 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_23 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_24 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_25 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_26 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_27 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_28 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_29 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_30 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_31 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_32 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_33 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_34 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_35 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_36 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_37 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_38 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_39 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_40 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_41 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_42 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_43 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_44 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_45 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_46 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_47 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_48 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_49 : STD_LOGIC_VECTOR (15 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_start : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_idle : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_0 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_1 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_2 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_3 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_4 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_5 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_6 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_7 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_8 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_9 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_10 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_11 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_12 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_13 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_14 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_15 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_16 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_17 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_18 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_19 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_20 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_21 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_22 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_23 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_24 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_25 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_26 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_27 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_28 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_29 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_30 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_31 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_32 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_33 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_34 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_35 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_36 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_37 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_38 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_39 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_40 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_41 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_42 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_43 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_44 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_45 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_46 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_47 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_48 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_49 : STD_LOGIC_VECTOR (3 downto 0);
     signal ap_channel_done_layer3_out_49_V : STD_LOGIC;
     signal layer3_out_49_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer3_out_49_V : STD_LOGIC := '0';
@@ -897,61 +897,61 @@ architecture behav of myproject is
     signal layer3_out_0_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer3_out_0_V : STD_LOGIC := '0';
     signal ap_sync_channel_write_layer3_out_0_V : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_start : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_idle : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_0 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_1 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_2 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_3 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_4 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_5 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_6 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_7 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_8 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_9 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_10 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_11 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_12 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_13 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_14 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_15 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_16 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_17 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_18 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_19 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_20 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_21 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_22 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_23 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_24 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_25 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_26 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_27 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_28 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_29 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_30 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_31 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_32 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_33 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_34 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_35 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_36 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_37 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_38 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_39 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_40 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_41 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_42 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_43 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_44 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_45 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_46 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_47 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_48 : STD_LOGIC_VECTOR (14 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_49 : STD_LOGIC_VECTOR (14 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_start : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_idle : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_0 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_1 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_2 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_3 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_4 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_5 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_6 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_7 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_8 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_9 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_10 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_11 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_12 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_13 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_14 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_15 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_16 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_17 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_18 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_19 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_20 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_21 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_22 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_23 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_24 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_25 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_26 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_27 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_28 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_29 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_30 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_31 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_32 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_33 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_34 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_35 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_36 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_37 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_38 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_39 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_40 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_41 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_42 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_43 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_44 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_45 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_46 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_47 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_48 : STD_LOGIC_VECTOR (2 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_49 : STD_LOGIC_VECTOR (2 downto 0);
     signal ap_channel_done_layer4_out_49_V : STD_LOGIC;
     signal layer4_out_49_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer4_out_49_V : STD_LOGIC := '0';
@@ -1152,21 +1152,21 @@ architecture behav of myproject is
     signal layer4_out_0_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer4_out_0_V : STD_LOGIC := '0';
     signal ap_sync_channel_write_layer4_out_0_V : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_start : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_idle : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_0 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_1 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_2 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_3 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_4 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_5 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_6 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_7 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_8 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_9 : STD_LOGIC_VECTOR (15 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_start : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_idle : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_0 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_1 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_2 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_3 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_4 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_5 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_6 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_7 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_8 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_9 : STD_LOGIC_VECTOR (3 downto 0);
     signal ap_channel_done_layer5_out_9_V : STD_LOGIC;
     signal layer5_out_9_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer5_out_9_V : STD_LOGIC := '0';
@@ -1207,21 +1207,21 @@ architecture behav of myproject is
     signal layer5_out_0_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer5_out_0_V : STD_LOGIC := '0';
     signal ap_sync_channel_write_layer5_out_0_V : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_start : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_idle : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_0 : STD_LOGIC_VECTOR (15 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_1 : STD_LOGIC_VECTOR (15 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_2 : STD_LOGIC_VECTOR (15 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_3 : STD_LOGIC_VECTOR (15 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_4 : STD_LOGIC_VECTOR (15 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_5 : STD_LOGIC_VECTOR (15 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_6 : STD_LOGIC_VECTOR (15 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_7 : STD_LOGIC_VECTOR (15 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_8 : STD_LOGIC_VECTOR (15 downto 0);
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_9 : STD_LOGIC_VECTOR (15 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_start : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_idle : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_0 : STD_LOGIC_VECTOR (3 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_1 : STD_LOGIC_VECTOR (3 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_2 : STD_LOGIC_VECTOR (3 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_3 : STD_LOGIC_VECTOR (3 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_4 : STD_LOGIC_VECTOR (3 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_5 : STD_LOGIC_VECTOR (3 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_6 : STD_LOGIC_VECTOR (3 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_7 : STD_LOGIC_VECTOR (3 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_8 : STD_LOGIC_VECTOR (3 downto 0);
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_9 : STD_LOGIC_VECTOR (3 downto 0);
     signal ap_channel_done_layer6_out_9_V : STD_LOGIC;
     signal layer6_out_9_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer6_out_9_V : STD_LOGIC := '0';
@@ -1262,14 +1262,14 @@ architecture behav of myproject is
     signal layer6_out_0_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer6_out_0_V : STD_LOGIC := '0';
     signal ap_sync_channel_write_layer6_out_0_V : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_start : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_done : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_continue : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_idle : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_return_0 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_return_1 : STD_LOGIC_VECTOR (15 downto 0);
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_return_2 : STD_LOGIC_VECTOR (15 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_start : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_done : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_continue : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_idle : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_return_0 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_return_1 : STD_LOGIC_VECTOR (3 downto 0);
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_return_2 : STD_LOGIC_VECTOR (3 downto 0);
     signal ap_channel_done_layer7_out_2_V : STD_LOGIC;
     signal layer7_out_2_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer7_out_2_V : STD_LOGIC := '0';
@@ -1282,522 +1282,522 @@ architecture behav of myproject is
     signal layer7_out_0_V_full_n : STD_LOGIC;
     signal ap_sync_reg_channel_write_layer7_out_0_V : STD_LOGIC := '0';
     signal ap_sync_channel_write_layer7_out_0_V : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_start : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_done : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_continue : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_idle : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_ready : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_0_V : STD_LOGIC_VECTOR (15 downto 0);
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_0_V_ap_vld : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_1_V : STD_LOGIC_VECTOR (15 downto 0);
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_1_V_ap_vld : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_2_V : STD_LOGIC_VECTOR (15 downto 0);
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_2_V_ap_vld : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_start : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_done : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_continue : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_idle : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_ready : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_0_V : STD_LOGIC_VECTOR (3 downto 0);
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_0_V_ap_vld : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_1_V : STD_LOGIC_VECTOR (3 downto 0);
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_1_V_ap_vld : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_2_V : STD_LOGIC_VECTOR (3 downto 0);
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_2_V_ap_vld : STD_LOGIC;
     signal ap_sync_continue : STD_LOGIC;
-    signal layer2_out_0_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_0_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_0_V_empty_n : STD_LOGIC;
-    signal layer2_out_1_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_1_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_1_V_empty_n : STD_LOGIC;
-    signal layer2_out_2_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_2_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_2_V_empty_n : STD_LOGIC;
-    signal layer2_out_3_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_3_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_3_V_empty_n : STD_LOGIC;
-    signal layer2_out_4_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_4_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_4_V_empty_n : STD_LOGIC;
-    signal layer2_out_5_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_5_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_5_V_empty_n : STD_LOGIC;
-    signal layer2_out_6_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_6_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_6_V_empty_n : STD_LOGIC;
-    signal layer2_out_7_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_7_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_7_V_empty_n : STD_LOGIC;
-    signal layer2_out_8_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_8_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_8_V_empty_n : STD_LOGIC;
-    signal layer2_out_9_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_9_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_9_V_empty_n : STD_LOGIC;
-    signal layer2_out_10_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_10_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_10_V_empty_n : STD_LOGIC;
-    signal layer2_out_11_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_11_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_11_V_empty_n : STD_LOGIC;
-    signal layer2_out_12_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_12_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_12_V_empty_n : STD_LOGIC;
-    signal layer2_out_13_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_13_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_13_V_empty_n : STD_LOGIC;
-    signal layer2_out_14_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_14_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_14_V_empty_n : STD_LOGIC;
-    signal layer2_out_15_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_15_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_15_V_empty_n : STD_LOGIC;
-    signal layer2_out_16_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_16_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_16_V_empty_n : STD_LOGIC;
-    signal layer2_out_17_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_17_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_17_V_empty_n : STD_LOGIC;
-    signal layer2_out_18_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_18_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_18_V_empty_n : STD_LOGIC;
-    signal layer2_out_19_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_19_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_19_V_empty_n : STD_LOGIC;
-    signal layer2_out_20_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_20_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_20_V_empty_n : STD_LOGIC;
-    signal layer2_out_21_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_21_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_21_V_empty_n : STD_LOGIC;
-    signal layer2_out_22_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_22_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_22_V_empty_n : STD_LOGIC;
-    signal layer2_out_23_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_23_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_23_V_empty_n : STD_LOGIC;
-    signal layer2_out_24_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_24_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_24_V_empty_n : STD_LOGIC;
-    signal layer2_out_25_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_25_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_25_V_empty_n : STD_LOGIC;
-    signal layer2_out_26_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_26_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_26_V_empty_n : STD_LOGIC;
-    signal layer2_out_27_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_27_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_27_V_empty_n : STD_LOGIC;
-    signal layer2_out_28_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_28_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_28_V_empty_n : STD_LOGIC;
-    signal layer2_out_29_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_29_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_29_V_empty_n : STD_LOGIC;
-    signal layer2_out_30_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_30_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_30_V_empty_n : STD_LOGIC;
-    signal layer2_out_31_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_31_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_31_V_empty_n : STD_LOGIC;
-    signal layer2_out_32_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_32_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_32_V_empty_n : STD_LOGIC;
-    signal layer2_out_33_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_33_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_33_V_empty_n : STD_LOGIC;
-    signal layer2_out_34_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_34_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_34_V_empty_n : STD_LOGIC;
-    signal layer2_out_35_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_35_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_35_V_empty_n : STD_LOGIC;
-    signal layer2_out_36_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_36_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_36_V_empty_n : STD_LOGIC;
-    signal layer2_out_37_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_37_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_37_V_empty_n : STD_LOGIC;
-    signal layer2_out_38_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_38_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_38_V_empty_n : STD_LOGIC;
-    signal layer2_out_39_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_39_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_39_V_empty_n : STD_LOGIC;
-    signal layer2_out_40_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_40_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_40_V_empty_n : STD_LOGIC;
-    signal layer2_out_41_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_41_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_41_V_empty_n : STD_LOGIC;
-    signal layer2_out_42_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_42_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_42_V_empty_n : STD_LOGIC;
-    signal layer2_out_43_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_43_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_43_V_empty_n : STD_LOGIC;
-    signal layer2_out_44_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_44_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_44_V_empty_n : STD_LOGIC;
-    signal layer2_out_45_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_45_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_45_V_empty_n : STD_LOGIC;
-    signal layer2_out_46_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_46_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_46_V_empty_n : STD_LOGIC;
-    signal layer2_out_47_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_47_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_47_V_empty_n : STD_LOGIC;
-    signal layer2_out_48_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_48_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_48_V_empty_n : STD_LOGIC;
-    signal layer2_out_49_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_49_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_49_V_empty_n : STD_LOGIC;
-    signal layer2_out_50_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_50_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_50_V_empty_n : STD_LOGIC;
-    signal layer2_out_51_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_51_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_51_V_empty_n : STD_LOGIC;
-    signal layer2_out_52_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_52_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_52_V_empty_n : STD_LOGIC;
-    signal layer2_out_53_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_53_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_53_V_empty_n : STD_LOGIC;
-    signal layer2_out_54_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_54_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_54_V_empty_n : STD_LOGIC;
-    signal layer2_out_55_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_55_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_55_V_empty_n : STD_LOGIC;
-    signal layer2_out_56_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_56_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_56_V_empty_n : STD_LOGIC;
-    signal layer2_out_57_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_57_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_57_V_empty_n : STD_LOGIC;
-    signal layer2_out_58_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_58_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_58_V_empty_n : STD_LOGIC;
-    signal layer2_out_59_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_59_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_59_V_empty_n : STD_LOGIC;
-    signal layer2_out_60_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_60_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_60_V_empty_n : STD_LOGIC;
-    signal layer2_out_61_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_61_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_61_V_empty_n : STD_LOGIC;
-    signal layer2_out_62_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_62_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_62_V_empty_n : STD_LOGIC;
-    signal layer2_out_63_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_63_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_63_V_empty_n : STD_LOGIC;
-    signal layer2_out_64_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_64_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_64_V_empty_n : STD_LOGIC;
-    signal layer2_out_65_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_65_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_65_V_empty_n : STD_LOGIC;
-    signal layer2_out_66_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_66_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_66_V_empty_n : STD_LOGIC;
-    signal layer2_out_67_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_67_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_67_V_empty_n : STD_LOGIC;
-    signal layer2_out_68_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_68_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_68_V_empty_n : STD_LOGIC;
-    signal layer2_out_69_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_69_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_69_V_empty_n : STD_LOGIC;
-    signal layer2_out_70_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_70_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_70_V_empty_n : STD_LOGIC;
-    signal layer2_out_71_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_71_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_71_V_empty_n : STD_LOGIC;
-    signal layer2_out_72_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_72_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_72_V_empty_n : STD_LOGIC;
-    signal layer2_out_73_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_73_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_73_V_empty_n : STD_LOGIC;
-    signal layer2_out_74_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_74_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_74_V_empty_n : STD_LOGIC;
-    signal layer2_out_75_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_75_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_75_V_empty_n : STD_LOGIC;
-    signal layer2_out_76_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_76_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_76_V_empty_n : STD_LOGIC;
-    signal layer2_out_77_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_77_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_77_V_empty_n : STD_LOGIC;
-    signal layer2_out_78_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_78_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_78_V_empty_n : STD_LOGIC;
-    signal layer2_out_79_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_79_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_79_V_empty_n : STD_LOGIC;
-    signal layer2_out_80_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_80_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_80_V_empty_n : STD_LOGIC;
-    signal layer2_out_81_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_81_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_81_V_empty_n : STD_LOGIC;
-    signal layer2_out_82_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_82_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_82_V_empty_n : STD_LOGIC;
-    signal layer2_out_83_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_83_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_83_V_empty_n : STD_LOGIC;
-    signal layer2_out_84_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_84_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_84_V_empty_n : STD_LOGIC;
-    signal layer2_out_85_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_85_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_85_V_empty_n : STD_LOGIC;
-    signal layer2_out_86_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_86_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_86_V_empty_n : STD_LOGIC;
-    signal layer2_out_87_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_87_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_87_V_empty_n : STD_LOGIC;
-    signal layer2_out_88_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_88_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_88_V_empty_n : STD_LOGIC;
-    signal layer2_out_89_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_89_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_89_V_empty_n : STD_LOGIC;
-    signal layer2_out_90_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_90_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_90_V_empty_n : STD_LOGIC;
-    signal layer2_out_91_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_91_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_91_V_empty_n : STD_LOGIC;
-    signal layer2_out_92_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_92_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_92_V_empty_n : STD_LOGIC;
-    signal layer2_out_93_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_93_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_93_V_empty_n : STD_LOGIC;
-    signal layer2_out_94_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_94_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_94_V_empty_n : STD_LOGIC;
-    signal layer2_out_95_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_95_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_95_V_empty_n : STD_LOGIC;
-    signal layer2_out_96_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_96_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_96_V_empty_n : STD_LOGIC;
-    signal layer2_out_97_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_97_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_97_V_empty_n : STD_LOGIC;
-    signal layer2_out_98_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_98_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_98_V_empty_n : STD_LOGIC;
-    signal layer2_out_99_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_99_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_99_V_empty_n : STD_LOGIC;
-    signal layer2_out_100_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_100_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_100_V_empty_n : STD_LOGIC;
-    signal layer2_out_101_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_101_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_101_V_empty_n : STD_LOGIC;
-    signal layer2_out_102_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_102_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_102_V_empty_n : STD_LOGIC;
-    signal layer2_out_103_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_103_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_103_V_empty_n : STD_LOGIC;
-    signal layer2_out_104_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_104_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_104_V_empty_n : STD_LOGIC;
-    signal layer2_out_105_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_105_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_105_V_empty_n : STD_LOGIC;
-    signal layer2_out_106_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_106_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_106_V_empty_n : STD_LOGIC;
-    signal layer2_out_107_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_107_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_107_V_empty_n : STD_LOGIC;
-    signal layer2_out_108_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_108_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_108_V_empty_n : STD_LOGIC;
-    signal layer2_out_109_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_109_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_109_V_empty_n : STD_LOGIC;
-    signal layer2_out_110_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_110_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_110_V_empty_n : STD_LOGIC;
-    signal layer2_out_111_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_111_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_111_V_empty_n : STD_LOGIC;
-    signal layer2_out_112_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_112_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_112_V_empty_n : STD_LOGIC;
-    signal layer2_out_113_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_113_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_113_V_empty_n : STD_LOGIC;
-    signal layer2_out_114_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_114_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_114_V_empty_n : STD_LOGIC;
-    signal layer2_out_115_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_115_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_115_V_empty_n : STD_LOGIC;
-    signal layer2_out_116_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_116_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_116_V_empty_n : STD_LOGIC;
-    signal layer2_out_117_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_117_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_117_V_empty_n : STD_LOGIC;
-    signal layer2_out_118_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_118_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_118_V_empty_n : STD_LOGIC;
-    signal layer2_out_119_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer2_out_119_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer2_out_119_V_empty_n : STD_LOGIC;
-    signal layer3_out_0_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_0_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_0_V_empty_n : STD_LOGIC;
-    signal layer3_out_1_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_1_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_1_V_empty_n : STD_LOGIC;
-    signal layer3_out_2_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_2_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_2_V_empty_n : STD_LOGIC;
-    signal layer3_out_3_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_3_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_3_V_empty_n : STD_LOGIC;
-    signal layer3_out_4_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_4_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_4_V_empty_n : STD_LOGIC;
-    signal layer3_out_5_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_5_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_5_V_empty_n : STD_LOGIC;
-    signal layer3_out_6_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_6_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_6_V_empty_n : STD_LOGIC;
-    signal layer3_out_7_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_7_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_7_V_empty_n : STD_LOGIC;
-    signal layer3_out_8_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_8_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_8_V_empty_n : STD_LOGIC;
-    signal layer3_out_9_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_9_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_9_V_empty_n : STD_LOGIC;
-    signal layer3_out_10_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_10_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_10_V_empty_n : STD_LOGIC;
-    signal layer3_out_11_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_11_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_11_V_empty_n : STD_LOGIC;
-    signal layer3_out_12_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_12_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_12_V_empty_n : STD_LOGIC;
-    signal layer3_out_13_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_13_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_13_V_empty_n : STD_LOGIC;
-    signal layer3_out_14_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_14_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_14_V_empty_n : STD_LOGIC;
-    signal layer3_out_15_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_15_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_15_V_empty_n : STD_LOGIC;
-    signal layer3_out_16_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_16_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_16_V_empty_n : STD_LOGIC;
-    signal layer3_out_17_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_17_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_17_V_empty_n : STD_LOGIC;
-    signal layer3_out_18_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_18_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_18_V_empty_n : STD_LOGIC;
-    signal layer3_out_19_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_19_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_19_V_empty_n : STD_LOGIC;
-    signal layer3_out_20_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_20_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_20_V_empty_n : STD_LOGIC;
-    signal layer3_out_21_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_21_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_21_V_empty_n : STD_LOGIC;
-    signal layer3_out_22_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_22_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_22_V_empty_n : STD_LOGIC;
-    signal layer3_out_23_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_23_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_23_V_empty_n : STD_LOGIC;
-    signal layer3_out_24_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_24_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_24_V_empty_n : STD_LOGIC;
-    signal layer3_out_25_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_25_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_25_V_empty_n : STD_LOGIC;
-    signal layer3_out_26_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_26_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_26_V_empty_n : STD_LOGIC;
-    signal layer3_out_27_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_27_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_27_V_empty_n : STD_LOGIC;
-    signal layer3_out_28_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_28_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_28_V_empty_n : STD_LOGIC;
-    signal layer3_out_29_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_29_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_29_V_empty_n : STD_LOGIC;
-    signal layer3_out_30_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_30_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_30_V_empty_n : STD_LOGIC;
-    signal layer3_out_31_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_31_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_31_V_empty_n : STD_LOGIC;
-    signal layer3_out_32_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_32_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_32_V_empty_n : STD_LOGIC;
-    signal layer3_out_33_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_33_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_33_V_empty_n : STD_LOGIC;
-    signal layer3_out_34_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_34_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_34_V_empty_n : STD_LOGIC;
-    signal layer3_out_35_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_35_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_35_V_empty_n : STD_LOGIC;
-    signal layer3_out_36_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_36_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_36_V_empty_n : STD_LOGIC;
-    signal layer3_out_37_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_37_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_37_V_empty_n : STD_LOGIC;
-    signal layer3_out_38_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_38_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_38_V_empty_n : STD_LOGIC;
-    signal layer3_out_39_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_39_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_39_V_empty_n : STD_LOGIC;
-    signal layer3_out_40_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_40_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_40_V_empty_n : STD_LOGIC;
-    signal layer3_out_41_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_41_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_41_V_empty_n : STD_LOGIC;
-    signal layer3_out_42_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_42_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_42_V_empty_n : STD_LOGIC;
-    signal layer3_out_43_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_43_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_43_V_empty_n : STD_LOGIC;
-    signal layer3_out_44_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_44_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_44_V_empty_n : STD_LOGIC;
-    signal layer3_out_45_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_45_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_45_V_empty_n : STD_LOGIC;
-    signal layer3_out_46_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_46_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_46_V_empty_n : STD_LOGIC;
-    signal layer3_out_47_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_47_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_47_V_empty_n : STD_LOGIC;
-    signal layer3_out_48_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_48_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_48_V_empty_n : STD_LOGIC;
-    signal layer3_out_49_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer3_out_49_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer3_out_49_V_empty_n : STD_LOGIC;
-    signal layer4_out_0_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_0_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_0_V_empty_n : STD_LOGIC;
-    signal layer4_out_1_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_1_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_1_V_empty_n : STD_LOGIC;
-    signal layer4_out_2_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_2_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_2_V_empty_n : STD_LOGIC;
-    signal layer4_out_3_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_3_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_3_V_empty_n : STD_LOGIC;
-    signal layer4_out_4_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_4_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_4_V_empty_n : STD_LOGIC;
-    signal layer4_out_5_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_5_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_5_V_empty_n : STD_LOGIC;
-    signal layer4_out_6_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_6_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_6_V_empty_n : STD_LOGIC;
-    signal layer4_out_7_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_7_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_7_V_empty_n : STD_LOGIC;
-    signal layer4_out_8_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_8_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_8_V_empty_n : STD_LOGIC;
-    signal layer4_out_9_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_9_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_9_V_empty_n : STD_LOGIC;
-    signal layer4_out_10_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_10_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_10_V_empty_n : STD_LOGIC;
-    signal layer4_out_11_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_11_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_11_V_empty_n : STD_LOGIC;
-    signal layer4_out_12_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_12_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_12_V_empty_n : STD_LOGIC;
-    signal layer4_out_13_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_13_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_13_V_empty_n : STD_LOGIC;
-    signal layer4_out_14_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_14_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_14_V_empty_n : STD_LOGIC;
-    signal layer4_out_15_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_15_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_15_V_empty_n : STD_LOGIC;
-    signal layer4_out_16_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_16_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_16_V_empty_n : STD_LOGIC;
-    signal layer4_out_17_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_17_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_17_V_empty_n : STD_LOGIC;
-    signal layer4_out_18_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_18_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_18_V_empty_n : STD_LOGIC;
-    signal layer4_out_19_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_19_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_19_V_empty_n : STD_LOGIC;
-    signal layer4_out_20_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_20_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_20_V_empty_n : STD_LOGIC;
-    signal layer4_out_21_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_21_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_21_V_empty_n : STD_LOGIC;
-    signal layer4_out_22_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_22_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_22_V_empty_n : STD_LOGIC;
-    signal layer4_out_23_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_23_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_23_V_empty_n : STD_LOGIC;
-    signal layer4_out_24_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_24_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_24_V_empty_n : STD_LOGIC;
-    signal layer4_out_25_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_25_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_25_V_empty_n : STD_LOGIC;
-    signal layer4_out_26_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_26_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_26_V_empty_n : STD_LOGIC;
-    signal layer4_out_27_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_27_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_27_V_empty_n : STD_LOGIC;
-    signal layer4_out_28_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_28_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_28_V_empty_n : STD_LOGIC;
-    signal layer4_out_29_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_29_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_29_V_empty_n : STD_LOGIC;
-    signal layer4_out_30_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_30_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_30_V_empty_n : STD_LOGIC;
-    signal layer4_out_31_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_31_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_31_V_empty_n : STD_LOGIC;
-    signal layer4_out_32_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_32_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_32_V_empty_n : STD_LOGIC;
-    signal layer4_out_33_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_33_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_33_V_empty_n : STD_LOGIC;
-    signal layer4_out_34_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_34_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_34_V_empty_n : STD_LOGIC;
-    signal layer4_out_35_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_35_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_35_V_empty_n : STD_LOGIC;
-    signal layer4_out_36_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_36_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_36_V_empty_n : STD_LOGIC;
-    signal layer4_out_37_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_37_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_37_V_empty_n : STD_LOGIC;
-    signal layer4_out_38_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_38_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_38_V_empty_n : STD_LOGIC;
-    signal layer4_out_39_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_39_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_39_V_empty_n : STD_LOGIC;
-    signal layer4_out_40_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_40_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_40_V_empty_n : STD_LOGIC;
-    signal layer4_out_41_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_41_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_41_V_empty_n : STD_LOGIC;
-    signal layer4_out_42_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_42_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_42_V_empty_n : STD_LOGIC;
-    signal layer4_out_43_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_43_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_43_V_empty_n : STD_LOGIC;
-    signal layer4_out_44_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_44_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_44_V_empty_n : STD_LOGIC;
-    signal layer4_out_45_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_45_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_45_V_empty_n : STD_LOGIC;
-    signal layer4_out_46_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_46_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_46_V_empty_n : STD_LOGIC;
-    signal layer4_out_47_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_47_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_47_V_empty_n : STD_LOGIC;
-    signal layer4_out_48_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_48_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_48_V_empty_n : STD_LOGIC;
-    signal layer4_out_49_V_dout : STD_LOGIC_VECTOR (14 downto 0);
+    signal layer4_out_49_V_dout : STD_LOGIC_VECTOR (2 downto 0);
     signal layer4_out_49_V_empty_n : STD_LOGIC;
-    signal layer5_out_0_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_0_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_0_V_empty_n : STD_LOGIC;
-    signal layer5_out_1_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_1_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_1_V_empty_n : STD_LOGIC;
-    signal layer5_out_2_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_2_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_2_V_empty_n : STD_LOGIC;
-    signal layer5_out_3_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_3_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_3_V_empty_n : STD_LOGIC;
-    signal layer5_out_4_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_4_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_4_V_empty_n : STD_LOGIC;
-    signal layer5_out_5_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_5_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_5_V_empty_n : STD_LOGIC;
-    signal layer5_out_6_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_6_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_6_V_empty_n : STD_LOGIC;
-    signal layer5_out_7_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_7_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_7_V_empty_n : STD_LOGIC;
-    signal layer5_out_8_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_8_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_8_V_empty_n : STD_LOGIC;
-    signal layer5_out_9_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer5_out_9_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer5_out_9_V_empty_n : STD_LOGIC;
-    signal layer6_out_0_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_0_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_0_V_empty_n : STD_LOGIC;
-    signal layer6_out_1_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_1_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_1_V_empty_n : STD_LOGIC;
-    signal layer6_out_2_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_2_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_2_V_empty_n : STD_LOGIC;
-    signal layer6_out_3_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_3_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_3_V_empty_n : STD_LOGIC;
-    signal layer6_out_4_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_4_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_4_V_empty_n : STD_LOGIC;
-    signal layer6_out_5_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_5_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_5_V_empty_n : STD_LOGIC;
-    signal layer6_out_6_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_6_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_6_V_empty_n : STD_LOGIC;
-    signal layer6_out_7_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_7_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_7_V_empty_n : STD_LOGIC;
-    signal layer6_out_8_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_8_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_8_V_empty_n : STD_LOGIC;
-    signal layer6_out_9_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer6_out_9_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer6_out_9_V_empty_n : STD_LOGIC;
-    signal layer7_out_0_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer7_out_0_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer7_out_0_V_empty_n : STD_LOGIC;
-    signal layer7_out_1_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer7_out_1_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer7_out_1_V_empty_n : STD_LOGIC;
-    signal layer7_out_2_V_dout : STD_LOGIC_VECTOR (15 downto 0);
+    signal layer7_out_2_V_dout : STD_LOGIC_VECTOR (3 downto 0);
     signal layer7_out_2_V_empty_n : STD_LOGIC;
     signal ap_sync_done : STD_LOGIC;
     signal ap_sync_ready : STD_LOGIC;
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_start_full_n : STD_LOGIC;
-    signal gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_start_write : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_start_full_n : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_start_write : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_start_full_n : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_start_write : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_start_full_n : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_start_write : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_start_full_n : STD_LOGIC;
-    signal relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_start_write : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_start_full_n : STD_LOGIC;
-    signal dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_start_write : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_start_full_n : STD_LOGIC;
-    signal softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_start_write : STD_LOGIC;
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_start_full_n : STD_LOGIC;
+    signal gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_start_write : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_start_full_n : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_start_write : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_start_full_n : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_start_write : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_start_full_n : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_start_write : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_start_full_n : STD_LOGIC;
+    signal relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_start_write : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_start_full_n : STD_LOGIC;
+    signal dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_start_write : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_start_full_n : STD_LOGIC;
+    signal softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_start_write : STD_LOGIC;
 
-    component gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s IS
+    component gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_s IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -1806,132 +1806,132 @@ architecture behav of myproject is
         ap_continue : IN STD_LOGIC;
         ap_idle : OUT STD_LOGIC;
         ap_ready : OUT STD_LOGIC;
-        data_V : IN STD_LOGIC_VECTOR (1439 downto 0);
+        data_V : IN STD_LOGIC_VECTOR (359 downto 0);
         data_V_ap_vld : IN STD_LOGIC;
-        ap_return_0 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_1 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_2 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_3 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_4 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_5 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_6 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_7 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_8 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_9 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_10 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_11 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_12 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_13 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_14 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_15 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_16 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_17 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_18 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_19 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_20 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_21 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_22 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_23 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_24 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_25 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_26 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_27 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_28 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_29 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_30 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_31 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_32 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_33 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_34 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_35 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_36 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_37 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_38 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_39 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_40 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_41 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_42 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_43 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_44 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_45 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_46 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_47 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_48 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_49 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_50 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_51 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_52 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_53 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_54 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_55 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_56 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_57 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_58 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_59 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_60 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_61 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_62 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_63 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_64 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_65 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_66 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_67 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_68 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_69 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_70 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_71 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_72 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_73 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_74 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_75 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_76 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_77 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_78 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_79 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_80 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_81 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_82 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_83 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_84 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_85 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_86 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_87 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_88 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_89 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_90 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_91 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_92 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_93 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_94 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_95 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_96 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_97 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_98 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_99 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_100 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_101 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_102 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_103 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_104 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_105 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_106 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_107 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_108 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_109 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_110 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_111 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_112 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_113 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_114 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_115 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_116 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_117 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_118 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_119 : OUT STD_LOGIC_VECTOR (15 downto 0) );
+        ap_return_0 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_1 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_2 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_3 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_4 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_5 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_6 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_7 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_8 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_9 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_10 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_11 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_12 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_13 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_14 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_15 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_16 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_17 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_18 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_19 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_20 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_21 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_22 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_23 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_24 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_25 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_26 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_27 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_28 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_29 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_30 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_31 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_32 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_33 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_34 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_35 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_36 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_37 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_38 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_39 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_40 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_41 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_42 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_43 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_44 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_45 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_46 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_47 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_48 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_49 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_50 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_51 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_52 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_53 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_54 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_55 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_56 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_57 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_58 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_59 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_60 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_61 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_62 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_63 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_64 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_65 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_66 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_67 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_68 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_69 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_70 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_71 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_72 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_73 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_74 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_75 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_76 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_77 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_78 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_79 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_80 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_81 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_82 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_83 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_84 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_85 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_86 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_87 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_88 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_89 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_90 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_91 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_92 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_93 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_94 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_95 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_96 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_97 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_98 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_99 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_100 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_101 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_102 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_103 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_104 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_105 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_106 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_107 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_108 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_109 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_110 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_111 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_112 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_113 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_114 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_115 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_116 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_117 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_118 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_119 : OUT STD_LOGIC_VECTOR (3 downto 0) );
     end component;
 
 
-    component dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s IS
+    component dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_s IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -1940,180 +1940,180 @@ architecture behav of myproject is
         ap_continue : IN STD_LOGIC;
         ap_idle : OUT STD_LOGIC;
         ap_ready : OUT STD_LOGIC;
-        data_0_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_1_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_2_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_3_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_4_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_5_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_6_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_7_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_8_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_9_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_10_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_11_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_12_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_13_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_14_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_15_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_16_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_17_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_18_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_19_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_20_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_21_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_22_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_23_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_24_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_25_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_26_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_27_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_28_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_29_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_30_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_31_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_32_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_33_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_34_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_35_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_36_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_37_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_38_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_39_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_40_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_41_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_42_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_43_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_44_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_45_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_46_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_47_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_48_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_49_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_50_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_51_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_52_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_53_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_54_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_55_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_56_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_57_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_58_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_59_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_60_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_61_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_62_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_63_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_64_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_65_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_66_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_67_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_68_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_69_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_70_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_71_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_72_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_73_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_74_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_75_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_76_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_77_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_78_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_79_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_80_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_81_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_82_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_83_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_84_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_85_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_86_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_87_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_88_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_89_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_90_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_91_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_92_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_93_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_94_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_95_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_96_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_97_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_98_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_99_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_100_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_101_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_102_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_103_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_104_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_105_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_106_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_107_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_108_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_109_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_110_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_111_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_112_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_113_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_114_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_115_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_116_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_117_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_118_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_119_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_0 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_1 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_2 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_3 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_4 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_5 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_6 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_7 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_8 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_9 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_10 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_11 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_12 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_13 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_14 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_15 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_16 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_17 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_18 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_19 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_20 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_21 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_22 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_23 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_24 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_25 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_26 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_27 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_28 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_29 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_30 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_31 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_32 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_33 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_34 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_35 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_36 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_37 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_38 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_39 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_40 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_41 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_42 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_43 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_44 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_45 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_46 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_47 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_48 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_49 : OUT STD_LOGIC_VECTOR (15 downto 0) );
+        data_0_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_1_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_2_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_3_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_4_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_5_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_6_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_7_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_8_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_9_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_10_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_11_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_12_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_13_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_14_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_15_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_16_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_17_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_18_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_19_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_20_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_21_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_22_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_23_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_24_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_25_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_26_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_27_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_28_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_29_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_30_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_31_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_32_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_33_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_34_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_35_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_36_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_37_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_38_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_39_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_40_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_41_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_42_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_43_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_44_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_45_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_46_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_47_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_48_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_49_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_50_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_51_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_52_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_53_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_54_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_55_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_56_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_57_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_58_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_59_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_60_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_61_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_62_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_63_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_64_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_65_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_66_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_67_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_68_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_69_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_70_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_71_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_72_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_73_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_74_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_75_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_76_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_77_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_78_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_79_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_80_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_81_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_82_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_83_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_84_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_85_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_86_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_87_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_88_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_89_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_90_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_91_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_92_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_93_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_94_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_95_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_96_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_97_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_98_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_99_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_100_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_101_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_102_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_103_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_104_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_105_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_106_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_107_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_108_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_109_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_110_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_111_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_112_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_113_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_114_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_115_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_116_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_117_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_118_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_119_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_0 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_1 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_2 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_3 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_4 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_5 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_6 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_7 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_8 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_9 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_10 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_11 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_12 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_13 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_14 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_15 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_16 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_17 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_18 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_19 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_20 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_21 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_22 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_23 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_24 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_25 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_26 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_27 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_28 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_29 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_30 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_31 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_32 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_33 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_34 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_35 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_36 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_37 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_38 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_39 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_40 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_41 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_42 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_43 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_44 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_45 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_46 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_47 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_48 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_49 : OUT STD_LOGIC_VECTOR (3 downto 0) );
     end component;
 
 
-    component relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_s IS
+    component relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_s IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -2122,110 +2122,110 @@ architecture behav of myproject is
         ap_continue : IN STD_LOGIC;
         ap_idle : OUT STD_LOGIC;
         ap_ready : OUT STD_LOGIC;
-        data_0_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_1_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_2_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_3_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_4_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_5_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_6_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_7_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_8_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_9_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_10_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_11_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_12_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_13_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_14_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_15_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_16_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_17_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_18_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_19_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_20_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_21_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_22_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_23_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_24_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_25_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_26_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_27_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_28_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_29_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_30_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_31_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_32_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_33_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_34_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_35_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_36_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_37_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_38_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_39_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_40_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_41_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_42_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_43_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_44_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_45_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_46_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_47_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_48_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_49_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_0 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_1 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_2 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_3 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_4 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_5 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_6 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_7 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_8 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_9 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_10 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_11 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_12 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_13 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_14 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_15 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_16 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_17 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_18 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_19 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_20 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_21 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_22 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_23 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_24 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_25 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_26 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_27 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_28 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_29 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_30 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_31 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_32 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_33 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_34 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_35 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_36 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_37 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_38 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_39 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_40 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_41 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_42 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_43 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_44 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_45 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_46 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_47 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_48 : OUT STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_49 : OUT STD_LOGIC_VECTOR (14 downto 0) );
+        data_0_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_1_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_2_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_3_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_4_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_5_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_6_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_7_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_8_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_9_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_10_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_11_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_12_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_13_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_14_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_15_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_16_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_17_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_18_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_19_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_20_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_21_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_22_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_23_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_24_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_25_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_26_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_27_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_28_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_29_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_30_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_31_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_32_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_33_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_34_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_35_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_36_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_37_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_38_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_39_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_40_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_41_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_42_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_43_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_44_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_45_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_46_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_47_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_48_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_49_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_0 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_1 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_2 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_3 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_4 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_5 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_6 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_7 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_8 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_9 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_10 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_11 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_12 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_13 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_14 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_15 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_16 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_17 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_18 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_19 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_20 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_21 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_22 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_23 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_24 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_25 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_26 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_27 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_28 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_29 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_30 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_31 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_32 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_33 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_34 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_35 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_36 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_37 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_38 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_39 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_40 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_41 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_42 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_43 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_44 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_45 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_46 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_47 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_48 : OUT STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_49 : OUT STD_LOGIC_VECTOR (2 downto 0) );
     end component;
 
 
-    component dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s IS
+    component dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_s IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -2234,70 +2234,70 @@ architecture behav of myproject is
         ap_continue : IN STD_LOGIC;
         ap_idle : OUT STD_LOGIC;
         ap_ready : OUT STD_LOGIC;
-        data_0_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_1_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_2_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_3_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_4_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_5_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_6_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_7_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_8_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_9_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_10_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_11_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_12_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_13_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_14_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_15_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_16_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_17_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_18_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_19_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_20_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_21_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_22_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_23_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_24_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_25_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_26_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_27_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_28_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_29_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_30_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_31_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_32_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_33_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_34_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_35_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_36_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_37_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_38_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_39_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_40_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_41_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_42_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_43_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_44_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_45_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_46_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_47_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_48_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        data_49_V_read : IN STD_LOGIC_VECTOR (14 downto 0);
-        ap_return_0 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_1 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_2 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_3 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_4 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_5 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_6 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_7 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_8 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_9 : OUT STD_LOGIC_VECTOR (15 downto 0) );
+        data_0_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_1_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_2_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_3_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_4_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_5_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_6_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_7_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_8_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_9_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_10_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_11_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_12_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_13_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_14_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_15_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_16_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_17_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_18_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_19_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_20_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_21_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_22_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_23_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_24_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_25_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_26_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_27_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_28_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_29_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_30_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_31_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_32_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_33_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_34_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_35_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_36_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_37_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_38_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_39_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_40_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_41_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_42_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_43_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_44_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_45_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_46_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_47_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_48_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        data_49_V_read : IN STD_LOGIC_VECTOR (2 downto 0);
+        ap_return_0 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_1 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_2 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_3 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_4 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_5 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_6 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_7 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_8 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_9 : OUT STD_LOGIC_VECTOR (3 downto 0) );
     end component;
 
 
-    component relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_s IS
+    component relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_s IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -2306,30 +2306,30 @@ architecture behav of myproject is
         ap_continue : IN STD_LOGIC;
         ap_idle : OUT STD_LOGIC;
         ap_ready : OUT STD_LOGIC;
-        data_0_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_1_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_2_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_3_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_4_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_5_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_6_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_7_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_8_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_9_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_0 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_1 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_2 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_3 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_4 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_5 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_6 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_7 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_8 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_9 : OUT STD_LOGIC_VECTOR (15 downto 0) );
+        data_0_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_1_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_2_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_3_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_4_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_5_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_6_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_7_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_8_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_9_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_0 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_1 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_2 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_3 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_4 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_5 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_6 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_7 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_8 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_9 : OUT STD_LOGIC_VECTOR (3 downto 0) );
     end component;
 
 
-    component dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s IS
+    component dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_s IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -2338,23 +2338,23 @@ architecture behav of myproject is
         ap_continue : IN STD_LOGIC;
         ap_idle : OUT STD_LOGIC;
         ap_ready : OUT STD_LOGIC;
-        data_0_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_1_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_2_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_3_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_4_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_5_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_6_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_7_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_8_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_9_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_0 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_1 : OUT STD_LOGIC_VECTOR (15 downto 0);
-        ap_return_2 : OUT STD_LOGIC_VECTOR (15 downto 0) );
+        data_0_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_1_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_2_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_3_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_4_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_5_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_6_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_7_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_8_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_9_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_0 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_1 : OUT STD_LOGIC_VECTOR (3 downto 0);
+        ap_return_2 : OUT STD_LOGIC_VECTOR (3 downto 0) );
     end component;
 
 
-    component softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s IS
+    component softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_s IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -2363,43 +2363,43 @@ architecture behav of myproject is
         ap_continue : IN STD_LOGIC;
         ap_idle : OUT STD_LOGIC;
         ap_ready : OUT STD_LOGIC;
-        data_0_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_1_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        data_2_V_read : IN STD_LOGIC_VECTOR (15 downto 0);
-        res_0_V : OUT STD_LOGIC_VECTOR (15 downto 0);
+        data_0_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_1_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        data_2_V_read : IN STD_LOGIC_VECTOR (3 downto 0);
+        res_0_V : OUT STD_LOGIC_VECTOR (3 downto 0);
         res_0_V_ap_vld : OUT STD_LOGIC;
-        res_1_V : OUT STD_LOGIC_VECTOR (15 downto 0);
+        res_1_V : OUT STD_LOGIC_VECTOR (3 downto 0);
         res_1_V_ap_vld : OUT STD_LOGIC;
-        res_2_V : OUT STD_LOGIC_VECTOR (15 downto 0);
+        res_2_V : OUT STD_LOGIC_VECTOR (3 downto 0);
         res_2_V_ap_vld : OUT STD_LOGIC );
     end component;
 
 
-    component fifo_w16_d2_A IS
+    component fifo_w4_d2_A IS
     port (
         clk : IN STD_LOGIC;
         reset : IN STD_LOGIC;
         if_read_ce : IN STD_LOGIC;
         if_write_ce : IN STD_LOGIC;
-        if_din : IN STD_LOGIC_VECTOR (15 downto 0);
+        if_din : IN STD_LOGIC_VECTOR (3 downto 0);
         if_full_n : OUT STD_LOGIC;
         if_write : IN STD_LOGIC;
-        if_dout : OUT STD_LOGIC_VECTOR (15 downto 0);
+        if_dout : OUT STD_LOGIC_VECTOR (3 downto 0);
         if_empty_n : OUT STD_LOGIC;
         if_read : IN STD_LOGIC );
     end component;
 
 
-    component fifo_w15_d2_A IS
+    component fifo_w3_d2_A IS
     port (
         clk : IN STD_LOGIC;
         reset : IN STD_LOGIC;
         if_read_ce : IN STD_LOGIC;
         if_write_ce : IN STD_LOGIC;
-        if_din : IN STD_LOGIC_VECTOR (14 downto 0);
+        if_din : IN STD_LOGIC_VECTOR (2 downto 0);
         if_full_n : OUT STD_LOGIC;
         if_write : IN STD_LOGIC;
-        if_dout : OUT STD_LOGIC_VECTOR (14 downto 0);
+        if_dout : OUT STD_LOGIC_VECTOR (2 downto 0);
         if_empty_n : OUT STD_LOGIC;
         if_read : IN STD_LOGIC );
     end component;
@@ -2407,147 +2407,147 @@ architecture behav of myproject is
 
 
 begin
-    gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0 : component gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s
+    gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0 : component gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_start,
-        ap_done => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done,
-        ap_continue => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue,
-        ap_idle => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_idle,
-        ap_ready => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_ready,
+        ap_start => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_start,
+        ap_done => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done,
+        ap_continue => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue,
+        ap_idle => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_idle,
+        ap_ready => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_ready,
         data_V => input_1_V,
         data_V_ap_vld => input_1_V_ap_vld,
-        ap_return_0 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_0,
-        ap_return_1 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_1,
-        ap_return_2 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_2,
-        ap_return_3 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_3,
-        ap_return_4 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_4,
-        ap_return_5 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_5,
-        ap_return_6 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_6,
-        ap_return_7 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_7,
-        ap_return_8 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_8,
-        ap_return_9 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_9,
-        ap_return_10 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_10,
-        ap_return_11 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_11,
-        ap_return_12 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_12,
-        ap_return_13 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_13,
-        ap_return_14 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_14,
-        ap_return_15 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_15,
-        ap_return_16 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_16,
-        ap_return_17 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_17,
-        ap_return_18 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_18,
-        ap_return_19 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_19,
-        ap_return_20 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_20,
-        ap_return_21 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_21,
-        ap_return_22 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_22,
-        ap_return_23 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_23,
-        ap_return_24 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_24,
-        ap_return_25 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_25,
-        ap_return_26 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_26,
-        ap_return_27 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_27,
-        ap_return_28 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_28,
-        ap_return_29 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_29,
-        ap_return_30 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_30,
-        ap_return_31 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_31,
-        ap_return_32 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_32,
-        ap_return_33 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_33,
-        ap_return_34 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_34,
-        ap_return_35 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_35,
-        ap_return_36 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_36,
-        ap_return_37 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_37,
-        ap_return_38 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_38,
-        ap_return_39 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_39,
-        ap_return_40 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_40,
-        ap_return_41 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_41,
-        ap_return_42 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_42,
-        ap_return_43 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_43,
-        ap_return_44 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_44,
-        ap_return_45 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_45,
-        ap_return_46 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_46,
-        ap_return_47 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_47,
-        ap_return_48 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_48,
-        ap_return_49 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_49,
-        ap_return_50 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_50,
-        ap_return_51 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_51,
-        ap_return_52 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_52,
-        ap_return_53 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_53,
-        ap_return_54 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_54,
-        ap_return_55 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_55,
-        ap_return_56 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_56,
-        ap_return_57 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_57,
-        ap_return_58 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_58,
-        ap_return_59 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_59,
-        ap_return_60 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_60,
-        ap_return_61 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_61,
-        ap_return_62 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_62,
-        ap_return_63 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_63,
-        ap_return_64 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_64,
-        ap_return_65 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_65,
-        ap_return_66 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_66,
-        ap_return_67 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_67,
-        ap_return_68 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_68,
-        ap_return_69 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_69,
-        ap_return_70 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_70,
-        ap_return_71 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_71,
-        ap_return_72 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_72,
-        ap_return_73 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_73,
-        ap_return_74 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_74,
-        ap_return_75 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_75,
-        ap_return_76 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_76,
-        ap_return_77 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_77,
-        ap_return_78 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_78,
-        ap_return_79 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_79,
-        ap_return_80 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_80,
-        ap_return_81 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_81,
-        ap_return_82 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_82,
-        ap_return_83 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_83,
-        ap_return_84 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_84,
-        ap_return_85 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_85,
-        ap_return_86 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_86,
-        ap_return_87 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_87,
-        ap_return_88 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_88,
-        ap_return_89 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_89,
-        ap_return_90 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_90,
-        ap_return_91 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_91,
-        ap_return_92 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_92,
-        ap_return_93 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_93,
-        ap_return_94 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_94,
-        ap_return_95 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_95,
-        ap_return_96 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_96,
-        ap_return_97 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_97,
-        ap_return_98 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_98,
-        ap_return_99 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_99,
-        ap_return_100 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_100,
-        ap_return_101 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_101,
-        ap_return_102 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_102,
-        ap_return_103 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_103,
-        ap_return_104 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_104,
-        ap_return_105 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_105,
-        ap_return_106 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_106,
-        ap_return_107 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_107,
-        ap_return_108 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_108,
-        ap_return_109 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_109,
-        ap_return_110 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_110,
-        ap_return_111 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_111,
-        ap_return_112 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_112,
-        ap_return_113 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_113,
-        ap_return_114 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_114,
-        ap_return_115 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_115,
-        ap_return_116 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_116,
-        ap_return_117 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_117,
-        ap_return_118 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_118,
-        ap_return_119 => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_119);
+        ap_return_0 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_0,
+        ap_return_1 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_1,
+        ap_return_2 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_2,
+        ap_return_3 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_3,
+        ap_return_4 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_4,
+        ap_return_5 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_5,
+        ap_return_6 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_6,
+        ap_return_7 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_7,
+        ap_return_8 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_8,
+        ap_return_9 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_9,
+        ap_return_10 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_10,
+        ap_return_11 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_11,
+        ap_return_12 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_12,
+        ap_return_13 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_13,
+        ap_return_14 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_14,
+        ap_return_15 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_15,
+        ap_return_16 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_16,
+        ap_return_17 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_17,
+        ap_return_18 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_18,
+        ap_return_19 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_19,
+        ap_return_20 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_20,
+        ap_return_21 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_21,
+        ap_return_22 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_22,
+        ap_return_23 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_23,
+        ap_return_24 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_24,
+        ap_return_25 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_25,
+        ap_return_26 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_26,
+        ap_return_27 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_27,
+        ap_return_28 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_28,
+        ap_return_29 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_29,
+        ap_return_30 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_30,
+        ap_return_31 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_31,
+        ap_return_32 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_32,
+        ap_return_33 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_33,
+        ap_return_34 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_34,
+        ap_return_35 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_35,
+        ap_return_36 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_36,
+        ap_return_37 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_37,
+        ap_return_38 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_38,
+        ap_return_39 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_39,
+        ap_return_40 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_40,
+        ap_return_41 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_41,
+        ap_return_42 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_42,
+        ap_return_43 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_43,
+        ap_return_44 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_44,
+        ap_return_45 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_45,
+        ap_return_46 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_46,
+        ap_return_47 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_47,
+        ap_return_48 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_48,
+        ap_return_49 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_49,
+        ap_return_50 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_50,
+        ap_return_51 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_51,
+        ap_return_52 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_52,
+        ap_return_53 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_53,
+        ap_return_54 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_54,
+        ap_return_55 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_55,
+        ap_return_56 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_56,
+        ap_return_57 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_57,
+        ap_return_58 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_58,
+        ap_return_59 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_59,
+        ap_return_60 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_60,
+        ap_return_61 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_61,
+        ap_return_62 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_62,
+        ap_return_63 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_63,
+        ap_return_64 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_64,
+        ap_return_65 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_65,
+        ap_return_66 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_66,
+        ap_return_67 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_67,
+        ap_return_68 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_68,
+        ap_return_69 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_69,
+        ap_return_70 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_70,
+        ap_return_71 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_71,
+        ap_return_72 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_72,
+        ap_return_73 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_73,
+        ap_return_74 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_74,
+        ap_return_75 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_75,
+        ap_return_76 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_76,
+        ap_return_77 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_77,
+        ap_return_78 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_78,
+        ap_return_79 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_79,
+        ap_return_80 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_80,
+        ap_return_81 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_81,
+        ap_return_82 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_82,
+        ap_return_83 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_83,
+        ap_return_84 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_84,
+        ap_return_85 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_85,
+        ap_return_86 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_86,
+        ap_return_87 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_87,
+        ap_return_88 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_88,
+        ap_return_89 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_89,
+        ap_return_90 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_90,
+        ap_return_91 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_91,
+        ap_return_92 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_92,
+        ap_return_93 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_93,
+        ap_return_94 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_94,
+        ap_return_95 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_95,
+        ap_return_96 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_96,
+        ap_return_97 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_97,
+        ap_return_98 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_98,
+        ap_return_99 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_99,
+        ap_return_100 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_100,
+        ap_return_101 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_101,
+        ap_return_102 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_102,
+        ap_return_103 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_103,
+        ap_return_104 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_104,
+        ap_return_105 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_105,
+        ap_return_106 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_106,
+        ap_return_107 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_107,
+        ap_return_108 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_108,
+        ap_return_109 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_109,
+        ap_return_110 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_110,
+        ap_return_111 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_111,
+        ap_return_112 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_112,
+        ap_return_113 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_113,
+        ap_return_114 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_114,
+        ap_return_115 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_115,
+        ap_return_116 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_116,
+        ap_return_117 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_117,
+        ap_return_118 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_118,
+        ap_return_119 => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_119);
 
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0 : component dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0 : component dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_start,
-        ap_done => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done,
-        ap_continue => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue,
-        ap_idle => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_idle,
-        ap_ready => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready,
+        ap_start => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_start,
+        ap_done => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done,
+        ap_continue => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue,
+        ap_idle => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_idle,
+        ap_ready => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready,
         data_0_V_read => layer2_out_0_V_dout,
         data_1_V_read => layer2_out_1_V_dout,
         data_2_V_read => layer2_out_2_V_dout,
@@ -2668,66 +2668,66 @@ begin
         data_117_V_read => layer2_out_117_V_dout,
         data_118_V_read => layer2_out_118_V_dout,
         data_119_V_read => layer2_out_119_V_dout,
-        ap_return_0 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_0,
-        ap_return_1 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_1,
-        ap_return_2 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_2,
-        ap_return_3 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_3,
-        ap_return_4 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_4,
-        ap_return_5 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_5,
-        ap_return_6 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_6,
-        ap_return_7 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_7,
-        ap_return_8 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_8,
-        ap_return_9 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_9,
-        ap_return_10 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_10,
-        ap_return_11 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_11,
-        ap_return_12 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_12,
-        ap_return_13 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_13,
-        ap_return_14 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_14,
-        ap_return_15 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_15,
-        ap_return_16 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_16,
-        ap_return_17 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_17,
-        ap_return_18 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_18,
-        ap_return_19 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_19,
-        ap_return_20 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_20,
-        ap_return_21 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_21,
-        ap_return_22 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_22,
-        ap_return_23 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_23,
-        ap_return_24 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_24,
-        ap_return_25 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_25,
-        ap_return_26 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_26,
-        ap_return_27 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_27,
-        ap_return_28 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_28,
-        ap_return_29 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_29,
-        ap_return_30 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_30,
-        ap_return_31 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_31,
-        ap_return_32 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_32,
-        ap_return_33 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_33,
-        ap_return_34 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_34,
-        ap_return_35 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_35,
-        ap_return_36 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_36,
-        ap_return_37 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_37,
-        ap_return_38 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_38,
-        ap_return_39 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_39,
-        ap_return_40 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_40,
-        ap_return_41 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_41,
-        ap_return_42 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_42,
-        ap_return_43 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_43,
-        ap_return_44 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_44,
-        ap_return_45 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_45,
-        ap_return_46 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_46,
-        ap_return_47 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_47,
-        ap_return_48 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_48,
-        ap_return_49 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_49);
+        ap_return_0 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_0,
+        ap_return_1 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_1,
+        ap_return_2 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_2,
+        ap_return_3 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_3,
+        ap_return_4 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_4,
+        ap_return_5 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_5,
+        ap_return_6 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_6,
+        ap_return_7 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_7,
+        ap_return_8 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_8,
+        ap_return_9 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_9,
+        ap_return_10 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_10,
+        ap_return_11 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_11,
+        ap_return_12 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_12,
+        ap_return_13 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_13,
+        ap_return_14 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_14,
+        ap_return_15 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_15,
+        ap_return_16 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_16,
+        ap_return_17 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_17,
+        ap_return_18 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_18,
+        ap_return_19 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_19,
+        ap_return_20 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_20,
+        ap_return_21 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_21,
+        ap_return_22 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_22,
+        ap_return_23 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_23,
+        ap_return_24 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_24,
+        ap_return_25 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_25,
+        ap_return_26 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_26,
+        ap_return_27 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_27,
+        ap_return_28 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_28,
+        ap_return_29 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_29,
+        ap_return_30 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_30,
+        ap_return_31 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_31,
+        ap_return_32 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_32,
+        ap_return_33 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_33,
+        ap_return_34 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_34,
+        ap_return_35 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_35,
+        ap_return_36 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_36,
+        ap_return_37 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_37,
+        ap_return_38 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_38,
+        ap_return_39 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_39,
+        ap_return_40 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_40,
+        ap_return_41 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_41,
+        ap_return_42 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_42,
+        ap_return_43 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_43,
+        ap_return_44 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_44,
+        ap_return_45 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_45,
+        ap_return_46 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_46,
+        ap_return_47 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_47,
+        ap_return_48 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_48,
+        ap_return_49 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_49);
 
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0 : component relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_s
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0 : component relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_start,
-        ap_done => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done,
-        ap_continue => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue,
-        ap_idle => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_idle,
-        ap_ready => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready,
+        ap_start => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_start,
+        ap_done => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done,
+        ap_continue => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue,
+        ap_idle => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_idle,
+        ap_ready => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready,
         data_0_V_read => layer3_out_0_V_dout,
         data_1_V_read => layer3_out_1_V_dout,
         data_2_V_read => layer3_out_2_V_dout,
@@ -2778,66 +2778,66 @@ begin
         data_47_V_read => layer3_out_47_V_dout,
         data_48_V_read => layer3_out_48_V_dout,
         data_49_V_read => layer3_out_49_V_dout,
-        ap_return_0 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_0,
-        ap_return_1 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_1,
-        ap_return_2 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_2,
-        ap_return_3 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_3,
-        ap_return_4 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_4,
-        ap_return_5 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_5,
-        ap_return_6 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_6,
-        ap_return_7 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_7,
-        ap_return_8 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_8,
-        ap_return_9 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_9,
-        ap_return_10 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_10,
-        ap_return_11 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_11,
-        ap_return_12 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_12,
-        ap_return_13 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_13,
-        ap_return_14 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_14,
-        ap_return_15 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_15,
-        ap_return_16 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_16,
-        ap_return_17 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_17,
-        ap_return_18 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_18,
-        ap_return_19 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_19,
-        ap_return_20 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_20,
-        ap_return_21 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_21,
-        ap_return_22 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_22,
-        ap_return_23 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_23,
-        ap_return_24 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_24,
-        ap_return_25 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_25,
-        ap_return_26 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_26,
-        ap_return_27 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_27,
-        ap_return_28 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_28,
-        ap_return_29 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_29,
-        ap_return_30 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_30,
-        ap_return_31 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_31,
-        ap_return_32 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_32,
-        ap_return_33 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_33,
-        ap_return_34 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_34,
-        ap_return_35 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_35,
-        ap_return_36 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_36,
-        ap_return_37 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_37,
-        ap_return_38 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_38,
-        ap_return_39 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_39,
-        ap_return_40 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_40,
-        ap_return_41 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_41,
-        ap_return_42 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_42,
-        ap_return_43 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_43,
-        ap_return_44 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_44,
-        ap_return_45 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_45,
-        ap_return_46 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_46,
-        ap_return_47 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_47,
-        ap_return_48 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_48,
-        ap_return_49 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_49);
+        ap_return_0 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_0,
+        ap_return_1 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_1,
+        ap_return_2 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_2,
+        ap_return_3 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_3,
+        ap_return_4 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_4,
+        ap_return_5 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_5,
+        ap_return_6 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_6,
+        ap_return_7 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_7,
+        ap_return_8 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_8,
+        ap_return_9 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_9,
+        ap_return_10 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_10,
+        ap_return_11 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_11,
+        ap_return_12 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_12,
+        ap_return_13 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_13,
+        ap_return_14 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_14,
+        ap_return_15 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_15,
+        ap_return_16 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_16,
+        ap_return_17 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_17,
+        ap_return_18 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_18,
+        ap_return_19 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_19,
+        ap_return_20 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_20,
+        ap_return_21 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_21,
+        ap_return_22 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_22,
+        ap_return_23 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_23,
+        ap_return_24 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_24,
+        ap_return_25 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_25,
+        ap_return_26 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_26,
+        ap_return_27 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_27,
+        ap_return_28 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_28,
+        ap_return_29 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_29,
+        ap_return_30 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_30,
+        ap_return_31 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_31,
+        ap_return_32 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_32,
+        ap_return_33 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_33,
+        ap_return_34 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_34,
+        ap_return_35 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_35,
+        ap_return_36 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_36,
+        ap_return_37 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_37,
+        ap_return_38 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_38,
+        ap_return_39 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_39,
+        ap_return_40 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_40,
+        ap_return_41 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_41,
+        ap_return_42 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_42,
+        ap_return_43 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_43,
+        ap_return_44 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_44,
+        ap_return_45 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_45,
+        ap_return_46 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_46,
+        ap_return_47 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_47,
+        ap_return_48 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_48,
+        ap_return_49 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_49);
 
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0 : component dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0 : component dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_start,
-        ap_done => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done,
-        ap_continue => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue,
-        ap_idle => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_idle,
-        ap_ready => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready,
+        ap_start => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_start,
+        ap_done => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done,
+        ap_continue => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue,
+        ap_idle => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_idle,
+        ap_ready => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready,
         data_0_V_read => layer4_out_0_V_dout,
         data_1_V_read => layer4_out_1_V_dout,
         data_2_V_read => layer4_out_2_V_dout,
@@ -2888,26 +2888,26 @@ begin
         data_47_V_read => layer4_out_47_V_dout,
         data_48_V_read => layer4_out_48_V_dout,
         data_49_V_read => layer4_out_49_V_dout,
-        ap_return_0 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_0,
-        ap_return_1 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_1,
-        ap_return_2 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_2,
-        ap_return_3 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_3,
-        ap_return_4 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_4,
-        ap_return_5 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_5,
-        ap_return_6 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_6,
-        ap_return_7 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_7,
-        ap_return_8 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_8,
-        ap_return_9 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_9);
+        ap_return_0 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_0,
+        ap_return_1 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_1,
+        ap_return_2 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_2,
+        ap_return_3 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_3,
+        ap_return_4 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_4,
+        ap_return_5 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_5,
+        ap_return_6 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_6,
+        ap_return_7 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_7,
+        ap_return_8 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_8,
+        ap_return_9 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_9);
 
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0 : component relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_s
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0 : component relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_start,
-        ap_done => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done,
-        ap_continue => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue,
-        ap_idle => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_idle,
-        ap_ready => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready,
+        ap_start => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_start,
+        ap_done => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done,
+        ap_continue => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue,
+        ap_idle => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_idle,
+        ap_ready => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready,
         data_0_V_read => layer5_out_0_V_dout,
         data_1_V_read => layer5_out_1_V_dout,
         data_2_V_read => layer5_out_2_V_dout,
@@ -2918,26 +2918,26 @@ begin
         data_7_V_read => layer5_out_7_V_dout,
         data_8_V_read => layer5_out_8_V_dout,
         data_9_V_read => layer5_out_9_V_dout,
-        ap_return_0 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_0,
-        ap_return_1 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_1,
-        ap_return_2 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_2,
-        ap_return_3 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_3,
-        ap_return_4 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_4,
-        ap_return_5 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_5,
-        ap_return_6 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_6,
-        ap_return_7 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_7,
-        ap_return_8 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_8,
-        ap_return_9 => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_9);
+        ap_return_0 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_0,
+        ap_return_1 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_1,
+        ap_return_2 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_2,
+        ap_return_3 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_3,
+        ap_return_4 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_4,
+        ap_return_5 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_5,
+        ap_return_6 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_6,
+        ap_return_7 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_7,
+        ap_return_8 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_8,
+        ap_return_9 => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_9);
 
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0 : component dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0 : component dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_start,
-        ap_done => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_done,
-        ap_continue => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_continue,
-        ap_idle => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_idle,
-        ap_ready => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready,
+        ap_start => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_start,
+        ap_done => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_done,
+        ap_continue => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_continue,
+        ap_idle => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_idle,
+        ap_ready => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready,
         data_0_V_read => layer6_out_0_V_dout,
         data_1_V_read => layer6_out_1_V_dout,
         data_2_V_read => layer6_out_2_V_dout,
@@ -2948,3187 +2948,3187 @@ begin
         data_7_V_read => layer6_out_7_V_dout,
         data_8_V_read => layer6_out_8_V_dout,
         data_9_V_read => layer6_out_9_V_dout,
-        ap_return_0 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_return_0,
-        ap_return_1 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_return_1,
-        ap_return_2 => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_return_2);
+        ap_return_0 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_return_0,
+        ap_return_1 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_return_1,
+        ap_return_2 => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_return_2);
 
-    softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0 : component softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s
+    softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0 : component softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
-        ap_start => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_start,
-        ap_done => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_done,
-        ap_continue => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_continue,
-        ap_idle => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_idle,
-        ap_ready => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_ready,
+        ap_start => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_start,
+        ap_done => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_done,
+        ap_continue => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_continue,
+        ap_idle => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_idle,
+        ap_ready => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_ready,
         data_0_V_read => layer7_out_0_V_dout,
         data_1_V_read => layer7_out_1_V_dout,
         data_2_V_read => layer7_out_2_V_dout,
-        res_0_V => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_0_V,
-        res_0_V_ap_vld => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_0_V_ap_vld,
-        res_1_V => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_1_V,
-        res_1_V_ap_vld => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_1_V_ap_vld,
-        res_2_V => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_2_V,
-        res_2_V_ap_vld => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_2_V_ap_vld);
+        res_0_V => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_0_V,
+        res_0_V_ap_vld => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_0_V_ap_vld,
+        res_1_V => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_1_V,
+        res_1_V_ap_vld => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_1_V_ap_vld,
+        res_2_V => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_2_V,
+        res_2_V_ap_vld => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_2_V_ap_vld);
 
-    layer2_out_0_V_U : component fifo_w16_d2_A
+    layer2_out_0_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_0,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_0,
         if_full_n => layer2_out_0_V_full_n,
         if_write => ap_channel_done_layer2_out_0_V,
         if_dout => layer2_out_0_V_dout,
         if_empty_n => layer2_out_0_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_1_V_U : component fifo_w16_d2_A
+    layer2_out_1_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_1,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_1,
         if_full_n => layer2_out_1_V_full_n,
         if_write => ap_channel_done_layer2_out_1_V,
         if_dout => layer2_out_1_V_dout,
         if_empty_n => layer2_out_1_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_2_V_U : component fifo_w16_d2_A
+    layer2_out_2_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_2,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_2,
         if_full_n => layer2_out_2_V_full_n,
         if_write => ap_channel_done_layer2_out_2_V,
         if_dout => layer2_out_2_V_dout,
         if_empty_n => layer2_out_2_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_3_V_U : component fifo_w16_d2_A
+    layer2_out_3_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_3,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_3,
         if_full_n => layer2_out_3_V_full_n,
         if_write => ap_channel_done_layer2_out_3_V,
         if_dout => layer2_out_3_V_dout,
         if_empty_n => layer2_out_3_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_4_V_U : component fifo_w16_d2_A
+    layer2_out_4_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_4,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_4,
         if_full_n => layer2_out_4_V_full_n,
         if_write => ap_channel_done_layer2_out_4_V,
         if_dout => layer2_out_4_V_dout,
         if_empty_n => layer2_out_4_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_5_V_U : component fifo_w16_d2_A
+    layer2_out_5_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_5,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_5,
         if_full_n => layer2_out_5_V_full_n,
         if_write => ap_channel_done_layer2_out_5_V,
         if_dout => layer2_out_5_V_dout,
         if_empty_n => layer2_out_5_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_6_V_U : component fifo_w16_d2_A
+    layer2_out_6_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_6,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_6,
         if_full_n => layer2_out_6_V_full_n,
         if_write => ap_channel_done_layer2_out_6_V,
         if_dout => layer2_out_6_V_dout,
         if_empty_n => layer2_out_6_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_7_V_U : component fifo_w16_d2_A
+    layer2_out_7_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_7,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_7,
         if_full_n => layer2_out_7_V_full_n,
         if_write => ap_channel_done_layer2_out_7_V,
         if_dout => layer2_out_7_V_dout,
         if_empty_n => layer2_out_7_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_8_V_U : component fifo_w16_d2_A
+    layer2_out_8_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_8,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_8,
         if_full_n => layer2_out_8_V_full_n,
         if_write => ap_channel_done_layer2_out_8_V,
         if_dout => layer2_out_8_V_dout,
         if_empty_n => layer2_out_8_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_9_V_U : component fifo_w16_d2_A
+    layer2_out_9_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_9,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_9,
         if_full_n => layer2_out_9_V_full_n,
         if_write => ap_channel_done_layer2_out_9_V,
         if_dout => layer2_out_9_V_dout,
         if_empty_n => layer2_out_9_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_10_V_U : component fifo_w16_d2_A
+    layer2_out_10_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_10,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_10,
         if_full_n => layer2_out_10_V_full_n,
         if_write => ap_channel_done_layer2_out_10_V,
         if_dout => layer2_out_10_V_dout,
         if_empty_n => layer2_out_10_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_11_V_U : component fifo_w16_d2_A
+    layer2_out_11_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_11,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_11,
         if_full_n => layer2_out_11_V_full_n,
         if_write => ap_channel_done_layer2_out_11_V,
         if_dout => layer2_out_11_V_dout,
         if_empty_n => layer2_out_11_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_12_V_U : component fifo_w16_d2_A
+    layer2_out_12_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_12,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_12,
         if_full_n => layer2_out_12_V_full_n,
         if_write => ap_channel_done_layer2_out_12_V,
         if_dout => layer2_out_12_V_dout,
         if_empty_n => layer2_out_12_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_13_V_U : component fifo_w16_d2_A
+    layer2_out_13_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_13,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_13,
         if_full_n => layer2_out_13_V_full_n,
         if_write => ap_channel_done_layer2_out_13_V,
         if_dout => layer2_out_13_V_dout,
         if_empty_n => layer2_out_13_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_14_V_U : component fifo_w16_d2_A
+    layer2_out_14_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_14,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_14,
         if_full_n => layer2_out_14_V_full_n,
         if_write => ap_channel_done_layer2_out_14_V,
         if_dout => layer2_out_14_V_dout,
         if_empty_n => layer2_out_14_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_15_V_U : component fifo_w16_d2_A
+    layer2_out_15_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_15,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_15,
         if_full_n => layer2_out_15_V_full_n,
         if_write => ap_channel_done_layer2_out_15_V,
         if_dout => layer2_out_15_V_dout,
         if_empty_n => layer2_out_15_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_16_V_U : component fifo_w16_d2_A
+    layer2_out_16_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_16,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_16,
         if_full_n => layer2_out_16_V_full_n,
         if_write => ap_channel_done_layer2_out_16_V,
         if_dout => layer2_out_16_V_dout,
         if_empty_n => layer2_out_16_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_17_V_U : component fifo_w16_d2_A
+    layer2_out_17_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_17,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_17,
         if_full_n => layer2_out_17_V_full_n,
         if_write => ap_channel_done_layer2_out_17_V,
         if_dout => layer2_out_17_V_dout,
         if_empty_n => layer2_out_17_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_18_V_U : component fifo_w16_d2_A
+    layer2_out_18_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_18,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_18,
         if_full_n => layer2_out_18_V_full_n,
         if_write => ap_channel_done_layer2_out_18_V,
         if_dout => layer2_out_18_V_dout,
         if_empty_n => layer2_out_18_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_19_V_U : component fifo_w16_d2_A
+    layer2_out_19_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_19,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_19,
         if_full_n => layer2_out_19_V_full_n,
         if_write => ap_channel_done_layer2_out_19_V,
         if_dout => layer2_out_19_V_dout,
         if_empty_n => layer2_out_19_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_20_V_U : component fifo_w16_d2_A
+    layer2_out_20_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_20,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_20,
         if_full_n => layer2_out_20_V_full_n,
         if_write => ap_channel_done_layer2_out_20_V,
         if_dout => layer2_out_20_V_dout,
         if_empty_n => layer2_out_20_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_21_V_U : component fifo_w16_d2_A
+    layer2_out_21_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_21,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_21,
         if_full_n => layer2_out_21_V_full_n,
         if_write => ap_channel_done_layer2_out_21_V,
         if_dout => layer2_out_21_V_dout,
         if_empty_n => layer2_out_21_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_22_V_U : component fifo_w16_d2_A
+    layer2_out_22_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_22,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_22,
         if_full_n => layer2_out_22_V_full_n,
         if_write => ap_channel_done_layer2_out_22_V,
         if_dout => layer2_out_22_V_dout,
         if_empty_n => layer2_out_22_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_23_V_U : component fifo_w16_d2_A
+    layer2_out_23_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_23,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_23,
         if_full_n => layer2_out_23_V_full_n,
         if_write => ap_channel_done_layer2_out_23_V,
         if_dout => layer2_out_23_V_dout,
         if_empty_n => layer2_out_23_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_24_V_U : component fifo_w16_d2_A
+    layer2_out_24_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_24,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_24,
         if_full_n => layer2_out_24_V_full_n,
         if_write => ap_channel_done_layer2_out_24_V,
         if_dout => layer2_out_24_V_dout,
         if_empty_n => layer2_out_24_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_25_V_U : component fifo_w16_d2_A
+    layer2_out_25_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_25,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_25,
         if_full_n => layer2_out_25_V_full_n,
         if_write => ap_channel_done_layer2_out_25_V,
         if_dout => layer2_out_25_V_dout,
         if_empty_n => layer2_out_25_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_26_V_U : component fifo_w16_d2_A
+    layer2_out_26_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_26,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_26,
         if_full_n => layer2_out_26_V_full_n,
         if_write => ap_channel_done_layer2_out_26_V,
         if_dout => layer2_out_26_V_dout,
         if_empty_n => layer2_out_26_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_27_V_U : component fifo_w16_d2_A
+    layer2_out_27_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_27,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_27,
         if_full_n => layer2_out_27_V_full_n,
         if_write => ap_channel_done_layer2_out_27_V,
         if_dout => layer2_out_27_V_dout,
         if_empty_n => layer2_out_27_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_28_V_U : component fifo_w16_d2_A
+    layer2_out_28_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_28,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_28,
         if_full_n => layer2_out_28_V_full_n,
         if_write => ap_channel_done_layer2_out_28_V,
         if_dout => layer2_out_28_V_dout,
         if_empty_n => layer2_out_28_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_29_V_U : component fifo_w16_d2_A
+    layer2_out_29_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_29,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_29,
         if_full_n => layer2_out_29_V_full_n,
         if_write => ap_channel_done_layer2_out_29_V,
         if_dout => layer2_out_29_V_dout,
         if_empty_n => layer2_out_29_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_30_V_U : component fifo_w16_d2_A
+    layer2_out_30_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_30,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_30,
         if_full_n => layer2_out_30_V_full_n,
         if_write => ap_channel_done_layer2_out_30_V,
         if_dout => layer2_out_30_V_dout,
         if_empty_n => layer2_out_30_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_31_V_U : component fifo_w16_d2_A
+    layer2_out_31_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_31,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_31,
         if_full_n => layer2_out_31_V_full_n,
         if_write => ap_channel_done_layer2_out_31_V,
         if_dout => layer2_out_31_V_dout,
         if_empty_n => layer2_out_31_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_32_V_U : component fifo_w16_d2_A
+    layer2_out_32_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_32,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_32,
         if_full_n => layer2_out_32_V_full_n,
         if_write => ap_channel_done_layer2_out_32_V,
         if_dout => layer2_out_32_V_dout,
         if_empty_n => layer2_out_32_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_33_V_U : component fifo_w16_d2_A
+    layer2_out_33_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_33,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_33,
         if_full_n => layer2_out_33_V_full_n,
         if_write => ap_channel_done_layer2_out_33_V,
         if_dout => layer2_out_33_V_dout,
         if_empty_n => layer2_out_33_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_34_V_U : component fifo_w16_d2_A
+    layer2_out_34_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_34,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_34,
         if_full_n => layer2_out_34_V_full_n,
         if_write => ap_channel_done_layer2_out_34_V,
         if_dout => layer2_out_34_V_dout,
         if_empty_n => layer2_out_34_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_35_V_U : component fifo_w16_d2_A
+    layer2_out_35_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_35,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_35,
         if_full_n => layer2_out_35_V_full_n,
         if_write => ap_channel_done_layer2_out_35_V,
         if_dout => layer2_out_35_V_dout,
         if_empty_n => layer2_out_35_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_36_V_U : component fifo_w16_d2_A
+    layer2_out_36_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_36,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_36,
         if_full_n => layer2_out_36_V_full_n,
         if_write => ap_channel_done_layer2_out_36_V,
         if_dout => layer2_out_36_V_dout,
         if_empty_n => layer2_out_36_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_37_V_U : component fifo_w16_d2_A
+    layer2_out_37_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_37,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_37,
         if_full_n => layer2_out_37_V_full_n,
         if_write => ap_channel_done_layer2_out_37_V,
         if_dout => layer2_out_37_V_dout,
         if_empty_n => layer2_out_37_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_38_V_U : component fifo_w16_d2_A
+    layer2_out_38_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_38,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_38,
         if_full_n => layer2_out_38_V_full_n,
         if_write => ap_channel_done_layer2_out_38_V,
         if_dout => layer2_out_38_V_dout,
         if_empty_n => layer2_out_38_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_39_V_U : component fifo_w16_d2_A
+    layer2_out_39_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_39,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_39,
         if_full_n => layer2_out_39_V_full_n,
         if_write => ap_channel_done_layer2_out_39_V,
         if_dout => layer2_out_39_V_dout,
         if_empty_n => layer2_out_39_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_40_V_U : component fifo_w16_d2_A
+    layer2_out_40_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_40,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_40,
         if_full_n => layer2_out_40_V_full_n,
         if_write => ap_channel_done_layer2_out_40_V,
         if_dout => layer2_out_40_V_dout,
         if_empty_n => layer2_out_40_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_41_V_U : component fifo_w16_d2_A
+    layer2_out_41_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_41,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_41,
         if_full_n => layer2_out_41_V_full_n,
         if_write => ap_channel_done_layer2_out_41_V,
         if_dout => layer2_out_41_V_dout,
         if_empty_n => layer2_out_41_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_42_V_U : component fifo_w16_d2_A
+    layer2_out_42_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_42,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_42,
         if_full_n => layer2_out_42_V_full_n,
         if_write => ap_channel_done_layer2_out_42_V,
         if_dout => layer2_out_42_V_dout,
         if_empty_n => layer2_out_42_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_43_V_U : component fifo_w16_d2_A
+    layer2_out_43_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_43,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_43,
         if_full_n => layer2_out_43_V_full_n,
         if_write => ap_channel_done_layer2_out_43_V,
         if_dout => layer2_out_43_V_dout,
         if_empty_n => layer2_out_43_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_44_V_U : component fifo_w16_d2_A
+    layer2_out_44_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_44,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_44,
         if_full_n => layer2_out_44_V_full_n,
         if_write => ap_channel_done_layer2_out_44_V,
         if_dout => layer2_out_44_V_dout,
         if_empty_n => layer2_out_44_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_45_V_U : component fifo_w16_d2_A
+    layer2_out_45_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_45,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_45,
         if_full_n => layer2_out_45_V_full_n,
         if_write => ap_channel_done_layer2_out_45_V,
         if_dout => layer2_out_45_V_dout,
         if_empty_n => layer2_out_45_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_46_V_U : component fifo_w16_d2_A
+    layer2_out_46_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_46,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_46,
         if_full_n => layer2_out_46_V_full_n,
         if_write => ap_channel_done_layer2_out_46_V,
         if_dout => layer2_out_46_V_dout,
         if_empty_n => layer2_out_46_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_47_V_U : component fifo_w16_d2_A
+    layer2_out_47_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_47,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_47,
         if_full_n => layer2_out_47_V_full_n,
         if_write => ap_channel_done_layer2_out_47_V,
         if_dout => layer2_out_47_V_dout,
         if_empty_n => layer2_out_47_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_48_V_U : component fifo_w16_d2_A
+    layer2_out_48_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_48,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_48,
         if_full_n => layer2_out_48_V_full_n,
         if_write => ap_channel_done_layer2_out_48_V,
         if_dout => layer2_out_48_V_dout,
         if_empty_n => layer2_out_48_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_49_V_U : component fifo_w16_d2_A
+    layer2_out_49_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_49,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_49,
         if_full_n => layer2_out_49_V_full_n,
         if_write => ap_channel_done_layer2_out_49_V,
         if_dout => layer2_out_49_V_dout,
         if_empty_n => layer2_out_49_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_50_V_U : component fifo_w16_d2_A
+    layer2_out_50_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_50,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_50,
         if_full_n => layer2_out_50_V_full_n,
         if_write => ap_channel_done_layer2_out_50_V,
         if_dout => layer2_out_50_V_dout,
         if_empty_n => layer2_out_50_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_51_V_U : component fifo_w16_d2_A
+    layer2_out_51_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_51,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_51,
         if_full_n => layer2_out_51_V_full_n,
         if_write => ap_channel_done_layer2_out_51_V,
         if_dout => layer2_out_51_V_dout,
         if_empty_n => layer2_out_51_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_52_V_U : component fifo_w16_d2_A
+    layer2_out_52_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_52,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_52,
         if_full_n => layer2_out_52_V_full_n,
         if_write => ap_channel_done_layer2_out_52_V,
         if_dout => layer2_out_52_V_dout,
         if_empty_n => layer2_out_52_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_53_V_U : component fifo_w16_d2_A
+    layer2_out_53_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_53,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_53,
         if_full_n => layer2_out_53_V_full_n,
         if_write => ap_channel_done_layer2_out_53_V,
         if_dout => layer2_out_53_V_dout,
         if_empty_n => layer2_out_53_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_54_V_U : component fifo_w16_d2_A
+    layer2_out_54_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_54,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_54,
         if_full_n => layer2_out_54_V_full_n,
         if_write => ap_channel_done_layer2_out_54_V,
         if_dout => layer2_out_54_V_dout,
         if_empty_n => layer2_out_54_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_55_V_U : component fifo_w16_d2_A
+    layer2_out_55_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_55,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_55,
         if_full_n => layer2_out_55_V_full_n,
         if_write => ap_channel_done_layer2_out_55_V,
         if_dout => layer2_out_55_V_dout,
         if_empty_n => layer2_out_55_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_56_V_U : component fifo_w16_d2_A
+    layer2_out_56_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_56,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_56,
         if_full_n => layer2_out_56_V_full_n,
         if_write => ap_channel_done_layer2_out_56_V,
         if_dout => layer2_out_56_V_dout,
         if_empty_n => layer2_out_56_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_57_V_U : component fifo_w16_d2_A
+    layer2_out_57_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_57,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_57,
         if_full_n => layer2_out_57_V_full_n,
         if_write => ap_channel_done_layer2_out_57_V,
         if_dout => layer2_out_57_V_dout,
         if_empty_n => layer2_out_57_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_58_V_U : component fifo_w16_d2_A
+    layer2_out_58_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_58,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_58,
         if_full_n => layer2_out_58_V_full_n,
         if_write => ap_channel_done_layer2_out_58_V,
         if_dout => layer2_out_58_V_dout,
         if_empty_n => layer2_out_58_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_59_V_U : component fifo_w16_d2_A
+    layer2_out_59_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_59,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_59,
         if_full_n => layer2_out_59_V_full_n,
         if_write => ap_channel_done_layer2_out_59_V,
         if_dout => layer2_out_59_V_dout,
         if_empty_n => layer2_out_59_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_60_V_U : component fifo_w16_d2_A
+    layer2_out_60_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_60,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_60,
         if_full_n => layer2_out_60_V_full_n,
         if_write => ap_channel_done_layer2_out_60_V,
         if_dout => layer2_out_60_V_dout,
         if_empty_n => layer2_out_60_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_61_V_U : component fifo_w16_d2_A
+    layer2_out_61_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_61,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_61,
         if_full_n => layer2_out_61_V_full_n,
         if_write => ap_channel_done_layer2_out_61_V,
         if_dout => layer2_out_61_V_dout,
         if_empty_n => layer2_out_61_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_62_V_U : component fifo_w16_d2_A
+    layer2_out_62_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_62,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_62,
         if_full_n => layer2_out_62_V_full_n,
         if_write => ap_channel_done_layer2_out_62_V,
         if_dout => layer2_out_62_V_dout,
         if_empty_n => layer2_out_62_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_63_V_U : component fifo_w16_d2_A
+    layer2_out_63_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_63,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_63,
         if_full_n => layer2_out_63_V_full_n,
         if_write => ap_channel_done_layer2_out_63_V,
         if_dout => layer2_out_63_V_dout,
         if_empty_n => layer2_out_63_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_64_V_U : component fifo_w16_d2_A
+    layer2_out_64_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_64,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_64,
         if_full_n => layer2_out_64_V_full_n,
         if_write => ap_channel_done_layer2_out_64_V,
         if_dout => layer2_out_64_V_dout,
         if_empty_n => layer2_out_64_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_65_V_U : component fifo_w16_d2_A
+    layer2_out_65_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_65,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_65,
         if_full_n => layer2_out_65_V_full_n,
         if_write => ap_channel_done_layer2_out_65_V,
         if_dout => layer2_out_65_V_dout,
         if_empty_n => layer2_out_65_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_66_V_U : component fifo_w16_d2_A
+    layer2_out_66_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_66,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_66,
         if_full_n => layer2_out_66_V_full_n,
         if_write => ap_channel_done_layer2_out_66_V,
         if_dout => layer2_out_66_V_dout,
         if_empty_n => layer2_out_66_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_67_V_U : component fifo_w16_d2_A
+    layer2_out_67_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_67,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_67,
         if_full_n => layer2_out_67_V_full_n,
         if_write => ap_channel_done_layer2_out_67_V,
         if_dout => layer2_out_67_V_dout,
         if_empty_n => layer2_out_67_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_68_V_U : component fifo_w16_d2_A
+    layer2_out_68_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_68,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_68,
         if_full_n => layer2_out_68_V_full_n,
         if_write => ap_channel_done_layer2_out_68_V,
         if_dout => layer2_out_68_V_dout,
         if_empty_n => layer2_out_68_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_69_V_U : component fifo_w16_d2_A
+    layer2_out_69_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_69,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_69,
         if_full_n => layer2_out_69_V_full_n,
         if_write => ap_channel_done_layer2_out_69_V,
         if_dout => layer2_out_69_V_dout,
         if_empty_n => layer2_out_69_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_70_V_U : component fifo_w16_d2_A
+    layer2_out_70_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_70,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_70,
         if_full_n => layer2_out_70_V_full_n,
         if_write => ap_channel_done_layer2_out_70_V,
         if_dout => layer2_out_70_V_dout,
         if_empty_n => layer2_out_70_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_71_V_U : component fifo_w16_d2_A
+    layer2_out_71_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_71,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_71,
         if_full_n => layer2_out_71_V_full_n,
         if_write => ap_channel_done_layer2_out_71_V,
         if_dout => layer2_out_71_V_dout,
         if_empty_n => layer2_out_71_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_72_V_U : component fifo_w16_d2_A
+    layer2_out_72_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_72,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_72,
         if_full_n => layer2_out_72_V_full_n,
         if_write => ap_channel_done_layer2_out_72_V,
         if_dout => layer2_out_72_V_dout,
         if_empty_n => layer2_out_72_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_73_V_U : component fifo_w16_d2_A
+    layer2_out_73_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_73,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_73,
         if_full_n => layer2_out_73_V_full_n,
         if_write => ap_channel_done_layer2_out_73_V,
         if_dout => layer2_out_73_V_dout,
         if_empty_n => layer2_out_73_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_74_V_U : component fifo_w16_d2_A
+    layer2_out_74_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_74,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_74,
         if_full_n => layer2_out_74_V_full_n,
         if_write => ap_channel_done_layer2_out_74_V,
         if_dout => layer2_out_74_V_dout,
         if_empty_n => layer2_out_74_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_75_V_U : component fifo_w16_d2_A
+    layer2_out_75_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_75,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_75,
         if_full_n => layer2_out_75_V_full_n,
         if_write => ap_channel_done_layer2_out_75_V,
         if_dout => layer2_out_75_V_dout,
         if_empty_n => layer2_out_75_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_76_V_U : component fifo_w16_d2_A
+    layer2_out_76_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_76,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_76,
         if_full_n => layer2_out_76_V_full_n,
         if_write => ap_channel_done_layer2_out_76_V,
         if_dout => layer2_out_76_V_dout,
         if_empty_n => layer2_out_76_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_77_V_U : component fifo_w16_d2_A
+    layer2_out_77_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_77,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_77,
         if_full_n => layer2_out_77_V_full_n,
         if_write => ap_channel_done_layer2_out_77_V,
         if_dout => layer2_out_77_V_dout,
         if_empty_n => layer2_out_77_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_78_V_U : component fifo_w16_d2_A
+    layer2_out_78_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_78,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_78,
         if_full_n => layer2_out_78_V_full_n,
         if_write => ap_channel_done_layer2_out_78_V,
         if_dout => layer2_out_78_V_dout,
         if_empty_n => layer2_out_78_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_79_V_U : component fifo_w16_d2_A
+    layer2_out_79_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_79,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_79,
         if_full_n => layer2_out_79_V_full_n,
         if_write => ap_channel_done_layer2_out_79_V,
         if_dout => layer2_out_79_V_dout,
         if_empty_n => layer2_out_79_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_80_V_U : component fifo_w16_d2_A
+    layer2_out_80_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_80,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_80,
         if_full_n => layer2_out_80_V_full_n,
         if_write => ap_channel_done_layer2_out_80_V,
         if_dout => layer2_out_80_V_dout,
         if_empty_n => layer2_out_80_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_81_V_U : component fifo_w16_d2_A
+    layer2_out_81_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_81,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_81,
         if_full_n => layer2_out_81_V_full_n,
         if_write => ap_channel_done_layer2_out_81_V,
         if_dout => layer2_out_81_V_dout,
         if_empty_n => layer2_out_81_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_82_V_U : component fifo_w16_d2_A
+    layer2_out_82_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_82,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_82,
         if_full_n => layer2_out_82_V_full_n,
         if_write => ap_channel_done_layer2_out_82_V,
         if_dout => layer2_out_82_V_dout,
         if_empty_n => layer2_out_82_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_83_V_U : component fifo_w16_d2_A
+    layer2_out_83_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_83,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_83,
         if_full_n => layer2_out_83_V_full_n,
         if_write => ap_channel_done_layer2_out_83_V,
         if_dout => layer2_out_83_V_dout,
         if_empty_n => layer2_out_83_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_84_V_U : component fifo_w16_d2_A
+    layer2_out_84_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_84,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_84,
         if_full_n => layer2_out_84_V_full_n,
         if_write => ap_channel_done_layer2_out_84_V,
         if_dout => layer2_out_84_V_dout,
         if_empty_n => layer2_out_84_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_85_V_U : component fifo_w16_d2_A
+    layer2_out_85_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_85,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_85,
         if_full_n => layer2_out_85_V_full_n,
         if_write => ap_channel_done_layer2_out_85_V,
         if_dout => layer2_out_85_V_dout,
         if_empty_n => layer2_out_85_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_86_V_U : component fifo_w16_d2_A
+    layer2_out_86_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_86,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_86,
         if_full_n => layer2_out_86_V_full_n,
         if_write => ap_channel_done_layer2_out_86_V,
         if_dout => layer2_out_86_V_dout,
         if_empty_n => layer2_out_86_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_87_V_U : component fifo_w16_d2_A
+    layer2_out_87_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_87,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_87,
         if_full_n => layer2_out_87_V_full_n,
         if_write => ap_channel_done_layer2_out_87_V,
         if_dout => layer2_out_87_V_dout,
         if_empty_n => layer2_out_87_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_88_V_U : component fifo_w16_d2_A
+    layer2_out_88_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_88,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_88,
         if_full_n => layer2_out_88_V_full_n,
         if_write => ap_channel_done_layer2_out_88_V,
         if_dout => layer2_out_88_V_dout,
         if_empty_n => layer2_out_88_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_89_V_U : component fifo_w16_d2_A
+    layer2_out_89_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_89,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_89,
         if_full_n => layer2_out_89_V_full_n,
         if_write => ap_channel_done_layer2_out_89_V,
         if_dout => layer2_out_89_V_dout,
         if_empty_n => layer2_out_89_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_90_V_U : component fifo_w16_d2_A
+    layer2_out_90_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_90,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_90,
         if_full_n => layer2_out_90_V_full_n,
         if_write => ap_channel_done_layer2_out_90_V,
         if_dout => layer2_out_90_V_dout,
         if_empty_n => layer2_out_90_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_91_V_U : component fifo_w16_d2_A
+    layer2_out_91_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_91,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_91,
         if_full_n => layer2_out_91_V_full_n,
         if_write => ap_channel_done_layer2_out_91_V,
         if_dout => layer2_out_91_V_dout,
         if_empty_n => layer2_out_91_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_92_V_U : component fifo_w16_d2_A
+    layer2_out_92_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_92,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_92,
         if_full_n => layer2_out_92_V_full_n,
         if_write => ap_channel_done_layer2_out_92_V,
         if_dout => layer2_out_92_V_dout,
         if_empty_n => layer2_out_92_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_93_V_U : component fifo_w16_d2_A
+    layer2_out_93_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_93,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_93,
         if_full_n => layer2_out_93_V_full_n,
         if_write => ap_channel_done_layer2_out_93_V,
         if_dout => layer2_out_93_V_dout,
         if_empty_n => layer2_out_93_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_94_V_U : component fifo_w16_d2_A
+    layer2_out_94_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_94,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_94,
         if_full_n => layer2_out_94_V_full_n,
         if_write => ap_channel_done_layer2_out_94_V,
         if_dout => layer2_out_94_V_dout,
         if_empty_n => layer2_out_94_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_95_V_U : component fifo_w16_d2_A
+    layer2_out_95_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_95,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_95,
         if_full_n => layer2_out_95_V_full_n,
         if_write => ap_channel_done_layer2_out_95_V,
         if_dout => layer2_out_95_V_dout,
         if_empty_n => layer2_out_95_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_96_V_U : component fifo_w16_d2_A
+    layer2_out_96_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_96,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_96,
         if_full_n => layer2_out_96_V_full_n,
         if_write => ap_channel_done_layer2_out_96_V,
         if_dout => layer2_out_96_V_dout,
         if_empty_n => layer2_out_96_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_97_V_U : component fifo_w16_d2_A
+    layer2_out_97_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_97,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_97,
         if_full_n => layer2_out_97_V_full_n,
         if_write => ap_channel_done_layer2_out_97_V,
         if_dout => layer2_out_97_V_dout,
         if_empty_n => layer2_out_97_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_98_V_U : component fifo_w16_d2_A
+    layer2_out_98_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_98,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_98,
         if_full_n => layer2_out_98_V_full_n,
         if_write => ap_channel_done_layer2_out_98_V,
         if_dout => layer2_out_98_V_dout,
         if_empty_n => layer2_out_98_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_99_V_U : component fifo_w16_d2_A
+    layer2_out_99_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_99,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_99,
         if_full_n => layer2_out_99_V_full_n,
         if_write => ap_channel_done_layer2_out_99_V,
         if_dout => layer2_out_99_V_dout,
         if_empty_n => layer2_out_99_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_100_V_U : component fifo_w16_d2_A
+    layer2_out_100_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_100,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_100,
         if_full_n => layer2_out_100_V_full_n,
         if_write => ap_channel_done_layer2_out_100_V,
         if_dout => layer2_out_100_V_dout,
         if_empty_n => layer2_out_100_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_101_V_U : component fifo_w16_d2_A
+    layer2_out_101_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_101,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_101,
         if_full_n => layer2_out_101_V_full_n,
         if_write => ap_channel_done_layer2_out_101_V,
         if_dout => layer2_out_101_V_dout,
         if_empty_n => layer2_out_101_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_102_V_U : component fifo_w16_d2_A
+    layer2_out_102_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_102,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_102,
         if_full_n => layer2_out_102_V_full_n,
         if_write => ap_channel_done_layer2_out_102_V,
         if_dout => layer2_out_102_V_dout,
         if_empty_n => layer2_out_102_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_103_V_U : component fifo_w16_d2_A
+    layer2_out_103_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_103,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_103,
         if_full_n => layer2_out_103_V_full_n,
         if_write => ap_channel_done_layer2_out_103_V,
         if_dout => layer2_out_103_V_dout,
         if_empty_n => layer2_out_103_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_104_V_U : component fifo_w16_d2_A
+    layer2_out_104_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_104,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_104,
         if_full_n => layer2_out_104_V_full_n,
         if_write => ap_channel_done_layer2_out_104_V,
         if_dout => layer2_out_104_V_dout,
         if_empty_n => layer2_out_104_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_105_V_U : component fifo_w16_d2_A
+    layer2_out_105_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_105,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_105,
         if_full_n => layer2_out_105_V_full_n,
         if_write => ap_channel_done_layer2_out_105_V,
         if_dout => layer2_out_105_V_dout,
         if_empty_n => layer2_out_105_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_106_V_U : component fifo_w16_d2_A
+    layer2_out_106_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_106,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_106,
         if_full_n => layer2_out_106_V_full_n,
         if_write => ap_channel_done_layer2_out_106_V,
         if_dout => layer2_out_106_V_dout,
         if_empty_n => layer2_out_106_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_107_V_U : component fifo_w16_d2_A
+    layer2_out_107_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_107,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_107,
         if_full_n => layer2_out_107_V_full_n,
         if_write => ap_channel_done_layer2_out_107_V,
         if_dout => layer2_out_107_V_dout,
         if_empty_n => layer2_out_107_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_108_V_U : component fifo_w16_d2_A
+    layer2_out_108_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_108,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_108,
         if_full_n => layer2_out_108_V_full_n,
         if_write => ap_channel_done_layer2_out_108_V,
         if_dout => layer2_out_108_V_dout,
         if_empty_n => layer2_out_108_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_109_V_U : component fifo_w16_d2_A
+    layer2_out_109_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_109,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_109,
         if_full_n => layer2_out_109_V_full_n,
         if_write => ap_channel_done_layer2_out_109_V,
         if_dout => layer2_out_109_V_dout,
         if_empty_n => layer2_out_109_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_110_V_U : component fifo_w16_d2_A
+    layer2_out_110_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_110,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_110,
         if_full_n => layer2_out_110_V_full_n,
         if_write => ap_channel_done_layer2_out_110_V,
         if_dout => layer2_out_110_V_dout,
         if_empty_n => layer2_out_110_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_111_V_U : component fifo_w16_d2_A
+    layer2_out_111_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_111,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_111,
         if_full_n => layer2_out_111_V_full_n,
         if_write => ap_channel_done_layer2_out_111_V,
         if_dout => layer2_out_111_V_dout,
         if_empty_n => layer2_out_111_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_112_V_U : component fifo_w16_d2_A
+    layer2_out_112_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_112,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_112,
         if_full_n => layer2_out_112_V_full_n,
         if_write => ap_channel_done_layer2_out_112_V,
         if_dout => layer2_out_112_V_dout,
         if_empty_n => layer2_out_112_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_113_V_U : component fifo_w16_d2_A
+    layer2_out_113_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_113,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_113,
         if_full_n => layer2_out_113_V_full_n,
         if_write => ap_channel_done_layer2_out_113_V,
         if_dout => layer2_out_113_V_dout,
         if_empty_n => layer2_out_113_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_114_V_U : component fifo_w16_d2_A
+    layer2_out_114_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_114,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_114,
         if_full_n => layer2_out_114_V_full_n,
         if_write => ap_channel_done_layer2_out_114_V,
         if_dout => layer2_out_114_V_dout,
         if_empty_n => layer2_out_114_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_115_V_U : component fifo_w16_d2_A
+    layer2_out_115_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_115,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_115,
         if_full_n => layer2_out_115_V_full_n,
         if_write => ap_channel_done_layer2_out_115_V,
         if_dout => layer2_out_115_V_dout,
         if_empty_n => layer2_out_115_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_116_V_U : component fifo_w16_d2_A
+    layer2_out_116_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_116,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_116,
         if_full_n => layer2_out_116_V_full_n,
         if_write => ap_channel_done_layer2_out_116_V,
         if_dout => layer2_out_116_V_dout,
         if_empty_n => layer2_out_116_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_117_V_U : component fifo_w16_d2_A
+    layer2_out_117_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_117,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_117,
         if_full_n => layer2_out_117_V_full_n,
         if_write => ap_channel_done_layer2_out_117_V,
         if_dout => layer2_out_117_V_dout,
         if_empty_n => layer2_out_117_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_118_V_U : component fifo_w16_d2_A
+    layer2_out_118_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_118,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_118,
         if_full_n => layer2_out_118_V_full_n,
         if_write => ap_channel_done_layer2_out_118_V,
         if_dout => layer2_out_118_V_dout,
         if_empty_n => layer2_out_118_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer2_out_119_V_U : component fifo_w16_d2_A
+    layer2_out_119_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_return_119,
+        if_din => gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_return_119,
         if_full_n => layer2_out_119_V_full_n,
         if_write => ap_channel_done_layer2_out_119_V,
         if_dout => layer2_out_119_V_dout,
         if_empty_n => layer2_out_119_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_ready);
 
-    layer3_out_0_V_U : component fifo_w16_d2_A
+    layer3_out_0_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_0,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_0,
         if_full_n => layer3_out_0_V_full_n,
         if_write => ap_channel_done_layer3_out_0_V,
         if_dout => layer3_out_0_V_dout,
         if_empty_n => layer3_out_0_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_1_V_U : component fifo_w16_d2_A
+    layer3_out_1_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_1,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_1,
         if_full_n => layer3_out_1_V_full_n,
         if_write => ap_channel_done_layer3_out_1_V,
         if_dout => layer3_out_1_V_dout,
         if_empty_n => layer3_out_1_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_2_V_U : component fifo_w16_d2_A
+    layer3_out_2_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_2,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_2,
         if_full_n => layer3_out_2_V_full_n,
         if_write => ap_channel_done_layer3_out_2_V,
         if_dout => layer3_out_2_V_dout,
         if_empty_n => layer3_out_2_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_3_V_U : component fifo_w16_d2_A
+    layer3_out_3_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_3,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_3,
         if_full_n => layer3_out_3_V_full_n,
         if_write => ap_channel_done_layer3_out_3_V,
         if_dout => layer3_out_3_V_dout,
         if_empty_n => layer3_out_3_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_4_V_U : component fifo_w16_d2_A
+    layer3_out_4_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_4,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_4,
         if_full_n => layer3_out_4_V_full_n,
         if_write => ap_channel_done_layer3_out_4_V,
         if_dout => layer3_out_4_V_dout,
         if_empty_n => layer3_out_4_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_5_V_U : component fifo_w16_d2_A
+    layer3_out_5_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_5,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_5,
         if_full_n => layer3_out_5_V_full_n,
         if_write => ap_channel_done_layer3_out_5_V,
         if_dout => layer3_out_5_V_dout,
         if_empty_n => layer3_out_5_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_6_V_U : component fifo_w16_d2_A
+    layer3_out_6_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_6,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_6,
         if_full_n => layer3_out_6_V_full_n,
         if_write => ap_channel_done_layer3_out_6_V,
         if_dout => layer3_out_6_V_dout,
         if_empty_n => layer3_out_6_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_7_V_U : component fifo_w16_d2_A
+    layer3_out_7_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_7,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_7,
         if_full_n => layer3_out_7_V_full_n,
         if_write => ap_channel_done_layer3_out_7_V,
         if_dout => layer3_out_7_V_dout,
         if_empty_n => layer3_out_7_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_8_V_U : component fifo_w16_d2_A
+    layer3_out_8_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_8,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_8,
         if_full_n => layer3_out_8_V_full_n,
         if_write => ap_channel_done_layer3_out_8_V,
         if_dout => layer3_out_8_V_dout,
         if_empty_n => layer3_out_8_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_9_V_U : component fifo_w16_d2_A
+    layer3_out_9_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_9,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_9,
         if_full_n => layer3_out_9_V_full_n,
         if_write => ap_channel_done_layer3_out_9_V,
         if_dout => layer3_out_9_V_dout,
         if_empty_n => layer3_out_9_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_10_V_U : component fifo_w16_d2_A
+    layer3_out_10_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_10,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_10,
         if_full_n => layer3_out_10_V_full_n,
         if_write => ap_channel_done_layer3_out_10_V,
         if_dout => layer3_out_10_V_dout,
         if_empty_n => layer3_out_10_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_11_V_U : component fifo_w16_d2_A
+    layer3_out_11_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_11,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_11,
         if_full_n => layer3_out_11_V_full_n,
         if_write => ap_channel_done_layer3_out_11_V,
         if_dout => layer3_out_11_V_dout,
         if_empty_n => layer3_out_11_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_12_V_U : component fifo_w16_d2_A
+    layer3_out_12_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_12,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_12,
         if_full_n => layer3_out_12_V_full_n,
         if_write => ap_channel_done_layer3_out_12_V,
         if_dout => layer3_out_12_V_dout,
         if_empty_n => layer3_out_12_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_13_V_U : component fifo_w16_d2_A
+    layer3_out_13_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_13,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_13,
         if_full_n => layer3_out_13_V_full_n,
         if_write => ap_channel_done_layer3_out_13_V,
         if_dout => layer3_out_13_V_dout,
         if_empty_n => layer3_out_13_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_14_V_U : component fifo_w16_d2_A
+    layer3_out_14_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_14,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_14,
         if_full_n => layer3_out_14_V_full_n,
         if_write => ap_channel_done_layer3_out_14_V,
         if_dout => layer3_out_14_V_dout,
         if_empty_n => layer3_out_14_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_15_V_U : component fifo_w16_d2_A
+    layer3_out_15_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_15,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_15,
         if_full_n => layer3_out_15_V_full_n,
         if_write => ap_channel_done_layer3_out_15_V,
         if_dout => layer3_out_15_V_dout,
         if_empty_n => layer3_out_15_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_16_V_U : component fifo_w16_d2_A
+    layer3_out_16_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_16,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_16,
         if_full_n => layer3_out_16_V_full_n,
         if_write => ap_channel_done_layer3_out_16_V,
         if_dout => layer3_out_16_V_dout,
         if_empty_n => layer3_out_16_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_17_V_U : component fifo_w16_d2_A
+    layer3_out_17_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_17,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_17,
         if_full_n => layer3_out_17_V_full_n,
         if_write => ap_channel_done_layer3_out_17_V,
         if_dout => layer3_out_17_V_dout,
         if_empty_n => layer3_out_17_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_18_V_U : component fifo_w16_d2_A
+    layer3_out_18_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_18,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_18,
         if_full_n => layer3_out_18_V_full_n,
         if_write => ap_channel_done_layer3_out_18_V,
         if_dout => layer3_out_18_V_dout,
         if_empty_n => layer3_out_18_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_19_V_U : component fifo_w16_d2_A
+    layer3_out_19_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_19,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_19,
         if_full_n => layer3_out_19_V_full_n,
         if_write => ap_channel_done_layer3_out_19_V,
         if_dout => layer3_out_19_V_dout,
         if_empty_n => layer3_out_19_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_20_V_U : component fifo_w16_d2_A
+    layer3_out_20_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_20,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_20,
         if_full_n => layer3_out_20_V_full_n,
         if_write => ap_channel_done_layer3_out_20_V,
         if_dout => layer3_out_20_V_dout,
         if_empty_n => layer3_out_20_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_21_V_U : component fifo_w16_d2_A
+    layer3_out_21_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_21,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_21,
         if_full_n => layer3_out_21_V_full_n,
         if_write => ap_channel_done_layer3_out_21_V,
         if_dout => layer3_out_21_V_dout,
         if_empty_n => layer3_out_21_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_22_V_U : component fifo_w16_d2_A
+    layer3_out_22_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_22,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_22,
         if_full_n => layer3_out_22_V_full_n,
         if_write => ap_channel_done_layer3_out_22_V,
         if_dout => layer3_out_22_V_dout,
         if_empty_n => layer3_out_22_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_23_V_U : component fifo_w16_d2_A
+    layer3_out_23_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_23,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_23,
         if_full_n => layer3_out_23_V_full_n,
         if_write => ap_channel_done_layer3_out_23_V,
         if_dout => layer3_out_23_V_dout,
         if_empty_n => layer3_out_23_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_24_V_U : component fifo_w16_d2_A
+    layer3_out_24_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_24,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_24,
         if_full_n => layer3_out_24_V_full_n,
         if_write => ap_channel_done_layer3_out_24_V,
         if_dout => layer3_out_24_V_dout,
         if_empty_n => layer3_out_24_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_25_V_U : component fifo_w16_d2_A
+    layer3_out_25_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_25,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_25,
         if_full_n => layer3_out_25_V_full_n,
         if_write => ap_channel_done_layer3_out_25_V,
         if_dout => layer3_out_25_V_dout,
         if_empty_n => layer3_out_25_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_26_V_U : component fifo_w16_d2_A
+    layer3_out_26_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_26,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_26,
         if_full_n => layer3_out_26_V_full_n,
         if_write => ap_channel_done_layer3_out_26_V,
         if_dout => layer3_out_26_V_dout,
         if_empty_n => layer3_out_26_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_27_V_U : component fifo_w16_d2_A
+    layer3_out_27_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_27,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_27,
         if_full_n => layer3_out_27_V_full_n,
         if_write => ap_channel_done_layer3_out_27_V,
         if_dout => layer3_out_27_V_dout,
         if_empty_n => layer3_out_27_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_28_V_U : component fifo_w16_d2_A
+    layer3_out_28_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_28,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_28,
         if_full_n => layer3_out_28_V_full_n,
         if_write => ap_channel_done_layer3_out_28_V,
         if_dout => layer3_out_28_V_dout,
         if_empty_n => layer3_out_28_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_29_V_U : component fifo_w16_d2_A
+    layer3_out_29_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_29,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_29,
         if_full_n => layer3_out_29_V_full_n,
         if_write => ap_channel_done_layer3_out_29_V,
         if_dout => layer3_out_29_V_dout,
         if_empty_n => layer3_out_29_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_30_V_U : component fifo_w16_d2_A
+    layer3_out_30_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_30,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_30,
         if_full_n => layer3_out_30_V_full_n,
         if_write => ap_channel_done_layer3_out_30_V,
         if_dout => layer3_out_30_V_dout,
         if_empty_n => layer3_out_30_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_31_V_U : component fifo_w16_d2_A
+    layer3_out_31_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_31,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_31,
         if_full_n => layer3_out_31_V_full_n,
         if_write => ap_channel_done_layer3_out_31_V,
         if_dout => layer3_out_31_V_dout,
         if_empty_n => layer3_out_31_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_32_V_U : component fifo_w16_d2_A
+    layer3_out_32_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_32,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_32,
         if_full_n => layer3_out_32_V_full_n,
         if_write => ap_channel_done_layer3_out_32_V,
         if_dout => layer3_out_32_V_dout,
         if_empty_n => layer3_out_32_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_33_V_U : component fifo_w16_d2_A
+    layer3_out_33_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_33,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_33,
         if_full_n => layer3_out_33_V_full_n,
         if_write => ap_channel_done_layer3_out_33_V,
         if_dout => layer3_out_33_V_dout,
         if_empty_n => layer3_out_33_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_34_V_U : component fifo_w16_d2_A
+    layer3_out_34_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_34,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_34,
         if_full_n => layer3_out_34_V_full_n,
         if_write => ap_channel_done_layer3_out_34_V,
         if_dout => layer3_out_34_V_dout,
         if_empty_n => layer3_out_34_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_35_V_U : component fifo_w16_d2_A
+    layer3_out_35_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_35,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_35,
         if_full_n => layer3_out_35_V_full_n,
         if_write => ap_channel_done_layer3_out_35_V,
         if_dout => layer3_out_35_V_dout,
         if_empty_n => layer3_out_35_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_36_V_U : component fifo_w16_d2_A
+    layer3_out_36_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_36,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_36,
         if_full_n => layer3_out_36_V_full_n,
         if_write => ap_channel_done_layer3_out_36_V,
         if_dout => layer3_out_36_V_dout,
         if_empty_n => layer3_out_36_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_37_V_U : component fifo_w16_d2_A
+    layer3_out_37_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_37,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_37,
         if_full_n => layer3_out_37_V_full_n,
         if_write => ap_channel_done_layer3_out_37_V,
         if_dout => layer3_out_37_V_dout,
         if_empty_n => layer3_out_37_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_38_V_U : component fifo_w16_d2_A
+    layer3_out_38_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_38,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_38,
         if_full_n => layer3_out_38_V_full_n,
         if_write => ap_channel_done_layer3_out_38_V,
         if_dout => layer3_out_38_V_dout,
         if_empty_n => layer3_out_38_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_39_V_U : component fifo_w16_d2_A
+    layer3_out_39_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_39,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_39,
         if_full_n => layer3_out_39_V_full_n,
         if_write => ap_channel_done_layer3_out_39_V,
         if_dout => layer3_out_39_V_dout,
         if_empty_n => layer3_out_39_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_40_V_U : component fifo_w16_d2_A
+    layer3_out_40_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_40,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_40,
         if_full_n => layer3_out_40_V_full_n,
         if_write => ap_channel_done_layer3_out_40_V,
         if_dout => layer3_out_40_V_dout,
         if_empty_n => layer3_out_40_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_41_V_U : component fifo_w16_d2_A
+    layer3_out_41_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_41,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_41,
         if_full_n => layer3_out_41_V_full_n,
         if_write => ap_channel_done_layer3_out_41_V,
         if_dout => layer3_out_41_V_dout,
         if_empty_n => layer3_out_41_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_42_V_U : component fifo_w16_d2_A
+    layer3_out_42_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_42,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_42,
         if_full_n => layer3_out_42_V_full_n,
         if_write => ap_channel_done_layer3_out_42_V,
         if_dout => layer3_out_42_V_dout,
         if_empty_n => layer3_out_42_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_43_V_U : component fifo_w16_d2_A
+    layer3_out_43_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_43,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_43,
         if_full_n => layer3_out_43_V_full_n,
         if_write => ap_channel_done_layer3_out_43_V,
         if_dout => layer3_out_43_V_dout,
         if_empty_n => layer3_out_43_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_44_V_U : component fifo_w16_d2_A
+    layer3_out_44_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_44,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_44,
         if_full_n => layer3_out_44_V_full_n,
         if_write => ap_channel_done_layer3_out_44_V,
         if_dout => layer3_out_44_V_dout,
         if_empty_n => layer3_out_44_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_45_V_U : component fifo_w16_d2_A
+    layer3_out_45_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_45,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_45,
         if_full_n => layer3_out_45_V_full_n,
         if_write => ap_channel_done_layer3_out_45_V,
         if_dout => layer3_out_45_V_dout,
         if_empty_n => layer3_out_45_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_46_V_U : component fifo_w16_d2_A
+    layer3_out_46_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_46,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_46,
         if_full_n => layer3_out_46_V_full_n,
         if_write => ap_channel_done_layer3_out_46_V,
         if_dout => layer3_out_46_V_dout,
         if_empty_n => layer3_out_46_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_47_V_U : component fifo_w16_d2_A
+    layer3_out_47_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_47,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_47,
         if_full_n => layer3_out_47_V_full_n,
         if_write => ap_channel_done_layer3_out_47_V,
         if_dout => layer3_out_47_V_dout,
         if_empty_n => layer3_out_47_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_48_V_U : component fifo_w16_d2_A
+    layer3_out_48_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_48,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_48,
         if_full_n => layer3_out_48_V_full_n,
         if_write => ap_channel_done_layer3_out_48_V,
         if_dout => layer3_out_48_V_dout,
         if_empty_n => layer3_out_48_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer3_out_49_V_U : component fifo_w16_d2_A
+    layer3_out_49_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_return_49,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_return_49,
         if_full_n => layer3_out_49_V_full_n,
         if_write => ap_channel_done_layer3_out_49_V,
         if_dout => layer3_out_49_V_dout,
         if_empty_n => layer3_out_49_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_ready);
 
-    layer4_out_0_V_U : component fifo_w15_d2_A
+    layer4_out_0_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_0,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_0,
         if_full_n => layer4_out_0_V_full_n,
         if_write => ap_channel_done_layer4_out_0_V,
         if_dout => layer4_out_0_V_dout,
         if_empty_n => layer4_out_0_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_1_V_U : component fifo_w15_d2_A
+    layer4_out_1_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_1,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_1,
         if_full_n => layer4_out_1_V_full_n,
         if_write => ap_channel_done_layer4_out_1_V,
         if_dout => layer4_out_1_V_dout,
         if_empty_n => layer4_out_1_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_2_V_U : component fifo_w15_d2_A
+    layer4_out_2_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_2,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_2,
         if_full_n => layer4_out_2_V_full_n,
         if_write => ap_channel_done_layer4_out_2_V,
         if_dout => layer4_out_2_V_dout,
         if_empty_n => layer4_out_2_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_3_V_U : component fifo_w15_d2_A
+    layer4_out_3_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_3,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_3,
         if_full_n => layer4_out_3_V_full_n,
         if_write => ap_channel_done_layer4_out_3_V,
         if_dout => layer4_out_3_V_dout,
         if_empty_n => layer4_out_3_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_4_V_U : component fifo_w15_d2_A
+    layer4_out_4_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_4,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_4,
         if_full_n => layer4_out_4_V_full_n,
         if_write => ap_channel_done_layer4_out_4_V,
         if_dout => layer4_out_4_V_dout,
         if_empty_n => layer4_out_4_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_5_V_U : component fifo_w15_d2_A
+    layer4_out_5_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_5,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_5,
         if_full_n => layer4_out_5_V_full_n,
         if_write => ap_channel_done_layer4_out_5_V,
         if_dout => layer4_out_5_V_dout,
         if_empty_n => layer4_out_5_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_6_V_U : component fifo_w15_d2_A
+    layer4_out_6_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_6,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_6,
         if_full_n => layer4_out_6_V_full_n,
         if_write => ap_channel_done_layer4_out_6_V,
         if_dout => layer4_out_6_V_dout,
         if_empty_n => layer4_out_6_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_7_V_U : component fifo_w15_d2_A
+    layer4_out_7_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_7,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_7,
         if_full_n => layer4_out_7_V_full_n,
         if_write => ap_channel_done_layer4_out_7_V,
         if_dout => layer4_out_7_V_dout,
         if_empty_n => layer4_out_7_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_8_V_U : component fifo_w15_d2_A
+    layer4_out_8_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_8,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_8,
         if_full_n => layer4_out_8_V_full_n,
         if_write => ap_channel_done_layer4_out_8_V,
         if_dout => layer4_out_8_V_dout,
         if_empty_n => layer4_out_8_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_9_V_U : component fifo_w15_d2_A
+    layer4_out_9_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_9,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_9,
         if_full_n => layer4_out_9_V_full_n,
         if_write => ap_channel_done_layer4_out_9_V,
         if_dout => layer4_out_9_V_dout,
         if_empty_n => layer4_out_9_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_10_V_U : component fifo_w15_d2_A
+    layer4_out_10_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_10,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_10,
         if_full_n => layer4_out_10_V_full_n,
         if_write => ap_channel_done_layer4_out_10_V,
         if_dout => layer4_out_10_V_dout,
         if_empty_n => layer4_out_10_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_11_V_U : component fifo_w15_d2_A
+    layer4_out_11_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_11,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_11,
         if_full_n => layer4_out_11_V_full_n,
         if_write => ap_channel_done_layer4_out_11_V,
         if_dout => layer4_out_11_V_dout,
         if_empty_n => layer4_out_11_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_12_V_U : component fifo_w15_d2_A
+    layer4_out_12_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_12,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_12,
         if_full_n => layer4_out_12_V_full_n,
         if_write => ap_channel_done_layer4_out_12_V,
         if_dout => layer4_out_12_V_dout,
         if_empty_n => layer4_out_12_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_13_V_U : component fifo_w15_d2_A
+    layer4_out_13_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_13,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_13,
         if_full_n => layer4_out_13_V_full_n,
         if_write => ap_channel_done_layer4_out_13_V,
         if_dout => layer4_out_13_V_dout,
         if_empty_n => layer4_out_13_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_14_V_U : component fifo_w15_d2_A
+    layer4_out_14_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_14,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_14,
         if_full_n => layer4_out_14_V_full_n,
         if_write => ap_channel_done_layer4_out_14_V,
         if_dout => layer4_out_14_V_dout,
         if_empty_n => layer4_out_14_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_15_V_U : component fifo_w15_d2_A
+    layer4_out_15_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_15,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_15,
         if_full_n => layer4_out_15_V_full_n,
         if_write => ap_channel_done_layer4_out_15_V,
         if_dout => layer4_out_15_V_dout,
         if_empty_n => layer4_out_15_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_16_V_U : component fifo_w15_d2_A
+    layer4_out_16_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_16,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_16,
         if_full_n => layer4_out_16_V_full_n,
         if_write => ap_channel_done_layer4_out_16_V,
         if_dout => layer4_out_16_V_dout,
         if_empty_n => layer4_out_16_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_17_V_U : component fifo_w15_d2_A
+    layer4_out_17_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_17,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_17,
         if_full_n => layer4_out_17_V_full_n,
         if_write => ap_channel_done_layer4_out_17_V,
         if_dout => layer4_out_17_V_dout,
         if_empty_n => layer4_out_17_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_18_V_U : component fifo_w15_d2_A
+    layer4_out_18_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_18,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_18,
         if_full_n => layer4_out_18_V_full_n,
         if_write => ap_channel_done_layer4_out_18_V,
         if_dout => layer4_out_18_V_dout,
         if_empty_n => layer4_out_18_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_19_V_U : component fifo_w15_d2_A
+    layer4_out_19_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_19,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_19,
         if_full_n => layer4_out_19_V_full_n,
         if_write => ap_channel_done_layer4_out_19_V,
         if_dout => layer4_out_19_V_dout,
         if_empty_n => layer4_out_19_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_20_V_U : component fifo_w15_d2_A
+    layer4_out_20_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_20,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_20,
         if_full_n => layer4_out_20_V_full_n,
         if_write => ap_channel_done_layer4_out_20_V,
         if_dout => layer4_out_20_V_dout,
         if_empty_n => layer4_out_20_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_21_V_U : component fifo_w15_d2_A
+    layer4_out_21_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_21,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_21,
         if_full_n => layer4_out_21_V_full_n,
         if_write => ap_channel_done_layer4_out_21_V,
         if_dout => layer4_out_21_V_dout,
         if_empty_n => layer4_out_21_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_22_V_U : component fifo_w15_d2_A
+    layer4_out_22_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_22,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_22,
         if_full_n => layer4_out_22_V_full_n,
         if_write => ap_channel_done_layer4_out_22_V,
         if_dout => layer4_out_22_V_dout,
         if_empty_n => layer4_out_22_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_23_V_U : component fifo_w15_d2_A
+    layer4_out_23_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_23,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_23,
         if_full_n => layer4_out_23_V_full_n,
         if_write => ap_channel_done_layer4_out_23_V,
         if_dout => layer4_out_23_V_dout,
         if_empty_n => layer4_out_23_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_24_V_U : component fifo_w15_d2_A
+    layer4_out_24_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_24,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_24,
         if_full_n => layer4_out_24_V_full_n,
         if_write => ap_channel_done_layer4_out_24_V,
         if_dout => layer4_out_24_V_dout,
         if_empty_n => layer4_out_24_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_25_V_U : component fifo_w15_d2_A
+    layer4_out_25_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_25,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_25,
         if_full_n => layer4_out_25_V_full_n,
         if_write => ap_channel_done_layer4_out_25_V,
         if_dout => layer4_out_25_V_dout,
         if_empty_n => layer4_out_25_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_26_V_U : component fifo_w15_d2_A
+    layer4_out_26_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_26,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_26,
         if_full_n => layer4_out_26_V_full_n,
         if_write => ap_channel_done_layer4_out_26_V,
         if_dout => layer4_out_26_V_dout,
         if_empty_n => layer4_out_26_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_27_V_U : component fifo_w15_d2_A
+    layer4_out_27_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_27,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_27,
         if_full_n => layer4_out_27_V_full_n,
         if_write => ap_channel_done_layer4_out_27_V,
         if_dout => layer4_out_27_V_dout,
         if_empty_n => layer4_out_27_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_28_V_U : component fifo_w15_d2_A
+    layer4_out_28_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_28,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_28,
         if_full_n => layer4_out_28_V_full_n,
         if_write => ap_channel_done_layer4_out_28_V,
         if_dout => layer4_out_28_V_dout,
         if_empty_n => layer4_out_28_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_29_V_U : component fifo_w15_d2_A
+    layer4_out_29_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_29,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_29,
         if_full_n => layer4_out_29_V_full_n,
         if_write => ap_channel_done_layer4_out_29_V,
         if_dout => layer4_out_29_V_dout,
         if_empty_n => layer4_out_29_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_30_V_U : component fifo_w15_d2_A
+    layer4_out_30_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_30,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_30,
         if_full_n => layer4_out_30_V_full_n,
         if_write => ap_channel_done_layer4_out_30_V,
         if_dout => layer4_out_30_V_dout,
         if_empty_n => layer4_out_30_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_31_V_U : component fifo_w15_d2_A
+    layer4_out_31_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_31,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_31,
         if_full_n => layer4_out_31_V_full_n,
         if_write => ap_channel_done_layer4_out_31_V,
         if_dout => layer4_out_31_V_dout,
         if_empty_n => layer4_out_31_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_32_V_U : component fifo_w15_d2_A
+    layer4_out_32_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_32,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_32,
         if_full_n => layer4_out_32_V_full_n,
         if_write => ap_channel_done_layer4_out_32_V,
         if_dout => layer4_out_32_V_dout,
         if_empty_n => layer4_out_32_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_33_V_U : component fifo_w15_d2_A
+    layer4_out_33_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_33,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_33,
         if_full_n => layer4_out_33_V_full_n,
         if_write => ap_channel_done_layer4_out_33_V,
         if_dout => layer4_out_33_V_dout,
         if_empty_n => layer4_out_33_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_34_V_U : component fifo_w15_d2_A
+    layer4_out_34_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_34,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_34,
         if_full_n => layer4_out_34_V_full_n,
         if_write => ap_channel_done_layer4_out_34_V,
         if_dout => layer4_out_34_V_dout,
         if_empty_n => layer4_out_34_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_35_V_U : component fifo_w15_d2_A
+    layer4_out_35_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_35,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_35,
         if_full_n => layer4_out_35_V_full_n,
         if_write => ap_channel_done_layer4_out_35_V,
         if_dout => layer4_out_35_V_dout,
         if_empty_n => layer4_out_35_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_36_V_U : component fifo_w15_d2_A
+    layer4_out_36_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_36,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_36,
         if_full_n => layer4_out_36_V_full_n,
         if_write => ap_channel_done_layer4_out_36_V,
         if_dout => layer4_out_36_V_dout,
         if_empty_n => layer4_out_36_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_37_V_U : component fifo_w15_d2_A
+    layer4_out_37_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_37,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_37,
         if_full_n => layer4_out_37_V_full_n,
         if_write => ap_channel_done_layer4_out_37_V,
         if_dout => layer4_out_37_V_dout,
         if_empty_n => layer4_out_37_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_38_V_U : component fifo_w15_d2_A
+    layer4_out_38_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_38,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_38,
         if_full_n => layer4_out_38_V_full_n,
         if_write => ap_channel_done_layer4_out_38_V,
         if_dout => layer4_out_38_V_dout,
         if_empty_n => layer4_out_38_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_39_V_U : component fifo_w15_d2_A
+    layer4_out_39_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_39,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_39,
         if_full_n => layer4_out_39_V_full_n,
         if_write => ap_channel_done_layer4_out_39_V,
         if_dout => layer4_out_39_V_dout,
         if_empty_n => layer4_out_39_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_40_V_U : component fifo_w15_d2_A
+    layer4_out_40_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_40,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_40,
         if_full_n => layer4_out_40_V_full_n,
         if_write => ap_channel_done_layer4_out_40_V,
         if_dout => layer4_out_40_V_dout,
         if_empty_n => layer4_out_40_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_41_V_U : component fifo_w15_d2_A
+    layer4_out_41_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_41,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_41,
         if_full_n => layer4_out_41_V_full_n,
         if_write => ap_channel_done_layer4_out_41_V,
         if_dout => layer4_out_41_V_dout,
         if_empty_n => layer4_out_41_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_42_V_U : component fifo_w15_d2_A
+    layer4_out_42_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_42,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_42,
         if_full_n => layer4_out_42_V_full_n,
         if_write => ap_channel_done_layer4_out_42_V,
         if_dout => layer4_out_42_V_dout,
         if_empty_n => layer4_out_42_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_43_V_U : component fifo_w15_d2_A
+    layer4_out_43_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_43,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_43,
         if_full_n => layer4_out_43_V_full_n,
         if_write => ap_channel_done_layer4_out_43_V,
         if_dout => layer4_out_43_V_dout,
         if_empty_n => layer4_out_43_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_44_V_U : component fifo_w15_d2_A
+    layer4_out_44_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_44,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_44,
         if_full_n => layer4_out_44_V_full_n,
         if_write => ap_channel_done_layer4_out_44_V,
         if_dout => layer4_out_44_V_dout,
         if_empty_n => layer4_out_44_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_45_V_U : component fifo_w15_d2_A
+    layer4_out_45_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_45,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_45,
         if_full_n => layer4_out_45_V_full_n,
         if_write => ap_channel_done_layer4_out_45_V,
         if_dout => layer4_out_45_V_dout,
         if_empty_n => layer4_out_45_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_46_V_U : component fifo_w15_d2_A
+    layer4_out_46_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_46,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_46,
         if_full_n => layer4_out_46_V_full_n,
         if_write => ap_channel_done_layer4_out_46_V,
         if_dout => layer4_out_46_V_dout,
         if_empty_n => layer4_out_46_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_47_V_U : component fifo_w15_d2_A
+    layer4_out_47_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_47,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_47,
         if_full_n => layer4_out_47_V_full_n,
         if_write => ap_channel_done_layer4_out_47_V,
         if_dout => layer4_out_47_V_dout,
         if_empty_n => layer4_out_47_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_48_V_U : component fifo_w15_d2_A
+    layer4_out_48_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_48,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_48,
         if_full_n => layer4_out_48_V_full_n,
         if_write => ap_channel_done_layer4_out_48_V,
         if_dout => layer4_out_48_V_dout,
         if_empty_n => layer4_out_48_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer4_out_49_V_U : component fifo_w15_d2_A
+    layer4_out_49_V_U : component fifo_w3_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_return_49,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_return_49,
         if_full_n => layer4_out_49_V_full_n,
         if_write => ap_channel_done_layer4_out_49_V,
         if_dout => layer4_out_49_V_dout,
         if_empty_n => layer4_out_49_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_ready);
 
-    layer5_out_0_V_U : component fifo_w16_d2_A
+    layer5_out_0_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_0,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_0,
         if_full_n => layer5_out_0_V_full_n,
         if_write => ap_channel_done_layer5_out_0_V,
         if_dout => layer5_out_0_V_dout,
         if_empty_n => layer5_out_0_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer5_out_1_V_U : component fifo_w16_d2_A
+    layer5_out_1_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_1,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_1,
         if_full_n => layer5_out_1_V_full_n,
         if_write => ap_channel_done_layer5_out_1_V,
         if_dout => layer5_out_1_V_dout,
         if_empty_n => layer5_out_1_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer5_out_2_V_U : component fifo_w16_d2_A
+    layer5_out_2_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_2,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_2,
         if_full_n => layer5_out_2_V_full_n,
         if_write => ap_channel_done_layer5_out_2_V,
         if_dout => layer5_out_2_V_dout,
         if_empty_n => layer5_out_2_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer5_out_3_V_U : component fifo_w16_d2_A
+    layer5_out_3_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_3,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_3,
         if_full_n => layer5_out_3_V_full_n,
         if_write => ap_channel_done_layer5_out_3_V,
         if_dout => layer5_out_3_V_dout,
         if_empty_n => layer5_out_3_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer5_out_4_V_U : component fifo_w16_d2_A
+    layer5_out_4_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_4,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_4,
         if_full_n => layer5_out_4_V_full_n,
         if_write => ap_channel_done_layer5_out_4_V,
         if_dout => layer5_out_4_V_dout,
         if_empty_n => layer5_out_4_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer5_out_5_V_U : component fifo_w16_d2_A
+    layer5_out_5_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_5,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_5,
         if_full_n => layer5_out_5_V_full_n,
         if_write => ap_channel_done_layer5_out_5_V,
         if_dout => layer5_out_5_V_dout,
         if_empty_n => layer5_out_5_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer5_out_6_V_U : component fifo_w16_d2_A
+    layer5_out_6_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_6,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_6,
         if_full_n => layer5_out_6_V_full_n,
         if_write => ap_channel_done_layer5_out_6_V,
         if_dout => layer5_out_6_V_dout,
         if_empty_n => layer5_out_6_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer5_out_7_V_U : component fifo_w16_d2_A
+    layer5_out_7_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_7,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_7,
         if_full_n => layer5_out_7_V_full_n,
         if_write => ap_channel_done_layer5_out_7_V,
         if_dout => layer5_out_7_V_dout,
         if_empty_n => layer5_out_7_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer5_out_8_V_U : component fifo_w16_d2_A
+    layer5_out_8_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_8,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_8,
         if_full_n => layer5_out_8_V_full_n,
         if_write => ap_channel_done_layer5_out_8_V,
         if_dout => layer5_out_8_V_dout,
         if_empty_n => layer5_out_8_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer5_out_9_V_U : component fifo_w16_d2_A
+    layer5_out_9_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_return_9,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_return_9,
         if_full_n => layer5_out_9_V_full_n,
         if_write => ap_channel_done_layer5_out_9_V,
         if_dout => layer5_out_9_V_dout,
         if_empty_n => layer5_out_9_V_empty_n,
-        if_read => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_ready);
+        if_read => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_ready);
 
-    layer6_out_0_V_U : component fifo_w16_d2_A
+    layer6_out_0_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_0,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_0,
         if_full_n => layer6_out_0_V_full_n,
         if_write => ap_channel_done_layer6_out_0_V,
         if_dout => layer6_out_0_V_dout,
         if_empty_n => layer6_out_0_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer6_out_1_V_U : component fifo_w16_d2_A
+    layer6_out_1_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_1,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_1,
         if_full_n => layer6_out_1_V_full_n,
         if_write => ap_channel_done_layer6_out_1_V,
         if_dout => layer6_out_1_V_dout,
         if_empty_n => layer6_out_1_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer6_out_2_V_U : component fifo_w16_d2_A
+    layer6_out_2_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_2,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_2,
         if_full_n => layer6_out_2_V_full_n,
         if_write => ap_channel_done_layer6_out_2_V,
         if_dout => layer6_out_2_V_dout,
         if_empty_n => layer6_out_2_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer6_out_3_V_U : component fifo_w16_d2_A
+    layer6_out_3_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_3,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_3,
         if_full_n => layer6_out_3_V_full_n,
         if_write => ap_channel_done_layer6_out_3_V,
         if_dout => layer6_out_3_V_dout,
         if_empty_n => layer6_out_3_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer6_out_4_V_U : component fifo_w16_d2_A
+    layer6_out_4_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_4,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_4,
         if_full_n => layer6_out_4_V_full_n,
         if_write => ap_channel_done_layer6_out_4_V,
         if_dout => layer6_out_4_V_dout,
         if_empty_n => layer6_out_4_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer6_out_5_V_U : component fifo_w16_d2_A
+    layer6_out_5_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_5,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_5,
         if_full_n => layer6_out_5_V_full_n,
         if_write => ap_channel_done_layer6_out_5_V,
         if_dout => layer6_out_5_V_dout,
         if_empty_n => layer6_out_5_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer6_out_6_V_U : component fifo_w16_d2_A
+    layer6_out_6_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_6,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_6,
         if_full_n => layer6_out_6_V_full_n,
         if_write => ap_channel_done_layer6_out_6_V,
         if_dout => layer6_out_6_V_dout,
         if_empty_n => layer6_out_6_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer6_out_7_V_U : component fifo_w16_d2_A
+    layer6_out_7_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_7,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_7,
         if_full_n => layer6_out_7_V_full_n,
         if_write => ap_channel_done_layer6_out_7_V,
         if_dout => layer6_out_7_V_dout,
         if_empty_n => layer6_out_7_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer6_out_8_V_U : component fifo_w16_d2_A
+    layer6_out_8_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_8,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_8,
         if_full_n => layer6_out_8_V_full_n,
         if_write => ap_channel_done_layer6_out_8_V,
         if_dout => layer6_out_8_V_dout,
         if_empty_n => layer6_out_8_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer6_out_9_V_U : component fifo_w16_d2_A
+    layer6_out_9_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_return_9,
+        if_din => relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_return_9,
         if_full_n => layer6_out_9_V_full_n,
         if_write => ap_channel_done_layer6_out_9_V,
         if_dout => layer6_out_9_V_dout,
         if_empty_n => layer6_out_9_V_empty_n,
-        if_read => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_ready);
+        if_read => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_ready);
 
-    layer7_out_0_V_U : component fifo_w16_d2_A
+    layer7_out_0_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_return_0,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_return_0,
         if_full_n => layer7_out_0_V_full_n,
         if_write => ap_channel_done_layer7_out_0_V,
         if_dout => layer7_out_0_V_dout,
         if_empty_n => layer7_out_0_V_empty_n,
-        if_read => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_ready);
+        if_read => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_ready);
 
-    layer7_out_1_V_U : component fifo_w16_d2_A
+    layer7_out_1_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_return_1,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_return_1,
         if_full_n => layer7_out_1_V_full_n,
         if_write => ap_channel_done_layer7_out_1_V,
         if_dout => layer7_out_1_V_dout,
         if_empty_n => layer7_out_1_V_empty_n,
-        if_read => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_ready);
+        if_read => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_ready);
 
-    layer7_out_2_V_U : component fifo_w16_d2_A
+    layer7_out_2_V_U : component fifo_w4_d2_A
     port map (
         clk => ap_clk,
         reset => ap_rst,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_return_2,
+        if_din => dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_return_2,
         if_full_n => layer7_out_2_V_full_n,
         if_write => ap_channel_done_layer7_out_2_V,
         if_dout => layer7_out_2_V_dout,
         if_empty_n => layer7_out_2_V_empty_n,
-        if_read => softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_ready);
+        if_read => softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_ready);
 
 
 
@@ -6140,7 +6140,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_0_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_0_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_0_V <= ap_sync_channel_write_layer2_out_0_V;
@@ -6156,7 +6156,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_100_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_100_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_100_V <= ap_sync_channel_write_layer2_out_100_V;
@@ -6172,7 +6172,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_101_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_101_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_101_V <= ap_sync_channel_write_layer2_out_101_V;
@@ -6188,7 +6188,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_102_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_102_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_102_V <= ap_sync_channel_write_layer2_out_102_V;
@@ -6204,7 +6204,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_103_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_103_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_103_V <= ap_sync_channel_write_layer2_out_103_V;
@@ -6220,7 +6220,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_104_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_104_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_104_V <= ap_sync_channel_write_layer2_out_104_V;
@@ -6236,7 +6236,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_105_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_105_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_105_V <= ap_sync_channel_write_layer2_out_105_V;
@@ -6252,7 +6252,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_106_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_106_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_106_V <= ap_sync_channel_write_layer2_out_106_V;
@@ -6268,7 +6268,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_107_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_107_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_107_V <= ap_sync_channel_write_layer2_out_107_V;
@@ -6284,7 +6284,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_108_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_108_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_108_V <= ap_sync_channel_write_layer2_out_108_V;
@@ -6300,7 +6300,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_109_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_109_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_109_V <= ap_sync_channel_write_layer2_out_109_V;
@@ -6316,7 +6316,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_10_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_10_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_10_V <= ap_sync_channel_write_layer2_out_10_V;
@@ -6332,7 +6332,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_110_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_110_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_110_V <= ap_sync_channel_write_layer2_out_110_V;
@@ -6348,7 +6348,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_111_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_111_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_111_V <= ap_sync_channel_write_layer2_out_111_V;
@@ -6364,7 +6364,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_112_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_112_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_112_V <= ap_sync_channel_write_layer2_out_112_V;
@@ -6380,7 +6380,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_113_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_113_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_113_V <= ap_sync_channel_write_layer2_out_113_V;
@@ -6396,7 +6396,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_114_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_114_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_114_V <= ap_sync_channel_write_layer2_out_114_V;
@@ -6412,7 +6412,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_115_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_115_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_115_V <= ap_sync_channel_write_layer2_out_115_V;
@@ -6428,7 +6428,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_116_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_116_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_116_V <= ap_sync_channel_write_layer2_out_116_V;
@@ -6444,7 +6444,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_117_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_117_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_117_V <= ap_sync_channel_write_layer2_out_117_V;
@@ -6460,7 +6460,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_118_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_118_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_118_V <= ap_sync_channel_write_layer2_out_118_V;
@@ -6476,7 +6476,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_119_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_119_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_119_V <= ap_sync_channel_write_layer2_out_119_V;
@@ -6492,7 +6492,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_11_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_11_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_11_V <= ap_sync_channel_write_layer2_out_11_V;
@@ -6508,7 +6508,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_12_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_12_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_12_V <= ap_sync_channel_write_layer2_out_12_V;
@@ -6524,7 +6524,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_13_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_13_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_13_V <= ap_sync_channel_write_layer2_out_13_V;
@@ -6540,7 +6540,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_14_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_14_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_14_V <= ap_sync_channel_write_layer2_out_14_V;
@@ -6556,7 +6556,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_15_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_15_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_15_V <= ap_sync_channel_write_layer2_out_15_V;
@@ -6572,7 +6572,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_16_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_16_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_16_V <= ap_sync_channel_write_layer2_out_16_V;
@@ -6588,7 +6588,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_17_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_17_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_17_V <= ap_sync_channel_write_layer2_out_17_V;
@@ -6604,7 +6604,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_18_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_18_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_18_V <= ap_sync_channel_write_layer2_out_18_V;
@@ -6620,7 +6620,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_19_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_19_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_19_V <= ap_sync_channel_write_layer2_out_19_V;
@@ -6636,7 +6636,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_1_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_1_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_1_V <= ap_sync_channel_write_layer2_out_1_V;
@@ -6652,7 +6652,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_20_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_20_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_20_V <= ap_sync_channel_write_layer2_out_20_V;
@@ -6668,7 +6668,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_21_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_21_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_21_V <= ap_sync_channel_write_layer2_out_21_V;
@@ -6684,7 +6684,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_22_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_22_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_22_V <= ap_sync_channel_write_layer2_out_22_V;
@@ -6700,7 +6700,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_23_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_23_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_23_V <= ap_sync_channel_write_layer2_out_23_V;
@@ -6716,7 +6716,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_24_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_24_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_24_V <= ap_sync_channel_write_layer2_out_24_V;
@@ -6732,7 +6732,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_25_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_25_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_25_V <= ap_sync_channel_write_layer2_out_25_V;
@@ -6748,7 +6748,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_26_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_26_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_26_V <= ap_sync_channel_write_layer2_out_26_V;
@@ -6764,7 +6764,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_27_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_27_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_27_V <= ap_sync_channel_write_layer2_out_27_V;
@@ -6780,7 +6780,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_28_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_28_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_28_V <= ap_sync_channel_write_layer2_out_28_V;
@@ -6796,7 +6796,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_29_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_29_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_29_V <= ap_sync_channel_write_layer2_out_29_V;
@@ -6812,7 +6812,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_2_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_2_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_2_V <= ap_sync_channel_write_layer2_out_2_V;
@@ -6828,7 +6828,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_30_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_30_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_30_V <= ap_sync_channel_write_layer2_out_30_V;
@@ -6844,7 +6844,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_31_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_31_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_31_V <= ap_sync_channel_write_layer2_out_31_V;
@@ -6860,7 +6860,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_32_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_32_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_32_V <= ap_sync_channel_write_layer2_out_32_V;
@@ -6876,7 +6876,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_33_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_33_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_33_V <= ap_sync_channel_write_layer2_out_33_V;
@@ -6892,7 +6892,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_34_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_34_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_34_V <= ap_sync_channel_write_layer2_out_34_V;
@@ -6908,7 +6908,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_35_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_35_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_35_V <= ap_sync_channel_write_layer2_out_35_V;
@@ -6924,7 +6924,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_36_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_36_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_36_V <= ap_sync_channel_write_layer2_out_36_V;
@@ -6940,7 +6940,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_37_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_37_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_37_V <= ap_sync_channel_write_layer2_out_37_V;
@@ -6956,7 +6956,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_38_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_38_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_38_V <= ap_sync_channel_write_layer2_out_38_V;
@@ -6972,7 +6972,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_39_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_39_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_39_V <= ap_sync_channel_write_layer2_out_39_V;
@@ -6988,7 +6988,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_3_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_3_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_3_V <= ap_sync_channel_write_layer2_out_3_V;
@@ -7004,7 +7004,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_40_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_40_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_40_V <= ap_sync_channel_write_layer2_out_40_V;
@@ -7020,7 +7020,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_41_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_41_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_41_V <= ap_sync_channel_write_layer2_out_41_V;
@@ -7036,7 +7036,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_42_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_42_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_42_V <= ap_sync_channel_write_layer2_out_42_V;
@@ -7052,7 +7052,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_43_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_43_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_43_V <= ap_sync_channel_write_layer2_out_43_V;
@@ -7068,7 +7068,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_44_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_44_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_44_V <= ap_sync_channel_write_layer2_out_44_V;
@@ -7084,7 +7084,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_45_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_45_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_45_V <= ap_sync_channel_write_layer2_out_45_V;
@@ -7100,7 +7100,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_46_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_46_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_46_V <= ap_sync_channel_write_layer2_out_46_V;
@@ -7116,7 +7116,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_47_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_47_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_47_V <= ap_sync_channel_write_layer2_out_47_V;
@@ -7132,7 +7132,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_48_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_48_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_48_V <= ap_sync_channel_write_layer2_out_48_V;
@@ -7148,7 +7148,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_49_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_49_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_49_V <= ap_sync_channel_write_layer2_out_49_V;
@@ -7164,7 +7164,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_4_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_4_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_4_V <= ap_sync_channel_write_layer2_out_4_V;
@@ -7180,7 +7180,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_50_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_50_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_50_V <= ap_sync_channel_write_layer2_out_50_V;
@@ -7196,7 +7196,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_51_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_51_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_51_V <= ap_sync_channel_write_layer2_out_51_V;
@@ -7212,7 +7212,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_52_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_52_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_52_V <= ap_sync_channel_write_layer2_out_52_V;
@@ -7228,7 +7228,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_53_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_53_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_53_V <= ap_sync_channel_write_layer2_out_53_V;
@@ -7244,7 +7244,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_54_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_54_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_54_V <= ap_sync_channel_write_layer2_out_54_V;
@@ -7260,7 +7260,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_55_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_55_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_55_V <= ap_sync_channel_write_layer2_out_55_V;
@@ -7276,7 +7276,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_56_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_56_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_56_V <= ap_sync_channel_write_layer2_out_56_V;
@@ -7292,7 +7292,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_57_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_57_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_57_V <= ap_sync_channel_write_layer2_out_57_V;
@@ -7308,7 +7308,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_58_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_58_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_58_V <= ap_sync_channel_write_layer2_out_58_V;
@@ -7324,7 +7324,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_59_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_59_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_59_V <= ap_sync_channel_write_layer2_out_59_V;
@@ -7340,7 +7340,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_5_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_5_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_5_V <= ap_sync_channel_write_layer2_out_5_V;
@@ -7356,7 +7356,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_60_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_60_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_60_V <= ap_sync_channel_write_layer2_out_60_V;
@@ -7372,7 +7372,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_61_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_61_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_61_V <= ap_sync_channel_write_layer2_out_61_V;
@@ -7388,7 +7388,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_62_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_62_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_62_V <= ap_sync_channel_write_layer2_out_62_V;
@@ -7404,7 +7404,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_63_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_63_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_63_V <= ap_sync_channel_write_layer2_out_63_V;
@@ -7420,7 +7420,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_64_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_64_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_64_V <= ap_sync_channel_write_layer2_out_64_V;
@@ -7436,7 +7436,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_65_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_65_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_65_V <= ap_sync_channel_write_layer2_out_65_V;
@@ -7452,7 +7452,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_66_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_66_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_66_V <= ap_sync_channel_write_layer2_out_66_V;
@@ -7468,7 +7468,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_67_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_67_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_67_V <= ap_sync_channel_write_layer2_out_67_V;
@@ -7484,7 +7484,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_68_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_68_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_68_V <= ap_sync_channel_write_layer2_out_68_V;
@@ -7500,7 +7500,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_69_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_69_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_69_V <= ap_sync_channel_write_layer2_out_69_V;
@@ -7516,7 +7516,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_6_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_6_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_6_V <= ap_sync_channel_write_layer2_out_6_V;
@@ -7532,7 +7532,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_70_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_70_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_70_V <= ap_sync_channel_write_layer2_out_70_V;
@@ -7548,7 +7548,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_71_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_71_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_71_V <= ap_sync_channel_write_layer2_out_71_V;
@@ -7564,7 +7564,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_72_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_72_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_72_V <= ap_sync_channel_write_layer2_out_72_V;
@@ -7580,7 +7580,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_73_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_73_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_73_V <= ap_sync_channel_write_layer2_out_73_V;
@@ -7596,7 +7596,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_74_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_74_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_74_V <= ap_sync_channel_write_layer2_out_74_V;
@@ -7612,7 +7612,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_75_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_75_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_75_V <= ap_sync_channel_write_layer2_out_75_V;
@@ -7628,7 +7628,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_76_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_76_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_76_V <= ap_sync_channel_write_layer2_out_76_V;
@@ -7644,7 +7644,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_77_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_77_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_77_V <= ap_sync_channel_write_layer2_out_77_V;
@@ -7660,7 +7660,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_78_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_78_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_78_V <= ap_sync_channel_write_layer2_out_78_V;
@@ -7676,7 +7676,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_79_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_79_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_79_V <= ap_sync_channel_write_layer2_out_79_V;
@@ -7692,7 +7692,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_7_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_7_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_7_V <= ap_sync_channel_write_layer2_out_7_V;
@@ -7708,7 +7708,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_80_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_80_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_80_V <= ap_sync_channel_write_layer2_out_80_V;
@@ -7724,7 +7724,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_81_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_81_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_81_V <= ap_sync_channel_write_layer2_out_81_V;
@@ -7740,7 +7740,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_82_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_82_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_82_V <= ap_sync_channel_write_layer2_out_82_V;
@@ -7756,7 +7756,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_83_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_83_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_83_V <= ap_sync_channel_write_layer2_out_83_V;
@@ -7772,7 +7772,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_84_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_84_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_84_V <= ap_sync_channel_write_layer2_out_84_V;
@@ -7788,7 +7788,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_85_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_85_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_85_V <= ap_sync_channel_write_layer2_out_85_V;
@@ -7804,7 +7804,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_86_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_86_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_86_V <= ap_sync_channel_write_layer2_out_86_V;
@@ -7820,7 +7820,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_87_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_87_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_87_V <= ap_sync_channel_write_layer2_out_87_V;
@@ -7836,7 +7836,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_88_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_88_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_88_V <= ap_sync_channel_write_layer2_out_88_V;
@@ -7852,7 +7852,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_89_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_89_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_89_V <= ap_sync_channel_write_layer2_out_89_V;
@@ -7868,7 +7868,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_8_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_8_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_8_V <= ap_sync_channel_write_layer2_out_8_V;
@@ -7884,7 +7884,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_90_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_90_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_90_V <= ap_sync_channel_write_layer2_out_90_V;
@@ -7900,7 +7900,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_91_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_91_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_91_V <= ap_sync_channel_write_layer2_out_91_V;
@@ -7916,7 +7916,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_92_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_92_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_92_V <= ap_sync_channel_write_layer2_out_92_V;
@@ -7932,7 +7932,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_93_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_93_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_93_V <= ap_sync_channel_write_layer2_out_93_V;
@@ -7948,7 +7948,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_94_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_94_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_94_V <= ap_sync_channel_write_layer2_out_94_V;
@@ -7964,7 +7964,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_95_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_95_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_95_V <= ap_sync_channel_write_layer2_out_95_V;
@@ -7980,7 +7980,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_96_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_96_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_96_V <= ap_sync_channel_write_layer2_out_96_V;
@@ -7996,7 +7996,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_97_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_97_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_97_V <= ap_sync_channel_write_layer2_out_97_V;
@@ -8012,7 +8012,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_98_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_98_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_98_V <= ap_sync_channel_write_layer2_out_98_V;
@@ -8028,7 +8028,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_99_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_99_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_99_V <= ap_sync_channel_write_layer2_out_99_V;
@@ -8044,7 +8044,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer2_out_9_V <= ap_const_logic_0;
             else
-                if (((gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer2_out_9_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer2_out_9_V <= ap_sync_channel_write_layer2_out_9_V;
@@ -8060,7 +8060,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_0_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_0_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_0_V <= ap_sync_channel_write_layer3_out_0_V;
@@ -8076,7 +8076,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_10_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_10_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_10_V <= ap_sync_channel_write_layer3_out_10_V;
@@ -8092,7 +8092,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_11_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_11_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_11_V <= ap_sync_channel_write_layer3_out_11_V;
@@ -8108,7 +8108,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_12_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_12_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_12_V <= ap_sync_channel_write_layer3_out_12_V;
@@ -8124,7 +8124,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_13_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_13_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_13_V <= ap_sync_channel_write_layer3_out_13_V;
@@ -8140,7 +8140,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_14_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_14_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_14_V <= ap_sync_channel_write_layer3_out_14_V;
@@ -8156,7 +8156,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_15_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_15_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_15_V <= ap_sync_channel_write_layer3_out_15_V;
@@ -8172,7 +8172,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_16_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_16_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_16_V <= ap_sync_channel_write_layer3_out_16_V;
@@ -8188,7 +8188,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_17_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_17_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_17_V <= ap_sync_channel_write_layer3_out_17_V;
@@ -8204,7 +8204,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_18_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_18_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_18_V <= ap_sync_channel_write_layer3_out_18_V;
@@ -8220,7 +8220,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_19_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_19_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_19_V <= ap_sync_channel_write_layer3_out_19_V;
@@ -8236,7 +8236,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_1_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_1_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_1_V <= ap_sync_channel_write_layer3_out_1_V;
@@ -8252,7 +8252,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_20_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_20_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_20_V <= ap_sync_channel_write_layer3_out_20_V;
@@ -8268,7 +8268,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_21_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_21_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_21_V <= ap_sync_channel_write_layer3_out_21_V;
@@ -8284,7 +8284,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_22_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_22_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_22_V <= ap_sync_channel_write_layer3_out_22_V;
@@ -8300,7 +8300,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_23_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_23_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_23_V <= ap_sync_channel_write_layer3_out_23_V;
@@ -8316,7 +8316,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_24_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_24_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_24_V <= ap_sync_channel_write_layer3_out_24_V;
@@ -8332,7 +8332,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_25_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_25_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_25_V <= ap_sync_channel_write_layer3_out_25_V;
@@ -8348,7 +8348,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_26_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_26_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_26_V <= ap_sync_channel_write_layer3_out_26_V;
@@ -8364,7 +8364,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_27_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_27_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_27_V <= ap_sync_channel_write_layer3_out_27_V;
@@ -8380,7 +8380,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_28_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_28_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_28_V <= ap_sync_channel_write_layer3_out_28_V;
@@ -8396,7 +8396,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_29_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_29_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_29_V <= ap_sync_channel_write_layer3_out_29_V;
@@ -8412,7 +8412,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_2_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_2_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_2_V <= ap_sync_channel_write_layer3_out_2_V;
@@ -8428,7 +8428,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_30_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_30_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_30_V <= ap_sync_channel_write_layer3_out_30_V;
@@ -8444,7 +8444,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_31_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_31_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_31_V <= ap_sync_channel_write_layer3_out_31_V;
@@ -8460,7 +8460,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_32_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_32_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_32_V <= ap_sync_channel_write_layer3_out_32_V;
@@ -8476,7 +8476,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_33_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_33_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_33_V <= ap_sync_channel_write_layer3_out_33_V;
@@ -8492,7 +8492,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_34_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_34_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_34_V <= ap_sync_channel_write_layer3_out_34_V;
@@ -8508,7 +8508,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_35_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_35_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_35_V <= ap_sync_channel_write_layer3_out_35_V;
@@ -8524,7 +8524,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_36_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_36_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_36_V <= ap_sync_channel_write_layer3_out_36_V;
@@ -8540,7 +8540,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_37_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_37_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_37_V <= ap_sync_channel_write_layer3_out_37_V;
@@ -8556,7 +8556,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_38_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_38_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_38_V <= ap_sync_channel_write_layer3_out_38_V;
@@ -8572,7 +8572,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_39_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_39_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_39_V <= ap_sync_channel_write_layer3_out_39_V;
@@ -8588,7 +8588,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_3_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_3_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_3_V <= ap_sync_channel_write_layer3_out_3_V;
@@ -8604,7 +8604,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_40_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_40_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_40_V <= ap_sync_channel_write_layer3_out_40_V;
@@ -8620,7 +8620,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_41_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_41_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_41_V <= ap_sync_channel_write_layer3_out_41_V;
@@ -8636,7 +8636,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_42_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_42_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_42_V <= ap_sync_channel_write_layer3_out_42_V;
@@ -8652,7 +8652,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_43_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_43_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_43_V <= ap_sync_channel_write_layer3_out_43_V;
@@ -8668,7 +8668,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_44_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_44_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_44_V <= ap_sync_channel_write_layer3_out_44_V;
@@ -8684,7 +8684,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_45_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_45_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_45_V <= ap_sync_channel_write_layer3_out_45_V;
@@ -8700,7 +8700,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_46_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_46_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_46_V <= ap_sync_channel_write_layer3_out_46_V;
@@ -8716,7 +8716,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_47_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_47_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_47_V <= ap_sync_channel_write_layer3_out_47_V;
@@ -8732,7 +8732,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_48_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_48_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_48_V <= ap_sync_channel_write_layer3_out_48_V;
@@ -8748,7 +8748,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_49_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_49_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_49_V <= ap_sync_channel_write_layer3_out_49_V;
@@ -8764,7 +8764,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_4_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_4_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_4_V <= ap_sync_channel_write_layer3_out_4_V;
@@ -8780,7 +8780,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_5_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_5_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_5_V <= ap_sync_channel_write_layer3_out_5_V;
@@ -8796,7 +8796,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_6_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_6_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_6_V <= ap_sync_channel_write_layer3_out_6_V;
@@ -8812,7 +8812,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_7_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_7_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_7_V <= ap_sync_channel_write_layer3_out_7_V;
@@ -8828,7 +8828,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_8_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_8_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_8_V <= ap_sync_channel_write_layer3_out_8_V;
@@ -8844,7 +8844,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer3_out_9_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer3_out_9_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer3_out_9_V <= ap_sync_channel_write_layer3_out_9_V;
@@ -8860,7 +8860,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_0_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_0_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_0_V <= ap_sync_channel_write_layer4_out_0_V;
@@ -8876,7 +8876,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_10_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_10_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_10_V <= ap_sync_channel_write_layer4_out_10_V;
@@ -8892,7 +8892,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_11_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_11_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_11_V <= ap_sync_channel_write_layer4_out_11_V;
@@ -8908,7 +8908,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_12_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_12_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_12_V <= ap_sync_channel_write_layer4_out_12_V;
@@ -8924,7 +8924,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_13_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_13_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_13_V <= ap_sync_channel_write_layer4_out_13_V;
@@ -8940,7 +8940,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_14_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_14_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_14_V <= ap_sync_channel_write_layer4_out_14_V;
@@ -8956,7 +8956,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_15_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_15_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_15_V <= ap_sync_channel_write_layer4_out_15_V;
@@ -8972,7 +8972,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_16_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_16_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_16_V <= ap_sync_channel_write_layer4_out_16_V;
@@ -8988,7 +8988,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_17_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_17_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_17_V <= ap_sync_channel_write_layer4_out_17_V;
@@ -9004,7 +9004,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_18_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_18_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_18_V <= ap_sync_channel_write_layer4_out_18_V;
@@ -9020,7 +9020,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_19_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_19_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_19_V <= ap_sync_channel_write_layer4_out_19_V;
@@ -9036,7 +9036,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_1_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_1_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_1_V <= ap_sync_channel_write_layer4_out_1_V;
@@ -9052,7 +9052,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_20_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_20_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_20_V <= ap_sync_channel_write_layer4_out_20_V;
@@ -9068,7 +9068,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_21_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_21_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_21_V <= ap_sync_channel_write_layer4_out_21_V;
@@ -9084,7 +9084,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_22_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_22_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_22_V <= ap_sync_channel_write_layer4_out_22_V;
@@ -9100,7 +9100,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_23_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_23_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_23_V <= ap_sync_channel_write_layer4_out_23_V;
@@ -9116,7 +9116,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_24_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_24_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_24_V <= ap_sync_channel_write_layer4_out_24_V;
@@ -9132,7 +9132,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_25_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_25_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_25_V <= ap_sync_channel_write_layer4_out_25_V;
@@ -9148,7 +9148,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_26_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_26_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_26_V <= ap_sync_channel_write_layer4_out_26_V;
@@ -9164,7 +9164,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_27_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_27_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_27_V <= ap_sync_channel_write_layer4_out_27_V;
@@ -9180,7 +9180,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_28_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_28_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_28_V <= ap_sync_channel_write_layer4_out_28_V;
@@ -9196,7 +9196,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_29_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_29_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_29_V <= ap_sync_channel_write_layer4_out_29_V;
@@ -9212,7 +9212,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_2_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_2_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_2_V <= ap_sync_channel_write_layer4_out_2_V;
@@ -9228,7 +9228,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_30_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_30_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_30_V <= ap_sync_channel_write_layer4_out_30_V;
@@ -9244,7 +9244,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_31_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_31_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_31_V <= ap_sync_channel_write_layer4_out_31_V;
@@ -9260,7 +9260,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_32_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_32_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_32_V <= ap_sync_channel_write_layer4_out_32_V;
@@ -9276,7 +9276,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_33_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_33_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_33_V <= ap_sync_channel_write_layer4_out_33_V;
@@ -9292,7 +9292,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_34_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_34_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_34_V <= ap_sync_channel_write_layer4_out_34_V;
@@ -9308,7 +9308,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_35_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_35_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_35_V <= ap_sync_channel_write_layer4_out_35_V;
@@ -9324,7 +9324,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_36_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_36_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_36_V <= ap_sync_channel_write_layer4_out_36_V;
@@ -9340,7 +9340,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_37_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_37_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_37_V <= ap_sync_channel_write_layer4_out_37_V;
@@ -9356,7 +9356,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_38_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_38_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_38_V <= ap_sync_channel_write_layer4_out_38_V;
@@ -9372,7 +9372,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_39_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_39_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_39_V <= ap_sync_channel_write_layer4_out_39_V;
@@ -9388,7 +9388,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_3_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_3_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_3_V <= ap_sync_channel_write_layer4_out_3_V;
@@ -9404,7 +9404,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_40_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_40_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_40_V <= ap_sync_channel_write_layer4_out_40_V;
@@ -9420,7 +9420,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_41_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_41_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_41_V <= ap_sync_channel_write_layer4_out_41_V;
@@ -9436,7 +9436,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_42_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_42_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_42_V <= ap_sync_channel_write_layer4_out_42_V;
@@ -9452,7 +9452,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_43_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_43_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_43_V <= ap_sync_channel_write_layer4_out_43_V;
@@ -9468,7 +9468,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_44_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_44_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_44_V <= ap_sync_channel_write_layer4_out_44_V;
@@ -9484,7 +9484,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_45_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_45_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_45_V <= ap_sync_channel_write_layer4_out_45_V;
@@ -9500,7 +9500,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_46_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_46_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_46_V <= ap_sync_channel_write_layer4_out_46_V;
@@ -9516,7 +9516,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_47_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_47_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_47_V <= ap_sync_channel_write_layer4_out_47_V;
@@ -9532,7 +9532,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_48_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_48_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_48_V <= ap_sync_channel_write_layer4_out_48_V;
@@ -9548,7 +9548,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_49_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_49_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_49_V <= ap_sync_channel_write_layer4_out_49_V;
@@ -9564,7 +9564,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_4_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_4_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_4_V <= ap_sync_channel_write_layer4_out_4_V;
@@ -9580,7 +9580,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_5_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_5_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_5_V <= ap_sync_channel_write_layer4_out_5_V;
@@ -9596,7 +9596,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_6_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_6_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_6_V <= ap_sync_channel_write_layer4_out_6_V;
@@ -9612,7 +9612,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_7_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_7_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_7_V <= ap_sync_channel_write_layer4_out_7_V;
@@ -9628,7 +9628,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_8_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_8_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_8_V <= ap_sync_channel_write_layer4_out_8_V;
@@ -9644,7 +9644,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer4_out_9_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer4_out_9_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer4_out_9_V <= ap_sync_channel_write_layer4_out_9_V;
@@ -9660,7 +9660,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_0_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_0_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_0_V <= ap_sync_channel_write_layer5_out_0_V;
@@ -9676,7 +9676,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_1_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_1_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_1_V <= ap_sync_channel_write_layer5_out_1_V;
@@ -9692,7 +9692,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_2_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_2_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_2_V <= ap_sync_channel_write_layer5_out_2_V;
@@ -9708,7 +9708,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_3_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_3_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_3_V <= ap_sync_channel_write_layer5_out_3_V;
@@ -9724,7 +9724,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_4_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_4_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_4_V <= ap_sync_channel_write_layer5_out_4_V;
@@ -9740,7 +9740,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_5_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_5_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_5_V <= ap_sync_channel_write_layer5_out_5_V;
@@ -9756,7 +9756,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_6_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_6_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_6_V <= ap_sync_channel_write_layer5_out_6_V;
@@ -9772,7 +9772,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_7_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_7_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_7_V <= ap_sync_channel_write_layer5_out_7_V;
@@ -9788,7 +9788,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_8_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_8_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_8_V <= ap_sync_channel_write_layer5_out_8_V;
@@ -9804,7 +9804,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer5_out_9_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer5_out_9_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer5_out_9_V <= ap_sync_channel_write_layer5_out_9_V;
@@ -9820,7 +9820,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_0_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_0_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_0_V <= ap_sync_channel_write_layer6_out_0_V;
@@ -9836,7 +9836,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_1_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_1_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_1_V <= ap_sync_channel_write_layer6_out_1_V;
@@ -9852,7 +9852,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_2_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_2_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_2_V <= ap_sync_channel_write_layer6_out_2_V;
@@ -9868,7 +9868,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_3_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_3_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_3_V <= ap_sync_channel_write_layer6_out_3_V;
@@ -9884,7 +9884,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_4_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_4_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_4_V <= ap_sync_channel_write_layer6_out_4_V;
@@ -9900,7 +9900,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_5_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_5_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_5_V <= ap_sync_channel_write_layer6_out_5_V;
@@ -9916,7 +9916,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_6_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_6_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_6_V <= ap_sync_channel_write_layer6_out_6_V;
@@ -9932,7 +9932,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_7_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_7_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_7_V <= ap_sync_channel_write_layer6_out_7_V;
@@ -9948,7 +9948,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_8_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_8_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_8_V <= ap_sync_channel_write_layer6_out_8_V;
@@ -9964,7 +9964,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer6_out_9_V <= ap_const_logic_0;
             else
-                if (((relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer6_out_9_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer6_out_9_V <= ap_sync_channel_write_layer6_out_9_V;
@@ -9980,7 +9980,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer7_out_0_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer7_out_0_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer7_out_0_V <= ap_sync_channel_write_layer7_out_0_V;
@@ -9996,7 +9996,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer7_out_1_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer7_out_1_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer7_out_1_V <= ap_sync_channel_write_layer7_out_1_V;
@@ -10012,7 +10012,7 @@ begin
             if (ap_rst = '1') then
                 ap_sync_reg_channel_write_layer7_out_2_V <= ap_const_logic_0;
             else
-                if (((dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_done and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_continue) = ap_const_logic_1)) then 
+                if (((dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_done and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_continue) = ap_const_logic_1)) then 
                     ap_sync_reg_channel_write_layer7_out_2_V <= ap_const_logic_0;
                 else 
                     ap_sync_reg_channel_write_layer7_out_2_V <= ap_sync_channel_write_layer7_out_2_V;
@@ -10021,252 +10021,252 @@ begin
         end if;
     end process;
 
-    ap_channel_done_layer2_out_0_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_0_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_100_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_100_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_101_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_101_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_102_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_102_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_103_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_103_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_104_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_104_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_105_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_105_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_106_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_106_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_107_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_107_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_108_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_108_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_109_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_109_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_10_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_10_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_110_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_110_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_111_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_111_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_112_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_112_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_113_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_113_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_114_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_114_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_115_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_115_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_116_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_116_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_117_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_117_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_118_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_118_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_119_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_119_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_11_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_11_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_12_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_12_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_13_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_13_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_14_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_14_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_15_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_15_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_16_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_16_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_17_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_17_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_18_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_18_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_19_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_19_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_1_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_1_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_20_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_20_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_21_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_21_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_22_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_22_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_23_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_23_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_24_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_24_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_25_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_25_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_26_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_26_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_27_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_27_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_28_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_28_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_29_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_29_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_2_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_2_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_30_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_30_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_31_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_31_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_32_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_32_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_33_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_33_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_34_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_34_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_35_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_35_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_36_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_36_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_37_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_37_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_38_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_38_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_39_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_39_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_3_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_3_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_40_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_40_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_41_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_41_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_42_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_42_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_43_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_43_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_44_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_44_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_45_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_45_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_46_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_46_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_47_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_47_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_48_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_48_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_49_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_49_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_4_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_4_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_50_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_50_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_51_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_51_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_52_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_52_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_53_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_53_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_54_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_54_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_55_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_55_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_56_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_56_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_57_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_57_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_58_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_58_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_59_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_59_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_5_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_5_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_60_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_60_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_61_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_61_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_62_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_62_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_63_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_63_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_64_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_64_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_65_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_65_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_66_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_66_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_67_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_67_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_68_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_68_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_69_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_69_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_6_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_6_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_70_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_70_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_71_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_71_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_72_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_72_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_73_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_73_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_74_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_74_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_75_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_75_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_76_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_76_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_77_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_77_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_78_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_78_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_79_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_79_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_7_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_7_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_80_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_80_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_81_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_81_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_82_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_82_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_83_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_83_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_84_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_84_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_85_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_85_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_86_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_86_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_87_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_87_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_88_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_88_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_89_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_89_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_8_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_8_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_90_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_90_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_91_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_91_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_92_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_92_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_93_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_93_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_94_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_94_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_95_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_95_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_96_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_96_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_97_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_97_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_98_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_98_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_99_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_99_V xor ap_const_logic_1));
-    ap_channel_done_layer2_out_9_V <= (gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_9_V xor ap_const_logic_1));
-    ap_channel_done_layer3_out_0_V <= ((ap_sync_reg_channel_write_layer3_out_0_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_10_V <= ((ap_sync_reg_channel_write_layer3_out_10_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_11_V <= ((ap_sync_reg_channel_write_layer3_out_11_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_12_V <= ((ap_sync_reg_channel_write_layer3_out_12_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_13_V <= ((ap_sync_reg_channel_write_layer3_out_13_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_14_V <= ((ap_sync_reg_channel_write_layer3_out_14_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_15_V <= ((ap_sync_reg_channel_write_layer3_out_15_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_16_V <= ((ap_sync_reg_channel_write_layer3_out_16_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_17_V <= ((ap_sync_reg_channel_write_layer3_out_17_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_18_V <= ((ap_sync_reg_channel_write_layer3_out_18_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_19_V <= ((ap_sync_reg_channel_write_layer3_out_19_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_1_V <= ((ap_sync_reg_channel_write_layer3_out_1_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_20_V <= ((ap_sync_reg_channel_write_layer3_out_20_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_21_V <= ((ap_sync_reg_channel_write_layer3_out_21_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_22_V <= ((ap_sync_reg_channel_write_layer3_out_22_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_23_V <= ((ap_sync_reg_channel_write_layer3_out_23_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_24_V <= ((ap_sync_reg_channel_write_layer3_out_24_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_25_V <= ((ap_sync_reg_channel_write_layer3_out_25_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_26_V <= ((ap_sync_reg_channel_write_layer3_out_26_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_27_V <= ((ap_sync_reg_channel_write_layer3_out_27_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_28_V <= ((ap_sync_reg_channel_write_layer3_out_28_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_29_V <= ((ap_sync_reg_channel_write_layer3_out_29_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_2_V <= ((ap_sync_reg_channel_write_layer3_out_2_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_30_V <= ((ap_sync_reg_channel_write_layer3_out_30_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_31_V <= ((ap_sync_reg_channel_write_layer3_out_31_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_32_V <= ((ap_sync_reg_channel_write_layer3_out_32_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_33_V <= ((ap_sync_reg_channel_write_layer3_out_33_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_34_V <= ((ap_sync_reg_channel_write_layer3_out_34_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_35_V <= ((ap_sync_reg_channel_write_layer3_out_35_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_36_V <= ((ap_sync_reg_channel_write_layer3_out_36_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_37_V <= ((ap_sync_reg_channel_write_layer3_out_37_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_38_V <= ((ap_sync_reg_channel_write_layer3_out_38_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_39_V <= ((ap_sync_reg_channel_write_layer3_out_39_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_3_V <= ((ap_sync_reg_channel_write_layer3_out_3_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_40_V <= ((ap_sync_reg_channel_write_layer3_out_40_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_41_V <= ((ap_sync_reg_channel_write_layer3_out_41_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_42_V <= ((ap_sync_reg_channel_write_layer3_out_42_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_43_V <= ((ap_sync_reg_channel_write_layer3_out_43_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_44_V <= ((ap_sync_reg_channel_write_layer3_out_44_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_45_V <= ((ap_sync_reg_channel_write_layer3_out_45_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_46_V <= ((ap_sync_reg_channel_write_layer3_out_46_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_47_V <= ((ap_sync_reg_channel_write_layer3_out_47_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_48_V <= ((ap_sync_reg_channel_write_layer3_out_48_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_49_V <= ((ap_sync_reg_channel_write_layer3_out_49_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_4_V <= ((ap_sync_reg_channel_write_layer3_out_4_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_5_V <= ((ap_sync_reg_channel_write_layer3_out_5_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_6_V <= ((ap_sync_reg_channel_write_layer3_out_6_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_7_V <= ((ap_sync_reg_channel_write_layer3_out_7_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_8_V <= ((ap_sync_reg_channel_write_layer3_out_8_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer3_out_9_V <= ((ap_sync_reg_channel_write_layer3_out_9_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_done);
-    ap_channel_done_layer4_out_0_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_0_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_10_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_10_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_11_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_11_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_12_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_12_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_13_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_13_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_14_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_14_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_15_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_15_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_16_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_16_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_17_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_17_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_18_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_18_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_19_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_19_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_1_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_1_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_20_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_20_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_21_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_21_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_22_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_22_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_23_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_23_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_24_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_24_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_25_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_25_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_26_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_26_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_27_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_27_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_28_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_28_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_29_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_29_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_2_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_2_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_30_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_30_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_31_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_31_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_32_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_32_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_33_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_33_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_34_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_34_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_35_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_35_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_36_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_36_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_37_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_37_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_38_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_38_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_39_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_39_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_3_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_3_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_40_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_40_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_41_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_41_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_42_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_42_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_43_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_43_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_44_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_44_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_45_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_45_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_46_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_46_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_47_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_47_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_48_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_48_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_49_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_49_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_4_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_4_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_5_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_5_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_6_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_6_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_7_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_7_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_8_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_8_V xor ap_const_logic_1));
-    ap_channel_done_layer4_out_9_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_9_V xor ap_const_logic_1));
-    ap_channel_done_layer5_out_0_V <= ((ap_sync_reg_channel_write_layer5_out_0_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer5_out_1_V <= ((ap_sync_reg_channel_write_layer5_out_1_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer5_out_2_V <= ((ap_sync_reg_channel_write_layer5_out_2_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer5_out_3_V <= ((ap_sync_reg_channel_write_layer5_out_3_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer5_out_4_V <= ((ap_sync_reg_channel_write_layer5_out_4_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer5_out_5_V <= ((ap_sync_reg_channel_write_layer5_out_5_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer5_out_6_V <= ((ap_sync_reg_channel_write_layer5_out_6_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer5_out_7_V <= ((ap_sync_reg_channel_write_layer5_out_7_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer5_out_8_V <= ((ap_sync_reg_channel_write_layer5_out_8_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer5_out_9_V <= ((ap_sync_reg_channel_write_layer5_out_9_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_done);
-    ap_channel_done_layer6_out_0_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_0_V xor ap_const_logic_1));
-    ap_channel_done_layer6_out_1_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_1_V xor ap_const_logic_1));
-    ap_channel_done_layer6_out_2_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_2_V xor ap_const_logic_1));
-    ap_channel_done_layer6_out_3_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_3_V xor ap_const_logic_1));
-    ap_channel_done_layer6_out_4_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_4_V xor ap_const_logic_1));
-    ap_channel_done_layer6_out_5_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_5_V xor ap_const_logic_1));
-    ap_channel_done_layer6_out_6_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_6_V xor ap_const_logic_1));
-    ap_channel_done_layer6_out_7_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_7_V xor ap_const_logic_1));
-    ap_channel_done_layer6_out_8_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_8_V xor ap_const_logic_1));
-    ap_channel_done_layer6_out_9_V <= (relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_9_V xor ap_const_logic_1));
-    ap_channel_done_layer7_out_0_V <= ((ap_sync_reg_channel_write_layer7_out_0_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_done);
-    ap_channel_done_layer7_out_1_V <= ((ap_sync_reg_channel_write_layer7_out_1_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_done);
-    ap_channel_done_layer7_out_2_V <= ((ap_sync_reg_channel_write_layer7_out_2_V xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_done);
-    ap_done <= softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_done;
-    ap_idle <= (softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_idle and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_idle and relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_idle and gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_idle and (layer7_out_2_V_empty_n xor ap_const_logic_1) and (layer7_out_1_V_empty_n xor ap_const_logic_1) and (layer7_out_0_V_empty_n xor ap_const_logic_1) and (layer6_out_9_V_empty_n xor ap_const_logic_1) and (layer6_out_8_V_empty_n xor ap_const_logic_1) and (layer6_out_7_V_empty_n xor ap_const_logic_1) and (layer6_out_6_V_empty_n xor ap_const_logic_1) and (layer6_out_5_V_empty_n xor ap_const_logic_1) and (layer6_out_4_V_empty_n xor ap_const_logic_1) and (layer6_out_3_V_empty_n xor ap_const_logic_1) and (layer6_out_2_V_empty_n xor ap_const_logic_1) and (layer6_out_1_V_empty_n xor ap_const_logic_1) and (layer6_out_0_V_empty_n xor ap_const_logic_1) and (layer5_out_9_V_empty_n xor ap_const_logic_1) and (layer5_out_8_V_empty_n xor ap_const_logic_1) and (layer5_out_7_V_empty_n xor ap_const_logic_1) and (layer5_out_6_V_empty_n xor ap_const_logic_1) and (layer5_out_5_V_empty_n xor ap_const_logic_1) and (layer5_out_4_V_empty_n xor ap_const_logic_1) and (layer5_out_3_V_empty_n xor ap_const_logic_1) and (layer5_out_2_V_empty_n xor ap_const_logic_1) and (layer5_out_1_V_empty_n xor ap_const_logic_1) and (layer5_out_0_V_empty_n xor ap_const_logic_1) and (layer4_out_49_V_empty_n xor ap_const_logic_1) and (layer4_out_48_V_empty_n xor ap_const_logic_1) and (layer4_out_47_V_empty_n xor ap_const_logic_1) and (layer4_out_46_V_empty_n xor ap_const_logic_1) and (layer4_out_45_V_empty_n xor ap_const_logic_1) and (layer4_out_44_V_empty_n xor ap_const_logic_1) and (layer4_out_43_V_empty_n xor ap_const_logic_1) and (layer4_out_42_V_empty_n xor ap_const_logic_1) and (layer4_out_41_V_empty_n xor ap_const_logic_1) and (layer4_out_40_V_empty_n xor ap_const_logic_1) and (layer4_out_39_V_empty_n xor ap_const_logic_1) and (layer4_out_38_V_empty_n xor ap_const_logic_1) and (layer4_out_37_V_empty_n xor ap_const_logic_1) and (layer4_out_36_V_empty_n xor ap_const_logic_1) and (layer4_out_35_V_empty_n xor ap_const_logic_1) and (layer4_out_34_V_empty_n xor ap_const_logic_1) and (layer4_out_33_V_empty_n xor ap_const_logic_1) and (layer4_out_32_V_empty_n xor ap_const_logic_1) and (layer4_out_31_V_empty_n xor ap_const_logic_1) and (layer4_out_30_V_empty_n xor ap_const_logic_1) and (layer4_out_29_V_empty_n xor ap_const_logic_1) and (layer4_out_28_V_empty_n xor ap_const_logic_1) and (layer4_out_27_V_empty_n xor ap_const_logic_1) and (layer4_out_26_V_empty_n xor ap_const_logic_1) and (layer4_out_25_V_empty_n xor ap_const_logic_1) and (layer4_out_24_V_empty_n xor ap_const_logic_1) and (layer4_out_23_V_empty_n xor ap_const_logic_1) and (layer4_out_22_V_empty_n xor ap_const_logic_1) and (layer4_out_21_V_empty_n xor ap_const_logic_1) and (layer4_out_20_V_empty_n xor ap_const_logic_1) and (layer4_out_19_V_empty_n xor ap_const_logic_1) and (layer4_out_18_V_empty_n xor ap_const_logic_1) and (layer4_out_17_V_empty_n xor ap_const_logic_1) and (layer4_out_16_V_empty_n xor ap_const_logic_1) and (layer4_out_15_V_empty_n xor ap_const_logic_1) and (layer4_out_14_V_empty_n xor ap_const_logic_1) and (layer4_out_13_V_empty_n xor ap_const_logic_1) and (layer4_out_12_V_empty_n xor ap_const_logic_1) and (layer4_out_11_V_empty_n xor ap_const_logic_1) and (layer4_out_10_V_empty_n xor ap_const_logic_1) and (layer4_out_9_V_empty_n xor ap_const_logic_1) and (layer4_out_8_V_empty_n xor ap_const_logic_1) and (layer4_out_7_V_empty_n xor ap_const_logic_1) and (layer4_out_6_V_empty_n xor ap_const_logic_1) and (layer4_out_5_V_empty_n xor ap_const_logic_1) and (layer4_out_4_V_empty_n xor ap_const_logic_1) and (layer4_out_3_V_empty_n xor ap_const_logic_1) and (layer4_out_2_V_empty_n xor ap_const_logic_1) and (layer4_out_1_V_empty_n xor ap_const_logic_1) and (layer4_out_0_V_empty_n xor ap_const_logic_1) and (layer3_out_49_V_empty_n xor ap_const_logic_1) and (layer3_out_48_V_empty_n xor ap_const_logic_1) and (layer3_out_47_V_empty_n xor ap_const_logic_1) and (layer3_out_46_V_empty_n xor ap_const_logic_1) and (layer3_out_45_V_empty_n xor ap_const_logic_1) and (layer3_out_44_V_empty_n xor ap_const_logic_1) and (layer3_out_43_V_empty_n xor ap_const_logic_1) and (layer3_out_42_V_empty_n xor ap_const_logic_1) and (layer3_out_41_V_empty_n xor ap_const_logic_1) and (layer3_out_40_V_empty_n xor ap_const_logic_1) and (layer3_out_39_V_empty_n xor ap_const_logic_1) and (layer3_out_38_V_empty_n xor ap_const_logic_1) and (layer3_out_37_V_empty_n xor ap_const_logic_1) and (layer3_out_36_V_empty_n xor ap_const_logic_1) and (layer3_out_35_V_empty_n xor ap_const_logic_1) and (layer3_out_34_V_empty_n xor ap_const_logic_1) and (layer3_out_33_V_empty_n xor ap_const_logic_1) and (layer3_out_32_V_empty_n xor ap_const_logic_1) and (layer3_out_31_V_empty_n xor ap_const_logic_1) and (layer3_out_30_V_empty_n xor ap_const_logic_1) and (layer3_out_29_V_empty_n xor ap_const_logic_1) and (layer3_out_28_V_empty_n xor ap_const_logic_1) and (layer3_out_27_V_empty_n xor ap_const_logic_1) and (layer3_out_26_V_empty_n xor ap_const_logic_1) and (layer3_out_25_V_empty_n xor ap_const_logic_1) and (layer3_out_24_V_empty_n xor ap_const_logic_1) and (layer3_out_23_V_empty_n xor ap_const_logic_1) and (layer3_out_22_V_empty_n xor ap_const_logic_1) and (layer3_out_21_V_empty_n xor ap_const_logic_1) and (layer3_out_20_V_empty_n xor ap_const_logic_1) and (layer3_out_19_V_empty_n xor ap_const_logic_1) and (layer3_out_18_V_empty_n xor ap_const_logic_1) and (layer3_out_17_V_empty_n xor ap_const_logic_1) and (layer3_out_16_V_empty_n xor ap_const_logic_1) and (layer3_out_15_V_empty_n xor ap_const_logic_1) and (layer3_out_14_V_empty_n xor ap_const_logic_1) and (layer3_out_13_V_empty_n xor ap_const_logic_1) and (layer3_out_12_V_empty_n xor ap_const_logic_1) and (layer3_out_11_V_empty_n xor ap_const_logic_1) and (layer3_out_10_V_empty_n xor ap_const_logic_1) and (layer3_out_9_V_empty_n xor ap_const_logic_1) and (layer3_out_8_V_empty_n xor ap_const_logic_1) and (layer3_out_7_V_empty_n xor ap_const_logic_1) and (layer3_out_6_V_empty_n xor ap_const_logic_1) and (layer3_out_5_V_empty_n xor ap_const_logic_1) and (layer3_out_4_V_empty_n xor ap_const_logic_1) and (layer3_out_3_V_empty_n xor ap_const_logic_1) and (layer3_out_2_V_empty_n xor ap_const_logic_1) and (layer3_out_1_V_empty_n xor ap_const_logic_1) and (layer3_out_0_V_empty_n xor ap_const_logic_1) and (layer2_out_119_V_empty_n xor ap_const_logic_1) and (layer2_out_118_V_empty_n xor ap_const_logic_1) and (layer2_out_117_V_empty_n xor ap_const_logic_1) and (layer2_out_116_V_empty_n xor ap_const_logic_1) and (layer2_out_115_V_empty_n xor ap_const_logic_1) and (layer2_out_114_V_empty_n xor ap_const_logic_1) and (layer2_out_113_V_empty_n xor ap_const_logic_1) and (layer2_out_112_V_empty_n xor ap_const_logic_1) and (layer2_out_111_V_empty_n xor ap_const_logic_1) and (layer2_out_110_V_empty_n xor ap_const_logic_1) and (layer2_out_109_V_empty_n xor ap_const_logic_1) and (layer2_out_108_V_empty_n xor ap_const_logic_1) and (layer2_out_107_V_empty_n xor ap_const_logic_1) and (layer2_out_106_V_empty_n xor ap_const_logic_1) and (layer2_out_105_V_empty_n xor ap_const_logic_1) and (layer2_out_104_V_empty_n xor ap_const_logic_1) and (layer2_out_103_V_empty_n xor ap_const_logic_1) and (layer2_out_102_V_empty_n xor ap_const_logic_1) and (layer2_out_101_V_empty_n xor ap_const_logic_1) and (layer2_out_100_V_empty_n xor ap_const_logic_1) and (layer2_out_99_V_empty_n xor ap_const_logic_1) and (layer2_out_98_V_empty_n xor ap_const_logic_1) and (layer2_out_97_V_empty_n xor ap_const_logic_1) and (layer2_out_96_V_empty_n xor ap_const_logic_1) and (layer2_out_95_V_empty_n xor ap_const_logic_1) and (layer2_out_94_V_empty_n xor ap_const_logic_1) and (layer2_out_93_V_empty_n xor ap_const_logic_1) and (layer2_out_92_V_empty_n xor ap_const_logic_1) and (layer2_out_91_V_empty_n xor ap_const_logic_1) and (layer2_out_90_V_empty_n xor ap_const_logic_1) and (layer2_out_89_V_empty_n xor ap_const_logic_1) and (layer2_out_88_V_empty_n xor ap_const_logic_1) and (layer2_out_87_V_empty_n xor ap_const_logic_1) and (layer2_out_86_V_empty_n xor ap_const_logic_1) and (layer2_out_85_V_empty_n xor ap_const_logic_1) and (layer2_out_84_V_empty_n xor ap_const_logic_1) and (layer2_out_83_V_empty_n xor ap_const_logic_1) and (layer2_out_82_V_empty_n xor ap_const_logic_1) and (layer2_out_81_V_empty_n xor ap_const_logic_1) and (layer2_out_80_V_empty_n xor ap_const_logic_1) and (layer2_out_79_V_empty_n xor ap_const_logic_1) and (layer2_out_78_V_empty_n xor ap_const_logic_1) and (layer2_out_77_V_empty_n xor ap_const_logic_1) and (layer2_out_76_V_empty_n xor ap_const_logic_1) and (layer2_out_75_V_empty_n xor ap_const_logic_1) and (layer2_out_74_V_empty_n xor ap_const_logic_1) and (layer2_out_73_V_empty_n xor ap_const_logic_1) and (layer2_out_72_V_empty_n xor ap_const_logic_1) and (layer2_out_71_V_empty_n xor ap_const_logic_1) and (layer2_out_70_V_empty_n xor ap_const_logic_1) and (layer2_out_69_V_empty_n xor ap_const_logic_1) and (layer2_out_68_V_empty_n xor ap_const_logic_1) and (layer2_out_67_V_empty_n xor ap_const_logic_1) and (layer2_out_66_V_empty_n xor ap_const_logic_1) and (layer2_out_65_V_empty_n xor ap_const_logic_1) and (layer2_out_64_V_empty_n xor ap_const_logic_1) and (layer2_out_63_V_empty_n xor ap_const_logic_1) and (layer2_out_62_V_empty_n xor ap_const_logic_1) and (layer2_out_61_V_empty_n xor ap_const_logic_1) and (layer2_out_60_V_empty_n xor ap_const_logic_1) and (layer2_out_59_V_empty_n xor ap_const_logic_1) and (layer2_out_58_V_empty_n xor ap_const_logic_1) and (layer2_out_57_V_empty_n xor ap_const_logic_1) and (layer2_out_56_V_empty_n xor ap_const_logic_1) and (layer2_out_55_V_empty_n xor ap_const_logic_1) and (layer2_out_54_V_empty_n xor ap_const_logic_1) and (layer2_out_53_V_empty_n xor ap_const_logic_1) and (layer2_out_52_V_empty_n xor ap_const_logic_1) and (layer2_out_51_V_empty_n xor ap_const_logic_1) and (layer2_out_50_V_empty_n xor ap_const_logic_1) and (layer2_out_49_V_empty_n xor ap_const_logic_1) and (layer2_out_48_V_empty_n xor ap_const_logic_1) and (layer2_out_47_V_empty_n xor ap_const_logic_1) and (layer2_out_46_V_empty_n xor ap_const_logic_1) and (layer2_out_45_V_empty_n xor ap_const_logic_1) and (layer2_out_44_V_empty_n xor ap_const_logic_1) and (layer2_out_43_V_empty_n xor ap_const_logic_1) and (layer2_out_42_V_empty_n xor ap_const_logic_1) and (layer2_out_41_V_empty_n xor ap_const_logic_1) and (layer2_out_40_V_empty_n xor ap_const_logic_1) and (layer2_out_39_V_empty_n xor ap_const_logic_1) and (layer2_out_38_V_empty_n xor ap_const_logic_1) and (layer2_out_37_V_empty_n xor ap_const_logic_1) and (layer2_out_36_V_empty_n xor ap_const_logic_1) and (layer2_out_35_V_empty_n xor ap_const_logic_1) and (layer2_out_34_V_empty_n xor ap_const_logic_1) and (layer2_out_33_V_empty_n xor ap_const_logic_1) and (layer2_out_32_V_empty_n xor ap_const_logic_1) and (layer2_out_31_V_empty_n xor ap_const_logic_1) and (layer2_out_30_V_empty_n xor ap_const_logic_1) and (layer2_out_29_V_empty_n xor ap_const_logic_1) and (layer2_out_28_V_empty_n xor ap_const_logic_1) and (layer2_out_27_V_empty_n xor ap_const_logic_1) and (layer2_out_26_V_empty_n xor ap_const_logic_1) and (layer2_out_25_V_empty_n xor ap_const_logic_1) and (layer2_out_24_V_empty_n xor ap_const_logic_1) and (layer2_out_23_V_empty_n xor ap_const_logic_1) and (layer2_out_22_V_empty_n xor ap_const_logic_1) and (layer2_out_21_V_empty_n xor ap_const_logic_1) and (layer2_out_20_V_empty_n xor ap_const_logic_1) and (layer2_out_19_V_empty_n xor ap_const_logic_1) and (layer2_out_18_V_empty_n xor ap_const_logic_1) and (layer2_out_17_V_empty_n xor ap_const_logic_1) and (layer2_out_16_V_empty_n xor ap_const_logic_1) and (layer2_out_15_V_empty_n xor ap_const_logic_1) and (layer2_out_14_V_empty_n xor ap_const_logic_1) and (layer2_out_13_V_empty_n xor ap_const_logic_1) and (layer2_out_12_V_empty_n xor ap_const_logic_1) and (layer2_out_11_V_empty_n xor ap_const_logic_1) and (layer2_out_10_V_empty_n xor ap_const_logic_1) and (layer2_out_9_V_empty_n xor ap_const_logic_1) and (layer2_out_8_V_empty_n xor ap_const_logic_1) and (layer2_out_7_V_empty_n xor ap_const_logic_1) and (layer2_out_6_V_empty_n xor ap_const_logic_1) and (layer2_out_5_V_empty_n xor ap_const_logic_1) and (layer2_out_4_V_empty_n xor ap_const_logic_1) and (layer2_out_3_V_empty_n xor ap_const_logic_1) and (layer2_out_2_V_empty_n xor ap_const_logic_1) and (layer2_out_1_V_empty_n xor ap_const_logic_1) and (layer2_out_0_V_empty_n xor ap_const_logic_1) and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_idle and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_idle and dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_idle);
-    ap_ready <= gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_ready;
+    ap_channel_done_layer2_out_0_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_0_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_100_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_100_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_101_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_101_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_102_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_102_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_103_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_103_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_104_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_104_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_105_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_105_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_106_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_106_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_107_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_107_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_108_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_108_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_109_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_109_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_10_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_10_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_110_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_110_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_111_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_111_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_112_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_112_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_113_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_113_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_114_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_114_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_115_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_115_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_116_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_116_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_117_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_117_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_118_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_118_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_119_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_119_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_11_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_11_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_12_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_12_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_13_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_13_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_14_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_14_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_15_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_15_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_16_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_16_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_17_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_17_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_18_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_18_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_19_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_19_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_1_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_1_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_20_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_20_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_21_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_21_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_22_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_22_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_23_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_23_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_24_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_24_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_25_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_25_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_26_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_26_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_27_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_27_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_28_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_28_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_29_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_29_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_2_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_2_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_30_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_30_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_31_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_31_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_32_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_32_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_33_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_33_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_34_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_34_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_35_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_35_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_36_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_36_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_37_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_37_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_38_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_38_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_39_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_39_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_3_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_3_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_40_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_40_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_41_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_41_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_42_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_42_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_43_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_43_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_44_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_44_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_45_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_45_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_46_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_46_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_47_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_47_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_48_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_48_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_49_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_49_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_4_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_4_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_50_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_50_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_51_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_51_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_52_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_52_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_53_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_53_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_54_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_54_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_55_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_55_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_56_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_56_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_57_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_57_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_58_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_58_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_59_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_59_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_5_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_5_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_60_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_60_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_61_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_61_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_62_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_62_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_63_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_63_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_64_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_64_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_65_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_65_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_66_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_66_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_67_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_67_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_68_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_68_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_69_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_69_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_6_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_6_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_70_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_70_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_71_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_71_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_72_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_72_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_73_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_73_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_74_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_74_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_75_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_75_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_76_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_76_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_77_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_77_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_78_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_78_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_79_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_79_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_7_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_7_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_80_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_80_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_81_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_81_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_82_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_82_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_83_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_83_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_84_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_84_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_85_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_85_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_86_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_86_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_87_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_87_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_88_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_88_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_89_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_89_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_8_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_8_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_90_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_90_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_91_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_91_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_92_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_92_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_93_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_93_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_94_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_94_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_95_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_95_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_96_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_96_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_97_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_97_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_98_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_98_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_99_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_99_V xor ap_const_logic_1));
+    ap_channel_done_layer2_out_9_V <= (gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_done and (ap_sync_reg_channel_write_layer2_out_9_V xor ap_const_logic_1));
+    ap_channel_done_layer3_out_0_V <= ((ap_sync_reg_channel_write_layer3_out_0_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_10_V <= ((ap_sync_reg_channel_write_layer3_out_10_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_11_V <= ((ap_sync_reg_channel_write_layer3_out_11_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_12_V <= ((ap_sync_reg_channel_write_layer3_out_12_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_13_V <= ((ap_sync_reg_channel_write_layer3_out_13_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_14_V <= ((ap_sync_reg_channel_write_layer3_out_14_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_15_V <= ((ap_sync_reg_channel_write_layer3_out_15_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_16_V <= ((ap_sync_reg_channel_write_layer3_out_16_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_17_V <= ((ap_sync_reg_channel_write_layer3_out_17_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_18_V <= ((ap_sync_reg_channel_write_layer3_out_18_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_19_V <= ((ap_sync_reg_channel_write_layer3_out_19_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_1_V <= ((ap_sync_reg_channel_write_layer3_out_1_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_20_V <= ((ap_sync_reg_channel_write_layer3_out_20_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_21_V <= ((ap_sync_reg_channel_write_layer3_out_21_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_22_V <= ((ap_sync_reg_channel_write_layer3_out_22_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_23_V <= ((ap_sync_reg_channel_write_layer3_out_23_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_24_V <= ((ap_sync_reg_channel_write_layer3_out_24_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_25_V <= ((ap_sync_reg_channel_write_layer3_out_25_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_26_V <= ((ap_sync_reg_channel_write_layer3_out_26_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_27_V <= ((ap_sync_reg_channel_write_layer3_out_27_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_28_V <= ((ap_sync_reg_channel_write_layer3_out_28_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_29_V <= ((ap_sync_reg_channel_write_layer3_out_29_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_2_V <= ((ap_sync_reg_channel_write_layer3_out_2_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_30_V <= ((ap_sync_reg_channel_write_layer3_out_30_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_31_V <= ((ap_sync_reg_channel_write_layer3_out_31_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_32_V <= ((ap_sync_reg_channel_write_layer3_out_32_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_33_V <= ((ap_sync_reg_channel_write_layer3_out_33_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_34_V <= ((ap_sync_reg_channel_write_layer3_out_34_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_35_V <= ((ap_sync_reg_channel_write_layer3_out_35_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_36_V <= ((ap_sync_reg_channel_write_layer3_out_36_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_37_V <= ((ap_sync_reg_channel_write_layer3_out_37_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_38_V <= ((ap_sync_reg_channel_write_layer3_out_38_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_39_V <= ((ap_sync_reg_channel_write_layer3_out_39_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_3_V <= ((ap_sync_reg_channel_write_layer3_out_3_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_40_V <= ((ap_sync_reg_channel_write_layer3_out_40_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_41_V <= ((ap_sync_reg_channel_write_layer3_out_41_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_42_V <= ((ap_sync_reg_channel_write_layer3_out_42_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_43_V <= ((ap_sync_reg_channel_write_layer3_out_43_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_44_V <= ((ap_sync_reg_channel_write_layer3_out_44_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_45_V <= ((ap_sync_reg_channel_write_layer3_out_45_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_46_V <= ((ap_sync_reg_channel_write_layer3_out_46_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_47_V <= ((ap_sync_reg_channel_write_layer3_out_47_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_48_V <= ((ap_sync_reg_channel_write_layer3_out_48_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_49_V <= ((ap_sync_reg_channel_write_layer3_out_49_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_4_V <= ((ap_sync_reg_channel_write_layer3_out_4_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_5_V <= ((ap_sync_reg_channel_write_layer3_out_5_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_6_V <= ((ap_sync_reg_channel_write_layer3_out_6_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_7_V <= ((ap_sync_reg_channel_write_layer3_out_7_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_8_V <= ((ap_sync_reg_channel_write_layer3_out_8_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer3_out_9_V <= ((ap_sync_reg_channel_write_layer3_out_9_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_done);
+    ap_channel_done_layer4_out_0_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_0_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_10_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_10_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_11_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_11_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_12_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_12_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_13_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_13_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_14_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_14_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_15_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_15_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_16_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_16_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_17_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_17_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_18_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_18_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_19_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_19_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_1_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_1_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_20_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_20_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_21_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_21_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_22_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_22_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_23_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_23_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_24_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_24_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_25_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_25_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_26_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_26_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_27_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_27_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_28_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_28_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_29_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_29_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_2_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_2_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_30_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_30_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_31_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_31_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_32_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_32_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_33_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_33_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_34_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_34_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_35_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_35_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_36_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_36_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_37_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_37_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_38_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_38_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_39_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_39_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_3_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_3_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_40_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_40_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_41_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_41_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_42_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_42_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_43_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_43_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_44_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_44_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_45_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_45_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_46_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_46_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_47_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_47_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_48_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_48_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_49_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_49_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_4_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_4_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_5_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_5_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_6_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_6_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_7_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_7_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_8_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_8_V xor ap_const_logic_1));
+    ap_channel_done_layer4_out_9_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_done and (ap_sync_reg_channel_write_layer4_out_9_V xor ap_const_logic_1));
+    ap_channel_done_layer5_out_0_V <= ((ap_sync_reg_channel_write_layer5_out_0_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer5_out_1_V <= ((ap_sync_reg_channel_write_layer5_out_1_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer5_out_2_V <= ((ap_sync_reg_channel_write_layer5_out_2_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer5_out_3_V <= ((ap_sync_reg_channel_write_layer5_out_3_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer5_out_4_V <= ((ap_sync_reg_channel_write_layer5_out_4_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer5_out_5_V <= ((ap_sync_reg_channel_write_layer5_out_5_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer5_out_6_V <= ((ap_sync_reg_channel_write_layer5_out_6_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer5_out_7_V <= ((ap_sync_reg_channel_write_layer5_out_7_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer5_out_8_V <= ((ap_sync_reg_channel_write_layer5_out_8_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer5_out_9_V <= ((ap_sync_reg_channel_write_layer5_out_9_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_done);
+    ap_channel_done_layer6_out_0_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_0_V xor ap_const_logic_1));
+    ap_channel_done_layer6_out_1_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_1_V xor ap_const_logic_1));
+    ap_channel_done_layer6_out_2_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_2_V xor ap_const_logic_1));
+    ap_channel_done_layer6_out_3_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_3_V xor ap_const_logic_1));
+    ap_channel_done_layer6_out_4_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_4_V xor ap_const_logic_1));
+    ap_channel_done_layer6_out_5_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_5_V xor ap_const_logic_1));
+    ap_channel_done_layer6_out_6_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_6_V xor ap_const_logic_1));
+    ap_channel_done_layer6_out_7_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_7_V xor ap_const_logic_1));
+    ap_channel_done_layer6_out_8_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_8_V xor ap_const_logic_1));
+    ap_channel_done_layer6_out_9_V <= (relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_done and (ap_sync_reg_channel_write_layer6_out_9_V xor ap_const_logic_1));
+    ap_channel_done_layer7_out_0_V <= ((ap_sync_reg_channel_write_layer7_out_0_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_done);
+    ap_channel_done_layer7_out_1_V <= ((ap_sync_reg_channel_write_layer7_out_1_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_done);
+    ap_channel_done_layer7_out_2_V <= ((ap_sync_reg_channel_write_layer7_out_2_V xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_done);
+    ap_done <= softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_done;
+    ap_idle <= (softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_idle and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_idle and relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_idle and gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_idle and (layer7_out_2_V_empty_n xor ap_const_logic_1) and (layer7_out_1_V_empty_n xor ap_const_logic_1) and (layer7_out_0_V_empty_n xor ap_const_logic_1) and (layer6_out_9_V_empty_n xor ap_const_logic_1) and (layer6_out_8_V_empty_n xor ap_const_logic_1) and (layer6_out_7_V_empty_n xor ap_const_logic_1) and (layer6_out_6_V_empty_n xor ap_const_logic_1) and (layer6_out_5_V_empty_n xor ap_const_logic_1) and (layer6_out_4_V_empty_n xor ap_const_logic_1) and (layer6_out_3_V_empty_n xor ap_const_logic_1) and (layer6_out_2_V_empty_n xor ap_const_logic_1) and (layer6_out_1_V_empty_n xor ap_const_logic_1) and (layer6_out_0_V_empty_n xor ap_const_logic_1) and (layer5_out_9_V_empty_n xor ap_const_logic_1) and (layer5_out_8_V_empty_n xor ap_const_logic_1) and (layer5_out_7_V_empty_n xor ap_const_logic_1) and (layer5_out_6_V_empty_n xor ap_const_logic_1) and (layer5_out_5_V_empty_n xor ap_const_logic_1) and (layer5_out_4_V_empty_n xor ap_const_logic_1) and (layer5_out_3_V_empty_n xor ap_const_logic_1) and (layer5_out_2_V_empty_n xor ap_const_logic_1) and (layer5_out_1_V_empty_n xor ap_const_logic_1) and (layer5_out_0_V_empty_n xor ap_const_logic_1) and (layer4_out_49_V_empty_n xor ap_const_logic_1) and (layer4_out_48_V_empty_n xor ap_const_logic_1) and (layer4_out_47_V_empty_n xor ap_const_logic_1) and (layer4_out_46_V_empty_n xor ap_const_logic_1) and (layer4_out_45_V_empty_n xor ap_const_logic_1) and (layer4_out_44_V_empty_n xor ap_const_logic_1) and (layer4_out_43_V_empty_n xor ap_const_logic_1) and (layer4_out_42_V_empty_n xor ap_const_logic_1) and (layer4_out_41_V_empty_n xor ap_const_logic_1) and (layer4_out_40_V_empty_n xor ap_const_logic_1) and (layer4_out_39_V_empty_n xor ap_const_logic_1) and (layer4_out_38_V_empty_n xor ap_const_logic_1) and (layer4_out_37_V_empty_n xor ap_const_logic_1) and (layer4_out_36_V_empty_n xor ap_const_logic_1) and (layer4_out_35_V_empty_n xor ap_const_logic_1) and (layer4_out_34_V_empty_n xor ap_const_logic_1) and (layer4_out_33_V_empty_n xor ap_const_logic_1) and (layer4_out_32_V_empty_n xor ap_const_logic_1) and (layer4_out_31_V_empty_n xor ap_const_logic_1) and (layer4_out_30_V_empty_n xor ap_const_logic_1) and (layer4_out_29_V_empty_n xor ap_const_logic_1) and (layer4_out_28_V_empty_n xor ap_const_logic_1) and (layer4_out_27_V_empty_n xor ap_const_logic_1) and (layer4_out_26_V_empty_n xor ap_const_logic_1) and (layer4_out_25_V_empty_n xor ap_const_logic_1) and (layer4_out_24_V_empty_n xor ap_const_logic_1) and (layer4_out_23_V_empty_n xor ap_const_logic_1) and (layer4_out_22_V_empty_n xor ap_const_logic_1) and (layer4_out_21_V_empty_n xor ap_const_logic_1) and (layer4_out_20_V_empty_n xor ap_const_logic_1) and (layer4_out_19_V_empty_n xor ap_const_logic_1) and (layer4_out_18_V_empty_n xor ap_const_logic_1) and (layer4_out_17_V_empty_n xor ap_const_logic_1) and (layer4_out_16_V_empty_n xor ap_const_logic_1) and (layer4_out_15_V_empty_n xor ap_const_logic_1) and (layer4_out_14_V_empty_n xor ap_const_logic_1) and (layer4_out_13_V_empty_n xor ap_const_logic_1) and (layer4_out_12_V_empty_n xor ap_const_logic_1) and (layer4_out_11_V_empty_n xor ap_const_logic_1) and (layer4_out_10_V_empty_n xor ap_const_logic_1) and (layer4_out_9_V_empty_n xor ap_const_logic_1) and (layer4_out_8_V_empty_n xor ap_const_logic_1) and (layer4_out_7_V_empty_n xor ap_const_logic_1) and (layer4_out_6_V_empty_n xor ap_const_logic_1) and (layer4_out_5_V_empty_n xor ap_const_logic_1) and (layer4_out_4_V_empty_n xor ap_const_logic_1) and (layer4_out_3_V_empty_n xor ap_const_logic_1) and (layer4_out_2_V_empty_n xor ap_const_logic_1) and (layer4_out_1_V_empty_n xor ap_const_logic_1) and (layer4_out_0_V_empty_n xor ap_const_logic_1) and (layer3_out_49_V_empty_n xor ap_const_logic_1) and (layer3_out_48_V_empty_n xor ap_const_logic_1) and (layer3_out_47_V_empty_n xor ap_const_logic_1) and (layer3_out_46_V_empty_n xor ap_const_logic_1) and (layer3_out_45_V_empty_n xor ap_const_logic_1) and (layer3_out_44_V_empty_n xor ap_const_logic_1) and (layer3_out_43_V_empty_n xor ap_const_logic_1) and (layer3_out_42_V_empty_n xor ap_const_logic_1) and (layer3_out_41_V_empty_n xor ap_const_logic_1) and (layer3_out_40_V_empty_n xor ap_const_logic_1) and (layer3_out_39_V_empty_n xor ap_const_logic_1) and (layer3_out_38_V_empty_n xor ap_const_logic_1) and (layer3_out_37_V_empty_n xor ap_const_logic_1) and (layer3_out_36_V_empty_n xor ap_const_logic_1) and (layer3_out_35_V_empty_n xor ap_const_logic_1) and (layer3_out_34_V_empty_n xor ap_const_logic_1) and (layer3_out_33_V_empty_n xor ap_const_logic_1) and (layer3_out_32_V_empty_n xor ap_const_logic_1) and (layer3_out_31_V_empty_n xor ap_const_logic_1) and (layer3_out_30_V_empty_n xor ap_const_logic_1) and (layer3_out_29_V_empty_n xor ap_const_logic_1) and (layer3_out_28_V_empty_n xor ap_const_logic_1) and (layer3_out_27_V_empty_n xor ap_const_logic_1) and (layer3_out_26_V_empty_n xor ap_const_logic_1) and (layer3_out_25_V_empty_n xor ap_const_logic_1) and (layer3_out_24_V_empty_n xor ap_const_logic_1) and (layer3_out_23_V_empty_n xor ap_const_logic_1) and (layer3_out_22_V_empty_n xor ap_const_logic_1) and (layer3_out_21_V_empty_n xor ap_const_logic_1) and (layer3_out_20_V_empty_n xor ap_const_logic_1) and (layer3_out_19_V_empty_n xor ap_const_logic_1) and (layer3_out_18_V_empty_n xor ap_const_logic_1) and (layer3_out_17_V_empty_n xor ap_const_logic_1) and (layer3_out_16_V_empty_n xor ap_const_logic_1) and (layer3_out_15_V_empty_n xor ap_const_logic_1) and (layer3_out_14_V_empty_n xor ap_const_logic_1) and (layer3_out_13_V_empty_n xor ap_const_logic_1) and (layer3_out_12_V_empty_n xor ap_const_logic_1) and (layer3_out_11_V_empty_n xor ap_const_logic_1) and (layer3_out_10_V_empty_n xor ap_const_logic_1) and (layer3_out_9_V_empty_n xor ap_const_logic_1) and (layer3_out_8_V_empty_n xor ap_const_logic_1) and (layer3_out_7_V_empty_n xor ap_const_logic_1) and (layer3_out_6_V_empty_n xor ap_const_logic_1) and (layer3_out_5_V_empty_n xor ap_const_logic_1) and (layer3_out_4_V_empty_n xor ap_const_logic_1) and (layer3_out_3_V_empty_n xor ap_const_logic_1) and (layer3_out_2_V_empty_n xor ap_const_logic_1) and (layer3_out_1_V_empty_n xor ap_const_logic_1) and (layer3_out_0_V_empty_n xor ap_const_logic_1) and (layer2_out_119_V_empty_n xor ap_const_logic_1) and (layer2_out_118_V_empty_n xor ap_const_logic_1) and (layer2_out_117_V_empty_n xor ap_const_logic_1) and (layer2_out_116_V_empty_n xor ap_const_logic_1) and (layer2_out_115_V_empty_n xor ap_const_logic_1) and (layer2_out_114_V_empty_n xor ap_const_logic_1) and (layer2_out_113_V_empty_n xor ap_const_logic_1) and (layer2_out_112_V_empty_n xor ap_const_logic_1) and (layer2_out_111_V_empty_n xor ap_const_logic_1) and (layer2_out_110_V_empty_n xor ap_const_logic_1) and (layer2_out_109_V_empty_n xor ap_const_logic_1) and (layer2_out_108_V_empty_n xor ap_const_logic_1) and (layer2_out_107_V_empty_n xor ap_const_logic_1) and (layer2_out_106_V_empty_n xor ap_const_logic_1) and (layer2_out_105_V_empty_n xor ap_const_logic_1) and (layer2_out_104_V_empty_n xor ap_const_logic_1) and (layer2_out_103_V_empty_n xor ap_const_logic_1) and (layer2_out_102_V_empty_n xor ap_const_logic_1) and (layer2_out_101_V_empty_n xor ap_const_logic_1) and (layer2_out_100_V_empty_n xor ap_const_logic_1) and (layer2_out_99_V_empty_n xor ap_const_logic_1) and (layer2_out_98_V_empty_n xor ap_const_logic_1) and (layer2_out_97_V_empty_n xor ap_const_logic_1) and (layer2_out_96_V_empty_n xor ap_const_logic_1) and (layer2_out_95_V_empty_n xor ap_const_logic_1) and (layer2_out_94_V_empty_n xor ap_const_logic_1) and (layer2_out_93_V_empty_n xor ap_const_logic_1) and (layer2_out_92_V_empty_n xor ap_const_logic_1) and (layer2_out_91_V_empty_n xor ap_const_logic_1) and (layer2_out_90_V_empty_n xor ap_const_logic_1) and (layer2_out_89_V_empty_n xor ap_const_logic_1) and (layer2_out_88_V_empty_n xor ap_const_logic_1) and (layer2_out_87_V_empty_n xor ap_const_logic_1) and (layer2_out_86_V_empty_n xor ap_const_logic_1) and (layer2_out_85_V_empty_n xor ap_const_logic_1) and (layer2_out_84_V_empty_n xor ap_const_logic_1) and (layer2_out_83_V_empty_n xor ap_const_logic_1) and (layer2_out_82_V_empty_n xor ap_const_logic_1) and (layer2_out_81_V_empty_n xor ap_const_logic_1) and (layer2_out_80_V_empty_n xor ap_const_logic_1) and (layer2_out_79_V_empty_n xor ap_const_logic_1) and (layer2_out_78_V_empty_n xor ap_const_logic_1) and (layer2_out_77_V_empty_n xor ap_const_logic_1) and (layer2_out_76_V_empty_n xor ap_const_logic_1) and (layer2_out_75_V_empty_n xor ap_const_logic_1) and (layer2_out_74_V_empty_n xor ap_const_logic_1) and (layer2_out_73_V_empty_n xor ap_const_logic_1) and (layer2_out_72_V_empty_n xor ap_const_logic_1) and (layer2_out_71_V_empty_n xor ap_const_logic_1) and (layer2_out_70_V_empty_n xor ap_const_logic_1) and (layer2_out_69_V_empty_n xor ap_const_logic_1) and (layer2_out_68_V_empty_n xor ap_const_logic_1) and (layer2_out_67_V_empty_n xor ap_const_logic_1) and (layer2_out_66_V_empty_n xor ap_const_logic_1) and (layer2_out_65_V_empty_n xor ap_const_logic_1) and (layer2_out_64_V_empty_n xor ap_const_logic_1) and (layer2_out_63_V_empty_n xor ap_const_logic_1) and (layer2_out_62_V_empty_n xor ap_const_logic_1) and (layer2_out_61_V_empty_n xor ap_const_logic_1) and (layer2_out_60_V_empty_n xor ap_const_logic_1) and (layer2_out_59_V_empty_n xor ap_const_logic_1) and (layer2_out_58_V_empty_n xor ap_const_logic_1) and (layer2_out_57_V_empty_n xor ap_const_logic_1) and (layer2_out_56_V_empty_n xor ap_const_logic_1) and (layer2_out_55_V_empty_n xor ap_const_logic_1) and (layer2_out_54_V_empty_n xor ap_const_logic_1) and (layer2_out_53_V_empty_n xor ap_const_logic_1) and (layer2_out_52_V_empty_n xor ap_const_logic_1) and (layer2_out_51_V_empty_n xor ap_const_logic_1) and (layer2_out_50_V_empty_n xor ap_const_logic_1) and (layer2_out_49_V_empty_n xor ap_const_logic_1) and (layer2_out_48_V_empty_n xor ap_const_logic_1) and (layer2_out_47_V_empty_n xor ap_const_logic_1) and (layer2_out_46_V_empty_n xor ap_const_logic_1) and (layer2_out_45_V_empty_n xor ap_const_logic_1) and (layer2_out_44_V_empty_n xor ap_const_logic_1) and (layer2_out_43_V_empty_n xor ap_const_logic_1) and (layer2_out_42_V_empty_n xor ap_const_logic_1) and (layer2_out_41_V_empty_n xor ap_const_logic_1) and (layer2_out_40_V_empty_n xor ap_const_logic_1) and (layer2_out_39_V_empty_n xor ap_const_logic_1) and (layer2_out_38_V_empty_n xor ap_const_logic_1) and (layer2_out_37_V_empty_n xor ap_const_logic_1) and (layer2_out_36_V_empty_n xor ap_const_logic_1) and (layer2_out_35_V_empty_n xor ap_const_logic_1) and (layer2_out_34_V_empty_n xor ap_const_logic_1) and (layer2_out_33_V_empty_n xor ap_const_logic_1) and (layer2_out_32_V_empty_n xor ap_const_logic_1) and (layer2_out_31_V_empty_n xor ap_const_logic_1) and (layer2_out_30_V_empty_n xor ap_const_logic_1) and (layer2_out_29_V_empty_n xor ap_const_logic_1) and (layer2_out_28_V_empty_n xor ap_const_logic_1) and (layer2_out_27_V_empty_n xor ap_const_logic_1) and (layer2_out_26_V_empty_n xor ap_const_logic_1) and (layer2_out_25_V_empty_n xor ap_const_logic_1) and (layer2_out_24_V_empty_n xor ap_const_logic_1) and (layer2_out_23_V_empty_n xor ap_const_logic_1) and (layer2_out_22_V_empty_n xor ap_const_logic_1) and (layer2_out_21_V_empty_n xor ap_const_logic_1) and (layer2_out_20_V_empty_n xor ap_const_logic_1) and (layer2_out_19_V_empty_n xor ap_const_logic_1) and (layer2_out_18_V_empty_n xor ap_const_logic_1) and (layer2_out_17_V_empty_n xor ap_const_logic_1) and (layer2_out_16_V_empty_n xor ap_const_logic_1) and (layer2_out_15_V_empty_n xor ap_const_logic_1) and (layer2_out_14_V_empty_n xor ap_const_logic_1) and (layer2_out_13_V_empty_n xor ap_const_logic_1) and (layer2_out_12_V_empty_n xor ap_const_logic_1) and (layer2_out_11_V_empty_n xor ap_const_logic_1) and (layer2_out_10_V_empty_n xor ap_const_logic_1) and (layer2_out_9_V_empty_n xor ap_const_logic_1) and (layer2_out_8_V_empty_n xor ap_const_logic_1) and (layer2_out_7_V_empty_n xor ap_const_logic_1) and (layer2_out_6_V_empty_n xor ap_const_logic_1) and (layer2_out_5_V_empty_n xor ap_const_logic_1) and (layer2_out_4_V_empty_n xor ap_const_logic_1) and (layer2_out_3_V_empty_n xor ap_const_logic_1) and (layer2_out_2_V_empty_n xor ap_const_logic_1) and (layer2_out_1_V_empty_n xor ap_const_logic_1) and (layer2_out_0_V_empty_n xor ap_const_logic_1) and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_idle and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_idle and dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_idle);
+    ap_ready <= gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_ready;
     ap_sync_channel_write_layer2_out_0_V <= ((layer2_out_0_V_full_n and ap_channel_done_layer2_out_0_V) or ap_sync_reg_channel_write_layer2_out_0_V);
     ap_sync_channel_write_layer2_out_100_V <= ((layer2_out_100_V_full_n and ap_channel_done_layer2_out_100_V) or ap_sync_reg_channel_write_layer2_out_100_V);
     ap_sync_channel_write_layer2_out_101_V <= ((layer2_out_101_V_full_n and ap_channel_done_layer2_out_101_V) or ap_sync_reg_channel_write_layer2_out_101_V);
@@ -10511,40 +10511,40 @@ begin
     ap_sync_channel_write_layer7_out_1_V <= ((layer7_out_1_V_full_n and ap_channel_done_layer7_out_1_V) or ap_sync_reg_channel_write_layer7_out_1_V);
     ap_sync_channel_write_layer7_out_2_V <= ((layer7_out_2_V_full_n and ap_channel_done_layer7_out_2_V) or ap_sync_reg_channel_write_layer7_out_2_V);
     ap_sync_continue <= ap_const_logic_1;
-    ap_sync_done <= softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_done;
-    ap_sync_ready <= gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_ready;
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_continue <= (ap_sync_channel_write_layer3_out_9_V and ap_sync_channel_write_layer3_out_8_V and ap_sync_channel_write_layer3_out_7_V and ap_sync_channel_write_layer3_out_6_V and ap_sync_channel_write_layer3_out_5_V and ap_sync_channel_write_layer3_out_4_V and ap_sync_channel_write_layer3_out_49_V and ap_sync_channel_write_layer3_out_48_V and ap_sync_channel_write_layer3_out_47_V and ap_sync_channel_write_layer3_out_46_V and ap_sync_channel_write_layer3_out_45_V and ap_sync_channel_write_layer3_out_44_V and ap_sync_channel_write_layer3_out_43_V and ap_sync_channel_write_layer3_out_42_V and ap_sync_channel_write_layer3_out_41_V and ap_sync_channel_write_layer3_out_40_V and ap_sync_channel_write_layer3_out_3_V and ap_sync_channel_write_layer3_out_39_V and ap_sync_channel_write_layer3_out_38_V and ap_sync_channel_write_layer3_out_37_V and ap_sync_channel_write_layer3_out_36_V and ap_sync_channel_write_layer3_out_35_V and ap_sync_channel_write_layer3_out_34_V and ap_sync_channel_write_layer3_out_33_V and ap_sync_channel_write_layer3_out_32_V and ap_sync_channel_write_layer3_out_31_V and ap_sync_channel_write_layer3_out_30_V and ap_sync_channel_write_layer3_out_2_V and ap_sync_channel_write_layer3_out_29_V and ap_sync_channel_write_layer3_out_28_V and ap_sync_channel_write_layer3_out_27_V and ap_sync_channel_write_layer3_out_26_V and ap_sync_channel_write_layer3_out_25_V and ap_sync_channel_write_layer3_out_24_V and ap_sync_channel_write_layer3_out_23_V and ap_sync_channel_write_layer3_out_22_V and ap_sync_channel_write_layer3_out_21_V and ap_sync_channel_write_layer3_out_20_V and ap_sync_channel_write_layer3_out_1_V and ap_sync_channel_write_layer3_out_19_V and ap_sync_channel_write_layer3_out_18_V and ap_sync_channel_write_layer3_out_17_V and ap_sync_channel_write_layer3_out_16_V and ap_sync_channel_write_layer3_out_15_V and ap_sync_channel_write_layer3_out_14_V and ap_sync_channel_write_layer3_out_13_V and ap_sync_channel_write_layer3_out_12_V and ap_sync_channel_write_layer3_out_11_V and ap_sync_channel_write_layer3_out_10_V and ap_sync_channel_write_layer3_out_0_V);
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_ap_start <= (layer2_out_9_V_empty_n and layer2_out_99_V_empty_n and layer2_out_98_V_empty_n and layer2_out_97_V_empty_n and layer2_out_96_V_empty_n and layer2_out_95_V_empty_n and layer2_out_94_V_empty_n and layer2_out_93_V_empty_n and layer2_out_92_V_empty_n and layer2_out_91_V_empty_n and layer2_out_90_V_empty_n and layer2_out_8_V_empty_n and layer2_out_89_V_empty_n and layer2_out_88_V_empty_n and layer2_out_87_V_empty_n and layer2_out_86_V_empty_n and layer2_out_85_V_empty_n and layer2_out_84_V_empty_n and layer2_out_83_V_empty_n and layer2_out_82_V_empty_n and layer2_out_81_V_empty_n and layer2_out_80_V_empty_n and layer2_out_7_V_empty_n and layer2_out_79_V_empty_n and layer2_out_78_V_empty_n and layer2_out_77_V_empty_n and layer2_out_76_V_empty_n and layer2_out_75_V_empty_n and layer2_out_74_V_empty_n and layer2_out_73_V_empty_n and layer2_out_72_V_empty_n and layer2_out_71_V_empty_n and layer2_out_70_V_empty_n and layer2_out_6_V_empty_n and layer2_out_69_V_empty_n and layer2_out_68_V_empty_n and layer2_out_67_V_empty_n and layer2_out_66_V_empty_n and layer2_out_65_V_empty_n and layer2_out_64_V_empty_n and layer2_out_63_V_empty_n and layer2_out_62_V_empty_n and layer2_out_61_V_empty_n and layer2_out_60_V_empty_n and layer2_out_5_V_empty_n and layer2_out_59_V_empty_n and layer2_out_58_V_empty_n and layer2_out_57_V_empty_n and layer2_out_56_V_empty_n and layer2_out_55_V_empty_n and layer2_out_54_V_empty_n and layer2_out_53_V_empty_n and layer2_out_52_V_empty_n and layer2_out_51_V_empty_n and layer2_out_50_V_empty_n and layer2_out_4_V_empty_n and layer2_out_49_V_empty_n and layer2_out_48_V_empty_n and layer2_out_47_V_empty_n and layer2_out_46_V_empty_n and layer2_out_45_V_empty_n and layer2_out_44_V_empty_n and layer2_out_43_V_empty_n and layer2_out_42_V_empty_n and layer2_out_41_V_empty_n and layer2_out_40_V_empty_n and layer2_out_3_V_empty_n and layer2_out_39_V_empty_n and layer2_out_38_V_empty_n and layer2_out_37_V_empty_n and layer2_out_36_V_empty_n and layer2_out_35_V_empty_n and layer2_out_34_V_empty_n and layer2_out_33_V_empty_n and layer2_out_32_V_empty_n and layer2_out_31_V_empty_n and layer2_out_30_V_empty_n and layer2_out_2_V_empty_n and layer2_out_29_V_empty_n and layer2_out_28_V_empty_n and layer2_out_27_V_empty_n and layer2_out_26_V_empty_n and layer2_out_25_V_empty_n and layer2_out_24_V_empty_n and layer2_out_23_V_empty_n and layer2_out_22_V_empty_n and layer2_out_21_V_empty_n and layer2_out_20_V_empty_n and layer2_out_1_V_empty_n and layer2_out_19_V_empty_n and layer2_out_18_V_empty_n and layer2_out_17_V_empty_n and layer2_out_16_V_empty_n and layer2_out_15_V_empty_n and layer2_out_14_V_empty_n and layer2_out_13_V_empty_n and layer2_out_12_V_empty_n and layer2_out_11_V_empty_n and layer2_out_119_V_empty_n and layer2_out_118_V_empty_n and layer2_out_117_V_empty_n and layer2_out_116_V_empty_n and layer2_out_115_V_empty_n and layer2_out_114_V_empty_n and layer2_out_113_V_empty_n and layer2_out_112_V_empty_n and layer2_out_111_V_empty_n and layer2_out_110_V_empty_n and layer2_out_10_V_empty_n and layer2_out_109_V_empty_n and layer2_out_108_V_empty_n and layer2_out_107_V_empty_n and layer2_out_106_V_empty_n and layer2_out_105_V_empty_n and layer2_out_104_V_empty_n and layer2_out_103_V_empty_n and layer2_out_102_V_empty_n and layer2_out_101_V_empty_n and layer2_out_100_V_empty_n and layer2_out_0_V_empty_n);
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_start_full_n <= ap_const_logic_1;
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_U0_start_write <= ap_const_logic_0;
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_continue <= (ap_sync_channel_write_layer5_out_9_V and ap_sync_channel_write_layer5_out_8_V and ap_sync_channel_write_layer5_out_7_V and ap_sync_channel_write_layer5_out_6_V and ap_sync_channel_write_layer5_out_5_V and ap_sync_channel_write_layer5_out_4_V and ap_sync_channel_write_layer5_out_3_V and ap_sync_channel_write_layer5_out_2_V and ap_sync_channel_write_layer5_out_1_V and ap_sync_channel_write_layer5_out_0_V);
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_ap_start <= (layer4_out_9_V_empty_n and layer4_out_8_V_empty_n and layer4_out_7_V_empty_n and layer4_out_6_V_empty_n and layer4_out_5_V_empty_n and layer4_out_4_V_empty_n and layer4_out_49_V_empty_n and layer4_out_48_V_empty_n and layer4_out_47_V_empty_n and layer4_out_46_V_empty_n and layer4_out_45_V_empty_n and layer4_out_44_V_empty_n and layer4_out_43_V_empty_n and layer4_out_42_V_empty_n and layer4_out_41_V_empty_n and layer4_out_40_V_empty_n and layer4_out_3_V_empty_n and layer4_out_39_V_empty_n and layer4_out_38_V_empty_n and layer4_out_37_V_empty_n and layer4_out_36_V_empty_n and layer4_out_35_V_empty_n and layer4_out_34_V_empty_n and layer4_out_33_V_empty_n and layer4_out_32_V_empty_n and layer4_out_31_V_empty_n and layer4_out_30_V_empty_n and layer4_out_2_V_empty_n and layer4_out_29_V_empty_n and layer4_out_28_V_empty_n and layer4_out_27_V_empty_n and layer4_out_26_V_empty_n and layer4_out_25_V_empty_n and layer4_out_24_V_empty_n and layer4_out_23_V_empty_n and layer4_out_22_V_empty_n and layer4_out_21_V_empty_n and layer4_out_20_V_empty_n and layer4_out_1_V_empty_n and layer4_out_19_V_empty_n and layer4_out_18_V_empty_n and layer4_out_17_V_empty_n and layer4_out_16_V_empty_n and layer4_out_15_V_empty_n and layer4_out_14_V_empty_n and layer4_out_13_V_empty_n and layer4_out_12_V_empty_n and layer4_out_11_V_empty_n and layer4_out_10_V_empty_n and layer4_out_0_V_empty_n);
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_start_full_n <= ap_const_logic_1;
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_U0_start_write <= ap_const_logic_0;
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_continue <= (ap_sync_channel_write_layer7_out_2_V and ap_sync_channel_write_layer7_out_1_V and ap_sync_channel_write_layer7_out_0_V);
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_ap_start <= (layer6_out_9_V_empty_n and layer6_out_8_V_empty_n and layer6_out_7_V_empty_n and layer6_out_6_V_empty_n and layer6_out_5_V_empty_n and layer6_out_4_V_empty_n and layer6_out_3_V_empty_n and layer6_out_2_V_empty_n and layer6_out_1_V_empty_n and layer6_out_0_V_empty_n);
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_start_full_n <= ap_const_logic_1;
-    dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_U0_start_write <= ap_const_logic_0;
-    gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_continue <= (ap_sync_channel_write_layer2_out_9_V and ap_sync_channel_write_layer2_out_99_V and ap_sync_channel_write_layer2_out_98_V and ap_sync_channel_write_layer2_out_97_V and ap_sync_channel_write_layer2_out_96_V and ap_sync_channel_write_layer2_out_95_V and ap_sync_channel_write_layer2_out_94_V and ap_sync_channel_write_layer2_out_93_V and ap_sync_channel_write_layer2_out_92_V and ap_sync_channel_write_layer2_out_91_V and ap_sync_channel_write_layer2_out_90_V and ap_sync_channel_write_layer2_out_8_V and ap_sync_channel_write_layer2_out_89_V and ap_sync_channel_write_layer2_out_88_V and ap_sync_channel_write_layer2_out_87_V and ap_sync_channel_write_layer2_out_86_V and ap_sync_channel_write_layer2_out_85_V and ap_sync_channel_write_layer2_out_84_V and ap_sync_channel_write_layer2_out_83_V and ap_sync_channel_write_layer2_out_82_V and ap_sync_channel_write_layer2_out_81_V and ap_sync_channel_write_layer2_out_80_V and ap_sync_channel_write_layer2_out_7_V and ap_sync_channel_write_layer2_out_79_V and ap_sync_channel_write_layer2_out_78_V and ap_sync_channel_write_layer2_out_77_V and ap_sync_channel_write_layer2_out_76_V and ap_sync_channel_write_layer2_out_75_V and ap_sync_channel_write_layer2_out_74_V and ap_sync_channel_write_layer2_out_73_V and ap_sync_channel_write_layer2_out_72_V and ap_sync_channel_write_layer2_out_71_V and ap_sync_channel_write_layer2_out_70_V and ap_sync_channel_write_layer2_out_6_V and ap_sync_channel_write_layer2_out_69_V and ap_sync_channel_write_layer2_out_68_V and ap_sync_channel_write_layer2_out_67_V and ap_sync_channel_write_layer2_out_66_V and ap_sync_channel_write_layer2_out_65_V and ap_sync_channel_write_layer2_out_64_V and ap_sync_channel_write_layer2_out_63_V and ap_sync_channel_write_layer2_out_62_V and ap_sync_channel_write_layer2_out_61_V and ap_sync_channel_write_layer2_out_60_V and ap_sync_channel_write_layer2_out_5_V and ap_sync_channel_write_layer2_out_59_V and ap_sync_channel_write_layer2_out_58_V and ap_sync_channel_write_layer2_out_57_V and ap_sync_channel_write_layer2_out_56_V and ap_sync_channel_write_layer2_out_55_V and ap_sync_channel_write_layer2_out_54_V and ap_sync_channel_write_layer2_out_53_V and ap_sync_channel_write_layer2_out_52_V and ap_sync_channel_write_layer2_out_51_V and ap_sync_channel_write_layer2_out_50_V and ap_sync_channel_write_layer2_out_4_V and ap_sync_channel_write_layer2_out_49_V and ap_sync_channel_write_layer2_out_48_V and ap_sync_channel_write_layer2_out_47_V and ap_sync_channel_write_layer2_out_46_V and ap_sync_channel_write_layer2_out_45_V and ap_sync_channel_write_layer2_out_44_V and ap_sync_channel_write_layer2_out_43_V and ap_sync_channel_write_layer2_out_42_V and ap_sync_channel_write_layer2_out_41_V and ap_sync_channel_write_layer2_out_40_V and ap_sync_channel_write_layer2_out_3_V and ap_sync_channel_write_layer2_out_39_V and ap_sync_channel_write_layer2_out_38_V and ap_sync_channel_write_layer2_out_37_V and ap_sync_channel_write_layer2_out_36_V and ap_sync_channel_write_layer2_out_35_V and ap_sync_channel_write_layer2_out_34_V and ap_sync_channel_write_layer2_out_33_V and ap_sync_channel_write_layer2_out_32_V and ap_sync_channel_write_layer2_out_31_V and ap_sync_channel_write_layer2_out_30_V and ap_sync_channel_write_layer2_out_2_V and ap_sync_channel_write_layer2_out_29_V and ap_sync_channel_write_layer2_out_28_V and ap_sync_channel_write_layer2_out_27_V and ap_sync_channel_write_layer2_out_26_V and ap_sync_channel_write_layer2_out_25_V and ap_sync_channel_write_layer2_out_24_V and ap_sync_channel_write_layer2_out_23_V and ap_sync_channel_write_layer2_out_22_V and ap_sync_channel_write_layer2_out_21_V and ap_sync_channel_write_layer2_out_20_V and ap_sync_channel_write_layer2_out_1_V and ap_sync_channel_write_layer2_out_19_V and ap_sync_channel_write_layer2_out_18_V and ap_sync_channel_write_layer2_out_17_V and ap_sync_channel_write_layer2_out_16_V and ap_sync_channel_write_layer2_out_15_V and ap_sync_channel_write_layer2_out_14_V and ap_sync_channel_write_layer2_out_13_V and ap_sync_channel_write_layer2_out_12_V and ap_sync_channel_write_layer2_out_11_V and ap_sync_channel_write_layer2_out_119_V and ap_sync_channel_write_layer2_out_118_V and ap_sync_channel_write_layer2_out_117_V and ap_sync_channel_write_layer2_out_116_V and ap_sync_channel_write_layer2_out_115_V and ap_sync_channel_write_layer2_out_114_V and ap_sync_channel_write_layer2_out_113_V and ap_sync_channel_write_layer2_out_112_V and ap_sync_channel_write_layer2_out_111_V and ap_sync_channel_write_layer2_out_110_V and ap_sync_channel_write_layer2_out_10_V and ap_sync_channel_write_layer2_out_109_V and ap_sync_channel_write_layer2_out_108_V and ap_sync_channel_write_layer2_out_107_V and ap_sync_channel_write_layer2_out_106_V and ap_sync_channel_write_layer2_out_105_V and ap_sync_channel_write_layer2_out_104_V and ap_sync_channel_write_layer2_out_103_V and ap_sync_channel_write_layer2_out_102_V and ap_sync_channel_write_layer2_out_101_V and ap_sync_channel_write_layer2_out_100_V and ap_sync_channel_write_layer2_out_0_V);
-    gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_ap_start <= ap_start;
-    gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_start_full_n <= ap_const_logic_1;
-    gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_U0_start_write <= ap_const_logic_0;
-    layer8_out_0_V <= softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_0_V;
-    layer8_out_0_V_ap_vld <= softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_0_V_ap_vld;
-    layer8_out_1_V <= softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_1_V;
-    layer8_out_1_V_ap_vld <= softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_1_V_ap_vld;
-    layer8_out_2_V <= softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_2_V;
-    layer8_out_2_V_ap_vld <= softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_res_2_V_ap_vld;
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_continue <= (ap_sync_channel_write_layer4_out_9_V and ap_sync_channel_write_layer4_out_8_V and ap_sync_channel_write_layer4_out_7_V and ap_sync_channel_write_layer4_out_6_V and ap_sync_channel_write_layer4_out_5_V and ap_sync_channel_write_layer4_out_4_V and ap_sync_channel_write_layer4_out_49_V and ap_sync_channel_write_layer4_out_48_V and ap_sync_channel_write_layer4_out_47_V and ap_sync_channel_write_layer4_out_46_V and ap_sync_channel_write_layer4_out_45_V and ap_sync_channel_write_layer4_out_44_V and ap_sync_channel_write_layer4_out_43_V and ap_sync_channel_write_layer4_out_42_V and ap_sync_channel_write_layer4_out_41_V and ap_sync_channel_write_layer4_out_40_V and ap_sync_channel_write_layer4_out_3_V and ap_sync_channel_write_layer4_out_39_V and ap_sync_channel_write_layer4_out_38_V and ap_sync_channel_write_layer4_out_37_V and ap_sync_channel_write_layer4_out_36_V and ap_sync_channel_write_layer4_out_35_V and ap_sync_channel_write_layer4_out_34_V and ap_sync_channel_write_layer4_out_33_V and ap_sync_channel_write_layer4_out_32_V and ap_sync_channel_write_layer4_out_31_V and ap_sync_channel_write_layer4_out_30_V and ap_sync_channel_write_layer4_out_2_V and ap_sync_channel_write_layer4_out_29_V and ap_sync_channel_write_layer4_out_28_V and ap_sync_channel_write_layer4_out_27_V and ap_sync_channel_write_layer4_out_26_V and ap_sync_channel_write_layer4_out_25_V and ap_sync_channel_write_layer4_out_24_V and ap_sync_channel_write_layer4_out_23_V and ap_sync_channel_write_layer4_out_22_V and ap_sync_channel_write_layer4_out_21_V and ap_sync_channel_write_layer4_out_20_V and ap_sync_channel_write_layer4_out_1_V and ap_sync_channel_write_layer4_out_19_V and ap_sync_channel_write_layer4_out_18_V and ap_sync_channel_write_layer4_out_17_V and ap_sync_channel_write_layer4_out_16_V and ap_sync_channel_write_layer4_out_15_V and ap_sync_channel_write_layer4_out_14_V and ap_sync_channel_write_layer4_out_13_V and ap_sync_channel_write_layer4_out_12_V and ap_sync_channel_write_layer4_out_11_V and ap_sync_channel_write_layer4_out_10_V and ap_sync_channel_write_layer4_out_0_V);
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_ap_start <= (layer3_out_9_V_empty_n and layer3_out_8_V_empty_n and layer3_out_7_V_empty_n and layer3_out_6_V_empty_n and layer3_out_5_V_empty_n and layer3_out_4_V_empty_n and layer3_out_49_V_empty_n and layer3_out_48_V_empty_n and layer3_out_47_V_empty_n and layer3_out_46_V_empty_n and layer3_out_45_V_empty_n and layer3_out_44_V_empty_n and layer3_out_43_V_empty_n and layer3_out_42_V_empty_n and layer3_out_41_V_empty_n and layer3_out_40_V_empty_n and layer3_out_3_V_empty_n and layer3_out_39_V_empty_n and layer3_out_38_V_empty_n and layer3_out_37_V_empty_n and layer3_out_36_V_empty_n and layer3_out_35_V_empty_n and layer3_out_34_V_empty_n and layer3_out_33_V_empty_n and layer3_out_32_V_empty_n and layer3_out_31_V_empty_n and layer3_out_30_V_empty_n and layer3_out_2_V_empty_n and layer3_out_29_V_empty_n and layer3_out_28_V_empty_n and layer3_out_27_V_empty_n and layer3_out_26_V_empty_n and layer3_out_25_V_empty_n and layer3_out_24_V_empty_n and layer3_out_23_V_empty_n and layer3_out_22_V_empty_n and layer3_out_21_V_empty_n and layer3_out_20_V_empty_n and layer3_out_1_V_empty_n and layer3_out_19_V_empty_n and layer3_out_18_V_empty_n and layer3_out_17_V_empty_n and layer3_out_16_V_empty_n and layer3_out_15_V_empty_n and layer3_out_14_V_empty_n and layer3_out_13_V_empty_n and layer3_out_12_V_empty_n and layer3_out_11_V_empty_n and layer3_out_10_V_empty_n and layer3_out_0_V_empty_n);
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_start_full_n <= ap_const_logic_1;
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_U0_start_write <= ap_const_logic_0;
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_continue <= (ap_sync_channel_write_layer6_out_9_V and ap_sync_channel_write_layer6_out_8_V and ap_sync_channel_write_layer6_out_7_V and ap_sync_channel_write_layer6_out_6_V and ap_sync_channel_write_layer6_out_5_V and ap_sync_channel_write_layer6_out_4_V and ap_sync_channel_write_layer6_out_3_V and ap_sync_channel_write_layer6_out_2_V and ap_sync_channel_write_layer6_out_1_V and ap_sync_channel_write_layer6_out_0_V);
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_ap_start <= (layer5_out_9_V_empty_n and layer5_out_8_V_empty_n and layer5_out_7_V_empty_n and layer5_out_6_V_empty_n and layer5_out_5_V_empty_n and layer5_out_4_V_empty_n and layer5_out_3_V_empty_n and layer5_out_2_V_empty_n and layer5_out_1_V_empty_n and layer5_out_0_V_empty_n);
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_start_full_n <= ap_const_logic_1;
-    relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config6_U0_start_write <= ap_const_logic_0;
-    softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_continue <= ap_const_logic_1;
-    softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_ap_start <= (layer7_out_2_V_empty_n and layer7_out_1_V_empty_n and layer7_out_0_V_empty_n);
-    softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_start_full_n <= ap_const_logic_1;
-    softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_U0_start_write <= ap_const_logic_0;
+    ap_sync_done <= softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_done;
+    ap_sync_ready <= gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_ready;
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_continue <= (ap_sync_channel_write_layer3_out_9_V and ap_sync_channel_write_layer3_out_8_V and ap_sync_channel_write_layer3_out_7_V and ap_sync_channel_write_layer3_out_6_V and ap_sync_channel_write_layer3_out_5_V and ap_sync_channel_write_layer3_out_4_V and ap_sync_channel_write_layer3_out_49_V and ap_sync_channel_write_layer3_out_48_V and ap_sync_channel_write_layer3_out_47_V and ap_sync_channel_write_layer3_out_46_V and ap_sync_channel_write_layer3_out_45_V and ap_sync_channel_write_layer3_out_44_V and ap_sync_channel_write_layer3_out_43_V and ap_sync_channel_write_layer3_out_42_V and ap_sync_channel_write_layer3_out_41_V and ap_sync_channel_write_layer3_out_40_V and ap_sync_channel_write_layer3_out_3_V and ap_sync_channel_write_layer3_out_39_V and ap_sync_channel_write_layer3_out_38_V and ap_sync_channel_write_layer3_out_37_V and ap_sync_channel_write_layer3_out_36_V and ap_sync_channel_write_layer3_out_35_V and ap_sync_channel_write_layer3_out_34_V and ap_sync_channel_write_layer3_out_33_V and ap_sync_channel_write_layer3_out_32_V and ap_sync_channel_write_layer3_out_31_V and ap_sync_channel_write_layer3_out_30_V and ap_sync_channel_write_layer3_out_2_V and ap_sync_channel_write_layer3_out_29_V and ap_sync_channel_write_layer3_out_28_V and ap_sync_channel_write_layer3_out_27_V and ap_sync_channel_write_layer3_out_26_V and ap_sync_channel_write_layer3_out_25_V and ap_sync_channel_write_layer3_out_24_V and ap_sync_channel_write_layer3_out_23_V and ap_sync_channel_write_layer3_out_22_V and ap_sync_channel_write_layer3_out_21_V and ap_sync_channel_write_layer3_out_20_V and ap_sync_channel_write_layer3_out_1_V and ap_sync_channel_write_layer3_out_19_V and ap_sync_channel_write_layer3_out_18_V and ap_sync_channel_write_layer3_out_17_V and ap_sync_channel_write_layer3_out_16_V and ap_sync_channel_write_layer3_out_15_V and ap_sync_channel_write_layer3_out_14_V and ap_sync_channel_write_layer3_out_13_V and ap_sync_channel_write_layer3_out_12_V and ap_sync_channel_write_layer3_out_11_V and ap_sync_channel_write_layer3_out_10_V and ap_sync_channel_write_layer3_out_0_V);
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_ap_start <= (layer2_out_9_V_empty_n and layer2_out_99_V_empty_n and layer2_out_98_V_empty_n and layer2_out_97_V_empty_n and layer2_out_96_V_empty_n and layer2_out_95_V_empty_n and layer2_out_94_V_empty_n and layer2_out_93_V_empty_n and layer2_out_92_V_empty_n and layer2_out_91_V_empty_n and layer2_out_90_V_empty_n and layer2_out_8_V_empty_n and layer2_out_89_V_empty_n and layer2_out_88_V_empty_n and layer2_out_87_V_empty_n and layer2_out_86_V_empty_n and layer2_out_85_V_empty_n and layer2_out_84_V_empty_n and layer2_out_83_V_empty_n and layer2_out_82_V_empty_n and layer2_out_81_V_empty_n and layer2_out_80_V_empty_n and layer2_out_7_V_empty_n and layer2_out_79_V_empty_n and layer2_out_78_V_empty_n and layer2_out_77_V_empty_n and layer2_out_76_V_empty_n and layer2_out_75_V_empty_n and layer2_out_74_V_empty_n and layer2_out_73_V_empty_n and layer2_out_72_V_empty_n and layer2_out_71_V_empty_n and layer2_out_70_V_empty_n and layer2_out_6_V_empty_n and layer2_out_69_V_empty_n and layer2_out_68_V_empty_n and layer2_out_67_V_empty_n and layer2_out_66_V_empty_n and layer2_out_65_V_empty_n and layer2_out_64_V_empty_n and layer2_out_63_V_empty_n and layer2_out_62_V_empty_n and layer2_out_61_V_empty_n and layer2_out_60_V_empty_n and layer2_out_5_V_empty_n and layer2_out_59_V_empty_n and layer2_out_58_V_empty_n and layer2_out_57_V_empty_n and layer2_out_56_V_empty_n and layer2_out_55_V_empty_n and layer2_out_54_V_empty_n and layer2_out_53_V_empty_n and layer2_out_52_V_empty_n and layer2_out_51_V_empty_n and layer2_out_50_V_empty_n and layer2_out_4_V_empty_n and layer2_out_49_V_empty_n and layer2_out_48_V_empty_n and layer2_out_47_V_empty_n and layer2_out_46_V_empty_n and layer2_out_45_V_empty_n and layer2_out_44_V_empty_n and layer2_out_43_V_empty_n and layer2_out_42_V_empty_n and layer2_out_41_V_empty_n and layer2_out_40_V_empty_n and layer2_out_3_V_empty_n and layer2_out_39_V_empty_n and layer2_out_38_V_empty_n and layer2_out_37_V_empty_n and layer2_out_36_V_empty_n and layer2_out_35_V_empty_n and layer2_out_34_V_empty_n and layer2_out_33_V_empty_n and layer2_out_32_V_empty_n and layer2_out_31_V_empty_n and layer2_out_30_V_empty_n and layer2_out_2_V_empty_n and layer2_out_29_V_empty_n and layer2_out_28_V_empty_n and layer2_out_27_V_empty_n and layer2_out_26_V_empty_n and layer2_out_25_V_empty_n and layer2_out_24_V_empty_n and layer2_out_23_V_empty_n and layer2_out_22_V_empty_n and layer2_out_21_V_empty_n and layer2_out_20_V_empty_n and layer2_out_1_V_empty_n and layer2_out_19_V_empty_n and layer2_out_18_V_empty_n and layer2_out_17_V_empty_n and layer2_out_16_V_empty_n and layer2_out_15_V_empty_n and layer2_out_14_V_empty_n and layer2_out_13_V_empty_n and layer2_out_12_V_empty_n and layer2_out_11_V_empty_n and layer2_out_119_V_empty_n and layer2_out_118_V_empty_n and layer2_out_117_V_empty_n and layer2_out_116_V_empty_n and layer2_out_115_V_empty_n and layer2_out_114_V_empty_n and layer2_out_113_V_empty_n and layer2_out_112_V_empty_n and layer2_out_111_V_empty_n and layer2_out_110_V_empty_n and layer2_out_10_V_empty_n and layer2_out_109_V_empty_n and layer2_out_108_V_empty_n and layer2_out_107_V_empty_n and layer2_out_106_V_empty_n and layer2_out_105_V_empty_n and layer2_out_104_V_empty_n and layer2_out_103_V_empty_n and layer2_out_102_V_empty_n and layer2_out_101_V_empty_n and layer2_out_100_V_empty_n and layer2_out_0_V_empty_n);
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_start_full_n <= ap_const_logic_1;
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config3_U0_start_write <= ap_const_logic_0;
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_continue <= (ap_sync_channel_write_layer5_out_9_V and ap_sync_channel_write_layer5_out_8_V and ap_sync_channel_write_layer5_out_7_V and ap_sync_channel_write_layer5_out_6_V and ap_sync_channel_write_layer5_out_5_V and ap_sync_channel_write_layer5_out_4_V and ap_sync_channel_write_layer5_out_3_V and ap_sync_channel_write_layer5_out_2_V and ap_sync_channel_write_layer5_out_1_V and ap_sync_channel_write_layer5_out_0_V);
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_ap_start <= (layer4_out_9_V_empty_n and layer4_out_8_V_empty_n and layer4_out_7_V_empty_n and layer4_out_6_V_empty_n and layer4_out_5_V_empty_n and layer4_out_4_V_empty_n and layer4_out_49_V_empty_n and layer4_out_48_V_empty_n and layer4_out_47_V_empty_n and layer4_out_46_V_empty_n and layer4_out_45_V_empty_n and layer4_out_44_V_empty_n and layer4_out_43_V_empty_n and layer4_out_42_V_empty_n and layer4_out_41_V_empty_n and layer4_out_40_V_empty_n and layer4_out_3_V_empty_n and layer4_out_39_V_empty_n and layer4_out_38_V_empty_n and layer4_out_37_V_empty_n and layer4_out_36_V_empty_n and layer4_out_35_V_empty_n and layer4_out_34_V_empty_n and layer4_out_33_V_empty_n and layer4_out_32_V_empty_n and layer4_out_31_V_empty_n and layer4_out_30_V_empty_n and layer4_out_2_V_empty_n and layer4_out_29_V_empty_n and layer4_out_28_V_empty_n and layer4_out_27_V_empty_n and layer4_out_26_V_empty_n and layer4_out_25_V_empty_n and layer4_out_24_V_empty_n and layer4_out_23_V_empty_n and layer4_out_22_V_empty_n and layer4_out_21_V_empty_n and layer4_out_20_V_empty_n and layer4_out_1_V_empty_n and layer4_out_19_V_empty_n and layer4_out_18_V_empty_n and layer4_out_17_V_empty_n and layer4_out_16_V_empty_n and layer4_out_15_V_empty_n and layer4_out_14_V_empty_n and layer4_out_13_V_empty_n and layer4_out_12_V_empty_n and layer4_out_11_V_empty_n and layer4_out_10_V_empty_n and layer4_out_0_V_empty_n);
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_start_full_n <= ap_const_logic_1;
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config5_U0_start_write <= ap_const_logic_0;
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_continue <= (ap_sync_channel_write_layer7_out_2_V and ap_sync_channel_write_layer7_out_1_V and ap_sync_channel_write_layer7_out_0_V);
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_ap_start <= (layer6_out_9_V_empty_n and layer6_out_8_V_empty_n and layer6_out_7_V_empty_n and layer6_out_6_V_empty_n and layer6_out_5_V_empty_n and layer6_out_4_V_empty_n and layer6_out_3_V_empty_n and layer6_out_2_V_empty_n and layer6_out_1_V_empty_n and layer6_out_0_V_empty_n);
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_start_full_n <= ap_const_logic_1;
+    dense_resource_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config7_U0_start_write <= ap_const_logic_0;
+    gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_continue <= (ap_sync_channel_write_layer2_out_9_V and ap_sync_channel_write_layer2_out_99_V and ap_sync_channel_write_layer2_out_98_V and ap_sync_channel_write_layer2_out_97_V and ap_sync_channel_write_layer2_out_96_V and ap_sync_channel_write_layer2_out_95_V and ap_sync_channel_write_layer2_out_94_V and ap_sync_channel_write_layer2_out_93_V and ap_sync_channel_write_layer2_out_92_V and ap_sync_channel_write_layer2_out_91_V and ap_sync_channel_write_layer2_out_90_V and ap_sync_channel_write_layer2_out_8_V and ap_sync_channel_write_layer2_out_89_V and ap_sync_channel_write_layer2_out_88_V and ap_sync_channel_write_layer2_out_87_V and ap_sync_channel_write_layer2_out_86_V and ap_sync_channel_write_layer2_out_85_V and ap_sync_channel_write_layer2_out_84_V and ap_sync_channel_write_layer2_out_83_V and ap_sync_channel_write_layer2_out_82_V and ap_sync_channel_write_layer2_out_81_V and ap_sync_channel_write_layer2_out_80_V and ap_sync_channel_write_layer2_out_7_V and ap_sync_channel_write_layer2_out_79_V and ap_sync_channel_write_layer2_out_78_V and ap_sync_channel_write_layer2_out_77_V and ap_sync_channel_write_layer2_out_76_V and ap_sync_channel_write_layer2_out_75_V and ap_sync_channel_write_layer2_out_74_V and ap_sync_channel_write_layer2_out_73_V and ap_sync_channel_write_layer2_out_72_V and ap_sync_channel_write_layer2_out_71_V and ap_sync_channel_write_layer2_out_70_V and ap_sync_channel_write_layer2_out_6_V and ap_sync_channel_write_layer2_out_69_V and ap_sync_channel_write_layer2_out_68_V and ap_sync_channel_write_layer2_out_67_V and ap_sync_channel_write_layer2_out_66_V and ap_sync_channel_write_layer2_out_65_V and ap_sync_channel_write_layer2_out_64_V and ap_sync_channel_write_layer2_out_63_V and ap_sync_channel_write_layer2_out_62_V and ap_sync_channel_write_layer2_out_61_V and ap_sync_channel_write_layer2_out_60_V and ap_sync_channel_write_layer2_out_5_V and ap_sync_channel_write_layer2_out_59_V and ap_sync_channel_write_layer2_out_58_V and ap_sync_channel_write_layer2_out_57_V and ap_sync_channel_write_layer2_out_56_V and ap_sync_channel_write_layer2_out_55_V and ap_sync_channel_write_layer2_out_54_V and ap_sync_channel_write_layer2_out_53_V and ap_sync_channel_write_layer2_out_52_V and ap_sync_channel_write_layer2_out_51_V and ap_sync_channel_write_layer2_out_50_V and ap_sync_channel_write_layer2_out_4_V and ap_sync_channel_write_layer2_out_49_V and ap_sync_channel_write_layer2_out_48_V and ap_sync_channel_write_layer2_out_47_V and ap_sync_channel_write_layer2_out_46_V and ap_sync_channel_write_layer2_out_45_V and ap_sync_channel_write_layer2_out_44_V and ap_sync_channel_write_layer2_out_43_V and ap_sync_channel_write_layer2_out_42_V and ap_sync_channel_write_layer2_out_41_V and ap_sync_channel_write_layer2_out_40_V and ap_sync_channel_write_layer2_out_3_V and ap_sync_channel_write_layer2_out_39_V and ap_sync_channel_write_layer2_out_38_V and ap_sync_channel_write_layer2_out_37_V and ap_sync_channel_write_layer2_out_36_V and ap_sync_channel_write_layer2_out_35_V and ap_sync_channel_write_layer2_out_34_V and ap_sync_channel_write_layer2_out_33_V and ap_sync_channel_write_layer2_out_32_V and ap_sync_channel_write_layer2_out_31_V and ap_sync_channel_write_layer2_out_30_V and ap_sync_channel_write_layer2_out_2_V and ap_sync_channel_write_layer2_out_29_V and ap_sync_channel_write_layer2_out_28_V and ap_sync_channel_write_layer2_out_27_V and ap_sync_channel_write_layer2_out_26_V and ap_sync_channel_write_layer2_out_25_V and ap_sync_channel_write_layer2_out_24_V and ap_sync_channel_write_layer2_out_23_V and ap_sync_channel_write_layer2_out_22_V and ap_sync_channel_write_layer2_out_21_V and ap_sync_channel_write_layer2_out_20_V and ap_sync_channel_write_layer2_out_1_V and ap_sync_channel_write_layer2_out_19_V and ap_sync_channel_write_layer2_out_18_V and ap_sync_channel_write_layer2_out_17_V and ap_sync_channel_write_layer2_out_16_V and ap_sync_channel_write_layer2_out_15_V and ap_sync_channel_write_layer2_out_14_V and ap_sync_channel_write_layer2_out_13_V and ap_sync_channel_write_layer2_out_12_V and ap_sync_channel_write_layer2_out_11_V and ap_sync_channel_write_layer2_out_119_V and ap_sync_channel_write_layer2_out_118_V and ap_sync_channel_write_layer2_out_117_V and ap_sync_channel_write_layer2_out_116_V and ap_sync_channel_write_layer2_out_115_V and ap_sync_channel_write_layer2_out_114_V and ap_sync_channel_write_layer2_out_113_V and ap_sync_channel_write_layer2_out_112_V and ap_sync_channel_write_layer2_out_111_V and ap_sync_channel_write_layer2_out_110_V and ap_sync_channel_write_layer2_out_10_V and ap_sync_channel_write_layer2_out_109_V and ap_sync_channel_write_layer2_out_108_V and ap_sync_channel_write_layer2_out_107_V and ap_sync_channel_write_layer2_out_106_V and ap_sync_channel_write_layer2_out_105_V and ap_sync_channel_write_layer2_out_104_V and ap_sync_channel_write_layer2_out_103_V and ap_sync_channel_write_layer2_out_102_V and ap_sync_channel_write_layer2_out_101_V and ap_sync_channel_write_layer2_out_100_V and ap_sync_channel_write_layer2_out_0_V);
+    gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_ap_start <= ap_start;
+    gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_start_full_n <= ap_const_logic_1;
+    gru_stack_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_config2_U0_start_write <= ap_const_logic_0;
+    layer8_out_0_V <= softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_0_V;
+    layer8_out_0_V_ap_vld <= softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_0_V_ap_vld;
+    layer8_out_1_V <= softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_1_V;
+    layer8_out_1_V_ap_vld <= softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_1_V_ap_vld;
+    layer8_out_2_V <= softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_2_V;
+    layer8_out_2_V_ap_vld <= softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_res_2_V_ap_vld;
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_continue <= (ap_sync_channel_write_layer4_out_9_V and ap_sync_channel_write_layer4_out_8_V and ap_sync_channel_write_layer4_out_7_V and ap_sync_channel_write_layer4_out_6_V and ap_sync_channel_write_layer4_out_5_V and ap_sync_channel_write_layer4_out_4_V and ap_sync_channel_write_layer4_out_49_V and ap_sync_channel_write_layer4_out_48_V and ap_sync_channel_write_layer4_out_47_V and ap_sync_channel_write_layer4_out_46_V and ap_sync_channel_write_layer4_out_45_V and ap_sync_channel_write_layer4_out_44_V and ap_sync_channel_write_layer4_out_43_V and ap_sync_channel_write_layer4_out_42_V and ap_sync_channel_write_layer4_out_41_V and ap_sync_channel_write_layer4_out_40_V and ap_sync_channel_write_layer4_out_3_V and ap_sync_channel_write_layer4_out_39_V and ap_sync_channel_write_layer4_out_38_V and ap_sync_channel_write_layer4_out_37_V and ap_sync_channel_write_layer4_out_36_V and ap_sync_channel_write_layer4_out_35_V and ap_sync_channel_write_layer4_out_34_V and ap_sync_channel_write_layer4_out_33_V and ap_sync_channel_write_layer4_out_32_V and ap_sync_channel_write_layer4_out_31_V and ap_sync_channel_write_layer4_out_30_V and ap_sync_channel_write_layer4_out_2_V and ap_sync_channel_write_layer4_out_29_V and ap_sync_channel_write_layer4_out_28_V and ap_sync_channel_write_layer4_out_27_V and ap_sync_channel_write_layer4_out_26_V and ap_sync_channel_write_layer4_out_25_V and ap_sync_channel_write_layer4_out_24_V and ap_sync_channel_write_layer4_out_23_V and ap_sync_channel_write_layer4_out_22_V and ap_sync_channel_write_layer4_out_21_V and ap_sync_channel_write_layer4_out_20_V and ap_sync_channel_write_layer4_out_1_V and ap_sync_channel_write_layer4_out_19_V and ap_sync_channel_write_layer4_out_18_V and ap_sync_channel_write_layer4_out_17_V and ap_sync_channel_write_layer4_out_16_V and ap_sync_channel_write_layer4_out_15_V and ap_sync_channel_write_layer4_out_14_V and ap_sync_channel_write_layer4_out_13_V and ap_sync_channel_write_layer4_out_12_V and ap_sync_channel_write_layer4_out_11_V and ap_sync_channel_write_layer4_out_10_V and ap_sync_channel_write_layer4_out_0_V);
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_ap_start <= (layer3_out_9_V_empty_n and layer3_out_8_V_empty_n and layer3_out_7_V_empty_n and layer3_out_6_V_empty_n and layer3_out_5_V_empty_n and layer3_out_4_V_empty_n and layer3_out_49_V_empty_n and layer3_out_48_V_empty_n and layer3_out_47_V_empty_n and layer3_out_46_V_empty_n and layer3_out_45_V_empty_n and layer3_out_44_V_empty_n and layer3_out_43_V_empty_n and layer3_out_42_V_empty_n and layer3_out_41_V_empty_n and layer3_out_40_V_empty_n and layer3_out_3_V_empty_n and layer3_out_39_V_empty_n and layer3_out_38_V_empty_n and layer3_out_37_V_empty_n and layer3_out_36_V_empty_n and layer3_out_35_V_empty_n and layer3_out_34_V_empty_n and layer3_out_33_V_empty_n and layer3_out_32_V_empty_n and layer3_out_31_V_empty_n and layer3_out_30_V_empty_n and layer3_out_2_V_empty_n and layer3_out_29_V_empty_n and layer3_out_28_V_empty_n and layer3_out_27_V_empty_n and layer3_out_26_V_empty_n and layer3_out_25_V_empty_n and layer3_out_24_V_empty_n and layer3_out_23_V_empty_n and layer3_out_22_V_empty_n and layer3_out_21_V_empty_n and layer3_out_20_V_empty_n and layer3_out_1_V_empty_n and layer3_out_19_V_empty_n and layer3_out_18_V_empty_n and layer3_out_17_V_empty_n and layer3_out_16_V_empty_n and layer3_out_15_V_empty_n and layer3_out_14_V_empty_n and layer3_out_13_V_empty_n and layer3_out_12_V_empty_n and layer3_out_11_V_empty_n and layer3_out_10_V_empty_n and layer3_out_0_V_empty_n);
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_start_full_n <= ap_const_logic_1;
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config4_U0_start_write <= ap_const_logic_0;
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_continue <= (ap_sync_channel_write_layer6_out_9_V and ap_sync_channel_write_layer6_out_8_V and ap_sync_channel_write_layer6_out_7_V and ap_sync_channel_write_layer6_out_6_V and ap_sync_channel_write_layer6_out_5_V and ap_sync_channel_write_layer6_out_4_V and ap_sync_channel_write_layer6_out_3_V and ap_sync_channel_write_layer6_out_2_V and ap_sync_channel_write_layer6_out_1_V and ap_sync_channel_write_layer6_out_0_V);
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_ap_start <= (layer5_out_9_V_empty_n and layer5_out_8_V_empty_n and layer5_out_7_V_empty_n and layer5_out_6_V_empty_n and layer5_out_5_V_empty_n and layer5_out_4_V_empty_n and layer5_out_3_V_empty_n and layer5_out_2_V_empty_n and layer5_out_1_V_empty_n and layer5_out_0_V_empty_n);
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_start_full_n <= ap_const_logic_1;
+    relu_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_relu_config6_U0_start_write <= ap_const_logic_0;
+    softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_continue <= ap_const_logic_1;
+    softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_ap_start <= (layer7_out_2_V_empty_n and layer7_out_1_V_empty_n and layer7_out_0_V_empty_n);
+    softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_start_full_n <= ap_const_logic_1;
+    softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config8_U0_start_write <= ap_const_logic_0;
 end behav;

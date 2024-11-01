@@ -1,14 +1,7 @@
-documents/Benchmarks/RNN/ftag/hls/ftag_gru_hls4ml_prj/myproject_prj/solution1/.autopilot
-documents/Benchmarks/RNN/ftag/hls/ftag_gru_handwriten_prj/ftag_gru_handwriten_prj.runs
-documents/Benchmarks/RNN/ftag/hls/ftag_gru_handwriten_prj/ftag_gru_handwriten_prj.cache
-documents/Benchmarks/RNN/ftag/hls/ftag_gru_handwriten_prj/ftag_gru_handwriten_prj.sim
+documents/Benchmarks/RNN/quickdraw/hls/
+documents/Benchmarks/RNN/toptagging/hls/
+documents/Benchmarks/RNN/ftag/hls/
 
-documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/.autopilot
-documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/.autopilot
-documents/Benchmarks/RNN/ftag/hls/ftag_gru_testbench_prj/
-documents/Benchmarks/RNN/ftag/hls/ftag_gru_handwritten_prj/
-documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_testbench_prj/
-documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_testbench_prj/
 src/hdl/RNN/pkg_gen_gru/weights/
 src/hdl/RNN/pkg_gen_gru/*.txt
 *.so
