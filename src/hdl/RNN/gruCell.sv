@@ -22,6 +22,8 @@
 
 
 `timescale 1ns / 1ps
+
+// pkg_sel defines the weight to be used in the model.
 `include "pkg_sel_gru.svh"
 
 import `RESET_GATE_PKG::*;

@@ -52,6 +52,7 @@ module ftag_gru #(parameter
     output logic signed [WIDTH-1:0] y_t [0:OUTPUT_SIZE-1]
 );
 
+    local parameter SEQUENCE_LENGTH = 15;
     // Internal signals
     logic signed [WIDTH-1:0] x_t_buffer [0:x_SIZE-1];
     logic signed [WIDTH-1:0] h_t_minus_1 [0:h_SIZE-1];       
@@ -124,7 +125,7 @@ module ftag_gru #(parameter
         if (reset) begin
             seq_counter <= 0;
         end else begin
-            if (seq_counter == 14) begin // Notice that the sequence length is 15 (hardcoded by the model architecture)
+            if (seq_counter == SEQUENCE_LENGTH - 1) begin // Notice that the sequence length is 15 (hardcoded by the model architecture)
                 seq_counter <= 0;
             end else begin
                 seq_counter <= seq_counter + 1;
@@ -160,7 +161,7 @@ module ftag_gru #(parameter
                     end else begin
                         h_t_minus_1[i] <= h_t[i];
                         // set output of gru to random value
-                        gru_out[i] <= gru_out[i];
+                        gru_out[i] <= 0;
                     end
                 end
             end

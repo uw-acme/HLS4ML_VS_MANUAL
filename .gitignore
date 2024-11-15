@@ -7,3 +7,5 @@ src/hdl/RNN/pkg_gen_gru/gru_basic_weights/
 src/hdl/RNN/pkg_gen_gru/*.txt
 *.so
 *.png
+documents/Benchmarks/RNN/ftag/gru_basic.h5
+documents/Benchmarks/RNN/ftag/gru_model/gru_basic.h5
