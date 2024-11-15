@@ -1,8 +1,9 @@
-documents/Benchmarks/RNN/quickdraw/hls/
-documents/Benchmarks/RNN/toptagging/hls/
-documents/Benchmarks/RNN/ftag/hls/
+documents/Benchmarks/RNN/quickdraw/hls/*
+documents/Benchmarks/RNN/toptagging/hls/*
+documents/Benchmarks/RNN/ftag/hls/*
 
 src/hdl/RNN/pkg_gen_gru/weights/
+src/hdl/RNN/pkg_gen_gru/gru_basic_weights/
 src/hdl/RNN/pkg_gen_gru/*.txt
 *.so
 *.png
