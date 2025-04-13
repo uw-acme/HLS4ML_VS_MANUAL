@@ -1,0 +1,31 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Wed Apr  9 00:00:31 2025
+# Process ID: 1921
+# Current directory: /home/donovan/code/research/hls4ml/HLS4ML_VS_MANUAL/src/hdl
+# Command line: vivado
+# Log file: /home/donovan/code/research/hls4ml/HLS4ML_VS_MANUAL/src/hdl/vivado.log
+# Journal file: /home/donovan/code/research/hls4ml/HLS4ML_VS_MANUAL/src/hdl/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/donovan/code/research/hls4ml/HLS4ML_VS_MANUAL/src/hdl/waiz-benchmark/waiz-benchmark-vivado-project/waiz-benchmark-vivado-project.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2019.1/data/ip'.
+open_project: Time (s): cpu = 00:00:25 ; elapsed = 00:00:10 . Memory (MB): peak = 6482.551 ; gain = 135.648 ; free physical = 12808 ; free virtual = 18108
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+[Wed Apr  9 00:02:10 2025] Launched synth_1...
+Run output will be captured here: /home/donovan/code/research/hls4ml/HLS4ML_VS_MANUAL/src/hdl/waiz-benchmark/waiz-benchmark-vivado-project/waiz-benchmark-vivado-project.runs/synth_1/runme.log
+set_property part xqzu15eg-ffrc900-1M-m [current_project]
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+[Wed Apr  9 00:09:30 2025] Launched synth_1...
+Run output will be captured here: /home/donovan/code/research/hls4ml/HLS4ML_VS_MANUAL/src/hdl/waiz-benchmark/waiz-benchmark-vivado-project/waiz-benchmark-vivado-project.runs/synth_1/runme.log
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Apr  9 00:23:35 2025...

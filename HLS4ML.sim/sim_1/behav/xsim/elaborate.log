@@ -1,0 +1,65 @@
+Vivado Simulator 2019.1
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: /tools/Xilinx/Vivado/2019.1/bin/unwrapped/lnx64.o/xelab -wto ebca265c9b664d0b9d58d50764e35785 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot myproject_behav xil_defaultlib.myproject -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture rtl of entity xil_defaultlib.sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s_sigmoid_table4_rom [sigmoid_ap_fixed_ap_fixed_16_6_5...]
+Compiling architecture arch of entity xil_defaultlib.sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s_sigmoid_table4 [sigmoid_ap_fixed_ap_fixed_16_6_5...]
+Compiling architecture behav of entity xil_defaultlib.sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s [sigmoid_ap_fixed_ap_fixed_16_6_5...]
+Compiling architecture rtl of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_outidx_rom [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture arch of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_outidx [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture rtl of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_w2_V_rom [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture arch of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_w2_V [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture rtl of entity xil_defaultlib.myproject_mux_63_16_1_1 [\myproject_mux_63_16_1_1(id=1,di...]
+Compiling architecture rtl of entity xil_defaultlib.myproject_mux_83_16_1_1 [\myproject_mux_83_16_1_1(id=1,di...]
+Compiling architecture rtl of entity xil_defaultlib.myproject_mux_646_16_1_1 [\myproject_mux_646_16_1_1(id=1,d...]
+Compiling architecture behav of entity xil_defaultlib.myproject_mul_mul_16s_16s_26_1_1_DSP48_0 [myproject_mul_mul_16s_16s_26_1_1...]
+Compiling architecture arch of entity xil_defaultlib.myproject_mul_mul_16s_16s_26_1_1 [\myproject_mul_mul_16s_16s_26_1_...]
+Compiling architecture behav of entity xil_defaultlib.myproject_mul_mul_16s_12s_26_1_1_DSP48_1 [myproject_mul_mul_16s_12s_26_1_1...]
+Compiling architecture arch of entity xil_defaultlib.myproject_mul_mul_16s_12s_26_1_1 [\myproject_mul_mul_16s_12s_26_1_...]
+Compiling architecture behav of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture rtl of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s_wr2_V_rom [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture arch of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s_wr2_V [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture rtl of entity xil_defaultlib.myproject_mux_205_16_1_1 [\myproject_mux_205_16_1_1(id=1,d...]
+Compiling architecture behav of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture rtl of entity xil_defaultlib.tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_tanh_table2_rom [tanh_ap_fixed_16_6_5_3_0_ap_fixe...]
+Compiling architecture arch of entity xil_defaultlib.tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_tanh_table2 [tanh_ap_fixed_16_6_5_3_0_ap_fixe...]
+Compiling architecture behav of entity xil_defaultlib.tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s [tanh_ap_fixed_16_6_5_3_0_ap_fixe...]
+Compiling architecture behav of entity xil_defaultlib.myproject_mul_mul_17s_16s_26_1_1_DSP48_2 [myproject_mul_mul_17s_16s_26_1_1...]
+Compiling architecture arch of entity xil_defaultlib.myproject_mul_mul_17s_16s_26_1_1 [\myproject_mul_mul_17s_16s_26_1_...]
+Compiling architecture behav of entity xil_defaultlib.myproject_mac_muladd_16s_16s_26s_26_1_1_DSP48_3 [myproject_mac_muladd_16s_16s_26s...]
+Compiling architecture arch of entity xil_defaultlib.myproject_mac_muladd_16s_16s_26s_26_1_1 [\myproject_mac_muladd_16s_16s_26...]
+Compiling architecture behav of entity xil_defaultlib.gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s [gru_static_ap_fixed_16_6_5_3_0_a...]
+Compiling architecture behav of entity xil_defaultlib.gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s [gru_stack_ap_fixed_16_6_5_3_0_ap...]
+Compiling architecture rtl of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s_w3_V_rom [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture arch of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s_w3_V [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture behav of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture behav of entity xil_defaultlib.relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_s [relu_ap_fixed_16_6_5_3_0_ap_fixe...]
+Compiling architecture rtl of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s_w5_V_rom [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture arch of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s_w5_V [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture rtl of entity xil_defaultlib.myproject_mux_646_15_1_1 [\myproject_mux_646_15_1_1(id=1,d...]
+Compiling architecture behav of entity xil_defaultlib.myproject_mul_mul_15ns_16s_26_1_1_DSP48_4 [myproject_mul_mul_15ns_16s_26_1_...]
+Compiling architecture arch of entity xil_defaultlib.myproject_mul_mul_15ns_16s_26_1_1 [\myproject_mul_mul_15ns_16s_26_1...]
+Compiling architecture behav of entity xil_defaultlib.myproject_mul_mul_13s_15ns_26_1_1_DSP48_5 [myproject_mul_mul_13s_15ns_26_1_...]
+Compiling architecture arch of entity xil_defaultlib.myproject_mul_mul_13s_15ns_26_1_1 [\myproject_mul_mul_13s_15ns_26_1...]
+Compiling architecture behav of entity xil_defaultlib.dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s [dense_resource_ap_fixed_16_6_5_3...]
+Compiling architecture rtl of entity xil_defaultlib.sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s_sigmoid_tabbkb_rom [sigmoid_ap_fixed_16_6_5_3_0_ap_f...]
+Compiling architecture arch of entity xil_defaultlib.sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s_sigmoid_tabbkb [sigmoid_ap_fixed_16_6_5_3_0_ap_f...]
+Compiling architecture behav of entity xil_defaultlib.sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s [sigmoid_ap_fixed_16_6_5_3_0_ap_f...]
+Compiling architecture rtl of entity xil_defaultlib.fifo_w16_d2_A_shiftReg [fifo_w16_d2_a_shiftreg_default]
+Compiling architecture rtl of entity xil_defaultlib.fifo_w16_d2_A [\fifo_w16_d2_A(1,8)\]
+Compiling architecture rtl of entity xil_defaultlib.fifo_w15_d2_A_shiftReg [fifo_w15_d2_a_shiftreg_default]
+Compiling architecture rtl of entity xil_defaultlib.fifo_w15_d2_A [\fifo_w15_d2_A(1,8)\]
+Compiling architecture behav of entity xil_defaultlib.myproject
+ERROR: [XSIM 43-3409] Failed to compile generated C file xsim.dir/myproject_behav/obj/xsim_3.c.
+ERROR: [XSIM 43-3915] Encountered a fatal error. Cannot continue. Exiting... 

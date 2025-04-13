@@ -1,0 +1,54 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_outidx.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_1_s_w2_V.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_2_s_wr2_V.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config3_s_w3_V.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config5_s_w5_V.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/dense_resource_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config7_s_w7_V.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/fifo_w15_d2_A.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/fifo_w16_d2_A.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/gru_stack_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/gru_static_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mac_muladd_16s_16s_26s_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mac_muladd_16s_16s_26s_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_13s_15ns_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_15ns_16s_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_16s_10s_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_16s_11s_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_16s_12s_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_16s_16s_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_16s_8s_24_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_16s_9s_25_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_17s_16s_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_17s_16s_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mul_mul_18s_17ns_26_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mux_1287_16_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mux_205_16_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mux_2568_16_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mux_325_16_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mux_32_16_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mux_63_16_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mux_646_15_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mux_646_16_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject_mux_83_16_1_1.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config4_s.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s_sigmoid_tabbkb.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/sigmoid_ap_fixed_ap_fixed_16_6_5_3_0_sigmoid_config2_recr_s_sigmoid_table4.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_exp_table1.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_invert_table2.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_tanh_table2.vhd" \
+"../../../../documents/Benchmarks/RNN/quickdraw/hls/quickdraw_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/tanh_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_tanh_config2_s_tanh_table3.vhd" \
+"../../../../documents/Benchmarks/RNN/toptagging/hls/toptagging_gru_hls4ml_prj/myproject_prj/solution1/impl/vhdl/myproject.vhd" \
+
+# Do not sort compile order
+nosort
