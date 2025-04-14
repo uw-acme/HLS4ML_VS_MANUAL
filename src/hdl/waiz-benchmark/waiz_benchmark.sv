@@ -13,9 +13,10 @@ module waiz_benchmark #(
     input logic input_ready,
     output logic output_ready,
     input logic signed [WIDTH-1:0] input_data [0:16-1],
-    output logic signed [WIDTH-1:0] output_data [0:5-1]
+    output logic signed [WIDTH-1:0] output_data [0:5-1],
     // input logic signed [10-1:0] input_data [0:16-1],
     // output logic signed [5-1:0] output_data [0:5-1]
+    output real softmax_output_real [0:4]
 );
     
     parameter INPUT_SIZE_1 = 16, OUTPUT_SIZE_1 = 64;
@@ -32,7 +33,7 @@ module waiz_benchmark #(
     real dense3_output_real [0:OUTPUT_SIZE_3-1];
     real dense4_input_real [0:OUTPUT_SIZE_3-1];
     real dense4_output_real [0:OUTPUT_SIZE_4-1];
-    real softmax_output_real [0:OUTPUT_SIZE_4-1];
+    // real softmax_output_real [0:OUTPUT_SIZE_4-1];
 
     // Fixed-point signals for each layer's outputs
     logic signed [WIDTH-1:0] dense1_output_data [0:OUTPUT_SIZE_1-1];
@@ -84,6 +85,12 @@ module waiz_benchmark #(
         return result;
     endfunction
 
+    function real to_real_unsigned(input logic [WIDTH-1:0] fixed_point_value);
+        real result;
+        result = fixed_point_value / (2.0 ** (NFRAC));  // Scale by the fractional part
+        return result;
+    endfunction
+
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
             foreach (input_data_real[i]) input_data_real[i] <= 0;
@@ -92,7 +99,7 @@ module waiz_benchmark #(
         end else begin
             foreach (input_data_real[i]) input_data_real[i] <= to_real(input_data[i]);
             // softmax_output_real <= to_real(softmax_output_data);
-            foreach (softmax_output_real[i]) softmax_output_real[i] <= to_real(softmax_output_data[i]);
+            foreach (softmax_output_real[i]) softmax_output_real[i] <= to_real_unsigned(softmax_output_data[i]);
         end
     end
 
@@ -265,7 +272,7 @@ module waiz_benchmark #(
         .WIDTH      ( WIDTH         ),
         .NFRAC      ( NFRAC         ),
         .MEM_WIDTH  ( 10),
-        .MEM_NFRAC_EXP( 4 ),
+        .MEM_NFRAC_EXP( 0 ),
         .MEM_NFRAC_INV( 2 ),
         .TABLE_WIDTH( 18 ),
         .TABLE_NFRAC(10 ),

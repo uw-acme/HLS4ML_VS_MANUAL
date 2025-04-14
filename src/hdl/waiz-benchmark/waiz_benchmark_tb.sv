@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module tb_waiz_benchmark;
+module waiz_benchmark_tb;
 
     // Parameters
     localparam WIDTH = 16;
@@ -18,17 +18,20 @@ module tb_waiz_benchmark;
     logic signed [WIDTH-1:0] input_data [0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1];
 
+    real softmax_output_real [0:4];
+
     // Instantiate the module
     waiz_benchmark #(
         .WIDTH(WIDTH),
         .NFRAC(NFRAC)
-    ) uut (
+    ) dut (
         .clk(clk),
         .reset(reset),
         .input_ready(input_ready),
         .output_ready(output_ready),
         .input_data(input_data),
-        .output_data(output_data)
+        .output_data(output_data),
+        .softmax_output_real(softmax_output_real)
     );
 
     // Clock generation
@@ -41,7 +44,7 @@ module tb_waiz_benchmark;
         input_ready = 0;
 
         // Wait for a few clock cycles with reset asserted
-        repeat (5) @(posedge clk);
+        repeat (2) @(posedge clk);
 
         reset = 0;
 
@@ -57,15 +60,25 @@ module tb_waiz_benchmark;
         // Wait for output_ready signal
         wait (output_ready == 1);
 
+        repeat (10) @(posedge clk);
+
         // Display the output
         $display("Output data:");
         for (int i = 0; i < OUTPUT_SIZE; i++) begin
             $display("output_data[%0d] = %0d", i, output_data[i]);
         end
 
+        // Display the softmax output on one line
+        $display("Softmax output:");
+        for (int i = 0; i < OUTPUT_SIZE; i++) begin
+            $write("%0f ", softmax_output_real[i]);
+        end
+        $display(""); // New line after softmax output
+
         // Optionally add delay and finish
         #50;
-        $finish;
+        $stop;
+        $stop;
     end
 
 endmodule
