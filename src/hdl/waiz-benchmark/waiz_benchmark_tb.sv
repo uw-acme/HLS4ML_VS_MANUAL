@@ -17,6 +17,7 @@ module waiz_benchmark_tb;
     // Input and output signals
     logic signed [WIDTH-1:0] input_data [0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1];
+    real iteration_count;
 
     real softmax_output_real [0:4];
 
@@ -30,23 +31,28 @@ module waiz_benchmark_tb;
         .input_ready(input_ready),
         .output_ready(output_ready),
         .input_data(input_data),
-        .output_data(output_data),
-        .softmax_output_real(softmax_output_real)
+        .output_data(output_data)
+        // .softmax_output_real(softmax_output_real)
     );
 
     // Clock generation
-    always #5 clk = ~clk; // 100MHz
+    always #5 begin
+        clk = ~clk; // 100MHz
+        iteration_count = iteration_count + 1;
+    end
 
     initial begin
         // Initialize
         clk = 0;
         reset = 1;
         input_ready = 0;
+        // iteration_count = 0;
 
         // Wait for a few clock cycles with reset asserted
         repeat (2) @(posedge clk);
 
         reset = 0;
+        iteration_count = 0;
 
         input_data = '{ -16'd304, 16'd378, 16'd253, -16'd8, 16'd123, 16'd14, -16'd399, -16'd144, -16'd399, -16'd629, -16'd664, -16'd537, -16'd586, -16'd376, 16'd284, 16'd430 };
 
