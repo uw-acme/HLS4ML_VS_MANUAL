@@ -14,5 +14,5 @@ src/hdl/waiz-benchmark/handmade-compilation/
 src/hdl/waiz-benchmark/alveo-u250-xdc_20210909/
 src/hdl/waiz-benchmark/work/
 
-src/hdl/BatchnormJetTagging/handmade-compilation/
-src/hdl/BatchnormJetTagging/alveo-u250-xdc_20210909/
+src/hdl/Batchnorm-JetTagging/handmade-compilation/
+src/hdl/Batchnorm-JetTagging/alveo-u250-xdc_20210909/
