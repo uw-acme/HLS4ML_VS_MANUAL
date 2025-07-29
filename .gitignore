@@ -12,6 +12,7 @@ documents/Benchmarks/RNN/ftag/gru_model/gru_basic.h5
 
 src/hdl/waiz-benchmark/handmade-compilation/
 src/hdl/waiz-benchmark/alveo-u250-xdc_20210909/
+src/hdl/waiz-benchmark/work/
 
 src/hdl/BatchnormJetTagging/handmade-compilation/
 src/hdl/BatchnormJetTagging/alveo-u250-xdc_20210909/
