@@ -62,15 +62,6 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
     logic signed [BITS+NFRAC-1:0]   data_out_tmp;
     
     assign data_in_ex = $signed(data_in);
-
-    initial begin
-        // $info("DONOVAN. BITS: %d", BITS);
-        // $warning("DONOVAN\nBITS: %d", BITS);
-        // $display("DONOVAN\nBITS: %d", BITS);
-        // $error("DONOVAN\nBITS: %d", BITS);
-        // $fatal("DONOVAN\nBITS: %d", BITS);
-        // $fflush();
-    end
     
     
     if (shift[0] == '0) begin
@@ -96,25 +87,8 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
     end else begin
         // muliplication warapper
         // if weight is small enough (in magnitude) it is not necessary to mutiply by
-        // all of the bits since the lower bits contain all the
-
-        // ================= DONOVAN CHANGED CODE =================
-        // 
-        // if (BITS > 18 && ((WEIGHT[BITS-1:17] == '1) || (WEIGHT[BITS-1:17] == '0))) begin
-        //     mult_op_wrap #(.din_WIDTH       ( BITS      ),
-        //                    .dweight_WIDTH   ( 18        ),
-        //                    .dout_WIDTH      ( BITS+NFRAC)
-        //                    ) mow(
-        //         .clk,
-        //         .reset  ( '0            ),
-        //         .ce     ( '1            ), // constant enable
-        //         .din    ( data_in       ),
-        //         .dweight( WEIGHT[17:0]  ),
-        //         .dout   ( data_out_tmp  )
-        //     );
-        //     assign data_out = $signed(data_out_tmp);
-        if (BITS > 18) begin
-            if ((WEIGHT[BITS-1:17] == '1) || (WEIGHT[BITS-1:17] == '0)) begin
+        // all of the bits since the lower bits contain all the information
+        if (BITS > 18 && ((WEIGHT[BITS-1:17] == '1) || (WEIGHT[BITS-1:17] == '0))) begin
             mult_op_wrap #(.din_WIDTH       ( BITS      ),
                            .dweight_WIDTH   ( 18        ),
                            .dout_WIDTH      ( BITS+NFRAC)
@@ -127,9 +101,6 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
                 .dout   ( data_out_tmp  )
             );
             assign data_out = $signed(data_out_tmp);
-            end
-        // 
-        // ================= END OF DONOVAN CHANGED CODE =================
         
         // Use normal multiplication operator
         end else begin

@@ -8,9 +8,7 @@ module softmaxLayer # (
     parameter MEM_NFRAC_EXP = 4,        // Number of fractional bits in the memory lookup indices
     parameter MEM_NFRAC_INV = 2,        // Number of fractional bits in the memory lookup indices
     parameter TABLE_WIDTH = 18,      // Width of the table entries
-    parameter TABLE_NFRAC = 10,             // Number of fractional bits
-    parameter EXP_TABLE_PATH = "/home/donovan/code/research/hls4ml/waiz-khan-files/model_7/10_5_prj/myproject_prj/solution1/impl/verilog/softmax_stable_ap_fixed_ap_fixed_10_5_5_3_0_softmax_config16_s_exp_table1_rom.dat",
-    parameter INVERT_TABLE_PATH = "/home/donovan/code/research/hls4ml/waiz-khan-files/model_7/10_5_prj/myproject_prj/solution1/impl/verilog/softmax_stable_ap_fixed_ap_fixed_10_5_5_3_0_softmax_config16_s_invert_table2_rom.dat"
+    parameter TABLE_NFRAC = 10             // Number of fractional bits
 ) (
     input logic signed [WIDTH-1:0] dataIn [N-1:0],
     input logic clk,
@@ -36,11 +34,9 @@ module softmaxLayer # (
         // assert that the integer width of word is smaller than that of memory lookup index
         assert(WIDTH - NFRAC <= MEM_WIDTH - MEM_NFRAC_EXP);
         // assert that Invert table entry have greater integer width than that of exp table entry
-        // assert(MEM_NFRAC_EXP < MEM_NFRAC_INV);
-        // $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/exp_table_18_10.txt", exp_table, 0, 2**MEM_WIDTH-1);
-        // $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/invert_table_18_10.txt", invert_table, 0, 2**MEM_WIDTH-1);
-        $readmemh(EXP_TABLE_PATH, exp_table, 0, 2**MEM_WIDTH-1);
-        $readmemh(INVERT_TABLE_PATH, invert_table, 0, 2**MEM_WIDTH-1);
+        assert(MEM_NFRAC_EXP - MEM_NFRAC_INV > 0);
+        $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/exp_table_18_10.txt", exp_table, 0, 2**MEM_WIDTH-1);
+        $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/invert_table_18_10.txt", invert_table, 0, 2**MEM_WIDTH-1);
     end
 
     // Calculate exponentials and sum
@@ -49,7 +45,7 @@ module softmaxLayer # (
             if (MEM_NFRAC_EXP == NFRAC) 
                 lookupIndex[i] = dataIn[i];
             else if (MEM_NFRAC_EXP < NFRAC)
-                lookupIndex[i] = (dataIn[i] >>> (NFRAC - MEM_NFRAC_EXP));
+                lookupIndex[i] = (dataIn[i] >> (NFRAC - MEM_NFRAC_EXP));
             else
                 lookupIndex[i] = (dataIn[i] << (MEM_NFRAC_EXP - NFRAC));
 
@@ -72,7 +68,7 @@ module softmaxLayer # (
     // TODO: maybe we don't need invert value for negative values.
     // first cap extreme value (if tempSum >> (TABLE_NFRAC - MEM_NFRAC_INV) is out of range of MEM_WIDTH bit signed value, pick the max / min value)
 
-    assign expSum = tempSum >>> (TABLE_NFRAC - MEM_NFRAC_INV);
+    assign expSum = tempSum >> (TABLE_NFRAC - MEM_NFRAC_INV);
 
 
     always_comb begin

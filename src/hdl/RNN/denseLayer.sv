@@ -26,13 +26,10 @@ module denseLayer #(
     parameter int INPUT_SIZE = 32, // number of fixed point numbers going into dense latency layer
     parameter int OUTPUT_SIZE = 32, // number of fixed point numbers coming out of dense latency layer
     parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: '{default: 17'sd0}}, // WEIGHTS for each input to each output
-    parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0}, // BIASes for each output
-    parameter int ADDER_TREE_CYCLES = 4 // Number of cycles for adderTree module
+    parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0} // BIASes for each output
 ) (
     input  logic                    clk, 
     input  logic                    reset,
-    input  logic                    input_ready,
-    output  logic                    output_ready,
     input  logic signed [WIDTH-1:0] input_data  [0:INPUT_SIZE-1],
     output logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1]
 );
@@ -44,7 +41,6 @@ module denseLayer #(
     logic signed [WIDTH*2-1:0] mult_temp    [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0]   accumulator  [0:OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0]   result       [0:OUTPUT_SIZE-1];
-    logic                      processing;
     
     genvar  col, row;
     // multiplication doubles NFRAC bits in output, we only need NFRAC bits of fractional part,
@@ -100,78 +96,13 @@ module denseLayer #(
     // Add BIASes to result
     integer i;
     always_comb begin
-        // if (input_ready) begin
         for (i=0; i < OUTPUT_SIZE;i++) begin
             result[i] = accumulator[i] + BIAS[i];
         end
-        // end
-    end
-
-    // output
-    typedef enum logic [1:0] {
-        IDLE,
-        PROCESSING,
-        DONE
-    } state_t;
-    
-    state_t state, next_state;
-    int cycle_count;
-    
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            state <= IDLE;
-            cycle_count <= 0;
-        end else begin
-            state <= next_state;
-            if (state == PROCESSING) begin
-                cycle_count <= cycle_count + 1;
-            end else begin
-                cycle_count <= 0;
-            end
-        end
     end
     
-    always_comb begin
-        next_state = state;
-        case (state)
-            IDLE: begin
-                if (input_ready) begin
-                    next_state = PROCESSING;
-                end
-            end
-            PROCESSING: begin
-                if (cycle_count >= ADDER_TREE_CYCLES) begin
-                    next_state = DONE;
-                end
-            end
-            DONE: begin
-                next_state = IDLE;
-            end
-        endcase
-    end
-    
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            output_data <= '{default: 0};
-            output_ready <= 0;
-            processing <= 0;
-        end else begin
-            case (state)
-                IDLE: begin
-                    output_ready <= 0;
-                    processing <= 0;
-                end
-                PROCESSING: begin
-                    // Wait for the computation to complete
-                    processing <= 1;
-                end
-                DONE: begin
-                    output_data <= result;
-                    output_ready <= 1;
-                    processing <= 0;
-                end
-            endcase
-        end
+    always_ff @(posedge clk) begin
+        output_data <= result;
     end
 endmodule
 
@@ -209,18 +140,18 @@ module denseLayer_tb();
         forever #(PERIOD/2) clk <= ~clk;
     end
     
-    // denseLayer #(
-    //     .WIDTH          ( WIDTH             ),
-    //     .NFRAC          ( NFRAC             ),
-    //     .INPUT_SIZE     ( INPUT_SIZE        ),
-    //     .OUTPUT_SIZE    ( OUTPUT_SIZE       )
-    // ) dut (
-    //     .clk(clk),  .reset(reset),
-    //     .input_data(input_data),
-    //     .output_data(output_data),
-    //     .WEIGHTS(WEIGHTS),
-    //     .BIAS(BIAS)
-    // );
+    denseLayer #(
+        .WIDTH          ( WIDTH             ),
+        .NFRAC          ( NFRAC             ),
+        .INPUT_SIZE     ( INPUT_SIZE        ),
+        .OUTPUT_SIZE    ( OUTPUT_SIZE       )
+    ) dut (
+        .clk(clk),  .reset(reset),
+        .input_data(input_data),
+        .output_data(output_data),
+        .WEIGHTS(WEIGHTS),
+        .BIAS(BIAS)
+    );
     
     initial begin
         reset = 0;
