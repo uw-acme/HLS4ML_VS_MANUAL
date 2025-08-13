@@ -278,8 +278,8 @@ module waiz_benchmark #(
         .MEM_NFRAC_INV( 2 ),
         .TABLE_WIDTH( 18 ),
         .TABLE_NFRAC(10 ),
-        .EXP_TABLE_PATH("/home/donovan/code/research/hls4ml/waiz-khan-files/model_7/16_10_prj/myproject_prj/solution1/impl/verilog/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_exp_table1_rom.dat"),
-        .INVERT_TABLE_PATH("/home/donovan/code/research/hls4ml/waiz-khan-files/model_7/16_10_prj/myproject_prj/solution1/impl/verilog/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_invert_table2_rom.dat")
+        .EXP_TABLE_PATH("./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_exp_table1_rom.dat"),
+        .INVERT_TABLE_PATH("./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_invert_table2_rom.dat")
         // .EXP_TABLE_PATH("/home/donovan/code/research/hls4ml/HLS4ML_VS_MANUAL/src/hdl/waiz-benchmark/jiuyang-files/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_exp_table1_rom.dat"),
         // .INVERT_TABLE_PATH("/home/donovan/code/research/hls4ml/HLS4ML_VS_MANUAL/src/hdl/waiz-benchmark/jiuyang-files/softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config8_s_invert_table2_rom.dat")
     ) softmax (
