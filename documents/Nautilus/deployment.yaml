@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: egl
+  name: egl                            #Change
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: egl
+      app: egl                         #Change
   template:
     metadata:
       labels:
-        app: egl
+        app: egl                       #Change
     spec:
-      hostname: egl
+      hostname: egl                    #Change
       tolerations:
       - effect: NoSchedule
         key: nautilus.io/hardware
         operator: Exists
 #      hostNetwork: true
       containers:
-      - name: egl
+      - name: egl                      #Change
         image: gitlab-registry.nrp-nautilus.io/nrp/u55c-desktop:latest
         env:
         - name: XILINXD_LICENSE_FILE
@@ -58,13 +58,6 @@ spec:
           value: "true"
         - name: ENABLE_BASIC_AUTH
           value: "true"
-        # Defaults to `PASSWD` if unspecified, choose either `value:` or `secretKeyRef:` but not both at the same time
-#        - name: BASIC_AUTH_PASSWORD
-#          value: "mypasswd"
-#          valueFrom:
-#            secretKeyRef:
-#              name: my-pass
-#              key: my-pass
         ###
         # Uncomment below to use a TURN server for improved network compatibility
         ###
@@ -78,15 +71,6 @@ spec:
             secretKeyRef:
               name: my-pass
               key: turn-secret
-#        - name: TURN_USERNAME
-#          value: "username"
-        # Choose either `value:` or `secretKeyRef:` but not both at the same time
-#        - name: TURN_PASSWORD
-#          value: "mypasswd"
-#          valueFrom:
-#            secretKeyRef:
-#              name: turn-password
-#              key: turn-password
         # Change to `tcp` if the UDP protocol is throttled or blocked in your client network, or when the TURN server does not support UDP
         - name: TURN_PROTOCOL
           value: "udp"

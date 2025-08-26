@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: haproxy
-  name: egl
+  name: egl                                # Change to value you changed to in deployment.yaml
 spec:
   rules:
   - host: hls4ml-desktop.nrp-nautilus.io
@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           service:
-            name: egl
+            name: egl                     # Change to value you changed to in deployment.yaml
             port:
               name: http
         path: /
@@ -23,12 +23,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: egl
+  name: egl                             # Change to value you changed to in deployment.yaml
   labels:
-    app: egl
+    app: egl                           # Change to value you changed to in deployment.yaml
 spec:
   selector:
-    app: egl
+    app: egl                          # Change to value you changed to in deployment.yaml
   ports:
   - name: http
     protocol: TCP

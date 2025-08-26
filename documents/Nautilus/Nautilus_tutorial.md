@@ -3,12 +3,11 @@
 
 Nautilus is an organization that offers free computing resources to research groups
 
-For general and high level access to computing resources, [Coder](https://nationalresearchplatform.org/documentation/userdocs/coder/coder/)  can be used. Coder offers premade templates and easy access to FPGAs. However, Kubernetes allows a much finer control over everything including individual storage control, ability to request specific amounts of resources, and persistent storage even after shutting down a server. Coder can also be used with Kubernetes combining the best of both worlds.
+For general and high level access to computing resources, [Coder](https://nationalresearchplatform.org/documentation/userdocs/coder/coder/)  can be used. Coder offers premade templates and easy access to FPGAs. However, Kubernetes allows a much finer control over everything including individual storage control, ability to request specific amounts of resources, and persistent storage even after shutting down a server. Coder can also be used with Kubernetes combining the best of both, however tutorials for this are hard to find.
 
-**A warning**, do not try to set up the following in WSL, there are many issues with it. For windows, running everything on Powershell works perfectly fine.
+**A warning**, do not try to set up the following in WSL, there are many issues with it. For Windows, running everything in Powershell works perfectly fine.
 
 If you encounter any issues contact me at ceravcal@uw.edu or the NRP admins at [Element](https://element.nrp-nautilus.io/#/room/#general:matrix.nrp-nautilus.io)
-They usually don't repond on the weekends but are quick to respond on weekdays
 
 Before getting started read these policies
 https://nationalresearchplatform.org/documentation/userdocs/start/policies/
@@ -41,13 +40,15 @@ Now download deployment.yaml and ingress.yaml (they are in the same folder as th
 
 ## **Setting Up the Server**
 
-If you are joining an already started server group, skip the next section and just create the private volume. Ask your server manager for the name of the shared volume if it exists
+If you are joining an already started server group, ignore the text below and just create the private volume. Ask your server manager for the name of the shared volume if it exists
 
 For the server, there are multiple options. The fastest is to set everything up using single user access storage. In this case just download homevol.yaml
 If you want to set up a shared file system, also download sharedvol.yaml and uncomment the code near the bottom in deployment.yaml. In the sectiont that says mounts you can configure where each gets connected to in the server. 
 Currently it is set up for the /home/user directory to be mounted individually with an additional directory /home/user/shared to be connected to the shared filesystem if you uncomment the code
 The shared filesystem is in general slower to upload to while the individual one is faster
 
+
+**Before creating each resource, make sure you aren't overwriting an existing one. For example, run *kubectl get pvc* and look at the returned names to see if your pvc has the same name**
 1. First, edit the name: section in each of the volumes you are using to something unique
 run: *kubectl apply -f homevol.yaml*
 if using the shared filesystem also run: kubectl apply -f sharedvol.yaml
