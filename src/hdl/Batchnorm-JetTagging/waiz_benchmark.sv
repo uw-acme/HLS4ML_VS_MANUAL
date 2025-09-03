@@ -14,16 +14,18 @@ module waiz_benchmark #(
     input logic reset,
     input logic input_ready,
     output logic output_ready,
-    input logic signed [WIDTH-1:0] input_data [0:16-1],
-    output logic signed [WIDTH-1:0] output_data [0:5-1]
+    input logic signed [WIDTH-1:0] input_data [16-1:0],
+    output logic signed [WIDTH-1:0] output_data [5-1:0]
     // input logic signed [10-1:0] input_data [0:16-1],
     // output logic signed [5-1:0] output_data [0:5-1]
     // output real softmax_output_real [0:4]
 );
     
     parameter OUTPUT_SIZE_1 = 64;
-    parameter INPUT_SIZE_2 = 64, OUTPUT_SIZE_2 = 32;
-    parameter INPUT_SIZE_3 = 32, OUTPUT_SIZE_3 = 32;
+    parameter INPUT_SIZE_2 = 64;
+    parameter OUTPUT_SIZE_2 = 32;
+    parameter INPUT_SIZE_3 = 32;
+    parameter OUTPUT_SIZE_3 = 32;
     parameter INPUT_SIZE_4 = 32;
 
     // Declare real signals for the outputs to visualize as floating-point numbers
@@ -38,14 +40,14 @@ module waiz_benchmark #(
     // real softmax_output_real [0:OUTPUT_SIZE-1];
 
     // Fixed-point signals for each layer's outputs
-    logic signed [WIDTH-1:0] dense1_output_data [0:OUTPUT_SIZE_1-1];
-    logic signed [WIDTH-1:0] dense2_input_data [0:INPUT_SIZE_2-1];
-    logic signed [WIDTH-1:0] dense2_output_data [0:OUTPUT_SIZE_2-1];
-    logic signed [WIDTH-1:0] dense3_input_data [0:INPUT_SIZE_3-1];
-    logic signed [WIDTH-1:0] dense3_output_data [0:OUTPUT_SIZE_3-1];
-    logic signed [WIDTH-1:0] dense4_input_data [0:INPUT_SIZE_4-1];
-    logic signed [WIDTH-1:0] dense4_output_data [0:OUTPUT_SIZE-1];
-    logic signed [WIDTH-1:0] softmax_output_data [0:OUTPUT_SIZE-1];
+    logic signed [WIDTH-1:0] dense1_output_data [OUTPUT_SIZE_1-1:0];
+    logic signed [WIDTH-1:0] dense2_input_data [INPUT_SIZE_2-1:0];
+    logic signed [WIDTH-1:0] dense2_output_data [OUTPUT_SIZE_2-1:0];
+    logic signed [WIDTH-1:0] dense3_input_data [INPUT_SIZE_3-1:0];
+    logic signed [WIDTH-1:0] dense3_output_data [OUTPUT_SIZE_3-1:0];
+    logic signed [WIDTH-1:0] dense4_input_data [INPUT_SIZE_4-1:0];
+    logic signed [WIDTH-1:0] dense4_output_data [OUTPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] softmax_output_data [OUTPUT_SIZE-1:0];
 
     // Input and output ready signals for each layer
     logic input_ready_1, output_ready_1;

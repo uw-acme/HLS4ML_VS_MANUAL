@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: egl                            #Change
+  name: egl                            # Change
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: egl                         #Change
+      app: egl                         # Change
   template:
     metadata:
       labels:
-        app: egl                       #Change
+        app: egl                       # Change
     spec:
-      hostname: egl                    #Change
-      tolerations:
-      - effect: NoSchedule
-        key: nautilus.io/hardware
-        operator: Exists
+      hostname: egl                    # Change
+      # tolerations:                   # Look at Nautilus' documentation before uncommenting 
+      # - effect: NoSchedule
+      #   key: nautilus.io/hardware
+      #   operator: Exists
 #      hostNetwork: true
       containers:
-      - name: egl                      #Change
+      - name: egl                      # Change
         image: gitlab-registry.nrp-nautilus.io/nrp/u55c-desktop:latest
         env:
-        - name: XILINXD_LICENSE_FILE
-          value: "2100@xilinxd"
+        - name: XILINXD_LICENSE_FILE    
+          value: "2100@xilinxd.xilinx-dev"   # Connects to Nautilus' Xilinx license server
         - name: TZ
           value: "UTC"
         # Keep to default unless you know what you are doing with VirtualGL, `VGL_DISPLAY` should be set to either `egl[n]`, or `/dev/dri/card[n]` only when the device was passed to the container
@@ -85,13 +85,13 @@ spec:
           protocol: TCP
         resources:
           limits:
-            memory: 128Gi
-            cpu: "32"
+            memory: 30Gi # Your namespace is alloted a limited amount of resources used at a time. Set these as low as you are able
+            cpu: "10"
             amd.com/xilinx_u55c_gen3x16_xdma_base_3-0: 1
 #            nvidia.com/gpu: 1
           requests:
-            memory: 128Gi
-            cpu: "32"
+            memory: 30Gi
+            cpu: "10"
             amd.com/xilinx_u55c_gen3x16_xdma_base_3-0: 1
         volumeMounts:
         - mountPath: /dev/shm
@@ -102,7 +102,6 @@ spec:
           name: root-vol
 #        - mountPath: /home/user/shared
 #          name: shared-vol
-      dnsPolicy: None
       dnsConfig:
         nameservers:
         - 8.8.8.8

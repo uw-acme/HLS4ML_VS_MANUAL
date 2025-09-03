@@ -16,20 +16,25 @@ module reluActivationLayer #(parameter
 
     // Activation fuction
     integer j;
+    
+//    for (j = 0; j<SIZE; j++) begin
+//        assign out_buffer[j] = ((input_data[j][WIDTH-1]==1'b1) ? 0 : input_data[j]);
+//    end
+    
     always_comb begin
         for (j = 0; j < SIZE; j++) begin
-            if (input_data[j][WIDTH-1] == 1'b1) begin
-                out_buffer[j] = {WIDTH{1'b0}};
+            if (input_data[j][WIDTH-1]) begin
+                out_buffer[j] = 0;
             end else begin
                 out_buffer[j] = input_data[j];
             end
         end
     end
     
-    
+    assign output_data=out_buffer;
     // Send output through register
-    always_ff @(posedge clk) begin
-        output_data <= out_buffer;
-    end
+//    always_ff @(posedge clk) begin
+//        output_data <= out_buffer;
+//    end
 
 endmodule

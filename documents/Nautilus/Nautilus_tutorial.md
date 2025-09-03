@@ -1,10 +1,12 @@
-# Nautilus Kubernetes Tutorial 
+# Nautilus Kubernetes Deployment Tutorial 
 #### By: Caleb
 *Last updated 8/26/25*
 
 Nautilus is an organization that offers free computing resources to research groups.
 
 For general and high level access to computing resources, [Coder](https://nationalresearchplatform.org/documentation/userdocs/coder/coder/)  can be used. Coder offers premade templates and easy access to FPGAs. However, Kubernetes allows a much finer control over everything including individual storage control, ability to request specific amounts of resources, and persistent storage even after shutting down a server. Coder can also be used with Kubernetes, combining the best of both (tutorial [here](https://nationalresearchplatform.org/documentation/userdocs/coder/deploy/)). Familiarity with Kubernetes is strongly recommended.
+
+If a full operating system is neccesary, ask the Nautilus admins about Virtual Machines. They are much slower than Deployments
 
 **A warning**, do not try to set up the following in WSL; there are many issues with it. For Windows, running everything in Powershell works perfectly fine.
 
@@ -43,7 +45,7 @@ If .kube doesn't exist, make it with mkdir ~/.kube
 
 Now that you have kubectl set up, you can make a server. First setup an access password for yourself using:
 ```
-kubectl create secret generic my-pass --from-literal=my-pass=YOUR_PASSWORD --from-literal=turn-secret=cup5dBCknRijK4roVJSEUFikEpu8xdKAqGxubX7CbZ2YkpgC4zFsU5Ukqf97PHsE
+kubectl create secret generic my-pass --from-literal=my-pass=YOUR_PASSWORD
 ```
 **Make sure to replace YOUR_PASSWORD with a password**. Write down the password somewhere.
 
@@ -93,21 +95,34 @@ You should now be connected and able to use the server!
 
 For each additional person, create a new private volume (with a different name), create a modified deployment.yaml with this volume as the private one (modify everything done before), and run everything else the same. If you don't change the name of the deployment and the name of the server, it will modify any active deployments in your namespace instead of creating new ones.
 
-## **Server Upkeep**
+If you modify your deployment .yaml file, you can update your deployment using 
+```
+kubectl apply -f deployment.yaml
+```
+## **Server Upkeep and Resources**
 
-Nautilus shuts off any deployments once they are up for 2 weeks straight to free up resources. Due to this, I recommend manually shutting off your server when you aren't using it. However, all data in Persistent Volumes will stay when the server goes down. Persistent Volumes will only be deleted by Nautilus if they are untouched for 6 months.
+Nautilus alots a certain amount of each resource to each lab. When you aren't using the pods, please shut them down using
+```
+kubectl scale deployment <DEPLOYMENT_NAME> --replicas=0
+```
+Starting the pod again is done by doing 
+```
+kubectl scale deployment <DEPLOYMENT_NAME> --replicas=1
+```
+NEVER DIRECTLY DELETE A POD. Just scale the deployment that controls it
 
+
+Nautilus shuts off any deployments once they are up for 2 weeks straight to free up resources. To reset this time frame, you can manually delete your deployments and recreate them
+![alt text](image.png)
 Use:
 ```
 kubectl delete -f deployment.yaml
 kubectl delete -f ingress.yaml
 ```
-to shut down the server. DO NOT DELETE YOUR VOLUMES! (Unless you want to delete all of your data).
+to shut down the deployment. DO NOT DELETE YOUR VOLUMES! (Unless you want to delete all of your data).
 
 Starting the server back up is done simply by rerunning:
 ```
 kubectl apply -f deployment.yaml
 kubectl apply -f ingress.yaml
 ```
-
-I recommend automating this with scripts for easy server startup and shutdown each time.

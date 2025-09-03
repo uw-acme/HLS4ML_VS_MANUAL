@@ -6,7 +6,7 @@ metadata:
   name: egl                                # Change to value you changed to in deployment.yaml
 spec:
   rules:
-  - host: hls4ml-desktop.nrp-nautilus.io
+  - host: <YOUR_NAME>-desktop.nrp-nautilus.io
     http:
       paths:
       - backend:
@@ -18,7 +18,7 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - hls4ml-desktop.nrp-nautilus.io
+    - <YOUR_NAME>-desktop.nrp-nautilus.io
 ---
 apiVersion: v1
 kind: Service
