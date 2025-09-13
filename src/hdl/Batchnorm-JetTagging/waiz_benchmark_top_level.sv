@@ -30,8 +30,8 @@ module waiz_benchmark_top_level #(
     input wire USER_SI570_CLOCK_N, // Differential clock negative pin
     input logic input_ready,
     output logic output_ready,
-    input logic signed [WIDTH-1:0] input_data [0:INPUT_SIZE-1],
-    output logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1]
+    input logic signed [WIDTH-1:0] input_data [INPUT_SIZE-1:0],
+    output logic signed [WIDTH-1:0] output_data [OUTPUT_SIZE-1:0]
 );
 
     wire clk_si570;  // Output of IBUFDS

@@ -1,0 +1,31 @@
+name: hls4ml-tutorial
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.16
+  - jupyter_contrib_nbextensions
+  - jupyterhub
+  - jupyter-book
+  - jsonschema-with-format-nongpl
+  - pydot==1.4.2
+  - graphviz==7.1.0
+  - scikit-learn==1.2.2
+  - tensorflow-datasets==4.8.3
+  - webcolors
+  - widgetsnbextension==3.6.0
+  - pip
+  - pip:
+      - hls4ml[profiling,optimization,sr,HGQ]==1.1.0
+      - conifer==1.5
+      - pysr==0.16.3
+      - xgboost==1.7.5
+      - zstd
+      - tensorflow==2.12.0
+      - matplotlib
+      - numpy
+      - pydot
+      - graphviz
+      - seaborn
+      - tensorflow_model_optimization
+      - qkeras
+      - HGQ
