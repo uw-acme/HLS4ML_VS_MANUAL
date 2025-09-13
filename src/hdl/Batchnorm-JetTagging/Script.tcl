@@ -24,10 +24,18 @@ read_verilog -sv "./waiz_benchmark.sv"
 # read_verilog -sv "./waiz_benchmark_tb.sv"
 
 # --- Set top module ---
+# xc7k160tfbg484-3 is free, no license
+# xc7vx690tffg1761-2 is virtex 7, needs license
 synth_design -top waiz_benchmark -part xc7vx690tffg1761-2
 
 # --- Implementation flow ---
 opt_design
+
+# --- Reports ---
+report_utilization -hierarchical -file reports/util_hier_pre.rpt
+report_timing_summary -file reports/timing_pre_route.rpt
+report_power -file reports/power_pre_route.rpt
+write_checkpoint -force reports/impl_opt.dcp
 place_design
 route_design
 
@@ -37,4 +45,4 @@ report_timing_summary -file reports/timing_post_route.rpt
 report_power -file reports/power_post_route.rpt
 
 # --- Save design checkpoint for GUI inspection ---
-write_checkpoint -force impl_final.dcp
+write_checkpoint -force reports/impl_final.dcp
