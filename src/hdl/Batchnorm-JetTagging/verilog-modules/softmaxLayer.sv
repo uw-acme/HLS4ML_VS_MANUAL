@@ -9,8 +9,8 @@ module softmaxLayer # (
     parameter MEM_NFRAC_INV = 2,        // Number of fractional bits in the memory lookup indices
     parameter TABLE_WIDTH = 18,      // Width of the table entries
     parameter TABLE_NFRAC = 10,             // Number of fractional bits
-    parameter EXP_TABLE_PATH = "/home/donovan/code/research/hls4ml/waiz-khan-files/model_7/10_5_prj/myproject_prj/solution1/impl/verilog/softmax_stable_ap_fixed_ap_fixed_10_5_5_3_0_softmax_config16_s_exp_table1_rom.dat",
-    parameter INVERT_TABLE_PATH = "/home/donovan/code/research/hls4ml/waiz-khan-files/model_7/10_5_prj/myproject_prj/solution1/impl/verilog/softmax_stable_ap_fixed_ap_fixed_10_5_5_3_0_softmax_config16_s_invert_table2_rom.dat"
+    parameter EXP_TABLE_PATH = "./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_exp_table1_rom.dat",
+    parameter INVERT_TABLE_PATH = "./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_invert_table2_rom.dat"
 ) (
     input logic signed [WIDTH-1:0] dataIn [N-1:0],
     input logic clk,

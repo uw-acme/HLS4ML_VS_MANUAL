@@ -32,17 +32,17 @@ synth_design -top waiz_benchmark -part xc7vx690tffg1761-2
 opt_design
 
 # --- Reports ---
-report_utilization -hierarchical -file reports/util_hier_pre.rpt
-report_timing_summary -file reports/timing_pre_route.rpt
-report_power -file reports/power_pre_route.rpt
-write_checkpoint -force reports/impl_opt.dcp
+report_utilization -hierarchical -file reports/util_hier_SA3_pre.rpt
+report_timing_summary -file reports/timing_pre_SA3_route.rpt
+report_power -file reports/power_pre_SA3_route.rpt
+write_checkpoint -force reports/impl_SA3_opt.dcp
 place_design
 route_design
 
 # --- Reports ---
-report_utilization -hierarchical -file reports/util_hier.rpt
-report_timing_summary -file reports/timing_post_route.rpt
-report_power -file reports/power_post_route.rpt
+report_utilization -hierarchical -file reports/util_hier_SA3.rpt
+report_timing_summary -file reports/timing_post_route_SA3.rpt
+report_power -file reports/power_post_route_SA3.rpt
 
 # --- Save design checkpoint for GUI inspection ---
-write_checkpoint -force reports/impl_final.dcp
+write_checkpoint -force reports/impl_final_SA3.dcp
