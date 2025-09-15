@@ -37,8 +37,6 @@ module softmaxLayer # (
         assert(WIDTH - NFRAC <= MEM_WIDTH - MEM_NFRAC_EXP);
         // assert that Invert table entry have greater integer width than that of exp table entry
         // assert(MEM_NFRAC_EXP < MEM_NFRAC_INV);
-        // $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/exp_table_18_10.txt", exp_table, 0, 2**MEM_WIDTH-1);
-        // $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/invert_table_18_10.txt", invert_table, 0, 2**MEM_WIDTH-1);
         $readmemh(EXP_TABLE_PATH, exp_table, 0, 2**MEM_WIDTH-1);
         $readmemh(INVERT_TABLE_PATH, invert_table, 0, 2**MEM_WIDTH-1);
     end
