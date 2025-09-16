@@ -5,12 +5,12 @@ module softmaxLayer # (
     parameter WIDTH = 16,            // Width of input words
     parameter NFRAC = 10,            // Number of fractional bits
     parameter MEM_WIDTH = 10,        // Width of the memory lookup indices
-    parameter MEM_NFRAC_EXP = 4,        // Number of fractional bits in the memory lookup indices
+    parameter MEM_NFRAC_EXP = 6,        // Number of fractional bits in the memory lookup indices
     parameter MEM_NFRAC_INV = 2,        // Number of fractional bits in the memory lookup indices
     parameter TABLE_WIDTH = 18,      // Width of the table entries
     parameter TABLE_NFRAC = 10,             // Number of fractional bits
-    parameter EXP_TABLE_PATH = "./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_exp_table1_rom.dat",
-    parameter INVERT_TABLE_PATH = "./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_invert_table2_rom.dat"
+    parameter EXP_TABLE_PATH = "./weights/softmax/exp_table_18_10_10_6.dat",
+    parameter INVERT_TABLE_PATH = "./weights/softmax/softmax_invert_18_10_10_2.dat"
 ) (
     input logic signed [WIDTH-1:0] dataIn [N-1:0],
     input logic clk,
@@ -19,7 +19,7 @@ module softmaxLayer # (
 );
 
     // Lookup tables
-    logic signed [TABLE_WIDTH-1:0] exp_table [2**MEM_WIDTH-1:0];
+    logic unsigned [TABLE_WIDTH-1:0] exp_table [2**MEM_WIDTH-1:0];
     logic signed [TABLE_WIDTH-1:0] invert_table [2**MEM_WIDTH-1:0];
 
     // Intermediate signals
@@ -37,7 +37,7 @@ module softmaxLayer # (
         assert(WIDTH - NFRAC <= MEM_WIDTH - MEM_NFRAC_EXP);
         // assert that Invert table entry have greater integer width than that of exp table entry
         // assert(MEM_NFRAC_EXP < MEM_NFRAC_INV);
-        $readmemh(EXP_TABLE_PATH, exp_table, 0, 2**MEM_WIDTH-1);
+        $readmemb(EXP_TABLE_PATH, exp_table, 0, 2**MEM_WIDTH-1);
         $readmemh(INVERT_TABLE_PATH, invert_table, 0, 2**MEM_WIDTH-1);
     end
 

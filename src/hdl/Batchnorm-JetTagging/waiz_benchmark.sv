@@ -197,14 +197,7 @@ module waiz_benchmark #(
     softmaxLayer #(
         .N          ( OUTPUT_SIZE ),
         .WIDTH      ( WIDTH         ),
-        .NFRAC      ( NFRAC         ),
-        .MEM_WIDTH  ( 10),
-        .MEM_NFRAC_EXP( 0 ),
-        .MEM_NFRAC_INV( 2 ),
-        .TABLE_WIDTH( 18 ),
-        .TABLE_NFRAC(10 ),
-        .EXP_TABLE_PATH("./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_exp_table1_rom.dat"),
-        .INVERT_TABLE_PATH("./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_invert_table2_rom.dat")
+        .NFRAC      ( NFRAC         )
     ) softmax (
         .dataIn(dense4_output_data),
         .clk(clk),
