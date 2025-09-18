@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Sat Sep 13 23:22:44 2025
+| Date         : Wed Sep 17 18:22:03 2025
 | Host         : hvm1 running 64-bit Ubuntu 22.04.5 LTS
 | Command      : report_utilization -hierarchical -file reports/util_hier_SA3.rpt
 | Design       : waiz_benchmark
@@ -21,10 +21,10 @@ Table of Contents
 +-------------------------------------------------+---------------------------------------+------------+------------+---------+------+-------+--------+--------+--------------+
 |                     Instance                    |                 Module                | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP48 Blocks |
 +-------------------------------------------------+---------------------------------------+------------+------------+---------+------+-------+--------+--------+--------------+
-| waiz_benchmark                                  |                                 (top) |      98579 |      98579 |       0 |    0 | 52666 |      0 |      0 |         1452 |
+| waiz_benchmark                                  |                                 (top) |      99151 |      99151 |       0 |    0 | 52689 |      0 |      0 |         1452 |
 |   (waiz_benchmark)                              |                                 (top) |          0 |          0 |       0 |    0 |     3 |      0 |      0 |            0 |
-|   denselayer1                                   |                            denseLayer |      45515 |      45515 |       0 |    0 | 13142 |      0 |      0 |          438 |
-|     (denselayer1)                               |                            denseLayer |      17162 |      17162 |       0 |    0 |  1064 |      0 |      0 |            0 |
+|   denselayer1                                   |                            denseLayer |      45478 |      45478 |       0 |    0 | 13142 |      0 |      0 |          438 |
+|     (denselayer1)                               |                            denseLayer |      17134 |      17134 |       0 |    0 |  1064 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[0].sa   |                             shift_add |         48 |         48 |       0 |    0 |    15 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[10].sa  |        shift_add__parameterized9_1598 |         17 |         17 |       0 |    0 |     9 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[12].sa  |       shift_add__parameterized10_1599 |          9 |          9 |       0 |    0 |     8 |      0 |      0 |            0 |
@@ -625,7 +625,7 @@ Table of Contents
 |     INPUT_SIZE_rows[4].OUTPUT_SIZE_cols[46].sa  |           shift_add__parameterized236 |         16 |         16 |       0 |    0 |    14 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[4].OUTPUT_SIZE_cols[47].sa  |      shift_add__parameterized237_2027 |         18 |         18 |       0 |    0 |    11 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[4].OUTPUT_SIZE_cols[49].sa  |       shift_add__parameterized41_2028 |         23 |         23 |       0 |    0 |    12 |      0 |      0 |            0 |
-|     INPUT_SIZE_rows[4].OUTPUT_SIZE_cols[4].sa   |      shift_add__parameterized206_2029 |         61 |         61 |       0 |    0 |    14 |      0 |      0 |            0 |
+|     INPUT_SIZE_rows[4].OUTPUT_SIZE_cols[4].sa   |      shift_add__parameterized206_2029 |         53 |         53 |       0 |    0 |    14 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[4].OUTPUT_SIZE_cols[51].sa  |           shift_add__parameterized238 |         18 |         18 |       0 |    0 |    15 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[4].OUTPUT_SIZE_cols[52].sa  |      shift_add__parameterized239_2030 |         16 |         16 |       0 |    0 |    10 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[4].OUTPUT_SIZE_cols[53].sa  |      shift_add__parameterized240_2031 |          0 |          0 |       0 |    0 |     0 |      0 |      0 |            1 |
@@ -982,7 +982,7 @@ Table of Contents
 |       col_trees[7].column_tree                  |                  adderTree_1D_p4_2316 |         47 |         47 |       0 |    0 |    96 |      0 |      0 |            0 |
 |       col_trees[8].column_tree                  |                  adderTree_1D_p4_2317 |         49 |         49 |       0 |    0 |    96 |      0 |      0 |            0 |
 |       col_trees[9].column_tree                  |                  adderTree_1D_p4_2318 |         55 |         55 |       0 |    0 |    96 |      0 |      0 |            0 |
-|   denselayer2                                   |            denseLayer__parameterized0 |      33362 |      33362 |       0 |    0 | 25137 |      0 |      0 |          477 |
+|   denselayer2                                   |            denseLayer__parameterized0 |      33359 |      33359 |       0 |    0 | 25137 |      0 |      0 |          477 |
 |     (denselayer2)                               |            denseLayer__parameterized0 |       1965 |       1965 |       0 |    0 |   548 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[0].sa   |           shift_add__parameterized669 |          0 |          0 |       0 |    0 |     0 |      0 |      0 |            1 |
 |     INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[11].sa  |       shift_add__parameterized239_312 |         34 |         34 |       0 |    0 |    10 |      0 |      0 |            0 |
@@ -1154,7 +1154,7 @@ Table of Contents
 |     INPUT_SIZE_rows[15].OUTPUT_SIZE_cols[2].sa  |       shift_add__parameterized712_420 |         60 |         60 |       0 |    0 |    11 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[15].OUTPUT_SIZE_cols[31].sa |       shift_add__parameterized797_421 |         44 |         44 |       0 |    0 |    14 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[15].OUTPUT_SIZE_cols[3].sa  |       shift_add__parameterized533_422 |         40 |         40 |       0 |    0 |     0 |      0 |      0 |            1 |
-|     INPUT_SIZE_rows[15].OUTPUT_SIZE_cols[4].sa  |        shift_add__parameterized16_423 |         91 |         91 |       0 |    0 |     7 |      0 |      0 |            0 |
+|     INPUT_SIZE_rows[15].OUTPUT_SIZE_cols[4].sa  |        shift_add__parameterized16_423 |         92 |         92 |       0 |    0 |     7 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[15].OUTPUT_SIZE_cols[5].sa  |       shift_add__parameterized214_424 |         60 |         60 |       0 |    0 |    14 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[15].OUTPUT_SIZE_cols[6].sa  |           shift_add__parameterized688 |          0 |          0 |       0 |    0 |    13 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[15].OUTPUT_SIZE_cols[7].sa  |           shift_add__parameterized792 |          4 |          4 |       0 |    0 |     0 |      0 |      0 |            1 |
@@ -1542,7 +1542,7 @@ Table of Contents
 |     INPUT_SIZE_rows[29].OUTPUT_SIZE_cols[6].sa  |       shift_add__parameterized795_709 |          0 |          0 |       0 |    0 |     3 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[29].OUTPUT_SIZE_cols[7].sa  |       shift_add__parameterized670_710 |         23 |         23 |       0 |    0 |     8 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[29].OUTPUT_SIZE_cols[8].sa  |            shift_add__parameterized70 |         27 |         27 |       0 |    0 |     0 |      0 |      0 |            1 |
-|     INPUT_SIZE_rows[29].OUTPUT_SIZE_cols[9].sa  |       shift_add__parameterized870_711 |         26 |         26 |       0 |    0 |     0 |      0 |      0 |            1 |
+|     INPUT_SIZE_rows[29].OUTPUT_SIZE_cols[9].sa  |       shift_add__parameterized870_711 |         20 |         20 |       0 |    0 |     0 |      0 |      0 |            1 |
 |     INPUT_SIZE_rows[2].OUTPUT_SIZE_cols[0].sa   |       shift_add__parameterized687_712 |         30 |         30 |       0 |    0 |    13 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[2].OUTPUT_SIZE_cols[11].sa  |        shift_add__parameterized73_713 |          2 |          2 |       0 |    0 |     0 |      0 |      0 |            1 |
 |     INPUT_SIZE_rows[2].OUTPUT_SIZE_cols[12].sa  |       shift_add__parameterized573_714 |         32 |         32 |       0 |    0 |    14 |      0 |      0 |            0 |
@@ -3533,8 +3533,8 @@ Table of Contents
 |       col_trees[7].column_tree                  |   adderTree_1D_p4__parameterized1_309 |        114 |        114 |       0 |    0 |   192 |      0 |      0 |            0 |
 |       col_trees[8].column_tree                  |   adderTree_1D_p4__parameterized1_310 |        115 |        115 |       0 |    0 |   192 |      0 |      0 |            0 |
 |       col_trees[9].column_tree                  |   adderTree_1D_p4__parameterized1_311 |        110 |        110 |       0 |    0 |   192 |      0 |      0 |            0 |
-|   denselayer4                                   |            denseLayer__parameterized2 |       2365 |       2365 |       0 |    0 |  2104 |      0 |      0 |           71 |
-|     (denselayer4)                               |            denseLayer__parameterized2 |        197 |        197 |       0 |    0 |    66 |      0 |      0 |            0 |
+|   denselayer4                                   |            denseLayer__parameterized2 |       2247 |       2247 |       0 |    0 |  2122 |      0 |      0 |           71 |
+|     (denselayer4)                               |            denseLayer__parameterized2 |         81 |         81 |       0 |    0 |    86 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[0].sa   |            shift_add__parameterized35 |          0 |          0 |       0 |    0 |    11 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[1].sa   |           shift_add__parameterized826 |          0 |          0 |       0 |    0 |     0 |      0 |      0 |            1 |
 |     INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[2].sa   |           shift_add__parameterized791 |          0 |          0 |       0 |    0 |     0 |      0 |      0 |            1 |
@@ -3690,18 +3690,18 @@ Table of Contents
 |     INPUT_SIZE_rows[9].OUTPUT_SIZE_cols[1].sa   |            shift_add__parameterized37 |          2 |          2 |       0 |    0 |    15 |      0 |      0 |            0 |
 |     INPUT_SIZE_rows[9].OUTPUT_SIZE_cols[2].sa   |           shift_add__parameterized850 |          0 |          0 |       0 |    0 |     0 |      0 |      0 |            1 |
 |     INPUT_SIZE_rows[9].OUTPUT_SIZE_cols[3].sa   |          shift_add__parameterized1333 |          0 |          0 |       0 |    0 |    16 |      0 |      0 |            0 |
-|     sum_all                                     |             adderTree__parameterized2 |       1279 |       1279 |       0 |    0 |   942 |      0 |      0 |            0 |
-|       col_trees[0].column_tree                  |       adderTree_1D_p4__parameterized1 |        265 |        265 |       0 |    0 |   182 |      0 |      0 |            0 |
+|     sum_all                                     |             adderTree__parameterized2 |       1277 |       1277 |       0 |    0 |   940 |      0 |      0 |            0 |
+|       col_trees[0].column_tree                  |       adderTree_1D_p4__parameterized1 |        265 |        265 |       0 |    0 |   184 |      0 |      0 |            0 |
 |       col_trees[1].column_tree                  |    adderTree_1D_p4__parameterized1_21 |        253 |        253 |       0 |    0 |   192 |      0 |      0 |            0 |
-|       col_trees[2].column_tree                  |    adderTree_1D_p4__parameterized1_22 |        253 |        253 |       0 |    0 |   188 |      0 |      0 |            0 |
+|       col_trees[2].column_tree                  |    adderTree_1D_p4__parameterized1_22 |        251 |        251 |       0 |    0 |   184 |      0 |      0 |            0 |
 |       col_trees[3].column_tree                  |    adderTree_1D_p4__parameterized1_23 |        252 |        252 |       0 |    0 |   190 |      0 |      0 |            0 |
 |       col_trees[4].column_tree                  |    adderTree_1D_p4__parameterized1_24 |        256 |        256 |       0 |    0 |   190 |      0 |      0 |            0 |
-|   relulayer1                                    |                   reluActivationLayer |       6640 |       6640 |       0 |    0 |     0 |      0 |      0 |            0 |
-|   relulayer2                                    |   reluActivationLayer__parameterized0 |       2484 |       2484 |       0 |    0 |     0 |      0 |      0 |            0 |
-|   relulayer3                                    | reluActivationLayer__parameterized0_0 |        943 |        943 |       0 |    0 |     0 |      0 |      0 |            0 |
-|   softmax                                       |                          softmaxLayer |        221 |        221 |       0 |    0 |    59 |      0 |      0 |            5 |
-|     (softmax)                                   |                          softmaxLayer |        175 |        175 |       0 |    0 |     0 |      0 |      0 |            0 |
-|     add                                         |       adderTree_1D_p4__parameterized2 |         46 |         46 |       0 |    0 |    59 |      0 |      0 |            0 |
+|   relulayer1                                    |                   reluActivationLayer |       6643 |       6643 |       0 |    0 |     0 |      0 |      0 |            0 |
+|   relulayer2                                    |   reluActivationLayer__parameterized0 |       2476 |       2476 |       0 |    0 |     0 |      0 |      0 |            0 |
+|   relulayer3                                    | reluActivationLayer__parameterized0_0 |        927 |        927 |       0 |    0 |     0 |      0 |      0 |            0 |
+|   softmax                                       |                          softmaxLayer |        970 |        970 |       0 |    0 |    64 |      0 |      0 |            5 |
+|     (softmax)                                   |                          softmaxLayer |        930 |        930 |       0 |    0 |     0 |      0 |      0 |            0 |
+|     add                                         |       adderTree_1D_p4__parameterized2 |         40 |         40 |       0 |    0 |    64 |      0 |      0 |            0 |
 |     multiply_and_store[0].mow                   |                          mult_op_wrap |          0 |          0 |       0 |    0 |     0 |      0 |      0 |            1 |
 |       internal_operation                        |                             mult_op_8 |          0 |          0 |       0 |    0 |     0 |      0 |      0 |            1 |
 |     multiply_and_store[1].mow                   |                        mult_op_wrap_1 |          0 |          0 |       0 |    0 |     0 |      0 |      0 |            1 |

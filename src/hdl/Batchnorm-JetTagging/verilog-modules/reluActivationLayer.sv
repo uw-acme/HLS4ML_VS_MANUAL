@@ -4,9 +4,9 @@
 
 `timescale 1ns / 1ps
 module reluActivationLayer #(parameter
-                    WIDTH           = 10, // width of fixed point numbers
-                    NFRAC           = 5,  // number of fractional bits (must be <= width)
-                    SIZE            = 32  // number of fixed point numbers going into dense latency layer
+                    WIDTH           = 16, // width of fixed point numbers
+                    NFRAC           = 10,  // number of fractional bits (must be <= width)
+                    SIZE            = 64  // number of fixed point numbers going into dense latency layer
                  )(
     input clk,
     input logic signed [WIDTH-1:0] input_data [SIZE-1:0],
