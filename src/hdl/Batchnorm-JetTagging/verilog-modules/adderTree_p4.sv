@@ -1,4 +1,4 @@
-
+`timescale 1ns / 1ps
 // Helper module
 // 
 // This module is an adder tree. The module takes in an input 1D array,
