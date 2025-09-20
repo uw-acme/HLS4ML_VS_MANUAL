@@ -73,24 +73,29 @@ module waiz_benchmark_tb;
         #50;
     endtask
     localparam max_tests = 166000;
-    localparam num_tests = 300;
+    localparam num_tests = 1000;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
-    logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests];
-    genvar i,j;
+    logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
+    integer i,j;
     initial begin
         $readmemb("X_test.txt", flat_mem);
-    end
-    generate
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<INPUT_SIZE; j++) begin : inputs
-                always_comb begin
-                    x_test[i][j] = flat_mem[i*INPUT_SIZE+j];
-                end
+                x_test[i][j] = flat_mem[i*INPUT_SIZE+j];
             end
         end
-    endgenerate
+    end
+    // generate
+    //     for (i=0; i<num_tests; i++) begin : tests
+    //         for (j=0; j<INPUT_SIZE; j++) begin : inputs
+    //             always_comb begin
+    //                 x_test[i][j] = flat_mem[i*INPUT_SIZE+j];
+    //             end
+    //         end
+    //     end
+    // endgenerate
     initial begin
-        fd = $fopen("reports/out_results.csv", "w");  // "w" = write mode, "a" = append
+        fd = $fopen("reports/old_results.csv", "w");  // "w" = write mode, "a" = append
         if (fd == 0) begin
             $display("ERROR: Could not open file!");
             $finish;
