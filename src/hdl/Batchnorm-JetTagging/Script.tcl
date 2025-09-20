@@ -14,7 +14,7 @@ read_verilog -sv "./denseLayer.sv"
 read_verilog -sv "./verilog-modules/reluActivationLayer.sv"
 
 # --- Softmax layer ---
-read_verilog -sv "./verilog-modules/softmaxLayer.sv"
+read_verilog -sv "./softmaxLayer.sv"
 
 # --- Top level module ---
 read_verilog -sv "./waiz_benchmark_top_level.sv"
@@ -26,23 +26,24 @@ read_verilog -sv "./waiz_benchmark.sv"
 # --- Set top module ---
 # xc7k160tfbg484-3 is free, no license
 # xc7vx690tffg1761-2 is virtex 7, needs license
-synth_design -top waiz_benchmark -part xc7vx690tffg1761-2
+synth_design -top reluActivationLayer -part xc7vx690tffg1761-2
 
 # --- Implementation flow ---
 opt_design
 
 # --- Reports ---
-report_utilization -hierarchical -file reports/util_hier_SA3_pre.rpt
-report_timing_summary -file reports/timing_pre_SA3_route.rpt
-report_power -file reports/power_pre_SA3_route.rpt
-write_checkpoint -force reports/impl_SA3_opt.dcp
-place_design
-route_design
+# report_utilization -hierarchical -file reports/util_hier_SA3_pre.rpt
+# report_timing_summary -file reports/timing_pre_SA3_route.rpt
+# report_power -file reports/power_pre_SA3_route.rpt
+# write_checkpoint -force reports/impl_SA3_opt.dcp
+#place_design
+#route_design
 
 # --- Reports ---
-report_utilization -hierarchical -file reports/util_hier_SA3.rpt
-report_timing_summary -file reports/timing_post_route_SA3.rpt
-report_power -file reports/power_post_route_SA3.rpt
+report_utilization -file reports/util_RELU.rpt
+#report_utilization -hierarchical -hierarchical_depth 1 -file reports/util_hier_SA4.rpt
+#report_timing_summary -file reports/timing_post_route_RELU.rpt
+#report_power -file reports/power_post_route_RELU.rpt
 
 # --- Save design checkpoint for GUI inspection ---
-write_checkpoint -force reports/impl_final_SA3.dcp
+write_checkpoint -force reports/impl_final_RELU.dcp
