@@ -59,20 +59,25 @@ module waiz_benchmark #(
 
     assign input_ready_1 = input_ready;
     
-
-    always_ff @(posedge clk) begin
-        if (reset) begin
-            input_ready_2 <= 0;
-            input_ready_3 <= 0;
-            input_ready_4 <= 0;
-            input_ready_5 <= 0;
-        end else begin
-            input_ready_2 <= output_ready_1;
-            input_ready_3 <= output_ready_2;
-            input_ready_4 <= output_ready_3;
-            input_ready_5 <= output_ready_4;
-        end
+    always_comb begin
+        input_ready_2 = output_ready_1;
+        input_ready_3 = output_ready_2;
+        input_ready_4 = output_ready_3;
+        input_ready_5 = output_ready_4;
     end
+    // always_ff @(posedge clk) begin
+    //     if (reset) begin
+    //         input_ready_2 <= 0;
+    //         input_ready_3 <= 0;
+    //         input_ready_4 <= 0;
+    //         input_ready_5 <= 0;
+    //     end else begin
+    //         input_ready_2 <= output_ready_1;
+    //         input_ready_3 <= output_ready_2;
+    //         input_ready_4 <= output_ready_3;
+    //         input_ready_5 <= output_ready_4;
+    //     end
+    // end
 
     
 

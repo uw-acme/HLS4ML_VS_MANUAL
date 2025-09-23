@@ -115,7 +115,7 @@ module softmaxLayer # (
             // else
 
             // cap disabled
-            dataOut[i] = buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC];
+            dataOut[i] <= buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC];
         end
     end
 endmodule
