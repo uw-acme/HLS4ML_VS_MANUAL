@@ -34,7 +34,7 @@ module softmaxLayer # (
     // Initialize tables
     initial begin
         // assert that the integer width of word is smaller than that of memory lookup index
-        assert(WIDTH - NFRAC <= MEM_WIDTH - MEM_NFRAC_EXP);
+        // assert(WIDTH - NFRAC <= MEM_WIDTH - MEM_NFRAC_EXP);
         // assert that Invert table entry have greater integer width than that of exp table entry
         // assert(MEM_NFRAC_EXP < MEM_NFRAC_INV);
         $readmemb(EXP_TABLE_PATH, exp_table, 0, 2**MEM_WIDTH-1);

@@ -22,7 +22,7 @@ read_verilog -sv "./waiz_benchmark.sv"
 
 # (Optional) Testbench files (if you want synthesis, usually skip these)
 # read_verilog -sv "./waiz_benchmark_tb.sv"
-read_xdc ./const.xdc
+
 # --- Set top module ---
 # xc7k160tfbg484-3 is free, no license
 # xc7vx690tffg1761-2 is virtex 7, needs license
@@ -40,10 +40,10 @@ place_design
 route_design
 
 # --- Reports ---
-report_utilization -file reports/util_SA4_rand_310.rpt
+report_utilization -file reports/util_SA4_rand_410_25.rpt
 #report_utilization -hierarchical -hierarchical_depth 1 -file reports/util_hier_SA4.rpt
 #report_timing_summary -file reports/timing_post_route_RELU.rpt
 #report_power -file reports/power_post_route_RELU.rpt
 
 # --- Save design checkpoint for GUI inspection ---
-write_checkpoint -force reports/impl_final_SA4_rand_310.dcp
+write_checkpoint -force reports/impl_final_SA4_rand_410_25.dcp

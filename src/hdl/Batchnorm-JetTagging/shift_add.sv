@@ -72,8 +72,8 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // $fflush();
     end
     
-    
-    if (shift[0] == '0) begin
+//    if (shift[0] == '0) begin // Original 
+    if ((shift[0]=='0)&&(( (abs_value(WEIGHT)%10)<4 )||(shift[DEPTH]==0))) begin// Modified
         always_comb begin
             // make data_out_tmp an accumulator
             data_out_tmp = '0;
