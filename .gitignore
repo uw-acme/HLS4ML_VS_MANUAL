@@ -25,3 +25,4 @@ src/hdl/Batchnorm-JetTagging/project*
 src/hdl/Batchnorm-JetTagging/vivado*
 !src/hdl/Batchnorm-JetTagging/python/model_5/16_10_prj/myproject_prj/solution1/impl/verilog/*
 src/hdl/Batchnorm-JetTagging/xelab.log
+src/hdl/Batchnorm-JetTagging/vsim.wlf
