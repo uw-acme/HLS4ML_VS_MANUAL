@@ -1,13 +1,2 @@
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv" into library work
 INFO: [VRFC 10-311] analyzing module waiz_benchmark_tb
-ERROR: [VRFC 10-4982] syntax error near 'end' [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:159]
-ERROR: [VRFC 10-2790] SystemVerilog keyword end used in incorrect context [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:159]
-ERROR: [VRFC 10-2989] 'num_tests' is not declared [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:45]
-ERROR: [VRFC 10-1775] range must be bounded by constant expressions [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:45]
-ERROR: [VRFC 10-2989] 'num_tests' is not declared [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:46]
-ERROR: [VRFC 10-1775] range must be bounded by constant expressions [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:46]
-ERROR: [VRFC 10-2989] 'num_tests' is not declared [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:54]
-ERROR: [VRFC 10-2989] 'fd' is not declared [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:98]
-ERROR: [VRFC 10-2989] 'fd' is not declared [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:99]
-ERROR: [VRFC 10-2989] 'num_tests' is not declared [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:105]
-ERROR: [VRFC 10-2865] module 'waiz_benchmark_tb' ignored due to previous errors [/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/waiz_benchmark_tb.sv:3]

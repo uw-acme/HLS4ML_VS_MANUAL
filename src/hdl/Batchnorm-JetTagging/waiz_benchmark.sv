@@ -79,7 +79,6 @@ module waiz_benchmark #(
     //     end
     // end
 
-    
 
     // assign input_ready_2 = output_ready_1;
     // assign input_ready_3 = output_ready_2;
@@ -89,7 +88,7 @@ module waiz_benchmark #(
 
     assign output_ready = output_ready_4;
 
-    
+    localparam use_relu = 1'b0;
 
     // Dense Layer 1
     denseLayer #(
@@ -108,7 +107,7 @@ module waiz_benchmark #(
         .output_data( dense1_output_data)
     );
 
-
+    logic signed [WIDTH-1:0] relu1_output [OUTPUT_SIZE_1-1:0];
     // ReLU Layer 1
     reluActivationLayer #(
         .WIDTH      ( WIDTH         ),
@@ -117,10 +116,10 @@ module waiz_benchmark #(
     ) relulayer1 (
         .clk,
         .input_data ( dense1_output_data ),
-        .output_data( dense2_input_data )
+        .output_data( relu1_output )
     );
 
-
+    assign dense2_input_data = use_relu ? relu1_output : dense1_output_data;
     // Dense Layer 2
     denseLayer #(
         .WIDTH      ( WIDTH         ),
@@ -138,7 +137,7 @@ module waiz_benchmark #(
         .output_data( dense2_output_data)
     );
 
-
+    logic signed [WIDTH-1:0] relu2_output [OUTPUT_SIZE_2-1:0];
     // ReLU Layer 2
     reluActivationLayer #(
         .WIDTH      ( WIDTH         ),
@@ -147,10 +146,10 @@ module waiz_benchmark #(
     ) relulayer2 (
         .clk,
         .input_data ( dense2_output_data ),
-        .output_data( dense3_input_data )
+        .output_data( relu2_output )
     );
 
-
+    assign dense3_input_data = use_relu ? relu2_output : dense2_output_data;
     // Dense Layer 3
     denseLayer #(
         .WIDTH      ( WIDTH         ),
@@ -168,7 +167,7 @@ module waiz_benchmark #(
         .output_data( dense3_output_data)
     );
 
-
+    logic signed [WIDTH-1:0] relu3_output [OUTPUT_SIZE_3-1:0];
     // ReLU Layer 3
     reluActivationLayer #(
         .WIDTH      ( WIDTH         ),
@@ -177,10 +176,10 @@ module waiz_benchmark #(
     ) relulayer3 (
         .clk,
         .input_data ( dense3_output_data ),
-        .output_data( dense4_input_data )
+        .output_data( relu3_output )
     );
 
-
+    assign dense4_input_data = use_relu ? relu3_output : dense3_output_data;
     // Dense Layer 4
     denseLayer #(
         .WIDTH      ( WIDTH         ),
