@@ -34,12 +34,13 @@ module waiz_benchmark_tb;
         .output_data(output_data)
         // .softmax_output_real(softmax_output_real)
     );
-    localparam write_file = 0;
+    localparam write_file = 1;
     // Clock generation
     always #5 begin
         clk = ~clk; // 100MHz
         iteration_count = iteration_count + 1;
     end
+    
     integer fd;
     task run_test;
         input signed [WIDTH-1:0] input_d [0:INPUT_SIZE-1];
@@ -73,7 +74,7 @@ module waiz_benchmark_tb;
         #50;
     endtask
     localparam max_tests = 166000;
-    localparam num_tests = 1000;
+    localparam num_tests = 166000;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
@@ -96,11 +97,14 @@ module waiz_benchmark_tb;
                 $finish;
             end
         end
-        run_test('{ -16'd304, 16'd378, 16'd253, -16'd8, 16'd123, 16'd14, -16'd399, -16'd144, -16'd399, -16'd629, -16'd664, -16'd537, -16'd586, -16'd376, 16'd284, 16'd430 });
+        // run_test('{ -16'd304, 16'd378, 16'd253, -16'd8, 16'd123, 16'd14, -16'd399, -16'd144, -16'd399, -16'd629, -16'd664, -16'd537, -16'd586, -16'd376, 16'd284, 16'd430 });
         #10;
-        // for (int i=0; i<num_tests; i++) begin
-        //     run_test(x_test[i]);
-        // end
+        if (write_file) begin
+            for (int i=0; i<num_tests; i++) begin
+                run_test(x_test[i]);
+            end
+            #10;
+        end
         if (write_file) begin
             $fclose(fd);
         end

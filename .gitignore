@@ -14,9 +14,14 @@ documents/Benchmarks/RNN/ftag/gru_model/gru_basic.h5
 src/hdl/waiz-benchmark/handmade-compilation/
 src/hdl/waiz-benchmark/alveo-u250-xdc_20210909/
 src/hdl/waiz-benchmark/work/
-
+*xsim*
+*.wdb
+*xvlog*
+*.dcp
 src/hdl/Batchnorm-JetTagging/handmade-compilation/
 src/hdl/Batchnorm-JetTagging/python/model_5/
 src/hdl/Batchnorm-JetTagging/alveo-u250-xdc_20210909/
 src/hdl/Batchnorm-JetTagging/project*
 src/hdl/Batchnorm-JetTagging/vivado*
+!src/hdl/Batchnorm-JetTagging/python/model_5/16_10_prj/myproject_prj/solution1/impl/verilog/*
+src/hdl/Batchnorm-JetTagging/xelab.log
