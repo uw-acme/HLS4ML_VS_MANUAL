@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // Helper module
 // 
 // This module implements a submodule called adderTree_1D to

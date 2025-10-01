@@ -59,22 +59,26 @@ module waiz_benchmark #(
 
     assign input_ready_1 = input_ready;
     
-
-    always_ff @(posedge clk) begin
-        if (reset) begin
-            input_ready_2 <= 0;
-            input_ready_3 <= 0;
-            input_ready_4 <= 0;
-            input_ready_5 <= 0;
-        end else begin
-            input_ready_2 <= output_ready_1;
-            input_ready_3 <= output_ready_2;
-            input_ready_4 <= output_ready_3;
-            input_ready_5 <= output_ready_4;
-        end
+    always_comb begin
+        input_ready_2 = output_ready_1;
+        input_ready_3 = output_ready_2;
+        input_ready_4 = output_ready_3;
+        input_ready_5 = output_ready_4;
     end
+    // always_ff @(posedge clk) begin
+    //     if (reset) begin
+    //         input_ready_2 <= 0;
+    //         input_ready_3 <= 0;
+    //         input_ready_4 <= 0;
+    //         input_ready_5 <= 0;
+    //     end else begin
+    //         input_ready_2 <= output_ready_1;
+    //         input_ready_3 <= output_ready_2;
+    //         input_ready_4 <= output_ready_3;
+    //         input_ready_5 <= output_ready_4;
+    //     end
+    // end
 
-    
 
     // assign input_ready_2 = output_ready_1;
     // assign input_ready_3 = output_ready_2;
@@ -84,7 +88,7 @@ module waiz_benchmark #(
 
     assign output_ready = output_ready_4;
 
-    
+    localparam use_relu = 1'b0;
 
     // Dense Layer 1
     denseLayer #(
@@ -103,7 +107,7 @@ module waiz_benchmark #(
         .output_data( dense1_output_data)
     );
 
-
+    logic signed [WIDTH-1:0] relu1_output [OUTPUT_SIZE_1-1:0];
     // ReLU Layer 1
     reluActivationLayer #(
         .WIDTH      ( WIDTH         ),
@@ -112,10 +116,10 @@ module waiz_benchmark #(
     ) relulayer1 (
         .clk,
         .input_data ( dense1_output_data ),
-        .output_data( dense2_input_data )
+        .output_data( relu1_output )
     );
 
-
+    assign dense2_input_data = use_relu ? relu1_output : dense1_output_data;
     // Dense Layer 2
     denseLayer #(
         .WIDTH      ( WIDTH         ),
@@ -133,7 +137,7 @@ module waiz_benchmark #(
         .output_data( dense2_output_data)
     );
 
-
+    logic signed [WIDTH-1:0] relu2_output [OUTPUT_SIZE_2-1:0];
     // ReLU Layer 2
     reluActivationLayer #(
         .WIDTH      ( WIDTH         ),
@@ -142,10 +146,10 @@ module waiz_benchmark #(
     ) relulayer2 (
         .clk,
         .input_data ( dense2_output_data ),
-        .output_data( dense3_input_data )
+        .output_data( relu2_output )
     );
 
-
+    assign dense3_input_data = use_relu ? relu2_output : dense2_output_data;
     // Dense Layer 3
     denseLayer #(
         .WIDTH      ( WIDTH         ),
@@ -163,7 +167,7 @@ module waiz_benchmark #(
         .output_data( dense3_output_data)
     );
 
-
+    logic signed [WIDTH-1:0] relu3_output [OUTPUT_SIZE_3-1:0];
     // ReLU Layer 3
     reluActivationLayer #(
         .WIDTH      ( WIDTH         ),
@@ -172,10 +176,10 @@ module waiz_benchmark #(
     ) relulayer3 (
         .clk,
         .input_data ( dense3_output_data ),
-        .output_data( dense4_input_data )
+        .output_data( relu3_output )
     );
 
-
+    assign dense4_input_data = use_relu ? relu3_output : dense3_output_data;
     // Dense Layer 4
     denseLayer #(
         .WIDTH      ( WIDTH         ),
@@ -197,14 +201,7 @@ module waiz_benchmark #(
     softmaxLayer #(
         .N          ( OUTPUT_SIZE ),
         .WIDTH      ( WIDTH         ),
-        .NFRAC      ( NFRAC         ),
-        .MEM_WIDTH  ( 10),
-        .MEM_NFRAC_EXP( 0 ),
-        .MEM_NFRAC_INV( 2 ),
-        .TABLE_WIDTH( 18 ),
-        .TABLE_NFRAC(10 ),
-        .EXP_TABLE_PATH("./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_exp_table1_rom.dat"),
-        .INVERT_TABLE_PATH("./weights/softmax/softmax_stable_ap_fixed_ap_fixed_16_10_5_3_0_softmax_config16_s_invert_table2_rom.dat")
+        .NFRAC      ( NFRAC         )
     ) softmax (
         .dataIn(dense4_output_data),
         .clk(clk),
@@ -239,50 +236,16 @@ module waiz_benchmark #(
         return result;
     endfunction
 
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            foreach (input_data_real[i]) input_data_real[i] <= 0;
-            // foreach (dense1_output_real[i]) dense1_output_real[i] <= 0;
-            foreach (softmax_output_real[i]) softmax_output_real[i] <= 0;
-            foreach (dense1_output_real[i]) dense1_output_real[i] <= 0;
-            foreach (dense2_input_real[i]) dense2_input_real[i] <= 0;
-            foreach (dense2_output_real[i]) dense2_output_real[i] <= 0;
-            foreach (dense3_input_real[i]) dense3_input_real[i] <= 0;
-            foreach (dense3_output_real[i]) dense3_output_real[i] <= 0;
-        end else begin
-            foreach (input_data_real[i]) input_data_real[i] <= to_real(input_data[i]);
-            // softmax_output_real <= to_real(softmax_output_data);
-            foreach (softmax_output_real[i]) softmax_output_real[i] <= to_real_unsigned(softmax_output_data[i]);
-            foreach (dense1_output_real[i]) dense1_output_real[i] <= to_real(dense1_output_data[i]);
-            foreach (dense2_input_real[i]) dense2_input_real[i] <= to_real(dense2_input_data[i]);
-            foreach (dense2_output_real[i]) dense2_output_real[i] <= to_real(dense2_output_data[i]);
-            foreach (dense3_input_real[i]) dense3_input_real[i] <= to_real(dense3_input_data[i]);
-            foreach (dense3_output_real[i]) dense3_output_real[i] <= to_real(dense3_output_data[i]);
-        end
-    end
-    // Convert dense3_output_data to real
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            foreach (dense3_output_real[i]) dense3_output_real[i] <= 0;
-        end else begin
-            foreach (dense3_output_real[i]) dense3_output_real[i] <= to_real(dense3_output_data[i]);
-        end
-    end
-    // Convert dense4_input_data to real
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            foreach (dense4_input_real[i]) dense4_input_real[i] <= 0;
-        end else begin
-            foreach (dense4_input_real[i]) dense4_input_real[i] <= to_real(dense4_input_data[i]);
-        end
-    end
-    // Convert dense4_output_data to real
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            foreach (dense4_output_real[i]) dense4_output_real[i] <= 0;
-        end else begin
-            foreach (dense4_output_real[i]) dense4_output_real[i] <= to_real(dense4_output_data[i]);
-        end
+    always_comb begin
+        foreach (input_data_real[i]) input_data_real[i] = to_real(input_data[i]);
+        foreach (softmax_output_real[i]) softmax_output_real[i] = to_real_unsigned(softmax_output_data[i]);
+        foreach (dense1_output_real[i]) dense1_output_real[i] = to_real(dense1_output_data[i]);
+        foreach (dense2_input_real[i]) dense2_input_real[i] = to_real(dense2_input_data[i]);
+        foreach (dense2_output_real[i]) dense2_output_real[i] = to_real(dense2_output_data[i]);
+        foreach (dense3_input_real[i]) dense3_input_real[i] = to_real(dense3_input_data[i]);
+        foreach (dense3_output_real[i]) dense3_output_real[i] = to_real(dense3_output_data[i]);
+        foreach (dense4_input_real[i]) dense4_input_real[i] = to_real(dense4_input_data[i]);
+        foreach (dense4_output_real[i]) dense4_output_real[i] = to_real(dense4_output_data[i]);
     end
     `endif
 endmodule

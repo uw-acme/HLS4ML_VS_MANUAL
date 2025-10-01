@@ -27,6 +27,7 @@ add wave -noupdate /waiz_benchmark_tb/dut/dense4_input_data
 add wave -noupdate /waiz_benchmark_tb/dut/dense4_output_data
 add wave -noupdate /waiz_benchmark_tb/dut/softmax_output_data
 add wave -noupdate -divider {New Divider}
+add wave -noupdate /waiz_benchmark_tb/dut/softmax_output_real
 add wave -noupdate -divider {New Divider}
 add wave -noupdate /waiz_benchmark_tb/dut/input_ready
 add wave -noupdate /waiz_benchmark_tb/dut/output_ready
@@ -52,18 +53,19 @@ add wave -noupdate /waiz_benchmark_tb/dut/softmax/INVERT_TABLE_PATH
 add wave -noupdate /waiz_benchmark_tb/dut/softmax/dataIn
 add wave -noupdate /waiz_benchmark_tb/dut/softmax/clk
 add wave -noupdate /waiz_benchmark_tb/dut/softmax/reset
-add wave -noupdate -radix hexadecimal -childformat {{{/waiz_benchmark_tb/dut/softmax/dataOut[4]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/dataOut[3]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/dataOut[2]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/dataOut[1]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/dataOut[0]} -radix hexadecimal}} -expand -subitemconfig {{/waiz_benchmark_tb/dut/softmax/dataOut[4]} {-height 17 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/dataOut[3]} {-height 17 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/dataOut[2]} {-height 17 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/dataOut[1]} {-height 17 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/dataOut[0]} {-height 17 -radix hexadecimal}} /waiz_benchmark_tb/dut/softmax/dataOut
+add wave -noupdate -radix hexadecimal -childformat {{{/waiz_benchmark_tb/dut/softmax/dataOut[4]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/dataOut[3]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/dataOut[2]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/dataOut[1]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/dataOut[0]} -radix hexadecimal}} -expand -subitemconfig {{/waiz_benchmark_tb/dut/softmax/dataOut[4]} {-height 15 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/dataOut[3]} {-height 15 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/dataOut[2]} {-height 15 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/dataOut[1]} {-height 15 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/dataOut[0]} {-height 15 -radix hexadecimal}} /waiz_benchmark_tb/dut/softmax/dataOut
 add wave -noupdate -radix hexadecimal /waiz_benchmark_tb/dut/softmax/exp_table
-add wave -noupdate /waiz_benchmark_tb/dut/softmax/invert_table
+add wave -noupdate -radix decimal -radixshowbase 0 /waiz_benchmark_tb/dut/softmax/invert_table
 add wave -noupdate /waiz_benchmark_tb/dut/softmax/buffer
-add wave -noupdate -radix hexadecimal -childformat {{{/waiz_benchmark_tb/dut/softmax/expResult[4]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/expResult[3]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/expResult[2]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/expResult[1]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/expResult[0]} -radix hexadecimal}} -expand -subitemconfig {{/waiz_benchmark_tb/dut/softmax/expResult[4]} {-height 17 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/expResult[3]} {-height 17 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/expResult[2]} {-height 17 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/expResult[1]} {-height 17 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/expResult[0]} {-height 17 -radix hexadecimal}} /waiz_benchmark_tb/dut/softmax/expResult
+add wave -noupdate -radix hexadecimal -childformat {{{/waiz_benchmark_tb/dut/softmax/expResult[4]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/expResult[3]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/expResult[2]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/expResult[1]} -radix hexadecimal} {{/waiz_benchmark_tb/dut/softmax/expResult[0]} -radix hexadecimal}} -expand -subitemconfig {{/waiz_benchmark_tb/dut/softmax/expResult[4]} {-height 15 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/expResult[3]} {-height 15 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/expResult[2]} {-height 15 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/expResult[1]} {-height 15 -radix hexadecimal} {/waiz_benchmark_tb/dut/softmax/expResult[0]} {-height 15 -radix hexadecimal}} /waiz_benchmark_tb/dut/softmax/expResult
 add wave -noupdate -radix hexadecimal /waiz_benchmark_tb/dut/softmax/tempSum
 add wave -noupdate -radix hexadecimal /waiz_benchmark_tb/dut/softmax/expSum
 add wave -noupdate -radix hexadecimal /waiz_benchmark_tb/dut/softmax/lookupIndex
 add wave -noupdate -radix hexadecimal /waiz_benchmark_tb/dut/softmax/invertIndex
 add wave -noupdate -radix hexadecimal /waiz_benchmark_tb/dut/softmax/invertVal
+add wave -noupdate /waiz_benchmark_tb/x_test
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {481963 ps} 0}
+WaveRestoreCursors {{Cursor 1} {16120608 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 262
 configure wave -valuecolwidth 140
@@ -79,4 +81,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {509250 ps}
+WaveRestoreZoom {16086253 ps} {16451393 ps}
