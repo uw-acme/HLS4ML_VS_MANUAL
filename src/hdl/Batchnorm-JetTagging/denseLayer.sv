@@ -27,7 +27,7 @@ module denseLayer #(
     parameter int OUTPUT_SIZE = 32, // number of fixed point numbers coming out of dense latency layer
     parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: '{default: 17'sd0}}, // WEIGHTS for each input to each output
     parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0}, // BIASes for each output
-    parameter int ADDER_TREE_CYCLES = 2 // Number of cycles for adderTree module
+    parameter int ADDER_TREE_CYCLES = 4 // Number of cycles for adderTree module
 ) (
     input  logic                    clk, 
     input  logic                    reset,

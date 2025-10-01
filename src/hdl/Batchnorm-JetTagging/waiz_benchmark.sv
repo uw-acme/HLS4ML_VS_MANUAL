@@ -237,50 +237,16 @@ module waiz_benchmark #(
         return result;
     endfunction
 
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            foreach (input_data_real[i]) input_data_real[i] <= 0;
-            // foreach (dense1_output_real[i]) dense1_output_real[i] <= 0;
-            foreach (softmax_output_real[i]) softmax_output_real[i] <= 0;
-            foreach (dense1_output_real[i]) dense1_output_real[i] <= 0;
-            foreach (dense2_input_real[i]) dense2_input_real[i] <= 0;
-            foreach (dense2_output_real[i]) dense2_output_real[i] <= 0;
-            foreach (dense3_input_real[i]) dense3_input_real[i] <= 0;
-            foreach (dense3_output_real[i]) dense3_output_real[i] <= 0;
-        end else begin
-            foreach (input_data_real[i]) input_data_real[i] <= to_real(input_data[i]);
-            // softmax_output_real <= to_real(softmax_output_data);
-            foreach (softmax_output_real[i]) softmax_output_real[i] <= to_real_unsigned(softmax_output_data[i]);
-            foreach (dense1_output_real[i]) dense1_output_real[i] <= to_real(dense1_output_data[i]);
-            foreach (dense2_input_real[i]) dense2_input_real[i] <= to_real(dense2_input_data[i]);
-            foreach (dense2_output_real[i]) dense2_output_real[i] <= to_real(dense2_output_data[i]);
-            foreach (dense3_input_real[i]) dense3_input_real[i] <= to_real(dense3_input_data[i]);
-            foreach (dense3_output_real[i]) dense3_output_real[i] <= to_real(dense3_output_data[i]);
-        end
-    end
-    // Convert dense3_output_data to real
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            foreach (dense3_output_real[i]) dense3_output_real[i] <= 0;
-        end else begin
-            foreach (dense3_output_real[i]) dense3_output_real[i] <= to_real(dense3_output_data[i]);
-        end
-    end
-    // Convert dense4_input_data to real
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            foreach (dense4_input_real[i]) dense4_input_real[i] <= 0;
-        end else begin
-            foreach (dense4_input_real[i]) dense4_input_real[i] <= to_real(dense4_input_data[i]);
-        end
-    end
-    // Convert dense4_output_data to real
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            foreach (dense4_output_real[i]) dense4_output_real[i] <= 0;
-        end else begin
-            foreach (dense4_output_real[i]) dense4_output_real[i] <= to_real(dense4_output_data[i]);
-        end
+    always_comb begin
+        foreach (input_data_real[i]) input_data_real[i] = to_real(input_data[i]);
+        foreach (softmax_output_real[i]) softmax_output_real[i] = to_real_unsigned(softmax_output_data[i]);
+        foreach (dense1_output_real[i]) dense1_output_real[i] = to_real(dense1_output_data[i]);
+        foreach (dense2_input_real[i]) dense2_input_real[i] = to_real(dense2_input_data[i]);
+        foreach (dense2_output_real[i]) dense2_output_real[i] = to_real(dense2_output_data[i]);
+        foreach (dense3_input_real[i]) dense3_input_real[i] = to_real(dense3_input_data[i]);
+        foreach (dense3_output_real[i]) dense3_output_real[i] = to_real(dense3_output_data[i]);
+        foreach (dense4_input_real[i]) dense4_input_real[i] = to_real(dense4_input_data[i]);
+        foreach (dense4_output_real[i]) dense4_output_real[i] = to_real(dense4_output_data[i]);
     end
     `endif
 endmodule

@@ -67,21 +67,21 @@ module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32) (
 	generate
 	   for (i = 0; i < POW_OF_4; i++) begin
 	       for (j=4**i; j < 2*(4**i); j++) begin
-                if (i%2==0) begin
+                // if (i%2==0) begin
                     always_ff @(posedge clk) begin
                         tree[j] <= tree[4*j]
                                     + tree[(4*j) + 1]
                                     + tree[(4*j) + 2]
                                     + tree[(4*j) + 3];
                     end
-                end else begin
-                    always_comb begin
-                        tree[j] = tree[4*j]
-                                    + tree[(4*j) + 1]
-                                    + tree[(4*j) + 2]
-                                    + tree[(4*j) + 3];
-                    end
-                end
+                // end else begin
+                //     always_comb begin
+                //         tree[j] = tree[4*j]
+                //                     + tree[(4*j) + 1]
+                //                     + tree[(4*j) + 2]
+                //                     + tree[(4*j) + 3];
+                //     end
+                // end
 	       end
 	   end
 	endgenerate
