@@ -4,10 +4,10 @@ Please refer to [resource-list.md](./resource-list.md) for a complete set of the
 
 ### For New Inititates:
 
-To get up to speed with the purpose and objectives of the lab, we suggest you begin with the following:
+After working through the Nautilus setup tutorial in acme-lab-documentation, work through these tutorials in order
 
-**Papers**
-**hls4ml-tutorial-modified**
+```
+hls4ml-tutorial-modified
 
-**Nautilus**
-
+vivado_VM_tutorial
+```
