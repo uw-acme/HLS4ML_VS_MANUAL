@@ -21,7 +21,7 @@ module softmaxLayer # (
     // Lookup tables
     logic unsigned [TABLE_WIDTH-1:0] exp_table [2**MEM_WIDTH-1:0];
     logic signed [TABLE_WIDTH-1:0] invert_table [2**MEM_WIDTH-1:0];
-
+    logic signed [WIDTH-1:0] dataIn_parse [N-1:0];
     // Intermediate signals
     wire signed [(2 * TABLE_WIDTH) - 1:0] buffer [N-1:0];
     logic signed [2*TABLE_WIDTH-1:0] expResult [N-1:0];  // notice that exp table is unsigned, we will need to add a positive sign bit to the result
@@ -43,14 +43,18 @@ module softmaxLayer # (
 
     // Calculate exponentials and sum
     always_comb begin
+        dataIn_parse=dataIn;
         for (int i = 0; i < N; i++) begin
+            // if (dataIn[i]>=(2**(MEM_WIDTH-1)))
+            //     dataIn_parse[i]={{1'b0},{(MEM_WIDTH-1){1'b1}}};
+            // else if (dataIn[i]<=((-1)*(2**(MEM_WIDTH-1))))
+            //     dataIn_parse[i]={{1'b1},{(MEM_WIDTH-1){1'b0}}};
             if (MEM_NFRAC_EXP == NFRAC) 
-                lookupIndex[i] = dataIn[i];
+                lookupIndex[i] = dataIn_parse[i];
             else if (MEM_NFRAC_EXP < NFRAC)
-                lookupIndex[i] = (dataIn[i] >>> (NFRAC - MEM_NFRAC_EXP));
+                lookupIndex[i] = (dataIn_parse[i] >>> (NFRAC - MEM_NFRAC_EXP));
             else
-                lookupIndex[i] = (dataIn[i] << (MEM_NFRAC_EXP - NFRAC));
-
+                lookupIndex[i] = (dataIn_parse[i] << (MEM_NFRAC_EXP - NFRAC));
             expResult[i] = {{(TABLE_WIDTH){1'b0}}, exp_table[lookupIndex[i]]};
         end
     end

@@ -14,9 +14,16 @@ module waiz_benchmark_tb;
     logic input_ready;
     logic output_ready;
 
+    function real to_real(input logic signed [WIDTH-1:0] fixed_point_value);
+        real result;
+        result = fixed_point_value / (2.0 ** (NFRAC));  // Scale by the fractional part
+        return result;
+    endfunction
+
     // Input and output signals
     logic signed [WIDTH-1:0] input_data [0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1];
+    real signed out [OUTPUT_SIZE];
     real iteration_count;
 
     real softmax_output_real [0:4];
@@ -40,7 +47,11 @@ module waiz_benchmark_tb;
         clk = ~clk; // 100MHz
         iteration_count = iteration_count + 1;
     end
-    
+    assign out[0] = to_real(output_data[0]);
+    assign out[1] = to_real(output_data[1]);
+    assign out[2] = to_real(output_data[2]);
+    assign out[3] = to_real(output_data[3]);
+    assign out[4] = to_real(output_data[4]);
     integer fd;
     task run_test;
         input signed [WIDTH-1:0] input_d [0:INPUT_SIZE-1];
@@ -66,15 +77,13 @@ module waiz_benchmark_tb;
         #50;
         if (write_file) begin
             for (int i = 0; i < OUTPUT_SIZE-1; i++) begin
-                $fwrite(fd, "%.15f,",  output_data[i]/($pow(2,NFRAC)));
+                $fwrite(fd, "%.15f,",  out[i]>=0 ? out[i] : 1);
             end
-            $fwrite(fd, "%.15f\n", output_data[OUTPUT_SIZE-1]/($pow(2,NFRAC)));
+            $fwrite(fd, "%.15f\n", out[OUTPUT_SIZE-1]>=0 ? out[OUTPUT_SIZE-1] : 1);
         end
-        // Optionally add delay and finish
-        #50;
     endtask
-    localparam max_tests = 166000;
-    localparam num_tests = 2;
+    // max_tests = 166000;
+    localparam num_tests = 166000;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
