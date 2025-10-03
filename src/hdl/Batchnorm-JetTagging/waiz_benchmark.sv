@@ -88,7 +88,7 @@ module waiz_benchmark #(
 
     assign output_ready = output_ready_4;
 
-    localparam use_relu = 1'b0;
+    localparam use_relu = 1'b1;
 
     // Dense Layer 1
     denseLayer #(

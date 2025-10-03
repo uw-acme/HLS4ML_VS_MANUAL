@@ -1,0 +1,8 @@
+HLSConfig:
+  Model:
+    Precision: ap_fixed<16,10>
+    ReuseFactor: 1
+  LayerType:
+    Dense:
+      Precision:
+        bias: ap_fixed<16,10>
