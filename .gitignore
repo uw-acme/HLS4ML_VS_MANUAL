@@ -30,4 +30,4 @@ src/hdl/Batchnorm-JetTagging/reports/results.csv
 src/hdl/Batchnorm-JetTagging/xelab.pb
 src/hdl/Batchnorm-JetTagging/python/hls4ml.log
 src/hdl/Batchnorm-JetTagging/python/output.log
-src/hdl/Batchnorm-JetTagging/python/scores.log
+*vivado*

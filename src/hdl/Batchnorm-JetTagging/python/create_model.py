@@ -1,5 +1,5 @@
 import hls4ml
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model # type: ignore
 # import yaml
 import sys
 # with open('hls_config.yml', 'r') as f:

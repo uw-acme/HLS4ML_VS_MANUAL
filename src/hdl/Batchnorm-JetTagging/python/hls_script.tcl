@@ -1,8 +1,8 @@
 # Create a project (optional if running non-project mode)
 # create_project waiz_benchmark ./vivado_proj -part xc7a200tsbg484-1
-cd ./python/model_5/16_10_prj/myproject_prj/solution1/impl/verilog
-
 read_xdc myproject_ooc.xdc
+
+cd [file join "./model_5" [lindex $argv 0] "myproject_prj/solution1/impl/verilog"]
 
 read_verilog -v [glob *.v]
 
@@ -25,13 +25,13 @@ opt_design
 # write_checkpoint -force reports/impl_SA3_opt.dcp
 place_design
 route_design
-cd ~/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/
+cd ~/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/python
 # --- Reports ---
-report_utilization -file reports/util_hls.rpt
-report_utilization -hierarchical -hierarchical_depth 1 -file reports/util_hier_hls.rpt
-report_timing_summary -file reports/timing_hls.rpt
+report_utilization -file "reports/[lindex $argv 0]_util.rpt"
+report_utilization -hierarchical -hierarchical_depth 1 -file "reports/[lindex $argv 0]_util_hier.rpt"
+report_timing_summary -file "reports/[lindex $argv 0]_timing.rpt"
 # RP is removed pipeiles using SA4 and rand 4/10
 #report_power -file reports/power_post_route_RELU.rpt
 
 # --- Save design checkpoint for GUI inspection ---
-write_checkpoint -force reports/impl_hls.dcp
+write_checkpoint -force "reports/[lindex $argv 0].dcp"
