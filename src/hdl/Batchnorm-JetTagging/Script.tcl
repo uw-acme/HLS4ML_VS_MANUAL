@@ -40,11 +40,10 @@ place_design
 route_design
 
 # --- Reports ---
-report_utilization -file reports/util_no_relu.rpt
 #report_utilization -hierarchical -hierarchical_depth 1 -file reports/util_hier_SA4.rpt
 #report_timing_summary -file reports/timing_.rpt
 # RP is removed pipeiles using SA4 and rand 4/10
 #report_power -file reports/power_post_route_RELU.rpt
-
 # --- Save design checkpoint for GUI inspection ---
-write_checkpoint -force reports/impl_no_relu.dcp
+report_utilization -file "reports/util_[lindex $argv 0].rpt"
+#write_checkpoint -force reports/[lindex $argv 0].dcp

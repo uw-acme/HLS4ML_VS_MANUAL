@@ -1,2 +1,3 @@
 fast_build_test accuracy is: 0.7638901439165297 fast_build_vitis accuracy is: 0.20098916258531677
 argmax_test accuracy is: 0.7638901439165297
+lat_test accuracy is: 0.7638901439165297
