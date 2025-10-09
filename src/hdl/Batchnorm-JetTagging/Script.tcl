@@ -3,7 +3,7 @@
 
 # --- Dense weights ---
 read_verilog -sv "./pkg_sel.svh"
-read_verilog -sv [glob ./weights/dense_*_weights_biases_pkgs/dense*.sv]
+read_verilog -sv [glob ./weights/dense_*_weights_biases_pkgs/dense*gen.sv]
 # --- Dense layer ---
 read_verilog -sv "./verilog-modules/adderTree_p4.sv"
 read_verilog -sv "./verilog-modules/adderTree.sv"
