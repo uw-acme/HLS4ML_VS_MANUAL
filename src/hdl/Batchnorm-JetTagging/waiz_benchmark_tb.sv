@@ -23,7 +23,7 @@ module waiz_benchmark_tb;
     // Input and output signals
     logic signed [WIDTH-1:0] input_data [0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1];
-    real signed out [OUTPUT_SIZE];
+    real out [OUTPUT_SIZE];
     real iteration_count;
 
     real softmax_output_real [0:4];
@@ -45,7 +45,7 @@ module waiz_benchmark_tb;
     // Clock generation
     always #5 begin
         clk = ~clk; // 100MHz
-        iteration_count = iteration_count + 1;
+        // iteration_count = iteration_count + 1;
     end
     assign out[0] = to_real(output_data[0]);
     assign out[1] = to_real(output_data[1]);
@@ -53,28 +53,25 @@ module waiz_benchmark_tb;
     assign out[3] = to_real(output_data[3]);
     assign out[4] = to_real(output_data[4]);
     integer fd;
-    task run_test;
-        input signed [WIDTH-1:0] input_d [0:INPUT_SIZE-1];
-        input_data = input_d;
-        // Initialize
+    initial begin
         clk = 0;
         reset = 1;
         input_ready = 0;
-        // Wait for a few clock cycles with reset asserted
         repeat (2) @(posedge clk);
         reset = 0;
-        iteration_count = 0;
+    end
+    task run_test;
+        input signed [WIDTH-1:0] input_d [0:INPUT_SIZE-1];
+        input_data = input_d;
+        // iteration_count = 0;
         // Signal input is ready
-        @(posedge clk);
         input_ready = 1;
-
         @(posedge clk);
         input_ready = 0;
 
         // Wait for output_ready signal
         wait (output_ready == 1);
-        repeat (10) @(posedge clk);
-        #50;
+        repeat (4) @(posedge clk);
         if (write_file) begin
             for (int i = 0; i < OUTPUT_SIZE-1; i++) begin
                 $fwrite(fd, "%.15f,",  out[i]>=0 ? out[i] : 1);
@@ -83,7 +80,7 @@ module waiz_benchmark_tb;
         end
     endtask
     // max_tests = 166000;
-    localparam num_tests = 166000;
+    localparam num_tests = 20000;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
@@ -105,7 +102,8 @@ module waiz_benchmark_tb;
             end
         end
         // run_test('{ -16'd304, 16'd378, 16'd253, -16'd8, 16'd123, 16'd14, -16'd399, -16'd144, -16'd399, -16'd629, -16'd664, -16'd537, -16'd586, -16'd376, 16'd284, 16'd430 });
-        #10;
+        wait (!reset);
+        
         for (int i=0; i<num_tests; i++) begin
             run_test(x_test[i]);
         end

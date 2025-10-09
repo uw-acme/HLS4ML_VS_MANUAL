@@ -3,7 +3,10 @@ import os
 import re
 import numpy as np
 from tensorflow.keras.models import load_model # type: ignore
+import numpy as np
+from sklearn.metrics import accuracy_score
 model = load_model("python/model.h5")
+y_test = np.load('python/y_test.npy')
 layers = [64,32,32,5]
 features = ["Slice LUTs", "Slice Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 weights = {}
@@ -12,6 +15,10 @@ biases = {}
 #     lay = model.get_layer(layer)
 #     weights[layer], biases[layer] = lay.get_weights()
 
+def test_score():
+    res =  np.loadtxt(f"./reports/results.csv", delimiter=",")
+    acc= accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
+    return acc
 def file_to_array(file, length):
     f = open(file, 'r')
     buffer = np.zeros(length)
@@ -31,21 +38,24 @@ def file_to_array(file, length):
     f.close()
     return arr
 def handmade_gen(acc):
+    os.system("rm weights/dense_*_weights_biases_pkgs/*gen*")
     patt = r"[0-9]{1,2}"
+    gen_weight(acc)
     os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" waiz_benchmark.sv')
     os.system(f"vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}")
-    gen_weight(acc)
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
     results = extract_data(f"./reports/{acc[0]}_{acc[1]}_util.rpt", features)
     time = extract_time(f"./reports/{acc[0]}_{acc[1]}_timing.rpt")
+    accuracy_score = test_score()
     with open("util.csv", "a") as f:
-        f.write(acc[0])
+        f.write(f"{acc[0]}")
         for result in results:
             f.write(f", {result}")
         f.write(f", {time}")
+        f.write(f", {accuracy_score}")
         f.write("\n")
 
-    os.system(f'printf "Hand gen finished at %b with parameters {acc}with results:\n{features},Timing\n{results}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
+    os.system(f'printf "Hand gen finished at %b with parameters {acc}with results:\n{features},Timing, Accuracy\n{results},{time},{acc}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
 def extract_data(file, features):
     "Extracts the feature from a file using Vivado formatting"
     "| Slice LUTs                 | 66386 |     0 |    433200 | 15.32 |"
@@ -73,8 +83,9 @@ def extract_time(file):
 def gen_weight(accuracy):
     head = f"{accuracy[0]}'b"
     Nfrac = accuracy[0] - accuracy[1]
-    for layer in layers:
-        ind=layers.index(layer)+1
+    for ind in range(len(layers)):
+        layer = layers[ind]
+        ind = ind+1
         weights_file = f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_weights.txt"
         biases_file = f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_biases.txt"
         weight = file_to_array(weights_file, layer)
@@ -82,7 +93,7 @@ def gen_weight(accuracy):
         #with open(f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_{accuracy[0]}_{accuracy[1]}_test.sv", "w") as f:
         with open(f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_gen.sv", "w") as f:
             f.write(f"//Width: {accuracy[0]}\n//Int: {accuracy[1]}\n")
-            f.write(f"package dense_{ind}_{accuracy[0]}_{accuracy[1]}\n\n")
+            f.write(f"package dense_{ind}_gen;\n\n")
             f.write(f"localparam logic signed [{accuracy[0]-1}:0] weights [{len(weight)}][{len(weight[0])}] = '" + "{\n")
             for i in range(len(weight)):
                 f.write("{")

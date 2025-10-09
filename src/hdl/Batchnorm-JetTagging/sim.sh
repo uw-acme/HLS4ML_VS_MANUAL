@@ -8,10 +8,11 @@ rm -rf xsim.dir/ waiz_tb_sim.jou waiz_tb_sim.log sim.log
 #xvlog --sv ./pkg_sel.svh
 export PATH=/tools/Xilinx/2025.1/Vivado/bin:$PATH
 # Dense weights
-xvlog --sv ./weights/dense_1_weights_biases_pkgs/dense_1_*.sv
-xvlog --sv ./weights/dense_2_weights_biases_pkgs/dense_2_*.sv
-xvlog --sv ./weights/dense_3_weights_biases_pkgs/dense_3_*.sv
-xvlog --sv ./weights/dense_4_weights_biases_pkgs/dense_4_*.sv
+xvlog --sv ./weights/dense_*_weights_biases_pkgs/dense_*_gen.sv
+# xvlog --sv ./weights/dense_1_weights_biases_pkgs/dense_1_*.sv
+# xvlog --sv ./weights/dense_2_weights_biases_pkgs/dense_2_*.sv
+# xvlog --sv ./weights/dense_3_weights_biases_pkgs/dense_3_*.sv
+# xvlog --sv ./weights/dense_4_weights_biases_pkgs/dense_4_*.sv
 
 # Dense layer
 xvlog --sv ./verilog-modules/adderTree_p4.sv
