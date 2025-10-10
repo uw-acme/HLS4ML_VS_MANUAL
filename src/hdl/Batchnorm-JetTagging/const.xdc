@@ -8,7 +8,7 @@
 ## Clock: use system clock source
 # set_property PACKAGE_PIN E19 [get_ports clk]
 # set_property IOSTANDARD LVCMOS18 [get_ports clk]
-create_clock -name sys_clk -period 5.000 [get_ports clk]  
+create_clock -name ap_clk -period 5.000 [get_ports clk]  
 ## 200 MHz
 
 # ## Reset: map to CPU reset button

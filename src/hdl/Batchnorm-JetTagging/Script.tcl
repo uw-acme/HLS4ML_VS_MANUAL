@@ -36,12 +36,11 @@ opt_design
 # report_timing_summary -file reports/timing_pre_SA3_route.rpt
 # report_power -file reports/power_pre_SA3_route.rpt
 # write_checkpoint -force reports/impl_SA3_opt.dcp
-place_design
-route_design
+#place_design
+#route_design
 
 # --- Reports ---
 #report_utilization -hierarchical -hierarchical_depth 1 -file reports/util_hier_SA4.rpt
-report_timing_summary -file reports/timing_.rpt
 # RP is removed pipeiles using SA4 and rand 4/10
 #report_power -file reports/power_post_route_RELU.rpt
 # --- Save design checkpoint for GUI inspection ---

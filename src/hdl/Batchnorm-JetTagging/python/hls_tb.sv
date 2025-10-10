@@ -1,6 +1,9 @@
 `timescale 1 ns / 1 ps 
 module hls_tb;
     // Clock and control
+    localparam WIDTH = 25;
+    localparam INPUT_SIZE = 16;
+    localparam NFRAC = 16;
     logic ap_clk;
     logic ap_rst;
     logic ap_start;
@@ -12,27 +15,24 @@ module hls_tb;
 
     // Input interface
     logic fc1_input_V_ap_vld;
-    logic [255:0] fc1_input_V;
+    logic [WIDTH*INPUT_SIZE-1:0] fc1_input_V;
 
     // Output interface
-    logic [15:0] layer16_out_0_V;
+    logic [WIDTH-1:0] layer16_out_0_V;
     logic        layer16_out_0_V_ap_vld;
-    logic [15:0] layer16_out_1_V;
+    logic [WIDTH-1:0] layer16_out_1_V;
     logic        layer16_out_1_V_ap_vld;
-    logic [15:0] layer16_out_2_V;
+    logic [WIDTH-1:0] layer16_out_2_V;
     logic        layer16_out_2_V_ap_vld;
-    logic [15:0] layer16_out_3_V;
+    logic [WIDTH-1:0] layer16_out_3_V;
     logic        layer16_out_3_V_ap_vld;
-    logic [15:0] layer16_out_4_V;
+    logic [WIDTH-1:0] layer16_out_4_V;
     logic        layer16_out_4_V_ap_vld;
 
     myproject dut (.*);
     always #5 begin
         ap_clk = ~ap_clk;
     end
-    localparam WIDTH = 16;
-    localparam INPUT_SIZE = 16;
-    localparam NFRAC = 10;
     localparam write_file = 1;
     integer fd;
 
@@ -53,7 +53,7 @@ module hls_tb;
         // Signal input is ready
     end
     real out [5];
-    logic signed [15:0] in [15:0];
+    logic signed [WIDTH-1:0] in [INPUT_SIZE-1:0];
 
     assign out[0] = to_real(layer16_out_0_V);
     assign out[1] = to_real(layer16_out_1_V);
@@ -78,7 +78,7 @@ module hls_tb;
         // wait (ap_done);
         @(posedge ap_done);
         //repeat (30) @(posedge ap_clk);
-        #50;
+        #10;
         if (write_file) begin
             $fwrite(fd, "%.15f,",  out[0]);
             $fwrite(fd, "%.15f,",  out[1]);
@@ -98,7 +98,7 @@ module hls_tb;
     integer i,j;
     
     initial begin
-        $readmemb("X_test.txt", flat_mem);
+        $readmemb("X_test_gen.txt", flat_mem);
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<INPUT_SIZE; j++) begin : inputs
                 x_test[i][j] = flat_mem[i*INPUT_SIZE+j];

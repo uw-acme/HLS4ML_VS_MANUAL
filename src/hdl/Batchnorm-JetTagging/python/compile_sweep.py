@@ -2,13 +2,17 @@
 import hls4ml
 import re
 import os
+import numpy as np
 from tensorflow.keras.models import load_model # type: ignore
+from sklearn.metrics import accuracy_score
 model = load_model('model.h5', compile=False)
 features = ["Slice LUTs", "Slice Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 acc = []
 for i in range(2,10):
     acc.append(({3*i-2},{i}))
+y_test = np.load('y_test.npy')
 # HLS4ML Model gen
+test = np.load("X_test.npy")
 def HLS4ML_gen(acc):
     try:
         error=f"HLS4ML Script {acc} Failed"
@@ -35,7 +39,38 @@ def HLS4ML_gen(acc):
         os.system(f'printf "Gen {name} finished. Results:\n{features},"timing"\n{data},{timing}" | mail -s "{error}" ceravcal@uw.edu')
     except:
         os.system(f'printf "{name} failed" | mail -s "{error}" ceravcal@uw.edu')
+def dec_to_bin(number: int, bits=-1):
+    neg=False
+    if (number<0):
+        number*=-1
+        number-=1
+        neg=True
+    number=int(np.round(number, 0))
+    if (number==0 and neg):
+        return "1"*bits
+    out=""
+    if (bits>0 and number>2**(bits-1)):
+        return "0" + "1"*(bits-1)
+    elif (bits>0 and number<(-1)*2**(bits-1)):
+        return "1" + "0"*(bits-1)
+    
+    while (number>0):
+        res = number%2
+        if (neg):
+            res= 0 if (res==1) else 1
+        out=f"{res}{out}"
+        if (len(out)==(bits-1)):
+            break
+        number=int(number/2)
         
+    if (neg):
+        out=f"{1}{out}"
+    else: out=f"{0}{out}"
+    if (len(out)==0):
+        out="0"
+    while (len(out)<bits):
+        out=f"{out[0]}{out}"
+    return out
 def extract_data(file, features):
     "Extracts the feature from a file using Vivado formatting"
     "| Slice LUTs                 | 66386 |     0 |    433200 | 15.32 |"
@@ -63,9 +98,38 @@ def extract_time(file):
     m = re.search(pat, text, re.IGNORECASE|re.DOTALL)
     if m:
         return m.group(1)
-
-for i in range(2,10):
+def gen_test(accuracy):
+    test_l = test.flatten()
+    with open("X_test_gen.txt", "w") as f:
+        for num in test_l:
+            num=num*(2**(accuracy[0]-accuracy[1]))
+            f.write(f"{dec_to_bin(num, accuracy[0])}\n")
+def test_accuracy(model, acc):
+    patt = r"[0-9]{1,2}"
+    gen_test(acc)
+    os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" hls_tb.sv')
+    os.system(f"bash sim_hls.sh {model}")
+    return keras_test(model)
+def keras_test(model):
+    res =  np.loadtxt(f"./model_5/{model}/myproject_prj/solution1/impl/verilog/hls_results.csv", delimiter=",")
+    res = res[1:]
+    acc= accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
+    return acc
+    #for i in range(len(scores)):
+        #print(f"\n{models[i]} accuracy is: {scores[i]} \n")
+#for i in range(2,10):
     #((3*i-2,i))
     #print(f"{3*i-2},{i}".split(","))
-    HLS4ML_gen(f"{3*i-2},{i}")
+    #HLS4ML_gen(f"{3*i-2},{i}")
     #acc.append(({3*i-2},{i}))
+accuracies = []
+#for i in range(2,10):
+i=9
+acc = (3*i-2,i)
+res = test_accuracy(f"hls_{acc[0]}_{acc[1]}", acc)
+os.system(f'printf "Acc test finished at %b with parameters {acc} with results: {res}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
+accuracies.append((acc, res))
+with open("accuracies.csv", "a") as f:
+    for elem in accuracies:
+        f.write(f"{elem[0]}, {elem[1]}\n")
+

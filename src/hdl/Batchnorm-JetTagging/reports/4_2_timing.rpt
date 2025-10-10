@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Thu Oct  9 12:52:27 2025
+| Date         : Thu Oct  9 13:49:14 2025
 | Host         : hvm1 running 64-bit Ubuntu 22.04.5 LTS
 | Command      : report_timing_summary -file reports/4_2_timing.rpt
 | Design       : waiz_benchmark
@@ -138,9 +138,9 @@ All user specified timing constraints are met.
 | -------------
 ------------------------------------------------------------------------------------------------
 
-Clock    Waveform(ns)         Period(ns)      Frequency(MHz)
------    ------------         ----------      --------------
-sys_clk  {0.000 2.500}        5.000           200.000         
+Clock   Waveform(ns)         Period(ns)      Frequency(MHz)
+-----   ------------         ----------      --------------
+ap_clk  {0.000 2.500}        5.000           200.000         
 
 
 ------------------------------------------------------------------------------------------------
@@ -150,7 +150,7 @@ sys_clk  {0.000 2.500}        5.000           200.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-sys_clk             0.793        0.000                      0                 7790        0.040        0.000                      0                 7790        2.100        0.000                       0                  7393  
+ap_clk              0.793        0.000                      0                 7790        0.040        0.000                      0                 7790        2.100        0.000                       0                  7393  
 
 
 ------------------------------------------------------------------------------------------------
@@ -178,8 +178,8 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 
 
 ---------------------------------------------------------------------------------------------------
-From Clock:  sys_clk
-  To Clock:  sys_clk
+From Clock:  ap_clk
+  To Clock:  ap_clk
 
 Setup :            0  Failing Endpoints,  Worst Slack        0.793ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.040ns,  Total Violation        0.000ns
@@ -191,12 +191,12 @@ Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.793ns  (required time - arrival time)
   Source:                 softmax/add/output_data_reg[8]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
   Destination:            softmax/multiply_and_store[2].mow/internal_operation/buff0_reg/B[2]
-                            (rising edge-triggered cell DSP48E1 clocked by sys_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Path Group:             sys_clk
+                            (rising edge-triggered cell DSP48E1 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            5.000ns  (sys_clk rise@5.000ns - sys_clk rise@0.000ns)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
   Data Path Delay:        3.891ns  (logic 1.027ns (26.397%)  route 2.864ns (73.603%))
   Logic Levels:           7  (CARRY4=2 LUT2=2 LUT6=3)
   Clock Path Skew:        0.036ns (DCD - SCD + CPR)
@@ -211,7 +211,7 @@ Slack (MET) :             0.793ns  (required time - arrival time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock sys_clk rise edge)    0.000     0.000 r  
+                         (clock ap_clk rise edge)     0.000     0.000 r  
     AU32                                              0.000     0.000 r  clk (IN)
                          net (fo=0)                   0.000     0.000    clk
     AU32                 IBUF (Prop_ibuf_I_O)         0.681     0.681 r  clk_IBUF_inst/O
@@ -241,7 +241,7 @@ Slack (MET) :             0.793ns  (required time - arrival time)
     DSP48_X0Y55          DSP48E1                                      r  softmax/multiply_and_store[2].mow/internal_operation/buff0_reg/B[2]
   -------------------------------------------------------------------    -------------------
 
-                         (clock sys_clk rise edge)    5.000     5.000 r  
+                         (clock ap_clk rise edge)     5.000     5.000 r  
     AU32                                              0.000     5.000 r  clk (IN)
                          net (fo=0)                   0.000     5.000    clk
     AU32                 IBUF (Prop_ibuf_I_O)         0.574     5.574 r  clk_IBUF_inst/O
@@ -267,12 +267,12 @@ Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.040ns  (arrival time - required time)
   Source:                 denselayer1/sum_all/col_trees[55].column_tree/genblk2[0].genblk1[1].tree_reg[1][3]/C
-                            (rising edge-triggered cell FDRE clocked by sys_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
   Destination:            denselayer1/sum_all/col_trees[55].column_tree/output_data_reg[3]/D
-                            (rising edge-triggered cell FDRE clocked by sys_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Path Group:             sys_clk
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (sys_clk rise@0.000ns - sys_clk rise@0.000ns)
+  Requirement:            0.000ns  (ap_clk rise@0.000ns - ap_clk rise@0.000ns)
   Data Path Delay:        0.226ns  (logic 0.118ns (52.195%)  route 0.108ns (47.805%))
   Logic Levels:           0  
   Clock Path Skew:        0.144ns (DCD - SCD - CPR)
@@ -282,7 +282,7 @@ Slack (MET) :             0.040ns  (arrival time - required time)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-                         (clock sys_clk rise edge)    0.000     0.000 r  
+                         (clock ap_clk rise edge)     0.000     0.000 r  
     AU32                                              0.000     0.000 r  clk (IN)
                          net (fo=0)                   0.000     0.000    clk
     AU32                 IBUF (Prop_ibuf_I_O)         0.187     0.187 r  clk_IBUF_inst/O
@@ -296,7 +296,7 @@ Slack (MET) :             0.040ns  (arrival time - required time)
     SLICE_X34Y150        FDRE                                         r  denselayer1/sum_all/col_trees[55].column_tree/output_data_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
-                         (clock sys_clk rise edge)    0.000     0.000 r  
+                         (clock ap_clk rise edge)     0.000     0.000 r  
     AU32                                              0.000     0.000 r  clk (IN)
                          net (fo=0)                   0.000     0.000    clk
     AU32                 IBUF (Prop_ibuf_I_O)         0.354     0.354 r  clk_IBUF_inst/O
@@ -318,7 +318,7 @@ Slack (MET) :             0.040ns  (arrival time - required time)
 
 Pulse Width Checks
 --------------------------------------------------------------------------------------
-Clock Name:         sys_clk
+Clock Name:         ap_clk
 Waveform(ns):       { 0.000 2.500 }
 Period(ns):         5.000
 Sources:            { clk }
