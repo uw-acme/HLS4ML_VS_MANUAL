@@ -2,15 +2,11 @@ acc = []
 import os
 import re
 import numpy as np
-from tensorflow.keras.models import load_model # type: ignore
+#from tensorflow.keras.models import load_model # type: ignore
 import numpy as np
 from sklearn.metrics import accuracy_score
-model = load_model("python/model.h5")
-y_test = np.load('python/y_test.npy')
-layers = [64,32,32,5]
+#model = load_model("python/model.h5")
 features = ["Slice LUTs", "Slice Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
-weights = {}
-biases = {}
 # for layer in layers:
 #     lay = model.get_layer(layer)
 #     weights[layer], biases[layer] = lay.get_weights()
@@ -85,6 +81,7 @@ def extract_time(file):
         return m.group(1)
 def get_accuracy(tests):
     accuracies = []
+    y_test = np.load('python/y_test.npy')
     for acc in tests:
         patt = r"[0-9]{1,2}"
         os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" waiz_benchmark_tb.sv')
@@ -101,6 +98,7 @@ def get_accuracy(tests):
 def gen_weight(accuracy):
     head = f"{accuracy[0]}'b"
     Nfrac = accuracy[0] - accuracy[1]
+    layers = [64,32,32,5]
     for ind in range(len(layers)):
         layer = layers[ind]
         ind = ind+1
@@ -169,7 +167,7 @@ def dec_to_bin(number: int, bits=-1):
 #         if res:
 #             print(extract_data(os.path.join("./python/reports/", file), "Slice luts"))
 # # pat = r"WNS\(ns\).*-?(\d*\.\d*)"
-get_accuracy([(3*i-2,i) for i in range(2,10)])
+#get_accuracy([(3*i-2,i) for i in range(2,10)])
 
 #handmade_gen((25,9))
 #for i in range(2,10):
