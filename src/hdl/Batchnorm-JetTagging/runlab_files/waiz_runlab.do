@@ -8,10 +8,11 @@ vlib work
 
 # Dense weights
 vlog "./pkg_sel.svh"
-vlog "./weights/dense_1_weights_biases_pkgs/dense_1_*.sv"
-vlog "./weights/dense_2_weights_biases_pkgs/dense_2_*.sv"
-vlog "./weights/dense_3_weights_biases_pkgs/dense_3_*.sv"
-vlog "./weights/dense_4_weights_biases_pkgs/dense_4_*.sv"
+vlog "./weights/dense_*_weights_biases_pkgs/dense_1_gen.sv"
+# vlog "./weights/dense_1_weights_biases_pkgs/dense_1_*.sv"
+# vlog "./weights/dense_2_weights_biases_pkgs/dense_2_*.sv"
+# vlog "./weights/dense_3_weights_biases_pkgs/dense_3_*.sv"
+# vlog "./weights/dense_4_weights_biases_pkgs/dense_4_*.sv"
 
 
 # Dense layer

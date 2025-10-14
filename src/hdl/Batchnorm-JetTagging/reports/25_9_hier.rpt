@@ -1,0 +1,36 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date         : Sun Oct 12 14:48:19 2025
+| Host         : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 1 -file reports/25_9_hier.rpt
+| Design       : waiz_benchmark
+| Device       : 7vx690tffg1761-2
+| Design State : Synthesized
+----------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++--------------------+---------------------------------------+------------+------------+---------+------+-------+--------+--------+--------------+
+|      Instance      |                 Module                | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP48 Blocks |
++--------------------+---------------------------------------+------------+------------+---------+------+-------+--------+--------+--------------+
+| waiz_benchmark     |                                 (top) |     158858 |     158858 |       0 |    0 | 62381 |      0 |      0 |         2908 |
+|   (waiz_benchmark) |                                 (top) |        182 |        182 |       0 |    0 |     0 |      0 |      0 |            0 |
+|   denselayer1      |                            denseLayer |      66032 |      66032 |       0 |    0 | 15161 |      0 |      0 |          775 |
+|   denselayer2      |            denseLayer__parameterized0 |      54779 |      54779 |       0 |    0 | 30644 |      0 |      0 |         1239 |
+|   denselayer3      |            denseLayer__parameterized1 |      29161 |      29161 |       0 |    0 | 14549 |      0 |      0 |          757 |
+|   denselayer4      |            denseLayer__parameterized2 |       4162 |       4162 |       0 |    0 |  1959 |      0 |      0 |          132 |
+|   relulayer1       |                   reluActivationLayer |       6661 |       6661 |       0 |    0 |     0 |      0 |      0 |            0 |
+|   relulayer2       |   reluActivationLayer__parameterized0 |       2402 |       2402 |       0 |    0 |     0 |      0 |      0 |            0 |
+|   relulayer3       | reluActivationLayer__parameterized0_0 |        918 |        918 |       0 |    0 |     0 |      0 |      0 |            0 |
+|   softmax          |                          softmaxLayer |        999 |        999 |       0 |    0 |    68 |      0 |      0 |            5 |
++--------------------+---------------------------------------+------------+------------+---------+------+-------+--------+--------+--------------+
+
+

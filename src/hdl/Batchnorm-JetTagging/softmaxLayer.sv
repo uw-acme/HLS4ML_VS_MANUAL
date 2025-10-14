@@ -6,11 +6,11 @@ module softmaxLayer # (
     parameter NFRAC = 10,            // Number of fractional bits
     parameter MEM_WIDTH = 10,        // Width of the memory lookup indices
     parameter MEM_NFRAC_EXP = 6,        // Number of fractional bits in the memory lookup indices
-    parameter MEM_NFRAC_INV = 2,        // Number of fractional bits in the memory lookup indices
+    parameter MEM_NFRAC_INV = 4,        // Number of fractional bits in the memory lookup indices
     parameter TABLE_WIDTH = 18,      // Width of the table entries
     parameter TABLE_NFRAC = 10,             // Number of fractional bits
     parameter EXP_TABLE_PATH = "./weights/softmax/exp_table_18_10_10_6.dat",
-    parameter INVERT_TABLE_PATH = "./weights/softmax/softmax_invert_18_10_10_2.dat"
+    parameter INVERT_TABLE_PATH = "./weights/softmax/invert_table_18_10_10_4.dat"
 ) (
     input logic signed [WIDTH-1:0] dataIn [N-1:0],
     input logic clk,
@@ -21,7 +21,7 @@ module softmaxLayer # (
     // Lookup tables
     logic unsigned [TABLE_WIDTH-1:0] exp_table [2**MEM_WIDTH-1:0];
     logic signed [TABLE_WIDTH-1:0] invert_table [2**MEM_WIDTH-1:0];
-
+    logic signed [WIDTH-1:0] dataIn_parse [N-1:0];
     // Intermediate signals
     wire signed [(2 * TABLE_WIDTH) - 1:0] buffer [N-1:0];
     logic signed [2*TABLE_WIDTH-1:0] expResult [N-1:0];  // notice that exp table is unsigned, we will need to add a positive sign bit to the result
@@ -38,19 +38,23 @@ module softmaxLayer # (
         // assert that Invert table entry have greater integer width than that of exp table entry
         // assert(MEM_NFRAC_EXP < MEM_NFRAC_INV);
         $readmemb(EXP_TABLE_PATH, exp_table, 0, 2**MEM_WIDTH-1);
-        $readmemh(INVERT_TABLE_PATH, invert_table, 0, 2**MEM_WIDTH-1);
+        $readmemb(INVERT_TABLE_PATH, invert_table, 0, 2**MEM_WIDTH-1);
     end
 
     // Calculate exponentials and sum
     always_comb begin
+        dataIn_parse=dataIn;
         for (int i = 0; i < N; i++) begin
+            // if (dataIn[i]>=(2**(MEM_WIDTH-1)))
+            //     dataIn_parse[i]={{1'b0},{(MEM_WIDTH-1){1'b1}}};
+            // else if (dataIn[i]<=((-1)*(2**(MEM_WIDTH-1))))
+            //     dataIn_parse[i]={{1'b1},{(MEM_WIDTH-1){1'b0}}};
             if (MEM_NFRAC_EXP == NFRAC) 
-                lookupIndex[i] = dataIn[i];
+                lookupIndex[i] = dataIn_parse[i];
             else if (MEM_NFRAC_EXP < NFRAC)
-                lookupIndex[i] = (dataIn[i] >>> (NFRAC - MEM_NFRAC_EXP));
+                lookupIndex[i] = (dataIn_parse[i] >>> (NFRAC - MEM_NFRAC_EXP));
             else
-                lookupIndex[i] = (dataIn[i] << (MEM_NFRAC_EXP - NFRAC));
-
+                lookupIndex[i] = (dataIn_parse[i] << (MEM_NFRAC_EXP - NFRAC));
             expResult[i] = {{(TABLE_WIDTH){1'b0}}, exp_table[lookupIndex[i]]};
         end
     end
