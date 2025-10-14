@@ -44,6 +44,7 @@ opt_design
 # RP is removed pipeiles using SA4 and rand 4/10
 #report_power -file reports/power_post_route_RELU.rpt
 # --- Save design checkpoint for GUI inspection ---
-report_utilization -file "reports/[lindex $argv 0]_util.rpt"
-report_timing_summary -file reports/[lindex $argv 0]_timing.rpt
+report_utilization -hierarchical -hierarchical_depth 1 -file "reports/[lindex $argv 0]_hier.rpt"
+#report_utilization -file "reports/[lindex $argv 0]_util.rpt"
+#report_timing_summary -file reports/[lindex $argv 0]_timing.rpt
 #write_checkpoint -force reports/[lindex $argv 0].dcp

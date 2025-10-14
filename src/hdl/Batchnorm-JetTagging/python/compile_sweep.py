@@ -122,14 +122,21 @@ def keras_test(model):
     #print(f"{3*i-2},{i}".split(","))
     #HLS4ML_gen(f"{3*i-2},{i}")
     #acc.append(({3*i-2},{i}))
-accuracies = []
-#for i in range(2,10):
-i=9
-acc = (3*i-2,i)
-res = test_accuracy(f"hls_{acc[0]}_{acc[1]}", acc)
-os.system(f'printf "Acc test finished at %b with parameters {acc} with results: {res}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
-accuracies.append((acc, res))
-with open("accuracies.csv", "a") as f:
-    for elem in accuracies:
-        f.write(f"{elem[0]}, {elem[1]}\n")
+
+args = ""
+for i in range(2,10):
+    acc = (3*i-2,i)
+    #print((3*i-2,i))
+    args = args + f"hls_{acc[0]}_{acc[1]} "
+print(args)
+# accuracies = []
+# #for i in range(2,10):
+# i=9
+# acc = (3*i-2,i)
+# res = test_accuracy(f"hls_{acc[0]}_{acc[1]}", acc)
+# os.system(f'printf "Acc test finished at %b with parameters {acc} with results: {res}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
+# accuracies.append((acc, res))
+# with open("accuracies.csv", "a") as f:
+#     for elem in accuracies:
+#         f.write(f"{elem[0]}, {elem[1]}\n")
 
