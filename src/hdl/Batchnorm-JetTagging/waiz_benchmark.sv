@@ -6,7 +6,7 @@ import `DENSE_LAYER_3_PKG::*;
 import `DENSE_LAYER_4_PKG::*;
 
 module waiz_benchmark #(
-    parameter WIDTH = 16, NFRAC = 10,
+    parameter WIDTH = 25, NFRAC = 16,
     parameter INPUT_SIZE = 16,
     parameter OUTPUT_SIZE = 5
 ) (
@@ -88,7 +88,7 @@ module waiz_benchmark #(
 
     assign output_ready = output_ready_4;
 
-    localparam use_relu = 1'b0;
+    localparam use_relu = 1'b1;
 
     // Dense Layer 1
     denseLayer #(

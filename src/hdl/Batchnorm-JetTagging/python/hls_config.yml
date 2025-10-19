@@ -1,0 +1,11 @@
+HLSConfig:
+  Model:
+    Precision:
+      default: ap_fixed<16,10>
+    ReuseFactor: 1
+    Strategy: Latency
+  LayerType:
+    Dense:
+      Precision:
+        bias: ap_fixed<32,26>
+
