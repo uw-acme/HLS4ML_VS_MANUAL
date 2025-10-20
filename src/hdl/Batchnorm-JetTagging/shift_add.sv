@@ -27,17 +27,6 @@ function automatic integer signed determineOneShift(input integer signed number,
     end
     determineOneShift = number != 0 ? n+1 : 0;
 endfunction
-function automatic integer unsigned determine_signed_bits(input integer signed weight, input integer BITS);
-    int num_bits = 0;
-    logic sign_bit = weight[BITS-1];
-    for (integer i=BITS-1; i>=0; i--) begin
-        if (weight[i]==num_bits)
-            num_bits++;
-        else
-            break;
-    end
-    return num_bits-1;
-endfunction
 // Constant Function:
 // Returns the number as well as the shift amounts in an array
 function automatic int_array determineShifts(input integer signed number, input integer bits, input integer depth);
@@ -70,12 +59,12 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         int num_bits = 0;
         logic sign_bit = weight[BITS-1];
         for (integer i=BITS-1; i>=0; i--) begin
-            if (weight[i]==num_bits)
+            if (weight[i]==sign_bit)
                 num_bits++;
             else
                 break;
         end
-        return num_bits;
+        return num_bits-1;
     endfunction
     localparam integer signed shift[DEPTH:0] = determineShifts(WEIGHT, BITS, DEPTH);
     localparam integer num_signed_bits = determine_signed_bits(WEIGHT);
@@ -135,19 +124,19 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         //         .dout   ( data_out_tmp  )
         //     );
         //     assign data_out = $signed(data_out_tmp);
-        if (BITS > 18) begin
-            mult_op_wrap #(.din_WIDTH       ( BITS      ),
-                           .dweight_WIDTH   ( BITS-num_signed_bits),
-                           .dout_WIDTH      ( BITS+NFRAC)
-                           ) mow(
-                .clk,
-                .reset  ( '0            ),
-                .ce     ( '1            ), // constant enable
-                .din    ( data_in       ),
-                .dweight( WEIGHT[BITS-num_signed_bits-1:0] ),
-                .dout   ( data_out_tmp  )
-            );
-            assign data_out = $signed(data_out_tmp);
+        //if (BITS > 18) begin
+            // mult_op_wrap #(.din_WIDTH       ( BITS      ),
+            //                .dweight_WIDTH   ( BITS-num_signed_bits),
+            //                .dout_WIDTH      ( BITS+NFRAC)
+            //                ) mow(
+            //     .clk,
+            //     .reset  ( '0            ),
+            //     .ce     ( '1            ), // constant enable
+            //     .din    ( data_in       ),
+            //     .dweight( WEIGHT[BITS-num_signed_bits-1:0] ),
+            //     .dout   ( data_out_tmp  )
+            // );
+            // assign data_out = $signed(data_out_tmp);
             // if ((WEIGHT[BITS-1:17] == '1) || (WEIGHT[BITS-1:17] == '0)) begin
             // mult_op_wrap #(.din_WIDTH       ( BITS      ),
             //                .dweight_WIDTH   ( 18        ),
@@ -166,14 +155,14 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // ================= END OF DONOVAN CHANGED CODE =================
         
         // Use normal multiplication operator
-        end else begin
+        // end else begin
             always_comb begin
-                data_out_tmp = $signed(data_in) * $signed(WEIGHT);
+                data_out_tmp = $signed(data_in) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
             end
             always_ff @(posedge clk) begin
                 data_out <= $signed(data_out_tmp);
             end
-        end
+        // end
     end
     
     
