@@ -25,8 +25,10 @@ read_verilog -sv "./waiz_benchmark.sv"
 read_xdc ./const.xdc
 # --- Set top module ---
 # xc7k160tfbg484-3 is free, no license
+# xq7vx980trf1930-1I is big, needs license
+# xcvu13p-fhga2104-3-e
 # xc7vx690tffg1761-2 is virtex 7, needs license
-synth_design -top waiz_benchmark -part xc7vx690tffg1761-2
+synth_design -top waiz_benchmark -part xcvu13p-fhga2104-3-e
 
 # --- Implementation flow ---
 opt_design
@@ -44,7 +46,7 @@ route_design
 # RP is removed pipeiles using SA4 and rand 4/10
 #report_power -file reports/power_post_route_RELU.rpt
 # --- Save design checkpoint for GUI inspection ---
-report_utilization -hierarchical -hierarchical_depth 1 -file "reports/[lindex $argv 0]_hier_fx.rpt"
-report_utilization -file "reports/[lindex $argv 0]_util_fx.rpt"
-report_timing_summary -file reports/[lindex $argv 0]_timing_fx.rpt
+report_utilization -hierarchical -hierarchical_depth 1 -file "reports/[lindex $argv 0]_hier_sa0.rpt"
+report_utilization -file "reports/[lindex $argv 0]_util_sa0.rpt"
+report_timing_summary -file reports/[lindex $argv 0]_timing_sa0.rpt
 #write_checkpoint -force reports/[lindex $argv 0].dcp
