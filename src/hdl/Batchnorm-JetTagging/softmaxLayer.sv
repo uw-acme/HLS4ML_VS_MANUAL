@@ -25,6 +25,7 @@ module softmaxLayer # (
     // Intermediate signals
     wire signed [(2 * TABLE_WIDTH) - 1:0] buffer [N-1:0];
     logic signed [2*TABLE_WIDTH-1:0] expResult [N-1:0];  // notice that exp table is unsigned, we will need to add a positive sign bit to the result
+
     logic signed [2*TABLE_WIDTH-1:0] tempSum;
     logic signed [2*TABLE_WIDTH-1:0] expSum;
     logic [MEM_WIDTH-1:0] lookupIndex [N-1:0];
@@ -107,8 +108,8 @@ module softmaxLayer # (
             );
         end
     endgenerate
-
     // Output assignment
+    localparam BUFFER_EXT = NFRAC-2*TABLE_NFRAC;
     always_ff @(posedge clk) begin
         for (int i = 0; i < N; i++) begin
             // // cap max and min values
@@ -119,7 +120,11 @@ module softmaxLayer # (
             // else
 
             // cap disabled
-            dataOut[i] <= buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC];
+            if (NFRAC<2*TABLE_NFRAC) begin
+                dataOut[i] <= buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC];
+            end else begin
+                dataOut[i] <= {buffer[i][WIDTH-BUFFER_EXT-1:0],{BUFFER_EXT{1'b0}}};
+            end
         end
     end
 endmodule

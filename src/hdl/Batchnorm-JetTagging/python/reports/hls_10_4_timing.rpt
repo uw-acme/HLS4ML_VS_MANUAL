@@ -1,13 +1,14 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
-------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date         : Wed Oct  8 22:07:23 2025
-| Host         : hvm1 running 64-bit Ubuntu 22.04.5 LTS
-| Command      : report_timing_summary -file reports/hls_10_4_timing.rpt
-| Design       : myproject
-| Device       : 7vx690t-ffg1761
-| Speed File   : -2  PRODUCTION 1.11 2014-09-11
-------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date              : Wed Oct 22 13:42:04 2025
+| Host              : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command           : report_timing_summary -file reports/hls_10_4_timing.rpt
+| Design            : myproject
+| Device            : xcvu13p-fhga2104
+| Speed File        : -3  PRODUCTION 1.23 03-18-2019
+| Temperature Grade : E
+-----------------------------------------------------------------------------------------
 
 Timing Summary Report
 
@@ -127,10 +128,10 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-     -0.006       -0.006                      1                50188        0.063        0.000                      0                50188        2.100        0.000                       0                 24622  
+      0.758        0.000                      0                50424        0.028        0.000                      0                50424        2.005        0.000                       0                 24611  
 
 
-Timing constraints are not met.
+All user specified timing constraints are met.
 
 
 ------------------------------------------------------------------------------------------------
@@ -150,7 +151,7 @@ ap_clk  {0.000 2.500}        5.000           200.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-ap_clk             -0.006       -0.006                      1                50188        0.063        0.000                      0                50188        2.100        0.000                       0                 24622  
+ap_clk              0.758        0.000                      0                50424        0.028        0.000                      0                50424        2.005        0.000                       0                 24611  
 
 
 ------------------------------------------------------------------------------------------------
@@ -181,85 +182,104 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  ap_clk
   To Clock:  ap_clk
 
-Setup :            1  Failing Endpoint ,  Worst Slack       -0.006ns,  Total Violation       -0.006ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.063ns,  Total Violation        0.000ns
-PW    :            0  Failing Endpoints,  Worst Slack        2.100ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        0.758ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.028ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        2.005ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (VIOLATED) :        -0.006ns  (required time - arrival time)
-  Source:                 grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/mult_280_V_reg_471012_reg[3]/C
+Slack (MET) :             0.758ns  (required time - arrival time)
+  Source:                 grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/data_18_V_read_int_reg_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            layer2_out_24_V_reg_2248_reg[8]/D
+  Destination:            grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[9]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        4.804ns  (logic 1.296ns (26.977%)  route 3.508ns (73.023%))
-  Logic Levels:           8  (CARRY4=3 LUT3=3 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.233ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    3.864ns = ( 8.864 - 5.000 ) 
-    Source Clock Delay      (SCD):    4.341ns
-    Clock Pessimism Removal (CPR):    0.243ns
+  Data Path Delay:        4.050ns  (logic 0.887ns (21.901%)  route 3.163ns (78.099%))
+  Logic Levels:           8  (CARRY8=5 LUT2=2 LUT5=1)
+  Clock Path Skew:        -0.180ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.415ns = ( 7.415 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.923ns
+    Clock Pessimism Removal (CPR):    0.328ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
     Discrete Jitter          (DJ):    0.000ns
     Phase Error              (PE):    0.000ns
+  Clock Net Delay (Source):      2.047ns (routing 0.868ns, distribution 1.179ns)
+  Clock Net Delay (Destination): 1.782ns (routing 0.787ns, distribution 0.995ns)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
-    AU28                                              0.000     0.000 r  ap_clk (IN)
-                         net (fo=0)                   0.000     0.000    ap_clk
-    AU28                 IBUF (Prop_ibuf_I_O)         0.628     0.628 r  ap_clk_IBUF_inst/O
-                         net (fo=1, routed)           2.272     2.900    ap_clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.093     2.993 r  ap_clk_IBUF_BUFG_inst/O
-                         net (fo=24621, routed)       1.348     4.341    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_clk_IBUF_BUFG
-    SLICE_X49Y245        FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/mult_280_V_reg_471012_reg[3]/C
+    AU14                                              0.000     0.000 r  ap_clk (IN)
+                         net (fo=0)                   0.000     0.000    ap_clk_IBUF_inst/I
+    AU14                 INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.534     0.534 r  ap_clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.534    ap_clk_IBUF_inst/OUT
+    AU14                 IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     0.534 r  ap_clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.314     0.848    ap_clk_IBUF
+    BUFGCE_X0Y170        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.028     0.876 r  ap_clk_IBUF_BUFG_inst/O
+    X3Y6 (CLOCK_ROOT)    net (fo=24630, routed)       2.047     2.923    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/ap_clk_IBUF_BUFG
+    SLICE_X117Y361       FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/data_18_V_read_int_reg_reg[5]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X49Y245        FDRE (Prop_fdre_C_Q)         0.223     4.564 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/mult_280_V_reg_471012_reg[3]/Q
-                         net (fo=6, routed)           0.895     5.459    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/mult_280_V_reg_471012[3]
-    SLICE_X58Y243        LUT3 (Prop_lut3_I0_O)        0.046     5.505 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg[9]_i_24/O
-                         net (fo=2, routed)           0.444     5.949    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg[9]_i_24_n_0
-    SLICE_X58Y244        LUT4 (Prop_lut4_I3_O)        0.134     6.083 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg[9]_i_28/O
-                         net (fo=1, routed)           0.000     6.083    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg[9]_i_28_n_0
-    SLICE_X58Y244        CARRY4 (Prop_carry4_S[0]_O[1])
-                                                      0.217     6.300 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg_reg[9]_i_7/O[1]
-                         net (fo=3, routed)           1.028     7.328    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg_reg[9]_i_7_n_6
-    SLICE_X49Y255        LUT3 (Prop_lut3_I1_O)        0.125     7.453 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg[7]_i_11/O
-                         net (fo=2, routed)           0.718     8.171    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg[7]_i_11_n_0
-    SLICE_X57Y255        LUT6 (Prop_lut6_I2_O)        0.043     8.214 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg[7]_i_8__1/O
-                         net (fo=1, routed)           0.000     8.214    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg[7]_i_8__1_n_0
-    SLICE_X57Y255        CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.267     8.481 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg_reg[7]_i_1__1/CO[3]
-                         net (fo=1, routed)           0.000     8.481    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg_reg[7]_i_1__1_n_0
-    SLICE_X57Y256        CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.117     8.598 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_return_24_int_reg_reg[9]_i_1__1/O[0]
-                         net (fo=2, routed)           0.423     9.021    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/acc_24_V_fu_467456_p2[8]
-    SLICE_X60Y258        LUT3 (Prop_lut3_I0_O)        0.124     9.145 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/layer2_out_24_V_reg_2248[8]_i_1/O
-                         net (fo=1, routed)           0.000     9.145    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171_ap_return_24[8]
-    SLICE_X60Y258        FDRE                                         r  layer2_out_24_V_reg_2248_reg[8]/D
+    SLICE_X117Y361       FDRE (Prop_FFF2_SLICEL_C_Q)
+                                                      0.071     2.994 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/data_18_V_read_int_reg_reg[5]/Q
+                         net (fo=82, routed)          2.471     5.465    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/sext_ln1118_337_fu_164144_p1[8]
+    SLICE_X84Y310        LUT2 (Prop_E6LUT_SLICEL_I1_O)
+                                                      0.114     5.579 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671[9]_i_19/O
+                         net (fo=1, routed)           0.010     5.589    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671[9]_i_19_n_0
+    SLICE_X84Y310        CARRY8 (Prop_CARRY8_SLICEL_S[4]_CO[7])
+                                                      0.133     5.722 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[9]_i_5/CO[7]
+                         net (fo=1, routed)           0.023     5.745    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[9]_i_5_n_0
+    SLICE_X84Y311        CARRY8 (Prop_CARRY8_SLICEL_CI_O[1])
+                                                      0.067     5.812 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[9]_i_4/O[1]
+                         net (fo=2, routed)           0.214     6.026    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/sext_ln203_307_fu_164250_p1[5]
+    SLICE_X85Y309        LUT2 (Prop_F6LUT_SLICEM_I0_O)
+                                                      0.081     6.107 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671[9]_i_8/O
+                         net (fo=1, routed)           0.026     6.133    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671[9]_i_8_n_0
+    SLICE_X85Y309        CARRY8 (Prop_CARRY8_SLICEM_S[5]_O[7])
+                                                      0.120     6.253 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[9]_i_2/O[7]
+                         net (fo=4, routed)           0.359     6.612    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/sext_ln703_171_fu_169387_p1[7]
+    SLICE_X90Y309        LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.135     6.747 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671[7]_i_10/O
+                         net (fo=1, routed)           0.013     6.760    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671[7]_i_10_n_0
+    SLICE_X90Y309        CARRY8 (Prop_CARRY8_SLICEL_S[7]_CO[7])
+                                                      0.099     6.859 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[7]_i_1/CO[7]
+                         net (fo=1, routed)           0.023     6.882    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[7]_i_1_n_0
+    SLICE_X90Y310        CARRY8 (Prop_CARRY8_SLICEL_CI_O[1])
+                                                      0.067     6.949 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[9]_i_1/O[1]
+                         net (fo=1, routed)           0.024     6.973    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_fu_169391_p2[9]
+    SLICE_X90Y310        FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[9]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     5.000     5.000 r  
-    AU28                                              0.000     5.000 r  ap_clk (IN)
-                         net (fo=0)                   0.000     5.000    ap_clk
-    AU28                 IBUF (Prop_ibuf_I_O)         0.521     5.521 r  ap_clk_IBUF_inst/O
-                         net (fo=1, routed)           2.145     7.666    ap_clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.083     7.749 r  ap_clk_IBUF_BUFG_inst/O
-                         net (fo=24621, routed)       1.115     8.864    ap_clk_IBUF_BUFG
-    SLICE_X60Y258        FDRE                                         r  layer2_out_24_V_reg_2248_reg[8]/C
-                         clock pessimism              0.243     9.108    
-                         clock uncertainty           -0.035     9.072    
-    SLICE_X60Y258        FDRE (Setup_fdre_C_D)        0.066     9.138    layer2_out_24_V_reg_2248_reg[8]
+    AU14                                              0.000     5.000 r  ap_clk (IN)
+                         net (fo=0)                   0.000     5.000    ap_clk_IBUF_inst/I
+    AU14                 INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.330     5.330 r  ap_clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     5.330    ap_clk_IBUF_inst/OUT
+    AU14                 IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     5.330 r  ap_clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.279     5.609    ap_clk_IBUF
+    BUFGCE_X0Y170        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.024     5.633 r  ap_clk_IBUF_BUFG_inst/O
+    X3Y6 (CLOCK_ROOT)    net (fo=24630, routed)       1.782     7.415    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/ap_clk_IBUF_BUFG
+    SLICE_X90Y310        FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[9]/C
+                         clock pessimism              0.328     7.743    
+                         clock uncertainty           -0.035     7.708    
+    SLICE_X90Y310        FDRE (Setup_BFF_SLICEL_C_D)
+                                                      0.023     7.731    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/add_ln703_427_reg_176671_reg[9]
   -------------------------------------------------------------------
-                         required time                          9.138    
-                         arrival time                          -9.145    
+                         required time                          7.731    
+                         arrival time                          -6.973    
   -------------------------------------------------------------------
-                         slack                                 -0.006    
+                         slack                                  0.758    
 
 
 
@@ -267,57 +287,66 @@ Slack (VIOLATED) :        -0.006ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.063ns  (arrival time - required time)
-  Source:                 grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_624_reg_396746_reg[2]/C
+Slack (MET) :             0.028ns  (arrival time - required time)
+  Source:                 grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/add_ln703_1136_reg_470297_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_630_reg_398173_reg[2]/D
+  Destination:            grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/add_ln703_1136_reg_470297_pp0_iter1_reg_reg[5]/D
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
   Path Group:             ap_clk
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (ap_clk rise@0.000ns - ap_clk rise@0.000ns)
-  Data Path Delay:        0.434ns  (logic 0.197ns (45.368%)  route 0.237ns (54.631%))
-  Logic Levels:           2  (CARRY4=1 LUT4=1)
-  Clock Path Skew:        0.300ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.373ns
-    Source Clock Delay      (SCD):    1.822ns
-    Clock Pessimism Removal (CPR):    0.250ns
+  Data Path Delay:        0.100ns  (logic 0.037ns (37.000%)  route 0.063ns (63.000%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.025ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.109ns
+    Source Clock Delay      (SCD):    1.714ns
+    Clock Pessimism Removal (CPR):    0.369ns
+  Clock Net Delay (Source):      1.319ns (routing 0.523ns, distribution 0.796ns)
+  Clock Net Delay (Destination): 1.489ns (routing 0.582ns, distribution 0.907ns)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock ap_clk rise edge)     0.000     0.000 r  
-    AU28                                              0.000     0.000 r  ap_clk (IN)
-                         net (fo=0)                   0.000     0.000    ap_clk
-    AU28                 IBUF (Prop_ibuf_I_O)         0.134     0.134 r  ap_clk_IBUF_inst/O
-                         net (fo=1, routed)           1.067     1.201    ap_clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     1.227 r  ap_clk_IBUF_BUFG_inst/O
-                         net (fo=24621, routed)       0.595     1.822    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/ap_clk_IBUF_BUFG
-    SLICE_X54Y299        FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_624_reg_396746_reg[2]/C
+    AU14                                              0.000     0.000 r  ap_clk (IN)
+                         net (fo=0)                   0.000     0.000    ap_clk_IBUF_inst/I
+    AU14                 INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.234     0.234 r  ap_clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.234    ap_clk_IBUF_inst/OUT
+    AU14                 IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     0.234 r  ap_clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.144     0.378    ap_clk_IBUF
+    BUFGCE_X0Y170        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.017     0.395 r  ap_clk_IBUF_BUFG_inst/O
+    X3Y6 (CLOCK_ROOT)    net (fo=24630, routed)       1.319     1.714    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_clk_IBUF_BUFG
+    SLICE_X137Y281       FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/add_ln703_1136_reg_470297_reg[5]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X54Y299        FDRE (Prop_fdre_C_Q)         0.118     1.940 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_624_reg_396746_reg[2]/Q
-                         net (fo=2, routed)           0.237     2.178    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_624_reg_396746[2]
-    SLICE_X55Y300        LUT4 (Prop_lut4_I0_O)        0.028     2.206 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_630_reg_398173[3]_i_6/O
-                         net (fo=1, routed)           0.000     2.206    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_630_reg_398173[3]_i_6_n_0
-    SLICE_X55Y300        CARRY4 (Prop_carry4_S[2]_O[2])
-                                                      0.051     2.257 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_630_reg_398173_reg[3]_i_1/O[2]
-                         net (fo=1, routed)           0.000     2.257    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_630_fu_389492_p2[2]
-    SLICE_X55Y300        FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_630_reg_398173_reg[2]/D
+    SLICE_X137Y281       FDRE (Prop_FFF_SLICEM_C_Q)
+                                                      0.037     1.751 r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/add_ln703_1136_reg_470297_reg[5]/Q
+                         net (fo=1, routed)           0.063     1.814    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/add_ln703_1136_reg_470297[5]
+    SLICE_X137Y282       FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/add_ln703_1136_reg_470297_pp0_iter1_reg_reg[5]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     0.000     0.000 r  
-    AU28                                              0.000     0.000 r  ap_clk (IN)
-                         net (fo=0)                   0.000     0.000    ap_clk
-    AU28                 IBUF (Prop_ibuf_I_O)         0.301     0.301 r  ap_clk_IBUF_inst/O
-                         net (fo=1, routed)           1.139     1.440    ap_clk_IBUF
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.030     1.470 r  ap_clk_IBUF_BUFG_inst/O
-                         net (fo=24621, routed)       0.903     2.373    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/ap_clk_IBUF_BUFG
-    SLICE_X55Y300        FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_630_reg_398173_reg[2]/C
-                         clock pessimism             -0.250     2.122    
-    SLICE_X55Y300        FDRE (Hold_fdre_C_D)         0.071     2.193    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_103/add_ln703_630_reg_398173_reg[2]
+    AU14                                              0.000     0.000 r  ap_clk (IN)
+                         net (fo=0)                   0.000     0.000    ap_clk_IBUF_inst/I
+    AU14                 INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.420     0.420 r  ap_clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.420    ap_clk_IBUF_inst/OUT
+    AU14                 IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     0.420 r  ap_clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.181     0.601    ap_clk_IBUF
+    BUFGCE_X0Y170        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.019     0.620 r  ap_clk_IBUF_BUFG_inst/O
+    X3Y6 (CLOCK_ROOT)    net (fo=24630, routed)       1.489     2.109    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/ap_clk_IBUF_BUFG
+    SLICE_X137Y282       FDRE                                         r  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/add_ln703_1136_reg_470297_pp0_iter1_reg_reg[5]/C
+                         clock pessimism             -0.369     1.740    
+    SLICE_X137Y282       FDRE (Hold_GFF2_SLICEM_C_D)
+                                                      0.047     1.787    grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_171/add_ln703_1136_reg_470297_pp0_iter1_reg_reg[5]
   -------------------------------------------------------------------
-                         required time                         -2.193    
-                         arrival time                           2.257    
+                         required time                         -1.787    
+                         arrival time                           1.814    
   -------------------------------------------------------------------
-                         slack                                  0.063    
+                         slack                                  0.028    
 
 
 
@@ -330,10 +359,10 @@ Waveform(ns):       { 0.000 2.500 }
 Period(ns):         5.000
 Sources:            { ap_clk }
 
-Check Type        Corner  Lib Pin      Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
-Min Period        n/a     DSP48E1/CLK  n/a            2.772         5.000       2.228      DSP48_X0Y122   grp_softmax_stable_ap_fixed_ap_fixed_10_4_5_3_0_softmax_config16_s_fu_529/mul_ln1118_2_reg_625_reg/CLK
-Low Pulse Width   Slow    FDRE/C       n/a            0.400         2.500       2.100      SLICE_X57Y308  layer6_out_4_V_reg_3108_reg[0]/C
-High Pulse Width  Slow    FDRE/C       n/a            0.350         2.500       2.150      SLICE_X45Y343  grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_177/tmp_151_reg_175742_reg[1]/C
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     RAMB18E2/CLKARDCLK  n/a            1.212         5.000       3.788      RAMB18_X7Y174  grp_softmax_stable_ap_fixed_ap_fixed_10_4_5_3_0_softmax_config16_s_fu_529/q0_reg/CLKARDCLK
+Low Pulse Width   Fast    RAMB18E2/CLKARDCLK  n/a            0.495         2.500       2.005      RAMB18_X7Y174  grp_softmax_stable_ap_fixed_ap_fixed_10_4_5_3_0_softmax_config16_s_fu_529/q0_reg/CLKARDCLK
+High Pulse Width  Fast    RAMB18E2/CLKBWRCLK  n/a            0.495         2.500       2.005      RAMB18_X7Y174  grp_softmax_stable_ap_fixed_ap_fixed_10_4_5_3_0_softmax_config16_s_fu_529/q0_reg/CLKBWRCLK
 
 
 

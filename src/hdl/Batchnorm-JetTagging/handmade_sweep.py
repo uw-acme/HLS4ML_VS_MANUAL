@@ -6,7 +6,7 @@ import numpy as np
 import numpy as np
 from sklearn.metrics import accuracy_score
 #model = load_model("python/model.h5")
-features = ["Slice LUTs", "Slice Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
+features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 # for layer in layers:
 #     lay = model.get_layer(layer)
 #     weights[layer], biases[layer] = lay.get_weights()
@@ -43,13 +43,15 @@ def handmade_gen(acc):
     patt = r"[0-9]{1,2}"
     gen_weight(acc)
     os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" waiz_benchmark*.sv')
-
+    name = "unop"
     os.system(f"vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}")
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
-    results = extract_data(f"./reports/{acc[0]}_{acc[1]}_util_fx.rpt", features)
-    time = extract_time(f"./reports/{acc[0]}_{acc[1]}_timing_fx.rpt")
+    results = extract_data(f"./reports/{acc[0]}_{acc[1]}_util_{name}.rpt", features)
+    time = extract_time(f"./reports/{acc[0]}_{acc[1]}_timing_{name}.rpt")
     #accuracy_score = test_score()
-    with open("util.csv", "a") as f:
+    if len(results)!=len(features):
+        raise ValueError("Report files not as expected")
+    with open(f"util_{name}.csv", "a") as f:
         f.write(f"{acc[0]}")
         for result in results:
             f.write(f", {result}")
@@ -230,10 +232,10 @@ def dec_to_bin(number: int, bits=-1):
 #handmade_gen((25,9))
 #vals = ()
 #y_test = np.load('python/y_test.npy')
-for i in range(2,10):
+# i = (w+2)/3
+#accuracy_test((34,12), y_test)
+for i in range(2,14):
     acc = (3*i-2,i)
-    #print((3*i-2,i))
+    # print((3*i-2,i))
     handmade_gen(acc)
-    #accuracy_test(acc
-
-    #acc.append(({3*i-2},{i}))
+    # accuracy_test(acc

@@ -1,0 +1,390 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date              : Sun Oct 26 00:41:10 2025
+| Host              : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command           : report_timing_summary -file reports/hls_4_2_lts_timing.rpt
+| Design            : myproject
+| Device            : xcvu13p-fhga2104
+| Speed File        : -3  PRODUCTION 1.23 03-18-2019
+| Temperature Grade : E
+-----------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock
+2. checking constant_clock
+3. checking pulse_width_clock
+4. checking unconstrained_internal_endpoints
+5. checking no_input_delay
+6. checking no_output_delay
+7. checking multiple_clock
+8. checking generated_clocks
+9. checking loops
+10. checking partial_input_delay
+11. checking partial_output_delay
+12. checking latch_loops
+
+1. checking no_clock
+--------------------
+ There are 0 register/latch pins with no clock.
+
+
+2. checking constant_clock
+--------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock
+-----------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints
+--------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay
+--------------------------
+ There are 259 input ports with no input delay specified. (HIGH)
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay
+---------------------------
+ There are 90 ports with no output delay specified. (HIGH)
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock
+--------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks
+----------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops
+-----------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay
+--------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay
+---------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops
+------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+     -2.867   -17356.705                  10874                19469        0.049        0.000                      0                19469        2.005        0.000                       0                  1447  
+
+
+Timing constraints are not met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock   Waveform(ns)         Period(ns)      Frequency(MHz)
+-----   ------------         ----------      --------------
+ap_clk  {0.000 2.500}        5.000           200.000         
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+ap_clk             -2.867   -17356.705                  10874                19469        0.049        0.000                      0                19469        2.005        0.000                       0                  1447  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  ap_clk
+  To Clock:  ap_clk
+
+Setup :        10874  Failing Endpoints,  Worst Slack       -2.867ns,  Total Violation   -17356.706ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.049ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        2.005ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (VIOLATED) :        -2.867ns  (required time - arrival time)
+  Source:                 fc1_input_V_preg_reg[175]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            call_ret2_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_123/mul_ln1118_157_fu_2253_p2/DSP_A_B_DATA_INST/RSTA
+                            (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        8.013ns  (logic 1.798ns (22.439%)  route 6.215ns (77.561%))
+  Logic Levels:           14  (CARRY8=1 DSP_A_B_DATA=1 DSP_ALU=1 DSP_M_DATA=1 DSP_MULTIPLIER=1 DSP_OUTPUT=1 DSP_PREADD_DATA=1 LUT3=1 LUT4=1 LUT6=5)
+  Clock Path Skew:        0.360ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    3.567ns = ( 8.567 - 5.000 ) 
+    Source Clock Delay      (SCD):    3.608ns
+    Clock Pessimism Removal (CPR):    0.400ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Clock Net Delay (Source):      2.765ns (routing 1.661ns, distribution 1.104ns)
+  Clock Net Delay (Destination): 2.967ns (routing 1.507ns, distribution 1.460ns)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+    T33                                               0.000     0.000 r  ap_clk (IN)
+                         net (fo=0)                   0.000     0.000    ap_clk_IBUF_inst/I
+    T33                  INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.501     0.501 r  ap_clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.501    ap_clk_IBUF_inst/OUT
+    T33                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     0.501 r  ap_clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.314     0.815    ap_clk_IBUF
+    BUFGCE_X0Y194        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.028     0.843 r  ap_clk_IBUF_BUFG_inst/O
+    X5Y14 (CLOCK_ROOT)   net (fo=12654, routed)       2.765     3.608    ap_clk_IBUF_BUFG
+    SLR Crossing[2->3]   
+    SLICE_X171Y845       FDRE                                         r  fc1_input_V_preg_reg[175]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X171Y845       FDRE (Prop_HFF_SLICEM_C_Q)
+                                                      0.068     3.676 f  fc1_input_V_preg_reg[175]/Q
+                         net (fo=7, routed)           0.063     3.739    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/Q[175]
+    SLICE_X171Y845       LUT3 (Prop_G6LUT_SLICEM_I2_O)
+                                                      0.031     3.770 f  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1291_fu_2214_p2_i_1/O
+                         net (fo=120, routed)         1.049     4.819    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/A[21]
+    DSP48E2_X26Y357      DSP_A_B_DATA (Prop_DSP_A_B_DATA_DSP48E2_A[21]_A2_DATA[21])
+                                                      0.155     4.974 r  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_A_B_DATA_INST/A2_DATA[21]
+                         net (fo=1, routed)           0.000     4.974    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_A_B_DATA.A2_DATA<21>
+    DSP48E2_X26Y357      DSP_PREADD_DATA (Prop_DSP_PREADD_DATA_DSP48E2_A2_DATA[21]_A2A1[21])
+                                                      0.060     5.034 r  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_PREADD_DATA_INST/A2A1[21]
+                         net (fo=1, routed)           0.000     5.034    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_PREADD_DATA.A2A1<21>
+    DSP48E2_X26Y357      DSP_MULTIPLIER (Prop_DSP_MULTIPLIER_DSP48E2_A2A1[21]_V[21])
+                                                      0.404     5.438 f  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_MULTIPLIER_INST/V[21]
+                         net (fo=1, routed)           0.000     5.438    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_MULTIPLIER.V<21>
+    DSP48E2_X26Y357      DSP_M_DATA (Prop_DSP_M_DATA_DSP48E2_V[21]_V_DATA[21])
+                                                      0.034     5.472 r  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_M_DATA_INST/V_DATA[21]
+                         net (fo=1, routed)           0.000     5.472    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_M_DATA.V_DATA<21>
+    DSP48E2_X26Y357      DSP_ALU (Prop_DSP_ALU_DSP48E2_V_DATA[21]_ALU_OUT[21])
+                                                      0.439     5.911 f  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_ALU_INST/ALU_OUT[21]
+                         net (fo=1, routed)           0.000     5.911    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_ALU.ALU_OUT<21>
+    DSP48E2_X26Y357      DSP_OUTPUT (Prop_DSP_OUTPUT_DSP48E2_ALU_OUT[21]_P[21])
+                                                      0.089     6.000 r  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_1298_fu_1730_p2/DSP_OUTPUT_INST/P[21]
+                         net (fo=1, routed)           1.005     7.005    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mult_648_V_fu_2965158_p4[3]
+    SLICE_X167Y814       LUT6 (Prop_G6LUT_SLICEM_I1_O)
+                                                      0.082     7.087 r  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_169_fu_3237_p2_i_58/O
+                         net (fo=1, routed)           1.028     8.115    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_169_fu_3237_p2_i_58_n_0
+    SLICE_X146Y739       LUT6 (Prop_A6LUT_SLICEM_I0_O)
+                                                      0.115     8.230 r  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_169_fu_3237_p2_i_41/O
+                         net (fo=1, routed)           0.090     8.320    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_169_fu_3237_p2_i_41_n_0
+    SLICE_X146Y738       LUT6 (Prop_E6LUT_SLICEM_I2_O)
+                                                      0.047     8.367 r  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_169_fu_3237_p2_i_24/O
+                         net (fo=1, routed)           0.040     8.407    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_169_fu_3237_p2_i_24_n_0
+    SLICE_X146Y738       LUT6 (Prop_C6LUT_SLICEM_I2_O)
+                                                      0.031     8.438 r  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_169_fu_3237_p2_i_8/O
+                         net (fo=6, routed)           0.302     8.740    call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/mul_ln1118_169_fu_3237_p2_i_8_n_0
+    SLICE_X142Y739       LUT6 (Prop_C6LUT_SLICEM_I2_O)
+                                                      0.081     8.821 r  call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_191/icmp_ln1494_8_fu_712_p2_carry_i_4/O
+                         net (fo=1, routed)           0.025     8.846    call_ret1_relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config5_s_fu_269/layer5_out_8_V_reg_1595_reg[14]_1[2]
+    SLICE_X142Y739       CARRY8 (Prop_CARRY8_SLICEM_S[2]_CO[3])
+                                                      0.131     8.977 f  call_ret1_relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config5_s_fu_269/icmp_ln1494_8_fu_712_p2_carry/CO[3]
+                         net (fo=1, routed)           0.471     9.448    call_ret1_relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config5_s_fu_269/icmp_ln1494_8_fu_712_p2_carry_n_4
+    SLICE_X128Y765       LUT4 (Prop_C6LUT_SLICEM_I3_O)
+                                                      0.031     9.479 r  call_ret1_relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config5_s_fu_269/mul_ln1118_169_fu_3237_p2_i_1/O
+                         net (fo=27, routed)          2.142    11.621    call_ret2_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_123/mul_ln1118_157_fu_2253_p2/RSTA
+    DSP48E2_X4Y298       DSP_A_B_DATA                                 r  call_ret2_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_123/mul_ln1118_157_fu_2253_p2/DSP_A_B_DATA_INST/RSTA
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+    T33                                               0.000     5.000 r  ap_clk (IN)
+                         net (fo=0)                   0.000     5.000    ap_clk_IBUF_inst/I
+    T33                  INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.297     5.297 r  ap_clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     5.297    ap_clk_IBUF_inst/OUT
+    T33                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     5.297 r  ap_clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.279     5.576    ap_clk_IBUF
+    BUFGCE_X0Y194        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.024     5.600 r  ap_clk_IBUF_BUFG_inst/O
+    X5Y14 (CLOCK_ROOT)   net (fo=12654, routed)       2.967     8.567    call_ret2_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_123/mul_ln1118_157_fu_2253_p2/CLK
+    SLR Crossing[2->3]   
+    DSP48E2_X4Y298       DSP_A_B_DATA                                 r  call_ret2_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_123/mul_ln1118_157_fu_2253_p2/DSP_A_B_DATA_INST/CLK
+                         clock pessimism              0.400     8.968    
+                         clock uncertainty           -0.035     8.933    
+    DSP48E2_X4Y298       DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_RSTA)
+                                                     -0.179     8.754    call_ret2_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_123/mul_ln1118_157_fu_2253_p2/DSP_A_B_DATA_INST
+  -------------------------------------------------------------------
+                         required time                          8.754    
+                         arrival time                         -11.621    
+  -------------------------------------------------------------------
+                         slack                                 -2.867    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.049ns  (arrival time - required time)
+  Source:                 grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/y_V_2_reg_870_reg[6]/C
+                            (rising edge-triggered cell FDSE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/q2_reg/ADDRARDADDR[10]
+                            (rising edge-triggered cell RAMB18E2 clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (ap_clk rise@0.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        0.153ns  (logic 0.040ns (26.144%)  route 0.113ns (73.856%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.098ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.738ns
+    Source Clock Delay      (SCD):    2.205ns
+    Clock Pessimism Removal (CPR):    0.434ns
+  Clock Net Delay (Source):      1.843ns (routing 1.011ns, distribution 0.832ns)
+  Clock Net Delay (Destination): 2.151ns (routing 1.129ns, distribution 1.022ns)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+    T33                                               0.000     0.000 r  ap_clk (IN)
+                         net (fo=0)                   0.000     0.000    ap_clk_IBUF_inst/I
+    T33                  INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.201     0.201 r  ap_clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.201    ap_clk_IBUF_inst/OUT
+    T33                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     0.201 r  ap_clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.144     0.345    ap_clk_IBUF
+    BUFGCE_X0Y194        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.017     0.362 r  ap_clk_IBUF_BUFG_inst/O
+    X5Y14 (CLOCK_ROOT)   net (fo=12654, routed)       1.843     2.205    grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/ap_clk_IBUF_BUFG
+    SLR Crossing[2->3]   
+    SLICE_X113Y731       FDSE                                         r  grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/y_V_2_reg_870_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X113Y731       FDSE (Prop_CFF2_SLICEL_C_Q)
+                                                      0.040     2.245 r  grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/y_V_2_reg_870_reg[6]/Q
+                         net (fo=1, routed)           0.113     2.358    grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/y_V_2_reg_870_reg_n_0_[6]
+    RAMB18_X7Y290        RAMB18E2                                     r  grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/q2_reg/ADDRARDADDR[10]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+    T33                                               0.000     0.000 r  ap_clk (IN)
+                         net (fo=0)                   0.000     0.000    ap_clk_IBUF_inst/I
+    T33                  INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.387     0.387 r  ap_clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.387    ap_clk_IBUF_inst/OUT
+    T33                  IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     0.387 r  ap_clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.181     0.568    ap_clk_IBUF
+    BUFGCE_X0Y194        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.019     0.587 r  ap_clk_IBUF_BUFG_inst/O
+    X5Y14 (CLOCK_ROOT)   net (fo=12654, routed)       2.151     2.738    grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/ap_clk_IBUF_BUFG
+    SLR Crossing[2->3]   
+    RAMB18_X7Y290        RAMB18E2                                     r  grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/q2_reg/CLKARDCLK
+                         clock pessimism             -0.434     2.303    
+    RAMB18_X7Y290        RAMB18E2 (Hold_RAMB18E2_L_RAMB180_CLKARDCLK_ADDRARDADDR[10])
+                                                      0.006     2.309    grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/q2_reg
+  -------------------------------------------------------------------
+                         required time                         -2.309    
+                         arrival time                           2.358    
+  -------------------------------------------------------------------
+                         slack                                  0.049    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         ap_clk
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { ap_clk }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     RAMB18E2/CLKARDCLK  n/a            1.212         5.000       3.788      RAMB18_X7Y288  grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/q0_reg/CLKARDCLK
+Low Pulse Width   Fast    RAMB18E2/CLKBWRCLK  n/a            0.495         2.500       2.005      RAMB18_X7Y288  grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/q0_reg/CLKBWRCLK
+High Pulse Width  Slow    RAMB18E2/CLKARDCLK  n/a            0.495         2.500       2.005      RAMB18_X7Y288  grp_softmax_stable_ap_fixed_ap_fixed_softmax_config16_s_fu_409/q0_reg/CLKARDCLK
+
+
+

@@ -1,0 +1,37 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date         : Sat Oct 25 23:08:59 2025
+| Host         : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 1 -file reports/hls_4_2_lt_util_hier.rpt
+| Design       : myproject
+| Device       : xcvu13pfhga2104-3
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------------------------------------------------------------------+---------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+--------------+
+|                                     Instance                                     |                             Module                            | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | URAM | DSP48 Blocks |
++----------------------------------------------------------------------------------+---------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+--------------+
+| myproject                                                                        |                                                         (top) |      18341 |      18341 |       0 |    0 | 1410 |      0 |      4 |    0 |         2576 |
+|   (myproject)                                                                    |                                                         (top) |       6953 |       6953 |       0 |    0 | 1020 |      0 |      3 |    0 |            0 |
+|   call_ret1_relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config5_s_fu_271              |              relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config5_s |        356 |        356 |       0 |    0 |    0 |      0 |      0 |    0 |            0 |
+|   call_ret2_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s_fu_125 | dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_s |       4291 |       4291 |       0 |    0 |    0 |      0 |      0 |    0 |         1030 |
+|   call_ret3_relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config9_s_fu_339              |              relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config9_s |        155 |        155 |       0 |    0 |    0 |      0 |      0 |    0 |            0 |
+|   call_ret4_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2_fu_199 | dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_2 |       2479 |       2479 |       0 |    0 |    0 |      0 |      0 |    0 |          714 |
+|   call_ret5_relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config13_s_fu_375             |             relu_ap_fixed_ap_fixed_16_6_5_3_0_relu_config13_s |        144 |        144 |       0 |    0 |    0 |      0 |      0 |    0 |            0 |
+|   call_ret6_dense_latency_ap_fixed_ap_fixed_config14_0_0_0_0_0_0_fu_235          |          dense_latency_ap_fixed_ap_fixed_config14_0_0_0_0_0_0 |        443 |        443 |       0 |    0 |    0 |      0 |      0 |    0 |          119 |
+|   call_ret_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_fu_193  | dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1 |       3459 |       3459 |       0 |    0 |  316 |      0 |      0 |    0 |          708 |
+|   grp_softmax_latency_ap_fixed_ap_fixed_softmax_config16_s_fu_411                |          softmax_latency_ap_fixed_ap_fixed_softmax_config16_s |         79 |         79 |       0 |    0 |   74 |      0 |      1 |    0 |            5 |
++----------------------------------------------------------------------------------+---------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
