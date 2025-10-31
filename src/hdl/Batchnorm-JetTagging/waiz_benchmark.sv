@@ -6,7 +6,7 @@ import `DENSE_LAYER_3_PKG::*;
 import `DENSE_LAYER_4_PKG::*;
 
 module waiz_benchmark #(
-    parameter WIDTH = 4, NFRAC = 2,
+    parameter WIDTH = 37, NFRAC = 24,
     parameter INPUT_SIZE = 16,
     parameter OUTPUT_SIZE = 5
 ) (

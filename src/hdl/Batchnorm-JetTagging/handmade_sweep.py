@@ -44,10 +44,10 @@ def handmade_gen(acc):
     gen_weight(acc)
     os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" waiz_benchmark*.sv')
     name = "unop"
-    os.system(f"vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}")
+    os.system(f"vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name}")
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
-    results = extract_data(f"./reports/{acc[0]}_{acc[1]}_util_{name}.rpt", features)
-    time = extract_time(f"./reports/{acc[0]}_{acc[1]}_timing_{name}.rpt")
+    results = extract_data(f"./reports/{acc[0]}_{acc[1]}_{name}_util.rpt", features)
+    time = extract_time(f"./reports/{acc[0]}_{acc[1]}_{name}_timing.rpt")
     #accuracy_score = test_score()
     if len(results)!=len(features):
         raise ValueError("Report files not as expected")

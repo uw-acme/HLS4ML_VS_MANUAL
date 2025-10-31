@@ -17,14 +17,18 @@ def HLS4ML_gen(acc):
     #try:
         error=f"HLS4ML Script Failed"
         split = acc.split(",")
-        name = f"hls_{split[0]}_{split[1]}_lts"
+        name = f"hls_base" #_{split[0]}_{split[1]}
         model = load_model('model.h5', compile=False)
         config = hls4ml.utils.config_from_keras_model(model, granularity='name')
         config['Model']['Precision'] = f'ap_fixed<{acc}>'
-        #config['LayerName']['softmax']['Strategy'] = 'Stable'
         config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
         config['LayerName']['softmax']['inv_table_t'] = 'ap_fixed<18,8>'
-        config['LayerName']['output']['Precision']['result'] = 'ap_fixed<18,8>'
+        #config['LayerName']['fc1']['Precision']['weight'] = 'ap_fixed<8,2>'
+        #config['LayerName']['output']['Precision']['result'] = 'fixed<16,6,RND,SAT>'
+        #config['LayerName']['softmax']['Strategy'] = 'Stable'
+        #config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
+        #config['LayerName']['softmax']['inv_table_t'] = 'ap_fixed<18,8>'
+        config['LayerName']['output']['Precision']['result'] = f'ap_fixed<{acc}>'
         config['LayerName']['softmax']['Precision']['result'] = f'ap_fixed<{acc}>'
         hls_model = hls4ml.converters.convert_from_keras_model(model, backend='Vivado', hls_config=config,
                                                                 output_dir=f'model_5/{name}',
@@ -120,12 +124,12 @@ def keras_test(model):
     return acc
     #for i in range(len(scores)):
         #print(f"\n{models[i]} accuracy is: {scores[i]} \n")
-for i in range(2,14):
-    #((3*i-2,i))
-    #print(f"{3*i-2},{i}".split(","))
-    HLS4ML_gen(f"{3*i-2},{i}")
-    #acc.append(({3*i-2},{i}))
-
+# for i in range(2,14):
+#     #((3*i-2,i))
+#     #print(f"{3*i-2},{i}".split(","))
+#     HLS4ML_gen(f"{3*i-2},{i}")
+#     #acc.append(({3*i-2},{i}))
+HLS4ML_gen("16,6")
 # args = ""
 # for i in range(2,14):
 #     acc = (3*i-2,i)
