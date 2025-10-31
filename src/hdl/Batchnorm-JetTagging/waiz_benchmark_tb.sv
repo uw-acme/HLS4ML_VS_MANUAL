@@ -3,8 +3,8 @@
 module waiz_benchmark_tb;
 
     // Parameters
-    localparam WIDTH = 4;
-    localparam NFRAC = 2;
+    localparam WIDTH = 37;
+    localparam NFRAC = 24;
     localparam INPUT_SIZE = 16;
     localparam OUTPUT_SIZE = 5;
 
