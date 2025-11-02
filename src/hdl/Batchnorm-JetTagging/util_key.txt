@@ -1,0 +1,4 @@
+Util magic shows utilization with only magic mult instead of both mult
+Util norm is opposite of before
+util_unop is SA0 and no bit chopping
+util_op is SA0 with bit chopping, that is the only change
