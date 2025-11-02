@@ -108,38 +108,21 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // muliplication warapper
         if (BITS > 14) begin
             mult_op_wrap #(.din_WIDTH       ( BITS      ),
-                           .dweight_WIDTH   ( BITS),//-num_signed_bits),
+                           .dweight_WIDTH   ( BITS-num_signed_bits),
                            .dout_WIDTH      ( BITS+NFRAC)
                            ) mow(
                 .clk,
                 .reset  ( '0            ),
                 .ce     ( '1            ), // constant enable
                 .din    ( data_in       ),
-                .dweight( WEIGHT),//[BITS-num_signed_bits-1:0] ),
+                .dweight( WEIGHT[BITS-num_signed_bits-1:0] ),
                 .dout   ( data_out_tmp  )
             );
             assign data_out = $signed(data_out_tmp);
-            // if ((WEIGHT[BITS-1:17] == '1) || (WEIGHT[BITS-1:17] == '0)) begin
-            // mult_op_wrap #(.din_WIDTH       ( BITS      ),
-            //                .dweight_WIDTH   ( 18        ),
-            //                .dout_WIDTH      ( BITS+NFRAC)
-            //                ) mow(
-            //     .clk,
-            //     .reset  ( '0            ),
-            //     .ce     ( '1            ), // constant enable
-            //     .din    ( data_in       ),
-            //     .dweight( WEIGHT[17:0]  ),
-            //     .dout   ( data_out_tmp  )
-            // );
-            // assign data_out = $signed(data_out_tmp);
-            // end
-        // 
-        // ================= END OF DONOVAN CHANGED CODE =================
-        
         // Use normal multiplication operator
         end else begin
             always_comb begin
-                data_out_tmp = $signed(data_in) * $signed(WEIGHT); //[BITS-num_signed_bits-1:0]);
+                data_out_tmp = $signed(data_in) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
             end
             always_ff @(posedge clk) begin
                 data_out <= $signed(data_out_tmp);
