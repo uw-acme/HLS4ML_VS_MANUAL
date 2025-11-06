@@ -44,7 +44,7 @@ def handmade_gen(acc):
     patt = r"[0-9]{1,2}"
     gen_weight(acc)
     os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" waiz_benchmark*.sv')
-    name = "op"
+    name = "SA3"
     os.system(f"vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name}")
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
     accuracy = accuracy_test(acc, y_test)
@@ -58,7 +58,7 @@ def handmade_gen(acc):
         for result in results:
             f.write(f", {result}")
         f.write(f", {time}")
-        f.write(f", {accuracy}")
+        #f.write(f", {accuracy}")
         f.write("\n")
 
     os.system(f'printf "Hand gen finished at %b with parameters {acc}with results:\n{features},Timing, Accuracy\n{results},{time},{accuracy}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
@@ -236,7 +236,7 @@ def dec_to_bin(number: int, bits=-1):
 #y_test = np.load('python/y_test.npy')
 # i = (w+2)/3
 #accuracy_test((34,12), y_test)
-for i in range(10,14):
+for i in range(2,14):
     acc = (3*i-2,i)
     # print((3*i-2,i))
     handmade_gen(acc)

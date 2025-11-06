@@ -17,7 +17,7 @@ def HLS4ML_gen(acc):
     #try:
         error=f"HLS4ML Script Failed"
         split = acc.split(",")
-        name = f"hls_base" #_{split[0]}_{split[1]}
+        name = f"hls_base_{split[0]}_{split[1]}"
         model = load_model('model.h5', compile=False)
         config = hls4ml.utils.config_from_keras_model(model, granularity='name')
         config['Model']['Precision'] = f'ap_fixed<{acc}>'
@@ -29,7 +29,7 @@ def HLS4ML_gen(acc):
         config['LayerName']['output']['Precision']['result'] = f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>'
         config['LayerName']['softmax']['Precision']['result'] = f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>'
         hls_model = hls4ml.converters.convert_from_keras_model(model, backend='Vivado', hls_config=config,
-                                                                output_dir=f'model_5/{name}',
+                                                                output_dir=f'/home/caleb/sweeps/{name}',
                                                                 # part='xcu280-fsvh2892-2L-e')
                                                                 part='xcvu13p-fhga2104-3-e')
         
@@ -38,7 +38,7 @@ def HLS4ML_gen(acc):
         os.system(f"vivado -mode batch -source hls_script.tcl -tclargs {name}")
         data = extract_data(os.path.join("reports", f"{name}_util.rpt"), features)
         timing = extract_time(os.path.join("reports", f"{name}_timing.rpt"))
-        with open("util_hls.csv", "a") as f:
+        with open("util_hls_new.csv", "a") as f:
             f.write(f"{split[0]}")
             for dat in data:
                 f.write(f", {dat}")
@@ -87,7 +87,7 @@ def extract_data(file, features):
         text = f.read()
     out = []
     for feature in features:
-        m = re.search(feature + r"\s*\|\s*\d+\s*\|\s*\d+\s*\|\s*\d+\s*\|\s*(\d+.\d+)", text, re.IGNORECASE)
+        m = re.search(feature + r"\s*\|.*?\|.*?\|.*?\|.*?(\d+\.\d+)", text, re.IGNORECASE)
         if m:
             out.append(m.group(1))
             #return m.group(1)  # third number
@@ -122,7 +122,7 @@ def keras_test(model):
     return acc
     #for i in range(len(scores)):
         #print(f"\n{models[i]} accuracy is: {scores[i]} \n")
-for i in range(2,14):
+for i in range(11,14):
     #((3*i-2,i))
     #print(f"{3*i-2},{i}".split(","))
     HLS4ML_gen(f"{3*i-2},{i}")
