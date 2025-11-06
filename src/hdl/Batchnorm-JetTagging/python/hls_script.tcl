@@ -2,8 +2,11 @@
 # create_project waiz_benchmark ./vivado_proj -part xc7a200tsbg484-1
 read_xdc myproject_ooc.xdc
 
-cd [file join "./model_5" [lindex $argv 0] "myproject_prj/solution1/impl/verilog"]
+#cd [file join "./model_5" [lindex $argv 0] "myproject_prj/solution1/impl/verilog"]
+set home [file normalize ~]
+set dir [file join $home sweeps [lindex $argv 0] myproject_prj solution1 impl verilog]
 
+cd $dir
 read_verilog -v [glob *.v]
 
 

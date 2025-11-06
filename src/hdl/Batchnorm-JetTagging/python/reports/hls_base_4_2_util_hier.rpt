@@ -1,0 +1,30 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date         : Sun Nov  2 16:17:03 2025
+| Host         : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 1 -file reports/hls_base_4_2_util_hier.rpt
+| Design       : myproject
+| Device       : xcvu13pfhga2104-3
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------------------------------------------------------------+---------------------------------------------------------------+------------+------------+---------+------+-----+--------+--------+------+--------------+
+|                                  Instance                                  |                             Module                            | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | URAM | DSP48 Blocks |
++----------------------------------------------------------------------------+---------------------------------------------------------------+------------+------------+---------+------+-----+--------+--------+------+--------------+
+| myproject                                                                  |                                                         (top) |       8404 |       8404 |       0 |    0 | 636 |      0 |      0 |    0 |            0 |
+|   (myproject)                                                              |                                                         (top) |       8288 |       8288 |       0 |    0 | 604 |      0 |      0 |    0 |            0 |
+|   grp_softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config16_s_fu_383 | softmax_stable_ap_fixed_ap_fixed_4_2_5_3_0_softmax_config16_s |        116 |        116 |       0 |    0 |  32 |      0 |      0 |    0 |            0 |
++----------------------------------------------------------------------------+---------------------------------------------------------------+------------+------------+---------+------+-----+--------+--------+------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
