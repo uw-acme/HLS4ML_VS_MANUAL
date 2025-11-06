@@ -44,7 +44,7 @@ def handmade_gen(acc):
     patt = r"[0-9]{1,2}"
     gen_weight(acc)
     os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" waiz_benchmark*.sv')
-    name = "SA3"
+    name = "SA3_5"
     os.system(f"vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name}")
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
     accuracy = accuracy_test(acc, y_test)
