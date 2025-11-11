@@ -5,8 +5,7 @@
 /* This file contains the shiftAdd multiplication method.
 */
 
-localparam DEPTH = `SA_DEPTH;       // # of terms in the shiftAdd operation
-
+localparam DEPTH = `SA_DEPTH;       // # of terms in the shiftAdd operatio
 // Define integer array type
 typedef integer signed int_array[DEPTH:0];
 
@@ -49,7 +48,8 @@ endfunction
 module shift_add #(parameter signed WEIGHT  = 17'd1,
                    parameter        DEPTH   = 3,
                                     BITS    = 17,
-                                    NFRAC   = 8
+                                    NFRAC   = 8,
+                                    DEPTH_FRAC = 5
                    )(
     input logic                 clk,
     input logic [BITS-1:0]      data_in,
@@ -83,8 +83,8 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // $fflush();
     end
     
-   if (shift[0] == '0) begin // Original 
-    //if ((shift[0]=='0)&&(( (abs_value(WEIGHT)%10)<5 )||(shift[DEPTH]==0))) begin// Modified
+   //if (shift[0] == '0) begin // Original 
+    if ((shift[0]=='0)&&(( (abs_value(WEIGHT)%10)<DEPTH_FRAC )||(shift[DEPTH]==0))) begin// Modified
         always_comb begin
             // make data_out_tmp an accumulator
             data_out_tmp = '0;
@@ -106,28 +106,28 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // Otherwise just use a normal multiplier (likely to be done in LUTs)
     end else begin
         // muliplication warapper
-        // if (BITS > 14) begin
-        //     mult_op_wrap #(.din_WIDTH       ( BITS      ),
-        //                    .dweight_WIDTH   ( BITS-num_signed_bits),
-        //                    .dout_WIDTH      ( BITS+NFRAC)
-        //                    ) mow(
-        //         .clk,
-        //         .reset  ( '0            ),
-        //         .ce     ( '1            ), // constant enable
-        //         .din    ( data_in       ),
-        //         .dweight( WEIGHT[BITS-num_signed_bits-1:0] ),
-        //         .dout   ( data_out_tmp  )
-        //     );
-        //     assign data_out = $signed(data_out_tmp);
-        // // Use normal multiplication operator
-        // end else begin
+        if (BITS > 14) begin
+            mult_op_wrap #(.din_WIDTH       ( BITS      ),
+                           .dweight_WIDTH   ( BITS-num_signed_bits),
+                           .dout_WIDTH      ( BITS+NFRAC)
+                           ) mow(
+                .clk,
+                .reset  ( '0            ),
+                .ce     ( '1            ), // constant enable
+                .din    ( data_in       ),
+                .dweight( WEIGHT[BITS-num_signed_bits-1:0] ),
+                .dout   ( data_out_tmp  )
+            );
+            assign data_out = $signed(data_out_tmp);
+        // Use normal multiplication operator
+        end else begin
             always_comb begin
                 data_out_tmp = $signed(data_in) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
             end
             always_ff @(posedge clk) begin
                 data_out <= $signed(data_out_tmp);
             end
-        //end
+        end
     end
     
     
