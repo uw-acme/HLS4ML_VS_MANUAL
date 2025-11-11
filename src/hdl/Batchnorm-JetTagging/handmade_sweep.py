@@ -36,7 +36,7 @@ def file_to_array(file, length):
          num = f.readline()
     f.close()
     return arr
-def handmade_gen(acc):
+def handmade_gen(acc, name):
     """
     Runs a test with precision (WIDTH, NINT)
     """
@@ -44,7 +44,6 @@ def handmade_gen(acc):
     patt = r"[0-9]{1,2}"
     gen_weight(acc)
     os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" waiz_benchmark*.sv')
-    name = "norm_op"
     os.system(f"vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name}")
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
     accuracy = accuracy_test(acc, y_test)
@@ -53,6 +52,9 @@ def handmade_gen(acc):
     #accuracy_score = test_score()
     if len(results)!=len(features):
         raise ValueError("Report files not as expected")
+    if (not os.path.isfile(f"util_{name}.csv")):
+        with open(f"util_{name}.csv", "x") as f:
+            f.write("Bits, Slice LUTs, Slice Registers, Block RAM Tile, DSPs, Bonded IOB, Timing\n")
     with open(f"util_{name}.csv", "a") as f:
         f.write(f"{acc[0]}")
         for result in results:
@@ -236,8 +238,24 @@ def dec_to_bin(number: int, bits=-1):
 #y_test = np.load('python/y_test.npy')
 # i = (w+2)/3
 #accuracy_test((34,12), y_test)
+patt = r"[0-9]{1,2}"
+run_params = [1,3,7,9]
+def bits_to_params(bits):
+    val=(bits+2)/5.4
+    SA=np.round(val,1)
+    SA_INT = int(SA)
+    SA_FRAC = int(np.round((SA-SA_INT)*10))
+    return SA_INT+1, SA_FRAC
+def adjust(bits):
+    patt = r"[0-9]{1,2}"
+    SA_INT, SA_FRAC = bits_to_params(bits)
+    os.system(f'sed -i -E "s/SA_FRAC {patt}/SA_FRAC {SA_FRAC}/g; s/SA_DEPTH {patt}/SA_DEPTH {SA_INT}/g;" pkg_sel.svh')
+    return SA_INT, SA_FRAC
+
 for i in range(2,14):
     acc = (3*i-2,i)
+    SA_INT, SA_FRAC = adjust(acc[0])
+    name = f"HM{acc[0]}_{acc[1]}_SA{SA_INT}_{SA_FRAC}"
     # print((3*i-2,i))
-    handmade_gen(acc)
+    handmade_gen(acc, name)
     # accuracy_test(acc

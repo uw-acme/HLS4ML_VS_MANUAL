@@ -18,5 +18,6 @@
 // The higher the depth, the more complex the weights that will be transformed
 // into shift-adds (done in LUTs) rather than DSPs
 `ifndef SA_DEPTH
-    `define SA_DEPTH 0
+    `define SA_DEPTH 8
+    `define SA_FRAC 2
 `endif

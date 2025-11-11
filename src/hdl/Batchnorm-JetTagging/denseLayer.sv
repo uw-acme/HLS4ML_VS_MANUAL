@@ -58,6 +58,7 @@ module denseLayer #(
             for(col=0; col<OUTPUT_SIZE; col++) begin : OUTPUT_SIZE_cols
                 shift_add #(.WEIGHT ( WEIGHTS[row][col]                 ),
                             .DEPTH  ( `SA_DEPTH                         ),
+                            .DEPTH_FRAC (`SA_FRAC                       ),
                             .BITS   ( WIDTH                             ),
                             .NFRAC  ( NFRAC                             )
                             ) sa (
