@@ -21,7 +21,7 @@
 
 
 module waiz_benchmark_top_level #(
-    parameter WIDTH = 37,
+    parameter WIDTH = 30,
     parameter NFRAC = 24,
     parameter INPUT_SIZE = 16,
     parameter OUTPUT_SIZE = 5

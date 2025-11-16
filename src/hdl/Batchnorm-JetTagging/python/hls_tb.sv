@@ -1,9 +1,9 @@
 `timescale 1 ns / 1 ps 
 module hls_tb;
     // Clock and control
-    localparam WIDTH = 25;
+    localparam WIDTH = 7;
     localparam INPUT_SIZE = 16;
-    localparam NFRAC = 16;
+    localparam NFRAC = 4;
     logic ap_clk;
     logic ap_rst;
     logic ap_start;
@@ -29,7 +29,7 @@ module hls_tb;
     logic [WIDTH-1:0] layer16_out_4_V;
     logic        layer16_out_4_V_ap_vld;
 
-    myproject dut (.*);
+    p dut (.*);
     always #5 begin
         ap_clk = ~ap_clk;
     end
@@ -92,7 +92,7 @@ module hls_tb;
         end
     endtask
     localparam max_tests = 166000;
-    localparam num_tests = 166000;
+    localparam num_tests = 1000;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
