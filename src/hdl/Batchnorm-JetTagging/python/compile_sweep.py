@@ -13,38 +13,46 @@ for i in range(2,14):
 y_test = np.load('y_test.npy')
 # HLS4ML Model gen
 test = np.load("X_test.npy")
+#os.environ['PATH'] = r"/tools/Xilinx/2025.1/Vivado/bin:" + os.environ['PATH']
 def HLS4ML_gen(acc):
     #try:
-        error=f"HLS4ML Script Failed"
-        split = acc.split(",")
-        name = f"hls_base_{split[0]}_{split[1]}"
+    split = acc.split(",")
+    for i in range(len(split)):
+        split[i]=int(split[i])
+    name = f"hls_final_{split[0]}_{split[1]}"
+    if (not os.path.isdir(f'/home/caleb/sweeps/{name}')):
         model = load_model('model.h5', compile=False)
         config = hls4ml.utils.config_from_keras_model(model, granularity='name')
-        config['Model']['Precision'] = f'ap_fixed<{acc}>'
+        config['Model']['Precision'] = f'ap_fixed<{acc}, AP_RND, AP_SAT>'
         #config['LayerName']['fc1']['Precision']['weight'] = 'ap_fixed<8,2>'
         #config['LayerName']['output']['Precision']['result'] = 'fixed<16,6,RND,SAT>'
         #config['LayerName']['softmax']['Strategy'] = 'Stable'
         #config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
         #config['LayerName']['softmax']['inv_table_t'] = 'ap_fixed<18,8>'
-        config['LayerName']['output']['Precision']['result'] = f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>'
-        config['LayerName']['softmax']['Precision']['result'] = f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>'
+        config['LayerName']['output']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
+        config['LayerName']['softmax']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
         hls_model = hls4ml.converters.convert_from_keras_model(model, backend='Vivado', hls_config=config,
                                                                 output_dir=f'/home/caleb/sweeps/{name}',
                                                                 # part='xcu280-fsvh2892-2L-e')
-                                                                part='xcvu13p-fhga2104-3-e')
-        
+                                                                part='xcvu13p-fhga2104-3-e',
+                                                                project_name='p')
         hls_model.build(csim=True, synth=True, vsynth=True, export=True)
 
-        os.system(f"vivado -mode batch -source hls_script.tcl -tclargs {name}")
-        data = extract_data(os.path.join("reports", f"{name}_util.rpt"), features)
-        timing = extract_time(os.path.join("reports", f"{name}_timing.rpt"))
-        with open("util_hls_new.csv", "a") as f:
-            f.write(f"{split[0]}")
-            for dat in data:
-                f.write(f", {dat}")
-            f.write(f", {timing}\n")
-        error=f"HLS4ML Script Completed"
-        os.system(f'printf "Gen {name} finished. Results:\n{features},"timing"\n{data},{timing}" | mail -s "{error}" ceravcal@uw.edu')
+    os.system(f"vivado -mode batch -source hls_script.tcl -tclargs {name}")
+    data = extract_data(os.path.join("reports", f"{name}_util.rpt"), features)
+    timing = extract_time(os.path.join("reports", f"{name}_timing.rpt"))
+    accuracy = test_accuracy(name, split)
+    csv_name = "util_hls_final.csv"
+    if (not os.path.isfile(csv_name)):
+        with open(csv_name, "x") as f:
+            f.write(r"Bits, Slice LUTs, Slice Registers, Block RAM Tile, DSPs, Bonded IOB, Timing\n")
+    with open(csv_name, "a") as f:
+        f.write(f"{split[0]}")
+        for dat in data:
+            f.write(f", {dat}")
+        f.write(f", {timing}")
+        f.write(f", {accuracy}\n")
+    os.system(f'printf "Gen {name} finished. Results:\n{" ".join(features)},"timing"\n{" ".join(data)},{timing},{accuracy}" | mail -s "HLS Completion" ceravcal@uw.edu')
     #except:
         #os.system(f'printf "{name} failed" | mail -s "{error}" ceravcal@uw.edu')
 def dec_to_bin(number: int, bits=-1):
@@ -107,7 +115,7 @@ def gen_test(accuracy):
     test_l = test.flatten()
     with open("X_test_gen.txt", "w") as f:
         for num in test_l:
-            num=num*(2**(accuracy[0]-accuracy[1]))
+            num=num*(2**(int(accuracy[0])-int(accuracy[1])))
             f.write(f"{dec_to_bin(num, accuracy[0])}\n")
 def test_accuracy(model, acc):
     patt = r"[0-9]{1,2}"
@@ -116,16 +124,20 @@ def test_accuracy(model, acc):
     os.system(f"bash sim_hls.sh {model}")
     return keras_test(model)
 def keras_test(model):
-    res =  np.loadtxt(f"./model_5/{model}/myproject_prj/solution1/impl/verilog/hls_results.csv", delimiter=",")
+    res =  np.loadtxt(f"/home/caleb/sweeps/{model}/p_prj/solution1/impl/verilog/hls_results.csv", delimiter=",")
     res = res[1:]
     acc= accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
     return acc
     #for i in range(len(scores)):
         #print(f"\n{models[i]} accuracy is: {scores[i]} \n")
-for i in range(11,14):
+for i in range(2,14):
     #((3*i-2,i))
     #print(f"{3*i-2},{i}".split(","))
     HLS4ML_gen(f"{3*i-2},{i}")
+
+    #acc_in = f"{3*i-2},6" if i > 6 else f"{3*i-2},{i}"
+    #HLS4ML_gen(acc_in)
+
     #acc.append(({3*i-2},{i}))
 #HLS4ML_gen("16,6")
 # args = ""
