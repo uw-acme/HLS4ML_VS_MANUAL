@@ -20,7 +20,7 @@ def HLS4ML_gen(acc):
         name = f"hls_base_{split[0]}_{split[1]}"
         model = load_model('model.h5', compile=False)
         config = hls4ml.utils.config_from_keras_model(model, granularity='name')
-        config['Model']['Precision'] = f'ap_fixed<{acc}>'
+        config['Model']['Precision'] = f'ap_fixed<{acc},RND,SAT>'
         #config['LayerName']['fc1']['Precision']['weight'] = 'ap_fixed<8,2>'
         #config['LayerName']['output']['Precision']['result'] = 'fixed<16,6,RND,SAT>'
         #config['LayerName']['softmax']['Strategy'] = 'Stable'
@@ -44,7 +44,7 @@ def HLS4ML_gen(acc):
                 f.write(f", {dat}")
             f.write(f", {timing}\n")
         error=f"HLS4ML Script Completed"
-        os.system(f'printf "Gen {name} finished. Results:\n{features},"timing"\n{data},{timing}" | mail -s "{error}" ceravcal@uw.edu')
+        os.system(f'printf "Gen {name} finished. Results:\n{", ".join(features)},"timing"\n{", ".join(data)},{timing}" | mail -s "{HLS4ML Completed}" ceravcal@uw.edu')
     #except:
         #os.system(f'printf "{name} failed" | mail -s "{error}" ceravcal@uw.edu')
 def dec_to_bin(number: int, bits=-1):
@@ -122,7 +122,7 @@ def keras_test(model):
     return acc
     #for i in range(len(scores)):
         #print(f"\n{models[i]} accuracy is: {scores[i]} \n")
-for i in range(11,14):
+for i in range(2,14):
     #((3*i-2,i))
     #print(f"{3*i-2},{i}".split(","))
     HLS4ML_gen(f"{3*i-2},{i}")
