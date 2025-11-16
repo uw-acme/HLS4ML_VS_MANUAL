@@ -131,6 +131,7 @@ def keras_test(model):
     #for i in range(len(scores)):
         #print(f"\n{models[i]} accuracy is: {scores[i]} \n")
 for i in range(2,14):
+for i in range(2,14):
     #((3*i-2,i))
     #print(f"{3*i-2},{i}".split(","))
     HLS4ML_gen(f"{3*i-2},{i}")
