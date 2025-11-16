@@ -1,0 +1,83 @@
+<InterfaceSummary>
+<RtlPorts>
+<name>input_1_V_data_0_V</name>
+<CType>
+<TypeName>ap_fixed 20 10 5 3 0</TypeName>
+<TypeWidth>20</TypeWidth>
+<PhysicalWidth>24</PhysicalWidth>
+</CType>
+<CFractionWidth>10</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>input_1_V_data_1_V</name>
+<CType>
+<TypeName>ap_fixed 20 10 5 3 0</TypeName>
+<TypeWidth>20</TypeWidth>
+<PhysicalWidth>24</PhysicalWidth>
+</CType>
+<CFractionWidth>10</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>input_1_V_data_2_V</name>
+<CType>
+<TypeName>ap_fixed 20 10 5 3 0</TypeName>
+<TypeWidth>20</TypeWidth>
+<PhysicalWidth>24</PhysicalWidth>
+</CType>
+<CFractionWidth>10</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>layer12_out_V_data_0_V</name>
+<CType>
+<TypeName>ap_fixed 20 10 5 3 0</TypeName>
+<TypeWidth>20</TypeWidth>
+<PhysicalWidth>24</PhysicalWidth>
+</CType>
+<CFractionWidth>10</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>layer12_out_V_data_1_V</name>
+<CType>
+<TypeName>ap_fixed 20 10 5 3 0</TypeName>
+<TypeWidth>20</TypeWidth>
+<PhysicalWidth>24</PhysicalWidth>
+</CType>
+<CFractionWidth>10</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>layer12_out_V_data_2_V</name>
+<CType>
+<TypeName>ap_fixed 20 10 5 3 0</TypeName>
+<TypeWidth>20</TypeWidth>
+<PhysicalWidth>24</PhysicalWidth>
+</CType>
+<CFractionWidth>10</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>layer12_out_V_data_3_V</name>
+<CType>
+<TypeName>ap_fixed 20 10 5 3 0</TypeName>
+<TypeWidth>20</TypeWidth>
+<PhysicalWidth>24</PhysicalWidth>
+</CType>
+<CFractionWidth>10</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+<RtlPorts>
+<name>layer12_out_V_data_4_V</name>
+<CType>
+<TypeName>ap_fixed 20 10 5 3 0</TypeName>
+<TypeWidth>20</TypeWidth>
+<PhysicalWidth>24</PhysicalWidth>
+</CType>
+<CFractionWidth>10</CFractionWidth>
+<InvalidType>0</InvalidType>
+</RtlPorts>
+</InterfaceSummary>
+
