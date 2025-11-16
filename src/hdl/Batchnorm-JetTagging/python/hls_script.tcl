@@ -4,7 +4,7 @@ read_xdc myproject_ooc.xdc
 
 #cd [file join "./model_5" [lindex $argv 0] "myproject_prj/solution1/impl/verilog"]
 set home [file normalize ~]
-set dir [file join $home sweeps [lindex $argv 0] myproject_prj solution1 impl verilog]
+set dir [file join $home sweeps [lindex $argv 0] p_prj solution1 impl verilog]
 
 cd $dir
 read_verilog -v [glob *.v]
@@ -17,7 +17,7 @@ read_verilog -v [glob *.v]
 # xc7k160tfbg484-3 is free, no license
 # xq7vx980trf1930-1I BIG!!
 # xc7vx690tffg1761-2 is virtex 7, needs license
-synth_design -top myproject -part xcvu13p-fhga2104-3-e
+synth_design -top p -part xcvu13p-fhga2104-3-e
 
 # --- Implementation flow ---
 opt_design

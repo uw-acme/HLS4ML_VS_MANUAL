@@ -1,10 +1,10 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date              : Sun Nov  2 16:37:15 2025
+| Date              : Wed Nov 12 23:25:21 2025
 | Host              : hvm1 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -file reports/hls_base_7_3_timing.rpt
-| Design            : myproject
+| Design            : p
 | Device            : xcvu13p-fhga2104
 | Speed File        : -3  PRODUCTION 1.23 03-18-2019
 | Temperature Grade : E
@@ -193,7 +193,7 @@ Max Delay Paths
 Slack (MET) :             0.449ns  (required time - arrival time)
   Source:                 layer14_out_2_V_reg_2243_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/DSP_A_B_DATA_INST/B[1]
+  Destination:            grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/DSP_A_B_DATA_INST/B[1]
                             (rising edge-triggered cell DSP_A_B_DATA clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
   Path Group:             ap_clk
   Path Type:              Setup (Max at Slow Process Corner)
@@ -245,32 +245,32 @@ Slack (MET) :             0.449ns  (required time - arrival time)
                          net (fo=1, routed)           0.162     4.410    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/icmp_ln1496_2_fu_176_p2_carry_i_4_n_0
     SLICE_X176Y474       CARRY8 (Prop_CARRY8_SLICEM_DI[0]_CO[3])
                                                       0.138     4.548 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/icmp_ln1496_2_fu_176_p2_carry/CO[3]
-                         net (fo=8, routed)           0.189     4.737    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U258/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/icmp_ln1496_3_fu_190_p2_carry_i_8_0[0]
+                         net (fo=8, routed)           0.189     4.737    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U258/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/icmp_ln1496_3_fu_190_p2_carry_i_8_0[0]
     SLICE_X177Y475       LUT5 (Prop_F6LUT_SLICEL_I4_O)
-                                                      0.114     4.851 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U258/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/icmp_ln1496_3_fu_190_p2_carry_i_12/O
-                         net (fo=3, routed)           0.133     4.984    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U258_n_24
+                                                      0.114     4.851 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U258/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/icmp_ln1496_3_fu_190_p2_carry_i_12/O
+                         net (fo=3, routed)           0.133     4.984    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U258_n_24
     SLICE_X176Y476       LUT4 (Prop_B6LUT_SLICEM_I1_O)
                                                       0.089     5.073 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/icmp_ln1496_3_fu_190_p2_carry_i_7/O
                          net (fo=1, routed)           0.020     5.093    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/icmp_ln1496_3_fu_190_p2_carry_i_7_n_0
     SLICE_X176Y476       CARRY8 (Prop_CARRY8_SLICEM_S[1]_CO[3])
                                                       0.165     5.258 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/icmp_ln1496_3_fu_190_p2_carry/CO[3]
-                         net (fo=15, routed)          0.321     5.579    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U258/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/CO[0]
+                         net (fo=15, routed)          0.321     5.579    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U258/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/CO[0]
     SLICE_X178Y475       LUT3 (Prop_D6LUT_SLICEL_I2_O)
-                                                      0.081     5.660 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U258/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6_i_7/O
-                         net (fo=20, routed)          0.214     5.874    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/select_ln66_3_fu_204_p3[0]
+                                                      0.081     5.660 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U258/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6_i_7/O
+                         net (fo=20, routed)          0.214     5.874    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/select_ln66_3_fu_204_p3[0]
     SLICE_X177Y474       LUT6 (Prop_A6LUT_SLICEL_I2_O)
-                                                      0.135     6.009 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_7/O
-                         net (fo=2, routed)           0.137     6.146    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_7_n_0
+                                                      0.135     6.009 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_7/O
+                         net (fo=2, routed)           0.137     6.146    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_7_n_0
     SLICE_X177Y473       LUT5 (Prop_C5LUT_SLICEL_I4_O)
-                                                      0.063     6.209 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_8/O
-                         net (fo=2, routed)           0.153     6.362    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_8_n_0
+                                                      0.063     6.209 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_8/O
+                         net (fo=2, routed)           0.153     6.362    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_8_n_0
     SLICE_X177Y473       LUT5 (Prop_B5LUT_SLICEL_I0_O)
-                                                      0.067     6.429 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_6/O
-                         net (fo=5, routed)           0.220     6.649    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_6_n_0
+                                                      0.067     6.429 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_6/O
+                         net (fo=5, routed)           0.220     6.649    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b6__2_i_6_n_0
     SLICE_X178Y473       LUT6 (Prop_F6LUT_SLICEL_I5_O)
-                                                      0.133     6.782 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b7__2/O
-                         net (fo=2, routed)           0.305     7.087    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/B[1]
-    DSP48E2_X24Y188      DSP_A_B_DATA                                 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/DSP_A_B_DATA_INST/B[1]
+                                                      0.133     6.782 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/g0_b7__2/O
+                         net (fo=2, routed)           0.305     7.087    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/B[1]
+    DSP48E2_X24Y188      DSP_A_B_DATA                                 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/DSP_A_B_DATA_INST/B[1]
   -------------------------------------------------------------------    -------------------
 
                          (clock ap_clk rise edge)     5.000     5.000 r  
@@ -284,12 +284,12 @@ Slack (MET) :             0.449ns  (required time - arrival time)
                          net (fo=1, routed)           0.279     5.596    ap_clk_IBUF
     BUFGCE_X0Y170        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.024     5.620 r  ap_clk_IBUF_BUFG_inst/O
-    X5Y5 (CLOCK_ROOT)    net (fo=1764, routed)        1.814     7.434    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/CLK
-    DSP48E2_X24Y188      DSP_A_B_DATA                                 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/DSP_A_B_DATA_INST/CLK
+    X5Y5 (CLOCK_ROOT)    net (fo=1764, routed)        1.814     7.434    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/CLK
+    DSP48E2_X24Y188      DSP_A_B_DATA                                 r  grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/DSP_A_B_DATA_INST/CLK
                          clock pessimism              0.386     7.819    
                          clock uncertainty           -0.035     7.784    
     DSP48E2_X24Y188      DSP_A_B_DATA (Setup_DSP_A_B_DATA_DSP48E2_CLK_B[1])
-                                                     -0.248     7.536    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/myproject_mul_mul_17s_5ns_17_1_1_U259/myproject_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/DSP_A_B_DATA_INST
+                                                     -0.248     7.536    grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383/p_mul_mul_17s_5ns_17_1_1_U259/p_mul_mul_17s_5ns_17_1_1_DSP48_0_U/p/DSP_A_B_DATA_INST
   -------------------------------------------------------------------
                          required time                          7.536    
                          arrival time                          -7.087    

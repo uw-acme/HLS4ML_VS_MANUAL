@@ -3,7 +3,7 @@ set -e
 # # Remove previous compilation results
 # file delete -force xsim.dir
 # file delete -force work
-DEST=./model_5/$1/myproject_prj/solution1/impl/verilog
+DEST=$HOME/sweeps/$1/p_prj/solution1/impl/verilog
 if ! compgen -G "$DEST/*.csv" > /dev/null; then
     if [ ! -f "$DEST/X_test_gen.txt" ]; then
         ln X_test_gen.txt "$DEST/."
