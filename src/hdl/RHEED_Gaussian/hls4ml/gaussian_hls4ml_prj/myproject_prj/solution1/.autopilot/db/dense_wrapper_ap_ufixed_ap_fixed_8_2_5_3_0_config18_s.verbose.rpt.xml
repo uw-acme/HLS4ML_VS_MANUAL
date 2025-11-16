@@ -1,0 +1,330 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'dense_wrapper_ap_ufixed_ap_fixed_8_2_5_3_0_config18_s'" level="0">
+<item name = "Date">Thu Oct 30 21:08:01 2025
+</item>
+<item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
+<item name = "Project">myproject_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">virtex7</item>
+<item name = "Target device">xc7vx690t-ffg1761-2</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00, 4.179, 0.62</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">16, 17, 15, 15, loop rewind(delay=0 initiation interval(s))</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- ReuseLoop">16, 16, 3, 1, 1, 15, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, 0, 0, 670, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, -, 0, 47, -</column>
+<column name="Memory">3, -, 0, 0, -</column>
+<column name="Multiplexer">-, -, -, 792, -</column>
+<column name="Register">-, -, 701, -, -</column>
+<specialColumn name="Available">2940, 3600, 866400, 433200, 0</specialColumn>
+<specialColumn name="Utilization (%)">~0, 0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
+<column name="myproject_mux_154_8_1_1_U546">myproject_mux_154_8_1_1, 0, 0, 0, 47, 0</column>
+</table>
+</item>
+<item name = "DSP48E"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+<column name="w18_V_U">dense_wrapper_ap_ufixed_ap_fixed_8_2_5_3_0_config18_s_w18_V, 3, 0, 0, 0, 15, 78, 1, 1170</column>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="mul_ln1118_10_fu_1127_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_11_fu_1156_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_12_fu_1185_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_13_fu_1217_p2">*, 0, 0, 41, 6, 8</column>
+<column name="mul_ln1118_5_fu_982_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_6_fu_1011_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_7_fu_1040_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_8_fu_1069_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_9_fu_1098_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_fu_953_p2">*, 0, 0, 41, 8, 8</column>
+<column name="acc_0_V_fu_973_p2">+, 0, 0, 23, 16, 16</column>
+<column name="acc_1_V_fu_1002_p2">+, 0, 0, 23, 16, 16</column>
+<column name="acc_2_V_fu_1031_p2">+, 0, 0, 23, 16, 16</column>
+<column name="acc_3_V_fu_1060_p2">+, 0, 0, 23, 16, 16</column>
+<column name="acc_4_V_fu_1089_p2">+, 0, 0, 23, 16, 16</column>
+<column name="acc_5_V_fu_1118_p2">+, 0, 0, 23, 16, 16</column>
+<column name="acc_6_V_fu_1147_p2">+, 0, 0, 23, 16, 16</column>
+<column name="acc_7_V_fu_1176_p2">+, 0, 0, 23, 16, 16</column>
+<column name="acc_8_V_fu_1205_p2">+, 0, 0, 23, 16, 16</column>
+<column name="acc_9_V_fu_1237_p2">+, 0, 0, 23, 16, 16</column>
+<column name="w_index_fu_805_p2">+, 0, 0, 13, 1, 4</column>
+<column name="ap_condition_256">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_262">and, 0, 0, 2, 1, 1</column>
+<column name="ap_condition_40">and, 0, 0, 2, 1, 1</column>
+<column name="icmp_ln64_fu_811_p2">icmp, 0, 0, 9, 4, 3</column>
+<column name="ap_enable_pp0">xor, 0, 0, 2, 1, 2</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">15, 3, 1, 3</column>
+<column name="ap_enable_reg_pp0_iter1">9, 2, 1, 2</column>
+<column name="ap_enable_reg_pp0_iter2">9, 2, 1, 2</column>
+<column name="ap_phi_mux_data_0_V_read26_phi_phi_fu_484_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_0_V_read26_rewind_phi_fu_274_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_10_V_read36_phi_phi_fu_604_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_10_V_read36_rewind_phi_fu_414_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_11_V_read37_phi_phi_fu_616_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_11_V_read37_rewind_phi_fu_428_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_12_V_read38_phi_phi_fu_628_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_12_V_read38_rewind_phi_fu_442_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_13_V_read39_phi_phi_fu_640_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_13_V_read39_rewind_phi_fu_456_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_14_V_read40_phi_phi_fu_652_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_14_V_read40_rewind_phi_fu_470_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_1_V_read27_phi_phi_fu_496_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_1_V_read27_rewind_phi_fu_288_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_2_V_read28_phi_phi_fu_508_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_2_V_read28_rewind_phi_fu_302_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_3_V_read29_phi_phi_fu_520_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_3_V_read29_rewind_phi_fu_316_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_4_V_read30_phi_phi_fu_532_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_4_V_read30_rewind_phi_fu_330_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_5_V_read31_phi_phi_fu_544_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_5_V_read31_rewind_phi_fu_344_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_6_V_read32_phi_phi_fu_556_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_6_V_read32_rewind_phi_fu_358_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_7_V_read33_phi_phi_fu_568_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_7_V_read33_rewind_phi_fu_372_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_8_V_read34_phi_phi_fu_580_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_8_V_read34_rewind_phi_fu_386_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_9_V_read35_phi_phi_fu_592_p4">9, 2, 8, 16</column>
+<column name="ap_phi_mux_data_9_V_read35_rewind_phi_fu_400_p6">9, 2, 8, 16</column>
+<column name="ap_phi_mux_do_init_phi_fu_243_p6">15, 3, 1, 3</column>
+<column name="ap_phi_mux_w_index25_phi_fu_259_p6">15, 3, 4, 12</column>
+<column name="ap_phi_reg_pp0_iter1_data_0_V_read26_phi_reg_480">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_10_V_read36_phi_reg_600">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_11_V_read37_phi_reg_612">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_12_V_read38_phi_reg_624">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_13_V_read39_phi_reg_636">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_14_V_read40_phi_reg_648">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_1_V_read27_phi_reg_492">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_2_V_read28_phi_reg_504">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_3_V_read29_phi_reg_516">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_4_V_read30_phi_reg_528">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_5_V_read31_phi_reg_540">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_6_V_read32_phi_reg_552">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_7_V_read33_phi_reg_564">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_8_V_read34_phi_reg_576">9, 2, 8, 16</column>
+<column name="ap_phi_reg_pp0_iter1_data_9_V_read35_phi_reg_588">9, 2, 8, 16</column>
+<column name="ap_return_0">9, 2, 8, 16</column>
+<column name="ap_return_1">9, 2, 8, 16</column>
+<column name="ap_return_2">9, 2, 8, 16</column>
+<column name="ap_return_3">9, 2, 8, 16</column>
+<column name="ap_return_4">9, 2, 8, 16</column>
+<column name="ap_return_5">9, 2, 8, 16</column>
+<column name="ap_return_6">9, 2, 8, 16</column>
+<column name="ap_return_7">9, 2, 8, 16</column>
+<column name="ap_return_8">9, 2, 8, 16</column>
+<column name="ap_return_9">9, 2, 8, 16</column>
+<column name="data_0_V_read26_phi_reg_480">9, 2, 8, 16</column>
+<column name="data_10_V_read36_phi_reg_600">9, 2, 8, 16</column>
+<column name="data_11_V_read37_phi_reg_612">9, 2, 8, 16</column>
+<column name="data_12_V_read38_phi_reg_624">9, 2, 8, 16</column>
+<column name="data_13_V_read39_phi_reg_636">9, 2, 8, 16</column>
+<column name="data_14_V_read40_phi_reg_648">9, 2, 8, 16</column>
+<column name="data_1_V_read27_phi_reg_492">9, 2, 8, 16</column>
+<column name="data_2_V_read28_phi_reg_504">9, 2, 8, 16</column>
+<column name="data_3_V_read29_phi_reg_516">9, 2, 8, 16</column>
+<column name="data_4_V_read30_phi_reg_528">9, 2, 8, 16</column>
+<column name="data_5_V_read31_phi_reg_540">9, 2, 8, 16</column>
+<column name="data_6_V_read32_phi_reg_552">9, 2, 8, 16</column>
+<column name="data_7_V_read33_phi_reg_564">9, 2, 8, 16</column>
+<column name="data_8_V_read34_phi_reg_576">9, 2, 8, 16</column>
+<column name="data_9_V_read35_phi_reg_588">9, 2, 8, 16</column>
+<column name="p_Val2_1018_reg_702">9, 2, 16, 32</column>
+<column name="p_Val2_1120_reg_688">9, 2, 16, 32</column>
+<column name="p_Val2_1222_reg_674">9, 2, 16, 32</column>
+<column name="p_Val2_1324_reg_660">9, 2, 16, 32</column>
+<column name="p_Val2_58_reg_772">9, 2, 16, 32</column>
+<column name="p_Val2_610_reg_758">9, 2, 16, 32</column>
+<column name="p_Val2_6_reg_786">9, 2, 16, 32</column>
+<column name="p_Val2_712_reg_744">9, 2, 16, 32</column>
+<column name="p_Val2_814_reg_730">9, 2, 16, 32</column>
+<column name="p_Val2_916_reg_716">9, 2, 16, 32</column>
+<column name="w_index25_reg_255">9, 2, 4, 8</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">2, 0, 2, 0</column>
+<column name="ap_enable_reg_pp0_iter1">1, 0, 1, 0</column>
+<column name="ap_enable_reg_pp0_iter2">1, 0, 1, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_0_V_read26_phi_reg_480">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_10_V_read36_phi_reg_600">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_11_V_read37_phi_reg_612">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_12_V_read38_phi_reg_624">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_13_V_read39_phi_reg_636">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_14_V_read40_phi_reg_648">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_1_V_read27_phi_reg_492">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_2_V_read28_phi_reg_504">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_3_V_read29_phi_reg_516">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_4_V_read30_phi_reg_528">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_5_V_read31_phi_reg_540">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_6_V_read32_phi_reg_552">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_7_V_read33_phi_reg_564">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_8_V_read34_phi_reg_576">8, 0, 8, 0</column>
+<column name="ap_phi_reg_pp0_iter1_data_9_V_read35_phi_reg_588">8, 0, 8, 0</column>
+<column name="ap_return_0_preg">8, 0, 8, 0</column>
+<column name="ap_return_1_preg">8, 0, 8, 0</column>
+<column name="ap_return_2_preg">8, 0, 8, 0</column>
+<column name="ap_return_3_preg">8, 0, 8, 0</column>
+<column name="ap_return_4_preg">8, 0, 8, 0</column>
+<column name="ap_return_5_preg">8, 0, 8, 0</column>
+<column name="ap_return_6_preg">8, 0, 8, 0</column>
+<column name="ap_return_7_preg">8, 0, 8, 0</column>
+<column name="ap_return_8_preg">8, 0, 8, 0</column>
+<column name="ap_return_9_preg">8, 0, 8, 0</column>
+<column name="data_0_V_read26_phi_reg_480">8, 0, 8, 0</column>
+<column name="data_0_V_read26_rewind_reg_270">8, 0, 8, 0</column>
+<column name="data_10_V_read36_phi_reg_600">8, 0, 8, 0</column>
+<column name="data_10_V_read36_rewind_reg_410">8, 0, 8, 0</column>
+<column name="data_11_V_read37_phi_reg_612">8, 0, 8, 0</column>
+<column name="data_11_V_read37_rewind_reg_424">8, 0, 8, 0</column>
+<column name="data_12_V_read38_phi_reg_624">8, 0, 8, 0</column>
+<column name="data_12_V_read38_rewind_reg_438">8, 0, 8, 0</column>
+<column name="data_13_V_read39_phi_reg_636">8, 0, 8, 0</column>
+<column name="data_13_V_read39_rewind_reg_452">8, 0, 8, 0</column>
+<column name="data_14_V_read40_phi_reg_648">8, 0, 8, 0</column>
+<column name="data_14_V_read40_rewind_reg_466">8, 0, 8, 0</column>
+<column name="data_1_V_read27_phi_reg_492">8, 0, 8, 0</column>
+<column name="data_1_V_read27_rewind_reg_284">8, 0, 8, 0</column>
+<column name="data_2_V_read28_phi_reg_504">8, 0, 8, 0</column>
+<column name="data_2_V_read28_rewind_reg_298">8, 0, 8, 0</column>
+<column name="data_3_V_read29_phi_reg_516">8, 0, 8, 0</column>
+<column name="data_3_V_read29_rewind_reg_312">8, 0, 8, 0</column>
+<column name="data_4_V_read30_phi_reg_528">8, 0, 8, 0</column>
+<column name="data_4_V_read30_rewind_reg_326">8, 0, 8, 0</column>
+<column name="data_5_V_read31_phi_reg_540">8, 0, 8, 0</column>
+<column name="data_5_V_read31_rewind_reg_340">8, 0, 8, 0</column>
+<column name="data_6_V_read32_phi_reg_552">8, 0, 8, 0</column>
+<column name="data_6_V_read32_rewind_reg_354">8, 0, 8, 0</column>
+<column name="data_7_V_read33_phi_reg_564">8, 0, 8, 0</column>
+<column name="data_7_V_read33_rewind_reg_368">8, 0, 8, 0</column>
+<column name="data_8_V_read34_phi_reg_576">8, 0, 8, 0</column>
+<column name="data_8_V_read34_rewind_reg_382">8, 0, 8, 0</column>
+<column name="data_9_V_read35_phi_reg_588">8, 0, 8, 0</column>
+<column name="data_9_V_read35_rewind_reg_396">8, 0, 8, 0</column>
+<column name="do_init_reg_239">1, 0, 1, 0</column>
+<column name="icmp_ln64_reg_1492">1, 0, 1, 0</column>
+<column name="icmp_ln64_reg_1492_pp0_iter1_reg">1, 0, 1, 0</column>
+<column name="p_Val2_1018_reg_702">16, 0, 16, 0</column>
+<column name="p_Val2_1120_reg_688">16, 0, 16, 0</column>
+<column name="p_Val2_1222_reg_674">16, 0, 16, 0</column>
+<column name="p_Val2_1324_reg_660">16, 0, 16, 0</column>
+<column name="p_Val2_58_reg_772">16, 0, 16, 0</column>
+<column name="p_Val2_610_reg_758">16, 0, 16, 0</column>
+<column name="p_Val2_6_reg_786">16, 0, 16, 0</column>
+<column name="p_Val2_712_reg_744">16, 0, 16, 0</column>
+<column name="p_Val2_814_reg_730">16, 0, 16, 0</column>
+<column name="p_Val2_916_reg_716">16, 0, 16, 0</column>
+<column name="tmp_1_reg_1527">8, 0, 8, 0</column>
+<column name="tmp_2_reg_1532">8, 0, 8, 0</column>
+<column name="tmp_3_reg_1537">8, 0, 8, 0</column>
+<column name="tmp_4_reg_1542">8, 0, 8, 0</column>
+<column name="tmp_5_reg_1507">8, 0, 8, 0</column>
+<column name="tmp_6_reg_1496">8, 0, 8, 0</column>
+<column name="tmp_7_reg_1512">8, 0, 8, 0</column>
+<column name="tmp_8_reg_1517">8, 0, 8, 0</column>
+<column name="tmp_9_reg_1522">8, 0, 8, 0</column>
+<column name="tmp_s_reg_1547">6, 0, 6, 0</column>
+<column name="trunc_ln76_reg_1502">8, 0, 8, 0</column>
+<column name="w_index25_reg_255">4, 0, 4, 0</column>
+<column name="w_index_reg_1487">4, 0, 4, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_0">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_1">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_2">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_3">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_4">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_5">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_6">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_7">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_8">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="ap_return_9">out, 8, ap_ctrl_hs, dense_wrapper&lt;ap_ufixed,ap_fixed&lt;8,2,5,3,0&gt;,config18&gt;, return value</column>
+<column name="data_0_V_read">in, 8, ap_none, data_0_V_read, scalar</column>
+<column name="data_1_V_read">in, 8, ap_none, data_1_V_read, scalar</column>
+<column name="data_2_V_read">in, 8, ap_none, data_2_V_read, scalar</column>
+<column name="data_3_V_read">in, 8, ap_none, data_3_V_read, scalar</column>
+<column name="data_4_V_read">in, 8, ap_none, data_4_V_read, scalar</column>
+<column name="data_5_V_read">in, 8, ap_none, data_5_V_read, scalar</column>
+<column name="data_6_V_read">in, 8, ap_none, data_6_V_read, scalar</column>
+<column name="data_7_V_read">in, 8, ap_none, data_7_V_read, scalar</column>
+<column name="data_8_V_read">in, 8, ap_none, data_8_V_read, scalar</column>
+<column name="data_9_V_read">in, 8, ap_none, data_9_V_read, scalar</column>
+<column name="data_10_V_read">in, 8, ap_none, data_10_V_read, scalar</column>
+<column name="data_11_V_read">in, 8, ap_none, data_11_V_read, scalar</column>
+<column name="data_12_V_read">in, 8, ap_none, data_12_V_read, scalar</column>
+<column name="data_13_V_read">in, 8, ap_none, data_13_V_read, scalar</column>
+<column name="data_14_V_read">in, 8, ap_none, data_14_V_read, scalar</column>
+</table>
+</item>
+</section>
+</profile>

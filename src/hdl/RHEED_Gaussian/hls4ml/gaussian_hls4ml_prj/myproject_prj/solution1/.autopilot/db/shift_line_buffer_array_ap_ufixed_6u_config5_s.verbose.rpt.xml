@@ -1,0 +1,300 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'shift_line_buffer_array_ap_ufixed_6u_config5_s'" level="0">
+<item name = "Date">Thu Oct 30 21:07:41 2025
+</item>
+<item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
+<item name = "Project">myproject_prj</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">virtex7</item>
+<item name = "Target device">xc7vx690t-ffg1761-2</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00, 2.961, 0.62</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">0, 0, 1, 1, function</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, -, -, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, -, -, -, -</column>
+<column name="Memory">0, -, 1152, 1152, -</column>
+<column name="Multiplexer">-, -, -, -, -</column>
+<column name="Register">-, -, 1, -, -</column>
+<specialColumn name="Available">2940, 3600, 866400, 433200, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
+</table>
+</item>
+<item name = "DSP48E"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+<column name="line_buffer_Array_V_4_0_0_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_1_0_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_2_0_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_0_1_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_1_1_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_2_1_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_0_2_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_1_2_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_2_2_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_0_3_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_1_3_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_2_3_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_0_4_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_1_4_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_2_4_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_0_5_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_1_5_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+<column name="line_buffer_Array_V_4_2_5_U">shift_line_buffer_array_ap_ufixed_6u_config5_s_line_buffedEe, 0, 64, 64, 0, 46, 8, 1, 368</column>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_0">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_1">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_2">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_3">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_4">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_5">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_6">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_7">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_8">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_9">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_10">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_11">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_12">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_13">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_14">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_15">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_16">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_17">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_18">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_19">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_20">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_21">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_22">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_23">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_24">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_25">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_26">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_27">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_28">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_29">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_30">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_31">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_32">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_33">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_34">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_35">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_36">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_37">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_38">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_39">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_40">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_41">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_42">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_43">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_44">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_45">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_46">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_47">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_48">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_49">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_50">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_51">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_52">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_53">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_54">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_55">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_56">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_57">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_58">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_59">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_60">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_61">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_62">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_63">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_64">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_65">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_66">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_67">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_68">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_69">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_70">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_71">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_72">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_73">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_74">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_75">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_76">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_77">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_78">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_79">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_80">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_81">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_82">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_83">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_84">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_85">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_86">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_87">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_88">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_89">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_90">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_91">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_92">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_93">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_94">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_return_95">out, 8, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="ap_ce">in, 1, ap_ctrl_hs, shift_line_buffer&lt;array&lt;ap_ufixed,6u&gt;,config5&gt;, return value</column>
+<column name="kernel_window_90_V_write">in, 8, ap_none, kernel_window_90_V_write, scalar</column>
+<column name="kernel_window_91_V_write">in, 8, ap_none, kernel_window_91_V_write, scalar</column>
+<column name="kernel_window_92_V_write">in, 8, ap_none, kernel_window_92_V_write, scalar</column>
+<column name="kernel_window_93_V_write">in, 8, ap_none, kernel_window_93_V_write, scalar</column>
+<column name="kernel_window_94_V_write">in, 8, ap_none, kernel_window_94_V_write, scalar</column>
+<column name="kernel_window_95_V_write">in, 8, ap_none, kernel_window_95_V_write, scalar</column>
+<column name="kernel_window_6_V_read">in, 8, ap_none, kernel_window_6_V_read, scalar</column>
+<column name="kernel_window_7_V_read">in, 8, ap_none, kernel_window_7_V_read, scalar</column>
+<column name="kernel_window_8_V_read">in, 8, ap_none, kernel_window_8_V_read, scalar</column>
+<column name="kernel_window_9_V_read">in, 8, ap_none, kernel_window_9_V_read, scalar</column>
+<column name="kernel_window_10_V_read">in, 8, ap_none, kernel_window_10_V_read, scalar</column>
+<column name="kernel_window_11_V_read">in, 8, ap_none, kernel_window_11_V_read, scalar</column>
+<column name="kernel_window_12_V_read">in, 8, ap_none, kernel_window_12_V_read, scalar</column>
+<column name="kernel_window_13_V_read">in, 8, ap_none, kernel_window_13_V_read, scalar</column>
+<column name="kernel_window_14_V_read">in, 8, ap_none, kernel_window_14_V_read, scalar</column>
+<column name="kernel_window_15_V_read">in, 8, ap_none, kernel_window_15_V_read, scalar</column>
+<column name="kernel_window_16_V_read">in, 8, ap_none, kernel_window_16_V_read, scalar</column>
+<column name="kernel_window_17_V_read">in, 8, ap_none, kernel_window_17_V_read, scalar</column>
+<column name="kernel_window_18_V_read">in, 8, ap_none, kernel_window_18_V_read, scalar</column>
+<column name="kernel_window_19_V_read">in, 8, ap_none, kernel_window_19_V_read, scalar</column>
+<column name="kernel_window_20_V_read">in, 8, ap_none, kernel_window_20_V_read, scalar</column>
+<column name="kernel_window_21_V_read">in, 8, ap_none, kernel_window_21_V_read, scalar</column>
+<column name="kernel_window_22_V_read">in, 8, ap_none, kernel_window_22_V_read, scalar</column>
+<column name="kernel_window_23_V_read">in, 8, ap_none, kernel_window_23_V_read, scalar</column>
+<column name="kernel_window_30_V_read">in, 8, ap_none, kernel_window_30_V_read, scalar</column>
+<column name="kernel_window_31_V_read">in, 8, ap_none, kernel_window_31_V_read, scalar</column>
+<column name="kernel_window_32_V_read">in, 8, ap_none, kernel_window_32_V_read, scalar</column>
+<column name="kernel_window_33_V_read">in, 8, ap_none, kernel_window_33_V_read, scalar</column>
+<column name="kernel_window_34_V_read">in, 8, ap_none, kernel_window_34_V_read, scalar</column>
+<column name="kernel_window_35_V_read">in, 8, ap_none, kernel_window_35_V_read, scalar</column>
+<column name="kernel_window_36_V_read">in, 8, ap_none, kernel_window_36_V_read, scalar</column>
+<column name="kernel_window_37_V_read">in, 8, ap_none, kernel_window_37_V_read, scalar</column>
+<column name="kernel_window_38_V_read">in, 8, ap_none, kernel_window_38_V_read, scalar</column>
+<column name="kernel_window_39_V_read">in, 8, ap_none, kernel_window_39_V_read, scalar</column>
+<column name="kernel_window_40_V_read">in, 8, ap_none, kernel_window_40_V_read, scalar</column>
+<column name="kernel_window_41_V_read">in, 8, ap_none, kernel_window_41_V_read, scalar</column>
+<column name="kernel_window_42_V_read">in, 8, ap_none, kernel_window_42_V_read, scalar</column>
+<column name="kernel_window_43_V_read">in, 8, ap_none, kernel_window_43_V_read, scalar</column>
+<column name="kernel_window_44_V_read">in, 8, ap_none, kernel_window_44_V_read, scalar</column>
+<column name="kernel_window_45_V_read">in, 8, ap_none, kernel_window_45_V_read, scalar</column>
+<column name="kernel_window_46_V_read">in, 8, ap_none, kernel_window_46_V_read, scalar</column>
+<column name="kernel_window_47_V_read">in, 8, ap_none, kernel_window_47_V_read, scalar</column>
+<column name="kernel_window_54_V_read">in, 8, ap_none, kernel_window_54_V_read, scalar</column>
+<column name="kernel_window_55_V_read">in, 8, ap_none, kernel_window_55_V_read, scalar</column>
+<column name="kernel_window_56_V_read">in, 8, ap_none, kernel_window_56_V_read, scalar</column>
+<column name="kernel_window_57_V_read">in, 8, ap_none, kernel_window_57_V_read, scalar</column>
+<column name="kernel_window_58_V_read">in, 8, ap_none, kernel_window_58_V_read, scalar</column>
+<column name="kernel_window_59_V_read">in, 8, ap_none, kernel_window_59_V_read, scalar</column>
+<column name="kernel_window_60_V_read">in, 8, ap_none, kernel_window_60_V_read, scalar</column>
+<column name="kernel_window_61_V_read">in, 8, ap_none, kernel_window_61_V_read, scalar</column>
+<column name="kernel_window_62_V_read">in, 8, ap_none, kernel_window_62_V_read, scalar</column>
+<column name="kernel_window_63_V_read">in, 8, ap_none, kernel_window_63_V_read, scalar</column>
+<column name="kernel_window_64_V_read">in, 8, ap_none, kernel_window_64_V_read, scalar</column>
+<column name="kernel_window_65_V_read">in, 8, ap_none, kernel_window_65_V_read, scalar</column>
+<column name="kernel_window_66_V_read">in, 8, ap_none, kernel_window_66_V_read, scalar</column>
+<column name="kernel_window_67_V_read">in, 8, ap_none, kernel_window_67_V_read, scalar</column>
+<column name="kernel_window_68_V_read">in, 8, ap_none, kernel_window_68_V_read, scalar</column>
+<column name="kernel_window_69_V_read">in, 8, ap_none, kernel_window_69_V_read, scalar</column>
+<column name="kernel_window_70_V_read">in, 8, ap_none, kernel_window_70_V_read, scalar</column>
+<column name="kernel_window_71_V_read">in, 8, ap_none, kernel_window_71_V_read, scalar</column>
+<column name="kernel_window_78_V_read">in, 8, ap_none, kernel_window_78_V_read, scalar</column>
+<column name="kernel_window_79_V_read">in, 8, ap_none, kernel_window_79_V_read, scalar</column>
+<column name="kernel_window_80_V_read">in, 8, ap_none, kernel_window_80_V_read, scalar</column>
+<column name="kernel_window_81_V_read">in, 8, ap_none, kernel_window_81_V_read, scalar</column>
+<column name="kernel_window_82_V_read">in, 8, ap_none, kernel_window_82_V_read, scalar</column>
+<column name="kernel_window_83_V_read">in, 8, ap_none, kernel_window_83_V_read, scalar</column>
+<column name="kernel_window_84_V_read">in, 8, ap_none, kernel_window_84_V_read, scalar</column>
+<column name="kernel_window_85_V_read">in, 8, ap_none, kernel_window_85_V_read, scalar</column>
+<column name="kernel_window_86_V_read">in, 8, ap_none, kernel_window_86_V_read, scalar</column>
+<column name="kernel_window_87_V_read">in, 8, ap_none, kernel_window_87_V_read, scalar</column>
+<column name="kernel_window_88_V_read">in, 8, ap_none, kernel_window_88_V_read, scalar</column>
+<column name="kernel_window_89_V_read">in, 8, ap_none, kernel_window_89_V_read, scalar</column>
+<column name="kernel_window_90_V_read">in, 8, ap_none, kernel_window_90_V_read, scalar</column>
+<column name="kernel_window_91_V_read">in, 8, ap_none, kernel_window_91_V_read, scalar</column>
+<column name="kernel_window_92_V_read">in, 8, ap_none, kernel_window_92_V_read, scalar</column>
+<column name="kernel_window_93_V_read">in, 8, ap_none, kernel_window_93_V_read, scalar</column>
+<column name="kernel_window_94_V_read">in, 8, ap_none, kernel_window_94_V_read, scalar</column>
+<column name="kernel_window_95_V_read">in, 8, ap_none, kernel_window_95_V_read, scalar</column>
+</table>
+</item>
+</section>
+</profile>

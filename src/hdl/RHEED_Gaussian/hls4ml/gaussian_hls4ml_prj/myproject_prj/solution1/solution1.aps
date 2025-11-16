@@ -1,0 +1,29 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <config>
+        <config_array_partition maximum_size="4096"/>
+        <config_compile name_max_length="80"/>
+        <schedule model="myproject"/>
+        <config_export format="ip_catalog" version="1.0.0"/>
+        <config_schedule enable_dsp_full_reg="0"/>
+    </config>
+    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="" vendor="" library="" ipname="" version="1.0.0" driver_input_dir="" display_name="" taxonomy=""/>
+    </ExportDesign>
+    <name>
+        <value string="solution1"/>
+    </name>
+    <project>
+        <value string="myproject_prj"/>
+    </project>
+    <targetInfo>
+        <TargetInfo value="xc7vx690t:-ffg1761:-2"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/virtex7/virtex7" name="DefaultPlatform"/>
+        <library value="xilinx/virtex7/virtex7_fpv6" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock name="default" default="false" uncertainty="12.5%" period="5"/>
+    </clockList>
+</AutoPilot:solution>
+
