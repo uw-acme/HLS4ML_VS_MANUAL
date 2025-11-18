@@ -3,7 +3,7 @@
 module waiz_benchmark_tb;
 
     // Parameters
-    localparam WIDTH = 30;
+    localparam WIDTH = 37;
     localparam NFRAC = 24;
     localparam INPUT_SIZE = 16;
     localparam OUTPUT_SIZE = 5;
@@ -80,7 +80,7 @@ module waiz_benchmark_tb;
         end
     endtask
     // max_tests = 166000;
-    localparam num_tests = 1000;
+    localparam num_tests = 5000;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
