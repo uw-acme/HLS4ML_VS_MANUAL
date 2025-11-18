@@ -1,0 +1,34 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date         : Mon Nov 17 00:06:56 2025
+| Host         : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 1 -file reports/hls_fast_7_3_util_hier.rpt
+| Design       : p
+| Device       : xcvu13pfhga2104-3
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+--------------+
+|                                           Instance                                          |                                      Module                                     | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | URAM | DSP48 Blocks |
++---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+--------------+
+| p                                                                                           |                                                                           (top) |      25957 |      25957 |       0 |    0 | 1733 |      0 |      1 |    0 |            5 |
+|   (p)                                                                                       |                                                                           (top) |       8659 |       8659 |       0 |    0 | 1052 |      0 |      0 |    0 |            0 |
+|   call_ret1_relu_ap_fixed_19_11_5_3_0_ap_fixed_7_3_5_3_0_relu_config5_s_fu_243              |                     relu_ap_fixed_19_11_5_3_0_ap_fixed_7_3_5_3_0_relu_config5_s |       7512 |       7512 |       0 |    0 |    0 |      0 |      0 |    0 |            0 |
+|   call_ret3_relu_ap_fixed_21_13_5_3_0_ap_fixed_7_3_5_3_0_relu_config9_s_fu_311              |                     relu_ap_fixed_21_13_5_3_0_ap_fixed_7_3_5_3_0_relu_config9_s |         16 |         16 |       0 |    0 |    0 |      0 |      0 |    0 |            0 |
+|   call_ret5_relu_ap_fixed_20_12_5_3_0_ap_fixed_7_3_5_3_0_relu_config13_s_fu_347             |                    relu_ap_fixed_20_12_5_3_0_ap_fixed_7_3_5_3_0_relu_config13_s |       1707 |       1707 |       0 |    0 |    0 |      0 |      0 |    0 |            0 |
+|   grp_dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_fu_97 | dense_latency_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0 |       7956 |       7956 |       0 |    0 |  645 |      0 |      0 |    0 |            0 |
+|   grp_softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s_fu_383                  |                   softmax_stable_ap_fixed_ap_fixed_7_3_5_3_0_softmax_config16_s |        109 |        109 |       0 |    0 |   36 |      0 |      1 |    0 |            5 |
++---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

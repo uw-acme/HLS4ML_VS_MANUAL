@@ -133,7 +133,7 @@ def accuracy_test(acc, y_test):
     acc_res= accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
 
     # Writes the results to a file
-    with open("Results/hand_accuracy.csv", "a") as f:
+    with open("Results/chopped_acc.csv", "a") as f:
         f.write(f"\"{acc[0]}_{acc[1]}\", {acc_res}\n")
     # Uses the Linux mail system to send the results to me
     os.system(f'printf "Acc test finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
@@ -197,9 +197,10 @@ def dec_to_bin(number: int, bits=-1):
         number*=-1
         number-=1
         neg=True
+    # number=int(number)
     number=int(np.round(number, 0))
-    if (number==0 and neg):
-        return "1"*bits
+    # if (number==0 and neg):
+    #     return "1"*bits
     out=""
     if (bits>0 and number>2**(bits-1)):
         return "0" + "1"*(bits-1)
@@ -236,7 +237,7 @@ def dec_to_bin(number: int, bits=-1):
 
 #handmade_gen((25,9))
 #vals = ()
-#y_test = np.load('python/y_test.npy')
+y_test = np.load('python/y_test.npy')
 # i = (w+2)/3
 #accuracy_test((34,12), y_test)
 patt = r"[0-9]{1,2}"
@@ -257,8 +258,8 @@ name = f"Fixed_int_SD"
 #os.environ['FLEXLM_DIAGNOSTICS']="3"
 for i in range(2,14):
     acc = (3*i-2,i)
-    acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
-    SA_INT, SA_FRAC = adjust(acc_in[0])
-    # print((3*i-2,i))
-    handmade_gen(acc_in, name)
-    # accuracy_test(acc
+    # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
+    # SA_INT, SA_FRAC = adjust(acc_in[0])
+    # # print((3*i-2,i))
+    # handmade_gen(acc_in, name)
+    accuracy_test(acc, y_test)

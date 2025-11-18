@@ -19,18 +19,23 @@ def HLS4ML_gen(acc):
     split = acc.split(",")
     for i in range(len(split)):
         split[i]=int(split[i])
-    name = f"hls_final_{split[0]}_{split[1]}"
+    name = f"hls_fast_{split[0]}_{split[1]}"
     if (not os.path.isdir(f'/home/caleb/sweeps/{name}')):
         model = load_model('model.h5', compile=False)
         config = hls4ml.utils.config_from_keras_model(model, granularity='name')
-        config['Model']['Precision'] = f'ap_fixed<{acc}, AP_RND, AP_SAT>'
+        config['Model']['Precision'] = f'ap_fixed<{acc}>'
         #config['LayerName']['fc1']['Precision']['weight'] = 'ap_fixed<8,2>'
         #config['LayerName']['output']['Precision']['result'] = 'fixed<16,6,RND,SAT>'
         #config['LayerName']['softmax']['Strategy'] = 'Stable'
         #config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
-        #config['LayerName']['softmax']['inv_table_t'] = 'ap_fixed<18,8>'
-        config['LayerName']['output']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
-        config['LayerName']['softmax']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
+        # config['LayerName']['softmax']['Implementation'] = 'argmax'
+        if (int(split[0])>18):
+            config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
+            config['LayerName']['output']['Precision']['result'] = 'ap_fixed<18,8>'
+            config['LayerName']['softmax']['Precision']['result'] = 'ap_fixed<18,8>'
+        # config['LayerName']['softmax']['exp_table_t'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
+        # config['LayerName']['output']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
+        # config['LayerName']['softmax']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
         hls_model = hls4ml.converters.convert_from_keras_model(model, backend='Vivado', hls_config=config,
                                                                 output_dir=f'/home/caleb/sweeps/{name}',
                                                                 # part='xcu280-fsvh2892-2L-e')
@@ -42,10 +47,10 @@ def HLS4ML_gen(acc):
     data = extract_data(os.path.join("reports", f"{name}_util.rpt"), features)
     timing = extract_time(os.path.join("reports", f"{name}_timing.rpt"))
     accuracy = test_accuracy(name, split)
-    csv_name = "util_hls_final.csv"
+    csv_name = "util_hls_fast.csv"
     if (not os.path.isfile(csv_name)):
         with open(csv_name, "x") as f:
-            f.write(r"Bits, Slice LUTs, Slice Registers, Block RAM Tile, DSPs, Bonded IOB, Timing\n")
+            f.write("Bits, Slice LUTs, Slice Registers, Block RAM Tile, DSPs, Bonded IOB, Timing\n")
     with open(csv_name, "a") as f:
         f.write(f"{split[0]}")
         for dat in data:
@@ -53,8 +58,6 @@ def HLS4ML_gen(acc):
         f.write(f", {timing}")
         f.write(f", {accuracy}\n")
     os.system(f'printf "Gen {name} finished. Results:\n{" ".join(features)},"timing"\n{" ".join(data)},{timing},{accuracy}" | mail -s "HLS Completion" ceravcal@uw.edu')
-    #except:
-        #os.system(f'printf "{name} failed" | mail -s "{error}" ceravcal@uw.edu')
 def dec_to_bin(number: int, bits=-1):
     neg=False
     if (number<0):
@@ -130,8 +133,9 @@ def keras_test(model):
     return acc
     #for i in range(len(scores)):
         #print(f"\n{models[i]} accuracy is: {scores[i]} \n")
-for i in range(2,14):
-for i in range(2,14):
+#runvars = [2,3,4,5,6,7,8,9,10,12,13]
+runvars = [12,13]
+for i in runvars:
     #((3*i-2,i))
     #print(f"{3*i-2},{i}".split(","))
     HLS4ML_gen(f"{3*i-2},{i}")
