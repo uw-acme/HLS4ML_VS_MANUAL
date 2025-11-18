@@ -1,5 +1,5 @@
 // CAROLINE'S IMPLEMENTATION + SOME TWEAKS
-
+// FOR RHEED GAUSSIAN
 
 // This module does the bulk of the convolution work. It goes through and takes the inputs from the input matrix
 // once every clock cycle. It creates a matrix that holds the values that are currently being used for the 
@@ -8,55 +8,32 @@
 `timescale 1ns / 1ps
 module conv2D_parameterized 
 #(parameter filtDimension = 3,parameter bitWidth = 16, parameter inputWidth = 8)
-(clock, reset, inputPixel, zeroedMatrix);
+(clock, reset, inputPixel, currentConvMatrix);
 	input logic clock, reset;
 	input logic signed [bitWidth-1:0] inputPixel;
 	
 	output logic signed [bitWidth-1:0] currentConvMatrix [filtDimension-1:0][filtDimension-1:0];
 	logic signed [bitWidth-1:0] outputFifo [filtDimension-1:0];
-	logic [filtDimension-1:0] counterX;
-	logic [filtDimension-1:0] counterY;
-	logic [2*filtDimension-1:0] initialCounter;
-		
+
 	
-	// control counters
-	// allows to know which row and column should be brought into bottom right
-	// spot of the matrix
-	always_ff @(posedge clock) begin
-		if(reset) begin
-			counterX <= '0;
-			counterY <= '0;
-			initialCounter <= 0;
-		end else begin
-		    if(initialCounter == inputWidth+1) begin
-                counterY <= counterY + 1'b1;
-				counterX <= '0; 
-                if(counterY == inputWidth-1) begin // if reaches end of row go to next column
-                counterX <= counterX + 1'b1;
-                end
-            end else begin
-                initialCounter <= initialCounter + 1'b1;
-            end
-   		end
-	end
-	
-	integer x,y;
+
+	integer row,col;
 	// shift values
     always_ff @(posedge clock) begin
-        for(x=0; x<filtDimension; x++) begin
-            for(y=0; y<filtDimension; y++) begin
+        for(row=0; row<filtDimension; row++) begin
+            for(col=0; col<filtDimension; col++) begin
                 if(reset) begin
                     currentConvMatrix[filtDimension-1][filtDimension-1] <= inputPixel;
                 end else begin
                         // move in value from buffer
-                        if(y==filtDimension-1 && x!= filtDimension -1)begin
-                            currentConvMatrix[x][y] <= outputFifo[x];
-                        end else if(x==filtDimension-1 && y==filtDimension-1) begin
+                        if(col==filtDimension-1 && row != filtDimension -1)begin
+                            currentConvMatrix[row][col] <= outputFifo[row];
+                        end else if(x==filtDimension-1 && col==filtDimension-1) begin
                             // bringing in new value
-                            currentConvMatrix[x][y] <= inputPixel;
+                            currentConvMatrix[row][col] <= inputPixel;
                         end else begin
                             // shift normally
-                            currentConvMatrix[x][y]<= currentConvMatrix[x][y+1];
+                            currentConvMatrix[row][col]<= currentConvMatrix[row][col+1];
                         end
                 end
             end
@@ -79,7 +56,7 @@ endmodule
 
 module conv2D_parameterized_testbench();
 	logic clock, reset;
-	logic signed [15:0] zeroedMatrix[2:0][2:0];
+	logic signed [15:0] currentConvMatrix[2:0][2:0];
     logic signed [15:0] inputPixel;
 	
 	conv2D_parameterized #(3,16,10) dut(.*);
@@ -93,13 +70,13 @@ module conv2D_parameterized_testbench();
 	integer i,j;
 	
 	initial begin
-	reset <= 1; @(posedge clock);
-	reset <= 0; 
-	inputPixel = 16'd1;
-	repeat(8) @(posedge clock);
-	inputPixel = 16'd2; repeat(8) @(posedge clock);
-	inputPixel = 16'd3; repeat(8) @(posedge clock);
-	$stop; // End the simulation.
+		reset <= 1; @(posedge clock);
+		reset <= 0; 
+		inputPixel = 16'd1;
+		repeat(8) @(posedge clock);
+		inputPixel = 16'd2; repeat(8) @(posedge clock);
+		inputPixel = 16'd3; repeat(8) @(posedge clock);
+		$stop; // End the simulation.
 	end
 endmodule 
 	
