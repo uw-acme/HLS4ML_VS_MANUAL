@@ -83,40 +83,40 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	endgenerate 
 		
 	// this is relu layer!!!!
-	always_comb begin
-	   for( int i = 0; i < biasWidth; i++) begin
-           if (sum[i][bitWidth-1] == 1'b1) begin
-              reluOutput[i] = {bitWidth{1'b0}};
-           end else begin
-               reluOutput[i] = sum[i];
-           end
-        end
-	end
+	// always_comb begin
+	//    for( int i = 0; i < biasWidth; i++) begin
+    //        if (sum[i][bitWidth-1] == 1'b1) begin
+    //           reluOutput[i] = {bitWidth{1'b0}};
+    //        end else begin
+    //            reluOutput[i] = sum[i];
+    //        end
+    //     end
+	// end
 	
-	always_ff @(posedge clk) begin
-	   for( int i = 0; i < biasWidth; i++) begin
-           tempSum[i] <= reluOutput[i];
-        end
-	end
+	// always_ff @(posedge clk) begin
+	//    for( int i = 0; i < biasWidth; i++) begin
+    //        tempSum[i] <= reluOutput[i];
+    //     end
+	// end
 	
-	always_ff @(posedge clk) begin
-	   if (reset) oscillator <= 0;
-	   else oscillator <= oscillator + 1;
-	end
+	// always_ff @(posedge clk) begin
+	//    if (reset) oscillator <= 0;
+	//    else oscillator <= oscillator + 1;
+	// end
 
-	always_ff @(posedge clk) begin
-        if(firstTimeFullyThrough && oscillator) begin
-        outputMatrix[(counter-13)*4] <= reluOutput[0];
-        outputMatrix[(counter-13)*4+1] <= reluOutput[1];
-        outputMatrix[(counter-13)*4+2] <= reluOutput[2];
-        outputMatrix[(counter-13)*4+3] <= reluOutput[3];
-        outputMatrix[(counter-13)*4+4] <= reluOutput[4];
-        outputMatrix[(counter-13)*4+5] <= reluOutput[5];
-        outputMatrix[(counter-13)*4+6] <= reluOutput[6];
-        outputMatrix[(counter-13)*4+7] <= reluOutput[7];
-        end else if (oscillator) begin
-        outputMatrix[2*counter +1] <= tempSum[0];
-        end
-	end
+	// always_ff @(posedge clk) begin
+    //     if(firstTimeFullyThrough && oscillator) begin
+    //     outputMatrix[(counter-13)*4] <= reluOutput[0];
+    //     outputMatrix[(counter-13)*4+1] <= reluOutput[1];
+    //     outputMatrix[(counter-13)*4+2] <= reluOutput[2];
+    //     outputMatrix[(counter-13)*4+3] <= reluOutput[3];
+    //     outputMatrix[(counter-13)*4+4] <= reluOutput[4];
+    //     outputMatrix[(counter-13)*4+5] <= reluOutput[5];
+    //     outputMatrix[(counter-13)*4+6] <= reluOutput[6];
+    //     outputMatrix[(counter-13)*4+7] <= reluOutput[7];
+    //     end else if (oscillator) begin
+    //     outputMatrix[2*counter +1] <= tempSum[0];
+    //     end
+	// end
 	
 endmodule
