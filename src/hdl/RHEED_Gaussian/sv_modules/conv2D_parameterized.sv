@@ -1,4 +1,3 @@
-// CAROLINE'S IMPLEMENTATION + SOME TWEAKS
 // FOR RHEED GAUSSIAN
 
 // This module does the bulk of the convolution work. It goes through and takes the inputs from the input matrix
