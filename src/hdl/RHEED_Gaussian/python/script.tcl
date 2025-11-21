@@ -6,8 +6,9 @@ set verilog_dir [file join $script_dir "../hls4ml/gaussian_hls4ml_prj/myproject_
 
 read_verilog -v [glob -directory $verilog_dir *.v]
 
-set xdc_file [file join $script_dir "myproject_ooc.xdc"]
-read_xdc $xdc_file
+# put xdc file in the same directory as this script
+# set xdc_file [file join $script_dir "myproject_ooc.xdc"]
+# read_xdc $xdc_file
 
 # (Optional) Testbench files (if you want synthesis, usually skip these)
 # read_verilog -sv "./waiz_benchmark_tb.sv"

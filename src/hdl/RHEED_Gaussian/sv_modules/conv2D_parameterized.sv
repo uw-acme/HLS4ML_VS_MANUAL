@@ -1,9 +1,10 @@
 // FOR RHEED GAUSSIAN
+// no padding
 
 // This module does the bulk of the convolution work. It goes through and takes the inputs from the input matrix
 // once every clock cycle. It creates a matrix that holds the values that are currently being used for the 
-// convolution and after each clock cycle, the values that are removed from that matrix go in to a buffer
-// for all but the top row as they will be used again.
+// convolution and after each clock cycle, the values in the left side of the matrix that are removed from that matrix 
+// go in to a buffer for all but the top row as they will be used again.
 `timescale 1ns / 1ps
 module conv2D_parameterized 
 #(parameter filtDimension = 3,parameter bitWidth = 16, parameter inputWidth = 8)
@@ -12,24 +13,25 @@ module conv2D_parameterized
 	input logic signed [bitWidth-1:0] inputPixel;
 	
 	output logic signed [bitWidth-1:0] currentConvMatrix [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] outputFifo [filtDimension-1:0];
+	logic signed [bitWidth-1:0] outputFifo [filtDimension-2:0]; // collection of buffers
 
 	
 
 	integer row,col;
 	// shift values
     always_ff @(posedge clock) begin
+		// iterate through the current window
         for(row=0; row<filtDimension; row++) begin
             for(col=0; col<filtDimension; col++) begin
                 if(reset) begin
                     currentConvMatrix[filtDimension-1][filtDimension-1] <= inputPixel;
                 end else begin
                         // move in value from buffer
-                        if(col==filtDimension-1 && row != filtDimension -1)begin
+                        if(col==filtDimension-1 && row != filtDimension -1)begin	// right edge of matrix, not bottom row
                             currentConvMatrix[row][col] <= outputFifo[row];
-                        end else if(x==filtDimension-1 && col==filtDimension-1) begin
+                        end else if(row==filtDimension-1 && col==filtDimension-1) begin	// bottom right pixel
                             // bringing in new value
-                            currentConvMatrix[row][col] <= inputPixel;
+                            currentConvMatrix[row][col] <= inputPixel;	
                         end else begin
                             // shift normally
                             currentConvMatrix[row][col]<= currentConvMatrix[row][col+1];
@@ -43,7 +45,8 @@ module conv2D_parameterized
 	
 	// create buffers to hold onto values as they are moved out of one row and into the row above
 	// their previous one
-	genvar i;
+	// inputData = value stored in leftmost col of each row in current matrix (except the top row)
+	genvar i;	// i represents the row
 	generate 
 	   for(i = 0; i<filtDimension-1; i++) begin: buffers
 	       conv2dFIFO_parameterized #(filtDimension,bitWidth,inputWidth) bufferEachRow
