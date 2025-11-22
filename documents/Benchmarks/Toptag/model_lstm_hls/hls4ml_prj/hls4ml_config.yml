@@ -1,0 +1,33 @@
+Backend: Vivado
+ClockPeriod: 5
+ClockUncertainty: 12.5%
+HLSConfig:
+  Model:
+    BitExact: null
+    BramFactor: 1000000000
+    Precision:
+      default: ap_fixed<16,6>
+    ReuseFactor: 1
+    Strategy: Latency
+    TraceOutput: false
+IOType: io_parallel
+InputData: null
+InputShapes:
+  layer1_input:
+  - 20
+  - 6
+KerasModel: !keras_model 'model_lstm_hls/hls4ml_prj/keras_model.keras'
+OutputDir: model_lstm_hls/hls4ml_prj
+OutputPredictions: null
+OutputShapes:
+  layer6_out:
+  - 1
+Part: xc7vx690tffg1761-2
+ProjectName: myproject
+Stamp: '34209621'
+Version: 1.0.0
+WriterConfig:
+  Namespace: null
+  TBOutputStream: both
+  WriteTar: false
+  WriteWeightsTxt: true
