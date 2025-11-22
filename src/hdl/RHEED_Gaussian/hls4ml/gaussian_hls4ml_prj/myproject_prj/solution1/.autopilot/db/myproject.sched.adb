@@ -17313,8 +17313,8 @@
 			<mDepth>-1</mDepth>
 			<mMinTripCount>-1</mMinTripCount>
 			<mMaxTripCount>-1</mMaxTripCount>
-			<mMinLatency>34576</mMinLatency>
-			<mMaxLatency>34583</mMaxLatency>
+			<mMinLatency>34571</mMinLatency>
+			<mMaxLatency>34577</mMaxLatency>
 			<mIsDfPipe>1</mIsDfPipe>
 			<mDfPipe class_id="23" tracking_level="1" version="0" object_id="_1119">
 				<port_list class_id="24" tracking_level="0" version="0">

@@ -3,13 +3,13 @@
 ================================================================
 == Vivado HLS Report for 'conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s'
 ================================================================
-* Date:           Thu Nov 13 23:03:18 2025
+* Date:           Fri Nov 21 19:12:32 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
 * Solution:       solution1
-* Product family: virtex7
-* Target device:  xc7vx690t-ffg1761-2
+* Product family: kintexu
+* Target device:  xcku035-fbva676-2-e
 
 
 ================================================================
@@ -20,7 +20,7 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |   5.00|     4.082|        0.62|
+    |ap_clk  |   5.00|     4.306|        0.62|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -29,7 +29,7 @@
     |   Latency  |  Interval  | Pipeline|
     | min |  max | min |  max |   Type  |
     +-----+------+-----+------+---------+
-    |  485|  2058|  485|  2058|   none  |
+    |  364|  1695|  364|  1695|   none  |
     +-----+------+-----+------+---------+
 
     + Detail: 
@@ -38,7 +38,7 @@
         |                                                                                 |                                                                      |  Latency  |  Interval | Pipeline|
         |                                     Instance                                    |                                Module                                | min | max | min | max |   Type  |
         +---------------------------------------------------------------------------------+----------------------------------------------------------------------+-----+-----+-----+-----+---------+
-        |grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359  |compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s  |    1|   14|    1|   14|   none  |
+        |grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359  |compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s  |    1|   12|    1|   12|   none  |
         +---------------------------------------------------------------------------------+----------------------------------------------------------------------+-----+-----+-----+-----+---------+
 
         * Loop: 
@@ -46,7 +46,7 @@
         |                                  |   Latency  | Iteration|  Initiation Interval  | Trip |          |
         |             Loop Name            | min |  max |  Latency |  achieved |   target  | Count| Pipelined|
         +----------------------------------+-----+------+----------+-----------+-----------+------+----------+
-        |- ReadInputHeight_ReadInputWidth  |  484|  2057|  4 ~ 17  |          -|          -|   121|    no    |
+        |- ReadInputHeight_ReadInputWidth  |  363|  1694|  3 ~ 14  |          -|          -|   121|    no    |
         +----------------------------------+-----+------+----------+-----------+-----------+------+----------+
 
 
@@ -61,16 +61,16 @@
 |DSP              |        -|      -|       -|       -|    -|
 |Expression       |        -|      -|       0|      32|    -|
 |FIFO             |        -|      -|       -|       -|    -|
-|Instance         |       11|      0|    4865|    8077|    -|
+|Instance         |       11|      0|    3203|    7956|    -|
 |Memory           |        -|      -|       -|       -|    -|
-|Multiplexer      |        -|      -|       -|     180|    -|
-|Register         |        -|      -|      69|       -|    -|
+|Multiplexer      |        -|      -|       -|     174|    -|
+|Register         |        -|      -|      68|       -|    -|
 +-----------------+---------+-------+--------+--------+-----+
-|Total            |       11|      0|    4934|    8289|    0|
+|Total            |       11|      0|    3271|    8162|    0|
 +-----------------+---------+-------+--------+--------+-----+
-|Available        |     2940|   3600|  866400|  433200|    0|
+|Available        |     1080|   1700|  406256|  203128|    0|
 +-----------------+---------+-------+--------+--------+-----+
-|Utilization (%)  |    ~0   |      0|   ~0   |       1|    0|
+|Utilization (%)  |        1|      0|   ~0   |       4|    0|
 +-----------------+---------+-------+--------+--------+-----+
 
 + Detail: 
@@ -78,9 +78,9 @@
     +---------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+-------+------+------+-----+
     |                                     Instance                                    |                                Module                                | BRAM_18K| DSP48E|  FF  |  LUT | URAM|
     +---------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+-------+------+------+-----+
-    |grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359  |compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s  |       11|      0|  4865|  8077|    0|
+    |grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359  |compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s  |       11|      0|  3203|  7956|    0|
     +---------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+-------+------+------+-----+
-    |Total                                                                            |                                                                      |       11|      0|  4865|  8077|    0|
+    |Total                                                                            |                                                                      |       11|      0|  3203|  7956|    0|
     +---------------------------------------------------------------------------------+----------------------------------------------------------------------+---------+-------+------+------+-----+
 
     * DSP48E: 
@@ -98,7 +98,7 @@
     +--------------------------+----------+-------+---+----+------------+------------+
     |add_ln85_fu_497_p2        |     +    |      0|  0|  15|           7|           1|
     |ap_block_state2           |    and   |      0|  0|   2|           1|           1|
-    |io_acc_block_signal_op24  |    and   |      0|  0|   2|           1|           1|
+    |io_acc_block_signal_op23  |    and   |      0|  0|   2|           1|           1|
     |icmp_ln85_fu_491_p2       |   icmp   |      0|  0|  11|           7|           4|
     |ap_block_state1           |    or    |      0|  0|   2|           1|           1|
     +--------------------------+----------+-------+---+----+------------+------------+
@@ -109,7 +109,7 @@
     +------------------------+----+-----------+-----+-----------+
     |          Name          | LUT| Input Size| Bits| Total Bits|
     +------------------------+----+-----------+-----+-----------+
-    |ap_NS_fsm               |  27|          5|    1|          5|
+    |ap_NS_fsm               |  21|          4|    1|          4|
     |ap_done                 |   9|          2|    1|          2|
     |data_V_data_0_V_blk_n   |   9|          2|    1|          2|
     |data_V_data_1_V_blk_n   |   9|          2|    1|          2|
@@ -128,27 +128,27 @@
     |res_V_data_6_V_write    |   9|          2|    1|          2|
     |res_V_data_7_V_write    |   9|          2|    1|          2|
     +------------------------+----+-----------+-----+-----------+
-    |Total                   | 180|         39|   24|         51|
+    |Total                   | 174|         38|   24|         50|
     +------------------------+----+-----------+-----+-----------+
 
     * Register: 
     +----------------------------------------------------------------------------------------------+---+----+-----+-----------+
     |                                             Name                                             | FF| LUT| Bits| Const Bits|
     +----------------------------------------------------------------------------------------------+---+----+-----+-----------+
-    |add_ln85_reg_530                                                                              |  7|   0|    7|          0|
-    |ap_CS_fsm                                                                                     |  4|   0|    4|          0|
+    |add_ln85_reg_536                                                                              |  7|   0|    7|          0|
+    |ap_CS_fsm                                                                                     |  3|   0|    3|          0|
     |ap_done_reg                                                                                   |  1|   0|    1|          0|
     |grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359_ap_start_reg  |  1|   0|    1|          0|
     |indvar_flatten_reg_348                                                                        |  7|   0|    7|          0|
     |start_once_reg                                                                                |  1|   0|    1|          0|
-    |tmp_data_0_V_reg_535                                                                          |  8|   0|    8|          0|
-    |tmp_data_1_V_reg_540                                                                          |  8|   0|    8|          0|
-    |tmp_data_2_V_reg_545                                                                          |  8|   0|    8|          0|
-    |tmp_data_3_V_reg_550                                                                          |  8|   0|    8|          0|
-    |tmp_data_4_V_reg_555                                                                          |  8|   0|    8|          0|
-    |tmp_data_5_V_reg_560                                                                          |  8|   0|    8|          0|
+    |tmp_data_0_V_reg_541                                                                          |  8|   0|    8|          0|
+    |tmp_data_1_V_reg_546                                                                          |  8|   0|    8|          0|
+    |tmp_data_2_V_reg_551                                                                          |  8|   0|    8|          0|
+    |tmp_data_3_V_reg_556                                                                          |  8|   0|    8|          0|
+    |tmp_data_4_V_reg_561                                                                          |  8|   0|    8|          0|
+    |tmp_data_5_V_reg_566                                                                          |  8|   0|    8|          0|
     +----------------------------------------------------------------------------------------------+---+----+-----+-----------+
-    |Total                                                                                         | 69|   0|   69|          0|
+    |Total                                                                                         | 68|   0|   68|          0|
     +----------------------------------------------------------------------------------------------+---+----+-----+-----------+
 
 
@@ -240,58 +240,55 @@ IsGatedGlobalClock: 0
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states : 4
+* Number of FSM states : 3
 * Pipeline : 0
 * Dataflow Pipeline: 0
 
 * FSM state transitions: 
 1 --> 2 
 2 --> 3 
-3 --> 4 
-4 --> 2 
+3 --> 2 
 
 * FSM state operations: 
 
-State 1 <SV = 0> <Delay = 0.85>
-ST_1 : Operation 5 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_7_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str720, i32 0, i32 0, [1 x i8]* @p_str721, [1 x i8]* @p_str722, [1 x i8]* @p_str723, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str724, [1 x i8]* @p_str725)"   --->   Operation 5 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 6 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_6_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str713, i32 0, i32 0, [1 x i8]* @p_str714, [1 x i8]* @p_str715, [1 x i8]* @p_str716, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str717, [1 x i8]* @p_str718)"   --->   Operation 6 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 7 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_5_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str706, i32 0, i32 0, [1 x i8]* @p_str707, [1 x i8]* @p_str708, [1 x i8]* @p_str709, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str710, [1 x i8]* @p_str711)"   --->   Operation 7 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 8 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_4_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str699, i32 0, i32 0, [1 x i8]* @p_str700, [1 x i8]* @p_str701, [1 x i8]* @p_str702, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str703, [1 x i8]* @p_str704)"   --->   Operation 8 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 9 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_3_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str692, i32 0, i32 0, [1 x i8]* @p_str693, [1 x i8]* @p_str694, [1 x i8]* @p_str695, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str696, [1 x i8]* @p_str697)"   --->   Operation 9 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 10 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_2_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str685, i32 0, i32 0, [1 x i8]* @p_str686, [1 x i8]* @p_str687, [1 x i8]* @p_str688, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str689, [1 x i8]* @p_str690)"   --->   Operation 10 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 11 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_1_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str678, i32 0, i32 0, [1 x i8]* @p_str679, [1 x i8]* @p_str680, [1 x i8]* @p_str681, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str682, [1 x i8]* @p_str683)"   --->   Operation 11 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 12 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_0_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str671, i32 0, i32 0, [1 x i8]* @p_str672, [1 x i8]* @p_str673, [1 x i8]* @p_str674, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str675, [1 x i8]* @p_str676)"   --->   Operation 12 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 13 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_5_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str664, i32 0, i32 0, [1 x i8]* @p_str665, [1 x i8]* @p_str666, [1 x i8]* @p_str667, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str668, [1 x i8]* @p_str669)"   --->   Operation 13 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 14 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_4_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str657, i32 0, i32 0, [1 x i8]* @p_str658, [1 x i8]* @p_str659, [1 x i8]* @p_str660, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str661, [1 x i8]* @p_str662)"   --->   Operation 14 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 15 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_3_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str650, i32 0, i32 0, [1 x i8]* @p_str651, [1 x i8]* @p_str652, [1 x i8]* @p_str653, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str654, [1 x i8]* @p_str655)"   --->   Operation 15 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 16 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_2_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str643, i32 0, i32 0, [1 x i8]* @p_str644, [1 x i8]* @p_str645, [1 x i8]* @p_str646, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str647, [1 x i8]* @p_str648)"   --->   Operation 16 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 17 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_1_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str636, i32 0, i32 0, [1 x i8]* @p_str637, [1 x i8]* @p_str638, [1 x i8]* @p_str639, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str640, [1 x i8]* @p_str641)"   --->   Operation 17 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_0_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str629, i32 0, i32 0, [1 x i8]* @p_str630, [1 x i8]* @p_str631, [1 x i8]* @p_str632, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str633, [1 x i8]* @p_str634)"   --->   Operation 18 'specinterface' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 19 [1/1] (0.85ns)   --->   "br label %0" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 19 'br' <Predicate = true> <Delay = 0.85>
+State 1 <SV = 0> <Delay = 0.83>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_7_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str720, i32 0, i32 0, [1 x i8]* @p_str721, [1 x i8]* @p_str722, [1 x i8]* @p_str723, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str724, [1 x i8]* @p_str725)"   --->   Operation 4 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_6_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str713, i32 0, i32 0, [1 x i8]* @p_str714, [1 x i8]* @p_str715, [1 x i8]* @p_str716, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str717, [1 x i8]* @p_str718)"   --->   Operation 5 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_5_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str706, i32 0, i32 0, [1 x i8]* @p_str707, [1 x i8]* @p_str708, [1 x i8]* @p_str709, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str710, [1 x i8]* @p_str711)"   --->   Operation 6 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_4_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str699, i32 0, i32 0, [1 x i8]* @p_str700, [1 x i8]* @p_str701, [1 x i8]* @p_str702, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str703, [1 x i8]* @p_str704)"   --->   Operation 7 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_3_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str692, i32 0, i32 0, [1 x i8]* @p_str693, [1 x i8]* @p_str694, [1 x i8]* @p_str695, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str696, [1 x i8]* @p_str697)"   --->   Operation 8 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_2_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str685, i32 0, i32 0, [1 x i8]* @p_str686, [1 x i8]* @p_str687, [1 x i8]* @p_str688, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str689, [1 x i8]* @p_str690)"   --->   Operation 9 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_1_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str678, i32 0, i32 0, [1 x i8]* @p_str679, [1 x i8]* @p_str680, [1 x i8]* @p_str681, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str682, [1 x i8]* @p_str683)"   --->   Operation 10 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %res_V_data_0_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str671, i32 0, i32 0, [1 x i8]* @p_str672, [1 x i8]* @p_str673, [1 x i8]* @p_str674, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str675, [1 x i8]* @p_str676)"   --->   Operation 11 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_5_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str664, i32 0, i32 0, [1 x i8]* @p_str665, [1 x i8]* @p_str666, [1 x i8]* @p_str667, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str668, [1 x i8]* @p_str669)"   --->   Operation 12 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_4_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str657, i32 0, i32 0, [1 x i8]* @p_str658, [1 x i8]* @p_str659, [1 x i8]* @p_str660, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str661, [1 x i8]* @p_str662)"   --->   Operation 13 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_3_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str650, i32 0, i32 0, [1 x i8]* @p_str651, [1 x i8]* @p_str652, [1 x i8]* @p_str653, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str654, [1 x i8]* @p_str655)"   --->   Operation 14 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_2_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str643, i32 0, i32 0, [1 x i8]* @p_str644, [1 x i8]* @p_str645, [1 x i8]* @p_str646, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str647, [1 x i8]* @p_str648)"   --->   Operation 15 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_1_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str636, i32 0, i32 0, [1 x i8]* @p_str637, [1 x i8]* @p_str638, [1 x i8]* @p_str639, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str640, [1 x i8]* @p_str641)"   --->   Operation 16 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i8* %data_V_data_0_V, [8 x i8]* @ap_fifo_str, i32 0, i32 0, [1 x i8]* @p_str629, i32 0, i32 0, [1 x i8]* @p_str630, [1 x i8]* @p_str631, [1 x i8]* @p_str632, i32 2, i32 2, i32 16, i32 16, [1 x i8]* @p_str633, [1 x i8]* @p_str634)"   --->   Operation 17 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.83ns)   --->   "br label %0" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 18 'br' <Predicate = true> <Delay = 0.83>
 
-State 2 <SV = 1> <Delay = 2.18>
-ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%indvar_flatten = phi i7 [ 0, %codeRepl ], [ %add_ln85, %.reset ]" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 20 'phi' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 21 [1/1] (0.86ns)   --->   "%icmp_ln85 = icmp eq i7 %indvar_flatten, -7" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 21 'icmp' 'icmp_ln85' <Predicate = true> <Delay = 0.86> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.86> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 22 [1/1] (1.27ns)   --->   "%add_ln85 = add i7 %indvar_flatten, 1" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 22 'add' 'add_ln85' <Predicate = true> <Delay = 1.27> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.27> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 23 [1/1] (0.00ns)   --->   "br i1 %icmp_ln85, label %"conv_2d_buffer_cl<array<ap_ufixed<8, 2, 5, 3, 0>, 6u>, array<ap_fixed<8, 2, 5, 3, 0>, 8u>, config6>.exit", label %.reset" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 23 'br' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 24 [1/1] (2.18ns)   --->   "%empty_240 = call { i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V)" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 24 'read' 'empty_240' <Predicate = (!icmp_ln85)> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.39> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
-ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%tmp_data_0_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 0" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 25 'extractvalue' 'tmp_data_0_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%tmp_data_1_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 1" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 26 'extractvalue' 'tmp_data_1_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%tmp_data_2_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 2" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 27 'extractvalue' 'tmp_data_2_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%tmp_data_3_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 3" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 28 'extractvalue' 'tmp_data_3_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%tmp_data_4_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 4" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 29 'extractvalue' 'tmp_data_4_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%tmp_data_5_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 5" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 30 'extractvalue' 'tmp_data_5_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+State 2 <SV = 1> <Delay = 4.17>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%indvar_flatten = phi i7 [ 0, %codeRepl ], [ %add_ln85, %.reset ]" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 19 'phi' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.81ns)   --->   "%icmp_ln85 = icmp eq i7 %indvar_flatten, -7" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 20 'icmp' 'icmp_ln85' <Predicate = true> <Delay = 0.81> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.81> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 21 [1/1] (1.20ns)   --->   "%add_ln85 = add i7 %indvar_flatten, 1" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 21 'add' 'add_ln85' <Predicate = true> <Delay = 1.20> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.20> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "br i1 %icmp_ln85, label %"conv_2d_buffer_cl<array<ap_ufixed<8, 2, 5, 3, 0>, 6u>, array<ap_fixed<8, 2, 5, 3, 0>, 8u>, config6>.exit", label %.reset" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 22 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 23 [1/1] (2.18ns)   --->   "%empty_240 = call { i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V)" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 23 'read' 'empty_240' <Predicate = (!icmp_ln85)> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%tmp_data_0_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 0" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 24 'extractvalue' 'tmp_data_0_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%tmp_data_1_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 1" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 25 'extractvalue' 'tmp_data_1_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%tmp_data_2_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 2" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 26 'extractvalue' 'tmp_data_2_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%tmp_data_3_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 3" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 27 'extractvalue' 'tmp_data_3_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%tmp_data_4_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 4" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 28 'extractvalue' 'tmp_data_4_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%tmp_data_5_V = extractvalue { i8, i8, i8, i8, i8, i8 } %empty_240, 5" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 29 'extractvalue' 'tmp_data_5_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 30 [2/2] (1.98ns)   --->   "call fastcc void @"compute_output_buffer_2d<array,array<ap_fixed<8,2,5,3,0>,8u>,config6>"(i8 %tmp_data_0_V, i8 %tmp_data_1_V, i8 %tmp_data_2_V, i8 %tmp_data_3_V, i8 %tmp_data_4_V, i8 %tmp_data_5_V, i8* %res_V_data_0_V, i8* %res_V_data_1_V, i8* %res_V_data_2_V, i8* %res_V_data_3_V, i8* %res_V_data_4_V, i8* %res_V_data_5_V, i8* %res_V_data_6_V, i8* %res_V_data_7_V)" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 30 'call' <Predicate = (!icmp_ln85)> <Delay = 1.98> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 ST_2 : Operation 31 [1/1] (0.00ns)   --->   "ret void" [firmware/nnet_utils/nnet_conv2d_stream.h:115]   --->   Operation 31 'ret' <Predicate = (icmp_ln85)> <Delay = 0.00>
 
-State 3 <SV = 2> <Delay = 2.82>
-ST_3 : Operation 32 [2/2] (2.82ns)   --->   "call fastcc void @"compute_output_buffer_2d<array,array<ap_fixed<8,2,5,3,0>,8u>,config6>"(i8 %tmp_data_0_V, i8 %tmp_data_1_V, i8 %tmp_data_2_V, i8 %tmp_data_3_V, i8 %tmp_data_4_V, i8 %tmp_data_5_V, i8* %res_V_data_0_V, i8* %res_V_data_1_V, i8* %res_V_data_2_V, i8* %res_V_data_3_V, i8* %res_V_data_4_V, i8* %res_V_data_5_V, i8* %res_V_data_6_V, i8* %res_V_data_7_V)" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 32 'call' <Predicate = true> <Delay = 2.82> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-
-State 4 <SV = 3> <Delay = 0.00>
-ST_4 : Operation 33 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([31 x i8]* @ReadInputHeight_ReadInputWidth_str)"   --->   Operation 33 'specloopname' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 34 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 121, i64 121, i64 121)"   --->   Operation 34 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 35 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([15 x i8]* @p_str66) nounwind" [firmware/nnet_utils/nnet_conv2d_stream.h:87->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 35 'specloopname' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 36 [1/2] (0.00ns)   --->   "call fastcc void @"compute_output_buffer_2d<array,array<ap_fixed<8,2,5,3,0>,8u>,config6>"(i8 %tmp_data_0_V, i8 %tmp_data_1_V, i8 %tmp_data_2_V, i8 %tmp_data_3_V, i8 %tmp_data_4_V, i8 %tmp_data_5_V, i8* %res_V_data_0_V, i8* %res_V_data_1_V, i8* %res_V_data_2_V, i8* %res_V_data_3_V, i8* %res_V_data_4_V, i8* %res_V_data_5_V, i8* %res_V_data_6_V, i8* %res_V_data_7_V)" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 36 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
-ST_4 : Operation 37 [1/1] (0.00ns)   --->   "br label %0"   --->   Operation 37 'br' <Predicate = true> <Delay = 0.00>
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 32 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([31 x i8]* @ReadInputHeight_ReadInputWidth_str)"   --->   Operation 32 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 33 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 121, i64 121, i64 121)"   --->   Operation 33 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 34 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([15 x i8]* @p_str66) nounwind" [firmware/nnet_utils/nnet_conv2d_stream.h:87->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 34 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 35 [1/2] (0.00ns)   --->   "call fastcc void @"compute_output_buffer_2d<array,array<ap_fixed<8,2,5,3,0>,8u>,config6>"(i8 %tmp_data_0_V, i8 %tmp_data_1_V, i8 %tmp_data_2_V, i8 %tmp_data_3_V, i8 %tmp_data_4_V, i8 %tmp_data_5_V, i8* %res_V_data_0_V, i8* %res_V_data_1_V, i8* %res_V_data_2_V, i8* %res_V_data_3_V, i8* %res_V_data_4_V, i8* %res_V_data_5_V, i8* %res_V_data_6_V, i8* %res_V_data_7_V)" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 35 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "br label %0"   --->   Operation 36 'br' <Predicate = true> <Delay = 0.00>
 
 
 ============================================================
@@ -378,38 +375,38 @@ Port [ w6_V]:  wired=0; compound=1; hidden=1; nouse=1; global=1; static=0; exter
 
 <LifeTime>
 <method=bitvector/>
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-specinterface_ln0 (specinterface    ) [ 00000]
-br_ln85           (br               ) [ 01111]
-indvar_flatten    (phi              ) [ 00100]
-icmp_ln85         (icmp             ) [ 00111]
-add_ln85          (add              ) [ 01111]
-br_ln85           (br               ) [ 00000]
-empty_240         (read             ) [ 00000]
-tmp_data_0_V      (extractvalue     ) [ 00011]
-tmp_data_1_V      (extractvalue     ) [ 00011]
-tmp_data_2_V      (extractvalue     ) [ 00011]
-tmp_data_3_V      (extractvalue     ) [ 00011]
-tmp_data_4_V      (extractvalue     ) [ 00011]
-tmp_data_5_V      (extractvalue     ) [ 00011]
-ret_ln115         (ret              ) [ 00000]
-specloopname_ln0  (specloopname     ) [ 00000]
-empty             (speclooptripcount) [ 00000]
-specloopname_ln87 (specloopname     ) [ 00000]
-call_ln93         (call             ) [ 00000]
-br_ln0            (br               ) [ 01111]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+specinterface_ln0 (specinterface    ) [ 0000]
+br_ln85           (br               ) [ 0111]
+indvar_flatten    (phi              ) [ 0010]
+icmp_ln85         (icmp             ) [ 0011]
+add_ln85          (add              ) [ 0111]
+br_ln85           (br               ) [ 0000]
+empty_240         (read             ) [ 0000]
+tmp_data_0_V      (extractvalue     ) [ 0001]
+tmp_data_1_V      (extractvalue     ) [ 0001]
+tmp_data_2_V      (extractvalue     ) [ 0001]
+tmp_data_3_V      (extractvalue     ) [ 0001]
+tmp_data_4_V      (extractvalue     ) [ 0001]
+tmp_data_5_V      (extractvalue     ) [ 0001]
+ret_ln115         (ret              ) [ 0000]
+specloopname_ln0  (specloopname     ) [ 0000]
+empty             (speclooptripcount) [ 0000]
+specloopname_ln87 (specloopname     ) [ 0000]
+call_ln93         (call             ) [ 0000]
+br_ln0            (br               ) [ 0111]
 </LifeTime>
 
 <model>
@@ -1966,12 +1963,12 @@ br_ln0            (br               ) [ 01111]
 <comp id="359" class="1004" name="grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359">
 <pin_list>
 <pin id="360" dir="0" index="0" bw="0" slack="0"/>
-<pin id="361" dir="0" index="1" bw="8" slack="1"/>
-<pin id="362" dir="0" index="2" bw="8" slack="1"/>
-<pin id="363" dir="0" index="3" bw="8" slack="1"/>
-<pin id="364" dir="0" index="4" bw="8" slack="1"/>
-<pin id="365" dir="0" index="5" bw="8" slack="1"/>
-<pin id="366" dir="0" index="6" bw="8" slack="1"/>
+<pin id="361" dir="0" index="1" bw="8" slack="0"/>
+<pin id="362" dir="0" index="2" bw="8" slack="0"/>
+<pin id="363" dir="0" index="3" bw="8" slack="0"/>
+<pin id="364" dir="0" index="4" bw="8" slack="0"/>
+<pin id="365" dir="0" index="5" bw="8" slack="0"/>
+<pin id="366" dir="0" index="6" bw="8" slack="0"/>
 <pin id="367" dir="0" index="7" bw="8" slack="0"/>
 <pin id="368" dir="0" index="8" bw="8" slack="0"/>
 <pin id="369" dir="0" index="9" bw="8" slack="0"/>
@@ -2037,7 +2034,7 @@ br_ln0            (br               ) [ 01111]
 </pin_list>
 <bind>
 <opcode="call(48) " fcode="call"/>
-<opset="call_ln93/3 "/>
+<opset="call_ln93/2 "/>
 </bind>
 </comp>
 
@@ -2068,7 +2065,7 @@ br_ln0            (br               ) [ 01111]
 <comp id="503" class="1004" name="tmp_data_0_V_fu_503">
 <pin_list>
 <pin id="504" dir="0" index="0" bw="48" slack="0"/>
-<pin id="505" dir="1" index="1" bw="8" slack="1"/>
+<pin id="505" dir="1" index="1" bw="8" slack="0"/>
 </pin_list>
 <bind>
 <opcode="extractvalue(56) " fcode="extractvalue"/>
@@ -2076,10 +2073,10 @@ br_ln0            (br               ) [ 01111]
 </bind>
 </comp>
 
-<comp id="507" class="1004" name="tmp_data_1_V_fu_507">
+<comp id="508" class="1004" name="tmp_data_1_V_fu_508">
 <pin_list>
-<pin id="508" dir="0" index="0" bw="48" slack="0"/>
-<pin id="509" dir="1" index="1" bw="8" slack="1"/>
+<pin id="509" dir="0" index="0" bw="48" slack="0"/>
+<pin id="510" dir="1" index="1" bw="8" slack="0"/>
 </pin_list>
 <bind>
 <opcode="extractvalue(56) " fcode="extractvalue"/>
@@ -2087,10 +2084,10 @@ br_ln0            (br               ) [ 01111]
 </bind>
 </comp>
 
-<comp id="511" class="1004" name="tmp_data_2_V_fu_511">
+<comp id="513" class="1004" name="tmp_data_2_V_fu_513">
 <pin_list>
-<pin id="512" dir="0" index="0" bw="48" slack="0"/>
-<pin id="513" dir="1" index="1" bw="8" slack="1"/>
+<pin id="514" dir="0" index="0" bw="48" slack="0"/>
+<pin id="515" dir="1" index="1" bw="8" slack="0"/>
 </pin_list>
 <bind>
 <opcode="extractvalue(56) " fcode="extractvalue"/>
@@ -2098,10 +2095,10 @@ br_ln0            (br               ) [ 01111]
 </bind>
 </comp>
 
-<comp id="515" class="1004" name="tmp_data_3_V_fu_515">
+<comp id="518" class="1004" name="tmp_data_3_V_fu_518">
 <pin_list>
-<pin id="516" dir="0" index="0" bw="48" slack="0"/>
-<pin id="517" dir="1" index="1" bw="8" slack="1"/>
+<pin id="519" dir="0" index="0" bw="48" slack="0"/>
+<pin id="520" dir="1" index="1" bw="8" slack="0"/>
 </pin_list>
 <bind>
 <opcode="extractvalue(56) " fcode="extractvalue"/>
@@ -2109,10 +2106,10 @@ br_ln0            (br               ) [ 01111]
 </bind>
 </comp>
 
-<comp id="519" class="1004" name="tmp_data_4_V_fu_519">
+<comp id="523" class="1004" name="tmp_data_4_V_fu_523">
 <pin_list>
-<pin id="520" dir="0" index="0" bw="48" slack="0"/>
-<pin id="521" dir="1" index="1" bw="8" slack="1"/>
+<pin id="524" dir="0" index="0" bw="48" slack="0"/>
+<pin id="525" dir="1" index="1" bw="8" slack="0"/>
 </pin_list>
 <bind>
 <opcode="extractvalue(56) " fcode="extractvalue"/>
@@ -2120,10 +2117,10 @@ br_ln0            (br               ) [ 01111]
 </bind>
 </comp>
 
-<comp id="523" class="1004" name="tmp_data_5_V_fu_523">
+<comp id="528" class="1004" name="tmp_data_5_V_fu_528">
 <pin_list>
-<pin id="524" dir="0" index="0" bw="48" slack="0"/>
-<pin id="525" dir="1" index="1" bw="8" slack="1"/>
+<pin id="529" dir="0" index="0" bw="48" slack="0"/>
+<pin id="530" dir="1" index="1" bw="8" slack="0"/>
 </pin_list>
 <bind>
 <opcode="extractvalue(56) " fcode="extractvalue"/>
@@ -2131,70 +2128,70 @@ br_ln0            (br               ) [ 01111]
 </bind>
 </comp>
 
-<comp id="530" class="1005" name="add_ln85_reg_530">
+<comp id="536" class="1005" name="add_ln85_reg_536">
 <pin_list>
-<pin id="531" dir="0" index="0" bw="7" slack="0"/>
-<pin id="532" dir="1" index="1" bw="7" slack="0"/>
+<pin id="537" dir="0" index="0" bw="7" slack="0"/>
+<pin id="538" dir="1" index="1" bw="7" slack="0"/>
 </pin_list>
 <bind>
 <opset="add_ln85 "/>
 </bind>
 </comp>
 
-<comp id="535" class="1005" name="tmp_data_0_V_reg_535">
+<comp id="541" class="1005" name="tmp_data_0_V_reg_541">
 <pin_list>
-<pin id="536" dir="0" index="0" bw="8" slack="1"/>
-<pin id="537" dir="1" index="1" bw="8" slack="1"/>
+<pin id="542" dir="0" index="0" bw="8" slack="1"/>
+<pin id="543" dir="1" index="1" bw="8" slack="1"/>
 </pin_list>
 <bind>
 <opset="tmp_data_0_V "/>
 </bind>
 </comp>
 
-<comp id="540" class="1005" name="tmp_data_1_V_reg_540">
+<comp id="546" class="1005" name="tmp_data_1_V_reg_546">
 <pin_list>
-<pin id="541" dir="0" index="0" bw="8" slack="1"/>
-<pin id="542" dir="1" index="1" bw="8" slack="1"/>
+<pin id="547" dir="0" index="0" bw="8" slack="1"/>
+<pin id="548" dir="1" index="1" bw="8" slack="1"/>
 </pin_list>
 <bind>
 <opset="tmp_data_1_V "/>
 </bind>
 </comp>
 
-<comp id="545" class="1005" name="tmp_data_2_V_reg_545">
+<comp id="551" class="1005" name="tmp_data_2_V_reg_551">
 <pin_list>
-<pin id="546" dir="0" index="0" bw="8" slack="1"/>
-<pin id="547" dir="1" index="1" bw="8" slack="1"/>
+<pin id="552" dir="0" index="0" bw="8" slack="1"/>
+<pin id="553" dir="1" index="1" bw="8" slack="1"/>
 </pin_list>
 <bind>
 <opset="tmp_data_2_V "/>
 </bind>
 </comp>
 
-<comp id="550" class="1005" name="tmp_data_3_V_reg_550">
+<comp id="556" class="1005" name="tmp_data_3_V_reg_556">
 <pin_list>
-<pin id="551" dir="0" index="0" bw="8" slack="1"/>
-<pin id="552" dir="1" index="1" bw="8" slack="1"/>
+<pin id="557" dir="0" index="0" bw="8" slack="1"/>
+<pin id="558" dir="1" index="1" bw="8" slack="1"/>
 </pin_list>
 <bind>
 <opset="tmp_data_3_V "/>
 </bind>
 </comp>
 
-<comp id="555" class="1005" name="tmp_data_4_V_reg_555">
+<comp id="561" class="1005" name="tmp_data_4_V_reg_561">
 <pin_list>
-<pin id="556" dir="0" index="0" bw="8" slack="1"/>
-<pin id="557" dir="1" index="1" bw="8" slack="1"/>
+<pin id="562" dir="0" index="0" bw="8" slack="1"/>
+<pin id="563" dir="1" index="1" bw="8" slack="1"/>
 </pin_list>
 <bind>
 <opset="tmp_data_4_V "/>
 </bind>
 </comp>
 
-<comp id="560" class="1005" name="tmp_data_5_V_reg_560">
+<comp id="566" class="1005" name="tmp_data_5_V_reg_566">
 <pin_list>
-<pin id="561" dir="0" index="0" bw="8" slack="1"/>
-<pin id="562" dir="1" index="1" bw="8" slack="1"/>
+<pin id="567" dir="0" index="0" bw="8" slack="1"/>
+<pin id="568" dir="1" index="1" bw="8" slack="1"/>
 </pin_list>
 <bind>
 <opset="tmp_data_5_V "/>
@@ -2356,43 +2353,55 @@ br_ln0            (br               ) [ 01111]
 
 <net id="506"><net_src comp="332" pin="7"/><net_sink comp="503" pin=0"/></net>
 
-<net id="510"><net_src comp="332" pin="7"/><net_sink comp="507" pin=0"/></net>
+<net id="507"><net_src comp="503" pin="1"/><net_sink comp="359" pin=1"/></net>
 
-<net id="514"><net_src comp="332" pin="7"/><net_sink comp="511" pin=0"/></net>
+<net id="511"><net_src comp="332" pin="7"/><net_sink comp="508" pin=0"/></net>
 
-<net id="518"><net_src comp="332" pin="7"/><net_sink comp="515" pin=0"/></net>
+<net id="512"><net_src comp="508" pin="1"/><net_sink comp="359" pin=2"/></net>
 
-<net id="522"><net_src comp="332" pin="7"/><net_sink comp="519" pin=0"/></net>
+<net id="516"><net_src comp="332" pin="7"/><net_sink comp="513" pin=0"/></net>
+
+<net id="517"><net_src comp="513" pin="1"/><net_sink comp="359" pin=3"/></net>
+
+<net id="521"><net_src comp="332" pin="7"/><net_sink comp="518" pin=0"/></net>
+
+<net id="522"><net_src comp="518" pin="1"/><net_sink comp="359" pin=4"/></net>
 
 <net id="526"><net_src comp="332" pin="7"/><net_sink comp="523" pin=0"/></net>
 
-<net id="533"><net_src comp="497" pin="2"/><net_sink comp="530" pin=0"/></net>
+<net id="527"><net_src comp="523" pin="1"/><net_sink comp="359" pin=5"/></net>
 
-<net id="534"><net_src comp="530" pin="1"/><net_sink comp="352" pin=2"/></net>
+<net id="531"><net_src comp="332" pin="7"/><net_sink comp="528" pin=0"/></net>
 
-<net id="538"><net_src comp="503" pin="1"/><net_sink comp="535" pin=0"/></net>
+<net id="532"><net_src comp="528" pin="1"/><net_sink comp="359" pin=6"/></net>
 
-<net id="539"><net_src comp="535" pin="1"/><net_sink comp="359" pin=1"/></net>
+<net id="539"><net_src comp="497" pin="2"/><net_sink comp="536" pin=0"/></net>
 
-<net id="543"><net_src comp="507" pin="1"/><net_sink comp="540" pin=0"/></net>
+<net id="540"><net_src comp="536" pin="1"/><net_sink comp="352" pin=2"/></net>
 
-<net id="544"><net_src comp="540" pin="1"/><net_sink comp="359" pin=2"/></net>
+<net id="544"><net_src comp="503" pin="1"/><net_sink comp="541" pin=0"/></net>
 
-<net id="548"><net_src comp="511" pin="1"/><net_sink comp="545" pin=0"/></net>
+<net id="545"><net_src comp="541" pin="1"/><net_sink comp="359" pin=1"/></net>
 
-<net id="549"><net_src comp="545" pin="1"/><net_sink comp="359" pin=3"/></net>
+<net id="549"><net_src comp="508" pin="1"/><net_sink comp="546" pin=0"/></net>
 
-<net id="553"><net_src comp="515" pin="1"/><net_sink comp="550" pin=0"/></net>
+<net id="550"><net_src comp="546" pin="1"/><net_sink comp="359" pin=2"/></net>
 
-<net id="554"><net_src comp="550" pin="1"/><net_sink comp="359" pin=4"/></net>
+<net id="554"><net_src comp="513" pin="1"/><net_sink comp="551" pin=0"/></net>
 
-<net id="558"><net_src comp="519" pin="1"/><net_sink comp="555" pin=0"/></net>
+<net id="555"><net_src comp="551" pin="1"/><net_sink comp="359" pin=3"/></net>
 
-<net id="559"><net_src comp="555" pin="1"/><net_sink comp="359" pin=5"/></net>
+<net id="559"><net_src comp="518" pin="1"/><net_sink comp="556" pin=0"/></net>
 
-<net id="563"><net_src comp="523" pin="1"/><net_sink comp="560" pin=0"/></net>
+<net id="560"><net_src comp="556" pin="1"/><net_sink comp="359" pin=4"/></net>
 
-<net id="564"><net_src comp="560" pin="1"/><net_sink comp="359" pin=6"/></net>
+<net id="564"><net_src comp="523" pin="1"/><net_sink comp="561" pin=0"/></net>
+
+<net id="565"><net_src comp="561" pin="1"/><net_sink comp="359" pin=5"/></net>
+
+<net id="569"><net_src comp="528" pin="1"/><net_sink comp="566" pin=0"/></net>
+
+<net id="570"><net_src comp="566" pin="1"/><net_sink comp="359" pin=6"/></net>
 
 </net_list>
 
@@ -2401,50 +2410,50 @@ br_ln0            (br               ) [ 01111]
 
 * FSMD analyzer results:
   - Output states:
-	Port: res_V_data_0_V | {3 4 }
-	Port: res_V_data_1_V | {3 4 }
-	Port: res_V_data_2_V | {3 4 }
-	Port: res_V_data_3_V | {3 4 }
-	Port: res_V_data_4_V | {3 4 }
-	Port: res_V_data_5_V | {3 4 }
-	Port: res_V_data_6_V | {3 4 }
-	Port: res_V_data_7_V | {3 4 }
-	Port: kernel_data_V_1_6 | {3 4 }
-	Port: kernel_data_V_1_7 | {3 4 }
-	Port: kernel_data_V_1_8 | {3 4 }
-	Port: kernel_data_V_1_9 | {3 4 }
-	Port: kernel_data_V_1_10 | {3 4 }
-	Port: kernel_data_V_1_11 | {3 4 }
-	Port: kernel_data_V_1_12 | {3 4 }
-	Port: kernel_data_V_1_13 | {3 4 }
-	Port: kernel_data_V_1_14 | {3 4 }
-	Port: kernel_data_V_1_15 | {3 4 }
-	Port: kernel_data_V_1_16 | {3 4 }
-	Port: kernel_data_V_1_17 | {3 4 }
-	Port: kernel_data_V_1_24 | {3 4 }
-	Port: kernel_data_V_1_25 | {3 4 }
-	Port: kernel_data_V_1_26 | {3 4 }
-	Port: kernel_data_V_1_27 | {3 4 }
-	Port: kernel_data_V_1_28 | {3 4 }
-	Port: kernel_data_V_1_29 | {3 4 }
-	Port: kernel_data_V_1_30 | {3 4 }
-	Port: kernel_data_V_1_31 | {3 4 }
-	Port: kernel_data_V_1_32 | {3 4 }
-	Port: kernel_data_V_1_33 | {3 4 }
-	Port: kernel_data_V_1_34 | {3 4 }
-	Port: kernel_data_V_1_35 | {3 4 }
-	Port: kernel_data_V_1_42 | {3 4 }
-	Port: kernel_data_V_1_43 | {3 4 }
-	Port: kernel_data_V_1_44 | {3 4 }
-	Port: kernel_data_V_1_45 | {3 4 }
-	Port: kernel_data_V_1_46 | {3 4 }
-	Port: kernel_data_V_1_47 | {3 4 }
-	Port: kernel_data_V_1_48 | {3 4 }
-	Port: kernel_data_V_1_49 | {3 4 }
-	Port: kernel_data_V_1_50 | {3 4 }
-	Port: kernel_data_V_1_51 | {3 4 }
-	Port: kernel_data_V_1_52 | {3 4 }
-	Port: kernel_data_V_1_53 | {3 4 }
+	Port: res_V_data_0_V | {2 3 }
+	Port: res_V_data_1_V | {2 3 }
+	Port: res_V_data_2_V | {2 3 }
+	Port: res_V_data_3_V | {2 3 }
+	Port: res_V_data_4_V | {2 3 }
+	Port: res_V_data_5_V | {2 3 }
+	Port: res_V_data_6_V | {2 3 }
+	Port: res_V_data_7_V | {2 3 }
+	Port: kernel_data_V_1_6 | {2 3 }
+	Port: kernel_data_V_1_7 | {2 3 }
+	Port: kernel_data_V_1_8 | {2 3 }
+	Port: kernel_data_V_1_9 | {2 3 }
+	Port: kernel_data_V_1_10 | {2 3 }
+	Port: kernel_data_V_1_11 | {2 3 }
+	Port: kernel_data_V_1_12 | {2 3 }
+	Port: kernel_data_V_1_13 | {2 3 }
+	Port: kernel_data_V_1_14 | {2 3 }
+	Port: kernel_data_V_1_15 | {2 3 }
+	Port: kernel_data_V_1_16 | {2 3 }
+	Port: kernel_data_V_1_17 | {2 3 }
+	Port: kernel_data_V_1_24 | {2 3 }
+	Port: kernel_data_V_1_25 | {2 3 }
+	Port: kernel_data_V_1_26 | {2 3 }
+	Port: kernel_data_V_1_27 | {2 3 }
+	Port: kernel_data_V_1_28 | {2 3 }
+	Port: kernel_data_V_1_29 | {2 3 }
+	Port: kernel_data_V_1_30 | {2 3 }
+	Port: kernel_data_V_1_31 | {2 3 }
+	Port: kernel_data_V_1_32 | {2 3 }
+	Port: kernel_data_V_1_33 | {2 3 }
+	Port: kernel_data_V_1_34 | {2 3 }
+	Port: kernel_data_V_1_35 | {2 3 }
+	Port: kernel_data_V_1_42 | {2 3 }
+	Port: kernel_data_V_1_43 | {2 3 }
+	Port: kernel_data_V_1_44 | {2 3 }
+	Port: kernel_data_V_1_45 | {2 3 }
+	Port: kernel_data_V_1_46 | {2 3 }
+	Port: kernel_data_V_1_47 | {2 3 }
+	Port: kernel_data_V_1_48 | {2 3 }
+	Port: kernel_data_V_1_49 | {2 3 }
+	Port: kernel_data_V_1_50 | {2 3 }
+	Port: kernel_data_V_1_51 | {2 3 }
+	Port: kernel_data_V_1_52 | {2 3 }
+	Port: kernel_data_V_1_53 | {2 3 }
 	Port: line_buffer_Array_V_1_0_0 | {}
 	Port: line_buffer_Array_V_1_1_0 | {}
 	Port: line_buffer_Array_V_1_0_1 | {}
@@ -2457,10 +2466,10 @@ br_ln0            (br               ) [ 01111]
 	Port: line_buffer_Array_V_1_1_4 | {}
 	Port: line_buffer_Array_V_1_0_5 | {}
 	Port: line_buffer_Array_V_1_1_5 | {}
-	Port: sX_4 | {3 4 }
-	Port: sY_4 | {3 4 }
-	Port: pY_4 | {3 4 }
-	Port: pX_4 | {3 4 }
+	Port: sX_4 | {2 3 }
+	Port: sY_4 | {2 3 }
+	Port: pY_4 | {2 3 }
+	Port: pX_4 | {2 3 }
 	Port: w6_V | {}
  - Input state : 
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : data_V_data_0_V | {2 }
@@ -2469,42 +2478,42 @@ br_ln0            (br               ) [ 01111]
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : data_V_data_3_V | {2 }
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : data_V_data_4_V | {2 }
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : data_V_data_5_V | {2 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_6 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_7 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_8 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_9 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_10 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_11 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_12 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_13 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_14 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_15 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_16 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_17 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_24 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_25 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_26 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_27 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_28 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_29 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_30 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_31 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_32 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_33 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_34 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_35 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_42 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_43 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_44 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_45 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_46 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_47 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_48 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_49 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_50 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_51 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_52 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_53 | {3 4 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_6 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_7 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_8 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_9 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_10 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_11 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_12 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_13 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_14 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_15 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_16 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_17 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_24 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_25 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_26 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_27 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_28 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_29 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_30 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_31 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_32 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_33 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_34 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_35 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_42 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_43 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_44 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_45 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_46 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_47 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_48 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_49 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_50 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_51 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_52 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : kernel_data_V_1_53 | {2 3 }
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : line_buffer_Array_V_1_0_0 | {}
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : line_buffer_Array_V_1_1_0 | {}
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : line_buffer_Array_V_1_0_1 | {}
@@ -2517,19 +2526,19 @@ br_ln0            (br               ) [ 01111]
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : line_buffer_Array_V_1_1_4 | {}
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : line_buffer_Array_V_1_0_5 | {}
 	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : line_buffer_Array_V_1_1_5 | {}
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : sX_4 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : sY_4 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : pY_4 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : pX_4 | {3 4 }
-	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : w6_V | {3 4 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : sX_4 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : sY_4 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : pY_4 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : pX_4 | {2 3 }
+	Port: conv_2d_cl<array<ap_ufixed,6u>,array<ap_fixed<8,2,5,3,0>,8u>,config6> : w6_V | {2 3 }
   - Chain level:
 	State 1
 	State 2
 		icmp_ln85 : 1
 		add_ln85 : 1
 		br_ln85 : 2
+		call_ln93 : 1
 	State 3
-	State 4
 
 
 ============================================================
@@ -2540,7 +2549,7 @@ br_ln0            (br               ) [ 01111]
 |----------|---------------------------------------------------------------------------------|---------|---------|---------|---------|
 | Operation|                                 Functional Unit                                 |  DSP48E |  Delay  |    FF   |   LUT   |
 |----------|---------------------------------------------------------------------------------|---------|---------|---------|---------|
-|   call   | grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359 |    0    |  48.45  |   3707  |   5861  |
+|   call   | grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359 |    0    |  47.595 |   2878  |   6112  |
 |----------|---------------------------------------------------------------------------------|---------|---------|---------|---------|
 |    add   |                                 add_ln85_fu_497                                 |    0    |    0    |    0    |    15   |
 |----------|---------------------------------------------------------------------------------|---------|---------|---------|---------|
@@ -2549,13 +2558,13 @@ br_ln0            (br               ) [ 01111]
 |   read   |                              empty_240_read_fu_332                              |    0    |    0    |    0    |    0    |
 |----------|---------------------------------------------------------------------------------|---------|---------|---------|---------|
 |          |                               tmp_data_0_V_fu_503                               |    0    |    0    |    0    |    0    |
-|          |                               tmp_data_1_V_fu_507                               |    0    |    0    |    0    |    0    |
-|extractvalue|                               tmp_data_2_V_fu_511                               |    0    |    0    |    0    |    0    |
-|          |                               tmp_data_3_V_fu_515                               |    0    |    0    |    0    |    0    |
-|          |                               tmp_data_4_V_fu_519                               |    0    |    0    |    0    |    0    |
-|          |                               tmp_data_5_V_fu_523                               |    0    |    0    |    0    |    0    |
+|          |                               tmp_data_1_V_fu_508                               |    0    |    0    |    0    |    0    |
+|extractvalue|                               tmp_data_2_V_fu_513                               |    0    |    0    |    0    |    0    |
+|          |                               tmp_data_3_V_fu_518                               |    0    |    0    |    0    |    0    |
+|          |                               tmp_data_4_V_fu_523                               |    0    |    0    |    0    |    0    |
+|          |                               tmp_data_5_V_fu_528                               |    0    |    0    |    0    |    0    |
 |----------|---------------------------------------------------------------------------------|---------|---------|---------|---------|
-|   Total  |                                                                                 |    0    |  48.45  |   3707  |   5887  |
+|   Total  |                                                                                 |    0    |  47.595 |   2878  |   6138  |
 |----------|---------------------------------------------------------------------------------|---------|---------|---------|---------|
 
 Memories:
@@ -2565,24 +2574,31 @@ N/A
 +----------------------+--------+
 |                      |   FF   |
 +----------------------+--------+
-|   add_ln85_reg_530   |    7   |
+|   add_ln85_reg_536   |    7   |
 |indvar_flatten_reg_348|    7   |
-| tmp_data_0_V_reg_535 |    8   |
-| tmp_data_1_V_reg_540 |    8   |
-| tmp_data_2_V_reg_545 |    8   |
-| tmp_data_3_V_reg_550 |    8   |
-| tmp_data_4_V_reg_555 |    8   |
-| tmp_data_5_V_reg_560 |    8   |
+| tmp_data_0_V_reg_541 |    8   |
+| tmp_data_1_V_reg_546 |    8   |
+| tmp_data_2_V_reg_551 |    8   |
+| tmp_data_3_V_reg_556 |    8   |
+| tmp_data_4_V_reg_561 |    8   |
+| tmp_data_5_V_reg_566 |    8   |
 +----------------------+--------+
 |         Total        |   62   |
 +----------------------+--------+
 
 * Multiplexer (MUX) list: 
-|--------|------|------|------|--------|
-|  Comp  |  Pin | Size |  BW  | S x BW |
-|--------|------|------|------|--------|
-|  Total |      |      |      |    0   |
-|--------|------|------|------|--------|
+|---------------------------------------------------------------------------------|------|------|------|--------||---------||---------|
+|                                       Comp                                      |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|---------------------------------------------------------------------------------|------|------|------|--------||---------||---------|
+| grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359 |  p1  |   2  |   8  |   16   ||    9    |
+| grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359 |  p2  |   2  |   8  |   16   ||    9    |
+| grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359 |  p3  |   2  |   8  |   16   ||    9    |
+| grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359 |  p4  |   2  |   8  |   16   ||    9    |
+| grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359 |  p5  |   2  |   8  |   16   ||    9    |
+| grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359 |  p6  |   2  |   8  |   16   ||    9    |
+|---------------------------------------------------------------------------------|------|------|------|--------||---------||---------|
+|                                      Total                                      |      |      |      |   96   ||   5.01  ||    54   |
+|---------------------------------------------------------------------------------|------|------|------|--------||---------||---------|
 
 
 
@@ -2590,10 +2606,10 @@ N/A
 +-----------+--------+--------+--------+--------+
 |           | DSP48E |  Delay |   FF   |   LUT  |
 +-----------+--------+--------+--------+--------+
-|  Function |    0   |   48   |  3707  |  5887  |
+|  Function |    0   |   47   |  2878  |  6138  |
 |   Memory  |    -   |    -   |    -   |    -   |
-|Multiplexer|    -   |    -   |    -   |    -   |
+|Multiplexer|    -   |    5   |    -   |   54   |
 |  Register |    -   |    -   |   62   |    -   |
 +-----------+--------+--------+--------+--------+
-|   Total   |    0   |   48   |  3769  |  5887  |
+|   Total   |    0   |   52   |  2940  |  6192  |
 +-----------+--------+--------+--------+--------+

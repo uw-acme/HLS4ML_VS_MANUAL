@@ -384,7 +384,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0bedd7a6</spirit:value>
+            <spirit:value>08c03c91</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -400,7 +400,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c1de5bb4</spirit:value>
+            <spirit:value>65b2fb76</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -416,7 +416,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5e75ab93</spirit:value>
+            <spirit:value>09c5f2cf</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -432,7 +432,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7fc4cd0a</spirit:value>
+            <spirit:value>f2c6ecce</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1972,7 +1972,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/myproject.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_fd3a1aa2</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_13716ce4</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -2447,7 +2447,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">34576</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">34571</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>II</spirit:name>
@@ -2457,7 +2457,7 @@
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
       <xilinx:supportedFamilies>
-        <xilinx:family xilinx:lifeCycle="Pre-Production">virtex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Pre-Production">kintexu</xilinx:family>
       </xilinx:supportedFamilies>
       <xilinx:taxonomies>
         <xilinx:taxonomy>/VIVADO_HLS_IP</xilinx:taxonomy>
@@ -2465,14 +2465,14 @@
       <xilinx:displayName>Myproject</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
       <xilinx:coreRevision>0</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-14T07:03:50Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2025-11-22T03:13:19Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="eec39b56"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="1d81208b"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="28fc6780"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="1a1eb069"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="96ab7835"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="6d540eb2"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

@@ -492,7 +492,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.85</m_delay>
+          <m_delay>0.83</m_delay>
           <m_topoIndex>1</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -1791,7 +1791,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.85</m_delay>
+          <m_delay>0.83</m_delay>
           <m_topoIndex>42</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -2588,7 +2588,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.85</m_delay>
+          <m_delay>0.83</m_delay>
           <m_topoIndex>19</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3431,7 +3431,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.05</m_delay>
+          <m_delay>0.78</m_delay>
           <m_topoIndex>58</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3619,7 +3619,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.26</m_delay>
+          <m_delay>1.77</m_delay>
           <m_topoIndex>22</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3889,7 +3889,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>81</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -4206,7 +4206,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>86</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -4269,7 +4269,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>87</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -4473,7 +4473,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>89</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -4790,7 +4790,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>94</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -4853,7 +4853,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>95</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -5057,7 +5057,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>97</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -5374,7 +5374,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>102</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -5437,7 +5437,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>103</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -5641,7 +5641,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>105</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -5958,7 +5958,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>110</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -6021,7 +6021,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>111</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -6225,7 +6225,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>113</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -6542,7 +6542,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>118</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -6605,7 +6605,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>119</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -6809,7 +6809,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>121</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -7126,7 +7126,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>126</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -7189,7 +7189,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>127</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -7393,7 +7393,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>129</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -7710,7 +7710,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>134</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -7773,7 +7773,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>135</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -7977,7 +7977,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>137</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -8294,7 +8294,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>142</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -8357,7 +8357,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>143</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -8561,7 +8561,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>145</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -8878,7 +8878,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>150</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -8941,7 +8941,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>151</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -9214,7 +9214,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>2.87</m_delay>
+          <m_delay>2.44</m_delay>
           <m_topoIndex>154</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -9531,7 +9531,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.30</m_delay>
+          <m_delay>1.41</m_delay>
           <m_topoIndex>159</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -9594,7 +9594,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.33</m_delay>
+          <m_delay>1.35</m_delay>
           <m_topoIndex>160</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -9657,7 +9657,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>1.01</m_delay>
+          <m_delay>0.94</m_delay>
           <m_topoIndex>23</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -10370,7 +10370,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.87</m_delay>
+          <m_delay>0.90</m_delay>
           <m_topoIndex>24</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -16858,7 +16858,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>47</second>
+              <second>53</second>
             </item>
           </second>
         </item>
@@ -17464,7 +17464,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17491,7 +17491,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17518,7 +17518,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17545,7 +17545,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17572,7 +17572,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17599,7 +17599,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17626,7 +17626,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17653,7 +17653,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17680,7 +17680,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17707,7 +17707,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>41</second>
+              <second>40</second>
             </item>
           </second>
         </item>
@@ -17730,7 +17730,7 @@
             </item>
             <item>
               <first>LUT</first>
-              <second>13</second>
+              <second>12</second>
             </item>
           </second>
         </item>

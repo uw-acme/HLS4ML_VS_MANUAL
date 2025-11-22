@@ -3,13 +3,13 @@
 ================================================================
 == Vivado HLS Report for 'dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0'
 ================================================================
-* Date:           Thu Nov 13 23:03:12 2025
+* Date:           Fri Nov 21 19:12:24 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
 * Solution:       solution1
-* Product family: virtex7
-* Target device:  xc7vx690t-ffg1761-2
+* Product family: kintexu
+* Target device:  xcku035-fbva676-2-e
 
 
 ================================================================
@@ -20,7 +20,7 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |   5.00|     4.185|        0.62|
+    |ap_clk  |   5.00|     3.842|        0.62|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -54,16 +54,16 @@
 |       Name      | BRAM_18K| DSP48E|   FF   |   LUT  | URAM|
 +-----------------+---------+-------+--------+--------+-----+
 |DSP              |        -|      -|       -|       -|    -|
-|Expression       |        -|      0|       0|     556|    -|
+|Expression       |        -|      0|       0|     549|    -|
 |FIFO             |        -|      -|       -|       -|    -|
 |Instance         |        -|      -|       -|       -|    -|
 |Memory           |        2|      -|       0|       0|    -|
 |Multiplexer      |        -|      -|       -|     165|    -|
 |Register         |        -|      -|     208|       -|    -|
 +-----------------+---------+-------+--------+--------+-----+
-|Total            |        2|      0|     208|     721|    0|
+|Total            |        2|      0|     208|     714|    0|
 +-----------------+---------+-------+--------+--------+-----+
-|Available        |     2940|   3600|  866400|  433200|    0|
+|Available        |     1080|   1700|  406256|  203128|    0|
 +-----------------+---------+-------+--------+--------+-----+
 |Utilization (%)  |    ~0   |      0|   ~0   |   ~0   |    0|
 +-----------------+---------+-------+--------+--------+-----+
@@ -91,19 +91,19 @@
     +-------------------------+----------+-------+---+----+------------+------------+
     |      Variable Name      | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
     +-------------------------+----------+-------+---+----+------------+------------+
-    |mul_ln1118_75_fu_535_p2  |     *    |      0|  0|  41|           8|           8|
-    |mul_ln1118_76_fu_564_p2  |     *    |      0|  0|  41|           8|           8|
-    |mul_ln1118_77_fu_593_p2  |     *    |      0|  0|  41|           8|           8|
-    |mul_ln1118_78_fu_622_p2  |     *    |      0|  0|  41|           8|           8|
-    |mul_ln1118_79_fu_651_p2  |     *    |      0|  0|  41|           8|           8|
-    |mul_ln1118_fu_506_p2     |     *    |      0|  0|  41|           8|           8|
+    |mul_ln1118_75_fu_535_p2  |     *    |      0|  0|  40|           8|           8|
+    |mul_ln1118_76_fu_564_p2  |     *    |      0|  0|  40|           8|           8|
+    |mul_ln1118_77_fu_593_p2  |     *    |      0|  0|  40|           8|           8|
+    |mul_ln1118_78_fu_622_p2  |     *    |      0|  0|  40|           8|           8|
+    |mul_ln1118_79_fu_651_p2  |     *    |      0|  0|  40|           8|           8|
+    |mul_ln1118_fu_506_p2     |     *    |      0|  0|  40|           8|           8|
     |acc_0_V_fu_526_p2        |     +    |      0|  0|  22|          15|          15|
     |acc_1_V_fu_555_p2        |     +    |      0|  0|  22|          15|          15|
     |acc_2_V_fu_584_p2        |     +    |      0|  0|  22|          15|          15|
     |acc_3_V_fu_613_p2        |     +    |      0|  0|  22|          15|          15|
     |acc_4_V_fu_642_p2        |     +    |      0|  0|  22|          15|          15|
     |acc_5_V_fu_671_p2        |     +    |      0|  0|  22|          15|          15|
-    |w_index_fu_244_p2        |     +    |      0|  0|  13|           1|           4|
+    |w_index_fu_244_p2        |     +    |      0|  0|  12|           1|           4|
     |ap_condition_136         |    and   |      0|  0|   2|           1|           1|
     |icmp_ln19_1_fu_298_p2    |   icmp   |      0|  0|   9|           4|           1|
     |icmp_ln19_2_fu_304_p2    |   icmp   |      0|  0|   9|           4|           2|
@@ -131,7 +131,7 @@
     |select_ln19_fu_340_p3    |  select  |      0|  0|   8|           1|           8|
     |ap_enable_pp0            |    xor   |      0|  0|   2|           1|           2|
     +-------------------------+----------+-------+---+----+------------+------------+
-    |Total                    |          |      0|  0| 556|         192|         239|
+    |Total                    |          |      0|  0| 549|         192|         239|
     +-------------------------+----------+-------+---+----+------------+------------+
 
     * Multiplexer: 
@@ -267,20 +267,20 @@ IsGatedGlobalClock: 0
 
 * FSM state operations: 
 
-State 1 <SV = 0> <Delay = 0.85>
+State 1 <SV = 0> <Delay = 0.83>
 ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%tmp_i = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str87)" [firmware/nnet_utils/nnet_dense_resource.h:32]   --->   Operation 5 'specregionbegin' 'tmp_i' <Predicate = true> <Delay = 0.00>
-ST_1 : Operation 6 [1/1] (0.85ns)   --->   "br label %rewind_header" [firmware/nnet_utils/nnet_dense_resource.h:46]   --->   Operation 6 'br' <Predicate = true> <Delay = 0.85>
+ST_1 : Operation 6 [1/1] (0.83ns)   --->   "br label %rewind_header" [firmware/nnet_utils/nnet_dense_resource.h:46]   --->   Operation 6 'br' <Predicate = true> <Delay = 0.83>
 
-State 2 <SV = 1> <Delay = 2.26>
+State 2 <SV = 1> <Delay = 1.77>
 ST_2 : Operation 7 [1/1] (0.00ns)   --->   "%w_index17 = phi i4 [ 0, %hls_label_3_begin ], [ %w_index, %ReuseLoop ], [ 0, %"dense_resource_rf_leq_nin<ap_ufixed<8, 0, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config2_mult>.0.0.0.0.0.0.0.exit" ]"   --->   Operation 7 'phi' 'w_index17' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 8 [1/1] (0.00ns)   --->   "%zext_ln59 = zext i4 %w_index17 to i64" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 8 'zext' 'zext_ln59' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%w2_V_addr = getelementptr [9 x i48]* @w2_V, i64 0, i64 %zext_ln59" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 9 'getelementptr' 'w2_V_addr' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 10 [2/2] (2.26ns)   --->   "%w2_V_load = load i48* %w2_V_addr, align 8" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 10 'load' 'w2_V_load' <Predicate = true> <Delay = 2.26> <Core = "ROM_nP_BRAM">   --->   Core 55 'ROM_nP_BRAM' <Latency = 1> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 48> <Depth = 9> <ROM>
-ST_2 : Operation 11 [1/1] (1.01ns)   --->   "%w_index = add i4 1, %w_index17" [firmware/nnet_utils/nnet_dense_resource.h:46]   --->   Operation 11 'add' 'w_index' <Predicate = true> <Delay = 1.01> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
-ST_2 : Operation 12 [1/1] (0.87ns)   --->   "%icmp_ln46 = icmp eq i4 %w_index17, -8" [firmware/nnet_utils/nnet_dense_resource.h:46]   --->   Operation 12 'icmp' 'icmp_ln46' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 10 [2/2] (1.77ns)   --->   "%w2_V_load = load i48* %w2_V_addr, align 8" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 10 'load' 'w2_V_load' <Predicate = true> <Delay = 1.77> <Core = "ROM_nP_BRAM">   --->   Core 55 'ROM_nP_BRAM' <Latency = 1> <II = 1> <Delay = 1.77> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 48> <Depth = 9> <ROM>
+ST_2 : Operation 11 [1/1] (0.94ns)   --->   "%w_index = add i4 1, %w_index17" [firmware/nnet_utils/nnet_dense_resource.h:46]   --->   Operation 11 'add' 'w_index' <Predicate = true> <Delay = 0.94> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 12 [1/1] (0.90ns)   --->   "%icmp_ln46 = icmp eq i4 %w_index17, -8" [firmware/nnet_utils/nnet_dense_resource.h:46]   --->   Operation 12 'icmp' 'icmp_ln46' <Predicate = true> <Delay = 0.90> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
 ST_2 : Operation 13 [1/1] (0.00ns)   --->   "br label %rewind_header" [firmware/nnet_utils/nnet_dense_resource.h:32]   --->   Operation 13 'br' <Predicate = (icmp_ln46)> <Delay = 0.00>
 
-State 3 <SV = 2> <Delay = 2.70>
+State 3 <SV = 2> <Delay = 2.21>
 ST_3 : Operation 14 [1/1] (0.00ns)   --->   "%kernel_data_V_8_load = load i8* @kernel_data_V_8, align 1" [aesl_mux_load.9i8P.i4:17->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 14 'load' 'kernel_data_V_8_load' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 15 [1/1] (0.00ns)   --->   "%kernel_data_V_0_load = load i8* @kernel_data_V_0, align 1" [aesl_mux_load.9i8P.i4:1->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 15 'load' 'kernel_data_V_0_load' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 16 [1/1] (0.00ns)   --->   "%kernel_data_V_1411_load = load i8* @kernel_data_V_1411, align 1" [aesl_mux_load.9i8P.i4:3->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 16 'load' 'kernel_data_V_1411_load' <Predicate = true> <Delay = 0.00>
@@ -290,30 +290,30 @@ ST_3 : Operation 19 [1/1] (0.00ns)   --->   "%kernel_data_V_4414_load = load i8*
 ST_3 : Operation 20 [1/1] (0.00ns)   --->   "%kernel_data_V_5415_load = load i8* @kernel_data_V_5415, align 1" [aesl_mux_load.9i8P.i4:11->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 20 'load' 'kernel_data_V_5415_load' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 21 [1/1] (0.00ns)   --->   "%kernel_data_V_6_load = load i8* @kernel_data_V_6, align 1" [aesl_mux_load.9i8P.i4:13->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 21 'load' 'kernel_data_V_6_load' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 22 [1/1] (0.00ns)   --->   "%kernel_data_V_7_load = load i8* @kernel_data_V_7, align 1" [aesl_mux_load.9i8P.i4:15->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 22 'load' 'kernel_data_V_7_load' <Predicate = true> <Delay = 0.00>
-ST_3 : Operation 23 [1/1] (0.87ns)   --->   "%icmp_ln19 = icmp eq i4 %w_index17, 0" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 23 'icmp' 'icmp_ln19' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 24 [1/1] (0.87ns)   --->   "%icmp_ln19_1 = icmp eq i4 %w_index17, 1" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 24 'icmp' 'icmp_ln19_1' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 25 [1/1] (0.87ns)   --->   "%icmp_ln19_2 = icmp eq i4 %w_index17, 2" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 25 'icmp' 'icmp_ln19_2' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 26 [1/1] (0.87ns)   --->   "%icmp_ln19_3 = icmp eq i4 %w_index17, 3" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 26 'icmp' 'icmp_ln19_3' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 27 [1/1] (0.87ns)   --->   "%icmp_ln19_4 = icmp eq i4 %w_index17, 4" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 27 'icmp' 'icmp_ln19_4' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 28 [1/1] (0.87ns)   --->   "%icmp_ln19_5 = icmp eq i4 %w_index17, 5" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 28 'icmp' 'icmp_ln19_5' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 29 [1/1] (0.87ns)   --->   "%icmp_ln19_6 = icmp eq i4 %w_index17, 6" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 29 'icmp' 'icmp_ln19_6' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 30 [1/1] (0.87ns)   --->   "%icmp_ln19_7 = icmp eq i4 %w_index17, 7" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 30 'icmp' 'icmp_ln19_7' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 31 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_4)   --->   "%select_ln19 = select i1 %icmp_ln19_7, i8 %kernel_data_V_7_load, i8 %kernel_data_V_6_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 31 'select' 'select_ln19' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.37> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_3 : Operation 32 [1/1] (0.48ns)   --->   "%or_ln19 = or i1 %icmp_ln19_7, %icmp_ln19_6" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 32 'or' 'or_ln19' <Predicate = true> <Delay = 0.48> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.48> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 33 [1/1] (0.37ns) (out node of the LUT)   --->   "%select_ln19_1 = select i1 %icmp_ln19_5, i8 %kernel_data_V_5415_load, i8 %kernel_data_V_4414_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 33 'select' 'select_ln19_1' <Predicate = true> <Delay = 0.37> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.37> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_3 : Operation 34 [1/1] (0.00ns) (grouped into LUT with out node or_ln19_4)   --->   "%or_ln19_1 = or i1 %icmp_ln19_5, %icmp_ln19_4" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 34 'or' 'or_ln19_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.48> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 35 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_5)   --->   "%select_ln19_2 = select i1 %icmp_ln19_3, i8 %kernel_data_V_3413_load, i8 %kernel_data_V_2412_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 35 'select' 'select_ln19_2' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.37> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_3 : Operation 36 [1/1] (0.48ns)   --->   "%or_ln19_2 = or i1 %icmp_ln19_3, %icmp_ln19_2" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 36 'or' 'or_ln19_2' <Predicate = true> <Delay = 0.48> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.48> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 37 [1/1] (0.37ns) (out node of the LUT)   --->   "%select_ln19_3 = select i1 %icmp_ln19_1, i8 %kernel_data_V_1411_load, i8 %kernel_data_V_0_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 37 'select' 'select_ln19_3' <Predicate = true> <Delay = 0.37> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.37> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_3 : Operation 38 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_7)   --->   "%or_ln19_3 = or i1 %icmp_ln19_1, %icmp_ln19" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 38 'or' 'or_ln19_3' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.48> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 39 [1/1] (0.37ns) (out node of the LUT)   --->   "%select_ln19_4 = select i1 %or_ln19, i8 %select_ln19, i8 %select_ln19_1" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 39 'select' 'select_ln19_4' <Predicate = true> <Delay = 0.37> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.37> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_3 : Operation 40 [1/1] (0.48ns) (out node of the LUT)   --->   "%or_ln19_4 = or i1 %or_ln19, %or_ln19_1" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 40 'or' 'or_ln19_4' <Predicate = true> <Delay = 0.48> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.48> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 41 [1/1] (0.37ns) (out node of the LUT)   --->   "%select_ln19_5 = select i1 %or_ln19_2, i8 %select_ln19_2, i8 %select_ln19_3" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 41 'select' 'select_ln19_5' <Predicate = true> <Delay = 0.37> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.37> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_3 : Operation 42 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_7)   --->   "%or_ln19_5 = or i1 %or_ln19_2, %or_ln19_3" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 42 'or' 'or_ln19_5' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.48> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 43 [1/1] (0.37ns) (out node of the LUT)   --->   "%select_ln19_6 = select i1 %or_ln19_4, i8 %select_ln19_4, i8 %select_ln19_5" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 43 'select' 'select_ln19_6' <Predicate = true> <Delay = 0.37> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.37> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_3 : Operation 44 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_7)   --->   "%or_ln19_6 = or i1 %or_ln19_4, %or_ln19_5" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 44 'or' 'or_ln19_6' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.48> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
-ST_3 : Operation 45 [1/1] (0.48ns) (out node of the LUT)   --->   "%select_ln19_7 = select i1 %or_ln19_6, i8 %select_ln19_6, i8 %kernel_data_V_8_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 45 'select' 'select_ln19_7' <Predicate = true> <Delay = 0.48> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.37> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
-ST_3 : Operation 46 [1/2] (2.26ns)   --->   "%w2_V_load = load i48* %w2_V_addr, align 8" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 46 'load' 'w2_V_load' <Predicate = true> <Delay = 2.26> <Core = "ROM_nP_BRAM">   --->   Core 55 'ROM_nP_BRAM' <Latency = 1> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 48> <Depth = 9> <ROM>
+ST_3 : Operation 23 [1/1] (0.90ns)   --->   "%icmp_ln19 = icmp eq i4 %w_index17, 0" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 23 'icmp' 'icmp_ln19' <Predicate = true> <Delay = 0.90> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 24 [1/1] (0.90ns)   --->   "%icmp_ln19_1 = icmp eq i4 %w_index17, 1" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 24 'icmp' 'icmp_ln19_1' <Predicate = true> <Delay = 0.90> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 25 [1/1] (0.90ns)   --->   "%icmp_ln19_2 = icmp eq i4 %w_index17, 2" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 25 'icmp' 'icmp_ln19_2' <Predicate = true> <Delay = 0.90> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 26 [1/1] (0.90ns)   --->   "%icmp_ln19_3 = icmp eq i4 %w_index17, 3" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 26 'icmp' 'icmp_ln19_3' <Predicate = true> <Delay = 0.90> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 27 [1/1] (0.90ns)   --->   "%icmp_ln19_4 = icmp eq i4 %w_index17, 4" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 27 'icmp' 'icmp_ln19_4' <Predicate = true> <Delay = 0.90> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 28 [1/1] (0.90ns)   --->   "%icmp_ln19_5 = icmp eq i4 %w_index17, 5" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 28 'icmp' 'icmp_ln19_5' <Predicate = true> <Delay = 0.90> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 29 [1/1] (0.90ns)   --->   "%icmp_ln19_6 = icmp eq i4 %w_index17, 6" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 29 'icmp' 'icmp_ln19_6' <Predicate = true> <Delay = 0.90> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 30 [1/1] (0.90ns)   --->   "%icmp_ln19_7 = icmp eq i4 %w_index17, 7" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 30 'icmp' 'icmp_ln19_7' <Predicate = true> <Delay = 0.90> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 31 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_4)   --->   "%select_ln19 = select i1 %icmp_ln19_7, i8 %kernel_data_V_7_load, i8 %kernel_data_V_6_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 31 'select' 'select_ln19' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.29> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 32 [1/1] (0.33ns)   --->   "%or_ln19 = or i1 %icmp_ln19_7, %icmp_ln19_6" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 32 'or' 'or_ln19' <Predicate = true> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 33 [1/1] (0.29ns) (out node of the LUT)   --->   "%select_ln19_1 = select i1 %icmp_ln19_5, i8 %kernel_data_V_5415_load, i8 %kernel_data_V_4414_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 33 'select' 'select_ln19_1' <Predicate = true> <Delay = 0.29> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.29> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 34 [1/1] (0.00ns) (grouped into LUT with out node or_ln19_4)   --->   "%or_ln19_1 = or i1 %icmp_ln19_5, %icmp_ln19_4" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 34 'or' 'or_ln19_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 35 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_5)   --->   "%select_ln19_2 = select i1 %icmp_ln19_3, i8 %kernel_data_V_3413_load, i8 %kernel_data_V_2412_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 35 'select' 'select_ln19_2' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.29> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 36 [1/1] (0.33ns)   --->   "%or_ln19_2 = or i1 %icmp_ln19_3, %icmp_ln19_2" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 36 'or' 'or_ln19_2' <Predicate = true> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 37 [1/1] (0.29ns) (out node of the LUT)   --->   "%select_ln19_3 = select i1 %icmp_ln19_1, i8 %kernel_data_V_1411_load, i8 %kernel_data_V_0_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 37 'select' 'select_ln19_3' <Predicate = true> <Delay = 0.29> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.29> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 38 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_7)   --->   "%or_ln19_3 = or i1 %icmp_ln19_1, %icmp_ln19" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 38 'or' 'or_ln19_3' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 39 [1/1] (0.29ns) (out node of the LUT)   --->   "%select_ln19_4 = select i1 %or_ln19, i8 %select_ln19, i8 %select_ln19_1" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 39 'select' 'select_ln19_4' <Predicate = true> <Delay = 0.29> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.29> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 40 [1/1] (0.33ns) (out node of the LUT)   --->   "%or_ln19_4 = or i1 %or_ln19, %or_ln19_1" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 40 'or' 'or_ln19_4' <Predicate = true> <Delay = 0.33> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 41 [1/1] (0.29ns) (out node of the LUT)   --->   "%select_ln19_5 = select i1 %or_ln19_2, i8 %select_ln19_2, i8 %select_ln19_3" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 41 'select' 'select_ln19_5' <Predicate = true> <Delay = 0.29> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.29> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 42 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_7)   --->   "%or_ln19_5 = or i1 %or_ln19_2, %or_ln19_3" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 42 'or' 'or_ln19_5' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 43 [1/1] (0.29ns) (out node of the LUT)   --->   "%select_ln19_6 = select i1 %or_ln19_4, i8 %select_ln19_4, i8 %select_ln19_5" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 43 'select' 'select_ln19_6' <Predicate = true> <Delay = 0.29> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.29> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 44 [1/1] (0.00ns) (grouped into LUT with out node select_ln19_7)   --->   "%or_ln19_6 = or i1 %or_ln19_4, %or_ln19_5" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 44 'or' 'or_ln19_6' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.33> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 45 [1/1] (0.33ns) (out node of the LUT)   --->   "%select_ln19_7 = select i1 %or_ln19_6, i8 %select_ln19_6, i8 %kernel_data_V_8_load" [aesl_mux_load.9i8P.i4:19->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 45 'select' 'select_ln19_7' <Predicate = true> <Delay = 0.33> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.29> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 46 [1/2] (1.77ns)   --->   "%w2_V_load = load i48* %w2_V_addr, align 8" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 46 'load' 'w2_V_load' <Predicate = true> <Delay = 1.77> <Core = "ROM_nP_BRAM">   --->   Core 55 'ROM_nP_BRAM' <Latency = 1> <II = 1> <Delay = 1.77> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 48> <Depth = 9> <ROM>
 ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%trunc_ln59 = trunc i48 %w2_V_load to i8" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 47 'trunc' 'trunc_ln59' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%tmp_382_i = call i8 @_ssdm_op_PartSelect.i8.i48.i32.i32(i48 %w2_V_load, i32 8, i32 15)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 48 'partselect' 'tmp_382_i' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 49 [1/1] (0.00ns)   --->   "%tmp_384_i = call i8 @_ssdm_op_PartSelect.i8.i48.i32.i32(i48 %w2_V_load, i32 16, i32 23)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 49 'partselect' 'tmp_384_i' <Predicate = true> <Delay = 0.00>
@@ -321,7 +321,7 @@ ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%tmp_386_i = call i8 @_ssdm_op_Part
 ST_3 : Operation 51 [1/1] (0.00ns)   --->   "%tmp_388_i = call i8 @_ssdm_op_PartSelect.i8.i48.i32.i32(i48 %w2_V_load, i32 32, i32 39)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 51 'partselect' 'tmp_388_i' <Predicate = true> <Delay = 0.00>
 ST_3 : Operation 52 [1/1] (0.00ns)   --->   "%tmp_390_i = call i8 @_ssdm_op_PartSelect.i8.i48.i32.i32(i48 %w2_V_load, i32 40, i32 47)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 52 'partselect' 'tmp_390_i' <Predicate = true> <Delay = 0.00>
 
-State 4 <SV = 3> <Delay = 4.18>
+State 4 <SV = 3> <Delay = 3.84>
 ST_4 : Operation 53 [1/1] (0.00ns)   --->   "%do_init = phi i1 [ true, %hls_label_3_begin ], [ false, %ReuseLoop ], [ true, %"dense_resource_rf_leq_nin<ap_ufixed<8, 0, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config2_mult>.0.0.0.0.0.0.0.exit" ]"   --->   Operation 53 'phi' 'do_init' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 54 [1/1] (0.00ns)   --->   "%p_Val2_1216 = phi i15 [ -1024, %hls_label_3_begin ], [ %acc_5_V, %ReuseLoop ], [ -1024, %"dense_resource_rf_leq_nin<ap_ufixed<8, 0, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config2_mult>.0.0.0.0.0.0.0.exit" ]"   --->   Operation 54 'phi' 'p_Val2_1216' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 55 [1/1] (0.00ns)   --->   "%p_Val2_1114 = phi i15 [ -1024, %hls_label_3_begin ], [ %acc_4_V, %ReuseLoop ], [ -1024, %"dense_resource_rf_leq_nin<ap_ufixed<8, 0, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config2_mult>.0.0.0.0.0.0.0.exit" ]"   --->   Operation 55 'phi' 'p_Val2_1114' <Predicate = true> <Delay = 0.00>
@@ -338,35 +338,35 @@ ST_4 : Operation 65 [1/1] (0.00ns)   --->   "%tmp_378_i = call i32 (...)* @_ssdm
 ST_4 : Operation 66 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str17) nounwind" [firmware/nnet_utils/nnet_dense_resource.h:47]   --->   Operation 66 'specpipeline' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 67 [1/1] (0.00ns)   --->   "%zext_ln1116 = zext i8 %select_ln19_7 to i16" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 67 'zext' 'zext_ln1116' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 68 [1/1] (0.00ns)   --->   "%sext_ln1118 = sext i8 %trunc_ln59 to i16" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 68 'sext' 'sext_ln1118' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 69 [1/1] (2.87ns)   --->   "%mul_ln1118 = mul i16 %sext_ln1118, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 69 'mul' 'mul_ln1118' <Predicate = true> <Delay = 2.87> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 69 [1/1] (2.44ns)   --->   "%mul_ln1118 = mul i16 %sext_ln1118, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 69 'mul' 'mul_ln1118' <Predicate = true> <Delay = 2.44> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.44> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 70 [1/1] (0.00ns)   --->   "%trunc_ln = call i11 @_ssdm_op_PartSelect.i11.i16.i32.i32(i16 %mul_ln1118, i32 5, i32 15)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 70 'partselect' 'trunc_ln' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 71 [1/1] (0.00ns)   --->   "%sext_ln703 = sext i11 %trunc_ln to i15" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 71 'sext' 'sext_ln703' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 72 [1/1] (1.31ns)   --->   "%acc_0_V = add i15 %p_Val2_6, %sext_ln703" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 72 'add' 'acc_0_V' <Predicate = true> <Delay = 1.31> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 72 [1/1] (1.40ns)   --->   "%acc_0_V = add i15 %p_Val2_6, %sext_ln703" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 72 'add' 'acc_0_V' <Predicate = true> <Delay = 1.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 73 [1/1] (0.00ns)   --->   "%sext_ln1118_48 = sext i8 %tmp_382_i to i16" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 73 'sext' 'sext_ln1118_48' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 74 [1/1] (2.87ns)   --->   "%mul_ln1118_75 = mul i16 %sext_ln1118_48, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 74 'mul' 'mul_ln1118_75' <Predicate = true> <Delay = 2.87> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 74 [1/1] (2.44ns)   --->   "%mul_ln1118_75 = mul i16 %sext_ln1118_48, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 74 'mul' 'mul_ln1118_75' <Predicate = true> <Delay = 2.44> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.44> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 75 [1/1] (0.00ns)   --->   "%trunc_ln708_s = call i11 @_ssdm_op_PartSelect.i11.i16.i32.i32(i16 %mul_ln1118_75, i32 5, i32 15)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 75 'partselect' 'trunc_ln708_s' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 76 [1/1] (0.00ns)   --->   "%sext_ln703_1 = sext i11 %trunc_ln708_s to i15" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 76 'sext' 'sext_ln703_1' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 77 [1/1] (1.31ns)   --->   "%acc_1_V = add i15 %p_Val2_88, %sext_ln703_1" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 77 'add' 'acc_1_V' <Predicate = true> <Delay = 1.31> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 77 [1/1] (1.40ns)   --->   "%acc_1_V = add i15 %p_Val2_88, %sext_ln703_1" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 77 'add' 'acc_1_V' <Predicate = true> <Delay = 1.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 78 [1/1] (0.00ns)   --->   "%sext_ln1118_49 = sext i8 %tmp_384_i to i16" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 78 'sext' 'sext_ln1118_49' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 79 [1/1] (2.87ns)   --->   "%mul_ln1118_76 = mul i16 %sext_ln1118_49, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 79 'mul' 'mul_ln1118_76' <Predicate = true> <Delay = 2.87> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 79 [1/1] (2.44ns)   --->   "%mul_ln1118_76 = mul i16 %sext_ln1118_49, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 79 'mul' 'mul_ln1118_76' <Predicate = true> <Delay = 2.44> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.44> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 80 [1/1] (0.00ns)   --->   "%trunc_ln708_84 = call i11 @_ssdm_op_PartSelect.i11.i16.i32.i32(i16 %mul_ln1118_76, i32 5, i32 15)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 80 'partselect' 'trunc_ln708_84' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 81 [1/1] (0.00ns)   --->   "%sext_ln703_2 = sext i11 %trunc_ln708_84 to i15" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 81 'sext' 'sext_ln703_2' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 82 [1/1] (1.31ns)   --->   "%acc_2_V = add i15 %p_Val2_910, %sext_ln703_2" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 82 'add' 'acc_2_V' <Predicate = true> <Delay = 1.31> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 82 [1/1] (1.40ns)   --->   "%acc_2_V = add i15 %p_Val2_910, %sext_ln703_2" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 82 'add' 'acc_2_V' <Predicate = true> <Delay = 1.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 83 [1/1] (0.00ns)   --->   "%sext_ln1118_50 = sext i8 %tmp_386_i to i16" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 83 'sext' 'sext_ln1118_50' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 84 [1/1] (2.87ns)   --->   "%mul_ln1118_77 = mul i16 %sext_ln1118_50, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 84 'mul' 'mul_ln1118_77' <Predicate = true> <Delay = 2.87> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 84 [1/1] (2.44ns)   --->   "%mul_ln1118_77 = mul i16 %sext_ln1118_50, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 84 'mul' 'mul_ln1118_77' <Predicate = true> <Delay = 2.44> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.44> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 85 [1/1] (0.00ns)   --->   "%trunc_ln708_85 = call i11 @_ssdm_op_PartSelect.i11.i16.i32.i32(i16 %mul_ln1118_77, i32 5, i32 15)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 85 'partselect' 'trunc_ln708_85' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 86 [1/1] (0.00ns)   --->   "%sext_ln703_3 = sext i11 %trunc_ln708_85 to i15" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 86 'sext' 'sext_ln703_3' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 87 [1/1] (1.31ns)   --->   "%acc_3_V = add i15 %p_Val2_1012, %sext_ln703_3" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 87 'add' 'acc_3_V' <Predicate = true> <Delay = 1.31> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 87 [1/1] (1.40ns)   --->   "%acc_3_V = add i15 %p_Val2_1012, %sext_ln703_3" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 87 'add' 'acc_3_V' <Predicate = true> <Delay = 1.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 88 [1/1] (0.00ns)   --->   "%sext_ln1118_51 = sext i8 %tmp_388_i to i16" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 88 'sext' 'sext_ln1118_51' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 89 [1/1] (2.87ns)   --->   "%mul_ln1118_78 = mul i16 %sext_ln1118_51, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 89 'mul' 'mul_ln1118_78' <Predicate = true> <Delay = 2.87> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 89 [1/1] (2.44ns)   --->   "%mul_ln1118_78 = mul i16 %sext_ln1118_51, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 89 'mul' 'mul_ln1118_78' <Predicate = true> <Delay = 2.44> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.44> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 90 [1/1] (0.00ns)   --->   "%trunc_ln708_86 = call i11 @_ssdm_op_PartSelect.i11.i16.i32.i32(i16 %mul_ln1118_78, i32 5, i32 15)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 90 'partselect' 'trunc_ln708_86' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 91 [1/1] (0.00ns)   --->   "%sext_ln703_4 = sext i11 %trunc_ln708_86 to i15" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 91 'sext' 'sext_ln703_4' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 92 [1/1] (1.31ns)   --->   "%acc_4_V = add i15 %p_Val2_1114, %sext_ln703_4" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 92 'add' 'acc_4_V' <Predicate = true> <Delay = 1.31> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 92 [1/1] (1.40ns)   --->   "%acc_4_V = add i15 %p_Val2_1114, %sext_ln703_4" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 92 'add' 'acc_4_V' <Predicate = true> <Delay = 1.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 93 [1/1] (0.00ns)   --->   "%sext_ln1118_52 = sext i8 %tmp_390_i to i16" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 93 'sext' 'sext_ln1118_52' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 94 [1/1] (2.87ns)   --->   "%mul_ln1118_79 = mul i16 %sext_ln1118_52, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 94 'mul' 'mul_ln1118_79' <Predicate = true> <Delay = 2.87> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 94 [1/1] (2.44ns)   --->   "%mul_ln1118_79 = mul i16 %sext_ln1118_52, %zext_ln1116" [firmware/nnet_utils/nnet_mult.h:73->firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 94 'mul' 'mul_ln1118_79' <Predicate = true> <Delay = 2.44> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 2.44> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 95 [1/1] (0.00ns)   --->   "%trunc_ln708_87 = call i11 @_ssdm_op_PartSelect.i11.i16.i32.i32(i16 %mul_ln1118_79, i32 5, i32 15)" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 95 'partselect' 'trunc_ln708_87' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 96 [1/1] (0.00ns)   --->   "%sext_ln703_5 = sext i11 %trunc_ln708_87 to i15" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 96 'sext' 'sext_ln703_5' <Predicate = true> <Delay = 0.00>
-ST_4 : Operation 97 [1/1] (1.31ns)   --->   "%acc_5_V = add i15 %p_Val2_1216, %sext_ln703_5" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 97 'add' 'acc_5_V' <Predicate = true> <Delay = 1.31> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.01> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 97 [1/1] (1.40ns)   --->   "%acc_5_V = add i15 %p_Val2_1216, %sext_ln703_5" [firmware/nnet_utils/nnet_dense_resource.h:59]   --->   Operation 97 'add' 'acc_5_V' <Predicate = true> <Delay = 1.40> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_4 : Operation 98 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_str52, i32 %tmp_378_i)" [firmware/nnet_utils/nnet_dense_resource.h:76]   --->   Operation 98 'specregionend' 'empty' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 99 [1/1] (0.00ns)   --->   "%empty_235 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 9, i64 9, i64 9)"   --->   Operation 99 'speclooptripcount' 'empty_235' <Predicate = true> <Delay = 0.00>
 ST_4 : Operation 100 [1/1] (0.00ns)   --->   "br i1 %icmp_ln46, label %"dense_resource_rf_leq_nin<ap_ufixed<8, 0, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config2_mult>.0.0.0.0.0.0.0.exit", label %rewind_header" [firmware/nnet_utils/nnet_dense_resource.h:46]   --->   Operation 100 'br' <Predicate = true> <Delay = 0.00>
@@ -3054,14 +3054,14 @@ return_ln32             (return           ) [ 00000]
 |----------|-----------------------------|---------|---------|---------|
 | Operation|       Functional Unit       |  DSP48E |    FF   |   LUT   |
 |----------|-----------------------------|---------|---------|---------|
-|          |      mul_ln1118_fu_506      |    0    |    0    |    41   |
-|          |     mul_ln1118_75_fu_535    |    0    |    0    |    41   |
-|    mul   |     mul_ln1118_76_fu_564    |    0    |    0    |    41   |
-|          |     mul_ln1118_77_fu_593    |    0    |    0    |    41   |
-|          |     mul_ln1118_78_fu_622    |    0    |    0    |    41   |
-|          |     mul_ln1118_79_fu_651    |    0    |    0    |    41   |
+|          |      mul_ln1118_fu_506      |    0    |    0    |    40   |
+|          |     mul_ln1118_75_fu_535    |    0    |    0    |    40   |
+|    mul   |     mul_ln1118_76_fu_564    |    0    |    0    |    40   |
+|          |     mul_ln1118_77_fu_593    |    0    |    0    |    40   |
+|          |     mul_ln1118_78_fu_622    |    0    |    0    |    40   |
+|          |     mul_ln1118_79_fu_651    |    0    |    0    |    40   |
 |----------|-----------------------------|---------|---------|---------|
-|          |        w_index_fu_244       |    0    |    0    |    13   |
+|          |        w_index_fu_244       |    0    |    0    |    12   |
 |          |        acc_0_V_fu_526       |    0    |    0    |    22   |
 |          |        acc_1_V_fu_555       |    0    |    0    |    22   |
 |    add   |        acc_2_V_fu_584       |    0    |    0    |    22   |
@@ -3141,7 +3141,7 @@ return_ln32             (return           ) [ 00000]
 |----------|-----------------------------|---------|---------|---------|
 |  return  |      return_ln32_fu_773     |    0    |    0    |    0    |
 |----------|-----------------------------|---------|---------|---------|
-|   Total  |                             |    0    |    0    |   550   |
+|   Total  |                             |    0    |    0    |   543   |
 |----------|-----------------------------|---------|---------|---------|
 
 Memories:
@@ -3186,7 +3186,7 @@ N/A
 | grp_access_fu_119 |  p0  |   2  |   4  |    8   ||    9    |
 | w_index17_reg_125 |  p0  |   2  |   4  |    8   ||    9    |
 |-------------------|------|------|------|--------||---------||---------|
-|       Total       |      |      |      |   16   ||   1.7   ||    18   |
+|       Total       |      |      |      |   16   ||   1.67  ||    18   |
 |-------------------|------|------|------|--------||---------||---------|
 
 
@@ -3195,10 +3195,10 @@ N/A
 +-----------+--------+--------+--------+--------+
 |           | DSP48E |  Delay |   FF   |   LUT  |
 +-----------+--------+--------+--------+--------+
-|  Function |    0   |    -   |    0   |   550  |
+|  Function |    0   |    -   |    0   |   543  |
 |   Memory  |    -   |    -   |    -   |    -   |
 |Multiplexer|    -   |    1   |    -   |   18   |
 |  Register |    -   |    -   |   250  |    -   |
 +-----------+--------+--------+--------+--------+
-|   Total   |    0   |    1   |   250  |   568  |
+|   Total   |    0   |    1   |   250  |   561  |
 +-----------+--------+--------+--------+--------+

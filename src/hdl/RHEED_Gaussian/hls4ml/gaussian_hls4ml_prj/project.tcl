@@ -3,7 +3,7 @@ set project_name "myproject"
 variable backend
 set backend "vivado"
 variable part
-set part "xc7vx690tffg1761-2"
+set part "xcku035-fbva676-2-e"
 variable clock_period
 set clock_period 5
 variable clock_uncertainty

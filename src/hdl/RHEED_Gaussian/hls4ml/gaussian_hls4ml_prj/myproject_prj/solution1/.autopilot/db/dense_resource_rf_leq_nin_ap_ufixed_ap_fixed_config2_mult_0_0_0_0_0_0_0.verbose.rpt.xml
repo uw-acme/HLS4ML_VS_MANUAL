@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0'" level="0">
-<item name = "Date">Thu Nov 13 23:03:12 2025
+<item name = "Date">Fri Nov 21 19:12:24 2025
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
 <item name = "Solution">solution1</item>
-<item name = "Product family">virtex7</item>
-<item name = "Target device">xc7vx690t-ffg1761-2</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku035-fbva676-2-e</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00, 4.185, 0.62</column>
+<column name="ap_clk">5.00, 3.842, 0.62</column>
 </table>
 </item>
 </section>
@@ -48,13 +48,13 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, 0, 0, 556, -</column>
+<column name="Expression">-, 0, 0, 549, -</column>
 <column name="FIFO">-, -, -, -, -</column>
 <column name="Instance">-, -, -, -, -</column>
 <column name="Memory">2, -, 0, 0, -</column>
 <column name="Multiplexer">-, -, -, 165, -</column>
 <column name="Register">-, -, 208, -, -</column>
-<specialColumn name="Available">2940, 3600, 866400, 433200, 0</specialColumn>
+<specialColumn name="Available">1080, 1700, 406256, 203128, 0</specialColumn>
 <specialColumn name="Utilization (%)">~0, 0, ~0, ~0, 0</specialColumn>
 </table>
 </item>
@@ -79,19 +79,19 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="mul_ln1118_75_fu_535_p2">*, 0, 0, 41, 8, 8</column>
-<column name="mul_ln1118_76_fu_564_p2">*, 0, 0, 41, 8, 8</column>
-<column name="mul_ln1118_77_fu_593_p2">*, 0, 0, 41, 8, 8</column>
-<column name="mul_ln1118_78_fu_622_p2">*, 0, 0, 41, 8, 8</column>
-<column name="mul_ln1118_79_fu_651_p2">*, 0, 0, 41, 8, 8</column>
-<column name="mul_ln1118_fu_506_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_75_fu_535_p2">*, 0, 0, 40, 8, 8</column>
+<column name="mul_ln1118_76_fu_564_p2">*, 0, 0, 40, 8, 8</column>
+<column name="mul_ln1118_77_fu_593_p2">*, 0, 0, 40, 8, 8</column>
+<column name="mul_ln1118_78_fu_622_p2">*, 0, 0, 40, 8, 8</column>
+<column name="mul_ln1118_79_fu_651_p2">*, 0, 0, 40, 8, 8</column>
+<column name="mul_ln1118_fu_506_p2">*, 0, 0, 40, 8, 8</column>
 <column name="acc_0_V_fu_526_p2">+, 0, 0, 22, 15, 15</column>
 <column name="acc_1_V_fu_555_p2">+, 0, 0, 22, 15, 15</column>
 <column name="acc_2_V_fu_584_p2">+, 0, 0, 22, 15, 15</column>
 <column name="acc_3_V_fu_613_p2">+, 0, 0, 22, 15, 15</column>
 <column name="acc_4_V_fu_642_p2">+, 0, 0, 22, 15, 15</column>
 <column name="acc_5_V_fu_671_p2">+, 0, 0, 22, 15, 15</column>
-<column name="w_index_fu_244_p2">+, 0, 0, 13, 1, 4</column>
+<column name="w_index_fu_244_p2">+, 0, 0, 12, 1, 4</column>
 <column name="ap_condition_136">and, 0, 0, 2, 1, 1</column>
 <column name="icmp_ln19_1_fu_298_p2">icmp, 0, 0, 9, 4, 1</column>
 <column name="icmp_ln19_2_fu_304_p2">icmp, 0, 0, 9, 4, 2</column>

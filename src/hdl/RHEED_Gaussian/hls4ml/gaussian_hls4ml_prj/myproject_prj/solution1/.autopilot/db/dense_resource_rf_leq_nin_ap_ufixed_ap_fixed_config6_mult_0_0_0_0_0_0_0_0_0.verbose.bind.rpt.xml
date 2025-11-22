@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0'" level="0">
-<item name = "Date">Thu Nov 13 23:02:57 2025
+<item name = "Date">Fri Nov 21 19:12:01 2025
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
 <item name = "Solution">solution1</item>
-<item name = "Product family">virtex7</item>
-<item name = "Target device">xc7vx690t-ffg1761-2</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku035-fbva676-2-e</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00, 4.082, 0.62</column>
+<column name="ap_clk">5.00, 4.306, 0.62</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">11, 12, 9, 9, loop rewind(delay=0 initiation interval(s))</column>
+<column name="">10, 11, 9, 9, loop rewind(delay=0 initiation interval(s))</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- ReuseLoop">11, 11, 4, 1, 1, 9, yes</column>
+<column name="- ReuseLoop">10, 10, 3, 1, 1, 9, yes</column>
 </table>
 </item>
 </section>

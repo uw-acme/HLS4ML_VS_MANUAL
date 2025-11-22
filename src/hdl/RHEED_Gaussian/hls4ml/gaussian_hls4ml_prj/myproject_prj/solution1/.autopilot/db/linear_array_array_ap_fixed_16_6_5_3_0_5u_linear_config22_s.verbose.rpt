@@ -3,13 +3,13 @@
 ================================================================
 == Vivado HLS Report for 'linear_array_array_ap_fixed_16_6_5_3_0_5u_linear_config22_s'
 ================================================================
-* Date:           Thu Nov 13 23:03:34 2025
+* Date:           Fri Nov 21 19:12:56 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
 * Solution:       solution1
-* Product family: virtex7
-* Target device:  xc7vx690t-ffg1761-2
+* Product family: kintexu
+* Target device:  xcku035-fbva676-2-e
 
 
 ================================================================
@@ -58,7 +58,7 @@
 +-----------------+---------+-------+--------+--------+-----+
 |Total            |        0|      0|     183|     291|    0|
 +-----------------+---------+-------+--------+--------+-----+
-|Available        |     2940|   3600|  866400|  433200|    0|
+|Available        |     1080|   1700|  406256|  203128|    0|
 +-----------------+---------+-------+--------+--------+-----+
 |Utilization (%)  |        0|      0|   ~0   |   ~0   |    0|
 +-----------------+---------+-------+--------+--------+-----+
@@ -259,7 +259,7 @@ IsGatedGlobalClock: 0
 * FSM state operations: 
 
 State 1 <SV = 0> <Delay = 2.18>
-ST_1 : Operation 3 [1/1] (2.18ns)   --->   "%empty = call { i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V)" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 3 'read' 'empty' <Predicate = true> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.39> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
+ST_1 : Operation 3 [1/1] (2.18ns)   --->   "%empty = call { i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V)" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 3 'read' 'empty' <Predicate = true> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
 ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%tmp_data_V_22_0 = extractvalue { i8, i8, i8, i8, i8 } %empty, 0" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 4 'extractvalue' 'tmp_data_V_22_0' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%tmp_data_V_22_1 = extractvalue { i8, i8, i8, i8, i8 } %empty, 1" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 5 'extractvalue' 'tmp_data_V_22_1' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%tmp_data_V_22_2 = extractvalue { i8, i8, i8, i8, i8 } %empty, 2" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 6 'extractvalue' 'tmp_data_V_22_2' <Predicate = true> <Delay = 0.00>
@@ -1364,7 +1364,7 @@ N/A
 | grp_write_fu_132 |  p9  |   2  |  12  |   24   ||    9    |
 | grp_write_fu_132 |  p10 |   2  |  12  |   24   ||    9    |
 |------------------|------|------|------|--------||---------||---------|
-|       Total      |      |      |      |   120  ||   4.25  ||    45   |
+|       Total      |      |      |      |   120  ||  4.175  ||    45   |
 |------------------|------|------|------|--------||---------||---------|
 
 

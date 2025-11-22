@@ -109,9 +109,9 @@ OutputPredictions: null
 OutputShapes:
   layer22_out:
   - 5
-Part: xc7vx690tffg1761-2
+Part: xcku035-fbva676-2-e
 ProjectName: myproject
-Stamp: faef2a9a
+Stamp: b6e6a31c
 Version: 1.0.0
 WriterConfig:
   Namespace: null

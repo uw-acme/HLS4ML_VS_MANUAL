@@ -3,8 +3,8 @@
 # Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 # ==============================================================
 
-Family       : virtex7
-Device       : xc7vx690t
-Package      : -ffg1761
-Speed Grade  : -2
+Family       : kintexu
+Device       : xcku035
+Package      : -fbva676
+Speed Grade  : -2-e
 Clock Period : 5.000 ns

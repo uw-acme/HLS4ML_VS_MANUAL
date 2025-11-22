@@ -16,11 +16,13 @@
         <value string="myproject_prj"/>
     </project>
     <targetInfo>
-        <TargetInfo value="xc7vx690t:-ffg1761:-2"/>
+        <TargetInfo value="xcku035:-fbva676:-2-e"/>
     </targetInfo>
     <libraryList>
         <library value="xilinx/virtex7/virtex7" name="DefaultPlatform"/>
         <library value="xilinx/virtex7/virtex7_fpv6" name="DefaultPlatform"/>
+        <library value="xilinx/kintexu/kintexu" name="DefaultPlatform"/>
+        <library value="xilinx/kintexu/kintexu_fpv7" name="DefaultPlatform"/>
     </libraryList>
     <clockList>
         <clock name="default" default="false" uncertainty="12.5%" period="5"/>

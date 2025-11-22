@@ -6,8 +6,8 @@
 
 <UserAssignments>
 <unit>ns</unit>
-<ProductFamily>virtex7</ProductFamily>
-<Part>xc7vx690t-ffg1761-2</Part>
+<ProductFamily>kintexu</ProductFamily>
+<Part>xcku035-fbva676-2-e</Part>
 <TopModelName>shift_line_buffer_array_ap_ufixed_8_2_5_3_0_6u_config6_s</TopModelName>
 <TargetClockPeriod>5.00</TargetClockPeriod>
 <ClockUncertainty>0.62</ClockUncertainty>
@@ -18,7 +18,7 @@
 <PipelineType>function</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>1.974</EstimatedClockPeriod>
+<EstimatedClockPeriod>1.154</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
@@ -35,16 +35,16 @@
 <AreaEstimates>
 <Resources>
 <BRAM_18K>0</BRAM_18K>
-<FF>769</FF>
-<LUT>384</LUT>
+<FF>1</FF>
+<LUT>48</LUT>
 <DSP48E>0</DSP48E>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
-<BRAM_18K>2940</BRAM_18K>
-<DSP48E>3600</DSP48E>
-<FF>866400</FF>
-<LUT>433200</LUT>
+<BRAM_18K>1080</BRAM_18K>
+<DSP48E>1700</DSP48E>
+<FF>406256</FF>
+<LUT>203128</LUT>
 <URAM>0</URAM>
 </AvailableResources>
 </AreaEstimates>

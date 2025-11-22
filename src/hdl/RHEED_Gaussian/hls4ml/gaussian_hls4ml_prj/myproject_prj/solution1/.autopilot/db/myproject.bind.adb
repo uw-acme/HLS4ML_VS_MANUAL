@@ -17313,8 +17313,8 @@
 			<mDepth>-1</mDepth>
 			<mMinTripCount>-1</mMinTripCount>
 			<mMaxTripCount>-1</mMaxTripCount>
-			<mMinLatency>34576</mMinLatency>
-			<mMaxLatency>34583</mMaxLatency>
+			<mMinLatency>34571</mMinLatency>
+			<mMaxLatency>34577</mMaxLatency>
 			<mIsDfPipe>1</mIsDfPipe>
 			<mDfPipe class_id="23" tracking_level="1" version="0" object_id="_1119">
 				<port_list class_id="24" tracking_level="0" version="0">
@@ -34270,17 +34270,17 @@
 			<second>
 				<count>2</count>
 				<item_version>0</item_version>
-				<item>861</item>
-				<item>861</item>
+				<item>857</item>
+				<item>857</item>
 			</second>
 		</item>
 		<item>
-			<first>4756</first>
+			<first>4817</first>
 			<second>
 				<count>2</count>
 				<item_version>0</item_version>
-				<item>857</item>
-				<item>857</item>
+				<item>861</item>
+				<item>861</item>
 			</second>
 		</item>
 		<item>
@@ -35885,7 +35885,7 @@
 			</second>
 		</item>
 		<item>
-			<first>grp_dense_array_ap_ufixed_15u_array_ap_fixed_8_2_5_3_0_10u_config18_s_fu_4725</first>
+			<first>grp_dense_array_ap_ufixed_15u_array_ap_fixed_8_2_5_3_0_10u_config18_s_fu_4817</first>
 			<second>
 				<count>2</count>
 				<item_version>0</item_version>
@@ -35948,7 +35948,7 @@
 			</second>
 		</item>
 		<item>
-			<first>grp_pooling2d_cl_array_array_ap_ufixed_8_2_5_3_0_10u_config13_s_fu_4756</first>
+			<first>grp_pooling2d_cl_array_array_ap_ufixed_8_2_5_3_0_10u_config13_s_fu_4725</first>
 			<second>
 				<count>2</count>
 				<item_version>0</item_version>

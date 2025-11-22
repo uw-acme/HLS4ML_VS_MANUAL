@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_6u_config2_s'" level="0">
-<item name = "Date">Thu Nov 13 23:03:12 2025
+<item name = "Date">Fri Nov 21 19:12:24 2025
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
 <item name = "Solution">solution1</item>
-<item name = "Product family">virtex7</item>
-<item name = "Target device">xc7vx690t-ffg1761-2</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku035-fbva676-2-e</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00, 4.185, 0.62</column>
+<column name="ap_clk">5.00, 3.842, 0.62</column>
 </table>
 </item>
 </section>
@@ -49,13 +49,13 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, -, 0, 342, -</column>
+<column name="Expression">-, -, 0, 354, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">2, 0, 337, 849, -</column>
+<column name="Instance">2, 0, 209, 746, -</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, -, 117, -</column>
 <column name="Register">-, -, 383, -, -</column>
-<specialColumn name="Available">2940, 3600, 866400, 433200, 0</specialColumn>
+<specialColumn name="Available">1080, 1700, 406256, 203128, 0</specialColumn>
 <specialColumn name="Utilization (%)">~0, 0, ~0, ~0, 0</specialColumn>
 </table>
 </item>
@@ -63,8 +63,8 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
-<column name="grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0_fu_184">dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0, 2, 0, 208, 721, 0</column>
-<column name="call_ret_shift_line_buffer_array_ap_ufixed_8_0_5_3_0_1u_config2_s_fu_208">shift_line_buffer_array_ap_ufixed_8_0_5_3_0_1u_config2_s, 0, 0, 129, 128, 0</column>
+<column name="grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0_fu_184">dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0, 2, 0, 208, 714, 0</column>
+<column name="call_ret_shift_line_buffer_array_ap_ufixed_8_0_5_3_0_1u_config2_s_fu_208">shift_line_buffer_array_ap_ufixed_8_0_5_3_0_1u_config2_s, 0, 0, 1, 32, 0</column>
 </table>
 </item>
 <item name = "DSP48E"><table name="" hasTotal="0">
@@ -92,12 +92,12 @@
 <column name="ap_condition_164">and, 0, 0, 2, 1, 1</column>
 <column name="ap_condition_216">and, 0, 0, 2, 1, 1</column>
 <column name="io_acc_block_signal_op58">and, 0, 0, 2, 1, 1</column>
-<column name="icmp_ln284_4_fu_358_p2">icmp, 0, 0, 18, 32, 2</column>
-<column name="icmp_ln284_5_fu_378_p2">icmp, 0, 0, 18, 31, 1</column>
-<column name="icmp_ln284_6_fu_398_p2">icmp, 0, 0, 18, 31, 1</column>
-<column name="icmp_ln284_fu_348_p2">icmp, 0, 0, 18, 32, 2</column>
-<column name="icmp_ln303_fu_446_p2">icmp, 0, 0, 18, 32, 6</column>
-<column name="icmp_ln307_fu_492_p2">icmp, 0, 0, 18, 32, 6</column>
+<column name="icmp_ln284_4_fu_358_p2">icmp, 0, 0, 20, 32, 2</column>
+<column name="icmp_ln284_5_fu_378_p2">icmp, 0, 0, 20, 31, 1</column>
+<column name="icmp_ln284_6_fu_398_p2">icmp, 0, 0, 20, 31, 1</column>
+<column name="icmp_ln284_fu_348_p2">icmp, 0, 0, 20, 32, 2</column>
+<column name="icmp_ln303_fu_446_p2">icmp, 0, 0, 20, 32, 6</column>
+<column name="icmp_ln307_fu_492_p2">icmp, 0, 0, 20, 32, 6</column>
 <column name="select_ln313_fu_513_p3">select, 0, 0, 32, 1, 2</column>
 <column name="select_ln318_fu_467_p3">select, 0, 0, 32, 1, 2</column>
 </table>

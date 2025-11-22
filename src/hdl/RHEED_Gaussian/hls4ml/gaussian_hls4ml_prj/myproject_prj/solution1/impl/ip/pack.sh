@@ -3,4 +3,4 @@
 # Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 # ==============================================================
 
-/tools/Xilinx/Vivado/2019.1/bin/vivado  -notrace -mode batch -source run_ippack.tcl
+/tools/Disk_Xilinx/Vivado/2019.1/bin/vivado  -notrace -mode batch -source run_ippack.tcl

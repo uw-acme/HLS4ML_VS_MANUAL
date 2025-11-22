@@ -3295,7 +3295,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>43</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3346,7 +3346,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>44</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3397,7 +3397,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>45</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3448,7 +3448,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>46</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3499,7 +3499,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>47</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3550,7 +3550,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>48</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3601,7 +3601,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>49</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3652,7 +3652,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>50</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3703,7 +3703,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>51</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3754,7 +3754,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>52</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3805,7 +3805,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>53</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -3856,7 +3856,7 @@
           <m_isOnCriticalPath>0</m_isOnCriticalPath>
           <m_isLCDNode>0</m_isLCDNode>
           <m_isStartOfPath>0</m_isStartOfPath>
-          <m_delay>0.98</m_delay>
+          <m_delay>0.57</m_delay>
           <m_topoIndex>54</m_topoIndex>
           <m_clusterGroupNumber>-1</m_clusterGroupNumber>
         </item>
@@ -9050,11 +9050,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9085,11 +9085,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9120,11 +9120,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9155,11 +9155,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9190,11 +9190,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9225,11 +9225,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9260,11 +9260,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9295,11 +9295,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9330,11 +9330,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9365,11 +9365,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9400,11 +9400,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>
@@ -9435,11 +9435,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>64</second>
+              <second>0</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>32</second>
+              <second>4</second>
             </item>
           </second>
         </item>

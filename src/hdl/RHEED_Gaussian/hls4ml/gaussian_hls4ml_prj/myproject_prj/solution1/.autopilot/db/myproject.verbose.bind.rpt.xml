@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'myproject'" level="0">
-<item name = "Date">Thu Nov 13 23:03:10 2025
+<item name = "Date">Fri Nov 21 19:12:22 2025
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
 <item name = "Solution">solution1</item>
-<item name = "Product family">virtex7</item>
-<item name = "Target device">xc7vx690t-ffg1761-2</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku035-fbva676-2-e</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -24,20 +24,20 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">34576, 34583, 6914, 34562, dataflow</column>
+<column name="">34571, 34577, 6914, 34562, dataflow</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
-<column name="grp_conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s_fu_4206">conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s, 65, 257, 65, 257, none</column>
-<column name="grp_conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_4366">conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s, 485, 2058, 485, 2058, none</column>
-<column name="grp_pooling2d_cl_array_ap_ufixed_6u_array_ap_ufixed_8_2_5_3_0_6u_config5_s_fu_4490">pooling2d_cl_array_ap_ufixed_6u_array_ap_ufixed_8_2_5_3_0_6u_config5_s, 2122, 2122, 2122, 2122, none</column>
+<column name="grp_conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s_fu_4206">conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s, 49, 225, 49, 225, none</column>
+<column name="grp_conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_4366">conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s, 364, 1695, 364, 1695, none</column>
+<column name="grp_pooling2d_cl_array_ap_ufixed_6u_array_ap_ufixed_8_2_5_3_0_6u_config5_s_fu_4490">pooling2d_cl_array_ap_ufixed_6u_array_ap_ufixed_8_2_5_3_0_6u_config5_s, 2121, 2121, 2121, 2121, none</column>
 <column name="grp_dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_15u_config15_s_fu_4694">dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_15u_config15_s, 13, 14, 13, 14, none</column>
-<column name="grp_dense_array_ap_ufixed_15u_array_ap_fixed_8_2_5_3_0_10u_config18_s_fu_4725">dense_array_ap_ufixed_15u_array_ap_fixed_8_2_5_3_0_10u_config18_s, 18, 19, 18, 19, none</column>
-<column name="grp_pooling2d_cl_array_array_ap_ufixed_8_2_5_3_0_10u_config13_s_fu_4756">pooling2d_cl_array_array_ap_ufixed_8_2_5_3_0_10u_config13_s, 8, 8, 8, 8, none</column>
-<column name="grp_pooling2d_cl_array_ap_ufixed_8u_array_ap_ufixed_8_2_5_3_0_8u_config9_s_fu_4848">pooling2d_cl_array_ap_ufixed_8u_array_ap_ufixed_8_2_5_3_0_8u_config9_s, 85, 85, 85, 85, none</column>
+<column name="grp_pooling2d_cl_array_array_ap_ufixed_8_2_5_3_0_10u_config13_s_fu_4725">pooling2d_cl_array_array_ap_ufixed_8_2_5_3_0_10u_config13_s, 7, 7, 7, 7, none</column>
+<column name="grp_dense_array_ap_ufixed_15u_array_ap_fixed_8_2_5_3_0_10u_config18_s_fu_4817">dense_array_ap_ufixed_15u_array_ap_fixed_8_2_5_3_0_10u_config18_s, 18, 19, 18, 19, none</column>
+<column name="grp_pooling2d_cl_array_ap_ufixed_8u_array_ap_ufixed_8_2_5_3_0_8u_config9_s_fu_4848">pooling2d_cl_array_ap_ufixed_8u_array_ap_ufixed_8_2_5_3_0_8u_config9_s, 84, 84, 84, 84, none</column>
 <column name="grp_conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_8_2_5_3_0_6u_config2_s_fu_4924">conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_8_2_5_3_0_6u_config2_s, 6913, 34561, 6913, 34561, none</column>
 <column name="grp_dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_5u_config21_s_fu_4968">dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_5u_config21_s, 13, 14, 13, 14, none</column>
 <column name="grp_relu_array_ap_fixed_15u_array_ap_ufixed_8_2_5_3_0_15u_relu_config17_s_fu_4989">relu_array_ap_fixed_15u_array_ap_ufixed_8_2_5_3_0_15u_relu_config17_s, 1, 1, 1, 1, function</column>

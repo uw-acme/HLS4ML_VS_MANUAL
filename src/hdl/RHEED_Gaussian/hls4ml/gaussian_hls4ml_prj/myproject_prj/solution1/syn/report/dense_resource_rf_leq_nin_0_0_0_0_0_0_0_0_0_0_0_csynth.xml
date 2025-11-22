@@ -6,8 +6,8 @@
 
 <UserAssignments>
 <unit>ns</unit>
-<ProductFamily>virtex7</ProductFamily>
-<Part>xc7vx690t-ffg1761-2</Part>
+<ProductFamily>kintexu</ProductFamily>
+<Part>xcku035-fbva676-2-e</Part>
 <TopModelName>dense_resource_rf_leq_nin_0_0_0_0_0_0_0_0_0_0_0</TopModelName>
 <TargetClockPeriod>5.00</TargetClockPeriod>
 <ClockUncertainty>0.62</ClockUncertainty>
@@ -17,22 +17,22 @@
 <PipelineType>loop rewind(delay=0 initiation interval(s))</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
-<EstimatedClockPeriod>4.185</EstimatedClockPeriod>
+<EstimatedClockPeriod>4.211</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>11</Best-caseLatency>
-<Average-caseLatency>11</Average-caseLatency>
-<Worst-caseLatency>12</Worst-caseLatency>
+<Best-caseLatency>9</Best-caseLatency>
+<Average-caseLatency>9</Average-caseLatency>
+<Worst-caseLatency>10</Worst-caseLatency>
 <Interval-min>8</Interval-min>
 <Interval-max>8</Interval-max>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
 <ReuseLoop>
 <TripCount>8</TripCount>
-<Latency>11</Latency>
+<Latency>9</Latency>
 <PipelineII>1</PipelineII>
-<PipelineDepth>5</PipelineDepth>
+<PipelineDepth>3</PipelineDepth>
 </ReuseLoop>
 </SummaryOfLoopLatency>
 </PerformanceEstimates>
@@ -41,15 +41,15 @@
 <Resources>
 <BRAM_18K>20</BRAM_18K>
 <DSP48E>0</DSP48E>
-<FF>5008</FF>
-<LUT>12335</LUT>
+<FF>2751</FF>
+<LUT>11886</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>
-<BRAM_18K>2940</BRAM_18K>
-<DSP48E>3600</DSP48E>
-<FF>866400</FF>
-<LUT>433200</LUT>
+<BRAM_18K>1080</BRAM_18K>
+<DSP48E>1700</DSP48E>
+<FF>406256</FF>
+<LUT>203128</LUT>
 <URAM>0</URAM>
 </AvailableResources>
 </AreaEstimates>

@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'linear_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_linear_config7_s'" level="0">
-<item name = "Date">Thu Nov 13 23:03:18 2025
+<item name = "Date">Fri Nov 21 19:12:33 2025
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
 <item name = "Solution">solution1</item>
-<item name = "Product family">virtex7</item>
-<item name = "Target device">xc7vx690t-ffg1761-2</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku035-fbva676-2-e</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -54,7 +54,7 @@
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, -, 207, -</column>
 <column name="Register">-, -, 15, -, -</column>
-<specialColumn name="Available">2940, 3600, 866400, 433200, 0</specialColumn>
+<specialColumn name="Available">1080, 1700, 406256, 203128, 0</specialColumn>
 <specialColumn name="Utilization (%)">0, 0, ~0, ~0, 0</specialColumn>
 </table>
 </item>

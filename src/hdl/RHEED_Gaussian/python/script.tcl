@@ -16,7 +16,7 @@ read_verilog -v [glob -directory $verilog_dir *.v]
 # --- Set top module ---
 # xc7k160tfbg484-3 is free, no license
 # xc7vx690tffg1761-2 is virtex 7, needs license
-synth_design -top myproject -part xc7vx690tffg1761-2
+synth_design -top myproject -part xcku035-fbva676-2-e
 
 # --- Implementation flow ---
 opt_design

@@ -3,13 +3,13 @@
 ================================================================
 == Vivado HLS Report for 'shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s'
 ================================================================
-* Date:           Thu Nov 13 23:03:20 2025
+* Date:           Fri Nov 21 19:12:35 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
 * Solution:       solution1
-* Product family: virtex7
-* Target device:  xc7vx690t-ffg1761-2
+* Product family: kintexu
+* Target device:  xcku035-fbva676-2-e
 
 
 ================================================================
@@ -20,7 +20,7 @@
     +--------+-------+----------+------------+
     |  Clock | Target| Estimated| Uncertainty|
     +--------+-------+----------+------------+
-    |ap_clk  |   5.00|     1.974|        0.62|
+    |ap_clk  |   5.00|     1.154|        0.62|
     +--------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -52,13 +52,13 @@
 |Expression       |        -|      -|       -|       -|    -|
 |FIFO             |        -|      -|       -|       -|    -|
 |Instance         |        -|      -|       -|       -|    -|
-|Memory           |        0|      -|    1024|     512|    -|
+|Memory           |        0|      -|       0|      64|    -|
 |Multiplexer      |        -|      -|       -|       -|    -|
 |Register         |        -|      -|       1|       -|    -|
 +-----------------+---------+-------+--------+--------+-----+
-|Total            |        0|      0|    1025|     512|    0|
+|Total            |        0|      0|       1|      64|    0|
 +-----------------+---------+-------+--------+--------+-----+
-|Available        |     2940|   3600|  866400|  433200|    0|
+|Available        |     1080|   1700|  406256|  203128|    0|
 +-----------------+---------+-------+--------+--------+-----+
 |Utilization (%)  |        0|      0|   ~0   |   ~0   |    0|
 +-----------------+---------+-------+--------+--------+-----+
@@ -71,28 +71,28 @@
     N/A
 
     * Memory: 
-    +-----------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
-    |            Memory           |                                      Module                                      | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
-    +-----------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
-    |line_buffer_Array_V_2_0_0_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_1_0_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_0_1_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_1_1_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_0_2_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_1_2_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_0_3_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_1_3_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_0_4_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_1_4_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_0_5_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_1_5_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_0_6_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_1_6_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_0_7_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    |line_buffer_Array_V_2_1_7_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  64|  32|    0|     4|    8|     1|           32|
-    +-----------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
-    |Total                        |                                                                                  |        0|1024| 512|    0|    64|  128|    16|          512|
-    +-----------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    +-----------------------------+----------------------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |            Memory           |                                      Module                                      | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +-----------------------------+----------------------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |line_buffer_Array_V_2_0_0_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_1_0_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_0_1_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_1_1_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_0_2_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_1_2_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_0_3_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_1_3_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_0_4_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_1_4_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_0_5_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_1_5_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_0_6_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_1_6_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_0_7_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    |line_buffer_Array_V_2_1_7_U  |shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_line_buffer_Array_VQgW  |        0|  0|   4|    0|     4|    8|     1|           32|
+    +-----------------------------+----------------------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total                        |                                                                                  |        0|  0|  64|    0|    64|  128|    16|          512|
+    +-----------------------------+----------------------------------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
 
     * FIFO: 
     N/A

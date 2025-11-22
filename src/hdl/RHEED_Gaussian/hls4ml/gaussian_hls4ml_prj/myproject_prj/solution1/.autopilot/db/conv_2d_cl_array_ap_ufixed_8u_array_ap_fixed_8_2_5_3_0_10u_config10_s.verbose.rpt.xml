@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s'" level="0">
-<item name = "Date">Thu Nov 13 23:03:25 2025
+<item name = "Date">Fri Nov 21 19:12:42 2025
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
 <item name = "Solution">solution1</item>
-<item name = "Product family">virtex7</item>
-<item name = "Target device">xc7vx690t-ffg1761-2</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku035-fbva676-2-e</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00, 4.229, 0.62</column>
+<column name="ap_clk">5.00, 4.211, 0.62</column>
 </table>
 </item>
 </section>
@@ -24,19 +24,19 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">65, 257, 65, 257, none</column>
+<column name="">49, 225, 49, 225, none</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
-<column name="grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s_fu_451">compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s, 1, 13, 1, 13, none</column>
+<column name="grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s_fu_451">compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s, 1, 12, 1, 12, none</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- ReadInputHeight_ReadInputWidth">64, 256, 4 ~ 16, -, -, 16, no</column>
+<column name="- ReadInputHeight_ReadInputWidth">48, 224, 3 ~ 14, -, -, 16, no</column>
 </table>
 </item>
 </section>
@@ -51,19 +51,19 @@
 <column name="DSP">-, -, -, -, -</column>
 <column name="Expression">-, -, 0, 32, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">20, 0, 7255, 13338, -</column>
+<column name="Instance">20, 0, 4055, 12457, -</column>
 <column name="Memory">-, -, -, -, -</column>
-<column name="Multiplexer">-, -, -, 216, -</column>
-<column name="Register">-, -, 81, -, -</column>
-<specialColumn name="Available">2940, 3600, 866400, 433200, 0</specialColumn>
-<specialColumn name="Utilization (%)">~0, 0, ~0, 3, 0</specialColumn>
+<column name="Multiplexer">-, -, -, 210, -</column>
+<column name="Register">-, -, 80, -, -</column>
+<specialColumn name="Available">1080, 1700, 406256, 203128, 0</specialColumn>
+<specialColumn name="Utilization (%)">1, 0, 1, 6, 0</specialColumn>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
-<column name="grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s_fu_451">compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s, 20, 0, 7255, 13338, 0</column>
+<column name="grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s_fu_451">compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s, 20, 0, 4055, 12457, 0</column>
 </table>
 </item>
 <item name = "DSP48E"><table name="" hasTotal="0">
@@ -82,14 +82,14 @@
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
 <column name="add_ln85_fu_627_p2">+, 0, 0, 15, 5, 1</column>
 <column name="ap_block_state2">and, 0, 0, 2, 1, 1</column>
-<column name="io_acc_block_signal_op28">and, 0, 0, 2, 1, 1</column>
+<column name="io_acc_block_signal_op27">and, 0, 0, 2, 1, 1</column>
 <column name="icmp_ln85_fu_621_p2">icmp, 0, 0, 11, 5, 6</column>
 <column name="ap_block_state1">or, 0, 0, 2, 1, 1</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
-<column name="ap_NS_fsm">27, 5, 1, 5</column>
+<column name="ap_NS_fsm">21, 4, 1, 4</column>
 <column name="ap_done">9, 2, 1, 2</column>
 <column name="data_V_data_0_V_blk_n">9, 2, 1, 2</column>
 <column name="data_V_data_1_V_blk_n">9, 2, 1, 2</column>
@@ -115,20 +115,20 @@
 </item>
 <item name = "Register"><table name="" hasTotal="1">
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
-<column name="add_ln85_reg_668">5, 0, 5, 0</column>
-<column name="ap_CS_fsm">4, 0, 4, 0</column>
+<column name="add_ln85_reg_676">5, 0, 5, 0</column>
+<column name="ap_CS_fsm">3, 0, 3, 0</column>
 <column name="ap_done_reg">1, 0, 1, 0</column>
 <column name="grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s_fu_451_ap_start_reg">1, 0, 1, 0</column>
 <column name="indvar_flatten_reg_440">5, 0, 5, 0</column>
 <column name="start_once_reg">1, 0, 1, 0</column>
-<column name="tmp_data_0_V_reg_673">8, 0, 8, 0</column>
-<column name="tmp_data_1_V_reg_678">8, 0, 8, 0</column>
-<column name="tmp_data_2_V_reg_683">8, 0, 8, 0</column>
-<column name="tmp_data_3_V_reg_688">8, 0, 8, 0</column>
-<column name="tmp_data_4_V_reg_693">8, 0, 8, 0</column>
-<column name="tmp_data_5_V_reg_698">8, 0, 8, 0</column>
-<column name="tmp_data_6_V_reg_703">8, 0, 8, 0</column>
-<column name="tmp_data_7_V_reg_708">8, 0, 8, 0</column>
+<column name="tmp_data_0_V_reg_681">8, 0, 8, 0</column>
+<column name="tmp_data_1_V_reg_686">8, 0, 8, 0</column>
+<column name="tmp_data_2_V_reg_691">8, 0, 8, 0</column>
+<column name="tmp_data_3_V_reg_696">8, 0, 8, 0</column>
+<column name="tmp_data_4_V_reg_701">8, 0, 8, 0</column>
+<column name="tmp_data_5_V_reg_706">8, 0, 8, 0</column>
+<column name="tmp_data_6_V_reg_711">8, 0, 8, 0</column>
+<column name="tmp_data_7_V_reg_716">8, 0, 8, 0</column>
 </table>
 </item>
 </section>

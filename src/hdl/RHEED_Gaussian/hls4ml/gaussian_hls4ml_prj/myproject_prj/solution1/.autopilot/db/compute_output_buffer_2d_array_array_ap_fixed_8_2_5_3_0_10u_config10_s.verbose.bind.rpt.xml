@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s'" level="0">
-<item name = "Date">Thu Nov 13 23:03:02 2025
+<item name = "Date">Fri Nov 21 19:12:09 2025
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
 <item name = "Solution">solution1</item>
-<item name = "Product family">virtex7</item>
-<item name = "Target device">xc7vx690t-ffg1761-2</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku035-fbva676-2-e</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00, 4.229, 0.62</column>
+<column name="ap_clk">5.00, 4.211, 0.62</column>
 </table>
 </item>
 </section>
@@ -24,14 +24,14 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="6">, min, max, min, max, Type</keys>
-<column name="">1, 13, 1, 13, none</column>
+<column name="">1, 12, 1, 12, none</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="7">Instance, Module, min, max, min, max, Type</keys>
-<column name="grp_dense_resource_rf_leq_nin_0_0_0_0_0_0_0_0_0_0_0_fu_414">dense_resource_rf_leq_nin_0_0_0_0_0_0_0_0_0_0_0, 11, 12, 8, 8, loop rewind(delay=0 initiation interval(s))</column>
+<column name="grp_dense_resource_rf_leq_nin_0_0_0_0_0_0_0_0_0_0_0_fu_414">dense_resource_rf_leq_nin_0_0_0_0_0_0_0_0_0_0_0, 9, 10, 8, 8, loop rewind(delay=0 initiation interval(s))</column>
 <column name="call_ret_shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s_fu_492">shift_line_buffer_array_ap_ufixed_8_2_5_3_0_8u_config10_s, 0, 0, 1, 1, function</column>
 </table>
 </item>

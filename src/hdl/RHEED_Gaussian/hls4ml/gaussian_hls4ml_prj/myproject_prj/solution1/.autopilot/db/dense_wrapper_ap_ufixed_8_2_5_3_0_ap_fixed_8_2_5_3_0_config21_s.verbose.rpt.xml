@@ -1,13 +1,13 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'dense_wrapper_ap_ufixed_8_2_5_3_0_ap_fixed_8_2_5_3_0_config21_s'" level="0">
-<item name = "Date">Thu Nov 13 23:03:33 2025
+<item name = "Date">Fri Nov 21 19:12:54 2025
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
 <item name = "Solution">solution1</item>
-<item name = "Product family">virtex7</item>
-<item name = "Target device">xc7vx690t-ffg1761-2</item>
+<item name = "Product family">kintexu</item>
+<item name = "Target device">xcku035-fbva676-2-e</item>
 </section>
 
 <section name = "Performance Estimates" level="0">
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">5.00, 4.204, 0.62</column>
+<column name="ap_clk">5.00, 3.859, 0.62</column>
 </table>
 </item>
 </section>
@@ -48,13 +48,13 @@
 <item name = "Summary"><table name="" hasTotal="1">
 <keys size="6">Name, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
 <column name="DSP">-, -, -, -, -</column>
-<column name="Expression">-, 0, 0, 445, -</column>
+<column name="Expression">-, 0, 0, 439, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">-, -, 0, 47, -</column>
+<column name="Instance">-, -, 0, 53, -</column>
 <column name="Memory">2, -, 0, 0, -</column>
 <column name="Multiplexer">-, -, -, 522, -</column>
 <column name="Register">-, -, 421, -, -</column>
-<specialColumn name="Available">2940, 3600, 866400, 433200, 0</specialColumn>
+<specialColumn name="Available">1080, 1700, 406256, 203128, 0</specialColumn>
 <specialColumn name="Utilization (%)">~0, 0, ~0, ~0, 0</specialColumn>
 </table>
 </item>
@@ -62,7 +62,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
-<column name="myproject_mux_104_8_1_1_U858">myproject_mux_104_8_1_1, 0, 0, 0, 47, 0</column>
+<column name="myproject_mux_104_8_1_1_U858">myproject_mux_104_8_1_1, 0, 0, 0, 53, 0</column>
 </table>
 </item>
 <item name = "DSP48E"><table name="" hasTotal="0">
@@ -80,11 +80,11 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="mul_ln1118_1_fu_694_p2">*, 0, 0, 41, 8, 8</column>
-<column name="mul_ln1118_2_fu_743_p2">*, 0, 0, 41, 8, 8</column>
-<column name="mul_ln1118_3_fu_792_p2">*, 0, 0, 41, 8, 8</column>
-<column name="mul_ln1118_4_fu_844_p2">*, 0, 0, 41, 6, 8</column>
-<column name="mul_ln1118_fu_645_p2">*, 0, 0, 41, 8, 8</column>
+<column name="mul_ln1118_1_fu_694_p2">*, 0, 0, 40, 8, 8</column>
+<column name="mul_ln1118_2_fu_743_p2">*, 0, 0, 40, 8, 8</column>
+<column name="mul_ln1118_3_fu_792_p2">*, 0, 0, 40, 8, 8</column>
+<column name="mul_ln1118_4_fu_844_p2">*, 0, 0, 40, 6, 8</column>
+<column name="mul_ln1118_fu_645_p2">*, 0, 0, 40, 8, 8</column>
 <column name="acc_0_V_fu_679_p2">+, 0, 0, 23, 16, 16</column>
 <column name="acc_1_V_fu_728_p2">+, 0, 0, 23, 16, 16</column>
 <column name="acc_2_V_fu_777_p2">+, 0, 0, 23, 16, 16</column>
@@ -95,7 +95,7 @@
 <column name="add_ln703_3_fu_783_p2">+, 0, 0, 19, 12, 12</column>
 <column name="add_ln703_4_fu_832_p2">+, 0, 0, 19, 12, 12</column>
 <column name="add_ln703_5_fu_884_p2">+, 0, 0, 19, 12, 12</column>
-<column name="w_index_fu_557_p2">+, 0, 0, 13, 1, 4</column>
+<column name="w_index_fu_557_p2">+, 0, 0, 12, 1, 4</column>
 <column name="ap_condition_186">and, 0, 0, 2, 1, 1</column>
 <column name="ap_condition_192">and, 0, 0, 2, 1, 1</column>
 <column name="ap_condition_40">and, 0, 0, 2, 1, 1</column>

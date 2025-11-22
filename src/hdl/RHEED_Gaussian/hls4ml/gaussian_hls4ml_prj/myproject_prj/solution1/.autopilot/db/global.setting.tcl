@@ -39,7 +39,7 @@ set ExportMCPathFlag 0
 set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
-set TargetInfo xc7vx690t:-ffg1761:-2
+set TargetInfo xcku035:-fbva676:-2-e
 set SourceFiles {sc {} c ../../firmware/myproject.cpp}
 set SourceFlags {sc {} c -std=c++0x}
 set DirectiveFile /home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/hls4ml/gaussian_hls4ml_prj/myproject_prj/solution1/solution1.directive
@@ -59,5 +59,5 @@ set DefaultPlatform DefaultPlatform
 set multiClockList {}
 set SCPortClockMap {}
 set intNbAccess 0
-set PlatformFiles {{DefaultPlatform {xilinx/virtex7/virtex7 xilinx/virtex7/virtex7_fpv6}}}
+set PlatformFiles {{DefaultPlatform {xilinx/virtex7/virtex7 xilinx/virtex7/virtex7_fpv6 xilinx/kintexu/kintexu xilinx/kintexu/kintexu_fpv7}}}
 set HPFPO 0

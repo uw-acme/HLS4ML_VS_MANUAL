@@ -23,7 +23,6 @@ module conv2DsumNine_parameterized
     genvar row,col;
     generate
         for(row=0; row<filtDimension**2; row++) begin
-
 			// pull out specific wieght needed to multiply the current matrix pixel by and assign it to a designated spot in weightsCheck
             assign weightsCheck[row] = data16_10::convWeights[9*even+row]; 
             shift_add_with_mult #(data16_10::convWeights[(8*row)+even], 3, bitWidth, NFRAC) 
@@ -35,7 +34,7 @@ module conv2DsumNine_parameterized
         end
    endgenerate 
 
-    // then go through and sum up the zeroed matrix every clock cycle
+    // then go through and sum up the current matrix every clock cycle
     adderTree_1D #(NFRAC, bitWidth, filtDimension**2) sumEachMatrix ( .clk(clock), .input_data(temp), .output_data(tempSum));
    // assign tempSum = temp1[0] + temp1[1] + temp1[2] + temp1[3] + temp1[4] + temp1[5] + temp1[6] + temp1[7] + temp1[8];
     
