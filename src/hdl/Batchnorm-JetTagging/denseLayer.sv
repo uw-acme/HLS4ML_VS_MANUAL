@@ -27,7 +27,8 @@ module denseLayer #(
     parameter int OUTPUT_SIZE = 32, // number of fixed point numbers coming out of dense latency layer
     parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: '{default: 17'sd0}}, // WEIGHTS for each input to each output
     parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0}, // BIASes for each output
-    parameter int ADDER_TREE_CYCLES = 4 // Number of cycles for adderTree module
+    parameter int PIPELINING = 2
+    // parameter int ADDER_TREE_CYCLES = $ceil($clog2(INPUT_SIZE)/2)+1 // Number of cycles for adderTree module
 ) (
     input  logic                    clk, 
     input  logic                    reset,
@@ -38,8 +39,12 @@ module denseLayer #(
 );
     // check that the right package is being used
     initial assert($bits(WEIGHTS[0][0]) == WIDTH);
-    
-    
+    // localparam PIPELINING = 2;
+    // localparam ADDER_TREE_DEPTH = $ceil($clog2(INPUT_SIZE)/2); // Number of cycles for adderTree module
+    // localparam ADDER_TREE_CYCLES = $floor(ADDER_TREE_DEPTH/PIPELINING)+1;
+    // localparam ADDER_TREE_DEPTH = $ceil($clog2(INPUT_SIZE)/2); // Number of cycles for adderTree module
+    localparam int ADDER_TREE_CYCLES = $floor($ceil($clog2(INPUT_SIZE)/2)/PIPELINING)+1;
+
     logic signed [WIDTH-1:0]   mult         [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH*2-1:0] mult_temp    [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0]   accumulator  [0:OUTPUT_SIZE-1];
@@ -90,7 +95,8 @@ module denseLayer #(
     // Pipelined adder tree to accumulate the values in mult_out
     adderTree #(.WIDTH      ( WIDTH         ),
                 .INPUT_SIZE ( INPUT_SIZE    ),
-                .OUTPUT_SIZE( OUTPUT_SIZE   )
+                .OUTPUT_SIZE( OUTPUT_SIZE   ),
+                .PIPELINING ( PIPELINING    )
                 ) sum_all (
         .clk,
         .reset,

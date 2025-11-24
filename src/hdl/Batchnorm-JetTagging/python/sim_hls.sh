@@ -20,7 +20,7 @@ if ! compgen -G "$DEST/*.csv" > /dev/null; then
     rm -rf xsim.dir/ waiz_tb_sim.jou waiz_tb_sim.log sim.log
     # Compile all sources with SystemVerilog enabled
     #xvlog --sv ./pkg_sel.svh
-    export PATH=/tools/Xilinx/2025.1/Vivado/bin:$PATH
+    export PATH=/tools/Disk_Xilinx/2025.1/Vivado/bin:$PATH
     # Dense weights
 
     xvlog *.v

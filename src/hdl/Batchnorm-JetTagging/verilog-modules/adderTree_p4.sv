@@ -13,7 +13,7 @@
 //
 // Outputs:
 // - output_data: a single number of size WIDTH
-module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32) (
+module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32, PIPELINING = 1) (
     input  logic                        clk,
     input  logic                        reset,
     input  logic signed [WIDTH-1 : 0]   input_data  [INPUT_SIZE],
@@ -67,29 +67,30 @@ module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32) (
 	generate
 	   for (i = 0; i < POW_OF_4; i++) begin
 	       for (j=4**i; j < 2*(4**i); j++) begin
-                // if (i%2==0) begin
+                if (i%PIPELINING==0) begin
                     always_ff @(posedge clk) begin
                         tree[j] <= tree[4*j]
                                     + tree[(4*j) + 1]
                                     + tree[(4*j) + 2]
                                     + tree[(4*j) + 3];
                     end
-                // end else begin
-                //     always_comb begin
-                //         tree[j] = tree[4*j]
-                //                     + tree[(4*j) + 1]
-                //                     + tree[(4*j) + 2]
-                //                     + tree[(4*j) + 3];
-                //     end
-                // end
+                end else begin
+                    always_comb begin
+                        tree[j] = tree[4*j]
+                                    + tree[(4*j) + 1]
+                                    + tree[(4*j) + 2]
+                                    + tree[(4*j) + 3];
+                    end
+                end
 	       end
 	   end
 	endgenerate
 	
 	// Return the sum from the adder tree root
-	always_ff @(posedge clk) begin
-        output_data <= tree[1];
-    end
+    assign output_data = tree[1];
+	// always_ff @(posedge clk) begin
+    //     output_data <= tree[1];
+    // end
 endmodule
 
 

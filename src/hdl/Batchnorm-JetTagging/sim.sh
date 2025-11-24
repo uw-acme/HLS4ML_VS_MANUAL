@@ -6,7 +6,7 @@ set -e
 rm -rf xsim.dir/ waiz_tb_sim.jou waiz_tb_sim.log sim.log
 # Compile all sources with SystemVerilog enabled
 #xvlog --sv ./pkg_sel.svh
-export PATH=/tools/Xilinx/2025.1/Vivado/bin:$PATH
+export PATH=/tools/Disk_Xilinx/2025.1/Vivado/bin:$PATH
 # Dense weights
 xvlog --sv ./weights/dense_*_weights_biases_pkgs/dense_*_gen.sv
 # xvlog --sv ./weights/dense_1_weights_biases_pkgs/dense_1_*.sv
@@ -25,6 +25,7 @@ xvlog --sv ./verilog-modules/reluActivationLayer.sv
 
 # Softmax layer
 xvlog --sv ./softmaxLayer.sv
+xvlog --sv ./softmaxArgmaxLayer.sv
 
 # Top level + testbench
 xvlog --sv ./waiz_benchmark.sv
