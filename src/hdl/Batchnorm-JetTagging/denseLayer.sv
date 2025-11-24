@@ -27,7 +27,7 @@ module denseLayer #(
     parameter int OUTPUT_SIZE = 32, // number of fixed point numbers coming out of dense latency layer
     parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: '{default: 17'sd0}}, // WEIGHTS for each input to each output
     parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0}, // BIASes for each output
-    parameter int PIPELINING = 2
+    parameter real PIPELINING = 1
     // parameter int ADDER_TREE_CYCLES = $ceil($clog2(INPUT_SIZE)/2)+1 // Number of cycles for adderTree module
 ) (
     input  logic                    clk, 
@@ -43,7 +43,7 @@ module denseLayer #(
     // localparam ADDER_TREE_DEPTH = $ceil($clog2(INPUT_SIZE)/2); // Number of cycles for adderTree module
     // localparam ADDER_TREE_CYCLES = $floor(ADDER_TREE_DEPTH/PIPELINING)+1;
     // localparam ADDER_TREE_DEPTH = $ceil($clog2(INPUT_SIZE)/2); // Number of cycles for adderTree module
-    localparam int ADDER_TREE_CYCLES = $floor($ceil($clog2(INPUT_SIZE)/2)/PIPELINING)+1;
+    localparam int ADDER_TREE_CYCLES = $ceil($ceil($clog2(INPUT_SIZE)/2.0)/(PIPELINING));
 
     logic signed [WIDTH-1:0]   mult         [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH*2-1:0] mult_temp    [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
@@ -123,63 +123,75 @@ module denseLayer #(
     
     state_t state, next_state;
     int cycle_count;
-    
+    logic [ADDER_TREE_CYCLES+2:0] ready_buffer;
+    assign processing = |ready_buffer;
+    assign output_ready = ready_buffer[0];
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
-            state <= IDLE;
-            cycle_count <= 0;
+            ready_buffer<=0;
+            // output_data<='{default: 0};
         end else begin
-            state <= next_state;
-            if (state == PROCESSING) begin
-                cycle_count <= cycle_count + 1;
-            end else begin
-                cycle_count <= 0;
+            ready_buffer<={input_ready, ready_buffer[ADDER_TREE_CYCLES+2:1]};
+            if (ready_buffer[1])
+                output_data<=result;
             end
-        end
     end
+    // always_ff @(posedge clk or posedge reset) begin
+    //     if (reset) begin
+    //         state <= IDLE;
+    //         cycle_count <= 0;
+    //     end else begin
+    //         state <= next_state;
+    //         if (state == PROCESSING) begin
+    //             cycle_count <= cycle_count + 1;
+    //         end else begin
+    //             cycle_count <= 0;
+    //         end
+    //     end
+    // end
     
-    always_comb begin
-        next_state = state;
-        case (state)
-            IDLE: begin
-                if (input_ready) begin
-                    next_state = PROCESSING;
-                end
-            end
-            PROCESSING: begin
-                if (cycle_count >= ADDER_TREE_CYCLES) begin
-                    next_state = DONE;
-                end
-            end
-            DONE: begin
-                next_state = IDLE;
-            end
-        endcase
-    end
+    // always_comb begin
+    //     next_state = state;
+    //     case (state)
+    //         IDLE: begin
+    //             if (input_ready) begin
+    //                 next_state = PROCESSING;
+    //             end
+    //         end
+    //         PROCESSING: begin
+    //             if (cycle_count >= ADDER_TREE_CYCLES) begin
+    //                 next_state = DONE;
+    //             end
+    //         end
+    //         DONE: begin
+    //             next_state = IDLE;
+    //         end
+    //     endcase
+    // end
     
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            output_data <= '{default: 0};
-            output_ready <= 0;
-            processing <= 0;
-        end else begin
-            case (state)
-                IDLE: begin
-                    output_ready <= 0;
-                    processing <= 0;
-                end
-                PROCESSING: begin
-                    // Wait for the computation to complete
-                    processing <= 1;
-                end
-                DONE: begin
-                    output_data <= result;
-                    output_ready <= 1;
-                    processing <= 0;
-                end
-            endcase
-        end
-    end
+    // always_ff @(posedge clk or posedge reset) begin
+    //     if (reset) begin
+    //         output_data <= '{default: 0};
+    //         output_ready <= 0;
+    //         processing <= 0;
+    //     end else begin
+    //         case (state)
+    //             IDLE: begin
+    //                 output_ready <= 0;
+    //                 processing <= 0;
+    //             end
+    //             PROCESSING: begin
+    //                 // Wait for the computation to complete
+    //                 processing <= 1;
+    //             end
+    //             DONE: begin
+    //                 output_data <= result;
+    //                 output_ready <= 1;
+    //                 processing <= 0;
+    //             end
+    //         endcase
+    //     end
+    // end
 endmodule
 
 

@@ -17,7 +17,7 @@
 module adderTree #(parameter WIDTH       = 17,
                              INPUT_SIZE  = 10,
                              OUTPUT_SIZE = 32,
-							 PIPELINING  = 1
+							 int PIPELINING  = 1
                              ) (
     input logic                         clk,
     input logic                         reset,

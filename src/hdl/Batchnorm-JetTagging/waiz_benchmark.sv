@@ -28,6 +28,8 @@ module waiz_benchmark #(
     localparam OUTPUT_SIZE_3 = 32;
     localparam INPUT_SIZE_4 = 32;
 
+    localparam PIPELINING = 4;
+
     // Declare real signals for the outputs to visualize as floating-point numbers
     `ifndef SYNTHESIS 
      real input_data_real [0:INPUT_SIZE-1];
@@ -98,7 +100,8 @@ module waiz_benchmark #(
         .INPUT_SIZE ( INPUT_SIZE  ),
         .OUTPUT_SIZE( OUTPUT_SIZE_1 ),
         .WEIGHTS    ( `DENSE_LAYER_1_PKG::weights ),
-        .BIAS       ( `DENSE_LAYER_1_PKG::bias  )
+        .BIAS       ( `DENSE_LAYER_1_PKG::bias  ),
+        .PIPELINING(PIPELINING)
     ) denselayer1 (
         .clk,
         .reset,
@@ -128,7 +131,8 @@ module waiz_benchmark #(
         .INPUT_SIZE ( INPUT_SIZE_2  ),
         .OUTPUT_SIZE( OUTPUT_SIZE_2 ),
         .WEIGHTS    ( `DENSE_LAYER_2_PKG::weights ),
-        .BIAS       ( `DENSE_LAYER_2_PKG::bias  )
+        .BIAS       ( `DENSE_LAYER_2_PKG::bias  ),
+        .PIPELINING(PIPELINING)
     ) denselayer2 (
         .clk,
         .reset,
@@ -158,7 +162,8 @@ module waiz_benchmark #(
         .INPUT_SIZE ( INPUT_SIZE_3  ),
         .OUTPUT_SIZE( OUTPUT_SIZE_3 ),
         .WEIGHTS    ( `DENSE_LAYER_3_PKG::weights ),
-        .BIAS       ( `DENSE_LAYER_3_PKG::bias  )
+        .BIAS       ( `DENSE_LAYER_3_PKG::bias  ),
+        .PIPELINING(PIPELINING)
     ) denselayer3 (
         .clk,
         .reset,
@@ -188,7 +193,8 @@ module waiz_benchmark #(
         .INPUT_SIZE ( INPUT_SIZE_4  ),
         .OUTPUT_SIZE( OUTPUT_SIZE ),
         .WEIGHTS    ( `DENSE_LAYER_4_PKG::weights ),
-        .BIAS       ( `DENSE_LAYER_4_PKG::bias  )
+        .BIAS       ( `DENSE_LAYER_4_PKG::bias  ),
+        .PIPELINING(PIPELINING)
     ) denselayer4 (
         .clk,
         .reset,

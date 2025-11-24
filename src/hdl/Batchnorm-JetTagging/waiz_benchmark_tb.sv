@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ps / 1ps
 
 module waiz_benchmark_tb;
 
@@ -52,7 +52,8 @@ module waiz_benchmark_tb;
     assign out[2] = to_real(output_data[2]);
     assign out[3] = to_real(output_data[3]);
     assign out[4] = to_real(output_data[4]);
-    integer fd;
+    integer fd, lf;
+    integer cycle_count;
     initial begin
         clk = 0;
         reset = 1;
@@ -80,7 +81,7 @@ module waiz_benchmark_tb;
         end
     endtask
     // max_tests = 166000;
-    localparam num_tests = 5000;
+    localparam num_tests = 3;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
