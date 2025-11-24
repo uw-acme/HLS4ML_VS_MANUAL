@@ -15,9 +15,11 @@ module softmaxLayer # (
     input logic signed [WIDTH-1:0] dataIn [N-1:0],
     input logic clk,
     input logic reset,
-    output logic signed [WIDTH-1:0] dataOut [N-1:0]
+    output logic signed [WIDTH-1:0] dataOut [N-1:0],
+    input logic input_ready,
+    output logic output_ready
 );
-
+    localparam num_cycles = 1;
     // Lookup tables
     logic unsigned [TABLE_WIDTH-1:0] exp_table [2**MEM_WIDTH-1:0];
     logic signed [TABLE_WIDTH-1:0] invert_table [2**MEM_WIDTH-1:0];
@@ -118,7 +120,7 @@ module softmaxLayer # (
             // else if (buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC] < -(2**(TABLE_WIDTH-1)))
             //     dataOut[i] = {1'b1, {(WIDTH-1){1'b0}}};
             // else
-
+            output_ready<=input_ready;
             // cap disabled
             if (NFRAC<2*TABLE_NFRAC) begin
                 dataOut[i] <= buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC];

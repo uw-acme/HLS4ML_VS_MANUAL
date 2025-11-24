@@ -1,9 +1,9 @@
 `timescale 1 ns / 1 ps 
 module hls_tb;
     // Clock and control
-    localparam WIDTH = 13;
+    localparam WIDTH = 31;
     localparam INPUT_SIZE = 16;
-    localparam NFRAC = 8;
+    localparam NFRAC = 20;
     logic ap_clk;
     logic ap_rst;
     logic ap_start;

@@ -16,7 +16,8 @@
 
 module adderTree #(parameter WIDTH       = 17,
                              INPUT_SIZE  = 10,
-                             OUTPUT_SIZE = 32
+                             OUTPUT_SIZE = 32,
+							 PIPELINING  = 1
                              ) (
     input logic                         clk,
     input logic                         reset,
@@ -44,7 +45,8 @@ module adderTree #(parameter WIDTH       = 17,
 	   for (i = 0; i < OUTPUT_SIZE; i++) begin : col_trees
 	       // adder tree sums 4 terms at a time
 	       adderTree_1D_p4 #(.WIDTH        ( WIDTH         ),
-                             .INPUT_SIZE   ( INPUT_SIZE    )
+                             .INPUT_SIZE   ( INPUT_SIZE    ),
+							 .PIPELINING   ( PIPELINING  )
                              ) column_tree (
 	           .clk,
 	           .reset,

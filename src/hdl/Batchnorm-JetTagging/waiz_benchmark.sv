@@ -6,7 +6,7 @@ import `DENSE_LAYER_3_PKG::*;
 import `DENSE_LAYER_4_PKG::*;
 
 module waiz_benchmark #(
-    parameter WIDTH = 30, NFRAC = 24,
+    parameter WIDTH = 16, NFRAC = 10,
     parameter INPUT_SIZE = 16,
     parameter OUTPUT_SIZE = 5
 ) (
@@ -85,8 +85,9 @@ module waiz_benchmark #(
     // assign input_ready_4 = output_ready_3;
 
 
-
-    assign output_ready = output_ready_4;
+    // always_ff @(posedge clk) 
+    //     output_ready<=output_ready_4;
+    assign output_ready = output_ready_5;
 
     localparam use_relu = 1'b1;
 
@@ -198,7 +199,7 @@ module waiz_benchmark #(
     );
 
 
-    softmaxLayer #(
+    softmaxArgmaxLayer #(
         .N          ( OUTPUT_SIZE ),
         .WIDTH      ( WIDTH         ),
         .NFRAC      ( NFRAC         )
@@ -206,16 +207,17 @@ module waiz_benchmark #(
         .dataIn(dense4_output_data),
         .clk(clk),
         .reset(reset),
-        .dataOut(softmax_output_data)
+        .dataOut(softmax_output_data),
+        .input_ready(input_ready_5),
+        .output_ready(output_ready_5)
     );
-    logic use_softmax;
-    assign use_softmax = 1'b1;
-
+    localparam use_softmax = 1;
+    // assign use_softmax = 1'b1;
     always_comb begin
         if (use_softmax) begin
             output_data = softmax_output_data;
         end else begin
-            output_data = output_ready_4 ? dense4_output_data : '{default: 0};
+            output_data =  dense4_output_data; // : '{default: 0};
         end
     end
      //assign output_data = output_ready_4 ? dense4_output_data : '{default: 0};
