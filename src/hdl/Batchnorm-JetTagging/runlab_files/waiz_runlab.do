@@ -8,7 +8,7 @@ vlib work
 
 # Dense weights
 vlog "./pkg_sel.svh"
-vlog "./weights/dense_*_weights_biases_pkgs/dense_1_gen.sv"
+vlog "./weights/dense_*_weights_biases_pkgs/dense_*_gen.sv"
 # vlog "./weights/dense_1_weights_biases_pkgs/dense_1_*.sv"
 # vlog "./weights/dense_2_weights_biases_pkgs/dense_2_*.sv"
 # vlog "./weights/dense_3_weights_biases_pkgs/dense_3_*.sv"
@@ -29,7 +29,8 @@ vlog "./verilog-modules/reluActivationLayer.sv"
 
 
 # softmaxLayer
-vlog "./softmaxLayer.sv"
+#vlog "./softmaxLayer.sv"
+vlog "./softmaxArgmaxLayer.sv"
 
 
 # Top level module and testbench
@@ -47,7 +48,7 @@ vsim -voptargs="+acc" -t 1ps -lib work waiz_benchmark_tb
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do "./wave_files/waiz_wave.do"
+do "./wave_files/handwave.do"
 
 # Set the window types
 view wave
