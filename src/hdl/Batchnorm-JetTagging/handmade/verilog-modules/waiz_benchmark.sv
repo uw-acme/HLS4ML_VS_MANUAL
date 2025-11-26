@@ -16,9 +16,6 @@ module waiz_benchmark #(
     output logic output_ready,
     input logic signed [WIDTH-1:0] input_data [16-1:0],
     output logic signed [WIDTH-1:0] output_data [5-1:0]
-    // input logic signed [10-1:0] input_data [0:16-1],
-    // output logic signed [5-1:0] output_data [0:5-1]
-    // output real softmax_output_real [0:4]
 );
     
     localparam OUTPUT_SIZE_1 = 64;
@@ -28,7 +25,7 @@ module waiz_benchmark #(
     localparam OUTPUT_SIZE_3 = 32;
     localparam INPUT_SIZE_4 = 32;
 
-    localparam PIPELINING = 4;
+    localparam PIPELINING = 3;
 
     // Declare real signals for the outputs to visualize as floating-point numbers
     `ifndef SYNTHESIS 
@@ -67,48 +64,27 @@ module waiz_benchmark #(
         input_ready_4 = output_ready_3;
         input_ready_5 = output_ready_4;
     end
-    // always_ff @(posedge clk) begin
-    //     if (reset) begin
-    //         input_ready_2 <= 0;
-    //         input_ready_3 <= 0;
-    //         input_ready_4 <= 0;
-    //         input_ready_5 <= 0;
-    //     end else begin
-    //         input_ready_2 <= output_ready_1;
-    //         input_ready_3 <= output_ready_2;
-    //         input_ready_4 <= output_ready_3;
-    //         input_ready_5 <= output_ready_4;
-    //     end
-    // end
 
-
-    // assign input_ready_2 = output_ready_1;
-    // assign input_ready_3 = output_ready_2;
-    // assign input_ready_4 = output_ready_3;
-
-
-    // always_ff @(posedge clk) 
-    //     output_ready<=output_ready_4;
     assign output_ready = output_ready_5;
 
     localparam use_relu = 1'b1;
 
     // Dense Layer 1
     denseLayer #(
-        .WIDTH      ( WIDTH         ),
-        .NFRAC      ( NFRAC         ),
-        .INPUT_SIZE ( INPUT_SIZE  ),
-        .OUTPUT_SIZE( OUTPUT_SIZE_1 ),
-        .WEIGHTS    ( `DENSE_LAYER_1_PKG::weights ),
-        .BIAS       ( `DENSE_LAYER_1_PKG::bias  ),
-        .PIPELINING(PIPELINING)
+        .WIDTH       ( WIDTH         ),
+        .NFRAC       ( NFRAC         ),
+        .INPUT_SIZE  ( INPUT_SIZE    ),
+        .OUTPUT_SIZE ( OUTPUT_SIZE_1 ),
+        .WEIGHTS     ( `DENSE_LAYER_1_PKG::weights ),
+        .BIAS        ( `DENSE_LAYER_1_PKG::bias    ),
+        .PIPELINING  (PIPELINING                   )
     ) denselayer1 (
         .clk,
         .reset,
-        .input_ready(input_ready_1),
-        .output_ready(output_ready_1),
-        .input_data ( input_data ),
-        .output_data( dense1_output_data)
+        .input_ready  (  input_ready_1),
+        .output_ready ( output_ready_1),
+        .input_data   (  input_data ),
+        .output_data  (  dense1_output_data)
     );
 
     logic signed [WIDTH-1:0] relu1_output [OUTPUT_SIZE_1-1:0];
@@ -218,7 +194,6 @@ module waiz_benchmark #(
         .output_ready(output_ready_5)
     );
     localparam use_softmax = 1;
-    // assign use_softmax = 1'b1;
     always_comb begin
         if (use_softmax) begin
             output_data = softmax_output_data;
@@ -227,8 +202,6 @@ module waiz_benchmark #(
         end
     end
      //assign output_data = output_ready_4 ? dense4_output_data : '{default: 0};
-     
-     
      
     // Real section for visualizing numbers
     `ifndef SYNTHESIS

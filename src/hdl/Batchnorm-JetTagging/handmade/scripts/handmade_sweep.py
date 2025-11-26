@@ -252,20 +252,20 @@ def adjust(bits):
     SA_INT, SA_FRAC = bits_to_params(bits)
     os.system(f'sed -i -E "s/SA_FRAC {patt}/SA_FRAC {SA_FRAC}/g; s/SA_DEPTH {patt}/SA_DEPTH {SA_INT}/g;" ../verilog-modules/pkg_sel.svh')
     return SA_INT, SA_FRAC
-name = f"Argmax_varpipes"
-#os.environ['PATH'] = r"/tools/Xilinx/2025.1/Vivado/bin:" + os.environ['PATH']
-#os.environ['FLEXLM_DIAGNOSTICS']="3"
-# accuracy_test((16,6), y_test)
-# adjust(16)
-# handmade_gen((16,6), name)
-patt = r"[0-9]{1,2}"
-for pipeline in [1,2,3]:
-    os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
-    for i in range(2,14):
-        acc = (3*i-2,i)
-        # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
-        # SA_INT, SA_FRAC = adjust(acc_in[0])
-        adjust(acc[0])
-        # # print((3*i-2,i))
-        handmade_gen(acc, name)
-        # accuracy_test(acc, y_test)
+# name = f"Argmax_varpipes"
+# #os.environ['PATH'] = r"/tools/Xilinx/2025.1/Vivado/bin:" + os.environ['PATH']
+# #os.environ['FLEXLM_DIAGNOSTICS']="3"
+# # accuracy_test((16,6), y_test)
+# # adjust(16)
+# # handmade_gen((16,6), name)
+# patt = r"[0-9]{1,2}"
+# for pipeline in [1,2,3]:
+#     os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
+#     for i in range(2,14):
+#         acc = (3*i-2,i)
+#         # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
+#         # SA_INT, SA_FRAC = adjust(acc_in[0])
+#         adjust(acc[0])
+#         # # print((3*i-2,i))
+#         handmade_gen(acc, name)
+#         # accuracy_test(acc, y_test)
