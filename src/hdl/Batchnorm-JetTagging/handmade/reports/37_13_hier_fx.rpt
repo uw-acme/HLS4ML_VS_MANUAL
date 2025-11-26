@@ -1,0 +1,37 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date         : Fri Oct 24 03:02:07 2025
+| Host         : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 1 -file reports/37_13_hier_fx.rpt
+| Design       : waiz_benchmark
+| Device       : xcvu13pfhga2104-3
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++--------------------+---------------------------------------+------------+------------+---------+------+--------+--------+--------+------+--------------+
+|      Instance      |                 Module                | Total LUTs | Logic LUTs | LUTRAMs | SRLs |   FFs  | RAMB36 | RAMB18 | URAM | DSP48 Blocks |
++--------------------+---------------------------------------+------------+------------+---------+------+--------+--------+--------+------+--------------+
+| waiz_benchmark     |                                 (top) |     303458 |     303458 |       0 |    0 | 141011 |      0 |      0 |    0 |         8085 |
+|   (waiz_benchmark) |                                 (top) |        113 |        113 |       0 |    0 |      0 |      0 |      0 |    0 |            0 |
+|   denselayer1      |                            denseLayer |      86286 |      86286 |       0 |    0 |  37401 |      0 |      0 |    0 |         1966 |
+|   denselayer2      |            denseLayer__parameterized0 |     130627 |     130627 |       0 |    0 |  61241 |      0 |      0 |    0 |         3834 |
+|   denselayer3      |            denseLayer__parameterized1 |      71460 |      71460 |       0 |    0 |  35492 |      0 |      0 |    0 |         1964 |
+|   denselayer4      |            denseLayer__parameterized2 |      11604 |      11604 |       0 |    0 |   5526 |      0 |      0 |    0 |          316 |
+|   relulayer1       |                   reluActivationLayer |       1980 |       1980 |       0 |    0 |    327 |      0 |      0 |    0 |            0 |
+|   relulayer2       |   reluActivationLayer__parameterized0 |        863 |        863 |       0 |    0 |    956 |      0 |      0 |    0 |            0 |
+|   relulayer3       | reluActivationLayer__parameterized0_0 |        650 |        650 |       0 |    0 |      0 |      0 |      0 |    0 |            0 |
+|   softmax          |                          softmaxLayer |        989 |        989 |       0 |    0 |     68 |      0 |      0 |    0 |            5 |
++--------------------+---------------------------------------+------------+------------+---------+------+--------+--------+--------+------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
