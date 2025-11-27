@@ -7,7 +7,7 @@ vlib work
 
 
 # Dense weights
-vlog "./pkg_sel.svh"
+vlog "./verilog-modules/pkg_sel.svh"
 vlog "./weights/dense_*_weights_biases_pkgs/dense_*_gen.sv"
 # vlog "./weights/dense_1_weights_biases_pkgs/dense_1_*.sv"
 # vlog "./weights/dense_2_weights_biases_pkgs/dense_2_*.sv"
@@ -19,8 +19,8 @@ vlog "./weights/dense_*_weights_biases_pkgs/dense_*_gen.sv"
 
 vlog "./verilog-modules/adderTree_p4.sv"
 vlog "./verilog-modules/adderTree.sv"
-vlog "./shift_add.sv"
-vlog "./denseLayer.sv"
+vlog "./verilog-modules/shift_add.sv"
+vlog "./verilog-modules/denseLayer.sv"
 
 
 # ReLU layer
@@ -29,14 +29,15 @@ vlog "./verilog-modules/reluActivationLayer.sv"
 
 
 # softmaxLayer
-#vlog "./softmaxLayer.sv"
-vlog "./softmaxArgmaxLayer.sv"
+#vlog "./verilog-modules/softmaxLayer.sv"
+vlog "./verilog-modules/softmaxArgmaxLayer.sv"
 
 
 # Top level module and testbench
 
-vlog "./waiz_benchmark.sv"
-vlog "./waiz_benchmark_tb.sv"
+vlog "./verilog-modules/waiz_benchmark.sv"
+#vlog "./verilog-modules/waiz_benchmark_tb.sv"
+vlog "./verilog-modules/waiz_benchmark_put_tb.sv"
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the

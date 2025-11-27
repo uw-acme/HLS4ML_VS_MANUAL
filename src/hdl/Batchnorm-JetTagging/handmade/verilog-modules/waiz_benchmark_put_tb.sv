@@ -3,8 +3,8 @@
 module waiz_benchmark_tb;
 
     // Parameters
-    localparam WIDTH = 37;
-    localparam NFRAC = 24;
+    localparam WIDTH = 16;
+    localparam NFRAC = 10;
     localparam INPUT_SIZE = 16;
     localparam OUTPUT_SIZE = 5;
 
@@ -15,7 +15,7 @@ module waiz_benchmark_tb;
     logic output_ready;
 
     function real to_real(input logic signed [WIDTH-1:0] fixed_point_value);
-        real result;
+        int result;
         result = fixed_point_value / (2.0 ** (NFRAC));  // Scale by the fractional part
         return result;
     endfunction
@@ -23,7 +23,7 @@ module waiz_benchmark_tb;
     // Input and output signals
     logic signed [WIDTH-1:0] input_data [0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1];
-    real out [OUTPUT_SIZE];
+    int out [OUTPUT_SIZE];
     real iteration_count;
 
     real softmax_output_real [0:4];
@@ -64,24 +64,20 @@ module waiz_benchmark_tb;
     task run_test;
         input signed [WIDTH-1:0] input_d [0:INPUT_SIZE-1];
         input_data = input_d;
-        // iteration_count = 0;
-        // Signal input is ready
         input_ready = 1;
         @(posedge clk);
-        input_ready = 0;
-
-        // Wait for output_ready signal
-        wait (output_ready == 1);
-        repeat (4) @(posedge clk);
-        if (write_file) begin
-            for (int i = 0; i < OUTPUT_SIZE-1; i++) begin
-                $fwrite(fd, "%.15f,",  out[i]>=0 ? out[i] : 1);
-            end
-            $fwrite(fd, "%.15f\n", out[OUTPUT_SIZE-1]>=0 ? out[OUTPUT_SIZE-1] : 1);
-        end
     endtask
+    always_ff @(posedge clk) begin
+
+        if (write_file&&output_ready) begin
+            for (int i = 0; i < OUTPUT_SIZE-1; i++) begin
+                $fwrite(fd, "%0d,",  out[i]);
+            end
+            $fwrite(fd, "%0d\n", out[OUTPUT_SIZE-1]);
+        end
+    end
     // max_tests = 166000;
-    localparam num_tests = 3;
+    localparam num_tests = 10;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
@@ -108,57 +104,14 @@ module waiz_benchmark_tb;
         for (int i=0; i<num_tests; i++) begin
             run_test(x_test[i]);
         end
+        input_ready=0;
+        @(negedge output_ready);
+        @(posedge clk);
+        @(posedge clk);
         if (write_file) begin
             $fclose(fd);
         end
         $stop;
-        // // Initialize
-        // clk = 0;
-        // reset = 1;
-        // input_ready = 0;
-        // // iteration_count = 0;
-
-        // // Wait for a few clock cycles with reset asserted
-        // repeat (2) @(posedge clk);
-
-        // reset = 0;
-        // iteration_count = 0;
-
-        // input_data = '{ -16'd304, 16'd378, 16'd253, -16'd8, 16'd123, 16'd14, -16'd399, -16'd144, -16'd399, -16'd629, -16'd664, -16'd537, -16'd586, -16'd376, 16'd284, 16'd430 };
-
-        // // Signal input is ready
-        // @(posedge clk);
-        // input_ready = 1;
-
-        // @(posedge clk);
-        // input_ready = 0;
-
-        // // Wait for output_ready signal
-        // wait (output_ready == 1);
-
-        // repeat (10) @(posedge clk);
-        // #50;
-        // // Display the output
-        // $display("Output data:");
-        // for (int i = 0; i < OUTPUT_SIZE; i++) begin
-        //     $display("output_data[%0d] = %0d", i, output_data[i]);
-        // end
-
-        // // Display the softmax output on one line
-        // $display("Softmax output:");
-        // for (int i = 0; i < OUTPUT_SIZE; i++) begin
-        //     $write("%0f ", output_data[i]/($pow(2,NFRAC)));
-        // end
-        // $display(""); // New line after softmax output
-        // for (int i = 0; i < OUTPUT_SIZE-1; i++) begin
-        //     $fwrite(fd, "%0f,",  output_data[i]/($pow(2,NFRAC)));
-        // end
-        // $fwrite(fd, "%0f\n", output_data[OUTPUT_SIZE-1]/($pow(2,NFRAC)));
-        // $fclose(fd);
-        // // Optionally add delay and finish
-        // #50;
-        // $stop;
-        // $stop;
     end
     
 endmodule

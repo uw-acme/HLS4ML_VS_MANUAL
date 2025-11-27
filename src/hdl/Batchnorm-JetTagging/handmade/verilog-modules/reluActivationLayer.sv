@@ -15,21 +15,21 @@ module reluActivationLayer #(parameter
     logic signed [WIDTH-1:0] out_buffer [SIZE-1:0];
 
     // Activation fuction
-    integer j;
-    
-//    for (j = 0; j<SIZE; j++) begin
-//        assign out_buffer[j] = ((input_data[j][WIDTH-1]==1'b1) ? 0 : input_data[j]);
-//    end
-    
-    always_comb begin
-        for (j = 0; j < SIZE; j++) begin
-            if (input_data[j][WIDTH-1]) begin
-                out_buffer[j] = 0;
-            end else begin
-                out_buffer[j] = input_data[j];
-            end
+    genvar j;
+    generate
+        for (j = 0; j<SIZE; j++) begin : buffer
+            assign out_buffer[j] = ((input_data[j][WIDTH-1]==1'b1) ? 0 : input_data[j]);
         end
-    end
+    endgenerate
+    // always_comb begin
+    //     for (j = 0; j < SIZE; j++) begin
+    //         if (input_data[j][WIDTH-1]) begin
+    //             out_buffer[j] = 0;
+    //         end else begin
+    //             out_buffer[j] = input_data[j];
+    //         end
+    //     end
+    // end
     
     assign output_data=out_buffer;
     // Send output through register

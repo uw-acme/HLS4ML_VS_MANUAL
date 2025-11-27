@@ -61,7 +61,7 @@ module adderTree #(parameter WIDTH       = 17,
 //	end
     
     // No need to add a pipeline stage since it hits a register
-    // at the end of the addder tree
+    // at the end of the adder tree
     assign output_data = temp_output_data;
     
 endmodule
@@ -72,7 +72,7 @@ endmodule
 // =====================
 // ***NO LONGER USED***
 // =====================
-// Replaced with adder tree that sums 4 values per pipline stage
+// Replaced with adder tree that sums 4 values per pipeline stage
 // 
 // This module is an adder tree. The module takes in an input 1D array,
 // loads the data into a tree and fills any excess nodes with zeros,
