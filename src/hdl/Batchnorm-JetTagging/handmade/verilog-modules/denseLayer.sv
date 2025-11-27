@@ -5,7 +5,7 @@
 // with weight matrix. Then the result of the matrix multiplication
 // is added with a matrix of BIASes.
 // NOTE: IDENTICAL to reluDenseLatencyLayer except that different packages
-// are specificed by macro header file
+// are specified by macro header file
 //
 // Inputs:
 // - clk
@@ -28,7 +28,7 @@ module denseLayer #(
     parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: '{default: 17'sd0}}, // WEIGHTS for each input to each output
     parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0}, // BIASes for each output
     parameter real PIPELINING = 1,
-    parameter pipe_out = 0
+    parameter PIPE_OUT = 1
     // parameter int ADDER_TREE_CYCLES = $ceil($clog2(INPUT_SIZE)/2)+1 // Number of cycles for adderTree module
 ) (
     input  logic                    clk, 
@@ -121,14 +121,14 @@ module denseLayer #(
     
     state_t state, next_state;
     int cycle_count;
-    localparam ready_buffer_top = ADDER_TREE_CYCLES+pipe_out;
+    localparam ready_buffer_top = ADDER_TREE_CYCLES+PIPE_OUT;
     logic [ready_buffer_top:0] ready_buffer;
     assign processing = |ready_buffer;
     assign output_ready = ready_buffer[0];
-    if (!pipe_out) begin
+    if (!PIPE_OUT) begin
         assign output_data = result;
     end
-    if (pipe_out)
+    if (PIPE_OUT)
         always_ff @(posedge clk)
             if (ready_buffer[1])
                 output_data<=result;

@@ -4,7 +4,7 @@
 // This module is an adder tree. The module takes in an input 1D array,
 // loads the data into a tree and fills any excess nodes with zeros,
 // and sum the data in a pipelined manner.
-// Adds 4 values per pipline stage
+// Adds 4 values per pipeline stage
 //
 // Inputs:
 // - clk
