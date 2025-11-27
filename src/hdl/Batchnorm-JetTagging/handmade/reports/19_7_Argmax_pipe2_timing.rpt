@@ -1,0 +1,386 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date              : Tue Nov 25 17:37:21 2025
+| Host              : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command           : report_timing_summary -file ../reports/19_7_Argmax_pipe2_timing.rpt
+| Design            : waiz_benchmark
+| Device            : xcvu13p-fhga2104
+| Speed File        : -3  PRODUCTION 1.23 03-18-2019
+| Temperature Grade : E
+------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock
+2. checking constant_clock
+3. checking pulse_width_clock
+4. checking unconstrained_internal_endpoints
+5. checking no_input_delay
+6. checking no_output_delay
+7. checking multiple_clock
+8. checking generated_clocks
+9. checking loops
+10. checking partial_input_delay
+11. checking partial_output_delay
+12. checking latch_loops
+
+1. checking no_clock
+--------------------
+ There are 0 register/latch pins with no clock.
+
+
+2. checking constant_clock
+--------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock
+-----------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints
+--------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay
+--------------------------
+ There are 306 input ports with no input delay specified. (HIGH)
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay
+---------------------------
+ There are 6 ports with no output delay specified. (HIGH)
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock
+--------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks
+----------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops
+-----------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay
+--------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay
+---------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops
+------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+      0.098        0.000                      0               123212        0.015        0.000                      0               123212        2.032        0.000                       0                 61205  
+
+
+All user specified timing constraints are met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock   Waveform(ns)         Period(ns)      Frequency(MHz)
+-----   ------------         ----------      --------------
+ap_clk  {0.000 2.500}        5.000           200.000         
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+ap_clk              0.098        0.000                      0               123212        0.015        0.000                      0               123212        2.032        0.000                       0                 61205  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  ap_clk
+  To Clock:  ap_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        0.098ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.015ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        2.032ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.098ns  (required time - arrival time)
+  Source:                 denselayer2/sum_all/col_trees[24].column_tree/genblk2[2].genblk1[24].tree_reg[24][2]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            5.000ns  (ap_clk rise@5.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        4.808ns  (logic 1.105ns (22.983%)  route 3.703ns (77.017%))
+  Logic Levels:           12  (CARRY8=5 LUT3=3 LUT4=2 LUT5=1 LUT6=1)
+  Clock Path Skew:        -0.082ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.578ns = ( 7.578 - 5.000 ) 
+    Source Clock Delay      (SCD):    3.002ns
+    Clock Pessimism Removal (CPR):    0.342ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Clock Net Delay (Source):      2.126ns (routing 1.055ns, distribution 1.071ns)
+  Clock Net Delay (Destination): 1.945ns (routing 0.956ns, distribution 0.989ns)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+    AP13                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk_IBUF_inst/I
+    AP13                 INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.534     0.534 r  clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.534    clk_IBUF_inst/OUT
+    AP13                 IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     0.534 r  clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.314     0.848    clk_IBUF
+    BUFGCE_X0Y170        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.028     0.876 r  clk_IBUF_BUFG_inst/O
+    X3Y5 (CLOCK_ROOT)    net (fo=66989, routed)       2.126     3.002    denselayer2/sum_all/col_trees[24].column_tree/clk_IBUF_BUFG
+    SLICE_X55Y392        FDRE                                         r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[2].genblk1[24].tree_reg[24][2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y392        FDRE (Prop_CFF_SLICEL_C_Q)
+                                                      0.070     3.072 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[2].genblk1[24].tree_reg[24][2]/Q
+                         net (fo=2, routed)           0.433     3.505    denselayer2/sum_all/col_trees[24].column_tree/genblk2[2].genblk1[24].tree_reg[24]_458[2]
+    SLICE_X80Y392        LUT3 (Prop_C5LUT_SLICEL_I0_O)
+                                                      0.088     3.593 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_161__81/O
+                         net (fo=2, routed)           0.196     3.789    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_161__81_n_0
+    SLICE_X80Y392        LUT4 (Prop_D6LUT_SLICEL_I3_O)
+                                                      0.133     3.922 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_168__23/O
+                         net (fo=1, routed)           0.012     3.934    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_168__23_n_0
+    SLICE_X80Y392        CARRY8 (Prop_CARRY8_SLICEL_S[3]_CO[7])
+                                                      0.137     4.071 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]_i_107__23/CO[7]
+                         net (fo=1, routed)           0.023     4.094    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]_i_107__23_n_0
+    SLICE_X80Y393        CARRY8 (Prop_CARRY8_SLICEL_CI_O[5])
+                                                      0.103     4.197 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]_i_105__23/O[5]
+                         net (fo=2, routed)           0.439     4.636    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]_i_105__23_n_10
+    SLICE_X80Y371        LUT3 (Prop_F5LUT_SLICEL_I1_O)
+                                                      0.070     4.706 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_58__24/O
+                         net (fo=2, routed)           0.259     4.965    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_58__24_n_0
+    SLICE_X80Y371        LUT4 (Prop_G6LUT_SLICEL_I3_O)
+                                                      0.114     5.079 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_66__83/O
+                         net (fo=1, routed)           0.012     5.091    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_66__83_n_0
+    SLICE_X80Y371        CARRY8 (Prop_CARRY8_SLICEL_S[6]_CO[7])
+                                                      0.099     5.190 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]_i_11__23/CO[7]
+                         net (fo=1, routed)           0.023     5.213    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]_i_11__23_n_0
+    SLICE_X80Y372        CARRY8 (Prop_CARRY8_SLICEL_CI_O[0])
+                                                      0.050     5.263 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]_i_16__23/O[0]
+                         net (fo=3, routed)           1.914     7.177    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]_i_16__23_n_15
+    SLICE_X148Y327       LUT3 (Prop_D5LUT_SLICEL_I1_O)
+                                                      0.061     7.238 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_8__87/O
+                         net (fo=2, routed)           0.200     7.438    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_8__87_n_0
+    SLICE_X148Y327       LUT5 (Prop_C6LUT_SLICEL_I1_O)
+                                                      0.047     7.485 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_2__87/O
+                         net (fo=2, routed)           0.155     7.640    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_2__87_n_0
+    SLICE_X148Y330       LUT6 (Prop_B6LUT_SLICEL_I0_O)
+                                                      0.031     7.671 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_5__23/O
+                         net (fo=1, routed)           0.012     7.683    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree[1][18]_i_5__23_n_0
+    SLICE_X148Y330       CARRY8 (Prop_CARRY8_SLICEL_S[1]_O[2])
+                                                      0.102     7.785 r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]_i_1__23/O[2]
+                         net (fo=1, routed)           0.025     7.810    denselayer2/sum_all/col_trees[24].column_tree/p_16_out[18]
+    SLICE_X148Y330       FDRE                                         r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     5.000     5.000 r  
+    AP13                                              0.000     5.000 r  clk (IN)
+                         net (fo=0)                   0.000     5.000    clk_IBUF_inst/I
+    AP13                 INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.330     5.330 r  clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     5.330    clk_IBUF_inst/OUT
+    AP13                 IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     5.330 r  clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.279     5.609    clk_IBUF
+    BUFGCE_X0Y170        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.024     5.633 r  clk_IBUF_BUFG_inst/O
+    X3Y5 (CLOCK_ROOT)    net (fo=66989, routed)       1.945     7.578    denselayer2/sum_all/col_trees[24].column_tree/clk_IBUF_BUFG
+    SLICE_X148Y330       FDRE                                         r  denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]/C
+                         clock pessimism              0.342     7.920    
+                         clock uncertainty           -0.035     7.884    
+    SLICE_X148Y330       FDRE (Setup_CFF_SLICEL_C_D)
+                                                      0.023     7.907    denselayer2/sum_all/col_trees[24].column_tree/genblk2[0].genblk1[1].tree_reg[1][18]
+  -------------------------------------------------------------------
+                         required time                          7.907    
+                         arrival time                          -7.810    
+  -------------------------------------------------------------------
+                         slack                                  0.098    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.015ns  (arrival time - required time)
+  Source:                 denselayer2/INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[14].sa/data_out_reg[16]/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            denselayer2/sum_all/col_trees[14].column_tree/genblk2[2].genblk1[16].tree_reg[16][4]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Path Group:             ap_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (ap_clk rise@0.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        0.163ns  (logic 0.091ns (55.828%)  route 0.072ns (44.172%))
+  Logic Levels:           2  (CARRY8=1 LUT6=1)
+  Clock Path Skew:        0.102ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.088ns
+    Source Clock Delay      (SCD):    1.681ns
+    Clock Pessimism Removal (CPR):    0.305ns
+  Clock Net Delay (Source):      1.286ns (routing 0.639ns, distribution 0.647ns)
+  Clock Net Delay (Destination): 1.468ns (routing 0.713ns, distribution 0.755ns)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+    AP13                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk_IBUF_inst/I
+    AP13                 INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.234     0.234 r  clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.234    clk_IBUF_inst/OUT
+    AP13                 IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     0.234 r  clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.144     0.378    clk_IBUF
+    BUFGCE_X0Y170        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.017     0.395 r  clk_IBUF_BUFG_inst/O
+    X3Y5 (CLOCK_ROOT)    net (fo=66989, routed)       1.286     1.681    denselayer2/INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[14].sa/clk_IBUF_BUFG
+    SLICE_X75Y419        FDRE                                         r  denselayer2/INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[14].sa/data_out_reg[16]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X75Y419        FDRE (Prop_EFF_SLICEL_C_Q)
+                                                      0.039     1.720 r  denselayer2/INPUT_SIZE_rows[0].OUTPUT_SIZE_cols[14].sa/data_out_reg[16]/Q
+                         net (fo=2, routed)           0.058     1.778    denselayer2/INPUT_SIZE_rows[3].OUTPUT_SIZE_cols[14].sa/genblk2[2].genblk1[16].tree_reg[16][15][4]
+    SLICE_X75Y421        LUT6 (Prop_E6LUT_SLICEL_I2_O)
+                                                      0.035     1.813 r  denselayer2/INPUT_SIZE_rows[3].OUTPUT_SIZE_cols[14].sa/genblk2[2].genblk1[16].tree[16][7]_i_12__11/O
+                         net (fo=1, routed)           0.007     1.820    denselayer2/INPUT_SIZE_rows[3].OUTPUT_SIZE_cols[14].sa/genblk2[2].genblk1[16].tree[16][7]_i_12__11_n_0
+    SLICE_X75Y421        CARRY8 (Prop_CARRY8_SLICEL_S[4]_O[4])
+                                                      0.017     1.837 r  denselayer2/INPUT_SIZE_rows[3].OUTPUT_SIZE_cols[14].sa/genblk2[2].genblk1[16].tree_reg[16][7]_i_1__11/O[4]
+                         net (fo=1, routed)           0.007     1.844    denselayer2/sum_all/col_trees[14].column_tree/genblk2[2].genblk1[16].tree_reg[16][18]_0[4]
+    SLICE_X75Y421        FDRE                                         r  denselayer2/sum_all/col_trees[14].column_tree/genblk2[2].genblk1[16].tree_reg[16][4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+    AP13                                              0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk_IBUF_inst/I
+    AP13                 INBUF (Prop_INBUF_HPIOB_M_PAD_O)
+                                                      0.420     0.420 r  clk_IBUF_inst/INBUF_INST/O
+                         net (fo=1, routed)           0.000     0.420    clk_IBUF_inst/OUT
+    AP13                 IBUFCTRL (Prop_IBUFCTRL_HPIOB_M_I_O)
+                                                      0.000     0.420 r  clk_IBUF_inst/IBUFCTRL_INST/O
+                         net (fo=1, routed)           0.181     0.601    clk_IBUF
+    BUFGCE_X0Y170        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.019     0.620 r  clk_IBUF_BUFG_inst/O
+    X3Y5 (CLOCK_ROOT)    net (fo=66989, routed)       1.468     2.088    denselayer2/sum_all/col_trees[14].column_tree/clk_IBUF_BUFG
+    SLICE_X75Y421        FDRE                                         r  denselayer2/sum_all/col_trees[14].column_tree/genblk2[2].genblk1[16].tree_reg[16][4]/C
+                         clock pessimism             -0.305     1.783    
+    SLICE_X75Y421        FDRE (Hold_EFF_SLICEL_C_D)
+                                                      0.046     1.829    denselayer2/sum_all/col_trees[14].column_tree/genblk2[2].genblk1[16].tree_reg[16][4]
+  -------------------------------------------------------------------
+                         required time                         -1.829    
+                         arrival time                           1.844    
+  -------------------------------------------------------------------
+                         slack                                  0.015    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         ap_clk
+Waveform(ns):       { 0.000 2.500 }
+Period(ns):         5.000
+Sources:            { clk }
+
+Check Type        Corner  Lib Pin     Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
+Min Period        n/a     BUFGCE/I    n/a            1.122         5.000       3.878      BUFGCE_X0Y170   clk_IBUF_BUFG_inst/I
+Low Pulse Width   Slow    SRL16E/CLK  n/a            0.468         2.500       2.032      SLICE_X157Y353  denselayer3/ready_buffer_reg[3]_srl3_denselayer2_ready_buffer_reg_c_0/CLK
+High Pulse Width  Slow    SRL16E/CLK  n/a            0.468         2.500       2.032      SLICE_X157Y353  denselayer3/ready_buffer_reg[3]_srl3_denselayer2_ready_buffer_reg_c_0/CLK
+
+
+

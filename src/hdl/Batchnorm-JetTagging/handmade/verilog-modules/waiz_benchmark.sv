@@ -6,7 +6,7 @@ import `DENSE_LAYER_3_PKG::*;
 import `DENSE_LAYER_4_PKG::*;
 
 module waiz_benchmark #(
-    parameter WIDTH = 16, NFRAC = 10,
+    parameter WIDTH = 37, NFRAC = 24,
     parameter INPUT_SIZE = 16,
     parameter OUTPUT_SIZE = 5
 ) (
@@ -28,7 +28,7 @@ module waiz_benchmark #(
     localparam OUTPUT_SIZE_3 = 32;
     localparam INPUT_SIZE_4 = 32;
 
-    localparam PIPELINING = 4;
+    localparam PIPELINING = 3;
 
     // Declare real signals for the outputs to visualize as floating-point numbers
     `ifndef SYNTHESIS 
