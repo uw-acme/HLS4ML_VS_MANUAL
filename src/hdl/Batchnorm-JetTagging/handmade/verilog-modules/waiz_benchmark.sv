@@ -25,8 +25,11 @@ module waiz_benchmark #(
     localparam OUTPUT_SIZE_3 = 32;
     localparam INPUT_SIZE_4 = 32;
 
-    localparam PIPELINING = 3;
+    // Parameter controlling how sparse the pipelines in the adder trees are. 1 is the minimum value (most pipelines)
+    localparam PIPELINING = 1;
 
+    // Parameter controlling whether there is an output pipeline from dense layers. 1 means there is a pipeline
+    localparam PIPE_OUT = 1;
     // Declare real signals for the outputs to visualize as floating-point numbers
     `ifndef SYNTHESIS 
      real input_data_real [0:INPUT_SIZE-1];
@@ -77,7 +80,8 @@ module waiz_benchmark #(
         .OUTPUT_SIZE ( OUTPUT_SIZE_1 ),
         .WEIGHTS     ( `DENSE_LAYER_1_PKG::weights ),
         .BIAS        ( `DENSE_LAYER_1_PKG::bias    ),
-        .PIPELINING  (PIPELINING                   )
+        .PIPELINING  (PIPELINING                   ),
+        .PIPE_OUT    (PIPE_OUT)
     ) denselayer1 (
         .clk,
         .reset,
@@ -108,7 +112,8 @@ module waiz_benchmark #(
         .OUTPUT_SIZE( OUTPUT_SIZE_2 ),
         .WEIGHTS    ( `DENSE_LAYER_2_PKG::weights ),
         .BIAS       ( `DENSE_LAYER_2_PKG::bias  ),
-        .PIPELINING(PIPELINING)
+        .PIPELINING(PIPELINING),
+        .PIPE_OUT    (PIPE_OUT)
     ) denselayer2 (
         .clk,
         .reset,
@@ -139,7 +144,8 @@ module waiz_benchmark #(
         .OUTPUT_SIZE( OUTPUT_SIZE_3 ),
         .WEIGHTS    ( `DENSE_LAYER_3_PKG::weights ),
         .BIAS       ( `DENSE_LAYER_3_PKG::bias  ),
-        .PIPELINING(PIPELINING)
+        .PIPELINING(PIPELINING),
+        .PIPE_OUT    (PIPE_OUT)
     ) denselayer3 (
         .clk,
         .reset,
@@ -170,7 +176,8 @@ module waiz_benchmark #(
         .OUTPUT_SIZE( OUTPUT_SIZE ),
         .WEIGHTS    ( `DENSE_LAYER_4_PKG::weights ),
         .BIAS       ( `DENSE_LAYER_4_PKG::bias  ),
-        .PIPELINING(PIPELINING)
+        .PIPELINING(PIPELINING),
+        .PIPE_OUT    (PIPE_OUT)
     ) denselayer4 (
         .clk,
         .reset,
