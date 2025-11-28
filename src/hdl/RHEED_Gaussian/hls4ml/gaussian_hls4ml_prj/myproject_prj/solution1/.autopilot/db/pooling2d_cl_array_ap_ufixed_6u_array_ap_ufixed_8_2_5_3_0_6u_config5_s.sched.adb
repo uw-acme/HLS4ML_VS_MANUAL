@@ -637,7 +637,7 @@
 					<Obj>
 						<type>0</type>
 						<id>113</id>
-						<name>empty_40</name>
+						<name>empty_38</name>
 						<fileName>firmware/nnet_utils/nnet_pooling_stream.h</fileName>
 						<fileDirectory>/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/hls4ml/gaussian_hls4ml_prj</fileDirectory>
 						<lineNumber>247</lineNumber>

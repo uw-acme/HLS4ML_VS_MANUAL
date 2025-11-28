@@ -6,7 +6,7 @@
 (* rom_style = "block" *) module dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_wHfu_rom (
 addr0, ce0, q0, clk);
 
-parameter DWIDTH = 381;
+parameter DWIDTH = 380;
 parameter AWIDTH = 4;
 parameter MEM_SIZE = 9;
 
@@ -43,7 +43,7 @@ module dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0
     ce0,
     q0);
 
-parameter DataWidth = 32'd381;
+parameter DataWidth = 32'd380;
 parameter AddressRange = 32'd9;
 parameter AddressWidth = 32'd4;
 input reset;

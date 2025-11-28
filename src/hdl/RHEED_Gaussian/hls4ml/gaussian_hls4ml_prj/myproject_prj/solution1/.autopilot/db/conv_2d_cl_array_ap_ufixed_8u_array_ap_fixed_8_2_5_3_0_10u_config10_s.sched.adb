@@ -805,7 +805,7 @@
 					<Obj>
 						<type>0</type>
 						<id>116</id>
-						<name>empty_239</name>
+						<name>empty_237</name>
 						<fileName>firmware/nnet_utils/nnet_conv2d_stream.h</fileName>
 						<fileDirectory>/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/hls4ml/gaussian_hls4ml_prj</fileDirectory>
 						<lineNumber>93</lineNumber>

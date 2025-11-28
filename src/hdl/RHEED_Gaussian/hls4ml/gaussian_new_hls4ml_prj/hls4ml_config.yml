@@ -1,0 +1,120 @@
+Backend: Vivado
+ClockPeriod: 5
+ClockUncertainty: 12.5%
+HLSConfig:
+  LayerName:
+    flatten:
+      Precision:
+        result: ap_ufixed<8,2>
+    max_pooling2d:
+      Precision:
+        result: ap_ufixed<8,2>
+      ReuseFactor: 1
+    max_pooling2d_1:
+      Precision:
+        result: ap_ufixed<8,2>
+      ReuseFactor: 1
+    max_pooling2d_2:
+      Precision:
+        result: ap_ufixed<8,2>
+      ReuseFactor: 1
+    q_activation:
+      Precision:
+        result: ap_ufixed<8,2>
+      ReuseFactor: 8
+    q_activation_1:
+      Precision:
+        result: ap_ufixed<8,2>
+      ReuseFactor: 8
+    q_activation_2:
+      Precision:
+        result: ap_ufixed<8,2>
+      ReuseFactor: 8
+    q_activation_3:
+      Precision:
+        result: ap_ufixed<8,2>
+      ReuseFactor: 16
+    q_activation_4:
+      Precision:
+        result: ap_ufixed<8,2>
+      ReuseFactor: 16
+    q_conv2d_batchnorm:
+      Precision:
+        bias: ap_fixed<8,0>
+        result: ap_fixed<8,2>
+        weight: ap_fixed<8,0>
+      ReuseFactor: 9
+      RoundingMode: AP_RND
+      SaturationMode: AP_SAT
+    q_conv2d_batchnorm_1:
+      Precision:
+        bias: ap_fixed<8,2>
+        result: ap_fixed<8,2>
+        weight: ap_fixed<8,2>
+      ReuseFactor: 9
+      RoundingMode: AP_RND
+      SaturationMode: AP_SAT
+    q_conv2d_batchnorm_2:
+      Precision:
+        bias: ap_fixed<8,2>
+        result: ap_fixed<8,2>
+        weight: ap_fixed<8,2>
+      ReuseFactor: 8
+      RoundingMode: AP_RND
+      SaturationMode: AP_SAT
+    q_conv2d_batchnorm_input:
+      Precision:
+        result: ap_ufixed<8,0>
+    q_dense:
+      Precision:
+        bias: ap_fixed<8,2>
+        result: ap_fixed<8,2>
+        weight: ap_fixed<8,2>
+      ReuseFactor: 10
+      RoundingMode: AP_RND
+      SaturationMode: AP_SAT
+    q_dense_1:
+      Precision:
+        bias: ap_fixed<8,2>
+        result: ap_fixed<8,2>
+        weight: ap_fixed<8,2>
+      ReuseFactor: 15
+      RoundingMode: AP_RND
+      SaturationMode: AP_SAT
+    q_dense_2:
+      Precision:
+        bias: ap_fixed<8,2>
+        result: ap_fixed<8,2>
+        weight: ap_fixed<8,2>
+      ReuseFactor: 10
+      RoundingMode: AP_RND
+      SaturationMode: AP_SAT
+  Model:
+    BitExact: null
+    BramFactor: 1000000000
+    Precision: ap_fixed<16,6>
+    ReuseFactor: 16
+    Strategy: Resource
+    TraceOutput: false
+IOType: io_stream
+InputData: null
+InputShapes:
+  q_conv2d_batchnorm_input:
+  - 48
+  - 48
+  - 1
+KerasModel: !keras_model '../hls4ml/gaussian_new_hls4ml_prj/keras_model.keras'
+OutputDir: ../hls4ml/gaussian_new_hls4ml_prj
+OutputPredictions: null
+OutputShapes:
+  layer22_out:
+  - 5
+Part: xcku035-fbva676-2-e
+ProjectName: myproject
+Stamp: 29ebabf0
+Version: 1.0.0
+WriterConfig:
+  Namespace: null
+  TBOutputStream: both
+  WriteTar: false
+  WriteWeightsTxt: true

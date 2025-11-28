@@ -642,10 +642,10 @@ ReadInputWidth_begin:0  call void (...)* @_ssdm_op_SpecLoopName([31 x i8]* @Read
 
 <Node id="61" bw="32" op_0_bw="32" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-ReadInputWidth_begin:1  %empty_37 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 81, i64 81, i64 81)
+ReadInputWidth_begin:1  %empty_35 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 81, i64 81, i64 81)
 
 ]]></Node>
-<StgValue><ssdm name="empty_37"/></StgValue>
+<StgValue><ssdm name="empty_35"/></StgValue>
 </operation>
 
 <operation id="44" st_id="3" stage="1" lat="1">
@@ -706,10 +706,10 @@ ReadInputWidth_begin:4  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i
 
 <Node id="65" bw="64" op_0_bw="64" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8">
 <![CDATA[
-ReadInputWidth_begin:5  %empty_38 = call { i8, i8, i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V, i8* %data_V_data_6_V, i8* %data_V_data_7_V)
+ReadInputWidth_begin:5  %empty_36 = call { i8, i8, i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V, i8* %data_V_data_6_V, i8* %data_V_data_7_V)
 
 ]]></Node>
-<StgValue><ssdm name="empty_38"/></StgValue>
+<StgValue><ssdm name="empty_36"/></StgValue>
 </operation>
 
 <operation id="48" st_id="3" stage="1" lat="1">
@@ -722,7 +722,7 @@ ReadInputWidth_begin:5  %empty_38 = call { i8, i8, i8, i8, i8, i8, i8, i8 } @_ss
 
 <Node id="66" bw="8" op_0_bw="64">
 <![CDATA[
-ReadInputWidth_begin:6  %shift_buffer_1_0_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_38, 0
+ReadInputWidth_begin:6  %shift_buffer_1_0_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_36, 0
 
 ]]></Node>
 <StgValue><ssdm name="shift_buffer_1_0_V"/></StgValue>
@@ -738,7 +738,7 @@ ReadInputWidth_begin:6  %shift_buffer_1_0_V = extractvalue { i8, i8, i8, i8, i8,
 
 <Node id="67" bw="8" op_0_bw="64">
 <![CDATA[
-ReadInputWidth_begin:7  %shift_buffer_1_1_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_38, 1
+ReadInputWidth_begin:7  %shift_buffer_1_1_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_36, 1
 
 ]]></Node>
 <StgValue><ssdm name="shift_buffer_1_1_V"/></StgValue>
@@ -754,7 +754,7 @@ ReadInputWidth_begin:7  %shift_buffer_1_1_V = extractvalue { i8, i8, i8, i8, i8,
 
 <Node id="68" bw="8" op_0_bw="64">
 <![CDATA[
-ReadInputWidth_begin:8  %shift_buffer_1_2_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_38, 2
+ReadInputWidth_begin:8  %shift_buffer_1_2_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_36, 2
 
 ]]></Node>
 <StgValue><ssdm name="shift_buffer_1_2_V"/></StgValue>
@@ -770,7 +770,7 @@ ReadInputWidth_begin:8  %shift_buffer_1_2_V = extractvalue { i8, i8, i8, i8, i8,
 
 <Node id="69" bw="8" op_0_bw="64">
 <![CDATA[
-ReadInputWidth_begin:9  %shift_buffer_1_3_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_38, 3
+ReadInputWidth_begin:9  %shift_buffer_1_3_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_36, 3
 
 ]]></Node>
 <StgValue><ssdm name="shift_buffer_1_3_V"/></StgValue>
@@ -786,7 +786,7 @@ ReadInputWidth_begin:9  %shift_buffer_1_3_V = extractvalue { i8, i8, i8, i8, i8,
 
 <Node id="70" bw="8" op_0_bw="64">
 <![CDATA[
-ReadInputWidth_begin:10  %shift_buffer_1_4_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_38, 4
+ReadInputWidth_begin:10  %shift_buffer_1_4_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_36, 4
 
 ]]></Node>
 <StgValue><ssdm name="shift_buffer_1_4_V"/></StgValue>
@@ -802,7 +802,7 @@ ReadInputWidth_begin:10  %shift_buffer_1_4_V = extractvalue { i8, i8, i8, i8, i8
 
 <Node id="71" bw="8" op_0_bw="64">
 <![CDATA[
-ReadInputWidth_begin:11  %shift_buffer_1_5_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_38, 5
+ReadInputWidth_begin:11  %shift_buffer_1_5_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_36, 5
 
 ]]></Node>
 <StgValue><ssdm name="shift_buffer_1_5_V"/></StgValue>
@@ -818,7 +818,7 @@ ReadInputWidth_begin:11  %shift_buffer_1_5_V = extractvalue { i8, i8, i8, i8, i8
 
 <Node id="72" bw="8" op_0_bw="64">
 <![CDATA[
-ReadInputWidth_begin:12  %shift_buffer_1_6_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_38, 6
+ReadInputWidth_begin:12  %shift_buffer_1_6_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_36, 6
 
 ]]></Node>
 <StgValue><ssdm name="shift_buffer_1_6_V"/></StgValue>
@@ -834,7 +834,7 @@ ReadInputWidth_begin:12  %shift_buffer_1_6_V = extractvalue { i8, i8, i8, i8, i8
 
 <Node id="73" bw="8" op_0_bw="64">
 <![CDATA[
-ReadInputWidth_begin:13  %shift_buffer_1_7_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_38, 7
+ReadInputWidth_begin:13  %shift_buffer_1_7_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_36, 7
 
 ]]></Node>
 <StgValue><ssdm name="shift_buffer_1_7_V"/></StgValue>
@@ -4950,13 +4950,13 @@ pooling2d_buffer_cl<array<ap_ufixed<8, 2, 5, 3, 0>, 8u>, array<ap_ufixed<8, 2, 5
 </dataflow>
 <dataflow id="739" from="ReadInputHeight_ReadInputWidth_str" to="specloopname_ln0" fromId="738" toId="42">
 </dataflow>
-<dataflow id="741" from="_ssdm_op_SpecLoopTripCount" to="empty_37" fromId="740" toId="43">
+<dataflow id="741" from="_ssdm_op_SpecLoopTripCount" to="empty_35" fromId="740" toId="43">
 </dataflow>
-<dataflow id="743" from="StgValue_742" to="empty_37" fromId="742" toId="43">
+<dataflow id="743" from="StgValue_742" to="empty_35" fromId="742" toId="43">
 </dataflow>
-<dataflow id="744" from="StgValue_742" to="empty_37" fromId="742" toId="43">
+<dataflow id="744" from="StgValue_742" to="empty_35" fromId="742" toId="43">
 </dataflow>
-<dataflow id="745" from="StgValue_742" to="empty_37" fromId="742" toId="43">
+<dataflow id="745" from="StgValue_742" to="empty_35" fromId="742" toId="43">
 </dataflow>
 <dataflow id="746" from="_ssdm_op_SpecLoopName" to="specloopname_ln243" fromId="736" toId="44">
 </dataflow>
@@ -4978,39 +4978,39 @@ pooling2d_buffer_cl<array<ap_ufixed<8, 2, 5, 3, 0>, 8u>, array<ap_ufixed<8, 2, 5
 </dataflow>
 <dataflow id="760" from="p_str17" to="specpipeline_ln245" fromId="759" toId="46">
 </dataflow>
-<dataflow id="762" from="_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P" to="empty_38" fromId="761" toId="47">
+<dataflow id="762" from="_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P" to="empty_36" fromId="761" toId="47">
 </dataflow>
-<dataflow id="763" from="data_V_data_0_V" to="empty_38" fromId="281" toId="47">
+<dataflow id="763" from="data_V_data_0_V" to="empty_36" fromId="281" toId="47">
 </dataflow>
-<dataflow id="764" from="data_V_data_1_V" to="empty_38" fromId="282" toId="47">
+<dataflow id="764" from="data_V_data_1_V" to="empty_36" fromId="282" toId="47">
 </dataflow>
-<dataflow id="765" from="data_V_data_2_V" to="empty_38" fromId="283" toId="47">
+<dataflow id="765" from="data_V_data_2_V" to="empty_36" fromId="283" toId="47">
 </dataflow>
-<dataflow id="766" from="data_V_data_3_V" to="empty_38" fromId="284" toId="47">
+<dataflow id="766" from="data_V_data_3_V" to="empty_36" fromId="284" toId="47">
 </dataflow>
-<dataflow id="767" from="data_V_data_4_V" to="empty_38" fromId="285" toId="47">
+<dataflow id="767" from="data_V_data_4_V" to="empty_36" fromId="285" toId="47">
 </dataflow>
-<dataflow id="768" from="data_V_data_5_V" to="empty_38" fromId="286" toId="47">
+<dataflow id="768" from="data_V_data_5_V" to="empty_36" fromId="286" toId="47">
 </dataflow>
-<dataflow id="769" from="data_V_data_6_V" to="empty_38" fromId="287" toId="47">
+<dataflow id="769" from="data_V_data_6_V" to="empty_36" fromId="287" toId="47">
 </dataflow>
-<dataflow id="770" from="data_V_data_7_V" to="empty_38" fromId="288" toId="47">
+<dataflow id="770" from="data_V_data_7_V" to="empty_36" fromId="288" toId="47">
 </dataflow>
-<dataflow id="771" from="empty_38" to="shift_buffer_1_0_V" fromId="47" toId="48">
+<dataflow id="771" from="empty_36" to="shift_buffer_1_0_V" fromId="47" toId="48">
 </dataflow>
-<dataflow id="772" from="empty_38" to="shift_buffer_1_1_V" fromId="47" toId="49">
+<dataflow id="772" from="empty_36" to="shift_buffer_1_1_V" fromId="47" toId="49">
 </dataflow>
-<dataflow id="773" from="empty_38" to="shift_buffer_1_2_V" fromId="47" toId="50">
+<dataflow id="773" from="empty_36" to="shift_buffer_1_2_V" fromId="47" toId="50">
 </dataflow>
-<dataflow id="774" from="empty_38" to="shift_buffer_1_3_V" fromId="47" toId="51">
+<dataflow id="774" from="empty_36" to="shift_buffer_1_3_V" fromId="47" toId="51">
 </dataflow>
-<dataflow id="775" from="empty_38" to="shift_buffer_1_4_V" fromId="47" toId="52">
+<dataflow id="775" from="empty_36" to="shift_buffer_1_4_V" fromId="47" toId="52">
 </dataflow>
-<dataflow id="776" from="empty_38" to="shift_buffer_1_5_V" fromId="47" toId="53">
+<dataflow id="776" from="empty_36" to="shift_buffer_1_5_V" fromId="47" toId="53">
 </dataflow>
-<dataflow id="777" from="empty_38" to="shift_buffer_1_6_V" fromId="47" toId="54">
+<dataflow id="777" from="empty_36" to="shift_buffer_1_6_V" fromId="47" toId="54">
 </dataflow>
-<dataflow id="778" from="empty_38" to="shift_buffer_1_7_V" fromId="47" toId="55">
+<dataflow id="778" from="empty_36" to="shift_buffer_1_7_V" fromId="47" toId="55">
 </dataflow>
 <dataflow id="780" from="_ssdm_op_MemShiftRead.[9 x i8]P" to="DataOut_V_61" fromId="779" toId="56">
 </dataflow>

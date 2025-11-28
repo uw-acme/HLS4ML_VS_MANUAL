@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'pooling2d_cl_array_array_ap_ufixed_8_2_5_3_0_10u_config13_s'
 ================================================================
-* Date:           Fri Nov 21 19:12:45 2025
+* Date:           Mon Nov 24 11:54:24 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
@@ -537,20 +537,20 @@ ST_2 : Operation 48 [1/1] (0.00ns)   --->   "br label %0"   --->   Operation 48 
 
 State 3 <SV = 2> <Delay = 3.70>
 ST_3 : Operation 49 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([31 x i8]* @ReadInputHeight_ReadInputWidth_str)"   --->   Operation 49 'specloopname' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%empty_41 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)"   --->   Operation 50 'speclooptripcount' 'empty_41' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%empty_39 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)"   --->   Operation 50 'speclooptripcount' 'empty_39' <Predicate = (!icmp_ln241)> <Delay = 0.00>
 ST_3 : Operation 51 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([15 x i8]* @p_str66) nounwind" [firmware/nnet_utils/nnet_pooling_stream.h:243->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 51 'specloopname' <Predicate = (!icmp_ln241)> <Delay = 0.00>
 ST_3 : Operation 52 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str17) nounwind" [firmware/nnet_utils/nnet_pooling_stream.h:245->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 52 'specpipeline' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 53 [1/1] (2.18ns)   --->   "%empty_42 = call { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V, i8* %data_V_data_6_V, i8* %data_V_data_7_V, i8* %data_V_data_8_V, i8* %data_V_data_9_V)" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 53 'read' 'empty_42' <Predicate = (!icmp_ln241)> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
-ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%shift_buffer_1_0_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 0" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 54 'extractvalue' 'shift_buffer_1_0_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%shift_buffer_1_1_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 1" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 55 'extractvalue' 'shift_buffer_1_1_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%shift_buffer_1_2_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 2" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 56 'extractvalue' 'shift_buffer_1_2_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%shift_buffer_1_3_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 3" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 57 'extractvalue' 'shift_buffer_1_3_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 58 [1/1] (0.00ns)   --->   "%shift_buffer_1_4_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 4" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 58 'extractvalue' 'shift_buffer_1_4_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%shift_buffer_1_5_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 5" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 59 'extractvalue' 'shift_buffer_1_5_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%shift_buffer_1_6_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 6" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 60 'extractvalue' 'shift_buffer_1_6_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 61 [1/1] (0.00ns)   --->   "%shift_buffer_1_7_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 7" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 61 'extractvalue' 'shift_buffer_1_7_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 62 [1/1] (0.00ns)   --->   "%shift_buffer_1_8_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 8" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 62 'extractvalue' 'shift_buffer_1_8_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
-ST_3 : Operation 63 [1/1] (0.00ns)   --->   "%shift_buffer_1_9_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_42, 9" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 63 'extractvalue' 'shift_buffer_1_9_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 53 [1/1] (2.18ns)   --->   "%empty_40 = call { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V, i8* %data_V_data_6_V, i8* %data_V_data_7_V, i8* %data_V_data_8_V, i8* %data_V_data_9_V)" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 53 'read' 'empty_40' <Predicate = (!icmp_ln241)> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
+ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%shift_buffer_1_0_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 0" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 54 'extractvalue' 'shift_buffer_1_0_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%shift_buffer_1_1_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 1" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 55 'extractvalue' 'shift_buffer_1_1_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%shift_buffer_1_2_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 2" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 56 'extractvalue' 'shift_buffer_1_2_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%shift_buffer_1_3_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 3" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 57 'extractvalue' 'shift_buffer_1_3_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 58 [1/1] (0.00ns)   --->   "%shift_buffer_1_4_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 4" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 58 'extractvalue' 'shift_buffer_1_4_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%shift_buffer_1_5_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 5" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 59 'extractvalue' 'shift_buffer_1_5_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%shift_buffer_1_6_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 6" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 60 'extractvalue' 'shift_buffer_1_6_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 61 [1/1] (0.00ns)   --->   "%shift_buffer_1_7_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 7" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 61 'extractvalue' 'shift_buffer_1_7_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 62 [1/1] (0.00ns)   --->   "%shift_buffer_1_8_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 8" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 62 'extractvalue' 'shift_buffer_1_8_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
+ST_3 : Operation 63 [1/1] (0.00ns)   --->   "%shift_buffer_1_9_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } %empty_40, 9" [firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 63 'extractvalue' 'shift_buffer_1_9_V' <Predicate = (!icmp_ln241)> <Delay = 0.00>
 ST_3 : Operation 64 [1/1] (0.57ns)   --->   "%DataOut_V_119 = call i8 @"_ssdm_op_MemShiftRead.[2 x i8]P"(i8* getelementptr inbounds ([2 x i8]* @line_buffer_Array_V_3_0_0, i64 0, i64 1), i8 %shift_buffer_1_0_V, i1 true)" [firmware/nnet_utils/nnet_conv_stream.h:241->firmware/nnet_utils/nnet_pooling_stream.h:188->firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 64 'memshiftread' 'DataOut_V_119' <Predicate = (!icmp_ln241)> <Delay = 0.57> <Core = "ShiftReg">   --->   Core 33 'ShiftReg' <Latency = 0> <II = 1> <Delay = 0.57> <Storage> <Opcode : 'memshiftread' 'load'> <Ports = 1> <Width = 8> <Depth = 2> <ShiftMem>
 ST_3 : Operation 65 [1/1] (0.57ns)   --->   "%DataOut_V_120 = call i8 @"_ssdm_op_MemShiftRead.[2 x i8]P"(i8* getelementptr inbounds ([2 x i8]* @line_buffer_Array_V_3_0_1, i64 0, i64 1), i8 %shift_buffer_1_1_V, i1 true)" [firmware/nnet_utils/nnet_conv_stream.h:241->firmware/nnet_utils/nnet_pooling_stream.h:188->firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 65 'memshiftread' 'DataOut_V_120' <Predicate = (!icmp_ln241)> <Delay = 0.57> <Core = "ShiftReg">   --->   Core 33 'ShiftReg' <Latency = 0> <II = 1> <Delay = 0.57> <Storage> <Opcode : 'memshiftread' 'load'> <Ports = 1> <Width = 8> <Depth = 2> <ShiftMem>
 ST_3 : Operation 66 [1/1] (0.57ns)   --->   "%DataOut_V_121 = call i8 @"_ssdm_op_MemShiftRead.[2 x i8]P"(i8* getelementptr inbounds ([2 x i8]* @line_buffer_Array_V_3_0_2, i64 0, i64 1), i8 %shift_buffer_1_2_V, i1 true)" [firmware/nnet_utils/nnet_conv_stream.h:241->firmware/nnet_utils/nnet_pooling_stream.h:188->firmware/nnet_utils/nnet_pooling_stream.h:247->firmware/nnet_utils/nnet_pooling_stream.h:257]   --->   Operation 66 'memshiftread' 'DataOut_V_121' <Predicate = (!icmp_ln241)> <Delay = 0.57> <Core = "ShiftReg">   --->   Core 33 'ShiftReg' <Latency = 0> <II = 1> <Delay = 0.57> <Storage> <Opcode : 'memshiftread' 'load'> <Ports = 1> <Width = 8> <Depth = 2> <ShiftMem>
@@ -924,10 +924,10 @@ br_ln219                (br               ) [ 001110]
 empty                   (specregionend    ) [ 000000]
 br_ln0                  (br               ) [ 011110]
 specloopname_ln0        (specloopname     ) [ 000000]
-empty_41                (speclooptripcount) [ 000000]
+empty_39                (speclooptripcount) [ 000000]
 specloopname_ln243      (specloopname     ) [ 000000]
 specpipeline_ln245      (specpipeline     ) [ 000000]
-empty_42                (read             ) [ 000000]
+empty_40                (read             ) [ 000000]
 shift_buffer_1_0_V      (extractvalue     ) [ 000000]
 shift_buffer_1_1_V      (extractvalue     ) [ 000000]
 shift_buffer_1_2_V      (extractvalue     ) [ 000000]
@@ -3140,7 +3140,7 @@ ret_ln263               (ret              ) [ 000000]
 </bind>
 </comp>
 
-<comp id="430" class="1004" name="empty_42_read_fu_430">
+<comp id="430" class="1004" name="empty_40_read_fu_430">
 <pin_list>
 <pin id="431" dir="0" index="0" bw="80" slack="0"/>
 <pin id="432" dir="0" index="1" bw="8" slack="0"/>
@@ -3157,7 +3157,7 @@ ret_ln263               (ret              ) [ 000000]
 </pin_list>
 <bind>
 <opcode="read(1150) " fcode="read"/>
-<opset="empty_42/3 "/>
+<opset="empty_40/3 "/>
 </bind>
 </comp>
 
@@ -9016,7 +9016,7 @@ ret_ln263               (ret              ) [ 000000]
 |    and   |     and_ln191_5_fu_956     |    0    |    2    |
 |          |     and_ln191_6_fu_960     |    0    |    2    |
 |----------|----------------------------|---------|---------|
-|   read   |    empty_42_read_fu_430    |    0    |    0    |
+|   read   |    empty_40_read_fu_430    |    0    |    0    |
 |----------|----------------------------|---------|---------|
 |   write  |  write_ln208_write_fu_454  |    0    |    0    |
 |----------|----------------------------|---------|---------|

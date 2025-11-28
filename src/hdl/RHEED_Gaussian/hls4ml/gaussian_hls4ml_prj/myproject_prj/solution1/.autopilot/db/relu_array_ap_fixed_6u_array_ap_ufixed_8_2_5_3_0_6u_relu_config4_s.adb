@@ -588,7 +588,7 @@
             <Obj>
               <type>0</type>
               <id>36</id>
-              <name>empty_31</name>
+              <name>empty_29</name>
               <fileName>firmware/nnet_utils/nnet_activation_stream.h</fileName>
               <fileDirectory>..</fileDirectory>
               <lineNumber>44</lineNumber>
@@ -5517,7 +5517,7 @@
       <count>2</count>
       <item_version>0</item_version>
       <item>
-        <first>empty_31_read_fu_218</first>
+        <first>empty_29_read_fu_218</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>

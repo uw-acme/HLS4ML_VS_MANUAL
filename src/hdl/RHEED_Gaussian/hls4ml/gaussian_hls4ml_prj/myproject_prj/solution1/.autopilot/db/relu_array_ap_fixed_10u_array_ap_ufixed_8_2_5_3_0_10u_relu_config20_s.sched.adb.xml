@@ -1003,10 +1003,10 @@ ReLUActLoop:64  call void @_ssdm_op_Write.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i
 
 <Node id="86" bw="32" op_0_bw="32" op_1_bw="0" op_2_bw="32">
 <![CDATA[
-ReLUActLoop:65  %empty_34 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str56, i32 %tmp)
+ReLUActLoop:65  %empty_32 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str56, i32 %tmp)
 
 ]]></Node>
-<StgValue><ssdm name="empty_34"/></StgValue>
+<StgValue><ssdm name="empty_32"/></StgValue>
 </operation>
 
 <operation id="69" st_id="2" stage="1" lat="1">

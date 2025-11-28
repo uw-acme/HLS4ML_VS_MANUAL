@@ -2370,10 +2370,10 @@ hls_label_25_end:72  call void (...)* @_ssdm_op_SpecMemCore([8 x i716]* @w10_V, 
 
 <Node id="236" bw="32" op_0_bw="32" op_1_bw="0" op_2_bw="32">
 <![CDATA[
-hls_label_25_end:73  %empty_238 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str79, i32 %tmp)
+hls_label_25_end:73  %empty_236 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str79, i32 %tmp)
 
 ]]></Node>
-<StgValue><ssdm name="empty_238"/></StgValue>
+<StgValue><ssdm name="empty_236"/></StgValue>
 </operation>
 
 <operation id="156" st_id="2" stage="1" lat="1">
@@ -11753,7 +11753,7 @@ ReuseLoop:791  %trunc_ln708_175 = call i11 @_ssdm_op_PartSelect.i11.i12.i32.i32(
 
 <Node id="151" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:74  %p_Val2_1624 = phi i16 [ 1248, %hls_label_25_begin ], [ %acc_9_V, %ReuseLoop ], [ 1248, %.preheader.0 ]
+rewind_header:74  %p_Val2_1624 = phi i16 [ -128, %hls_label_25_begin ], [ %acc_9_V, %ReuseLoop ], [ -128, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_1624"/></StgValue>
@@ -11768,7 +11768,7 @@ rewind_header:74  %p_Val2_1624 = phi i16 [ 1248, %hls_label_25_begin ], [ %acc_9
 
 <Node id="152" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:75  %p_Val2_1522 = phi i16 [ -32, %hls_label_25_begin ], [ %acc_8_V, %ReuseLoop ], [ -32, %.preheader.0 ]
+rewind_header:75  %p_Val2_1522 = phi i16 [ -192, %hls_label_25_begin ], [ %acc_8_V, %ReuseLoop ], [ -192, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_1522"/></StgValue>
@@ -11783,7 +11783,7 @@ rewind_header:75  %p_Val2_1522 = phi i16 [ -32, %hls_label_25_begin ], [ %acc_8_
 
 <Node id="153" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:76  %p_Val2_1420 = phi i16 [ -128, %hls_label_25_begin ], [ %acc_7_V, %ReuseLoop ], [ -128, %.preheader.0 ]
+rewind_header:76  %p_Val2_1420 = phi i16 [ -192, %hls_label_25_begin ], [ %acc_7_V, %ReuseLoop ], [ -192, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_1420"/></StgValue>
@@ -11798,7 +11798,7 @@ rewind_header:76  %p_Val2_1420 = phi i16 [ -128, %hls_label_25_begin ], [ %acc_7
 
 <Node id="154" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:77  %p_Val2_1318 = phi i16 [ 640, %hls_label_25_begin ], [ %acc_6_V, %ReuseLoop ], [ 640, %.preheader.0 ]
+rewind_header:77  %p_Val2_1318 = phi i16 [ -96, %hls_label_25_begin ], [ %acc_6_V, %ReuseLoop ], [ -96, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_1318"/></StgValue>
@@ -11813,7 +11813,7 @@ rewind_header:77  %p_Val2_1318 = phi i16 [ 640, %hls_label_25_begin ], [ %acc_6_
 
 <Node id="155" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:78  %p_Val2_1216 = phi i16 [ -896, %hls_label_25_begin ], [ %acc_5_V, %ReuseLoop ], [ -896, %.preheader.0 ]
+rewind_header:78  %p_Val2_1216 = phi i16 [ -32, %hls_label_25_begin ], [ %acc_5_V, %ReuseLoop ], [ -32, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_1216"/></StgValue>
@@ -11828,7 +11828,7 @@ rewind_header:78  %p_Val2_1216 = phi i16 [ -896, %hls_label_25_begin ], [ %acc_5
 
 <Node id="156" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:79  %p_Val2_1114 = phi i16 [ 512, %hls_label_25_begin ], [ %acc_4_V, %ReuseLoop ], [ 512, %.preheader.0 ]
+rewind_header:79  %p_Val2_1114 = phi i16 [ -128, %hls_label_25_begin ], [ %acc_4_V, %ReuseLoop ], [ -128, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_1114"/></StgValue>
@@ -11843,7 +11843,7 @@ rewind_header:79  %p_Val2_1114 = phi i16 [ 512, %hls_label_25_begin ], [ %acc_4_
 
 <Node id="157" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:80  %p_Val2_1012 = phi i16 [ -1312, %hls_label_25_begin ], [ %acc_3_V, %ReuseLoop ], [ -1312, %.preheader.0 ]
+rewind_header:80  %p_Val2_1012 = phi i16 [ 64, %hls_label_25_begin ], [ %acc_3_V, %ReuseLoop ], [ 64, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_1012"/></StgValue>
@@ -11858,7 +11858,7 @@ rewind_header:80  %p_Val2_1012 = phi i16 [ -1312, %hls_label_25_begin ], [ %acc_
 
 <Node id="158" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:81  %p_Val2_910 = phi i16 [ 480, %hls_label_25_begin ], [ %acc_2_V, %ReuseLoop ], [ 480, %.preheader.0 ]
+rewind_header:81  %p_Val2_910 = phi i16 [ 64, %hls_label_25_begin ], [ %acc_2_V, %ReuseLoop ], [ 64, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_910"/></StgValue>
@@ -11873,7 +11873,7 @@ rewind_header:81  %p_Val2_910 = phi i16 [ 480, %hls_label_25_begin ], [ %acc_2_V
 
 <Node id="159" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:82  %p_Val2_88 = phi i16 [ -1088, %hls_label_25_begin ], [ %acc_1_V, %ReuseLoop ], [ -1088, %.preheader.0 ]
+rewind_header:82  %p_Val2_88 = phi i16 [ -128, %hls_label_25_begin ], [ %acc_1_V, %ReuseLoop ], [ -128, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_88"/></StgValue>
@@ -11888,7 +11888,7 @@ rewind_header:82  %p_Val2_88 = phi i16 [ -1088, %hls_label_25_begin ], [ %acc_1_
 
 <Node id="160" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:83  %p_Val2_6 = phi i16 [ -320, %hls_label_25_begin ], [ %acc_0_V, %ReuseLoop ], [ -320, %.preheader.0 ]
+rewind_header:83  %p_Val2_6 = phi i16 [ -96, %hls_label_25_begin ], [ %acc_0_V, %ReuseLoop ], [ -96, %.preheader.0 ]
 
 ]]></Node>
 <StgValue><ssdm name="p_Val2_6"/></StgValue>
@@ -14663,10 +14663,10 @@ ReuseLoop:802  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([10 x i8]* @p_st
 
 <Node id="1043" bw="32" op_0_bw="32" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-ReuseLoop:804  %empty_237 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 8, i64 8, i64 8)
+ReuseLoop:804  %empty_235 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 8, i64 8, i64 8)
 
 ]]></Node>
-<StgValue><ssdm name="empty_237"/></StgValue>
+<StgValue><ssdm name="empty_235"/></StgValue>
 </operation>
 
 <operation id="975" st_id="4" stage="1" lat="1">

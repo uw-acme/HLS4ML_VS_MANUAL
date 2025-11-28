@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'linear_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_linear_config7_s'
 ================================================================
-* Date:           Fri Nov 21 19:12:33 2025
+* Date:           Mon Nov 24 11:54:12 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
@@ -283,15 +283,15 @@ State 3 <SV = 2> <Delay = 4.37>
 ST_3 : Operation 27 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([14 x i8]* @p_str37) nounwind" [firmware/nnet_utils/nnet_activation_stream.h:19]   --->   Operation 27 'specloopname' <Predicate = (!icmp_ln19)> <Delay = 0.00>
 ST_3 : Operation 28 [1/1] (0.00ns)   --->   "%tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([14 x i8]* @p_str37)" [firmware/nnet_utils/nnet_activation_stream.h:19]   --->   Operation 28 'specregionbegin' 'tmp' <Predicate = (!icmp_ln19)> <Delay = 0.00>
 ST_3 : Operation 29 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str17) nounwind" [firmware/nnet_utils/nnet_activation_stream.h:20]   --->   Operation 29 'specpipeline' <Predicate = (!icmp_ln19)> <Delay = 0.00>
-ST_3 : Operation 30 [1/1] (2.18ns)   --->   "%empty_218 = call { i8, i8, i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V, i8* %data_V_data_6_V, i8* %data_V_data_7_V)" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 30 'read' 'empty_218' <Predicate = (!icmp_ln19)> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
-ST_3 : Operation 31 [1/1] (0.00ns)   --->   "%tmp_data_V_18_0 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_218, 0" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 31 'extractvalue' 'tmp_data_V_18_0' <Predicate = (!icmp_ln19)> <Delay = 0.00>
-ST_3 : Operation 32 [1/1] (0.00ns)   --->   "%tmp_data_V_18_1 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_218, 1" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 32 'extractvalue' 'tmp_data_V_18_1' <Predicate = (!icmp_ln19)> <Delay = 0.00>
-ST_3 : Operation 33 [1/1] (0.00ns)   --->   "%tmp_data_V_18_2 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_218, 2" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 33 'extractvalue' 'tmp_data_V_18_2' <Predicate = (!icmp_ln19)> <Delay = 0.00>
-ST_3 : Operation 34 [1/1] (0.00ns)   --->   "%tmp_data_V_18_3 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_218, 3" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 34 'extractvalue' 'tmp_data_V_18_3' <Predicate = (!icmp_ln19)> <Delay = 0.00>
-ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%tmp_data_V_18_4 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_218, 4" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 35 'extractvalue' 'tmp_data_V_18_4' <Predicate = (!icmp_ln19)> <Delay = 0.00>
-ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%tmp_data_V_18_5 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_218, 5" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 36 'extractvalue' 'tmp_data_V_18_5' <Predicate = (!icmp_ln19)> <Delay = 0.00>
-ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%tmp_data_V_18_6 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_218, 6" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 37 'extractvalue' 'tmp_data_V_18_6' <Predicate = (!icmp_ln19)> <Delay = 0.00>
-ST_3 : Operation 38 [1/1] (0.00ns)   --->   "%tmp_data_V_18_7 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_218, 7" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 38 'extractvalue' 'tmp_data_V_18_7' <Predicate = (!icmp_ln19)> <Delay = 0.00>
+ST_3 : Operation 30 [1/1] (2.18ns)   --->   "%empty_216 = call { i8, i8, i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V, i8* %data_V_data_6_V, i8* %data_V_data_7_V)" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 30 'read' 'empty_216' <Predicate = (!icmp_ln19)> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
+ST_3 : Operation 31 [1/1] (0.00ns)   --->   "%tmp_data_V_18_0 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_216, 0" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 31 'extractvalue' 'tmp_data_V_18_0' <Predicate = (!icmp_ln19)> <Delay = 0.00>
+ST_3 : Operation 32 [1/1] (0.00ns)   --->   "%tmp_data_V_18_1 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_216, 1" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 32 'extractvalue' 'tmp_data_V_18_1' <Predicate = (!icmp_ln19)> <Delay = 0.00>
+ST_3 : Operation 33 [1/1] (0.00ns)   --->   "%tmp_data_V_18_2 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_216, 2" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 33 'extractvalue' 'tmp_data_V_18_2' <Predicate = (!icmp_ln19)> <Delay = 0.00>
+ST_3 : Operation 34 [1/1] (0.00ns)   --->   "%tmp_data_V_18_3 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_216, 3" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 34 'extractvalue' 'tmp_data_V_18_3' <Predicate = (!icmp_ln19)> <Delay = 0.00>
+ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%tmp_data_V_18_4 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_216, 4" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 35 'extractvalue' 'tmp_data_V_18_4' <Predicate = (!icmp_ln19)> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%tmp_data_V_18_5 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_216, 5" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 36 'extractvalue' 'tmp_data_V_18_5' <Predicate = (!icmp_ln19)> <Delay = 0.00>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%tmp_data_V_18_6 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_216, 6" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 37 'extractvalue' 'tmp_data_V_18_6' <Predicate = (!icmp_ln19)> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (0.00ns)   --->   "%tmp_data_V_18_7 = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_216, 7" [firmware/nnet_utils/nnet_activation_stream.h:22]   --->   Operation 38 'extractvalue' 'tmp_data_V_18_7' <Predicate = (!icmp_ln19)> <Delay = 0.00>
 ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%tmp_data_0_V = call i12 @_ssdm_op_BitConcatenate.i12.i8.i4(i8 %tmp_data_V_18_0, i4 0)" [firmware/nnet_utils/nnet_activation_stream.h:29]   --->   Operation 39 'bitconcatenate' 'tmp_data_0_V' <Predicate = (!icmp_ln19)> <Delay = 0.00>
 ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%tmp_data_0_V_1 = sext i12 %tmp_data_0_V to i16" [firmware/nnet_utils/nnet_activation_stream.h:29]   --->   Operation 40 'sext' 'tmp_data_0_V_1' <Predicate = (!icmp_ln19)> <Delay = 0.00>
 ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%tmp_data_1_V = call i12 @_ssdm_op_BitConcatenate.i12.i8.i4(i8 %tmp_data_V_18_1, i4 0)" [firmware/nnet_utils/nnet_activation_stream.h:29]   --->   Operation 41 'bitconcatenate' 'tmp_data_1_V' <Predicate = (!icmp_ln19)> <Delay = 0.00>
@@ -309,7 +309,7 @@ ST_3 : Operation 52 [1/1] (0.00ns)   --->   "%tmp_data_6_V_1 = sext i12 %tmp_dat
 ST_3 : Operation 53 [1/1] (0.00ns)   --->   "%tmp_data_7_V = call i12 @_ssdm_op_BitConcatenate.i12.i8.i4(i8 %tmp_data_V_18_7, i4 0)" [firmware/nnet_utils/nnet_activation_stream.h:29]   --->   Operation 53 'bitconcatenate' 'tmp_data_7_V' <Predicate = (!icmp_ln19)> <Delay = 0.00>
 ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%tmp_data_7_V_1 = sext i12 %tmp_data_7_V to i16" [firmware/nnet_utils/nnet_activation_stream.h:29]   --->   Operation 54 'sext' 'tmp_data_7_V_1' <Predicate = (!icmp_ln19)> <Delay = 0.00>
 ST_3 : Operation 55 [1/1] (2.18ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i16P.i16P.i16P.i16P.i16P.i16P.i16P.i16P(i16* %res_V_data_0_V, i16* %res_V_data_1_V, i16* %res_V_data_2_V, i16* %res_V_data_3_V, i16* %res_V_data_4_V, i16* %res_V_data_5_V, i16* %res_V_data_6_V, i16* %res_V_data_7_V, i16 %tmp_data_0_V_1, i16 %tmp_data_1_V_1, i16 %tmp_data_2_V_1, i16 %tmp_data_3_V_1, i16 %tmp_data_4_V_1, i16 %tmp_data_5_V_1, i16 %tmp_data_6_V_1, i16 %tmp_data_7_V_1)" [firmware/nnet_utils/nnet_activation_stream.h:32]   --->   Operation 55 'write' <Predicate = (!icmp_ln19)> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
-ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%empty_219 = call i32 (...)* @_ssdm_op_SpecRegionEnd([14 x i8]* @p_str37, i32 %tmp)" [firmware/nnet_utils/nnet_activation_stream.h:33]   --->   Operation 56 'specregionend' 'empty_219' <Predicate = (!icmp_ln19)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%empty_217 = call i32 (...)* @_ssdm_op_SpecRegionEnd([14 x i8]* @p_str37, i32 %tmp)" [firmware/nnet_utils/nnet_activation_stream.h:33]   --->   Operation 56 'specregionend' 'empty_217' <Predicate = (!icmp_ln19)> <Delay = 0.00>
 ST_3 : Operation 57 [1/1] (0.00ns)   --->   "br label %1" [firmware/nnet_utils/nnet_activation_stream.h:19]   --->   Operation 57 'br' <Predicate = (!icmp_ln19)> <Delay = 0.00>
 
 State 4 <SV = 2> <Delay = 0.00>
@@ -374,7 +374,7 @@ br_ln19           (br               ) [ 00000]
 specloopname_ln19 (specloopname     ) [ 00000]
 tmp               (specregionbegin  ) [ 00000]
 specpipeline_ln20 (specpipeline     ) [ 00000]
-empty_218         (read             ) [ 00000]
+empty_216         (read             ) [ 00000]
 tmp_data_V_18_0   (extractvalue     ) [ 00000]
 tmp_data_V_18_1   (extractvalue     ) [ 00000]
 tmp_data_V_18_2   (extractvalue     ) [ 00000]
@@ -400,7 +400,7 @@ tmp_data_6_V_1    (sext             ) [ 00000]
 tmp_data_7_V      (bitconcatenate   ) [ 00000]
 tmp_data_7_V_1    (sext             ) [ 00000]
 write_ln32        (write            ) [ 00000]
-empty_219         (specregionend    ) [ 00000]
+empty_217         (specregionend    ) [ 00000]
 br_ln19           (br               ) [ 01110]
 ret_ln34          (ret              ) [ 00000]
 </LifeTime>
@@ -1614,7 +1614,7 @@ ret_ln34          (ret              ) [ 00000]
 </bind>
 </comp>
 
-<comp id="268" class="1004" name="empty_218_read_fu_268">
+<comp id="268" class="1004" name="empty_216_read_fu_268">
 <pin_list>
 <pin id="269" dir="0" index="0" bw="64" slack="0"/>
 <pin id="270" dir="0" index="1" bw="8" slack="0"/>
@@ -1629,7 +1629,7 @@ ret_ln34          (ret              ) [ 00000]
 </pin_list>
 <bind>
 <opcode="read(1150) " fcode="read"/>
-<opset="empty_218/3 "/>
+<opset="empty_216/3 "/>
 </bind>
 </comp>
 
@@ -2209,7 +2209,7 @@ ret_ln34          (ret              ) [ 00000]
 		tmp_data_7_V : 1
 		tmp_data_7_V_1 : 2
 		write_ln32 : 3
-		empty_219 : 1
+		empty_217 : 1
 	State 4
 
 
@@ -2225,7 +2225,7 @@ ret_ln34          (ret              ) [ 00000]
 |----------|-------------------------|---------|---------|
 |   icmp   |     icmp_ln19_fu_327    |    0    |    11   |
 |----------|-------------------------|---------|---------|
-|   read   |  empty_218_read_fu_268  |    0    |    0    |
+|   read   |  empty_216_read_fu_268  |    0    |    0    |
 |----------|-------------------------|---------|---------|
 |   write  | write_ln32_write_fu_288 |    0    |    0    |
 |----------|-------------------------|---------|---------|

@@ -588,7 +588,7 @@
 					<Obj>
 						<type>0</type>
 						<id>36</id>
-						<name>empty_220</name>
+						<name>empty_218</name>
 						<fileName>firmware/nnet_utils/nnet_activation_stream.h</fileName>
 						<fileDirectory>/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/hls4ml/gaussian_hls4ml_prj</fileDirectory>
 						<lineNumber>22</lineNumber>
@@ -3344,7 +3344,7 @@
 		<count>2</count>
 		<item_version>0</item_version>
 		<item>
-			<first>empty_220_read_fu_212</first>
+			<first>empty_218_read_fu_212</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>

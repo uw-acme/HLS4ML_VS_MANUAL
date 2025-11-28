@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s'" level="0">
-<item name = "Date">Fri Nov 21 19:12:32 2025
+<item name = "Date">Mon Nov 24 11:54:11 2025
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
@@ -51,7 +51,7 @@
 <column name="DSP">-, -, -, -, -</column>
 <column name="Expression">-, -, 0, 32, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">11, 0, 3203, 7956, -</column>
+<column name="Instance">11, 0, 3202, 7956, -</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, -, 174, -</column>
 <column name="Register">-, -, 68, -, -</column>
@@ -63,7 +63,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
-<column name="grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359">compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s, 11, 0, 3203, 7956, 0</column>
+<column name="grp_compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_359">compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s, 11, 0, 3202, 7956, 0</column>
 </table>
 </item>
 <item name = "DSP48E"><table name="" hasTotal="0">

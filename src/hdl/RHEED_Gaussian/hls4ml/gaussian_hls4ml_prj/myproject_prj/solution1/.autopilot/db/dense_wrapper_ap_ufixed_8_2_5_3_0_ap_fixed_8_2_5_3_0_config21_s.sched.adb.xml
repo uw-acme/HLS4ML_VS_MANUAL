@@ -814,7 +814,7 @@ ReuseLoop:54  %tmp_12 = call i6 @_ssdm_op_PartSelect.i6.i38.i32.i32(i38 %w21_V_l
 
 <Node id="27" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:12  %acc_V_4_09 = phi i16 [ -192, %hls_label_48_begin ], [ %acc_4_V, %ReuseLoop ], [ -192, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
+rewind_header:12  %acc_V_4_09 = phi i16 [ 448, %hls_label_48_begin ], [ %acc_4_V, %ReuseLoop ], [ 448, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
 
 ]]></Node>
 <StgValue><ssdm name="acc_V_4_09"/></StgValue>
@@ -829,7 +829,7 @@ rewind_header:12  %acc_V_4_09 = phi i16 [ -192, %hls_label_48_begin ], [ %acc_4_
 
 <Node id="28" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:13  %acc_V_3_08 = phi i16 [ 0, %hls_label_48_begin ], [ %acc_3_V, %ReuseLoop ], [ 0, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
+rewind_header:13  %acc_V_3_08 = phi i16 [ 32, %hls_label_48_begin ], [ %acc_3_V, %ReuseLoop ], [ 32, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
 
 ]]></Node>
 <StgValue><ssdm name="acc_V_3_08"/></StgValue>
@@ -844,7 +844,7 @@ rewind_header:13  %acc_V_3_08 = phi i16 [ 0, %hls_label_48_begin ], [ %acc_3_V, 
 
 <Node id="29" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:14  %acc_V_2_07 = phi i16 [ 192, %hls_label_48_begin ], [ %acc_2_V, %ReuseLoop ], [ 192, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
+rewind_header:14  %acc_V_2_07 = phi i16 [ 0, %hls_label_48_begin ], [ %acc_2_V, %ReuseLoop ], [ 0, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
 
 ]]></Node>
 <StgValue><ssdm name="acc_V_2_07"/></StgValue>
@@ -859,7 +859,7 @@ rewind_header:14  %acc_V_2_07 = phi i16 [ 192, %hls_label_48_begin ], [ %acc_2_V
 
 <Node id="30" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:15  %acc_V_1_06 = phi i16 [ 128, %hls_label_48_begin ], [ %acc_1_V, %ReuseLoop ], [ 128, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
+rewind_header:15  %acc_V_1_06 = phi i16 [ 32, %hls_label_48_begin ], [ %acc_1_V, %ReuseLoop ], [ 32, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
 
 ]]></Node>
 <StgValue><ssdm name="acc_V_1_06"/></StgValue>
@@ -874,7 +874,7 @@ rewind_header:15  %acc_V_1_06 = phi i16 [ 128, %hls_label_48_begin ], [ %acc_1_V
 
 <Node id="31" bw="16" op_0_bw="16" op_1_bw="0" op_2_bw="16" op_3_bw="0" op_4_bw="16" op_5_bw="0">
 <![CDATA[
-rewind_header:16  %acc_V_0_05 = phi i16 [ 96, %hls_label_48_begin ], [ %acc_0_V, %ReuseLoop ], [ 96, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
+rewind_header:16  %acc_V_0_05 = phi i16 [ 0, %hls_label_48_begin ], [ %acc_0_V, %ReuseLoop ], [ 0, %"cast<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config21>.exit.0" ]
 
 ]]></Node>
 <StgValue><ssdm name="acc_V_0_05"/></StgValue>
@@ -906,10 +906,10 @@ hls_label_48_end:10  call void (...)* @_ssdm_op_SpecMemCore([10 x i38]* @w21_V, 
 
 <Node id="45" bw="32" op_0_bw="32" op_1_bw="0" op_2_bw="32">
 <![CDATA[
-hls_label_48_end:11  %empty_228 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str49, i32 %tmp)
+hls_label_48_end:11  %empty_226 = call i32 (...)* @_ssdm_op_SpecRegionEnd([13 x i8]* @p_str49, i32 %tmp)
 
 ]]></Node>
-<StgValue><ssdm name="empty_228"/></StgValue>
+<StgValue><ssdm name="empty_226"/></StgValue>
 </operation>
 
 <operation id="62" st_id="4" stage="1" lat="1">
@@ -1686,10 +1686,10 @@ ReuseLoop:70  %trunc_ln46_4 = call i8 @_ssdm_op_PartSelect.i8.i12.i32.i32(i12 %a
 
 <Node id="120" bw="32" op_0_bw="32" op_1_bw="64" op_2_bw="64" op_3_bw="64">
 <![CDATA[
-ReuseLoop:72  %empty_227 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10, i64 10, i64 10)
+ReuseLoop:72  %empty_225 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10, i64 10, i64 10)
 
 ]]></Node>
-<StgValue><ssdm name="empty_227"/></StgValue>
+<StgValue><ssdm name="empty_225"/></StgValue>
 </operation>
 
 <operation id="114" st_id="4" stage="1" lat="1">

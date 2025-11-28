@@ -384,7 +384,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>08c03c91</spirit:value>
+            <spirit:value>5aa2c228</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -400,7 +400,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>65b2fb76</spirit:value>
+            <spirit:value>8befedbd</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -416,7 +416,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>09c5f2cf</spirit:value>
+            <spirit:value>942d7abb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -432,7 +432,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f2c6ecce</spirit:value>
+            <spirit:value>805c0f90</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1972,7 +1972,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/myproject.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_13716ce4</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_a228fe94</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -2465,12 +2465,12 @@
       <xilinx:displayName>Myproject</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
       <xilinx:coreRevision>0</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2025-11-22T03:13:19Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2025-11-24T19:54:57Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="eec39b56"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="28fc6780"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="c4f66e20"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="1a1eb069"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="6d540eb2"/>
     </xilinx:packagingInfo>

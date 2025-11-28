@@ -320,11 +320,11 @@ struct dense_wrapper_ap_ufixed_8_2_5_3_0_ap_fixed_8_2_5_3_0_config18_s : public 
     static const bool ap_const_boolean_0;
     static const sc_lv<1> ap_const_lv1_0;
     static const sc_lv<4> ap_const_lv4_0;
-    static const sc_lv<16> ap_const_lv16_80;
+    static const sc_lv<16> ap_const_lv16_FF80;
+    static const sc_lv<16> ap_const_lv16_FFA0;
     static const sc_lv<16> ap_const_lv16_0;
-    static const sc_lv<16> ap_const_lv16_FFC0;
     static const sc_lv<16> ap_const_lv16_FFE0;
-    static const sc_lv<16> ap_const_lv16_C0;
+    static const sc_lv<16> ap_const_lv16_FFC0;
     static const sc_lv<4> ap_const_lv4_1;
     static const sc_lv<4> ap_const_lv4_E;
     static const sc_lv<32> ap_const_lv32_8;

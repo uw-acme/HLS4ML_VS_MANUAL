@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'relu_array_ap_fixed_10u_array_ap_ufixed_8_2_5_3_0_10u_relu_config20_s'
 ================================================================
-* Date:           Fri Nov 21 19:12:17 2025
+* Date:           Mon Nov 24 11:53:57 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
@@ -147,7 +147,7 @@ ST_2 : Operation 64 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoop
 ST_2 : Operation 65 [1/1] (0.00ns)   --->   "%tmp = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str56)" [firmware/nnet_utils/nnet_activation_stream.h:41]   --->   Operation 65 'specregionbegin' 'tmp' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 66 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str17) nounwind" [firmware/nnet_utils/nnet_activation_stream.h:42]   --->   Operation 66 'specpipeline' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 67 [1/1] (2.18ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P(i8* %res_V_data_0_V, i8* %res_V_data_1_V, i8* %res_V_data_2_V, i8* %res_V_data_3_V, i8* %res_V_data_4_V, i8* %res_V_data_5_V, i8* %res_V_data_6_V, i8* %res_V_data_7_V, i8* %res_V_data_8_V, i8* %res_V_data_9_V, i8 %tmp_data_0_V, i8 %tmp_data_1_V, i8 %tmp_data_2_V, i8 %tmp_data_3_V, i8 %tmp_data_4_V, i8 %tmp_data_5_V, i8 %tmp_data_6_V, i8 %tmp_data_7_V, i8 %tmp_data_8_V, i8 %tmp_data_9_V)" [firmware/nnet_utils/nnet_activation_stream.h:57]   --->   Operation 67 'write' <Predicate = true> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
-ST_2 : Operation 68 [1/1] (0.00ns)   --->   "%empty_34 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str56, i32 %tmp)" [firmware/nnet_utils/nnet_activation_stream.h:58]   --->   Operation 68 'specregionend' 'empty_34' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 68 [1/1] (0.00ns)   --->   "%empty_32 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str56, i32 %tmp)" [firmware/nnet_utils/nnet_activation_stream.h:58]   --->   Operation 68 'specregionend' 'empty_32' <Predicate = true> <Delay = 0.00>
 ST_2 : Operation 69 [1/1] (0.00ns)   --->   "ret void" [firmware/nnet_utils/nnet_activation_stream.h:59]   --->   Operation 69 'ret' <Predicate = true> <Delay = 0.00>
 
 
@@ -253,7 +253,7 @@ specloopname_ln41 (specloopname   ) [ 000]
 tmp               (specregionbegin) [ 000]
 specpipeline_ln42 (specpipeline   ) [ 000]
 write_ln57        (write          ) [ 000]
-empty_34          (specregionend  ) [ 000]
+empty_32          (specregionend  ) [ 000]
 ret_ln59          (ret            ) [ 000]
 </LifeTime>
 
@@ -2700,7 +2700,7 @@ ret_ln59          (ret            ) [ 000]
 		tmp_data_8_V : 2
 		tmp_data_9_V : 2
 	State 2
-		empty_34 : 1
+		empty_32 : 1
 
 
 ============================================================

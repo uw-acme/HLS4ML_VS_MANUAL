@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'linear_array_array_ap_fixed_16_6_5_3_0_15u_linear_config16_s'
 ================================================================
-* Date:           Fri Nov 21 19:12:48 2025
+* Date:           Mon Nov 24 11:54:27 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
@@ -369,7 +369,7 @@ ST_1 : Operation 78 [1/1] (0.00ns)   --->   "%tmp_data_13_V_1 = sext i12 %tmp_da
 ST_1 : Operation 79 [1/1] (0.00ns)   --->   "%tmp_data_14_V = call i12 @_ssdm_op_BitConcatenate.i12.i8.i4(i8 %tmp_data_V_24_14, i4 0)" [firmware/nnet_utils/nnet_activation_stream.h:29]   --->   Operation 79 'bitconcatenate' 'tmp_data_14_V' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 80 [1/1] (0.00ns)   --->   "%tmp_data_14_V_1 = sext i12 %tmp_data_14_V to i16" [firmware/nnet_utils/nnet_activation_stream.h:29]   --->   Operation 80 'sext' 'tmp_data_14_V_1' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 81 [1/1] (2.18ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i16P.i16P.i16P.i16P.i16P.i16P.i16P.i16P.i16P.i16P.i16P.i16P.i16P.i16P.i16P(i16* %res_V_data_0_V, i16* %res_V_data_1_V, i16* %res_V_data_2_V, i16* %res_V_data_3_V, i16* %res_V_data_4_V, i16* %res_V_data_5_V, i16* %res_V_data_6_V, i16* %res_V_data_7_V, i16* %res_V_data_8_V, i16* %res_V_data_9_V, i16* %res_V_data_10_V, i16* %res_V_data_11_V, i16* %res_V_data_12_V, i16* %res_V_data_13_V, i16* %res_V_data_14_V, i16 %tmp_data_0_V_4, i16 %tmp_data_1_V_4, i16 %tmp_data_2_V_4, i16 %tmp_data_3_V_4, i16 %tmp_data_4_V_4, i16 %tmp_data_5_V_3, i16 %tmp_data_6_V_2, i16 %tmp_data_7_V_2, i16 %tmp_data_8_V_1, i16 %tmp_data_9_V_1, i16 %tmp_data_10_V_1, i16 %tmp_data_11_V_1, i16 %tmp_data_12_V_1, i16 %tmp_data_13_V_1, i16 %tmp_data_14_V_1)" [firmware/nnet_utils/nnet_activation_stream.h:32]   --->   Operation 81 'write' <Predicate = true> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
-ST_1 : Operation 82 [1/1] (0.00ns)   --->   "%empty_223 = call i32 (...)* @_ssdm_op_SpecRegionEnd([14 x i8]* @p_str37, i32 %tmp)" [firmware/nnet_utils/nnet_activation_stream.h:33]   --->   Operation 82 'specregionend' 'empty_223' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 82 [1/1] (0.00ns)   --->   "%empty_221 = call i32 (...)* @_ssdm_op_SpecRegionEnd([14 x i8]* @p_str37, i32 %tmp)" [firmware/nnet_utils/nnet_activation_stream.h:33]   --->   Operation 82 'specregionend' 'empty_221' <Predicate = true> <Delay = 0.00>
 ST_1 : Operation 83 [1/1] (0.00ns)   --->   "ret void" [firmware/nnet_utils/nnet_activation_stream.h:34]   --->   Operation 83 'ret' <Predicate = true> <Delay = 0.00>
 
 
@@ -500,7 +500,7 @@ tmp_data_13_V_1   (sext           ) [ 00]
 tmp_data_14_V     (bitconcatenate ) [ 00]
 tmp_data_14_V_1   (sext           ) [ 00]
 write_ln32        (write          ) [ 00]
-empty_223         (specregionend  ) [ 00]
+empty_221         (specregionend  ) [ 00]
 ret_ln34          (ret            ) [ 00]
 </LifeTime>
 
@@ -3475,7 +3475,7 @@ ret_ln34          (ret            ) [ 00]
 		tmp_data_14_V : 1
 		tmp_data_14_V_1 : 2
 		write_ln32 : 3
-		empty_223 : 1
+		empty_221 : 1
 
 
 ============================================================

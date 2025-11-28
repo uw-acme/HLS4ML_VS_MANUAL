@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s'
 ================================================================
-* Date:           Fri Nov 21 19:12:42 2025
+* Date:           Mon Nov 24 11:54:21 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
@@ -295,15 +295,15 @@ ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%indvar_flatten = phi i5 [ 0, %code
 ST_2 : Operation 24 [1/1] (0.87ns)   --->   "%icmp_ln85 = icmp eq i5 %indvar_flatten, -16" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 24 'icmp' 'icmp_ln85' <Predicate = true> <Delay = 0.87> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.84> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
 ST_2 : Operation 25 [1/1] (1.03ns)   --->   "%add_ln85 = add i5 %indvar_flatten, 1" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 25 'add' 'add_ln85' <Predicate = true> <Delay = 1.03> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.03> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
 ST_2 : Operation 26 [1/1] (0.00ns)   --->   "br i1 %icmp_ln85, label %"conv_2d_buffer_cl<array<ap_ufixed<8, 2, 5, 3, 0>, 8u>, array<ap_fixed<8, 2, 5, 3, 0>, 10u>, config10>.exit", label %.reset" [firmware/nnet_utils/nnet_conv2d_stream.h:85->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 26 'br' <Predicate = true> <Delay = 0.00>
-ST_2 : Operation 27 [1/1] (2.18ns)   --->   "%empty_239 = call { i8, i8, i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V, i8* %data_V_data_6_V, i8* %data_V_data_7_V)" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 27 'read' 'empty_239' <Predicate = (!icmp_ln85)> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
-ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%tmp_data_0_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_239, 0" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 28 'extractvalue' 'tmp_data_0_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%tmp_data_1_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_239, 1" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 29 'extractvalue' 'tmp_data_1_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%tmp_data_2_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_239, 2" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 30 'extractvalue' 'tmp_data_2_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%tmp_data_3_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_239, 3" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 31 'extractvalue' 'tmp_data_3_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%tmp_data_4_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_239, 4" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 32 'extractvalue' 'tmp_data_4_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%tmp_data_5_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_239, 5" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 33 'extractvalue' 'tmp_data_5_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%tmp_data_6_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_239, 6" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 34 'extractvalue' 'tmp_data_6_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
-ST_2 : Operation 35 [1/1] (0.00ns)   --->   "%tmp_data_7_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_239, 7" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 35 'extractvalue' 'tmp_data_7_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (2.18ns)   --->   "%empty_237 = call { i8, i8, i8, i8, i8, i8, i8, i8 } @_ssdm_op_Read.ap_fifo.volatile.i8P.i8P.i8P.i8P.i8P.i8P.i8P.i8P(i8* %data_V_data_0_V, i8* %data_V_data_1_V, i8* %data_V_data_2_V, i8* %data_V_data_3_V, i8* %data_V_data_4_V, i8* %data_V_data_5_V, i8* %data_V_data_6_V, i8* %data_V_data_7_V)" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 27 'read' 'empty_237' <Predicate = (!icmp_ln85)> <Delay = 2.18> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.26> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 1> <FIFO>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%tmp_data_0_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_237, 0" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 28 'extractvalue' 'tmp_data_0_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%tmp_data_1_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_237, 1" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 29 'extractvalue' 'tmp_data_1_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%tmp_data_2_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_237, 2" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 30 'extractvalue' 'tmp_data_2_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%tmp_data_3_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_237, 3" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 31 'extractvalue' 'tmp_data_3_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (0.00ns)   --->   "%tmp_data_4_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_237, 4" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 32 'extractvalue' 'tmp_data_4_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "%tmp_data_5_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_237, 5" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 33 'extractvalue' 'tmp_data_5_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%tmp_data_6_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_237, 6" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 34 'extractvalue' 'tmp_data_6_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
+ST_2 : Operation 35 [1/1] (0.00ns)   --->   "%tmp_data_7_V = extractvalue { i8, i8, i8, i8, i8, i8, i8, i8 } %empty_237, 7" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 35 'extractvalue' 'tmp_data_7_V' <Predicate = (!icmp_ln85)> <Delay = 0.00>
 ST_2 : Operation 36 [2/2] (1.98ns)   --->   "call fastcc void @"compute_output_buffer_2d<array,array<ap_fixed<8,2,5,3,0>,10u>,config10>"(i8 %tmp_data_0_V, i8 %tmp_data_1_V, i8 %tmp_data_2_V, i8 %tmp_data_3_V, i8 %tmp_data_4_V, i8 %tmp_data_5_V, i8 %tmp_data_6_V, i8 %tmp_data_7_V, i8* %res_V_data_0_V, i8* %res_V_data_1_V, i8* %res_V_data_2_V, i8* %res_V_data_3_V, i8* %res_V_data_4_V, i8* %res_V_data_5_V, i8* %res_V_data_6_V, i8* %res_V_data_7_V, i8* %res_V_data_8_V, i8* %res_V_data_9_V)" [firmware/nnet_utils/nnet_conv2d_stream.h:93->firmware/nnet_utils/nnet_conv2d_stream.h:109]   --->   Operation 36 'call' <Predicate = (!icmp_ln85)> <Delay = 1.98> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
 ST_2 : Operation 37 [1/1] (0.00ns)   --->   "ret void" [firmware/nnet_utils/nnet_conv2d_stream.h:115]   --->   Operation 37 'ret' <Predicate = (icmp_ln85)> <Delay = 0.00>
 
@@ -442,7 +442,7 @@ indvar_flatten    (phi              ) [ 0010]
 icmp_ln85         (icmp             ) [ 0011]
 add_ln85          (add              ) [ 0111]
 br_ln85           (br               ) [ 0000]
-empty_239         (read             ) [ 0000]
+empty_237         (read             ) [ 0000]
 tmp_data_0_V      (extractvalue     ) [ 0001]
 tmp_data_1_V      (extractvalue     ) [ 0001]
 tmp_data_2_V      (extractvalue     ) [ 0001]
@@ -2369,7 +2369,7 @@ br_ln0            (br               ) [ 0111]
 </bind>
 </comp>
 
-<comp id="420" class="1004" name="empty_239_read_fu_420">
+<comp id="420" class="1004" name="empty_237_read_fu_420">
 <pin_list>
 <pin id="421" dir="0" index="0" bw="64" slack="0"/>
 <pin id="422" dir="0" index="1" bw="8" slack="0"/>
@@ -2384,7 +2384,7 @@ br_ln0            (br               ) [ 0111]
 </pin_list>
 <bind>
 <opcode="read(1150) " fcode="read"/>
-<opset="empty_239/2 "/>
+<opset="empty_237/2 "/>
 </bind>
 </comp>
 
@@ -3161,7 +3161,7 @@ br_ln0            (br               ) [ 0111]
 |----------|-----------------------------------------------------------------------------------|---------|---------|---------|---------|
 |   icmp   |                                  icmp_ln85_fu_621                                 |    0    |    0    |    0    |    11   |
 |----------|-----------------------------------------------------------------------------------|---------|---------|---------|---------|
-|   read   |                               empty_239_read_fu_420                               |    0    |    0    |    0    |    0    |
+|   read   |                               empty_237_read_fu_420                               |    0    |    0    |    0    |    0    |
 |----------|-----------------------------------------------------------------------------------|---------|---------|---------|---------|
 |          |                                tmp_data_0_V_fu_633                                |    0    |    0    |    0    |    0    |
 |          |                                tmp_data_1_V_fu_638                                |    0    |    0    |    0    |    0    |
