@@ -36,17 +36,28 @@ def file_to_array(file, length):
          num = f.readline()
     f.close()
     return arr
-def handmade_gen(acc, name):
+
+
+def handmade_gen(acc, name, params, defs):
     """
     Runs a test with precision (WIDTH, NINT)
     """
+    def add_to(name, feat):
+        newline = f"\n{name}"
+        while len(newline)<longest_feat:
+            newline+=" "
+        newline+=f": {feat}"
+        output+=newline
     os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
-    patt = r"[0-9]{1,2}"
+    # patt = r"[0-9]{1,2}"
     gen_weight(acc)
-    os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark*.sv')
-    os.system(f"vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name}")
+    params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
+    params = "{" + params + "}"
+    defs = "{" + defs + "}"
+    # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark*.sv')
+    os.system(f'vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name} "{defs}" "{params}"')
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
-    accuracy = accuracy_test(acc, y_test)
+    accuracy = accuracy_test(acc, y_test,  defs, params)
     results = extract_data(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt", features)
     time = extract_time(f"../reports/{acc[0]}_{acc[1]}_{name}_timing.rpt")
     #accuracy_score = test_score()
@@ -62,8 +73,17 @@ def handmade_gen(acc, name):
         f.write(f", {time}")
         f.write(f", {accuracy}")
         f.write("\n")
+    output = ""
+    lengths = [len(feat) for feat in features]
+    longest_feat = np.max(lengths)
+    for i in range(len(features)):
+        add_to(features[i], results[i])
+    add_to("Timing", time)
+    add_to("Accuracy", accuracy)
 
-    os.system(f'printf "Hand gen finished at %b with parameters {acc} with results:\n{", ".join(features)}, Timing, Accuracy\n{", ".join(results)}, {time}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
+    # output += f"\nTiming: {time}"
+    # output += f"\nAccuracy: {accuracy}"
+    os.system(f'printf "{name} finished at %b with parameters {acc} with results: {output}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
 def extract_data(file, features):
     """Extracts the feature from a file using Vivado formatting\n
     Formatting Example: | Slice LUTs                 | 66386 |     0 |    433200 | 15.32 |"""
@@ -91,42 +111,29 @@ def extract_time(file):
     m = re.search(pat, text, re.IGNORECASE|re.DOTALL)
     if m:
         return m.group(1)
-# def get_accuracy(tests):
-#     accuracies = []
-#     y_test = np.load('python/y_test.npy')
-#     for acc in tests:
-#         patt = r"[0-9]{1,2}"
-#         os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark_tb.sv')
-#         gen_test(acc)
-#         gen_weight(acc)
-#         os.system("bash sim.sh")
-#         res =  np.loadtxt(f"./reports/gen_results.csv", delimiter=",")
-#         acc_res= accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
-#         with open("hand_accuracy.csv", "a") as f:
-#             f.write(f"{acc[0]}, {acc_res}\n")
-#         os.system(f'printf "Acc test finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
-#         accuracies.append(acc)
-#     return accuracies
 
-
-
-def accuracy_test(acc, y_test):
+def accuracy_test(acc, y_test, defs : str, params : str):
     """
     Runs an accuracy test with bit precision (WIDTH, NINT)\n
     acc: tuple representing bit precision  (WIDTH, NINT)\n
     y_test: the correct values for the inputs
     """
     # Regex pattern. Looks for 1 to 2 numbers, 0-9
-    patt = r"[0-9]{1,2}"
+    # patt = r"[0-9]{1,2}"
     # Uses sed to find NFRAC = NUMBER and WIDTH = NUMBER and replace the numbers with new numbers
-    os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark_tb.sv')
+    # defs = f"WIDTH={acc[0]} NFRAC={acc[0]-acc[1]}"
+    # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark_tb.sv')
+    params = params.replace("{", "")
+    params = params.replace("}", "")
 
+    defs = defs.replace("{", "")
+    defs = defs.replace("}", "")
     # Generates the input files for testing and for weights
     gen_test(acc)
     gen_weight(acc)
 
     # Runs the simulator through a bash script
-    os.system("bash sim.sh")
+    os.system(f'bash sim.sh " {defs}" " {params}"')
 
     # Grabs the output from the simulation and tests it
     res =  np.loadtxt(f"../reports/gen_results.csv", delimiter=",")
@@ -136,7 +143,7 @@ def accuracy_test(acc, y_test):
     with open("../Results/chopped_acc.csv", "a") as f:
         f.write(f"\"{acc[0]}_{acc[1]}\", {acc_res}\n")
     # Uses the Linux mail system to send the results to me
-    os.system(f'printf "Acc test finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
+    # os.system(f'printf "Acc test finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
     return acc_res
 
 # Generates a systemverilog package of weights of a proper accuracy from a file listing weights
@@ -248,24 +255,29 @@ def bits_to_params(bits):
     SA_FRAC = int(np.round((SA-SA_INT)*10))
     return SA_INT+1, SA_FRAC
 def adjust(bits):
-    patt = r"[0-9]{1,2}"
+    # patt = r"[0-9]{1,2}"
     SA_INT, SA_FRAC = bits_to_params(bits)
-    os.system(f'sed -i -E "s/SA_FRAC {patt}/SA_FRAC {SA_FRAC}/g; s/SA_DEPTH {patt}/SA_DEPTH {SA_INT}/g;" ../verilog-modules/pkg_sel.svh')
+    # os.system(f'sed -i -E "s/SA_FRAC {patt}/SA_FRAC {SA_FRAC}/g; s/SA_DEPTH {patt}/SA_DEPTH {SA_INT}/g;" ../verilog-modules/pkg_sel.svh')
     return SA_INT, SA_FRAC
-# name = f"Argmax_varpipes"
-# #os.environ['PATH'] = r"/tools/Xilinx/2025.1/Vivado/bin:" + os.environ['PATH']
-# #os.environ['FLEXLM_DIAGNOSTICS']="3"
-# # accuracy_test((16,6), y_test)
-# # adjust(16)
-# # handmade_gen((16,6), name)
+
+#os.environ['PATH'] = r"/tools/Xilinx/2025.1/Vivado/bin:" + os.environ['PATH']
+#os.environ['FLEXLM_DIAGNOSTICS']="3"
+# accuracy_test((16,6), y_test)
+# adjust(16)
+# handmade_gen((16,6), name)
 # patt = r"[0-9]{1,2}"
-# for pipeline in [1,2,3]:
-#     os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
-#     for i in range(2,14):
-#         acc = (3*i-2,i)
-#         # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
-#         # SA_INT, SA_FRAC = adjust(acc_in[0])
-#         adjust(acc[0])
-#         # # print((3*i-2,i))
-#         handmade_gen(acc, name)
-#         # accuracy_test(acc, y_test)
+defs = ''
+params = ''
+for pipeline in [1]:
+    # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
+    params+= f'PIPELINING={pipeline} PIPE_OUT=0'
+    name = f"Testing"
+    for i in [2]:
+        acc = (3*i-2,i)
+        # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
+        # SA_INT, SA_FRAC = adjust(acc_in[0])
+        SAD, SAFRAC = adjust(acc[0])
+        defs += f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+        # # print((3*i-2,i))
+        handmade_gen(acc, name, params, defs)
+        # accuracy_test(acc, y_test)

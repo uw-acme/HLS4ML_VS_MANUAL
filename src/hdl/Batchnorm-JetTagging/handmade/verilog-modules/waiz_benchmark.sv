@@ -8,14 +8,18 @@ import `DENSE_LAYER_4_PKG::*;
 module waiz_benchmark #(
     parameter WIDTH = 37, NFRAC = 24,
     parameter INPUT_SIZE = 16,
-    parameter OUTPUT_SIZE = 5
+    parameter OUTPUT_SIZE = 5,
+    // Parameter controlling how sparse the pipelines in the adder trees are. 1 is the minimum value (most pipelines)
+    parameter PIPELINING = 3, 
+    // Parameter controlling whether there is an output pipeline from dense layers. 1 means there is a pipeline
+    parameter PIPE_OUT = 1 
 ) (
     input logic clk,
     input logic reset,
     input logic input_ready,
     output logic output_ready,
-    input logic signed [WIDTH-1:0] input_data [16-1:0],
-    output logic signed [WIDTH-1:0] output_data [5-1:0]
+    input logic signed [WIDTH-1:0] input_data [INPUT_SIZE-1:0],
+    output logic signed [WIDTH-1:0] output_data [OUTPUT_SIZE-1:0]
 );
     
     localparam OUTPUT_SIZE_1 = 64;
@@ -25,22 +29,19 @@ module waiz_benchmark #(
     localparam OUTPUT_SIZE_3 = 32;
     localparam INPUT_SIZE_4 = 32;
 
-    // Parameter controlling how sparse the pipelines in the adder trees are. 1 is the minimum value (most pipelines)
-    localparam PIPELINING = 1;
 
-    // Parameter controlling whether there is an output pipeline from dense layers. 1 means there is a pipeline
-    localparam PIPE_OUT = 1;
+    
     // Declare real signals for the outputs to visualize as floating-point numbers
     `ifndef SYNTHESIS 
-     real input_data_real [0:INPUT_SIZE-1];
-     real dense1_output_real [0:OUTPUT_SIZE_1-1];
-     real dense2_input_real [0:OUTPUT_SIZE_1-1];
-     real dense2_output_real [0:OUTPUT_SIZE_2-1];
-     real dense3_input_real [0:OUTPUT_SIZE_2-1];
-     real dense3_output_real [0:OUTPUT_SIZE_3-1];
-     real dense4_input_real [0:OUTPUT_SIZE_3-1];
-     real dense4_output_real [0:OUTPUT_SIZE-1];
-     real softmax_output_real [0:OUTPUT_SIZE-1];
+        real input_data_real [0:INPUT_SIZE-1];
+        real dense1_output_real [0:OUTPUT_SIZE_1-1];
+        real dense2_input_real [0:OUTPUT_SIZE_1-1];
+        real dense2_output_real [0:OUTPUT_SIZE_2-1];
+        real dense3_input_real [0:OUTPUT_SIZE_2-1];
+        real dense3_output_real [0:OUTPUT_SIZE_3-1];
+        real dense4_input_real [0:OUTPUT_SIZE_3-1];
+        real dense4_output_real [0:OUTPUT_SIZE-1];
+        real softmax_output_real [0:OUTPUT_SIZE-1];
     `endif
     // Fixed-point signals for each layer's outputs
     logic signed [WIDTH-1:0] dense1_output_data [OUTPUT_SIZE_1-1:0];

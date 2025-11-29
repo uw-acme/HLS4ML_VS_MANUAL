@@ -1,6 +1,11 @@
 # Create a project (optional if running non-project mode)
 # create_project waiz_benchmark ./vivado_proj -part xc7a200tsbg484-1
 cd ../verilog-modules
+
+set name [lindex $argv 0]
+set defs [lindex $argv 1]
+set generics [lindex $argv 2]
+
 # --- Dense weights ---
 read_verilog -sv "./pkg_sel.svh"
 read_verilog -sv [glob ../weights/dense_*_weights_biases_pkgs/dense_*_gen.sv]
@@ -29,7 +34,7 @@ read_xdc ./const.xdc
 # xq7vx980trf1930-1I is big, needs license
 # xcvu13p-fhga2104-3-e
 # xc7vx690tffg1761-2 is virtex 7, needs license
-synth_design -top waiz_benchmark -part xcvu13p-fhga2104-3-e
+synth_design -top waiz_benchmark -part xcvu13p-fhga2104-3-e -generic $generics -verilog_define $defs
 
 # --- Implementation flow ---
 opt_design
@@ -47,7 +52,7 @@ route_design
 # RP is removed pipeiles using SA4 and rand 4/10
 #report_power -file reports/power_post_route_RELU.rpt
 # --- Save design checkpoint for GUI inspection ---
-report_utilization -hierarchical -hierarchical_depth 1 -file "../reports/[lindex $argv 0]_hier.rpt"
-report_utilization -file "../reports/[lindex $argv 0]_util.rpt"
-report_timing_summary -file ../reports/[lindex $argv 0]_timing.rpt
+report_utilization -hierarchical -hierarchical_depth 1 -file ../reports/${name}_hier.rpt
+report_utilization -file ../reports/${name}_util.rpt
+report_timing_summary -file ../reports/${name}_timing.rpt
 #write_checkpoint -force reports/[lindex $argv 0].dcp
