@@ -47,7 +47,7 @@ def handmade_gen(acc, name, params, defs):
         while len(newline)<longest_feat:
             newline+=" "
         newline+=f": {feat}"
-        output+=newline
+        return newline
     os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
     # patt = r"[0-9]{1,2}"
     gen_weight(acc)
@@ -76,10 +76,12 @@ def handmade_gen(acc, name, params, defs):
     output = ""
     lengths = [len(feat) for feat in features]
     longest_feat = np.max(lengths)
+    
+    
     for i in range(len(features)):
-        add_to(features[i], results[i])
-    add_to("Timing", time)
-    add_to("Accuracy", accuracy)
+        output+=add_to(features[i], results[i])
+    output+=add_to("Timing", time)
+    output+=add_to("Accuracy", accuracy)
 
     # output += f"\nTiming: {time}"
     # output += f"\nAccuracy: {accuracy}"
