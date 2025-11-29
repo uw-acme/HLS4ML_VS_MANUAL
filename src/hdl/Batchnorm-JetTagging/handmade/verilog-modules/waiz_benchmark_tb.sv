@@ -3,11 +3,14 @@
 module waiz_benchmark_tb;
 
     // Parameters
-    localparam WIDTH = 37;
-    localparam NFRAC = 24;
-    localparam INPUT_SIZE = 16;
-    localparam OUTPUT_SIZE = 5;
-
+    parameter WIDTH = 37;
+    parameter NFRAC = 24;
+    parameter INPUT_SIZE = 16;
+    parameter OUTPUT_SIZE = 5;
+    // Parameter controlling how sparse the pipelines in the adder trees are. 1 is the minimum value (most pipelines)
+    parameter PIPELINING = 3;
+    // Parameter controlling whether there is an output pipeline from dense layers. 1 means there is a pipeline
+    parameter PIPE_OUT = 1;
     // Clock and reset
     logic clk;
     logic reset;
@@ -31,7 +34,9 @@ module waiz_benchmark_tb;
     // Instantiate the module
     waiz_benchmark #(
         .WIDTH(WIDTH),
-        .NFRAC(NFRAC)
+        .NFRAC(NFRAC),
+        .PIPELINING(PIPELINING),
+        .PIPE_OUT(PIPE_OUT)
     ) dut (
         .clk(clk),
         .reset(reset),
@@ -81,7 +86,7 @@ module waiz_benchmark_tb;
         end
     endtask
     // max_tests = 166000;
-    localparam num_tests = 3;
+    localparam num_tests = 5000;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
