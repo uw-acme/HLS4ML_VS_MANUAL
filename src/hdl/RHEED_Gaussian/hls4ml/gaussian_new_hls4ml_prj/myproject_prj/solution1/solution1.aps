@@ -3,6 +3,8 @@
         <config_array_partition maximum_size="4096"/>
         <config_compile name_max_length="80"/>
         <config_schedule enable_dsp_full_reg="0"/>
+        <schedule model="myproject"/>
+        <config_export format="ip_catalog" version="1.0.0"/>
     </config>
     <name>
         <value string="solution1"/>
@@ -20,5 +22,8 @@
     <clockList>
         <clock default="false" name="default" uncertainty="12.5%" period="5"/>
     </clockList>
+    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="" vendor="" library="" ipname="" version="1.0.0" driver_input_dir="" display_name="" taxonomy=""/>
+    </ExportDesign>
 </AutoPilot:solution>
 
