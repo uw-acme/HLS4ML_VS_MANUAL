@@ -2,13 +2,13 @@
 # create_project waiz_benchmark ./vivado_proj -part xc7a200tsbg484-1
 
 set script_dir [file dirname [info script]]
-set verilog_dir [file join $script_dir "../hls4ml/gaussian_hls4ml_prj/myproject_prj/solution1/impl/verilog/"]
+set verilog_dir [file join $script_dir "../hls4ml/gaussian_new_hls4ml_prj/myproject_prj/solution1/impl/verilog/"]
 
 read_verilog -v [glob -directory $verilog_dir *.v]
 
 # put xdc file in the same directory as this script
-# set xdc_file [file join $script_dir "myproject_ooc.xdc"]
-# read_xdc $xdc_file
+set xdc_file [file join $script_dir "timing_only.xdc"]
+read_xdc $xdc_file
 
 # (Optional) Testbench files (if you want synthesis, usually skip these)
 # read_verilog -sv "./waiz_benchmark_tb.sv"
