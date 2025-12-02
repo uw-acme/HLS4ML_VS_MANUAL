@@ -2,7 +2,7 @@
 
 # --- Read design files ---
 # Read all generated Verilog files from the hls4ml project
-read_verilog [glob ./model_gru_hls/hls4ml_prj/solution1/impl/verilog/*.v]
+read_verilog [glob ./model_gru_hls/hls4ml_prj/myproject_prj/solution1/impl/verilog/*.v]
 
 # If you have an XDC constraints file next to the script, keep this:
 # (otherwise update the path accordingly)

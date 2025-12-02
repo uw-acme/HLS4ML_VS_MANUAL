@@ -1,0 +1,14 @@
+
+****** Vivado v2019.1 (64-bit)
+  **** SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+  **** IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source Script.tcl
+no files matched glob pattern "./model_gru_hls/hls4ml_prj/solution1/impl/verilog/*.v"
+    while executing
+"glob ./model_gru_hls/hls4ml_prj/solution1/impl/verilog/*.v"
+    invoked from within
+"read_verilog [glob ./model_gru_hls/hls4ml_prj/solution1/impl/verilog/*.v]"
+    (file "Script.tcl" line 5)
+INFO: [Common 17-206] Exiting Vivado at Tue Dec  2 09:47:12 2025...
