@@ -1,13 +1,30 @@
-# Example script
+# HLS4ML build script
 
-# Read system verilog header file
-read_verilog -sv "./pkg_sel.svh"
+# --- Read design files ---
+# Read all generated Verilog files from the hls4ml project
+read_verilog [glob ./model_gru_hls/hls4ml_prj/solution1/impl/verilog/*.v]
 
-# Read multiple files at once. * is a wildcard matching anything
-read_verilog -sv [glob ./weights/dense_*_weights_biases_pkgs/dense*.sv]
+# If you have an XDC constraints file next to the script, keep this:
+# (otherwise update the path accordingly)
+read_xdc ./const.xdc
 
-# Read all system verilog files
-read_verilog -sv [glob *.sv]
+# --- Set top module & part ---
+# Change 'waiz_benchmark' to your actual top module name from the .v files
+synth_design -top myproject -part xc7vx690tffg1761-2
+
+# --- Implementation flow ---
+opt_design
+place_design
+route_design
+
+# --- Reports ---
+report_utilization -file reports/util_no_relu.rpt
+#report_timing_summary -file reports/timing_.rpt
+#report_power -file reports/power_post_route_RELU.rpt
+
+# --- Save design checkpoint for GUI inspection ---
+write_checkpoint -force reports/impl_no_relu.dcp
+
 
 # Read constraints file for timing analysis
 read_xdc ./const.xdc
