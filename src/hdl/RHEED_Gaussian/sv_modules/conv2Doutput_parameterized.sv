@@ -11,11 +11,12 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 (clk, reset, inputPixel, outputMatrix, biases);
 	input logic clk, reset;
 	input logic signed [bitWidth-1:0]  inputPixel;
-	input logic signed [bitWidth-1:0]   biases [biasWidth-1:0];
+	input logic signed [bitWidth-1:0]   biases [biasWidth-1:0]; // (1 bias value per filter)
+																// biasWidth = # of filters (number of output channels)
 	
-	logic signed [bitWidth-1:0] zeroedMatrix       [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] zeroedMatrixCopy       [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] sum [biasWidth-1:0];
+	logic signed [bitWidth-1:0] currConvMatrix       [filtDimension-1:0][filtDimension-1:0];
+	logic signed [bitWidth-1:0] currConvMatrixCopy       [filtDimension-1:0][filtDimension-1:0];
+	logic signed [bitWidth-1:0] sum [biasWidth-1:0];	// result most recent dot product + added bias 
 
 
     // counter to keep track of how far we are into computing	
@@ -24,18 +25,19 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	logic [bitWidth-1:0] reluOutput [biasWidth-1:0];
 	// to know that we need to read data in before we start counting
 	logic firstTime;
-	//logic firstTimeFullyThrough;
 	logic reset_copy;
-	logic oscillator;
+	// logic oscillator; // for relu
+	logic cycleCount; // ADDED -- use in place of "even" to keep track of the convolution round (to know which weights to use)
 	
-	localparam FIX_COUNT = (bitWidth>20) ? ($clog2(weightWidth/2)+2) :($clog2(weightWidth/2)+1) ;//+1;
+	localparam FIX_COUNT = (bitWidth>20) ? ($clog2(weightWidth/2)+2) : ($clog2(weightWidth/2)+1) ; //+1;
 	logic signed [bitWidth-1:0] tempSum [biasWidth-1:0];
 	
+	// HUH???? why /4???
 	output logic signed [bitWidth-1:0] outputMatrix [inputWidth*inputWidth*biasWidth/4-1:0]; // accounting for stride length
 	logic firstTimeFullyThrough;
 	
 	always_ff @(posedge clk) begin
-	   reset_copy <= reset;
+	   reset_copy <= reset; // registered reset to avoid timing issues(?)
 	end
 	
 	// for the first time going through, the convolution should not start until the
@@ -46,13 +48,18 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 			counter <= 0;
 			firstTime <= 1;
 			firstTimeFullyThrough <= 1;
+			cycleCount <= 0; // ADDED
 		end else begin
 				if(counter == inputWidth && firstTime || firstTimeFullyThrough && counter == (FIX_COUNT+1)+inputWidth**2 || counter == inputWidth **2-1) begin
 				 // counter restarts after gone through fully
 					counter <= 0;
 					firstTime <= 0;
+					/////////////// ADDED ///////////////
+					if (counter == inputWidth**2-1)
+						cycleCount <= cycleCount + 1;
+					///////////////
 					if(counter == (FIX_COUNT+1)+inputWidth**2)
-					firstTimeFullyThrough <= 0;
+						firstTimeFullyThrough <= 0;
 				end else begin
 					counter <= counter + 1;
 				end
@@ -60,28 +67,28 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	end
 	
 
-	// input the current matrix and output the matrix with zeroes
-	// for when in the padded region
-	conv2D_parameterized #(filtDimension,bitWidth,inputWidth) zeroMatrix 
-	(.clock(clk), .reset(reset_copy), .inputPixel(inputPixel), .zeroedMatrix(zeroedMatrix));
+	// input the new pixel and output the convolutional matrix
+	conv2D_parameterized #(filtDimension,bitWidth,inputWidth) currMatrix 
+	(.clock(clk), .reset(reset_copy), .inputPixel(inputPixel), .currConvMatrix(currConvMatrix));
 	
 	/** the following two lines would need to be adjusted based on how many filters are being used,
 	since we are using 2 here there are only 2 different needed 
 	 i am not sure how we would split the weights for if there were more than 2 filters        **/
 	 
 	 always_ff @ (posedge clk) begin
-	   zeroedMatrixCopy <= zeroedMatrix;
+	   currConvMatrixCopy <= currConvMatrix;
 	 end
 	
-	// sum the zeroed matrix and multiply by the even weights
+	// multiply the current matrix by the weights and take the sum
 	genvar i;
 	generate
 	   for( i = 0; i < biasWidth; i++) begin
-	       conv2DsumNine_parameterized #(filtDimension, bitWidth,inputWidth, weightWidth, NFRAC, i) sumBasedFilter1 
-	       (.clock(clk), .zeroedMatrix(zeroedMatrix), .sum(sum[i]), .bias(biases[i]));
+		   conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, NFRAC, cycleCount) sumBasedFilter1 
+	    //    conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, NFRAC, i) sumBasedFilter1 
+	       (.clock(clk), .currConvMatrix(currConvMatrix), .sum(sum[i]), .bias(biases[i]));
 	   end
 	endgenerate 
-		
+
 	// this is relu layer!!!!
 	// always_comb begin
 	//    for( int i = 0; i < biasWidth; i++) begin

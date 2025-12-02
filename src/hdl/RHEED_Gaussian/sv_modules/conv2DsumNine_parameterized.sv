@@ -1,8 +1,12 @@
 `timescale 1ns / 1ps
 // Sum the convolution matrix each cycle and multiply by the corresponding weight matrix as well as
 // add the corresponding bias.
+/* convWeights should be in a list in the following format:
+   filter1_weights[0], ..., filter1_weights[filterDiminsion^2 - 1], filter2_weights[0], ..., filter2_weights[filterDiminsion^2 - 1], etc. 
+   until the last filter
+*/
 module conv2DsumNine_parameterized
-#(parameter filtDimension = 3,parameter bitWidth = 16, parameter inputWidth = 8, parameter weightWidth = 9, parameter NFRAC = 10, parameter even=0)
+#(parameter filtDimension = 3,parameter bitWidth = 16, parameter inputWidth = 8, parameter weightWidth = 9, parameter NFRAC = 10, parameter whichFilt=0)
 (clock, currMatrix, sum, bias);
 	input logic clock;
 	input logic signed [bitWidth-1:0] currMatrix [filtDimension-1:0][filtDimension-1:0];
@@ -24,12 +28,14 @@ module conv2DsumNine_parameterized
     generate
         for(row=0; row<filtDimension**2; row++) begin
 			// pull out specific wieght needed to multiply the current matrix pixel by and assign it to a designated spot in weightsCheck
-            assign weightsCheck[row] = data16_10::convWeights[9*even+row]; 
-            shift_add_with_mult #(data16_10::convWeights[(8*row)+even], 3, bitWidth, NFRAC) 
-            // shift_add_with_mult #(data16_10::convWeights[8*even+row], 3, bitWidth, NFRAC)
+            assign weightsCheck[row] = data16_10::convWeights[filtDimension**2*whichFilt+row]; 
+			shift_add_with_mult #(weightsCheck[row], 3, bitWidth, NFRAC);
+            // shift_add_with_mult #(data16_10::convWeights[(8*row)+whichFilt], 3, bitWidth, NFRAC) // Caroline's version
+            // shift_add_with_mult #(data16_10::convWeights[8*whichFilt+row], 3, bitWidth, NFRAC) // past version
 			// row/3: 000111222
 			// row%3: 012012012
-            sa (.clk(clock),.data_in(currMatrix[row/3][row%3]), .data_out(temp1[row]));  // store product in temp1
+			// generate a shift add for each spot within the filter
+            sa (.clk(clock),.data_in(currMatrix[row/filtDimension][row%filtDimension]), .data_out(temp1[row]));  // store product in temp1
             assign temp[row] = temp1[row][NFRAC+bitWidth-1:NFRAC];	// truncation to keep original number of integer and fractional bits
         end
    endgenerate 

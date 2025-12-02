@@ -1,6 +1,7 @@
 // this module creates line buffers using SRL 16 to hold onto data as it is moved from one row onto the one above it.
 // therefore it only taks as input the system clock and the current inputData, or the data being moved out of a given row
 // and it outputs the outputData or what should be moved into the row above 
+// Note: inputWidth = width of input matrix
 `timescale 1ns / 1ps
 module conv2dFIFO_parameterized #(parameter filtDimension = 3, parameter bitWidth = 8, parameter inputWidth = 8) 
 (clock, inputData, outputData);

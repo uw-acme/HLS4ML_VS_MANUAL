@@ -13,7 +13,7 @@ module conv2D_parameterized
 	input logic signed [bitWidth-1:0] inputPixel;
 	
 	output logic signed [bitWidth-1:0] currentConvMatrix [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] outputFifo [filtDimension-2:0]; // collection of buffers
+	logic signed [bitWidth-1:0] outputFifo [filtDimension-2:0]; // collection of buffers (filtDimension - 1 many buffers)
 
 	
 
