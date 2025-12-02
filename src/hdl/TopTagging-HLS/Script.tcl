@@ -6,7 +6,7 @@ read_verilog [glob ./model_gru_hls/hls4ml_prj/myproject_prj/solution1/impl/veril
 
 # If you have an XDC constraints file next to the script, keep this:
 # (otherwise update the path accordingly)
-read_xdc ./const.xdc
+# read_xdc ./const.xdc
 
 # --- Set top module & part ---
 # Change 'waiz_benchmark' to your actual top module name from the .v files
