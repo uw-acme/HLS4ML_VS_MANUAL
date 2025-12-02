@@ -16,13 +16,11 @@ if {[llength $v_files] == 0} {
 puts "Found [llength $v_files] Verilog files in $src_dir"
 
 # Derive candidate top names from file basenames
-#   e.g.  .../dense_latency_0_0_0_1.v  ->  dense_latency_0_0_0_1
 set layer_tops {}
 foreach f $v_files {
     set base [file rootname [file tail $f]]
     lappend layer_tops $base
 }
-# Deduplicate
 set layer_tops [lsort -unique $layer_tops]
 
 puts "Will attempt out-of-context synthesis for these modules:"
@@ -34,6 +32,11 @@ set part_name "xc7vx690tffg1761-2"
 # Make sure reports directory exists
 file mkdir reports
 
+# --------------------------------------------------------------------
+# Read all sources ONCE; they stay in the in-memory project.
+# --------------------------------------------------------------------
+read_verilog $v_files
+
 # Loop over each module name and treat it as a top
 foreach top $layer_tops {
 
@@ -41,13 +44,11 @@ foreach top $layer_tops {
     puts "== Synthesizing module: $top"
     puts "================================================================="
 
-    # Clear any previous design from memory
-    reset_design
-
-    # Re-read all sources for this run
-    read_verilog $v_files
+    # Close any previously active design (if any)
+    catch { close_design }  ;# ignore error if no design is open yet
 
     # Out-of-context synthesis (no IO/pin placement)
+    set result ""
     catch {
         synth_design -top $top -part $part_name -mode out_of_context
     } result
@@ -63,12 +64,9 @@ foreach top $layer_tops {
     set rpt_name [format "reports/util_%s.rpt" $top]
     report_utilization -file $rpt_name
 
-    # Optionally save a checkpoint per module (comment out if not needed)
+    # Optional: save a checkpoint per module
     # set dcp_name [format "reports/%s_synth.dcp" $top]
     # write_checkpoint -force $dcp_name
-
-    # Clean up between runs (optional, reset_design at top of loop already)
-    # reset_design
 }
 
 puts "================================================================="
