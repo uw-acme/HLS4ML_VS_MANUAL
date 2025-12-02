@@ -132,7 +132,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# Vivado 2019.1 setup
-# source /tools/Disk_Xilinx/Vivado/2019.1/settings64.sh
-export XILINX_VIVADO=/tools/Disk_Xilinx/Vivado/2019.1
-export PATH="$XILINX_VIVADO/bin:$PATH"
+# Vivado 2019.1 setup for non_HLS4ML
+source /tools/Disk_Xilinx/Vivado/2019.1/settings64.sh
+
+# Set Vivado path For HLS4ML
+# export XILINX_VIVADO=/tools/Disk_Xilinx/Vivado/2019.1
+# export PATH="$XILINX_VIVADO/bin:$PATH"
