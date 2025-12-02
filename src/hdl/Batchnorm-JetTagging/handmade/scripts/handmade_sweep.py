@@ -14,10 +14,12 @@ features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 def gen_test(accuracy):
     test = np.load("X_test.npy")
     test = test.flatten()
-    with open("X_test_gen.txt", "w") as f:
-        for num in test:
-            num=num*(2**(accuracy[0]-accuracy[1]))
-            f.write(f"{dec_to_bin(num, accuracy[0])}\n")
+    filename = f"X_test_{accuracy[0]}_{accuracy[1]}.txt"
+    if (not os.path.isfile(filename)):
+        with open(filename, "w") as f:
+            for num in test:
+                num=num*(2**(accuracy[0]-accuracy[1]))
+                f.write(f"{dec_to_bin(num, accuracy[0])}\n")
 def file_to_array(file, length):
     f = open(file, 'r')
     buffer = np.zeros(length)
@@ -48,16 +50,18 @@ def handmade_gen(acc, name, params, defs):
             newline+=" "
         newline+=f": {feat}"
         return newline
-    os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
+    # os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
     # patt = r"[0-9]{1,2}"
     gen_weight(acc)
     params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
+    for i in range(1,5):
+        defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
     params = "{" + params + "}"
     defs = "{" + defs + "}"
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark*.sv')
     os.system(f'vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name} "{defs}" "{params}"')
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
-    accuracy = accuracy_test(acc, y_test,  defs, params)
+    accuracy = accuracy_test(acc, y_test, name, defs, params)
     results = extract_data(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt", features)
     time = extract_time(f"../reports/{acc[0]}_{acc[1]}_{name}_timing.rpt")
     #accuracy_score = test_score()
@@ -114,7 +118,7 @@ def extract_time(file):
     if m:
         return m.group(1)
 
-def accuracy_test(acc, y_test, defs : str, params : str):
+def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, params : str = None, email : bool = False):
     """
     Runs an accuracy test with bit precision (WIDTH, NINT)\n
     acc: tuple representing bit precision  (WIDTH, NINT)\n
@@ -125,27 +129,51 @@ def accuracy_test(acc, y_test, defs : str, params : str):
     # Uses sed to find NFRAC = NUMBER and WIDTH = NUMBER and replace the numbers with new numbers
     # defs = f"WIDTH={acc[0]} NFRAC={acc[0]-acc[1]}"
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark_tb.sv')
+    if (defs):
+        defs = defs.replace("{", "")
+        defs = defs.replace("}", "")
+        defs = f" {defs}"
+    else:
+        defs = ""
+        email=True
+    if (not params or "WIDTH" not in params):
+        if (not params):
+            params = ""
+        if ("WIDTH" not in params):
+            params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
+    res_file = f"{name}_{acc[0]}_{acc[1]}_results.csv"
+
+    defs += f' TESTFILE="./scripts/X_test_{acc[0]}_{acc[1]}.txt"'
+    defs += f' RESULTSFILE="./reports/{res_file}"'
+    if ("DENSE_LAYER_" not in defs):
+        for i in range(1,5):
+            defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
+    params = f" {params}"
     params = params.replace("{", "")
     params = params.replace("}", "")
-
-    defs = defs.replace("{", "")
-    defs = defs.replace("}", "")
+    params = params.replace("  ", " ")
+    defs = defs.replace("  ", " ")
     # Generates the input files for testing and for weights
     gen_test(acc)
     gen_weight(acc)
-
     # Runs the simulator through a bash script
-    os.system(f'bash sim.sh " {defs}" " {params}"')
+    os.system(f'bash sim.sh "{defs}" "{params}"')
 
     # Grabs the output from the simulation and tests it
-    res =  np.loadtxt(f"../reports/gen_results.csv", delimiter=",")
+    res =  np.loadtxt(f"../reports/{res_file}", delimiter=",")
     acc_res= accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
 
     # Writes the results to a file
+    csv_name = f"../Results/{name}_acc.csv"
+    if (not os.path.isfile(csv_name)):
+        f = open(csv_name, "x")
+        f.write("Width, Accuracy\n")
+        f.close()
     with open("../Results/chopped_acc.csv", "a") as f:
         f.write(f"\"{acc[0]}_{acc[1]}\", {acc_res}\n")
     # Uses the Linux mail system to send the results to me
-    # os.system(f'printf "Acc test finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
+    if email:
+        os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
     return acc_res
 
 # Generates a systemverilog package of weights of a proper accuracy from a file listing weights
@@ -173,28 +201,30 @@ def gen_weight(accuracy):
         weight = file_to_array(weights_file, layer)
         bias = file_to_array(biases_file, layer)
 
-        with open(f"../weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_gen.sv", "w") as f:
-            # Writes the header to the file
-            f.write(f"//Width: {accuracy[0]}\n//Int: {accuracy[1]}\n")
-            f.write(f"package dense_{ind}_gen;\n\n")
-            f.write(f"localparam logic signed [{accuracy[0]-1}:0] weights [{len(weight)}][{len(weight[0])}] = '" + "{\n")
+        filename = f"../weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_{accuracy[0]}_{accuracy[1]}.sv"
+        if (not os.path.isfile(filename)):
+            with open(filename, "w") as f:
+                # Writes the header to the file
+                f.write(f"//Width: {accuracy[0]}\n//Int: {accuracy[1]}\n")
+                f.write(f"package dense_{ind}_{accuracy[0]}_{accuracy[1]};\n\n")
+                f.write(f"localparam logic signed [{accuracy[0]-1}:0] weights [{len(weight)}][{len(weight[0])}] = '" + "{\n")
 
-            # Writes the main body of the function
-            for i in range(len(weight)):
-                f.write("{")
-                num = dec_to_bin(weight[i][0]*(2**(Nfrac)), accuracy[0])
-                f.write(f"{head}{num}")
-                for j in range(1, len(weight[0])):
-                    num = dec_to_bin(weight[i][j]*(2**(Nfrac)), accuracy[0])
-                    f.write(f", {head}{num}")
-                if (i!=len(weight)-1): 
-                    f.write("},\n")
-            f.write("}\n};\n")
-            f.write(f"localparam logic signed [{accuracy[0]-1}:0] bias [{len(weight[0])}] = '"+"{\n")
-            for i in range(0, len(bias)):
-                num = dec_to_bin(bias[i]*(2**Nfrac), accuracy[0])
-                f.write(f"{head}{num}")
-                f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
+                # Writes the main body of the function
+                for i in range(len(weight)):
+                    f.write("{")
+                    num = dec_to_bin(weight[i][0]*(2**(Nfrac)), accuracy[0])
+                    f.write(f"{head}{num}")
+                    for j in range(1, len(weight[0])):
+                        num = dec_to_bin(weight[i][j]*(2**(Nfrac)), accuracy[0])
+                        f.write(f", {head}{num}")
+                    if (i!=len(weight)-1): 
+                        f.write("},\n")
+                f.write("}\n};\n")
+                f.write(f"localparam logic signed [{accuracy[0]-1}:0] bias [{len(weight[0])}] = '"+"{\n")
+                for i in range(0, len(bias)):
+                    num = dec_to_bin(bias[i]*(2**Nfrac), accuracy[0])
+                    f.write(f"{head}{num}")
+                    f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
 
 # Converts a number to a binary representation 
 # Inputs:
@@ -268,18 +298,18 @@ def adjust(bits):
 # adjust(16)
 # handmade_gen((16,6), name)
 # patt = r"[0-9]{1,2}"
-defs = ''
-params = ''
+
 for pipeline in [1]:
     # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
-    params+= f'PIPELINING={pipeline} PIPE_OUT=0'
-    name = f"Testing"
-    for i in [2]:
+    params= f'PIPELINING={pipeline} PIPE_OUT=0'
+    name = f"Argmax_P{pipeline}_PO0_SA2_MULTPIPE"
+    for i in [8]:
         acc = (3*i-2,i)
         # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
         # SA_INT, SA_FRAC = adjust(acc_in[0])
-        SAD, SAFRAC = adjust(acc[0])
-        defs += f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+        # SAD, SAFRAC = adjust(acc[0])
+        defs = ' PIPELINE_MULT=0 SA_DEPTH=3 SA_FRAC=0'
+        # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
         # # print((3*i-2,i))
-        handmade_gen(acc, name, params, defs)
-        # accuracy_test(acc, y_test)
+        # handmade_gen(acc, name, params, defs)
+        accuracy_test(acc, y_test, name, defs, params, email=True)

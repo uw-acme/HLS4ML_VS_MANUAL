@@ -4,46 +4,6 @@
 
 /* This file contains the shiftAdd multiplication method.
 */
-
-localparam DEPTH = `SA_DEPTH;       // # of terms in the shiftAdd operatio
-// Define integer array type
-typedef integer signed int_array[DEPTH:0];
-
-// Constant Function:
-// This function returns the absolute value of an integer
-function integer signed abs_value(input integer signed value);
-    abs_value = value >= 0 ? value : -value;
-endfunction
-
-// Constant Function:
-// Determines the next largest shift term and adds 1 to it.
-// Returns zero if no shift-add term is needed.
-function automatic integer signed determineOneShift(input integer signed number, input integer bits);
-    integer n = bits;
-    for (integer i = bits; i >= 0; i--) begin
-        if (abs_value(abs_value(number) - 2**n) > abs_value(abs_value(number) - 2**i))
-            n = i;
-    end
-    determineOneShift = number != 0 ? n+1 : 0;
-endfunction
-// Constant Function:
-// Returns the number as well as the shift amounts in an array
-function automatic int_array determineShifts(input integer signed number, input integer bits, input integer depth);
-    for (integer i = 1; i <= depth; i++) begin
-        // determine the shift amount + 1 and add it the output array
-        integer n = determineOneShift(number, bits);
-
-        // make sure the shift amount is positive if its meant to be added and negative if meant to be subtracted
-        determineShifts[i] = number >= 0 ? n : -n; 
-
-        // update the number
-        if (number != 0) number = (number >= 0) ? number - 2**(n-1) : number + 2**(n-1);
-    end
-    
-    // return the remainder of the number. If it is != 0 then the value was too complex
-    determineShifts[0] = number;
-endfunction
-
 // The actual shiftAdd module
 module shift_add #(parameter signed WEIGHT  = 17'd1,
                    parameter        DEPTH   = 3,
@@ -55,6 +15,41 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
     input logic [BITS-1:0]      data_in,
     output logic [BITS*2-1:0]   data_out
 );
+    typedef integer signed int_array[DEPTH:0];
+    // Constant Function:
+    // This function returns the absolute value of an integer
+    function integer signed abs_value(input integer signed value);
+        abs_value = value >= 0 ? value : -value;
+    endfunction
+
+    // Constant Function:
+    // Determines the next largest shift term and adds 1 to it.
+    // Returns zero if no shift-add term is needed.
+    function automatic integer signed determineOneShift(input integer signed number, input integer bits);
+        integer n = bits;
+        for (integer i = bits; i >= 0; i--) begin
+            if (abs_value(abs_value(number) - 2**n) > abs_value(abs_value(number) - 2**i))
+                n = i;
+        end
+        determineOneShift = number != 0 ? n+1 : 0;
+    endfunction
+    // Constant Function:
+    // Returns the number as well as the shift amounts in an array
+    function automatic int_array determineShifts(input integer signed number, input integer bits, input integer depth);
+        for (integer i = 1; i <= depth; i++) begin
+            // determine the shift amount + 1 and add it the output array
+            integer n = determineOneShift(number, bits);
+
+            // make sure the shift amount is positive if its meant to be added and negative if meant to be subtracted
+            determineShifts[i] = number >= 0 ? n : -n; 
+
+            // update the number
+            if (number != 0) number = (number >= 0) ? number - 2**(n-1) : number + 2**(n-1);
+        end
+        
+        // return the remainder of the number. If it is != 0 then the value was too complex
+        determineShifts[0] = number;
+    endfunction
     function automatic integer unsigned determine_signed_bits(input logic signed [BITS-1:0] weight);
         int num_bits = 0;
         logic sign_bit = weight[BITS-1];
@@ -71,9 +66,19 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
     logic signed [BITS*2-1:0]       data_in_ex;
     logic signed [BITS*2-1:0]       data_out_accum;
     logic signed [BITS+NFRAC-1:0]   data_out_tmp;
-    
-    assign data_in_ex = $signed(data_in);
-
+    `ifndef PIPELINE_MULT
+        `define PIPELINE_MULT 0
+    `endif
+    if (`PIPELINE_MULT) begin
+        always_ff @(posedge clk) begin
+            data_in_ex<=$signed(data_in);
+            data_in_reg<=data_in;
+        end
+    end
+    else begin
+        assign data_in_ex = $signed(data_in);
+        assign data_in_reg=data_in;
+    end
     initial begin
         // $info("DONOVAN. BITS: %d", BITS);
         // $warning("DONOVAN\nBITS: %d", BITS);
@@ -82,7 +87,7 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // $fatal("DONOVAN\nBITS: %d", BITS);
         // $fflush();
     end
-    
+    logic [BITS-1:0] data_in_reg;
    //if (shift[0] == '0) begin // Original 
     if ((shift[0]=='0)&&(( (abs_value(WEIGHT)%10)<DEPTH_FRAC )||(shift[DEPTH]==0))) begin// Modified
         always_comb begin
@@ -122,7 +127,7 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // // Use normal multiplication operator
         // end else begin
             always_comb begin
-                data_out_tmp = $signed(data_in) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
+                data_out_tmp = $signed(data_in_reg) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
             end
             always_ff @(posedge clk) begin
                 data_out <= $signed(data_out_tmp);

@@ -25,7 +25,7 @@ module denseLayer #(
     parameter int NFRAC = 10, // number of fractional bits (must be <= WIDTH)
     parameter int INPUT_SIZE = 32, // number of fixed point numbers going into dense latency layer
     parameter int OUTPUT_SIZE = 32, // number of fixed point numbers coming out of dense latency layer
-    parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: '{default: 17'sd0}}, // WEIGHTS for each input to each output
+    parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: 0}, // WEIGHTS for each input to each output
     parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0}, // BIASes for each output
     parameter real PIPELINING = 1,
     parameter PIPE_OUT = 1
@@ -38,6 +38,9 @@ module denseLayer #(
     input  logic signed [WIDTH-1:0] input_data  [0:INPUT_SIZE-1],
     output logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1]
 );
+    `ifndef PIPELINE_MULT
+        `define PIPELINE_MULT 0
+    `endif
     // check that the right package is being used
     initial assert($bits(WEIGHTS[0][0]) == WIDTH);
     localparam real ADDER_TREE_DEPTH = $ceil($clog2(INPUT_SIZE)/2.0); // Number of cycles for adderTree module
@@ -56,6 +59,7 @@ module denseLayer #(
                BOTTOM   = NFRAC;
     // Generate a shift add module for each multiplication, shift-add will do optimizations
     // where it can and leave the rest to Xilinx tools
+    
     generate 
         for(row=0; row<INPUT_SIZE; row++) begin : INPUT_SIZE_rows
             for(col=0; col<OUTPUT_SIZE; col++) begin : OUTPUT_SIZE_cols
@@ -112,16 +116,7 @@ module denseLayer #(
         // end
     end
 
-    // output
-    typedef enum logic [1:0] {
-        IDLE,
-        PROCESSING,
-        DONE
-    } state_t;
-    
-    state_t state, next_state;
-    int cycle_count;
-    localparam ready_buffer_top = ADDER_TREE_CYCLES+PIPE_OUT;
+    localparam ready_buffer_top = ADDER_TREE_CYCLES+PIPE_OUT+`PIPELINE_MULT;
     logic [ready_buffer_top:0] ready_buffer;
     assign processing = |ready_buffer;
     assign output_ready = ready_buffer[0];
