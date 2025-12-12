@@ -56,14 +56,14 @@ module hls_lat_tb;
         @(posedge ap_clk);
         ap_start = 1;
         fc1_input_V_ap_vld=1;
-        @(posedge ap_clk);
         cycle_count=0;
+        @(posedge ap_clk);
         fc1_input_V_ap_vld=0;
         ap_start = 0;
         // Wait for output_ready signal
         // wait (ap_done);
         @(posedge ap_done);
-        $fwrite(fd, "%d, %d\n", wid, cycle_count);
+        $fwrite(fd, "%0d, %0d\n", wid, cycle_count);
     endtask
     // initial begin
     //     $readmemb("X_test_gen.txt", flat_mem);
@@ -75,7 +75,7 @@ module hls_lat_tb;
     // end
     initial begin
         if (write_file) begin
-            fd = $fopen("/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/python/hls_res_latency.csv", "a");  // "w" = write mode, "a" = append
+            fd = $fopen("/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/hls4ml/results/hls_latency.csv", "a");  // "w" = write mode, "a" = append
             if (fd == 0) begin
                 $display("ERROR: Could not open file!");
                 $finish;
