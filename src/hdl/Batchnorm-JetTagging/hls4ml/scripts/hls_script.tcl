@@ -29,7 +29,7 @@ opt_design
 # write_checkpoint -force reports/impl_SA3_opt.dcp
 place_design
 route_design
-cd ~/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/python
+cd ~/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/hls4ml/
 # --- Reports ---
 report_utilization -file "reports/[lindex $argv 0]_util.rpt"
 report_utilization -hierarchical -hierarchical_depth 1 -file "reports/[lindex $argv 0]_util_hier.rpt"

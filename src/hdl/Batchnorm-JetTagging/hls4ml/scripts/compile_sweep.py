@@ -3,6 +3,8 @@ import hls4ml
 import re
 import os
 import numpy as np
+import pandas as pd
+# import subprocess
 from tensorflow.keras.models import load_model # type: ignore
 from sklearn.metrics import accuracy_score
 model = load_model('model.h5', compile=False)
@@ -19,20 +21,20 @@ def HLS4ML_gen(acc):
     split = acc.split(",")
     for i in range(len(split)):
         split[i]=int(split[i])
-    name = f"hls_argmax_res_{split[0]}_{split[1]}"
+    name = f"hls_fast_{split[0]}_{split[1]}"
     if (not os.path.isdir(f'/home/caleb/sweeps/{name}')):
         model = load_model('model.h5', compile=False)
         config = hls4ml.utils.config_from_keras_model(model, granularity='name')
         config['Model']['Precision'] = f'ap_fixed<{acc}>'
         #config['LayerName']['fc1']['Precision']['weight'] = 'ap_fixed<8,2>'
         #config['LayerName']['output']['Precision']['result'] = 'fixed<16,6,RND,SAT>'
-        config['Model']['Strategy'] = 'Resource'
+        config['Model']['Strategy'] = 'Latency'
         #config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
-        config['LayerName']['softmax']['Implementation'] = 'argmax'
-        # if (int(split[0])>18):
-        #     config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
-        #     config['LayerName']['output']['Precision']['result'] = 'ap_fixed<18,8>'
-        #     config['LayerName']['softmax']['Precision']['result'] = 'ap_fixed<18,8>'
+        # config['LayerName']['softmax']['Implementation'] = 'argmax'
+        if (int(split[0])>18):
+            config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
+            # config['LayerName']['output']['Precision']['result'] = 'ap_fixed<18,8>'
+            # config['LayerName']['softmax']['Precision']['result'] = 'ap_fixed<18,8>'
         # config['LayerName']['softmax']['exp_table_t'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
         # config['LayerName']['output']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
         # config['LayerName']['softmax']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
@@ -42,13 +44,21 @@ def HLS4ML_gen(acc):
                                                                 part='xcvu13p-fhga2104-3-e',
                                                                 project_name='p')
         hls_model.build(csim=True, synth=True, vsynth=True, export=True)
-    if (not os.path.isfile(os.path.join("reports", f"{name}_util.rpt"))):
+    if (not os.path.isfile(os.path.join("../reports", f"{name}_util.rpt"))):
         os.system(f"vivado -mode batch -source hls_script.tcl -tclargs {name}")
-    data = extract_data(os.path.join("reports", f"{name}_util.rpt"), features)
-    timing = extract_time(os.path.join("reports", f"{name}_timing.rpt"))
+    data = extract_data(os.path.join("../reports", f"{name}_util.rpt"), features)
+    timing = extract_time(os.path.join("../reports", f"{name}_timing.rpt"))
     accuracy = test_accuracy(name, split)
-    
-    csv_name = "util_hls_argmax_res.csv"
+    lat_file = f"../results/hls_latency.csv"
+    os.system(f"bash get_latency.sh /home/caleb/sweeps/{name}/p_prj/solution1/impl/verilog")
+    f = open(lat_file)
+    new_lat = f.readlines()[-1]
+    if (new_lat=="\n"):
+        new_lat = f.readlines()[-2]
+    f.close()
+    cycle_latency = new_lat.split(", ")[1]
+    total_latency = int(cycle_latency)*(5-float(timing))
+    csv_name = f"util_{name}.csv"
     if (not os.path.isfile(csv_name)):
         with open(csv_name, "x") as f:
             f.write("Bits, Slice LUTs, Slice Registers, Block RAM Tile, DSPs, Bonded IOB, Timing\n")
@@ -58,7 +68,13 @@ def HLS4ML_gen(acc):
             f.write(f", {dat}")
         f.write(f", {timing}")
         f.write(f", {accuracy}\n")
-    os.system(f'printf "Gen {name} finished. Results:\n{" ".join(features)},"timing"\n{" ".join(data)},{timing},{accuracy}" | mail -s "HLS Completion" ceravcal@uw.edu')
+    Report = f"Gen {name} finished. Results:\n"
+    for i in range(len(features)):
+        Report+= f"{features[i]}: {data[i]}\n"
+    Report+=f"Timing: {5-float(timing)}\n"
+    Report+=f"Cycle Latency: {cycle_latency}\n"
+    Report+=f"Total Latency: {total_latency}\n"
+    os.system(f'printf "{Report}" | mail -s "HLS Completion" ceravcal@uw.edu')
 def dec_to_bin(number: int, bits=-1):
     neg=False
     if (number<0):
@@ -151,12 +167,12 @@ def keras_test(model):
     #acc.append(({3*i-2},{i}))
 # HLS4ML_gen("31,11")
 # args = ""
-for i in range(2,14):
+for i in range(12,14):
     acc = (3*i-2,i)
     #print((3*i-2,i))
     HLS4ML_gen(f"{acc[0]},{acc[1]}")
-    arg = f"/home/caleb/sweeps/hls_argmax_res_{acc[0]}_{acc[1]}/p_prj/solution1/impl/verilog"
-    test_latency(arg, acc)
+    # arg = f"/home/caleb/sweeps/hls_argmax_res_{acc[0]}_{acc[1]}/p_prj/solution1/impl/verilog"
+    # test_latency(arg, acc)
 # print(args)
 # accuracies = []
 # #for i in range(2,10):

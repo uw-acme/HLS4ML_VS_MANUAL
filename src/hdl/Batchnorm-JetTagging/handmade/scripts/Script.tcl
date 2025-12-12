@@ -8,7 +8,7 @@ set generics [lindex $argv 2]
 
 # --- Dense weights ---
 read_verilog -sv "./pkg_sel.svh"
-read_verilog -sv [glob ../weights/dense_*_weights_biases_pkgs/dense_*_gen.sv]
+read_verilog -sv [glob ../weights/dense_*_weights_biases_pkgs/dense_*_*.sv]
 # --- Dense layer ---
 read_verilog -sv "./adderTree_p4.sv"
 read_verilog -sv "./adderTree.sv"

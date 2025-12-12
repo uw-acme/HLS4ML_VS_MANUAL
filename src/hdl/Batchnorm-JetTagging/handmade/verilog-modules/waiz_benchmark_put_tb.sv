@@ -68,8 +68,8 @@ module waiz_benchmark_tb;
     end
     task run_test;
         input signed [WIDTH-1:0] input_d [0:INPUT_SIZE-1];
-        input_data = input_d;
-        input_ready = 1;
+        input_data <= input_d;
+        input_ready <= 1;
         @(posedge clk);
     endtask
     always_ff @(posedge clk) begin

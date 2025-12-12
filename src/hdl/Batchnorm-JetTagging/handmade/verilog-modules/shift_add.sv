@@ -66,6 +66,7 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
     logic signed [BITS*2-1:0]       data_in_ex;
     logic signed [BITS*2-1:0]       data_out_accum;
     logic signed [BITS+NFRAC-1:0]   data_out_tmp;
+    logic signed [BITS-1:0] data_in_reg;
     `ifndef PIPELINE_MULT
         `define PIPELINE_MULT 0
     `endif
@@ -87,7 +88,7 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // $fatal("DONOVAN\nBITS: %d", BITS);
         // $fflush();
     end
-    logic [BITS-1:0] data_in_reg;
+    
    //if (shift[0] == '0) begin // Original 
     if ((shift[0]=='0)&&(( (abs_value(WEIGHT)%10)<DEPTH_FRAC )||(shift[DEPTH]==0))) begin// Modified
         always_comb begin
