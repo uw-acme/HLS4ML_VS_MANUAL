@@ -88,7 +88,6 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // $fatal("DONOVAN\nBITS: %d", BITS);
         // $fflush();
     end
-    
    //if (shift[0] == '0) begin // Original 
     if ((shift[0]=='0)&&(( (abs_value(WEIGHT)%10)<DEPTH_FRAC )||(shift[DEPTH]==0))) begin// Modified
         always_comb begin
