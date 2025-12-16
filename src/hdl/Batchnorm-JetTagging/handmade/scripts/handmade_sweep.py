@@ -168,9 +168,10 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     if (not os.path.isfile(csv_name)):
         f = open(csv_name, "x")
         f.write("Width, Accuracy\n")
-        f.close()
-    with open("../Results/chopped_acc.csv", "a") as f:
-        f.write(f"\"{acc[0]}_{acc[1]}\", {acc_res}\n")
+    else:
+        f=open(csv_name, "a")
+    f.write(f"\"{acc[0]}_{acc[1]}\", {acc_res}\n")   
+    f.close()
     # Uses the Linux mail system to send the results to me
     if email:
         os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
@@ -299,17 +300,18 @@ def adjust(bits):
 # handmade_gen((16,6), name)
 # patt = r"[0-9]{1,2}"
 
-for pipeline in [1]:
+for pipeline in [3]:
     # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
-    params= f'PIPELINING={pipeline} PIPE_OUT=0'
-    name = f"Argmax_P{pipeline}_PO0_SA2_MULTPIPE"
-    for i in [8]:
+    pipe_out=0
+    params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
+    name = f"Argmax_P{pipeline}_PO{pipe_out}_SAV_MULTPIPE0"
+    for i in range(2,14):
         acc = (3*i-2,i)
         # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
         # SA_INT, SA_FRAC = adjust(acc_in[0])
-        # SAD, SAFRAC = adjust(acc[0])
-        defs = ' PIPELINE_MULT=0 SA_DEPTH=3 SA_FRAC=0'
+        SAD, SAFRAC = adjust(acc[0])
+        defs = f' PIPELINE_MULT=0 SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
         # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
         # # print((3*i-2,i))
-        # handmade_gen(acc, name, params, defs)
-        accuracy_test(acc, y_test, name, defs, params, email=True)
+        handmade_gen(acc, name, params, defs)
+        # accuracy_test(acc, y_test, name, defs, params, email=True)
