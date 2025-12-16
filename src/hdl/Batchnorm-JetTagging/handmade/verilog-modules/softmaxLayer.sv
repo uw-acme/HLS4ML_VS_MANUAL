@@ -124,9 +124,12 @@ module softmaxLayer # (
             // cap disabled
             if (NFRAC<2*TABLE_NFRAC) begin
                 dataOut[i] <= buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC];
-            end else begin
+            end
+            `ifdef SYNTHESIS
+            else begin
                 dataOut[i] <= {buffer[i][WIDTH-BUFFER_EXT-1:0],{BUFFER_EXT{1'b0}}};
             end
+            `endif
         end
     end
 endmodule

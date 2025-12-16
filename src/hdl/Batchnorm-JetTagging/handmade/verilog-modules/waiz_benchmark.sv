@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
-// `include "./pkg_sel_waiz_benchmark.svh"
+`include "./pkg_sel_waiz_benchmark.svh"
 import `DENSE_LAYER_1_PKG::*;
 import `DENSE_LAYER_2_PKG::*;
 import `DENSE_LAYER_3_PKG::*;
 import `DENSE_LAYER_4_PKG::*;
 
 module waiz_benchmark #(
-    parameter WIDTH = 37, NFRAC = 24,
+    parameter WIDTH = 16, NFRAC = 6,
     parameter INPUT_SIZE = 16,
     parameter OUTPUT_SIZE = 5,
     // Parameter controlling how sparse the pipelines in the adder trees are. 1 is the minimum value (most pipelines)
@@ -189,7 +189,7 @@ module waiz_benchmark #(
     );
 
 
-    softmaxArgmaxLayer #(
+    softmaxLayerNeg #(
         .N          ( OUTPUT_SIZE ),
         .WIDTH      ( WIDTH         ),
         .NFRAC      ( NFRAC         )

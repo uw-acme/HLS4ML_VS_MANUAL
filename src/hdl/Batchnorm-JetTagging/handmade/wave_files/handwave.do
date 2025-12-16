@@ -1,7 +1,7 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /waiz_benchmark_tb/clk
-add wave -noupdate /waiz_benchmark_tb/out
+add wave -noupdate -expand /waiz_benchmark_tb/out
 add wave -noupdate /waiz_benchmark_tb/input_ready
 add wave -noupdate /waiz_benchmark_tb/output_ready
 add wave -noupdate /waiz_benchmark_tb/reset
@@ -57,14 +57,21 @@ add wave -noupdate /waiz_benchmark_tb/dut/denselayer4/ready_buffer
 add wave -noupdate -divider Softmax
 add wave -noupdate /waiz_benchmark_tb/dut/softmax/dataIn
 add wave -noupdate /waiz_benchmark_tb/dut/softmax/dataOut
-add wave -noupdate /waiz_benchmark_tb/dut/softmax/largest_addr
 add wave -noupdate /waiz_benchmark_tb/dut/softmax/input_ready
 add wave -noupdate /waiz_benchmark_tb/dut/softmax/output_ready
 add wave -noupdate /waiz_benchmark_tb/softmax_output_real
+add wave -noupdate -radix unsigned /waiz_benchmark_tb/dut/softmax/buffer
+add wave -noupdate -radix unsigned /waiz_benchmark_tb/dut/softmax/expResult
+add wave -noupdate -radix unsigned /waiz_benchmark_tb/dut/softmax/tempSum
+add wave -noupdate -radix unsigned /waiz_benchmark_tb/dut/softmax/expSum
+add wave -noupdate -radix unsigned /waiz_benchmark_tb/dut/softmax/invertVal
+add wave -noupdate -radix decimal /waiz_benchmark_tb/dut/softmax/maxIn
+add wave -noupdate /waiz_benchmark_tb/dut/softmax/lookupIndex
+add wave -noupdate /waiz_benchmark_tb/dut/softmax/invertIndex
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {14 ps} 0}
+WaveRestoreCursors {{Cursor 1} {162 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 125
+configure wave -namecolwidth 106
 configure wave -valuecolwidth 40
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
@@ -78,4 +85,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {47 ps}
+WaveRestoreZoom {160 ps} {205 ps}
