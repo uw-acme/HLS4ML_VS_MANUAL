@@ -21,6 +21,7 @@ read_verilog -sv "./reluActivationLayer.sv"
 # --- Softmax layer ---
 read_verilog -sv "./softmaxLayer.sv"
 read_verilog -sv "./softmaxArgmaxLayer.sv"
+read_verilog -sv "./softmaxLayerNeg.sv"
 
 # --- Top level module ---
 read_verilog -sv "./waiz_benchmark_top_level.sv"

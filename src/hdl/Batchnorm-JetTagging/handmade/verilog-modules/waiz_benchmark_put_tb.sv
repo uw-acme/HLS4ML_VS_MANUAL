@@ -3,8 +3,8 @@
 module waiz_benchmark_tb;
 
     // Parameters
-    parameter WIDTH = 37;
-    parameter NFRAC = 24;
+    parameter WIDTH = 16;
+    parameter NFRAC = 10;
     parameter INPUT_SIZE = 16;
     parameter OUTPUT_SIZE = 5;
     // Parameter controlling how sparse the pipelines in the adder trees are. 1 is the minimum value (most pipelines)
@@ -17,8 +17,8 @@ module waiz_benchmark_tb;
     logic input_ready;
     logic output_ready;
 
-    function real to_real(input logic signed [WIDTH-1:0] fixed_point_value);
-        int result;
+    function real to_real(input logic unsigned [WIDTH-1:0] fixed_point_value);
+        real result;
         result = fixed_point_value / (2.0 ** (NFRAC));  // Scale by the fractional part
         return result;
     endfunction
@@ -26,7 +26,7 @@ module waiz_benchmark_tb;
     // Input and output signals
     logic signed [WIDTH-1:0] input_data [0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1];
-    int out [OUTPUT_SIZE];
+    real out [OUTPUT_SIZE];
     real iteration_count;
 
     real softmax_output_real [0:4];
@@ -76,24 +76,24 @@ module waiz_benchmark_tb;
 
         if (write_file&&output_ready) begin
             for (int i = 0; i < OUTPUT_SIZE-1; i++) begin
-                $fwrite(fd, "%0d,",  out[i]);
+                $fwrite(fd, "%.15f,",  out[i]);
             end
-            $fwrite(fd, "%0d\n", out[OUTPUT_SIZE-1]);
+            $fwrite(fd, "%.15f\n", out[OUTPUT_SIZE-1]);
         end
     end
     // max_tests = 166000;
-    localparam num_tests = 10000;
+    localparam num_tests = 5;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
     `ifndef TESTFILE
-        `define TESTFILE "./scripts/X_test_gen.txt"
+        `define TESTFILE "scripts/X_test_22_8.txt"
     `endif
     `ifndef RESULTSFILE
         `define RESULTSFILE "reports/gen_results.csv"
     `endif
     initial begin
-        $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
+        $readmemb("scripts/X_test_16_6.txt", flat_mem);
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<INPUT_SIZE; j++) begin : inputs
                 x_test[i][j] = flat_mem[i*INPUT_SIZE+j];
@@ -102,7 +102,7 @@ module waiz_benchmark_tb;
     end
     initial begin
         if (write_file) begin
-            fd = $fopen(`STRINGIFY(`RESULTSFILE), "w");  // "w" = write mode, "a" = append
+            fd = $fopen("reports/gen_results.csv", "w");  // "w" = write mode, "a" = append
             if (fd == 0) begin
                 $display("ERROR: Could not open file!");
                 $finish;
