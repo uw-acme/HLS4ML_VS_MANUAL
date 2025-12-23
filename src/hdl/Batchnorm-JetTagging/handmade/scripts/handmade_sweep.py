@@ -143,8 +143,8 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
             params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
     res_file = f"{name}_{acc[0]}_{acc[1]}_results.csv"
 
-    defs += f' TESTFILE="./scripts/X_test_{acc[0]}_{acc[1]}.txt"'
-    defs += f' RESULTSFILE="./reports/{res_file}"'
+    defs += f' TESTFILE="../scripts/X_test_{acc[0]}_{acc[1]}.txt"'
+    defs += f' RESULTSFILE="../reports/{res_file}"'
     if ("DENSE_LAYER_" not in defs):
         for i in range(1,5):
             defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
@@ -304,7 +304,7 @@ for pipeline in [3]:
     # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
     pipe_out=0
     params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
-    name = f"Argmax_P{pipeline}_PO{pipe_out}_SAV_MULTPIPE0"
+    name = f"MinpipeNegmax"
     for i in range(2,14):
         acc = (3*i-2,i)
         # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
