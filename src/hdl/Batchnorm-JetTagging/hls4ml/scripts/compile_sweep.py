@@ -33,8 +33,8 @@ def HLS4ML_gen(acc):
         # config['LayerName']['softmax']['Implementation'] = 'argmax'
         if (int(split[0])>18):
             config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
-            # config['LayerName']['output']['Precision']['result'] = 'ap_fixed<18,8>'
-            # config['LayerName']['softmax']['Precision']['result'] = 'ap_fixed<18,8>'
+            config['LayerName']['output']['Precision']['result'] = 'ap_fixed<18,8>'
+            config['LayerName']['softmax']['Precision']['result'] = 'ap_fixed<18,8>'
         # config['LayerName']['softmax']['exp_table_t'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
         # config['LayerName']['output']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
         # config['LayerName']['softmax']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
@@ -167,7 +167,7 @@ def keras_test(model):
     #acc.append(({3*i-2},{i}))
 # HLS4ML_gen("31,11")
 # args = ""
-for i in range(12,14):
+for i in range(12,13):
     acc = (3*i-2,i)
     #print((3*i-2,i))
     HLS4ML_gen(f"{acc[0]},{acc[1]}")

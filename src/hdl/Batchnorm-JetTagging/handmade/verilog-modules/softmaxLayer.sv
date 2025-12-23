@@ -9,8 +9,8 @@ module softmaxLayer # (
     parameter MEM_NFRAC_INV = 4,        // Number of fractional bits in the memory lookup indices
     parameter TABLE_WIDTH = 18,      // Width of the table entries
     parameter TABLE_NFRAC = 10,             // Number of fractional bits
-    parameter EXP_TABLE_PATH = "./weights/softmax/exp_table_18_10_10_6.dat",
-    parameter INVERT_TABLE_PATH = "./weights/softmax/invert_table_18_10_10_4.dat"
+    parameter EXP_TABLE_PATH = "../weights/softmax/exp_table_18_10_10_6.dat",
+    parameter INVERT_TABLE_PATH = "../weights/softmax/invert_table_18_10_10_4.dat"
 ) (
     input logic signed [WIDTH-1:0] dataIn [N-1:0],
     input logic clk,

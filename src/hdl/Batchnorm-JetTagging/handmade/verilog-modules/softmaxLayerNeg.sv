@@ -13,8 +13,8 @@ module softmaxLayerNeg # (
     parameter TABLE_NFRAC_INV = 17,
     // Table name key:
     // {function}_table_{width of values}_{nfrac of values}_{width of lookup ind}_{frac of lookup ind}
-    parameter EXP_TABLE_PATH = "./weights/softmax/exp_neg_table_18_17_10_6.dat",
-    parameter INVERT_TABLE_PATH = "./weights/softmax/pos_invert_table_18_17_10_7.dat"
+    parameter EXP_TABLE_PATH = "../weights/softmax/exp_neg_table_18_17_10_6.dat",
+    parameter INVERT_TABLE_PATH = "../weights/softmax/pos_invert_table_18_17_10_7.dat"
 ) (
     input logic signed [WIDTH-1:0] dataIn [N-1:0],
     input logic clk,
@@ -25,7 +25,7 @@ module softmaxLayerNeg # (
 );
 
     
-    localparam num_cycles = 2;
+    localparam num_cycles = 3;
     logic [num_cycles-1:0] ready_buffer = 0;
     assign output_ready = ready_buffer[0];
     // Lookup tables
@@ -70,9 +70,12 @@ module softmaxLayerNeg # (
         end
         for (int i = 0; i < N; i++) begin
             lookupIndex[i] = maxIn-dataIn_parse[i];
-            expResult[i] = exp_table[$unsigned(lookupIndex[i])];
+            // expResult[i] = exp_table[$unsigned(lookupIndex[i])];
         end
     end
+    always_ff @(posedge clk)
+        expResult[i] <= exp_table[$unsigned(lookupIndex[i])];
+
 
     // Adder Tree
     always_comb begin
