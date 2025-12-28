@@ -304,7 +304,7 @@ for pipeline in [3]:
     # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
     pipe_out=0
     params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
-    name = f"MinpipeNegmax"
+    name = f"expPipeNegmax"
     for i in range(2,14):
         acc = (3*i-2,i)
         # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
