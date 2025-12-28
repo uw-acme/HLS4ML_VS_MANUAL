@@ -74,7 +74,8 @@ module softmaxLayerNeg # (
         end
     end
     always_ff @(posedge clk)
-        expResult[i] <= exp_table[$unsigned(lookupIndex[i])];
+        for (int i = 0; i < N; i++)
+            expResult[i] <= exp_table[$unsigned(lookupIndex[i])];
 
 
     // Adder Tree
