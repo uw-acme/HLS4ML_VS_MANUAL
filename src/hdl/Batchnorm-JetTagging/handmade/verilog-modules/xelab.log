@@ -1,7 +1,7 @@
 Vivado Simulator v2025.1.0
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: /tools/Disk_Xilinx/2025.1/Vivado/bin/unwrapped/lnx64.o/xelab waiz_benchmark_put_tb -d PIPELINE_MULT=0 -d SA_DEPTH=8 -d SA_FRAC=2 -d DENSE_LAYER_1_PKG=dense_1_37_13 -d DENSE_LAYER_2_PKG=dense_2_37_13 -d DENSE_LAYER_3_PKG=dense_3_37_13 -d DENSE_LAYER_4_PKG=dense_4_37_13 -d TESTFILE=../scripts/X_test_37_13.txt -d RESULTSFILE=../reports/expPipeNegmax_37_13_results.csv -generic_top PIPELINING=3 -generic_top PIPE_OUT=0 -generic_top NFRAC=24 -generic_top WIDTH=37 -s waiz_tb_sim --debug typical 
+Running: /tools/Disk_Xilinx/2025.1/Vivado/bin/unwrapped/lnx64.o/xelab waiz_benchmark_put_tb -d PIPELINE_MULT=0 -d SA_DEPTH=8 -d SA_FRAC=2 -d TESTFILE=../scripts/X_test_37_13.txt -d RESULTSFILE=../reports/expPipeNegmax_37_13_results.csv -d DENSE_LAYER_1_PKG=dense_1_37_13 -d DENSE_LAYER_2_PKG=dense_2_37_13 -d DENSE_LAYER_3_PKG=dense_3_37_13 -d DENSE_LAYER_4_PKG=dense_4_37_13 -generic_top PIPELINING=3 -generic_top PIPE_OUT=0 -generic_top NFRAC=24 -generic_top WIDTH=37 -s waiz_tb_sim --debug typical 
 Multi-threading is on. Using 19 slave threads.
 WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by AMD, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running xelab with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
 Starting static elaboration

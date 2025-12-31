@@ -177,6 +177,48 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
         os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
     return acc_res
 
+def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str = None, email : bool = False):
+    """
+    Runs a lat test with bit precision (WIDTH, NINT)\n
+    acc: tuple representing bit precision  (WIDTH, NINT)\n
+    """
+    # Regex pattern. Looks for 1 to 2 numbers, 0-9
+    # patt = r"[0-9]{1,2}"
+    # Uses sed to find NFRAC = NUMBER and WIDTH = NUMBER and replace the numbers with new numbers
+    # defs = f"WIDTH={acc[0]} NFRAC={acc[0]-acc[1]}"
+    # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark_tb.sv')
+    if (defs):
+        defs = defs.replace("{", "")
+        defs = defs.replace("}", "")
+        defs = f" {defs}"
+    else:
+        defs = ""
+        email=True
+    if (not params or "WIDTH" not in params):
+        if (not params):
+            params = ""
+        if ("WIDTH" not in params):
+            params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
+    if ("DENSE_LAYER_" not in defs):
+        for i in range(1,5):
+            defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
+    params = f" {params}"
+    params = params.replace("{", "")
+    params = params.replace("}", "")
+    params = params.replace("  ", " ")
+    defs = defs.replace("  ", " ")
+    # Generates the input files for testing and for weights
+    gen_weight(acc)
+    # Runs the simulator through a bash script
+    os.system(f'bash lat.sh "{defs}" "{params}"')
+    with open("../Results/hand_lat.csv", "r") as f:
+        cont = f.readlines()
+        newest = cont[-1]
+        lat = newest.split(", ")[1]
+    # Uses the Linux mail system to send the results to me
+    if email:
+        os.system(f'printf "Acc test for {name} finished at %b with results: {lat}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
+    return lat
 # Generates a systemverilog package of weights of a proper accuracy from a file listing weights
 # Inputs: 
 # Accuracy: Tuple of acuracy (TOTAL_BITS, INTEGER_BITS)
@@ -265,7 +307,15 @@ def dec_to_bin(number: int, bits=-1):
         out=f"{out[0]}{out}"
     return out
 
-
+def add_csv_column(file, column):
+    f = open(file, "r")
+    cont = f.readlines()
+    f.close()
+    f = open(file, "w")
+    for i in range(len(cont)):
+        if (i>len(column)):
+            return
+        f.write(cont[i]+", " + column[i])
 #files = os.listdir("./python/reports/")
 # for file in files:
 #     if (".rpt" in file):
@@ -311,7 +361,10 @@ for pipeline in [3]:
         # SA_INT, SA_FRAC = adjust(acc_in[0])
         SAD, SAFRAC = adjust(acc[0])
         defs = f' PIPELINE_MULT=0 SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+        # lat = lat_test(acc, name, defs, params)
+        # lat = 24*[lat]
+        # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
         # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
         # # print((3*i-2,i))
-        handmade_gen(acc, name, params, defs)
-        # accuracy_test(acc, y_test, name, defs, params, email=True)
+        # handmade_gen(acc, name, params, defs)
+        accuracy_test(acc, y_test, name, defs, params, email=True)
