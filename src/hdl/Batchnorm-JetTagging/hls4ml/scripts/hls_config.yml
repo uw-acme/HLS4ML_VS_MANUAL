@@ -1,0 +1,14 @@
+HLSConfig:
+  Model:
+    Precision:
+      default: fixed<16,6>
+    ReuseFactor: 1
+    Strategy: Latency
+    BramFactor: 1000000000
+    TraceOutput: false
+  LayerType:
+    Softmax:
+      reuse_factor: 5
+      table_t: ap_ufixed<18,8>
+      exp_table_t: ap_ufixed<18,8>
+      inv_table_t: ap_ufixed<18,8>

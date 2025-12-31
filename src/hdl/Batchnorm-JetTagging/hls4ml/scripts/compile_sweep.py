@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from pprint import pprint
 from sys import argv
+import yaml
 # import subprocess
 from tensorflow.keras.models import load_model # type: ignore
 from sklearn.metrics import accuracy_score
@@ -23,18 +24,21 @@ def HLS4ML_gen(acc):
     split = acc.split(",")
     for i in range(len(split)):
         split[i]=int(split[i])
-    name = f"hls_test2"
+    name = f"hls_2reuse5"
     # us_lat: unsigned tables latency implementation
     # unsignedre5bas: unsigned reuse factor 5 manual stable implementations
     # orig: the original settings with just setting latency
     sweepname = name + f"_{split[0]}_{split[1]}"
     if (not os.path.isdir(f'/home/caleb/sweeps/{sweepname}')):
         model = load_model('model.h5', compile=False)
-        config = hls4ml.utils.config_from_keras_model(model, granularity='name')
+        # config = hls4ml.utils.config_from_keras_model(model, granularity='name')
+        f = open("hls_config.yml", "r")
+        config = yaml.safe_load(f)['HLSConfig']
+        f.close()
         config['Model']['Precision'] = f'ap_fixed<{acc}>'
         #config['LayerName']['fc1']['Precision']['weight'] = 'ap_fixed<8,2>'
         #config['LayerName']['output']['Precision']['result'] = 'fixed<16,6,RND,SAT>'
-        config['Model']['Strategy'] = 'Latency'
+        # config['Model']['Strategy'] = 'Latency'
         #config['LayerName']['softmax']['exp_table_t'] = 'ap_fixed<18,8>'
         # config['LayerName']['softmax']['implementation'] = 'stable'
         # if (int(split[0])>18):
@@ -51,13 +55,13 @@ def HLS4ML_gen(acc):
                                                                 part='xcvu13p-fhga2104-3-e',
                                                                 project_name='p')
         
-        for layer in config["LayerName"]:
-            # for precs in config["LayerName"][layer]["Precision"]:
-                config["LayerName"][layer]["Precision"]=config['Model']['Precision']
+        # for layer in config["LayerName"]:
+        #     # for precs in config["LayerName"][layer]["Precision"]:
+        #         config["LayerName"][layer]["Precision"]=config['Model']['Precision']
         pprint(config)
         if (len(argv)>1):
             return 0
-        hls_model.build(csim=False, synth=False, vsynth=False, export=False)
+        hls_model.build(csim=False, synth=True, vsynth=False, export=False)
     if (not os.path.isfile(os.path.join("../reports", f"{sweepname}_util.rpt"))):
         os.system(f"vivado -mode batch -source hls_script.tcl -tclargs {sweepname}")
     data = extract_data(os.path.join("../reports", f"{sweepname}_util.rpt"), features)
@@ -166,10 +170,11 @@ def test_latency(model, acc):
     os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" hls_lat_tb.sv')
     os.system(f"bash get_latency.sh {model}")
 def keras_test(model):
-    res =  np.loadtxt(f"/home/caleb/sweeps/{model}/p_prj/solution1/impl/verilog/hls_results.csv", delimiter=",")
+    res =  np.loadtxt(f"{model}/hls_results.csv", delimiter=",")
     res = res[1:]
     acc= accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
     return acc
+
     #for i in range(len(scores)):
         #print(f"\n{models[i]} accuracy is: {scores[i]} \n")
 #runvars = [2,3,4,5,6,7,8,9,10,12,13]
@@ -185,13 +190,18 @@ def keras_test(model):
     #acc.append(({3*i-2},{i}))
 # HLS4ML_gen("31,11")
 # args = ""
-for i in range(3,4):
+accs = []
+for i in range(2,11):
     if not i==11:
         acc = (3*i-2,i)
         #print((3*i-2,i))
-        HLS4ML_gen(f"{acc[0]},{acc[1]}")
-        # arg = f"/home/caleb/sweeps/hls_argmax_res_{acc[0]}_{acc[1]}/p_prj/solution1/impl/verilog"
-        # test_latency(arg, acc)
+        # HLS4ML_gen(f"{acc[0]},{acc[1]}")
+        arg = f"/home/caleb/sweeps/hls_please_{acc[0]}_{acc[1]}/p_prj/solution1/impl/verilog"
+        os.system(f"rm {arg}/*.csv")
+        accs.append(test_accuracy(arg, acc))
+cs = pd.read_csv("../results/util_hls_please.csv", delimiter = ",")
+cs["Accuracy"] = accs
+cs.to_csv("../results/util_hls_please.csv")
 # print(args)
 # accuracies = []
 # #for i in range(2,10):
