@@ -6,7 +6,7 @@
 (* rom_style = "block" *) module dense_resource_rf_leq_nin_0_0_0_0_0_0_0_0_0_0_0_w10_V_rom (
 addr0, ce0, q0, clk);
 
-parameter DWIDTH = 716;
+parameter DWIDTH = 717;
 parameter AWIDTH = 3;
 parameter MEM_SIZE = 8;
 
@@ -43,7 +43,7 @@ module dense_resource_rf_leq_nin_0_0_0_0_0_0_0_0_0_0_0_w10_V(
     ce0,
     q0);
 
-parameter DataWidth = 32'd716;
+parameter DataWidth = 32'd717;
 parameter AddressRange = 32'd8;
 parameter AddressWidth = 32'd3;
 input reset;

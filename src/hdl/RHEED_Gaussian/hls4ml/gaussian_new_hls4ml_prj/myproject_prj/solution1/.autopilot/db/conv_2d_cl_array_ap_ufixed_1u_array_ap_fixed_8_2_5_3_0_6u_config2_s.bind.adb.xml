@@ -236,7 +236,7 @@ codeRepl:7  br label %0
 </and_exp></or_exp>
 </condition>
 
-<Node id="42" bw="0" op_0_bw="0" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="8" op_11_bw="8" op_12_bw="8" op_13_bw="8" op_14_bw="8" op_15_bw="8" op_16_bw="8" op_17_bw="8" op_18_bw="8" op_19_bw="32" op_20_bw="32" op_21_bw="32" op_22_bw="32" op_23_bw="48">
+<Node id="42" bw="0" op_0_bw="0" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="8" op_11_bw="8" op_12_bw="8" op_13_bw="8" op_14_bw="8" op_15_bw="8" op_16_bw="8" op_17_bw="8" op_18_bw="8" op_19_bw="32" op_20_bw="32" op_21_bw="32" op_22_bw="32" op_23_bw="47">
 <![CDATA[
 .reset:4  call fastcc void @"compute_output_buffer_2d<array,array<ap_fixed<8,2,5,3,0>,6u>,config2>"(i8 %tmp_data_0_V, i8* %res_V_data_0_V, i8* %res_V_data_1_V, i8* %res_V_data_2_V, i8* %res_V_data_3_V, i8* %res_V_data_4_V, i8* %res_V_data_5_V)
 
@@ -315,7 +315,7 @@ conv_2d_buffer_cl<array<ap_ufixed<8, 0, 5, 3, 0>, 1u>, array<ap_fixed<8, 2, 5, 3
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="42" bw="0" op_0_bw="0" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="8" op_11_bw="8" op_12_bw="8" op_13_bw="8" op_14_bw="8" op_15_bw="8" op_16_bw="8" op_17_bw="8" op_18_bw="8" op_19_bw="32" op_20_bw="32" op_21_bw="32" op_22_bw="32" op_23_bw="48">
+<Node id="42" bw="0" op_0_bw="0" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="8" op_11_bw="8" op_12_bw="8" op_13_bw="8" op_14_bw="8" op_15_bw="8" op_16_bw="8" op_17_bw="8" op_18_bw="8" op_19_bw="32" op_20_bw="32" op_21_bw="32" op_22_bw="32" op_23_bw="47">
 <![CDATA[
 .reset:4  call fastcc void @"compute_output_buffer_2d<array,array<ap_fixed<8,2,5,3,0>,6u>,config2>"(i8 %tmp_data_0_V, i8* %res_V_data_0_V, i8* %res_V_data_1_V, i8* %res_V_data_2_V, i8* %res_V_data_3_V, i8* %res_V_data_4_V, i8* %res_V_data_5_V)
 

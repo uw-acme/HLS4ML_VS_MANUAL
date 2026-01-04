@@ -1501,11 +1501,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>592</second>
+              <second>590</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>1217</second>
+              <second>1216</second>
             </item>
           </second>
         </item>

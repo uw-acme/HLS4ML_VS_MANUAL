@@ -6,7 +6,7 @@
 (* rom_style = "block" *) module dense_wrapper_ap_ufixed_8_2_5_3_0_ap_fixed_8_2_5_3_0_config15_s_w15_V_rom (
 addr0, ce0, q0, clk);
 
-parameter DWIDTH = 119;
+parameter DWIDTH = 118;
 parameter AWIDTH = 4;
 parameter MEM_SIZE = 10;
 
@@ -43,7 +43,7 @@ module dense_wrapper_ap_ufixed_8_2_5_3_0_ap_fixed_8_2_5_3_0_config15_s_w15_V(
     ce0,
     q0);
 
-parameter DataWidth = 32'd119;
+parameter DataWidth = 32'd118;
 parameter AddressRange = 32'd10;
 parameter AddressWidth = 32'd4;
 input reset;

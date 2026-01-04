@@ -295,7 +295,7 @@ wire   [31:0] select_ln318_fu_1273_p3;
 wire   [31:0] add_ln311_fu_1303_p2;
 wire   [31:0] add_ln316_fu_1257_p2;
 wire   [30:0] tmp_fu_1158_p4;
-wire   [30:0] tmp_1_fu_1178_p4;
+wire   [30:0] tmp_2_fu_1178_p4;
 wire   [0:0] icmp_ln284_2_fu_1168_p2;
 wire   [0:0] icmp_ln284_3_fu_1188_p2;
 wire   [0:0] and_ln284_1_fu_1200_p2;
@@ -922,7 +922,7 @@ assign icmp_ln284_1_fu_1148_p2 = ((sY_4 == 32'd2) ? 1'b1 : 1'b0);
 
 assign icmp_ln284_2_fu_1168_p2 = (($signed(tmp_fu_1158_p4) > $signed(31'd0)) ? 1'b1 : 1'b0);
 
-assign icmp_ln284_3_fu_1188_p2 = (($signed(tmp_1_fu_1178_p4) > $signed(31'd0)) ? 1'b1 : 1'b0);
+assign icmp_ln284_3_fu_1188_p2 = (($signed(tmp_2_fu_1178_p4) > $signed(31'd0)) ? 1'b1 : 1'b0);
 
 assign icmp_ln284_fu_1138_p2 = ((sX_4 == 32'd2) ? 1'b1 : 1'b0);
 
@@ -952,7 +952,7 @@ assign select_ln313_fu_1319_p3 = ((icmp_ln284_1_reg_1624[0:0] === 1'b1) ? 32'd2 
 
 assign select_ln318_fu_1273_p3 = ((icmp_ln284_reg_1614[0:0] === 1'b1) ? 32'd2 : add_ln318_fu_1268_p2);
 
-assign tmp_1_fu_1178_p4 = {{pX_4[31:1]}};
+assign tmp_2_fu_1178_p4 = {{pX_4[31:1]}};
 
 assign tmp_fu_1158_p4 = {{pY_4[31:1]}};
 

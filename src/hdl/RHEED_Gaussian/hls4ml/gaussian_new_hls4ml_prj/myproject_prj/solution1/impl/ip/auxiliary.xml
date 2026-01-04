@@ -8,5 +8,5 @@
   <xd:arg xd:name="layer22_out.data[3]" xd:originalName="layer22_out" xd:direction="out" xd:interfaceRef="layer22_out_V_data_3_V" xd:busTypeRef="axis" xd:dataWidth="16"/>
   <xd:arg xd:name="layer22_out.data[4]" xd:originalName="layer22_out" xd:direction="out" xd:interfaceRef="layer22_out_V_data_4_V" xd:busTypeRef="axis" xd:dataWidth="16"/>
   <xd:latencyEstimates xd:best-case="34571" xd:worst-case="34577" xd:average-case="34571"/>
-  <xd:resourceEstimates xd:LUT="46605" xd:FF="17013" xd:BRAM="120" xd:DSP="0"/>
+  <xd:resourceEstimates xd:LUT="46604" xd:FF="17010" xd:BRAM="120" xd:DSP="0"/>
 </xd:acceleratorMap>

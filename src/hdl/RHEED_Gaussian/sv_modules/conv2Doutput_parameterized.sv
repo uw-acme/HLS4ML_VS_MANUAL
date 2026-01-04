@@ -26,7 +26,7 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	// to know that we need to read data in before we start counting
 	logic firstTime;
 	logic reset_copy;
-	// logic oscillator; // for relu
+	logic oscillator; // for relu
 	logic cycleCount; // ADDED -- use in place of "even" to keep track of the convolution round (to know which weights to use)
 	
 	localparam FIX_COUNT = (bitWidth>20) ? ($clog2(weightWidth/2)+2) : ($clog2(weightWidth/2)+1) ; //+1;

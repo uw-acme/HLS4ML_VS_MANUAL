@@ -147,8 +147,8 @@ reg    grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0
 wire   [31:0] select_ln318_fu_467_p3;
 wire   [31:0] add_ln311_fu_497_p2;
 wire   [31:0] add_ln316_fu_451_p2;
-wire   [30:0] tmp_2_fu_368_p4;
-wire   [30:0] tmp_3_fu_388_p4;
+wire   [30:0] tmp_3_fu_368_p4;
+wire   [30:0] tmp_4_fu_388_p4;
 wire   [0:0] icmp_ln284_5_fu_378_p2;
 wire   [0:0] icmp_ln284_6_fu_398_p2;
 wire   [0:0] and_ln284_3_fu_410_p2;
@@ -524,9 +524,9 @@ assign grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0
 
 assign icmp_ln284_4_fu_358_p2 = ((sY_5 == 32'd2) ? 1'b1 : 1'b0);
 
-assign icmp_ln284_5_fu_378_p2 = (($signed(tmp_2_fu_368_p4) > $signed(31'd0)) ? 1'b1 : 1'b0);
+assign icmp_ln284_5_fu_378_p2 = (($signed(tmp_3_fu_368_p4) > $signed(31'd0)) ? 1'b1 : 1'b0);
 
-assign icmp_ln284_6_fu_398_p2 = (($signed(tmp_3_fu_388_p4) > $signed(31'd0)) ? 1'b1 : 1'b0);
+assign icmp_ln284_6_fu_398_p2 = (($signed(tmp_4_fu_388_p4) > $signed(31'd0)) ? 1'b1 : 1'b0);
 
 assign icmp_ln284_fu_348_p2 = ((sX_5 == 32'd2) ? 1'b1 : 1'b0);
 
@@ -552,8 +552,8 @@ assign select_ln313_fu_513_p3 = ((icmp_ln284_4_reg_548[0:0] === 1'b1) ? 32'd2 : 
 
 assign select_ln318_fu_467_p3 = ((icmp_ln284_reg_538[0:0] === 1'b1) ? 32'd2 : add_ln318_fu_462_p2);
 
-assign tmp_2_fu_368_p4 = {{pY_5[31:1]}};
+assign tmp_3_fu_368_p4 = {{pY_5[31:1]}};
 
-assign tmp_3_fu_388_p4 = {{pX_5[31:1]}};
+assign tmp_4_fu_388_p4 = {{pX_5[31:1]}};
 
 endmodule //compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_6u_config2_s

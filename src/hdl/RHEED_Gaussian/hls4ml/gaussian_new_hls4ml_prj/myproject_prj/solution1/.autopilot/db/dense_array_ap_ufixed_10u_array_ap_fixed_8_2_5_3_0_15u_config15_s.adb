@@ -3174,7 +3174,7 @@
             </item>
             <item>
               <first>FF</first>
-              <second>742</second>
+              <second>741</second>
             </item>
             <item>
               <first>LUT</first>

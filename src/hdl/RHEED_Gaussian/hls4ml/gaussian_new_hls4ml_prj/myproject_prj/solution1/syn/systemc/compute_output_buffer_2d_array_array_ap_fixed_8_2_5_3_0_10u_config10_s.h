@@ -333,7 +333,7 @@ struct compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s : 
     sc_signal< sc_lv<32> > add_ln311_fu_1649_p2;
     sc_signal< sc_lv<32> > add_ln316_fu_1603_p2;
     sc_signal< sc_lv<31> > tmp_fu_1504_p4;
-    sc_signal< sc_lv<31> > tmp_4_fu_1524_p4;
+    sc_signal< sc_lv<31> > tmp_5_fu_1524_p4;
     sc_signal< sc_lv<1> > icmp_ln284_7_fu_1514_p2;
     sc_signal< sc_lv<1> > icmp_ln284_8_fu_1534_p2;
     sc_signal< sc_lv<1> > and_ln284_1_fu_1546_p2;
@@ -417,7 +417,7 @@ struct compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_10u_config10_s : 
     void thread_res_stream_V_data_9_V_write();
     void thread_select_ln313_fu_1665_p3();
     void thread_select_ln318_fu_1619_p3();
-    void thread_tmp_4_fu_1524_p4();
+    void thread_tmp_5_fu_1524_p4();
     void thread_tmp_fu_1504_p4();
     void thread_ap_NS_fsm();
 };

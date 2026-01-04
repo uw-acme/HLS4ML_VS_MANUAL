@@ -6,6 +6,9 @@
         <schedule model="myproject"/>
         <config_export format="ip_catalog" version="1.0.0"/>
     </config>
+    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="" vendor="" library="" ipname="" version="1.0.0" driver_input_dir="" display_name="" taxonomy=""/>
+    </ExportDesign>
     <name>
         <value string="solution1"/>
     </name>
@@ -22,8 +25,5 @@
     <clockList>
         <clock default="false" name="default" uncertainty="12.5%" period="5"/>
     </clockList>
-    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
-        <Format formatName="ip_catalog" description="" vendor="" library="" ipname="" version="1.0.0" driver_input_dir="" display_name="" taxonomy=""/>
-    </ExportDesign>
 </AutoPilot:solution>
 

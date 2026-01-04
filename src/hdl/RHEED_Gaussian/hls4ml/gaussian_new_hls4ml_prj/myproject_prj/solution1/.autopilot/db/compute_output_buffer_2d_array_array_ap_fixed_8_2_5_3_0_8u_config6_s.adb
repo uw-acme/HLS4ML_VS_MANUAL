@@ -7233,7 +7233,7 @@
             <Obj>
               <type>0</type>
               <id>217</id>
-              <name>tmp_1</name>
+              <name>tmp_2</name>
               <fileName>firmware/nnet_utils/nnet_conv_stream.h</fileName>
               <fileDirectory>..</fileDirectory>
               <lineNumber>284</lineNumber>
@@ -7257,7 +7257,7 @@
                 </item>
               </inlineStackInfo>
               <originalName/>
-              <rtlName>tmp_1_fu_1178_p4</rtlName>
+              <rtlName>tmp_2_fu_1178_p4</rtlName>
               <coreName/>
             </Obj>
             <bitwidth>31</bitwidth>
@@ -13885,7 +13885,7 @@
             </item>
             <item>
               <first>FF</first>
-              <second>2220</second>
+              <second>2219</second>
             </item>
             <item>
               <first>LUT</first>
@@ -20096,7 +20096,7 @@
         </second>
       </item>
       <item>
-        <first>tmp_1_fu_1178</first>
+        <first>tmp_2_fu_1178</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>

@@ -8,7 +8,7 @@ use ieee.std_logic_unsigned.all;
 
 entity dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0_w2_V_rom is 
     generic(
-             DWIDTH     : integer := 48; 
+             DWIDTH     : integer := 47; 
              AWIDTH     : integer := 4; 
              MEM_SIZE    : integer := 9
     ); 
@@ -26,15 +26,15 @@ architecture rtl of dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_
 signal addr0_tmp : std_logic_vector(AWIDTH-1 downto 0); 
 type mem_array is array (0 to MEM_SIZE-1) of std_logic_vector (DWIDTH-1 downto 0); 
 signal mem : mem_array := (
-    0 => "001111010000000000111011101110110001011010111111", 
-    1 => "000100111111100000000110110000001011101011001111", 
-    2 => "111100011011100100011010111010001011011100010000", 
-    3 => "001100010000011100000101111101010010011111011000", 
-    4 => "110011011100101100001000000100110010001111000110", 
-    5 => "000111111110110111000011110010001011110111111011", 
-    6 => "110000100010001011111100111100110001111100101111", 
-    7 => "010011110000001011000001001110110010101100110110", 
-    8 => "010001101110010011100001111100100000110111111100" );
+    0 => "01000000011100111000001001101100010101100001000", 
+    1 => "00000001101101011110111111001001101100011110011", 
+    2 => "00010101110110100000000001111101100010111011001", 
+    3 => "01010010001110111100111010000010011000101001001", 
+    4 => "11111111101101011010011101110101110001000011110", 
+    5 => "11111101111011100111000110010101110101011011110", 
+    6 => "01010001100100011011011000000011111111011000000", 
+    7 => "01101000000100111000111101110100010101000011011", 
+    8 => "00011011111110000011011110111001011011011010100" );
 
 attribute syn_rom_style : string;
 attribute syn_rom_style of mem : signal is "block_rom";
@@ -72,7 +72,7 @@ use IEEE.std_logic_1164.all;
 
 entity dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0_w2_V is
     generic (
-        DataWidth : INTEGER := 48;
+        DataWidth : INTEGER := 47;
         AddressRange : INTEGER := 9;
         AddressWidth : INTEGER := 4);
     port (

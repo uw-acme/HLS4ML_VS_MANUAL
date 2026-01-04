@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0'" level="0">
-<item name = "Date">Sat Nov 29 23:13:28 2025
+<item name = "Date">Sun Jan  4 01:54:54 2026
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
@@ -53,7 +53,7 @@
 <column name="Instance">-, -, 0, 2544, -</column>
 <column name="Memory">11, -, 0, 0, -</column>
 <column name="Multiplexer">-, -, -, 2160, -</column>
-<column name="Register">-, -, 2220, -, -</column>
+<column name="Register">-, -, 2219, -, -</column>
 <specialColumn name="Available">1080, 1700, 406256, 203128, 0</specialColumn>
 <specialColumn name="Utilization (%)">1, 0, ~0, 3, 0</specialColumn>
 </table>
@@ -118,7 +118,7 @@
 </item>
 <item name = "Memory"><table name="" hasTotal="1">
 <keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
-<column name="w6_V_U">dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_wHfu, 11, 0, 0, 0, 9, 381, 1, 3429</column>
+<column name="w6_V_U">dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_wHfu, 11, 0, 0, 0, 9, 380, 1, 3420</column>
 </table>
 </item>
 <item name = "FIFO"><table name="" hasTotal="1">
@@ -173,8 +173,8 @@
 <column name="mul_ln1118_71_fu_9721_p2">*, 0, 0, 40, 8, 8</column>
 <column name="mul_ln1118_72_fu_9889_p2">*, 0, 0, 40, 8, 8</column>
 <column name="mul_ln1118_73_fu_10057_p2">*, 0, 0, 40, 8, 8</column>
+<column name="mul_ln1118_74_fu_10225_p2">*, 0, 0, 40, 8, 4</column>
 <column name="mul_ln1118_fu_2325_p2">*, 0, 0, 40, 8, 8</column>
-<column name="mul_ln708_fu_10225_p2">*, 0, 0, 40, 5, 8</column>
 <column name="acc_0_V_fu_10289_p2">+, 0, 0, 16, 16, 16</column>
 <column name="acc_1_V_fu_10343_p2">+, 0, 0, 16, 16, 16</column>
 <column name="acc_2_V_fu_10397_p2">+, 0, 0, 16, 16, 16</column>
@@ -651,7 +651,6 @@
 <column name="do_init_reg_711">1, 0, 1, 0</column>
 <column name="icmp_ln46_reg_11085">1, 0, 1, 0</column>
 <column name="icmp_ln46_reg_11085_pp0_iter1_reg">1, 0, 1, 0</column>
-<column name="lshr_ln708_s_reg_11324">12, 0, 12, 0</column>
 <column name="p_Val2_18_reg_2230">16, 0, 16, 0</column>
 <column name="p_Val2_210_reg_2216">16, 0, 16, 0</column>
 <column name="p_Val2_312_reg_2202">16, 0, 16, 0</column>
@@ -705,6 +704,7 @@
 <column name="trunc_ln708_80_reg_11309">15, 0, 15, 0</column>
 <column name="trunc_ln708_81_reg_11314">15, 0, 15, 0</column>
 <column name="trunc_ln708_82_reg_11319">15, 0, 15, 0</column>
+<column name="trunc_ln708_83_reg_11324">11, 0, 11, 0</column>
 <column name="trunc_ln708_s_reg_11094">15, 0, 15, 0</column>
 <column name="trunc_ln_reg_11089">15, 0, 15, 0</column>
 <column name="w_index21_reg_727">4, 0, 4, 0</column>

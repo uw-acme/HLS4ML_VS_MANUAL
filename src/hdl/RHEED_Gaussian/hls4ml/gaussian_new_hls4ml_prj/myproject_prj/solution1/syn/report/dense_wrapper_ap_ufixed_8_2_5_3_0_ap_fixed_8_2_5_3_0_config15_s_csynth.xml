@@ -41,7 +41,7 @@
 <Resources>
 <BRAM_18K>4</BRAM_18K>
 <DSP48E>0</DSP48E>
-<FF>742</FF>
+<FF>741</FF>
 <LUT>2014</LUT>
 <URAM>0</URAM>
 </Resources>

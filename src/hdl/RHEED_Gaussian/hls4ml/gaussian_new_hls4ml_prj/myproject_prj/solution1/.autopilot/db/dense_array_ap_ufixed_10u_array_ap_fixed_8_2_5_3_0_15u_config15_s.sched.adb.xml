@@ -194,7 +194,7 @@
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="64" bw="120" op_0_bw="120" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="8" op_11_bw="119">
+<Node id="64" bw="120" op_0_bw="120" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="8" op_11_bw="118">
 <![CDATA[
 .critedge:37  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @"dense_wrapper<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config15>"(i8 %data_0_V, i8 %data_1_V, i8 %data_2_V, i8 %data_3_V, i8 %data_4_V, i8 %data_5_V, i8 %data_6_V, i8 %data_7_V, i8 %data_8_V, i8 %data_9_V)
 
@@ -212,7 +212,7 @@
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="64" bw="120" op_0_bw="120" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="8" op_11_bw="119">
+<Node id="64" bw="120" op_0_bw="120" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="8" op_11_bw="118">
 <![CDATA[
 .critedge:37  %call_ret = call fastcc { i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8, i8 } @"dense_wrapper<ap_ufixed<8, 2, 5, 3, 0>, ap_fixed<8, 2, 5, 3, 0>, config15>"(i8 %data_0_V, i8 %data_1_V, i8 %data_2_V, i8 %data_3_V, i8 %data_4_V, i8 %data_5_V, i8 %data_6_V, i8 %data_7_V, i8 %data_8_V, i8 %data_9_V)
 

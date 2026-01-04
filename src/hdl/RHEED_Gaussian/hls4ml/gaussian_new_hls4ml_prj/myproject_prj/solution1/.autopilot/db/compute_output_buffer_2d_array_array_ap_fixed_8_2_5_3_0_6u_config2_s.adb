@@ -1716,7 +1716,7 @@
             <Obj>
               <type>0</type>
               <id>61</id>
-              <name>tmp_2</name>
+              <name>tmp_3</name>
               <fileName>firmware/nnet_utils/nnet_conv_stream.h</fileName>
               <fileDirectory>..</fileDirectory>
               <lineNumber>284</lineNumber>
@@ -1740,7 +1740,7 @@
                 </item>
               </inlineStackInfo>
               <originalName/>
-              <rtlName>tmp_2_fu_368_p4</rtlName>
+              <rtlName>tmp_3_fu_368_p4</rtlName>
               <coreName/>
             </Obj>
             <bitwidth>31</bitwidth>
@@ -1864,7 +1864,7 @@
             <Obj>
               <type>0</type>
               <id>64</id>
-              <name>tmp_3</name>
+              <name>tmp_4</name>
               <fileName>firmware/nnet_utils/nnet_conv_stream.h</fileName>
               <fileDirectory>..</fileDirectory>
               <lineNumber>284</lineNumber>
@@ -1888,7 +1888,7 @@
                 </item>
               </inlineStackInfo>
               <originalName/>
-              <rtlName>tmp_3_fu_388_p4</rtlName>
+              <rtlName>tmp_4_fu_388_p4</rtlName>
               <coreName/>
             </Obj>
             <bitwidth>31</bitwidth>
@@ -5960,11 +5960,11 @@
             </item>
             <item>
               <first>FF</first>
-              <second>208</second>
+              <second>206</second>
             </item>
             <item>
               <first>LUT</first>
-              <second>714</second>
+              <second>713</second>
             </item>
           </second>
         </item>
@@ -8682,7 +8682,7 @@
         </second>
       </item>
       <item>
-        <first>tmp_2_fu_368</first>
+        <first>tmp_3_fu_368</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>
@@ -8690,7 +8690,7 @@
         </second>
       </item>
       <item>
-        <first>tmp_3_fu_388</first>
+        <first>tmp_4_fu_388</first>
         <second>
           <count>1</count>
           <item_version>0</item_version>

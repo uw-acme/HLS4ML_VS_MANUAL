@@ -132,8 +132,8 @@ architecture behav of compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_6u
     signal select_ln318_fu_467_p3 : STD_LOGIC_VECTOR (31 downto 0);
     signal add_ln311_fu_497_p2 : STD_LOGIC_VECTOR (31 downto 0);
     signal add_ln316_fu_451_p2 : STD_LOGIC_VECTOR (31 downto 0);
-    signal tmp_2_fu_368_p4 : STD_LOGIC_VECTOR (30 downto 0);
-    signal tmp_3_fu_388_p4 : STD_LOGIC_VECTOR (30 downto 0);
+    signal tmp_3_fu_368_p4 : STD_LOGIC_VECTOR (30 downto 0);
+    signal tmp_4_fu_388_p4 : STD_LOGIC_VECTOR (30 downto 0);
     signal icmp_ln284_5_fu_378_p2 : STD_LOGIC_VECTOR (0 downto 0);
     signal icmp_ln284_6_fu_398_p2 : STD_LOGIC_VECTOR (0 downto 0);
     signal and_ln284_3_fu_410_p2 : STD_LOGIC_VECTOR (0 downto 0);
@@ -476,8 +476,8 @@ begin
 
     grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0_fu_184_ap_start <= grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0_fu_184_ap_start_reg;
     icmp_ln284_4_fu_358_p2 <= "1" when (sY_5 = ap_const_lv32_2) else "0";
-    icmp_ln284_5_fu_378_p2 <= "1" when (signed(tmp_2_fu_368_p4) > signed(ap_const_lv31_0)) else "0";
-    icmp_ln284_6_fu_398_p2 <= "1" when (signed(tmp_3_fu_388_p4) > signed(ap_const_lv31_0)) else "0";
+    icmp_ln284_5_fu_378_p2 <= "1" when (signed(tmp_3_fu_368_p4) > signed(ap_const_lv31_0)) else "0";
+    icmp_ln284_6_fu_398_p2 <= "1" when (signed(tmp_4_fu_388_p4) > signed(ap_const_lv31_0)) else "0";
     icmp_ln284_fu_348_p2 <= "1" when (sX_5 = ap_const_lv32_2) else "0";
     icmp_ln303_fu_446_p2 <= "1" when (pX_5_load_reg_559 = ap_const_lv32_2F) else "0";
     icmp_ln307_fu_492_p2 <= "1" when (pY_5_load_reg_553 = ap_const_lv32_2F) else "0";
@@ -614,6 +614,6 @@ begin
     select_ln318_fu_467_p3 <= 
         ap_const_lv32_2 when (icmp_ln284_reg_538(0) = '1') else 
         add_ln318_fu_462_p2;
-    tmp_2_fu_368_p4 <= pY_5(31 downto 1);
-    tmp_3_fu_388_p4 <= pX_5(31 downto 1);
+    tmp_3_fu_368_p4 <= pY_5(31 downto 1);
+    tmp_4_fu_388_p4 <= pX_5(31 downto 1);
 end behav;

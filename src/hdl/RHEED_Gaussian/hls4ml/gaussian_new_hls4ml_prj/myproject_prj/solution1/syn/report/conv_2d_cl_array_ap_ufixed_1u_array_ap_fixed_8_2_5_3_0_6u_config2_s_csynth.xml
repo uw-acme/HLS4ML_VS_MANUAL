@@ -50,8 +50,8 @@
 <Resources>
 <BRAM_18K>2</BRAM_18K>
 <DSP48E>0</DSP48E>
-<FF>650</FF>
-<LUT>1400</LUT>
+<FF>648</FF>
+<LUT>1399</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>

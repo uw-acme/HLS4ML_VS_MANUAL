@@ -594,10 +594,10 @@ codeRepl:36  %pY_5_load = load i32* @pY_5, align 4
 
 <Node id="61" bw="31" op_0_bw="31" op_1_bw="32" op_2_bw="32" op_3_bw="32">
 <![CDATA[
-codeRepl:37  %tmp_2 = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %pY_5_load, i32 1, i32 31)
+codeRepl:37  %tmp_3 = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %pY_5_load, i32 1, i32 31)
 
 ]]></Node>
-<StgValue><ssdm name="tmp_2"/></StgValue>
+<StgValue><ssdm name="tmp_3"/></StgValue>
 </operation>
 
 <operation id="42" st_id="1" stage="1" lat="1">
@@ -609,7 +609,7 @@ codeRepl:37  %tmp_2 = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %pY_5_lo
 
 <Node id="62" bw="1" op_0_bw="31" op_1_bw="31">
 <![CDATA[
-codeRepl:38  %icmp_ln284_5 = icmp sgt i31 %tmp_2, 0
+codeRepl:38  %icmp_ln284_5 = icmp sgt i31 %tmp_3, 0
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln284_5"/></StgValue>
@@ -639,10 +639,10 @@ codeRepl:39  %pX_5_load = load i32* @pX_5, align 4
 
 <Node id="64" bw="31" op_0_bw="31" op_1_bw="32" op_2_bw="32" op_3_bw="32">
 <![CDATA[
-codeRepl:40  %tmp_3 = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %pX_5_load, i32 1, i32 31)
+codeRepl:40  %tmp_4 = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %pX_5_load, i32 1, i32 31)
 
 ]]></Node>
-<StgValue><ssdm name="tmp_3"/></StgValue>
+<StgValue><ssdm name="tmp_4"/></StgValue>
 </operation>
 
 <operation id="45" st_id="1" stage="1" lat="1">
@@ -654,7 +654,7 @@ codeRepl:40  %tmp_3 = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %pX_5_lo
 
 <Node id="65" bw="1" op_0_bw="31" op_1_bw="31">
 <![CDATA[
-codeRepl:41  %icmp_ln284_6 = icmp sgt i31 %tmp_3, 0
+codeRepl:41  %icmp_ln284_6 = icmp sgt i31 %tmp_4, 0
 
 ]]></Node>
 <StgValue><ssdm name="icmp_ln284_6"/></StgValue>
@@ -728,7 +728,7 @@ codeRepl:45  br i1 %and_ln284_4, label %0, label %._crit_edge22
 </and_exp></or_exp>
 </condition>
 
-<Node id="71" bw="48" op_0_bw="48" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="48" op_11_bw="8" op_12_bw="8" op_13_bw="8" op_14_bw="8" op_15_bw="8" op_16_bw="8" op_17_bw="0" op_18_bw="0" op_19_bw="0" op_20_bw="0" op_21_bw="0" op_22_bw="0" op_23_bw="0" op_24_bw="0" op_25_bw="0">
+<Node id="71" bw="48" op_0_bw="48" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="47" op_11_bw="8" op_12_bw="8" op_13_bw="8" op_14_bw="8" op_15_bw="8" op_16_bw="8" op_17_bw="0" op_18_bw="0" op_19_bw="0" op_20_bw="0" op_21_bw="0" op_22_bw="0" op_23_bw="0" op_24_bw="0" op_25_bw="0">
 <![CDATA[
 :0  %tmp = call fastcc { i8, i8, i8, i8, i8, i8 } @"dense_resource_rf_leq_nin<ap_ufixed,ap_fixed,config2_mult>.0.0.0.0.0.0.0"()
 
@@ -746,7 +746,7 @@ codeRepl:45  br i1 %and_ln284_4, label %0, label %._crit_edge22
 <or_exp><and_exp></and_exp></or_exp>
 </condition>
 
-<Node id="71" bw="48" op_0_bw="48" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="48" op_11_bw="8" op_12_bw="8" op_13_bw="8" op_14_bw="8" op_15_bw="8" op_16_bw="8" op_17_bw="0" op_18_bw="0" op_19_bw="0" op_20_bw="0" op_21_bw="0" op_22_bw="0" op_23_bw="0" op_24_bw="0" op_25_bw="0">
+<Node id="71" bw="48" op_0_bw="48" op_1_bw="8" op_2_bw="8" op_3_bw="8" op_4_bw="8" op_5_bw="8" op_6_bw="8" op_7_bw="8" op_8_bw="8" op_9_bw="8" op_10_bw="47" op_11_bw="8" op_12_bw="8" op_13_bw="8" op_14_bw="8" op_15_bw="8" op_16_bw="8" op_17_bw="0" op_18_bw="0" op_19_bw="0" op_20_bw="0" op_21_bw="0" op_22_bw="0" op_23_bw="0" op_24_bw="0" op_25_bw="0">
 <![CDATA[
 :0  %tmp = call fastcc { i8, i8, i8, i8, i8, i8 } @"dense_resource_rf_leq_nin<ap_ufixed,ap_fixed,config2_mult>.0.0.0.0.0.0.0"()
 

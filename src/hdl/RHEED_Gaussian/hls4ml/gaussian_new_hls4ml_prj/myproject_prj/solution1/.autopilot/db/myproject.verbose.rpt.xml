@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'myproject'" level="0">
-<item name = "Date">Sat Nov 29 23:13:57 2025
+<item name = "Date">Sun Jan  4 01:55:27 2026
 </item>
 <item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
 <item name = "Project">myproject_prj</item>
@@ -69,7 +69,7 @@
 <column name="DSP">-, -, -, -, -</column>
 <column name="Expression">-, -, 0, 2, -</column>
 <column name="FIFO">78, -, 2640, 6314, -</column>
-<column name="Instance">42, 0, 14373, 40289, -</column>
+<column name="Instance">42, 0, 14370, 40288, -</column>
 <column name="Memory">-, -, -, -, -</column>
 <column name="Multiplexer">-, -, -, -, -</column>
 <column name="Register">-, -, -, -, -</column>
@@ -81,10 +81,10 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
-<column name="conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_8_2_5_3_0_6u_config2_U0">conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_8_2_5_3_0_6u_config2_s, 2, 0, 650, 1400, 0</column>
-<column name="conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_U0">conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s, 11, 0, 3271, 8162, 0</column>
-<column name="conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_U0">conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s, 20, 0, 4135, 12699, 0</column>
-<column name="dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_15u_config15_U0">dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_15u_config15_s, 4, 0, 948, 2284, 0</column>
+<column name="conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_8_2_5_3_0_6u_config2_U0">conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_8_2_5_3_0_6u_config2_s, 2, 0, 648, 1399, 0</column>
+<column name="conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_U0">conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s, 11, 0, 3270, 8162, 0</column>
+<column name="conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_U0">conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s, 20, 0, 4136, 12699, 0</column>
+<column name="dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_15u_config15_U0">dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_15u_config15_s, 4, 0, 947, 2284, 0</column>
 <column name="dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_5u_config21_U0">dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_5u_config21_s, 2, 0, 547, 1194, 0</column>
 <column name="dense_array_ap_ufixed_15u_array_ap_fixed_8_2_5_3_0_10u_config18_U0">dense_array_ap_ufixed_15u_array_ap_fixed_8_2_5_3_0_10u_config18_s, 3, 0, 907, 1964, 0</column>
 <column name="linear_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_6u_linear_config3_U0">linear_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_6u_linear_config3_s, 0, 0, 20, 217, 0</column>

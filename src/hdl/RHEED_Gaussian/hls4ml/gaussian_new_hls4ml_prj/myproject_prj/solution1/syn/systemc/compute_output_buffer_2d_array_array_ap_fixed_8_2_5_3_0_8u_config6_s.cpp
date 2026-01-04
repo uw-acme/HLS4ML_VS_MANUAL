@@ -299,7 +299,7 @@ compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::compute_ou
     SC_METHOD(thread_icmp_ln284_3_fu_1188_p2);
     sensitive << ( ap_start );
     sensitive << ( ap_CS_fsm_state1 );
-    sensitive << ( tmp_1_fu_1178_p4 );
+    sensitive << ( tmp_2_fu_1178_p4 );
 
     SC_METHOD(thread_icmp_ln284_fu_1138_p2);
     sensitive << ( ap_start );
@@ -483,7 +483,7 @@ compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::compute_ou
     sensitive << ( icmp_ln284_reg_1614 );
     sensitive << ( add_ln318_fu_1268_p2 );
 
-    SC_METHOD(thread_tmp_1_fu_1178_p4);
+    SC_METHOD(thread_tmp_2_fu_1178_p4);
     sensitive << ( pX_4 );
 
     SC_METHOD(thread_tmp_fu_1158_p4);
@@ -783,7 +783,7 @@ compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::compute_ou
     sc_trace(mVcdFile, add_ln311_fu_1303_p2, "add_ln311_fu_1303_p2");
     sc_trace(mVcdFile, add_ln316_fu_1257_p2, "add_ln316_fu_1257_p2");
     sc_trace(mVcdFile, tmp_fu_1158_p4, "tmp_fu_1158_p4");
-    sc_trace(mVcdFile, tmp_1_fu_1178_p4, "tmp_1_fu_1178_p4");
+    sc_trace(mVcdFile, tmp_2_fu_1178_p4, "tmp_2_fu_1178_p4");
     sc_trace(mVcdFile, icmp_ln284_2_fu_1168_p2, "icmp_ln284_2_fu_1168_p2");
     sc_trace(mVcdFile, icmp_ln284_3_fu_1188_p2, "icmp_ln284_3_fu_1188_p2");
     sc_trace(mVcdFile, and_ln284_1_fu_1200_p2, "and_ln284_1_fu_1200_p2");
@@ -1070,7 +1070,7 @@ void compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::threa
 }
 
 void compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::thread_icmp_ln284_3_fu_1188_p2() {
-    icmp_ln284_3_fu_1188_p2 = (!tmp_1_fu_1178_p4.read().is_01() || !ap_const_lv31_0.is_01())? sc_lv<1>(): (sc_bigint<31>(tmp_1_fu_1178_p4.read()) > sc_bigint<31>(ap_const_lv31_0));
+    icmp_ln284_3_fu_1188_p2 = (!tmp_2_fu_1178_p4.read().is_01() || !ap_const_lv31_0.is_01())? sc_lv<1>(): (sc_bigint<31>(tmp_2_fu_1178_p4.read()) > sc_bigint<31>(ap_const_lv31_0));
 }
 
 void compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::thread_icmp_ln284_fu_1138_p2() {
@@ -1289,8 +1289,8 @@ void compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::threa
     select_ln318_fu_1273_p3 = (!icmp_ln284_reg_1614.read()[0].is_01())? sc_lv<32>(): ((icmp_ln284_reg_1614.read()[0].to_bool())? ap_const_lv32_2: add_ln318_fu_1268_p2.read());
 }
 
-void compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::thread_tmp_1_fu_1178_p4() {
-    tmp_1_fu_1178_p4 = pX_4.read().range(31, 1);
+void compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::thread_tmp_2_fu_1178_p4() {
+    tmp_2_fu_1178_p4 = pX_4.read().range(31, 1);
 }
 
 void compute_output_buffer_2d_array_array_ap_fixed_8_2_5_3_0_8u_config6_s::thread_tmp_fu_1158_p4() {

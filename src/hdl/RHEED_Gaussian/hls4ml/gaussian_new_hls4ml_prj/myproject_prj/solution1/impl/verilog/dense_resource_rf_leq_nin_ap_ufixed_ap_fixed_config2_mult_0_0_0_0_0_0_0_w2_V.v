@@ -6,7 +6,7 @@
 (* rom_style = "block" *) module dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0_w2_V_rom (
 addr0, ce0, q0, clk);
 
-parameter DWIDTH = 48;
+parameter DWIDTH = 47;
 parameter AWIDTH = 4;
 parameter MEM_SIZE = 9;
 
@@ -43,7 +43,7 @@ module dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config2_mult_0_0_0_0_0_0_0_w
     ce0,
     q0);
 
-parameter DataWidth = 32'd48;
+parameter DataWidth = 32'd47;
 parameter AddressRange = 32'd9;
 parameter AddressWidth = 32'd4;
 input reset;

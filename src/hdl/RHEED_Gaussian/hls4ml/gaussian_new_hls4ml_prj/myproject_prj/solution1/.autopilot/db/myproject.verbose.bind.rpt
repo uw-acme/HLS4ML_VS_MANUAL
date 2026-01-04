@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'myproject'
 ================================================================
-* Date:           Sat Nov 29 23:13:20 2025
+* Date:           Sun Jan  4 01:54:46 2026
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
@@ -19544,7 +19544,7 @@ ret_ln138                 (ret                 ) [ 00000000000000000000000000000
 <pin id="4291" dir="0" index="84" bw="32" slack="0"/>
 <pin id="4292" dir="0" index="85" bw="32" slack="0"/>
 <pin id="4293" dir="0" index="86" bw="32" slack="0"/>
-<pin id="4294" dir="0" index="87" bw="716" slack="0"/>
+<pin id="4294" dir="0" index="87" bw="717" slack="0"/>
 <pin id="4295" dir="1" index="88" bw="0" slack="2147483647"/>
 </pin_list>
 <bind>
@@ -19622,7 +19622,7 @@ ret_ln138                 (ret                 ) [ 00000000000000000000000000000
 <pin id="4431" dir="0" index="64" bw="32" slack="0"/>
 <pin id="4432" dir="0" index="65" bw="32" slack="0"/>
 <pin id="4433" dir="0" index="66" bw="32" slack="0"/>
-<pin id="4434" dir="0" index="67" bw="381" slack="0"/>
+<pin id="4434" dir="0" index="67" bw="380" slack="0"/>
 <pin id="4435" dir="1" index="68" bw="0" slack="2147483647"/>
 </pin_list>
 <bind>
@@ -19776,7 +19776,7 @@ ret_ln138                 (ret                 ) [ 00000000000000000000000000000
 <pin id="4718" dir="0" index="23" bw="8" slack="25"/>
 <pin id="4719" dir="0" index="24" bw="8" slack="25"/>
 <pin id="4720" dir="0" index="25" bw="8" slack="25"/>
-<pin id="4721" dir="0" index="26" bw="119" slack="0"/>
+<pin id="4721" dir="0" index="26" bw="118" slack="0"/>
 <pin id="4722" dir="1" index="27" bw="0" slack="2147483647"/>
 </pin_list>
 <bind>
@@ -19967,7 +19967,7 @@ ret_ln138                 (ret                 ) [ 00000000000000000000000000000
 <pin id="4945" dir="0" index="20" bw="32" slack="0"/>
 <pin id="4946" dir="0" index="21" bw="32" slack="0"/>
 <pin id="4947" dir="0" index="22" bw="32" slack="0"/>
-<pin id="4948" dir="0" index="23" bw="48" slack="0"/>
+<pin id="4948" dir="0" index="23" bw="47" slack="0"/>
 <pin id="4949" dir="1" index="24" bw="0" slack="2147483647"/>
 </pin_list>
 <bind>
@@ -24668,14 +24668,14 @@ ret_ln138                 (ret                 ) [ 00000000000000000000000000000
 |----------|------------------------------------------------------------------------------------|---------|---------|---------|---------|
 | Operation|                                   Functional Unit                                  |  DSP48E |  Delay  |    FF   |   LUT   |
 |----------|------------------------------------------------------------------------------------|---------|---------|---------|---------|
-|          |  grp_conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s_fu_4206 |    0    |  69.305 |   3722  |  11009  |
-|          |   grp_conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_4366  |    0    |  52.605 |   2940  |   6192  |
+|          |  grp_conv_2d_cl_array_ap_ufixed_8u_array_ap_fixed_8_2_5_3_0_10u_config10_s_fu_4206 |    0    |  69.305 |   3723  |  11009  |
+|          |   grp_conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_8_2_5_3_0_8u_config6_s_fu_4366  |    0    |  52.605 |   2939  |   6192  |
 |          | grp_pooling2d_cl_array_ap_ufixed_6u_array_ap_ufixed_8_2_5_3_0_6u_config5_s_fu_4490 |    0    |    0    |   2066  |   4608  |
-|          |    grp_dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_15u_config15_s_fu_4694   |    0    |  10.855 |   1061  |   1421  |
+|          |    grp_dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_15u_config15_s_fu_4694   |    0    |  10.855 |   1060  |   1421  |
 |          |       grp_pooling2d_cl_array_array_ap_ufixed_8_2_5_3_0_10u_config13_s_fu_4725      |    0    |    0    |   544   |   1566  |
 |          |    grp_dense_array_ap_ufixed_15u_array_ap_fixed_8_2_5_3_0_10u_config18_s_fu_4817   |    0    |  15.03  |   980   |   1056  |
 |          | grp_pooling2d_cl_array_ap_ufixed_8u_array_ap_ufixed_8_2_5_3_0_8u_config9_s_fu_4848 |    0    |    0    |   452   |   1332  |
-|          |   grp_conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_8_2_5_3_0_6u_config2_s_fu_4924  |    0    |  2.505  |   493   |   948   |
+|          |   grp_conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_8_2_5_3_0_6u_config2_s_fu_4924  |    0    |  2.505  |   490   |   947   |
 |          |    grp_dense_array_ap_ufixed_10u_array_ap_fixed_8_2_5_3_0_5u_config21_s_fu_4968    |    0    |  10.855 |   580   |   601   |
 |   call   |  grp_relu_array_ap_fixed_15u_array_ap_ufixed_8_2_5_3_0_15u_relu_config17_s_fu_4989 |    0    |    0    |   120   |   315   |
 |          |  grp_relu_array_ap_fixed_10u_array_ap_ufixed_8_2_5_3_0_10u_relu_config12_s_fu_5023 |    0    |    0    |    87   |   230   |
@@ -24689,7 +24689,7 @@ ret_ln138                 (ret                 ) [ 00000000000000000000000000000
 |          |   call_ln124_linear_array_array_ap_fixed_16_6_5_3_0_15u_linear_config16_s_fu_5186  |    0    |    0    |    0    |    0    |
 |          |   call_ln130_linear_array_array_ap_fixed_16_6_5_3_0_10u_linear_config19_s_fu_5220  |    0    |    0    |    0    |    0    |
 |----------|------------------------------------------------------------------------------------|---------|---------|---------|---------|
-|   Total  |                                                                                    |    0    |  165.33 |  13404  |  29963  |
+|   Total  |                                                                                    |    0    |  165.33 |  13400  |  29962  |
 |----------|------------------------------------------------------------------------------------|---------|---------|---------|---------|
 
 Memories:
@@ -24969,10 +24969,10 @@ Memories:
 +-----------+--------+--------+--------+--------+--------+
 |           |  BRAM  | DSP48E |  Delay |   FF   |   LUT  |
 +-----------+--------+--------+--------+--------+--------+
-|  Function |    -   |    0   |   165  |  13404 |  29963 |
+|  Function |    -   |    0   |   165  |  13400 |  29962 |
 |   Memory  |   42   |    -   |    -   |    0   |   504  |
 |Multiplexer|    -   |    -   |    -   |    -   |    -   |
 |  Register |    -   |    -   |    -   |  1800  |    -   |
 +-----------+--------+--------+--------+--------+--------+
-|   Total   |   42   |    0   |   165  |  15204 |  30467 |
+|   Total   |   42   |    0   |   165  |  15200 |  30466 |
 +-----------+--------+--------+--------+--------+--------+
