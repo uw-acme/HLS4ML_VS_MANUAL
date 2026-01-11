@@ -1,4 +1,4 @@
-
+#!python
 import hls4ml
 import re
 import os
@@ -24,7 +24,7 @@ def HLS4ML_gen(acc):
     split = acc.split(",")
     for i in range(len(split)):
         split[i]=int(split[i])
-    name = f"hls_2reuse5"
+    name = f"hls_please"
     # us_lat: unsigned tables latency implementation
     # unsignedre5bas: unsigned reuse factor 5 manual stable implementations
     # orig: the original settings with just setting latency
@@ -35,7 +35,7 @@ def HLS4ML_gen(acc):
         f = open("hls_config.yml", "r")
         config = yaml.safe_load(f)['HLSConfig']
         f.close()
-        config['Model']['Precision'] = f'ap_fixed<{acc}>'
+        config['Model']['Precision']['default'] = f'ap_fixed<{acc}>'
         #config['LayerName']['fc1']['Precision']['weight'] = 'ap_fixed<8,2>'
         #config['LayerName']['output']['Precision']['result'] = 'fixed<16,6,RND,SAT>'
         # config['Model']['Strategy'] = 'Latency'
@@ -44,7 +44,7 @@ def HLS4ML_gen(acc):
         # if (int(split[0])>18):
         # config['LayerName']['softmax']['table_t'] = 'ap_ufixed<18,8>'
         # config['LayerName']['softmax']['reuse_factor'] = 5
-        # config['LayerName']['output']['Precision']['result'] = 'ap_fixed<18,8>'
+        config['LayerName']['output']['Precision']['result'] = 'ap_fixed<28,10>'
         # config['LayerName']['softmax']['Precision']['result'] = 'ap_fixed<18,8>'
         # config['LayerName']['softmax']['exp_table_t'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
         # config['LayerName']['output']['Precision']['result'] = (f'ap_fixed<{acc}>' if (int(split[0])<18) else 'ap_fixed<18,8>')
@@ -191,17 +191,17 @@ def keras_test(model):
 # HLS4ML_gen("31,11")
 # args = ""
 accs = []
-for i in range(2,11):
+for i in range(12,14):
     if not i==11:
         acc = (3*i-2,i)
         #print((3*i-2,i))
-        # HLS4ML_gen(f"{acc[0]},{acc[1]}")
-        arg = f"/home/caleb/sweeps/hls_please_{acc[0]}_{acc[1]}/p_prj/solution1/impl/verilog"
-        os.system(f"rm {arg}/*.csv")
-        accs.append(test_accuracy(arg, acc))
-cs = pd.read_csv("../results/util_hls_please.csv", delimiter = ",")
-cs["Accuracy"] = accs
-cs.to_csv("../results/util_hls_please.csv")
+        HLS4ML_gen(f"{acc[0]},{acc[1]}")
+        # arg = f"/home/caleb/sweeps/hls_please_{acc[0]}_{acc[1]}/p_prj/solution1/impl/verilog"
+#         os.system(f"rm {arg}/*.csv")
+#         accs.append(test_accuracy(arg, acc))
+# cs = pd.read_csv("../results/util_hls_please.csv", delimiter = ",")
+# cs["Accuracy"] = accs
+# cs.to_csv("../results/util_hls_please.csv")
 # print(args)
 # accuracies = []
 # #for i in range(2,10):

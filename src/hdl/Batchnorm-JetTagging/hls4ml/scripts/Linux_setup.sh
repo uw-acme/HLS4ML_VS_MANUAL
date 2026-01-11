@@ -13,8 +13,8 @@ if [ ! -d "miniconda3" ]; then
     wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
     bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3
 fi
-if [ -d "$HOME/miniconda3/envs/hls4ml-env" ]; then
-    conda remove -n hls4ml-env --all -y
+if [ -d "$HOME/miniconda3/envs/hls4ml-tenv" ]; then
+    conda remove -n hls4ml-tenv --all -y
 fi
 
 # Activate conda for this script
@@ -31,10 +31,10 @@ conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 # Create and activate env
 conda clean --all -y
 pip cache purge
-conda create -y -n hls4ml-env python=3.10 pip
-conda activate hls4ml-env
+conda create -y -n hls4ml-tenv python=3.10 pip
+conda activate hls4ml-tenv
 # Install additional modules
-MODULES=(ipykernel jupyterlab "tensorflow==2.12.0" tf.keras scikit-learn matplotlib pandas git+https://github.com/fastmachinelearning/hls4ml@main seaborn pydot qkeras hgq xgboost pysr zstd conifer)
+MODULES=("ipykernel==6.30.1" "jupyterlab==4.4.7" "tensorflow==2.12.0" "tf.keras==2.20.1" "scikit-learn==1.7.2" "matplotlib==3.10.6" "pandas==2.3.3" git+https://github.com/fastmachinelearning/hls4ml@main "seaborn==0.13.2" "pydot==3.0.4" "qkeras==0.9.0" "hgq==0.2.6" "xgboost==3.0.1" "pysr==1.5.9" zstd "conifer==1.7")
 
 for module in "${MODULES[@]}"; do
     if conda install -y "$module"; then
@@ -49,4 +49,4 @@ for module in "${MODULES[@]}"; do
 done
 
 # Register kernel
-python -m ipykernel install --user --name hls4ml-env --display-name "Python (hls4ml-env)"
+python -m ipykernel install --user --name hls4ml-tenv --display-name "Python (hls4ml-tenv)"
