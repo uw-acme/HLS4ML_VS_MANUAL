@@ -273,7 +273,7 @@ def gen_weight(accuracy):
 # Inputs:
 # number: The number to convert to binary
 # bits: number of bits of the output binary number. -1 for the smallest possible representation
-def dec_to_bin(number: int, bits=-1):
+def dec_to_bin(number: int | float, bits=-1):
     neg=False
     if (number<0):
         number*=-1
