@@ -12,3 +12,7 @@ HLSConfig:
       table_t: ap_ufixed<18,8>
       exp_table_t: ap_ufixed<18,8>
       inv_table_t: ap_ufixed<18,8>
+  LayerName:
+    output:
+      result_t: ap_fixed<28,10>
+
