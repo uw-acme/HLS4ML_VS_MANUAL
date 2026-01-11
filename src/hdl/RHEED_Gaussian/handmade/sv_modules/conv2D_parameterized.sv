@@ -13,7 +13,7 @@ module conv2D_parameterized
 	input logic signed [bitWidth-1:0] inputPixel;
 	
 	output logic signed [bitWidth-1:0] currentConvMatrix [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] outputFifo [filtDimension-2:0]; // collection of buffers (filtDimension - 1 many buffers)
+	logic signed [bitWidth-1:0] outputFifo [filtDimension-2:0]; // collection of buffers (filtDimension-1 many buffers)
 
 	
 
@@ -27,14 +27,14 @@ module conv2D_parameterized
                     currentConvMatrix[filtDimension-1][filtDimension-1] <= inputPixel;
                 end else begin
                         // move in value from buffer
-                        if(col==filtDimension-1 && row != filtDimension -1)begin	// right edge of matrix, not bottom row
+                        if(col==filtDimension-1 && row != filtDimension -1) begin	// right edge of matrix, not bottom row
                             currentConvMatrix[row][col] <= outputFifo[row];
                         end else if(row==filtDimension-1 && col==filtDimension-1) begin	// bottom right pixel
-                            // bringing in new value
+                            // bring in new value
                             currentConvMatrix[row][col] <= inputPixel;	
                         end else begin
                             // shift normally
-                            currentConvMatrix[row][col]<= currentConvMatrix[row][col+1];
+                            currentConvMatrix[row][col] <= currentConvMatrix[row][col+1];
                         end
                 end
             end
@@ -61,7 +61,8 @@ module conv2D_parameterized_testbench();
 	logic signed [15:0] currentConvMatrix[2:0][2:0];
     logic signed [15:0] inputPixel;
 	
-	conv2D_parameterized #(3,16,10) dut(.*);
+	// test with 8x8 input image size and 3x3 kernel (changed from 10x10 input image size)
+	conv2D_parameterized #(3,16,8) dut(.*);
 	
 	// Set up a simulated clock.
 	parameter CLOCK_PERIOD=100;
@@ -78,6 +79,7 @@ module conv2D_parameterized_testbench();
 		repeat(8) @(posedge clock);
 		inputPixel = 16'd2; repeat(8) @(posedge clock);
 		inputPixel = 16'd3; repeat(8) @(posedge clock);
+		@(posedge clock);
 		$stop; // End the simulation.
 	end
 endmodule 

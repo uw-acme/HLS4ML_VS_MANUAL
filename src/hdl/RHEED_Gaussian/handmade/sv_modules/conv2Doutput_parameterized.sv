@@ -6,21 +6,21 @@
 // and makes a matrix of it and the previous 63 inputPixels and computes the convolution of that.
 // it also outputs when calculations are complete, the signal calculationsComplete which for an
 // 8x8 input matrix is after 64 clock cycles.
-module conv2Doutput_parameterized  #(parameter filtDimension = 3,parameter bitWidth = 17,
+module conv2Doutput_parameterized  #(parameter filtDimension = 3, parameter bitWidth = 17,
 parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, parameter NFRAC = 10)
 (clk, reset, inputPixel, outputMatrix, biases);
 	input logic clk, reset;
 	input logic signed [bitWidth-1:0]  inputPixel;
-	input logic signed [bitWidth-1:0]   biases [biasWidth-1:0]; // (1 bias value per filter)
-																// biasWidth = # of filters (number of output channels)
+	input logic signed [bitWidth-1:0]  biases [biasWidth-1:0]; // (1 bias value per filter)
+															   // biasWidth = # of filters (number of output channels)
 	
-	logic signed [bitWidth-1:0] currConvMatrix       [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] currConvMatrixCopy       [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] sum [biasWidth-1:0];	// result most recent dot product + added bias 
+	logic signed [bitWidth-1:0] currConvMatrix [filtDimension-1:0][filtDimension-1:0];
+	logic signed [bitWidth-1:0] currConvMatrixCopy [filtDimension-1:0][filtDimension-1:0];
+	logic signed [bitWidth-1:0] sum [biasWidth-1:0]; // result of most recent dot product + added bias 
 
 
     // counter to keep track of how far we are into computing	
-	localparam BASE_LEVEL = ($clog2(inputWidth*inputWidth)) + 1;
+	localparam BASE_LEVEL = ($clog2(inputWidth*inputWidth)) + 1; // WHY + 1 IF $clog2 RETURNS THE CIELING?
 	logic [BASE_LEVEL:0] counter;
 	logic [bitWidth-1:0] reluOutput [biasWidth-1:0];
 	// to know that we need to read data in before we start counting
@@ -30,7 +30,7 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	logic cycleCount; // ADDED -- use in place of "even" to keep track of the convolution round (to know which weights to use)
 	
 	localparam FIX_COUNT = (bitWidth>20) ? ($clog2(weightWidth/2)+2) : ($clog2(weightWidth/2)+1) ; //+1;
-	logic signed [bitWidth-1:0] tempSum [biasWidth-1:0];
+	logic signed [bitWidth-1:0] tempSum [biasWidth-1:0]; // for relu
 	
 	// HUH???? why /4???
 	output logic signed [bitWidth-1:0] outputMatrix [inputWidth*inputWidth*biasWidth/4-1:0]; // accounting for stride length
@@ -50,15 +50,15 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 			firstTimeFullyThrough <= 1;
 			cycleCount <= 0; // ADDED
 		end else begin
-				if(counter == inputWidth && firstTime || firstTimeFullyThrough && counter == (FIX_COUNT+1)+inputWidth**2 || counter == inputWidth **2-1) begin
+				if(counter == inputWidth && firstTime || firstTimeFullyThrough && counter == (FIX_COUNT+1)+inputWidth**2 || counter == inputWidth**2-1) begin
 				 // counter restarts after gone through fully
 					counter <= 0;
 					firstTime <= 0;
 					/////////////// ADDED ///////////////
-					if (counter == inputWidth**2-1)
+					if (counter == inputWidth**2-1) // IS THIS WRONG? (since firstTimeFullyThrough is only set to 0 once adding FIX_COUNT)
 						cycleCount <= cycleCount + 1;
 					///////////////
-					if(counter == (FIX_COUNT+1)+inputWidth**2)
+					if(counter == (FIX_COUNT+1)+inputWidth**2)// WHY ADD THE FIX_COUNT??
 						firstTimeFullyThrough <= 0;
 				end else begin
 					counter <= counter + 1;
@@ -76,7 +76,7 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	 i am not sure how we would split the weights for if there were more than 2 filters        **/
 	 
 	 always_ff @ (posedge clk) begin
-	   currConvMatrixCopy <= currConvMatrix;
+	   currConvMatrixCopy <= currConvMatrix; // currConvMatrixCopy is never used???? is line 88 supposed to use the copy???                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 	 end
 	
 	// multiply the current matrix by the weights and take the sum
