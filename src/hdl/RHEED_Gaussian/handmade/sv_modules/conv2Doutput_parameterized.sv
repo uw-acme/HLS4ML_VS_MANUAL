@@ -12,36 +12,45 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	input logic clk, reset;
 	input logic signed [bitWidth-1:0]  inputPixel;
 	input logic signed [bitWidth-1:0]  biases [biasWidth-1:0]; // (1 bias value per filter)
-															   // biasWidth = # of filters (number of output channels)
+															   // biasWidth = # of filters? (number of output channels)
 	
 	logic signed [bitWidth-1:0] currConvMatrix [filtDimension-1:0][filtDimension-1:0];
 	logic signed [bitWidth-1:0] currConvMatrixCopy [filtDimension-1:0][filtDimension-1:0];
 	logic signed [bitWidth-1:0] sum [biasWidth-1:0]; // result of most recent dot product + added bias 
 
 
-    // counter to keep track of how far we are into computing	
-	localparam BASE_LEVEL = ($clog2(inputWidth*inputWidth)) + 1; // WHY + 1 IF $clog2 RETURNS THE CIELING?
+    // counter to keep track of how far we are into computing(how many pixels have streamed in)
+	// helps determine when convolution results are valid
+	localparam BASE_LEVEL = ($clog2(inputWidth*inputWidth)) + 1; // +1 padding since we need to count up to more than inputWidth^2 to account for latency, etc.
 	logic [BASE_LEVEL:0] counter;
 	logic [bitWidth-1:0] reluOutput [biasWidth-1:0];
+
 	// to know that we need to read data in before we start counting
-	logic firstTime;
+	logic firstTime; // delays first convolution until enough pixels have streamed in to fill currConvMatrix
 	logic reset_copy;
 	logic oscillator; // for relu
 	logic cycleCount; // ADDED -- use in place of "even" to keep track of the convolution round (to know which weights to use)
 	
-	localparam FIX_COUNT = (bitWidth>20) ? ($clog2(weightWidth/2)+2) : ($clog2(weightWidth/2)+1) ; //+1;
+	// FIX_COUNT is used to keep track of progress through the convolution
+	// for an input size of 8x8, the convolution will take:
+	// 64 cycles(for input pixels being streamed in 1 at a time) + FIX_COUNT,
+	// FIX_COUNT being the additional clock cycles needed to compute the dot product for each currConvMatrix
+	localparam FIX_COUNT = (bitWidth>20) ? ($clog2(weightWidth/2)+2) : ($clog2(weightWidth/2)+1) ;
 	logic signed [bitWidth-1:0] tempSum [biasWidth-1:0]; // for relu
 	
-	// HUH???? why /4???
-	output logic signed [bitWidth-1:0] outputMatrix [inputWidth*inputWidth*biasWidth/4-1:0]; // accounting for stride length
-	logic firstTimeFullyThrough;
+	// output matrix width is inputWidth-2 in case of no padding
+	// with padding, use [inputWidth*inputWidth*biasWidth/(stride^2)-1:0]
+	// dividing output matrix size reflects stride length (ex. /4 for stride 2)
+	output logic signed [bitWidth-1:0] outputMatrix [(inputWidth-2)*(inputWidth-2)*biasWidth-1:0];
+
+	logic firstTimeFullyThrough; // 
 	
 	always_ff @(posedge clk) begin
 	   reset_copy <= reset; // registered reset to avoid timing issues(?)
 	end
 	
 	// for the first time going through, the convolution should not start until the
-	// first zero from the padding reaches the middle of the matrix
+	// first zero from the padding reaches the middle of the matrix //GAUSSIAN DOESN'T USE PADDING
 	// the counter and first time delay this so the convolution will not start happening until then
 	always_ff @(posedge clk) begin
 		if(reset_copy) begin
@@ -50,19 +59,24 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 			firstTimeFullyThrough <= 1;
 			cycleCount <= 0; // ADDED
 		end else begin
-				if(counter == inputWidth && firstTime || firstTimeFullyThrough && counter == (FIX_COUNT+1)+inputWidth**2 || counter == inputWidth**2-1) begin
-				 // counter restarts after gone through fully
-					counter <= 0;
-					firstTime <= 0;
-					/////////////// ADDED ///////////////
-					if (counter == inputWidth**2-1) // IS THIS WRONG? (since firstTimeFullyThrough is only set to 0 once adding FIX_COUNT)
-						cycleCount <= cycleCount + 1;
-					///////////////
-					if(counter == (FIX_COUNT+1)+inputWidth**2)// WHY ADD THE FIX_COUNT??
-						firstTimeFullyThrough <= 0;
-				end else begin
-					counter <= counter + 1;
-				end
+			/*
+			conditions:
+			1) counter == inputWidth && firstTime:	top row of currConvMatrix is filled & 2nd row is starting to fill
+			2) 
+			*/
+			if(counter == inputWidth && firstTime || firstTimeFullyThrough && counter == (FIX_COUNT+1)+inputWidth**2 || counter == inputWidth**2-1) begin
+				// counter restarts after gone through fully
+				counter <= 0;
+				firstTime <= 0;
+				/////////////// ADDED ///////////////
+				if (counter == inputWidth**2-1) // IS THIS WRONG? (since firstTimeFullyThrough is only set to 0 once adding FIX_COUNT)
+					cycleCount <= cycleCount + 1;
+				///////////////
+				if(counter == (FIX_COUNT+1)+inputWidth**2)// WHY ADD THE FIX_COUNT??
+					firstTimeFullyThrough <= 0;
+			end else begin
+				counter <= counter + 1;
+			end
 		end
 	end
 	
@@ -73,16 +87,16 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	
 	/** the following two lines would need to be adjusted based on how many filters are being used,
 	since we are using 2 here there are only 2 different needed 
-	 i am not sure how we would split the weights for if there were more than 2 filters        **/
+	 i am not sure how we would split the weights for if there were more than 2 filters        **/// <- MUST CHANGE FOR GAUSSIAN
 	 
-	 always_ff @ (posedge clk) begin
-	   currConvMatrixCopy <= currConvMatrix; // currConvMatrixCopy is never used???? is line 88 supposed to use the copy???                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-	 end
+	//  always_ff @ (posedge clk) begin
+	//    currConvMatrixCopy <= currConvMatrix; // currConvMatrixCopy is never used???? is line 88 supposed to use the copy???                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+	//  end
 	
 	// multiply the current matrix by the weights and take the sum
 	genvar i;
 	generate
-	   for( i = 0; i < biasWidth; i++) begin
+	   for( i = 0; i < biasWidth; i++) begin // looping for biasWidth, so assuming biasWidth = number of filters
 		   conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, NFRAC, cycleCount) sumBasedFilter1 
 	    //    conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, NFRAC, i) sumBasedFilter1 
 	       (.clock(clk), .currConvMatrix(currConvMatrix), .sum(sum[i]), .bias(biases[i]));
