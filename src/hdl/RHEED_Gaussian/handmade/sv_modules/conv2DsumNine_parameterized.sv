@@ -14,14 +14,17 @@ module conv2DsumNine_parameterized
 	input logic signed [bitWidth-1:0] currMatrix [filtDimension-1:0][filtDimension-1:0];
 	input logic signed [bitWidth-1:0] bias;
 	
+	// stores truncated values of each multiplication (truncated to bitwidth-many bits,
+	// preserving NFRAC fractional bits)
+	logic signed [bitWidth-1:0] temp [(filtDimension**2)-1:0];	
+																
+	// stores values in the kernel (the weights) corresponding to each pixel in current matrix
+	logic signed [bitWidth-1:0] weightsArray [(filtDimension**2)-1:0];	
+	// sum of all truncated products and the bias
+	output logic signed [bitWidth-1:0] sum; 
 	
-	logic signed [bitWidth-1:0] temp [(filtDimension**2)-1:0];	// stores truncated values of each multiplication (truncated to bitwidth-many bits, 
-																// preserving NFRAC fractional bits)
-	logic signed [bitWidth-1:0] weightsCheck [(filtDimension**2)-1:0];	// stores values in the kernel (the weights) corresponding to each pixel in current matrix
-
-	output logic signed [bitWidth-1:0] sum; // sum of all truncated products and the bias
-	
-	logic signed [bitWidth-1:0] tempSum; // sum of all truncated products in the current matrix
+	// sum of all truncated products in the current matrix
+	logic signed [bitWidth-1:0] tempSum; 
 	//logic signed [bitWidth*2-1:0] tempSum;
 	logic signed [bitWidth*2-1:0] temp1 [(filtDimension**2)-1:0];	// stores results of each multiplication of pixel value and corresponding weight
 	
@@ -29,23 +32,28 @@ module conv2DsumNine_parameterized
     genvar row;
     generate
         for(row=0; row<filtDimension**2; row++) begin
-			// pull out specific wieght needed to multiply the current matrix pixel by (from data file) and assign it to a designated spot in weightsCheck
-            assign weightsCheck[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
-			shift_add_with_mult #(weightsCheck[row], 3, bitWidth, NFRAC); // 3 = shift add depth
+			// pull out specific wieght needed to multiply the current matrix pixel by (from data file) and assign it to a designated spot in weightsArray
+            assign weightsArray[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
+			shift_add_with_mult #(weightsArray[row], 3, bitWidth, NFRAC); // 3 = shift add depth
             // shift_add_with_mult #(data16_10::convWeights[(8*row)+whichFilt], 3, bitWidth, NFRAC) // Caroline's version
             // shift_add_with_mult #(data16_10::convWeights[8*whichFilt+row], 3, bitWidth, NFRAC) // past version
 			// row/3: 000111222 (row #)
 			// row%3: 012012012 (col #)
 			// generate a shift add for each spot within the filter
             sa (.clk(clock),.data_in(currMatrix[row/filtDimension][row%filtDimension]), .data_out(temp1[row]));  // store product in temp1
-            assign temp[row] = temp1[row][NFRAC+bitWidth-1:NFRAC];	// truncation to keep original number of integer and fractional bits
+			// below: NEW VERSION that preserves MSB from non-truncated version (MSB + temp1[NFRAC+bitWidth-2:NFRAC])
+			assign temp[row] = {temp1[row][bitwidth*2-1], temp1[row][NFRAC+bitWidth-2:NFRAC]}; 
+			// the line below truncates the value to the correct number of bits, but the MSB of the truncated version is NOT
+			// the MSB in the non-truncated version, which isn't how it's supposed to be. The MSB of the truncated version
+			// should be the MSB of the non-truncated version because that's the sign bit.
+            // assign temp[row] = temp1[row][NFRAC+bitWidth-1:NFRAC];	// truncation to keep original number of integer and fractional bits
         end
    endgenerate 
 
+	// DO WE NEED TO DEAL WITH OVERFLOW???
     // then go through and sum up the current matrix every clock cycle
     adderTree_1D #(NFRAC, bitWidth, filtDimension**2) sumEachMatrix ( .clk(clock), .input_data(temp), .output_data(tempSum));
-   // assign tempSum = temp1[0] + temp1[1] + temp1[2] + temp1[3] + temp1[4] + temp1[5] + temp1[6] + temp1[7] + temp1[8];
-    
+    // assign tempSum = temp1[0] + temp1[1] + temp1[2] + temp1[3] + temp1[4] + temp1[5] + temp1[6] + temp1[7] + temp1[8];
  
     // add bias to sum
     assign sum = tempSum + bias;
