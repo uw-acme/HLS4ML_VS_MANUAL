@@ -1,59 +1,70 @@
 `timescale 1ns / 1ps
 // Sum the convolution matrix each cycle and multiply by the corresponding weight matrix as well as
 // add the corresponding bias.
-/* convWeights data should be in a list in the following format:
+/* convWeights data (in the data file) should be in a list in the following format:
    filter1_weights[0], ..., filter1_weights[filterDiminsion^2 - 1], filter2_weights[0], ..., filter2_weights[filterDiminsion^2 - 1], etc. 
    until the last filter
 */
-// parameter whichFilt (ranges from 0 to however many filters being used in the covolution) indicatates which kernel (which weights) are 
+// Parameter whichFilt (ranges from 0 to however many filters being used in the covolution) indicatates which kernel (which weights) are 
 // being used in the current iteration
 module conv2DsumNine_parameterized
-#(parameter filtDimension = 3,parameter bitWidth = 16, parameter inputWidth = 8, parameter weightWidth = 9, parameter NFRAC = 10, parameter whichFilt=0)
-(clock, currMatrix, sum, bias);
+	#(parameter filtDimension = 3,parameter bitWidth = 16, parameter inputWidth = 8, parameter weightWidth = 9, parameter NFRAC = 10, parameter whichFilt=0)
+	(clock, currMatrix, sum, bias);
 	input logic clock;
 	input logic signed [bitWidth-1:0] currMatrix [filtDimension-1:0][filtDimension-1:0];
-	input logic signed [bitWidth-1:0] bias;
-	
-	// stores truncated values of each multiplication (truncated to bitwidth-many bits,
-	// preserving NFRAC fractional bits)
-	logic signed [bitWidth-1:0] temp [(filtDimension**2)-1:0];	
+	input logic signed [bitWidth-1:0] bias;	
 																
 	// stores values in the kernel (the weights) corresponding to each pixel in current matrix
-	logic signed [bitWidth-1:0] weightsArray [(filtDimension**2)-1:0];	
+	logic signed [bitWidth-1:0] weightsArr [(filtDimension**2)-1:0];	
+
+	// stores results of each multiplication of pixel value and corresponding weight
+	logic signed [bitWidth*2-1:0] productArr [(filtDimension**2)-1:0];
+
+	// stores truncated values of each multiplication (truncated to bitwidth-many bits,
+	// preserving NFRAC fractional bits)
+	logic signed [bitWidth-1:0] truncProductArr [(filtDimension**2)-1:0];
+
+	// sum of all truncated products in the current matrix before adding the bias
+	logic signed [bitWidth-1:0] tempSum; 
+	//logic signed [bitWidth*2-1:0] tempSum; 
+	// ^^ SOLUTION TO OVERFLOW (make bitwidth of tempSum larger, then check if there would be
+	// overflow with the desired bitWidth. If there is overflow, output the max value that can be
+	// made with that bitwidth. otherwise, truncate normally.
+	
 	// sum of all truncated products and the bias
 	output logic signed [bitWidth-1:0] sum; 
-	
-	// sum of all truncated products in the current matrix
-	logic signed [bitWidth-1:0] tempSum; 
-	//logic signed [bitWidth*2-1:0] tempSum;
-	logic signed [bitWidth*2-1:0] temp1 [(filtDimension**2)-1:0];	// stores results of each multiplication of pixel value and corresponding weight
-	
 	
     genvar row;
     generate
         for(row=0; row<filtDimension**2; row++) begin
-			// pull out specific wieght needed to multiply the current matrix pixel by (from data file) and assign it to a designated spot in weightsArray
-            assign weightsArray[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
-			shift_add_with_mult #(weightsArray[row], 3, bitWidth, NFRAC); // 3 = shift add depth
+
+			// pull out specific wieght needed to multiply the current matrix pixel by (from data file) and 
+			// assign it to a designated spot in weightsArr
+            assign weightsArr[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
+
+			shift_add_with_mult #(weightsArr[row], 3, bitWidth, NFRAC); // 3 = shift add depth
             // shift_add_with_mult #(data16_10::convWeights[(8*row)+whichFilt], 3, bitWidth, NFRAC) // Caroline's version
-            // shift_add_with_mult #(data16_10::convWeights[8*whichFilt+row], 3, bitWidth, NFRAC) // past version
+            // shift_add_with_mult #(data16_10::convWeights[8*whichFilt+row], 3, bitWidth, NFRAC) // past version (Caroline)
+
 			// row/3: 000111222 (row #)
 			// row%3: 012012012 (col #)
-			// generate a shift add for each spot within the filter
-            sa (.clk(clock),.data_in(currMatrix[row/filtDimension][row%filtDimension]), .data_out(temp1[row]));  // store product in temp1
-			// below: NEW VERSION that preserves MSB from non-truncated version (MSB + temp1[NFRAC+bitWidth-2:NFRAC])
-			assign temp[row] = {temp1[row][bitwidth*2-1], temp1[row][NFRAC+bitWidth-2:NFRAC]}; 
+			// generate a shift add module for each spot within the filter
+            sa (.clk(clock), .data_in(currMatrix[row/filtDimension][row%filtDimension]), .data_out(productArr[row]));  // store product in productArr
+
+			// NEW VERSION that preserves MSB from non-truncated version (MSB + productArr[NFRAC+bitWidth-2:NFRAC])
+			assign truncProductArr[row] = {productArr[row][bitwidth*2-1], productArr[row][NFRAC+bitWidth-2:NFRAC]}; 
+
 			// the line below truncates the value to the correct number of bits, but the MSB of the truncated version is NOT
 			// the MSB in the non-truncated version, which isn't how it's supposed to be. The MSB of the truncated version
 			// should be the MSB of the non-truncated version because that's the sign bit.
-            // assign temp[row] = temp1[row][NFRAC+bitWidth-1:NFRAC];	// truncation to keep original number of integer and fractional bits
+            // assign truncProductArr[row] = productArr[row][NFRAC+bitWidth-1:NFRAC];	// truncation to keep original number of integer and fractional bits
         end
    endgenerate 
 
 	// DO WE NEED TO DEAL WITH OVERFLOW???
     // then go through and sum up the current matrix every clock cycle
-    adderTree_1D #(NFRAC, bitWidth, filtDimension**2) sumEachMatrix ( .clk(clock), .input_data(temp), .output_data(tempSum));
-    // assign tempSum = temp1[0] + temp1[1] + temp1[2] + temp1[3] + temp1[4] + temp1[5] + temp1[6] + temp1[7] + temp1[8];
+    adderTree_1D #(NFRAC, bitWidth, filtDimension**2) sumEachMatrix ( .clk(clock), .input_data(truncProductArr), .output_data(tempSum));
+    // assign tempSum = productArr[0] + productArr[1] + productArr[2] + productArr[3] + productArr[4] + productArr[5] + productArr[6] + productArr[7] + productArr[8];
  
     // add bias to sum
     assign sum = tempSum + bias;
