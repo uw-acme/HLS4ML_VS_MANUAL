@@ -9,14 +9,18 @@
 module conv2Doutput_parameterized  #(parameter filtDimension = 3, parameter bitWidth = 17,
 parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, parameter NFRAC = 10)
 (clk, reset, inputPixel, outputMatrix, biases);
+
 	input logic clk, reset;
 	input logic signed [bitWidth-1:0]  inputPixel;
-	input logic signed [bitWidth-1:0]  biases [biasWidth-1:0]; // (1 bias value per filter)
-															   // biasWidth = # of filters? (number of output channels)
+
+	// biasWidth = # of filters = number of biases = number of output channels
+	// (1 bias value per filter)
+	input logic signed [bitWidth-1:0]  biases [biasWidth-1:0]; 
 	
 	logic signed [bitWidth-1:0] currConvMatrix [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] currConvMatrixCopy [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] sum [biasWidth-1:0]; // result of most recent dot product + added bias 
+
+	// output to sumNine (result of most recent dot product + added bias )
+	logic signed [bitWidth-1:0] sum [biasWidth-1:0];
 
 
     // counter to keep track of how far we are into computing(how many pixels have streamed in)
@@ -29,7 +33,6 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	logic firstTime; // delays first convolution until enough pixels have streamed in to fill currConvMatrix
 	logic reset_copy;
 	logic oscillator; // for relu
-	logic cycleCount; // ADDED -- use in place of "even" to keep track of the convolution round (to know which weights to use)
 	
 	// FIX_COUNT is used to keep track of progress through the convolution
 	// for an input size of 8x8, the convolution will take:
@@ -43,7 +46,7 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	// dividing output matrix size reflects stride length (ex. /4 for stride 2)
 	output logic signed [bitWidth-1:0] outputMatrix [(inputWidth-2)*(inputWidth-2)*biasWidth-1:0];
 
-	logic firstTimeFullyThrough; // 
+	logic firstTimeFullyThrough; // keeps track of when to start the relu computation
 	
 	always_ff @(posedge clk) begin
 	   reset_copy <= reset; // registered reset to avoid timing issues(?)
@@ -57,7 +60,6 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 			counter <= 0;
 			firstTime <= 1;
 			firstTimeFullyThrough <= 1;
-			cycleCount <= 0; // ADDED
 		end else begin
 			/*
 			conditions:
@@ -68,10 +70,7 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 				// counter restarts after gone through fully
 				counter <= 0;
 				firstTime <= 0;
-				/////////////// ADDED ///////////////
-				if (counter == inputWidth**2-1) // IS THIS WRONG? (since firstTimeFullyThrough is only set to 0 once adding FIX_COUNT)
-					cycleCount <= cycleCount + 1;
-				///////////////
+
 				if(counter == (FIX_COUNT+1)+inputWidth**2)// WHY ADD THE FIX_COUNT??
 					firstTimeFullyThrough <= 0;
 			end else begin
@@ -97,13 +96,15 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	genvar i;
 	generate
 	   for( i = 0; i < biasWidth; i++) begin // looping for biasWidth, so assuming biasWidth = number of filters
-		   conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, NFRAC, cycleCount) sumBasedFilter1 
-	    //    conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, NFRAC, i) sumBasedFilter1 
+		   conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, NFRAC, i) sumBasedFilter1
 	       (.clock(clk), .currConvMatrix(currConvMatrix), .sum(sum[i]), .bias(biases[i]));
 	   end
 	endgenerate 
 
 	// this is relu layer!!!!
+
+	// if the current dot product is negative, assign the current relu output to zero,
+	// otherwise directly assign the current sum to the relu output
 	// always_comb begin
 	//    for( int i = 0; i < biasWidth; i++) begin
     //        if (sum[i][bitWidth-1] == 1'b1) begin
@@ -114,6 +115,7 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
     //     end
 	// end
 	
+	// tempSum is the same as reluOutput, but delayed 1 clock cycle
 	// always_ff @(posedge clk) begin
 	//    for( int i = 0; i < biasWidth; i++) begin
     //        tempSum[i] <= reluOutput[i];
