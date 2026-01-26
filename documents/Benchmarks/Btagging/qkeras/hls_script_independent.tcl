@@ -15,7 +15,7 @@
 #read_verilog -v [glob *.v]
 
 # change which model it pulls from
-cd /home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/models/gru_floating_point/gru_test3_75_bigBoard_reuse10_noarg/hls4ml_prj/myproject_prj/solution1/impl/verilog
+cd /home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/models/gru_floating_point/gru_test3_53_bigBoard_reuse10_noarg/hls4ml_prj/myproject_prj/solution1/impl/verilog
 read_verilog -v [glob *.v]
 #gru_2int/gru_4frac_largeBoard_reuse4096/hls4ml_prj
 # (Optional) Testbench files (if you want synthesis, usually skip these)
