@@ -23,11 +23,11 @@ module conv2dFIFO_parameterized #(parameter filtDimension = 3, parameter bitWidt
 endmodule
 
 module conv2dFIFO_parameterized_testbench();
+	logic clock; //reset;
 	logic [2:0] inputData;
-	logic clock, reset;
 	logic [2:0] outputData;
 	
-	conv2dFIFO_parameterized #(3,3,8) dut (.*);
+	conv2dFIFO_parameterized #(3,3,8) dut (.clock(clock), .inputData(inputData), .outputData(outputData));
 	
 	parameter CLK_Period = 100;
 	initial begin
@@ -36,8 +36,8 @@ module conv2dFIFO_parameterized_testbench();
 	end
 	
 	initial begin
-		reset <= 1; @(posedge clock);
-		reset <= 0; inputData <= 3'd3; @(posedge clock);
+		//reset <= 1; @(posedge clock);
+		//reset <= 0; inputData <= 3'd3; @(posedge clock);
 		inputData <= 3'd4; @(posedge clock);
 		inputData <= 3'd2; @(posedge clock);
 		inputData <= 3'd1; @(posedge clock);

@@ -8,20 +8,24 @@
 // Parameter whichFilt (ranges from 0 to however many filters being used in the covolution) indicatates which kernel (which weights) are 
 // being used in the current iteration
 module conv2DsumNine_parameterized
-	#(parameter filtDimension = 3,parameter bitWidth = 16, parameter inputWidth = 8, parameter weightWidth = 9, parameter NFRAC = 10, parameter whichFilt=0)
+	#(parameter filtDimension = 3, parameter bitWidth = 16, parameter inputWidth = 8, parameter weightWidth = 9, parameter NFRAC = 10, parameter whichFilt=0)
 	(clock, currMatrix, sum, bias);
 	input logic clock;
 	input logic signed [bitWidth-1:0] currMatrix [filtDimension-1:0][filtDimension-1:0];
 	input logic signed [bitWidth-1:0] bias;	
-																
+	
+												
 	// stores values in the kernel (the weights) corresponding to each pixel in current matrix
-	logic signed [bitWidth-1:0] weightsArr [(filtDimension**2)-1:0];	
+													 //[(filtDimension**2)-1:0]
+	// logic signed [bitWidth-1:0] weightsArr [8:0];	
 
 	// stores results of each multiplication of pixel value and corresponding weight
+													   //[(filtDimension**2)-1:0]
 	logic signed [bitWidth*2-1:0] productArr [(filtDimension**2)-1:0];
 
 	// stores truncated values of each multiplication (truncated to bitwidth-many bits,
 	// preserving NFRAC fractional bits)
+													 //	  [(filtDimension**2)-1:0]
 	logic signed [bitWidth-1:0] truncProductArr [(filtDimension**2)-1:0];
 
 	// sum of all truncated products in the current matrix before adding the bias
@@ -36,13 +40,13 @@ module conv2DsumNine_parameterized
 	
     genvar row;
     generate
-        for(row=0; row<filtDimension**2; row++) begin
+        for(row=0; row<filtDimension**2; row++) begin: eachMult
 
 			// pull out specific wieght needed to multiply the current matrix pixel by (from data file) and 
 			// assign it to a designated spot in weightsArr
-            assign weightsArr[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
+         // assign weightsArr[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
 
-			shift_add_with_mult #(weightsArr[row], 3, bitWidth, NFRAC); // 3 = shift add depth
+			shift_add #(data16_10::convWeights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC) // 3 = shift add depth
             // shift_add_with_mult #(data16_10::convWeights[(8*row)+whichFilt], 3, bitWidth, NFRAC) // Caroline's version
             // shift_add_with_mult #(data16_10::convWeights[8*whichFilt+row], 3, bitWidth, NFRAC) // past version (Caroline)
 
@@ -52,7 +56,7 @@ module conv2DsumNine_parameterized
             sa (.clk(clock), .data_in(currMatrix[row/filtDimension][row%filtDimension]), .data_out(productArr[row]));  // store product in productArr
 
 			// NEW VERSION that preserves MSB from non-truncated version (MSB + productArr[NFRAC+bitWidth-2:NFRAC])
-			assign truncProductArr[row] = {productArr[row][bitwidth*2-1], productArr[row][NFRAC+bitWidth-2:NFRAC]}; 
+			assign truncProductArr[row] = {productArr[row][bitWidth*2-1], productArr[row][NFRAC+bitWidth-2:NFRAC]}; 
 
 			// the line below truncates the value to the correct number of bits, but the MSB of the truncated version is NOT
 			// the MSB in the non-truncated version, which isn't how it's supposed to be. The MSB of the truncated version

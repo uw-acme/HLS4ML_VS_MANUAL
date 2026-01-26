@@ -1,7 +1,7 @@
 package data16_10;
 
 //localparam logic [16:0] num = 17'b00000000001001000;
-localparam logic signed [15:0] dlWeights [0:1279]= {
+localparam logic signed [15:0] dlWeights [0:1279]= '{
 16'b0000000100000111, 
 16'b0000000000001010, 
 16'b1111111100111000, 
@@ -1284,7 +1284,7 @@ localparam logic signed [15:0] dlWeights [0:1279]= {
 16'b0000000010000011
 };
 
-localparam logic signed [15:0] dlBiases [9:0] = {
+localparam logic signed [15:0] dlBiases [9:0] = '{
 16'h00aa,
 16'hfffe,
 16'hfffe,
@@ -1297,7 +1297,7 @@ localparam logic signed [15:0] dlBiases [9:0] = {
 16'hffeb
 };
 
-localparam logic signed [15:0] convWeights [0:17] = {
+localparam logic signed [15:0] convWeights [0:17] = '{
 16'b0000000001110010,
 16'b0000000111101100,
 16'b1111111100001011,
@@ -1317,7 +1317,7 @@ localparam logic signed [15:0] convWeights [0:17] = {
 16'b0000000010111010,
 16'b0000000001110100 
 };
-localparam logic signed [15:0] convBiases  [1:0] = {
+localparam logic signed [15:0] convBiases  [1:0] = '{
 16'b0000000000000000,
 16'b0000000000000000
 };
