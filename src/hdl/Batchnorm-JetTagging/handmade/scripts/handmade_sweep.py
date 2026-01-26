@@ -3,6 +3,8 @@ import os
 import re
 import numpy as np
 #from tensorflow.keras.models import load_model # type: ignore
+path.insert(1,"/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/")
+from helper_functions import *
 import numpy as np
 from sklearn.metrics import accuracy_score
 y_test = np.load('y_test.npy')
@@ -223,89 +225,7 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
 # Inputs: 
 # Accuracy: Tuple of acuracy (TOTAL_BITS, INTEGER_BITS)
 
-def gen_weight(accuracy):
-    # The start of each number
-    head = f"{accuracy[0]}'b"
 
-    Nfrac = accuracy[0] - accuracy[1]
-
-    # The amount of weights for each layer
-    layers = [64,32,32,5]
-    for ind in range(len(layers)):
-        layer = layers[ind]
-        # The folder structure uses 1 based indexing
-        ind = ind+1
-
-        # Where the source weights and biases are
-        weights_file = f"../weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_weights.txt"
-        biases_file = f"../weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_biases.txt"
-
-        # Converting the files to arrays
-        weight = file_to_array(weights_file, layer)
-        bias = file_to_array(biases_file, layer)
-
-        filename = f"../weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_{accuracy[0]}_{accuracy[1]}.sv"
-        if (not os.path.isfile(filename)):
-            with open(filename, "w") as f:
-                # Writes the header to the file
-                f.write(f"//Width: {accuracy[0]}\n//Int: {accuracy[1]}\n")
-                f.write(f"package dense_{ind}_{accuracy[0]}_{accuracy[1]};\n\n")
-                f.write(f"localparam logic signed [{accuracy[0]-1}:0] weights [{len(weight)}][{len(weight[0])}] = '" + "{\n")
-
-                # Writes the main body of the function
-                for i in range(len(weight)):
-                    f.write("{")
-                    num = dec_to_bin(weight[i][0]*(2**(Nfrac)), accuracy[0])
-                    f.write(f"{head}{num}")
-                    for j in range(1, len(weight[0])):
-                        num = dec_to_bin(weight[i][j]*(2**(Nfrac)), accuracy[0])
-                        f.write(f", {head}{num}")
-                    if (i!=len(weight)-1): 
-                        f.write("},\n")
-                f.write("}\n};\n")
-                f.write(f"localparam logic signed [{accuracy[0]-1}:0] bias [{len(weight[0])}] = '"+"{\n")
-                for i in range(0, len(bias)):
-                    num = dec_to_bin(bias[i]*(2**Nfrac), accuracy[0])
-                    f.write(f"{head}{num}")
-                    f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
-
-# Converts a number to a binary representation 
-# Inputs:
-# number: The number to convert to binary
-# bits: number of bits of the output binary number. -1 for the smallest possible representation
-def dec_to_bin(number: int | float, bits=-1):
-    neg=False
-    if (number<0):
-        number*=-1
-        number-=1
-        neg=True
-    # number=int(number)
-    number=int(np.round(number, 0))
-    # if (number==0 and neg):
-    #     return "1"*bits
-    out=""
-    if (bits>0 and number>2**(bits-1)):
-        return "0" + "1"*(bits-1)
-    elif (bits>0 and number<(-1)*2**(bits-1)):
-        return "1" + "0"*(bits-1)
-    
-    while (number>0):
-        res = number%2
-        if (neg):
-            res= 0 if (res==1) else 1
-        out=f"{res}{out}"
-        if (len(out)==(bits-1)):
-            break
-        number=int(number/2)
-        
-    if (neg):
-        out=f"{1}{out}"
-    else: out=f"{0}{out}"
-    if (len(out)==0):
-        out="0"
-    while (len(out)<bits):
-        out=f"{out[0]}{out}"
-    return out
 
 def add_csv_column(file, column):
     f = open(file, "r")
@@ -366,5 +286,5 @@ for pipeline in [3]:
         # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
         # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
         # # print((3*i-2,i))
-        # handmade_gen(acc, name, params, defs)
-        accuracy_test(acc, y_test, name, defs, params, email=True)
+        handmade_gen(acc, name, params, defs)
+        # accuracy_test(acc, y_test, name, defs, params, email=True)
