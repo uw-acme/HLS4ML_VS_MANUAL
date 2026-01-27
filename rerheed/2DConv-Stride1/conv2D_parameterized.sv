@@ -5,11 +5,11 @@
 `timescale 1ns / 1ps
 module conv2D_parameterized 
 #(parameter filtDimension = 3,parameter bitWidth = 16, parameter inputWidth = 8)
-(clock, reset, inputPixel, zeroedMatrix);
+(clock, reset, inputPixel, zeroedMatrix, currentConvMatrix);
 	input logic clock, reset;
 	input logic signed [bitWidth-1:0] inputPixel;
 	
-	logic signed [bitWidth-1:0] currentConvMatrix [filtDimension-1:0][filtDimension-1:0];
+	output logic signed [bitWidth-1:0] currentConvMatrix [filtDimension-1:0][filtDimension-1:0];
 	logic signed [bitWidth-1:0] outputFifo [filtDimension-2:0];
 	logic [filtDimension-1:0] counterRow;
 	logic [filtDimension-1:0] counterCol;
@@ -44,8 +44,8 @@ module conv2D_parameterized
 	integer row,col;
 	// shift values
     always_ff @(posedge clock) begin
-        for(row=0; row<filtDimension; x++) begin
-            for(col=0; col<filtDimension; y++) begin
+        for(row=0; row<filtDimension; row++) begin
+            for(col=0; col<filtDimension; col++) begin
                 if(reset) begin
                     currentConvMatrix[filtDimension-1][filtDimension-1] <= inputPixel;
                 end else begin
@@ -71,16 +71,16 @@ module conv2D_parameterized
 		for(a=0; a<filtDimension; a++) begin
 			for(b=0; b<filtDimension; b++) begin
 			    zeroedMatrix[a][b] = currentConvMatrix[a][b];
-				if(counterY == 0) begin
+				if(counterCol == 0) begin
 				    zeroedMatrix[a][0] = 17'd0; // why is this 17 bits? 
 				end
-				if (counterY == inputWidth - 1) begin
+				if (counterCol == inputWidth - 1) begin
 				    zeroedMatrix[a][filtDimension-1] = 17'd0;
 				end 
-				if(counterX == 0) begin
+				if(counterRow == 0) begin
 				    zeroedMatrix[0][b] = 17'd0;
 				end
-				if(counterX == inputWidth-1) begin
+				if(counterRow == inputWidth-1) begin
 				    zeroedMatrix[filtDimension-1][b] = 17'd0;
 				end
             end

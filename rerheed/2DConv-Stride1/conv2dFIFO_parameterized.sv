@@ -21,9 +21,9 @@ module conv2dFIFO_parameterized #(parameter filtDimension = 3,parameter bitWidth
 endmodule
 
 module conv2dFIFO_parameterized_testbench();
-	logic [2:0] inputData;
+	logic signed [2:0] inputData;
 	logic clock, reset;
-	logic [2:0] outputData;
+	logic signed [2:0] outputData;
 	
 	conv2dFIFO_parameterized #(3,3,8) dut (.*);
 	

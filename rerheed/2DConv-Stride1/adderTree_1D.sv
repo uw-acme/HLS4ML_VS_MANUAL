@@ -15,7 +15,7 @@
 // - output_data: a single number of size WIDTH
 module adderTree_1D #(parameter N = 32, WIDTH = 17, INPUT_SIZE = 32) (
     input  logic                        clk,
-    //input  logic                        reset,
+    input  logic                        reset,
     input  logic signed [WIDTH-1 : 0]   input_data  [INPUT_SIZE],
     output logic signed [WIDTH-1 : 0]   output_data
 );
@@ -29,7 +29,7 @@ module adderTree_1D #(parameter N = 32, WIDTH = 17, INPUT_SIZE = 32) (
     // Load tree
     genvar i, j;
 	generate
-		for (i = BASE_LEVEL; i < 2*BASE_LEVEL; i++) begin // load in input data to base layer
+		for (i = BASE_LEVEL; i < 2*BASE_LEVEL; i++) begin: eachLayer // load in input data to base layer
             if (i < BASE_LEVEL + INPUT_SIZE)
                 assign tree[i] = input_data[i-BASE_LEVEL];
             else // fill excess nodes in base layer with zeros
@@ -65,8 +65,8 @@ module adderTree_1D #(parameter N = 32, WIDTH = 17, INPUT_SIZE = 32) (
 	
 	// Adder tree
 	generate
-	   for (i = 0; i < POW_OF_4; i++) begin
-	       for (j=4**i; j < 2*(4**i); j++) begin
+	   for (i = 0; i < POW_OF_4; i++) begin: outerLoop
+	       for (j=4**i; j < 2*(4**i); j++) begin: innerLoop
 	           always_ff @(posedge clk) begin
 	               tree[j] <= tree[4*j]
 	                        + tree[(4*j) + 1]
@@ -101,7 +101,7 @@ module adderTree_1D_p4_tb();
         forever #(CLOCK_PERIOD/2) clk = ~clk;
     end
     
-    adderTree_1D_p4 #(.N            ( N          ),
+    adderTree_1D #(.N            ( N          ),
                       .WIDTH        ( WIDTH      ),
                       .INPUT_SIZE   ( INPUT_SIZE )
     ) dut (

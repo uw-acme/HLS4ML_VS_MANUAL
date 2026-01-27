@@ -39,8 +39,7 @@ parameter weightWidth = 72, parameter biasWidth = 8, parameter outputSize = 16, 
     end
     
 	// layer 1: convolve (input 8x8, output 128)
-	// layer 2: relu is also done in here
-	conv2Doutput_parameterized #(filtDimension,bitWidth, inputWidth, weightWidth, biasWidth, NFRAC) convolve
+	conv2Doutput_noRelu #(filtDimension,bitWidth, inputWidth, weightWidth, biasWidth, NFRAC) convolve
 	(.clk(clk), .reset(reset), .inputPixel(inputPixelCopy), .outputMatrix(outputConvMatrix), .biases(data16_10::convBiases));
 	
 	

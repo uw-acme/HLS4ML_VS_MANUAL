@@ -44,13 +44,14 @@ module conv2DsumNine_parameterized
 	
     genvar row,col;
     generate
-        for(row=0; row< filtDimension**2; row++) begin
+        for(row=0; row< filtDimension**2; row++) begin: eachMult
 				// populate weights matrix 
                 assign weightsArr[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
 
 				// change parameter to weightsCheck[row] (?)
 				// multiply the corresponding weight w/zeroed matrix value
-               shift_add_with_mult #(weightsArr[row], 3, bitWidth, NFRAC) 
+              // shift_add_with_mult #(weightsArr[row], 3, bitWidth, NFRAC) 
+					shift_add_with_mult #(data16_10::convWeights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC) 
                //shift_add_with_mult #(data16_10::convWeights[8*even+row], 3, bitWidth, NFRAC)
                 sa (.clk(clock),.data_in(zeroedMatrix[row/filtDimension][row%filtDimension]), .data_out(productArr[row]));  
 
@@ -65,6 +66,7 @@ module conv2DsumNine_parameterized
 	// something to think about: handling potential overflow 
     adderTree_1D #(NFRAC, bitWidth, filtDimension**2) sumEachMatrix ( 
 		.clk(clock),
+		.reset(1'b0),
 	    .input_data(truncProductArr), 
 		.output_data(sumNoBias));
    // assign tempSum = temp1[0] + temp1[1] + temp1[2] + temp1[3] + temp1[4] + temp1[5] + temp1[6] + temp1[7] + temp1[8];
