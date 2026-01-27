@@ -89,6 +89,24 @@ def gen_test(accuracy : tuple[int,int], test):
         for num in test_l:
             num=num*(2**(int(accuracy[0])-int(accuracy[1])))
             f.write(f"{dec_to_bin(num, accuracy[0])}\n")
+def file_to_array(file, length):
+    f = open(file, 'r')
+    buffer = np.zeros(length)
+    i=0
+    arr = []
+    num = f.readline()
+    while len(num):
+         buffer[i]=float(num[:-1])
+         i+=1
+         if (i==length):
+            i=0
+            if (len(arr)):
+                arr = np.vstack((arr, np.array(buffer)))
+            else:
+                arr = np.array(buffer)
+         num = f.readline()
+    f.close()
+    return arr
 def gen_weight(accuracy):
     """
     Generate weight and bias packages from text files

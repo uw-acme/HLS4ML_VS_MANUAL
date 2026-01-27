@@ -22,24 +22,7 @@ def gen_test(accuracy):
             for num in test:
                 num=num*(2**(accuracy[0]-accuracy[1]))
                 f.write(f"{dec_to_bin(num, accuracy[0])}\n")
-def file_to_array(file, length):
-    f = open(file, 'r')
-    buffer = np.zeros(length)
-    i=0
-    arr = []
-    num = f.readline()
-    while len(num):
-         buffer[i]=float(num[:-1])
-         i+=1
-         if (i==length):
-            i=0
-            if (len(arr)):
-                arr = np.vstack((arr, np.array(buffer)))
-            else:
-                arr = np.array(buffer)
-         num = f.readline()
-    f.close()
-    return arr
+
 
 
 def handmade_gen(acc, name, params, defs):
@@ -92,33 +75,7 @@ def handmade_gen(acc, name, params, defs):
     # output += f"\nTiming: {time}"
     # output += f"\nAccuracy: {accuracy}"
     os.system(f'printf "{name} finished at %b with parameters {acc} with results: {output}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
-def extract_data(file, features):
-    """Extracts the feature from a file using Vivado formatting\n
-    Formatting Example: | Slice LUTs                 | 66386 |     0 |    433200 | 15.32 |"""
-    
-    with open(file) as f:
-        text = f.read()
-    out = []
-    for feature in features:
-        m = re.search(feature + r"\s*\|.*?\|.*?\|.*?\|.*?(\d+\.\d+)", text, re.IGNORECASE)
-        if m:
-            out.append(m.group(1))
-            #return m.group(1)  # third number
-    return out
-    # ind2 = (res[::-1]).find("|")
-    # ind1 = (res[::-1]).find("|", ind2+1)
-    # num = res[-ind1:-ind2-1]
-    # print(num)
-def extract_time(file):
-    """
-    Grabs the timing from the timing report
-    """
-    with open(file) as f:
-        text = f.read()
-    pat = r"ap_clk\s*(-?\d+\.\d+)" 
-    m = re.search(pat, text, re.IGNORECASE|re.DOTALL)
-    if m:
-        return m.group(1)
+
 
 def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, params : str = None, email : bool = False):
     """
@@ -178,7 +135,34 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     if email:
         os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
     return acc_res
-
+def gen_weight(accuracy):
+    head = f"{accuracy[0]}'b"
+    Nfrac = accuracy[0] - accuracy[1]
+    for layer in layers:
+        ind=layers.index(layer)+1
+        weights_file = f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_weights.txt"
+        biases_file = f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_biases.txt"
+        weight = file_to_array(weights_file, layer)
+        bias = file_to_array(biases_file, layer)
+        with open(f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_{accuracy[0]}_{accuracy[1]}_test.sv", "w") as f:
+            f.write(f"//Width: {accuracy[0]}\n//Int: {accuracy[1]}\n")
+            f.write(f"package dense_{ind}_{accuracy[0]}_{accuracy[1]}\n\n")
+            f.write(f"localparam logic signed [{accuracy[0]-1}:0] weights [{len(weight)}][{len(weight[0])}] = '" + "{\n")
+            for i in range(len(weight)):
+                f.write("{")
+                num = dec_to_bin(weight[i][0]*(2**(Nfrac)), accuracy[0])
+                f.write(f"{head}{num}")
+                for j in range(1, len(weight[0])):
+                    num = dec_to_bin(weight[i][j]*(2**(Nfrac)), accuracy[0])
+                    f.write(f", {head}{num}")
+                if (i!=len(weight)-1): 
+                    f.write("},\n")
+            f.write("}\n};\n")
+            f.write(f"localparam logic signed [{accuracy[0]-1}:0] bias [{len(weight[0])}] = '"+"{\n")
+            for i in range(0, len(bias)):
+                num = dec_to_bin(bias[i]*(2**Nfrac), accuracy[0])
+                f.write(f"{head}{num}")
+                f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
 def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str = None, email : bool = False):
     """
     Runs a lat test with bit precision (WIDTH, NINT)\n
