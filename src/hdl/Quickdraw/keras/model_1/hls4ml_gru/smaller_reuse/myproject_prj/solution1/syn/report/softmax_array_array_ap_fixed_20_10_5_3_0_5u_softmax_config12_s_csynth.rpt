@@ -1,0 +1,238 @@
+
+
+================================================================
+== Vivado HLS Report for 'softmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s'
+================================================================
+* Date:           Fri Nov 14 00:53:22 2025
+
+* Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
+* Project:        myproject_prj
+* Solution:       solution1
+* Product family: virtex7
+* Target device:  xc7vx690t-ffg1761-2
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   5.00|     4.116|        0.62|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    8|    8|    8|    8|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------------------------------------------+-----------------------------------------------------------------------+-----+-----+-----+-----+----------+
+        |                                                                                  |                                                                       |  Latency  |  Interval | Pipeline |
+        |                                     Instance                                     |                                 Module                                | min | max | min | max |   Type   |
+        +----------------------------------------------------------------------------------+-----------------------------------------------------------------------+-----+-----+-----+-----+----------+
+        |grp_softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s_fu_100  |softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s  |    7|    7|    7|    7| function |
+        +----------------------------------------------------------------------------------+-----------------------------------------------------------------------+-----+-----+-----+-----+----------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+--------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |   LUT  | URAM|
++-----------------+---------+-------+--------+--------+-----+
+|DSP              |        -|      -|       -|       -|    -|
+|Expression       |        -|      -|       0|      76|    -|
+|FIFO             |        -|      -|       -|       -|    -|
+|Instance         |        1|      -|     289|     492|    0|
+|Memory           |        -|      -|       -|       -|    -|
+|Multiplexer      |        -|      -|       -|     311|    -|
+|Register         |        -|      -|     270|       -|    -|
++-----------------+---------+-------+--------+--------+-----+
+|Total            |        1|      0|     559|     879|    0|
++-----------------+---------+-------+--------+--------+-----+
+|Available        |     2940|   3600|  866400|  433200|    0|
++-----------------+---------+-------+--------+--------+-----+
+|Utilization (%)  |    ~0   |      0|   ~0   |   ~0   |    0|
++-----------------+---------+-------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+-------+-----+-----+-----+
+    |                                     Instance                                     |                                 Module                                | BRAM_18K| DSP48E|  FF | LUT | URAM|
+    +----------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+-------+-----+-----+-----+
+    |grp_softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s_fu_100  |softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s  |        1|      0|  289|  492|    0|
+    +----------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+-------+-----+-----+-----+
+    |Total                                                                             |                                                                       |        1|      0|  289|  492|    0|
+    +----------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------+-------+-----+-----+-----+
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------------------------------------------------------------------------------+----------+-------+---+----+------------+------------+
+    |                                              Variable Name                                             | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------------------------------------------------------------------------------+----------+-------+---+----+------------+------------+
+    |grp_softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s_fu_100_res_V_data_0_V_TREADY  |    and   |      0|  0|   2|           1|           1|
+    |grp_softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s_fu_100_res_V_data_1_V_TREADY  |    and   |      0|  0|   2|           1|           1|
+    |grp_softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s_fu_100_res_V_data_2_V_TREADY  |    and   |      0|  0|   2|           1|           1|
+    |grp_softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s_fu_100_res_V_data_3_V_TREADY  |    and   |      0|  0|   2|           1|           1|
+    |grp_softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s_fu_100_res_V_data_4_V_TREADY  |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_0_V_1_load_A                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_0_V_1_load_B                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_1_V_1_load_A                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_1_V_1_load_B                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_2_V_1_load_A                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_2_V_1_load_B                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_3_V_1_load_A                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_3_V_1_load_B                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_4_V_1_load_A                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_4_V_1_load_B                                                                                 |    and   |      0|  0|   2|           1|           1|
+    |res_V_data_0_V_1_state_cmp_full                                                                         |   icmp   |      0|  0|   8|           2|           1|
+    |res_V_data_1_V_1_state_cmp_full                                                                         |   icmp   |      0|  0|   8|           2|           1|
+    |res_V_data_2_V_1_state_cmp_full                                                                         |   icmp   |      0|  0|   8|           2|           1|
+    |res_V_data_3_V_1_state_cmp_full                                                                         |   icmp   |      0|  0|   8|           2|           1|
+    |res_V_data_4_V_1_state_cmp_full                                                                         |   icmp   |      0|  0|   8|           2|           1|
+    |ap_block_state1                                                                                         |    or    |      0|  0|   2|           1|           1|
+    |ap_block_state2                                                                                         |    or    |      0|  0|   2|           1|           1|
+    |ap_block_state9                                                                                         |    or    |      0|  0|   2|           1|           1|
+    +--------------------------------------------------------------------------------------------------------+----------+-------+---+----+------------+------------+
+    |Total                                                                                                   |          |      0|  0|  76|          28|          23|
+    +--------------------------------------------------------------------------------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------+----+-----------+-----+-----------+
+    |            Name            | LUT| Input Size| Bits| Total Bits|
+    +----------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                   |  47|         10|    1|         10|
+    |ap_done                     |   9|          2|    1|          2|
+    |data_V_data_0_V_blk_n       |   9|          2|    1|          2|
+    |data_V_data_0_V_read        |   9|          2|    1|          2|
+    |data_V_data_1_V_blk_n       |   9|          2|    1|          2|
+    |data_V_data_1_V_read        |   9|          2|    1|          2|
+    |data_V_data_2_V_blk_n       |   9|          2|    1|          2|
+    |data_V_data_2_V_read        |   9|          2|    1|          2|
+    |data_V_data_3_V_blk_n       |   9|          2|    1|          2|
+    |data_V_data_3_V_read        |   9|          2|    1|          2|
+    |data_V_data_4_V_blk_n       |   9|          2|    1|          2|
+    |data_V_data_4_V_read        |   9|          2|    1|          2|
+    |res_V_data_0_V_1_data_out   |   9|          2|   24|         48|
+    |res_V_data_0_V_1_state      |  15|          3|    2|          6|
+    |res_V_data_0_V_TDATA_blk_n  |   9|          2|    1|          2|
+    |res_V_data_1_V_1_data_out   |   9|          2|   24|         48|
+    |res_V_data_1_V_1_state      |  15|          3|    2|          6|
+    |res_V_data_1_V_TDATA_blk_n  |   9|          2|    1|          2|
+    |res_V_data_2_V_1_data_out   |   9|          2|   24|         48|
+    |res_V_data_2_V_1_state      |  15|          3|    2|          6|
+    |res_V_data_2_V_TDATA_blk_n  |   9|          2|    1|          2|
+    |res_V_data_3_V_1_data_out   |   9|          2|   24|         48|
+    |res_V_data_3_V_1_state      |  15|          3|    2|          6|
+    |res_V_data_3_V_TDATA_blk_n  |   9|          2|    1|          2|
+    |res_V_data_4_V_1_data_out   |   9|          2|   24|         48|
+    |res_V_data_4_V_1_state      |  15|          3|    2|          6|
+    |res_V_data_4_V_TDATA_blk_n  |   9|          2|    1|          2|
+    +----------------------------+----+-----------+-----+-----------+
+    |Total                       | 311|         67|  147|        312|
+    +----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------+----+----+-----+-----------+
+    |            Name            | FF | LUT| Bits| Const Bits|
+    +----------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                   |   9|   0|    9|          0|
+    |ap_done_reg                 |   1|   0|    1|          0|
+    |res_V_data_0_V_1_payload_A  |  24|   0|   24|          0|
+    |res_V_data_0_V_1_payload_B  |  24|   0|   24|          0|
+    |res_V_data_0_V_1_sel_rd     |   1|   0|    1|          0|
+    |res_V_data_0_V_1_sel_wr     |   1|   0|    1|          0|
+    |res_V_data_0_V_1_state      |   2|   0|    2|          0|
+    |res_V_data_1_V_1_payload_A  |  24|   0|   24|          0|
+    |res_V_data_1_V_1_payload_B  |  24|   0|   24|          0|
+    |res_V_data_1_V_1_sel_rd     |   1|   0|    1|          0|
+    |res_V_data_1_V_1_sel_wr     |   1|   0|    1|          0|
+    |res_V_data_1_V_1_state      |   2|   0|    2|          0|
+    |res_V_data_2_V_1_payload_A  |  24|   0|   24|          0|
+    |res_V_data_2_V_1_payload_B  |  24|   0|   24|          0|
+    |res_V_data_2_V_1_sel_rd     |   1|   0|    1|          0|
+    |res_V_data_2_V_1_sel_wr     |   1|   0|    1|          0|
+    |res_V_data_2_V_1_state      |   2|   0|    2|          0|
+    |res_V_data_3_V_1_payload_A  |  24|   0|   24|          0|
+    |res_V_data_3_V_1_payload_B  |  24|   0|   24|          0|
+    |res_V_data_3_V_1_sel_rd     |   1|   0|    1|          0|
+    |res_V_data_3_V_1_sel_wr     |   1|   0|    1|          0|
+    |res_V_data_3_V_1_state      |   2|   0|    2|          0|
+    |res_V_data_4_V_1_payload_A  |  24|   0|   24|          0|
+    |res_V_data_4_V_1_payload_B  |  24|   0|   24|          0|
+    |res_V_data_4_V_1_sel_rd     |   1|   0|    1|          0|
+    |res_V_data_4_V_1_sel_wr     |   1|   0|    1|          0|
+    |res_V_data_4_V_1_state      |   2|   0|    2|          0|
+    +----------------------------+----+----+-----+-----------+
+    |Total                       | 270|   0|  270|          0|
+    +----------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+|        RTL Ports        | Dir | Bits|  Protocol  |                          Source Object                          |    C Type    |
++-------------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+|ap_clk                   |  in |    1| ap_ctrl_hs | softmax<array,array<ap_fixed<20,10,5,3,0>,5u>,softmax_config12> | return value |
+|ap_rst                   |  in |    1| ap_ctrl_hs | softmax<array,array<ap_fixed<20,10,5,3,0>,5u>,softmax_config12> | return value |
+|ap_start                 |  in |    1| ap_ctrl_hs | softmax<array,array<ap_fixed<20,10,5,3,0>,5u>,softmax_config12> | return value |
+|ap_done                  | out |    1| ap_ctrl_hs | softmax<array,array<ap_fixed<20,10,5,3,0>,5u>,softmax_config12> | return value |
+|ap_continue              |  in |    1| ap_ctrl_hs | softmax<array,array<ap_fixed<20,10,5,3,0>,5u>,softmax_config12> | return value |
+|ap_idle                  | out |    1| ap_ctrl_hs | softmax<array,array<ap_fixed<20,10,5,3,0>,5u>,softmax_config12> | return value |
+|ap_ready                 | out |    1| ap_ctrl_hs | softmax<array,array<ap_fixed<20,10,5,3,0>,5u>,softmax_config12> | return value |
+|data_V_data_0_V_dout     |  in |   45|   ap_fifo  |                         data_V_data_0_V                         |    pointer   |
+|data_V_data_0_V_empty_n  |  in |    1|   ap_fifo  |                         data_V_data_0_V                         |    pointer   |
+|data_V_data_0_V_read     | out |    1|   ap_fifo  |                         data_V_data_0_V                         |    pointer   |
+|data_V_data_1_V_dout     |  in |   45|   ap_fifo  |                         data_V_data_1_V                         |    pointer   |
+|data_V_data_1_V_empty_n  |  in |    1|   ap_fifo  |                         data_V_data_1_V                         |    pointer   |
+|data_V_data_1_V_read     | out |    1|   ap_fifo  |                         data_V_data_1_V                         |    pointer   |
+|data_V_data_2_V_dout     |  in |   45|   ap_fifo  |                         data_V_data_2_V                         |    pointer   |
+|data_V_data_2_V_empty_n  |  in |    1|   ap_fifo  |                         data_V_data_2_V                         |    pointer   |
+|data_V_data_2_V_read     | out |    1|   ap_fifo  |                         data_V_data_2_V                         |    pointer   |
+|data_V_data_3_V_dout     |  in |   45|   ap_fifo  |                         data_V_data_3_V                         |    pointer   |
+|data_V_data_3_V_empty_n  |  in |    1|   ap_fifo  |                         data_V_data_3_V                         |    pointer   |
+|data_V_data_3_V_read     | out |    1|   ap_fifo  |                         data_V_data_3_V                         |    pointer   |
+|data_V_data_4_V_dout     |  in |   45|   ap_fifo  |                         data_V_data_4_V                         |    pointer   |
+|data_V_data_4_V_empty_n  |  in |    1|   ap_fifo  |                         data_V_data_4_V                         |    pointer   |
+|data_V_data_4_V_read     | out |    1|   ap_fifo  |                         data_V_data_4_V                         |    pointer   |
+|res_V_data_0_V_TDATA     | out |   24|    axis    |                          res_V_data_0_V                         |    pointer   |
+|res_V_data_0_V_TVALID    | out |    1|    axis    |                          res_V_data_0_V                         |    pointer   |
+|res_V_data_0_V_TREADY    |  in |    1|    axis    |                          res_V_data_0_V                         |    pointer   |
+|res_V_data_1_V_TDATA     | out |   24|    axis    |                          res_V_data_1_V                         |    pointer   |
+|res_V_data_1_V_TVALID    | out |    1|    axis    |                          res_V_data_1_V                         |    pointer   |
+|res_V_data_1_V_TREADY    |  in |    1|    axis    |                          res_V_data_1_V                         |    pointer   |
+|res_V_data_2_V_TDATA     | out |   24|    axis    |                          res_V_data_2_V                         |    pointer   |
+|res_V_data_2_V_TVALID    | out |    1|    axis    |                          res_V_data_2_V                         |    pointer   |
+|res_V_data_2_V_TREADY    |  in |    1|    axis    |                          res_V_data_2_V                         |    pointer   |
+|res_V_data_3_V_TDATA     | out |   24|    axis    |                          res_V_data_3_V                         |    pointer   |
+|res_V_data_3_V_TVALID    | out |    1|    axis    |                          res_V_data_3_V                         |    pointer   |
+|res_V_data_3_V_TREADY    |  in |    1|    axis    |                          res_V_data_3_V                         |    pointer   |
+|res_V_data_4_V_TDATA     | out |   24|    axis    |                          res_V_data_4_V                         |    pointer   |
+|res_V_data_4_V_TVALID    | out |    1|    axis    |                          res_V_data_4_V                         |    pointer   |
+|res_V_data_4_V_TREADY    |  in |    1|    axis    |                          res_V_data_4_V                         |    pointer   |
++-------------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+
