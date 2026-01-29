@@ -1,0 +1,43 @@
+LayerType:
+  Activation:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  Conv1D:
+    Precision:
+      bias: ap_fixed<20,10>
+      result: ap_fixed<20,10>
+      weight: ap_fixed<20,10>
+    Trace: false
+  Dense:
+    Precision:
+      bias: ap_fixed<20,10>
+      result: ap_fixed<20,10>
+      weight: ap_fixed<20,10>
+    ReuseFactor: 32
+    Trace: false
+  InputLayer:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  LSTM:
+    Precision:
+      bias: ap_fixed<20,10>
+      recurrent_bias: ap_fixed<20,10>
+      recurrent_weight: ap_fixed<20,10>
+      result: ap_fixed<20,10>
+      weight: ap_fixed<20,10>
+    Trace: false
+    ReuseFactor: 32
+  Softmax:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+Model:
+  BitExact: null
+  BramFactor: 1000000000
+  Precision:
+    default: ap_fixed<20,10>
+  ReuseFactor: 1
+  Strategy: Latency
+  TraceOutput: false
