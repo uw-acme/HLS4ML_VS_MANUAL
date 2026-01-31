@@ -14,7 +14,7 @@ LayerType:
       bias: ap_fixed<20,10>
       result: ap_fixed<20,10>
       weight: ap_fixed<20,10>
-    ReuseFactor: 32
+    ReuseFactor: 256
     Trace: false
   InputLayer:
     Precision:
@@ -28,7 +28,8 @@ LayerType:
       result: ap_fixed<20,10>
       weight: ap_fixed<20,10>
     Trace: false
-    ReuseFactor: 32
+    ReuseFactor: 16384
+    Strategy: Resource
   Softmax:
     Precision:
       result: ap_fixed<20,10>

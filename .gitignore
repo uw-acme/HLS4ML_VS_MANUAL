@@ -24,6 +24,7 @@ src/hdl/Batchnorm-JetTagging/hls4ml/model_5/
 src/hdl/Batchnorm-JetTagging/alveo-u250-xdc_20210909/
 src/hdl/Batchnorm-JetTagging/project*
 src/hdl/Batchnorm-JetTagging/vivado*
+src/hdl/Quickdraw/keras/model_1/*
 xelab*
 src/hdl/Batchnorm-JetTagging/vsim.wlf
 src/hdl/Batchnorm-JetTagging/reports/results.csv
