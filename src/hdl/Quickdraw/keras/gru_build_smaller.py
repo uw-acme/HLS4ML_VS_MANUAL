@@ -38,7 +38,7 @@ config_name = hls4ml.utils.config_from_keras_model(
     model,
     granularity='name',
     default_precision='ap_fixed<20,10>',
-    default_reuse_factor=32
+    default_reuse_factor=64
 )
 
 config_name["Model"]["Strategy"] = "Resource"
@@ -58,9 +58,10 @@ hls_model_name = hls4ml.converters.convert_from_keras_model(
     model,
     hls_config=config_name,
     backend='Vivado',
-    output_dir='model_1/hls4ml_gru/smaller_reuse',
+    output_dir='model_1/hls4ml_gru/smaller_reuse_64',
     part='xc7vx690tffg1761-2',
-    # part='xcu280-fsvh2892-2L-e',
+    # part='xcvu13p-fhga2104-3-e',
+    # part='xq7vx980trf1930-1I',
     io_type='io_stream'
 )
 

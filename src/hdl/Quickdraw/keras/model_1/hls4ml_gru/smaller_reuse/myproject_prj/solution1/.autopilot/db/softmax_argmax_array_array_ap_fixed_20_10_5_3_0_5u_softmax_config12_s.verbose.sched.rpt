@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'softmax_argmax_array_array_ap_fixed_20_10_5_3_0_5u_softmax_config12_s'
 ================================================================
-* Date:           Fri Nov 14 00:48:50 2025
+* Date:           Tue Nov 18 20:03:29 2025
 
 * Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
 * Project:        myproject_prj
@@ -197,7 +197,7 @@ The critical path consists of the following:
  <State 4>: 3.03ns
 The critical path consists of the following:
 	'icmp' operation ('icmp_ln1494_3', firmware/nnet_utils/nnet_activation_stream.h:340) [50]  (1.38 ns)
-	'or' operation ('or_ln340_1', firmware/nnet_utils/nnet_activation_stream.h:340) [52]  (0 ns)
+	'select' operation ('select_ln340_5', firmware/nnet_utils/nnet_activation_stream.h:340) [51]  (0 ns)
 	'select' operation ('select_ln340_6', firmware/nnet_utils/nnet_activation_stream.h:340) [53]  (0.51 ns)
 	'getelementptr' operation ('out_data_data_V_addr_5', firmware/nnet_utils/nnet_activation_stream.h:346) [55]  (0 ns)
 	'store' operation ('store_ln346', firmware/nnet_utils/nnet_activation_stream.h:346) of constant 1024 on array 'out_data.data.V', firmware/nnet_utils/nnet_activation_stream.h:328 [56]  (1.15 ns)

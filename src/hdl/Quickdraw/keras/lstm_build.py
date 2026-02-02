@@ -54,8 +54,8 @@ hls_model_name = hls4ml.converters.convert_from_keras_model(
     hls_config=config_name,
     backend='Vivado',
     output_dir='model_1/hls4ml_lstm/name',
-    # part='xc7vx690tffg1761-2'
-    part='xcu280-fsvh2892-2L-e',
+    part='xc7vx690tffg1761-2',
+    # part='xcu280-fsvh2892-2L-e',
     io_type='io_stream'
 )
 
