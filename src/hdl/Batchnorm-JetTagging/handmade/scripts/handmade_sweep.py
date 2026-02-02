@@ -3,7 +3,8 @@ import os
 import re
 import numpy as np
 #from tensorflow.keras.models import load_model # type: ignore
-path.insert(1,"/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/")
+import sys
+sys.path.insert(1,"/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/")
 from helper_functions import *
 import numpy as np
 from sklearn.metrics import accuracy_score
@@ -135,34 +136,7 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     if email:
         os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
     return acc_res
-def gen_weight(accuracy):
-    head = f"{accuracy[0]}'b"
-    Nfrac = accuracy[0] - accuracy[1]
-    for layer in layers:
-        ind=layers.index(layer)+1
-        weights_file = f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_weights.txt"
-        biases_file = f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_biases.txt"
-        weight = file_to_array(weights_file, layer)
-        bias = file_to_array(biases_file, layer)
-        with open(f"weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_{accuracy[0]}_{accuracy[1]}_test.sv", "w") as f:
-            f.write(f"//Width: {accuracy[0]}\n//Int: {accuracy[1]}\n")
-            f.write(f"package dense_{ind}_{accuracy[0]}_{accuracy[1]}\n\n")
-            f.write(f"localparam logic signed [{accuracy[0]-1}:0] weights [{len(weight)}][{len(weight[0])}] = '" + "{\n")
-            for i in range(len(weight)):
-                f.write("{")
-                num = dec_to_bin(weight[i][0]*(2**(Nfrac)), accuracy[0])
-                f.write(f"{head}{num}")
-                for j in range(1, len(weight[0])):
-                    num = dec_to_bin(weight[i][j]*(2**(Nfrac)), accuracy[0])
-                    f.write(f", {head}{num}")
-                if (i!=len(weight)-1): 
-                    f.write("},\n")
-            f.write("}\n};\n")
-            f.write(f"localparam logic signed [{accuracy[0]-1}:0] bias [{len(weight[0])}] = '"+"{\n")
-            for i in range(0, len(bias)):
-                num = dec_to_bin(bias[i]*(2**Nfrac), accuracy[0])
-                f.write(f"{head}{num}")
-                f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
+
 def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str = None, email : bool = False):
     """
     Runs a lat test with bit precision (WIDTH, NINT)\n
@@ -259,11 +233,11 @@ for pipeline in [3]:
     pipe_out=0
     params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
     name = f"expPipeNegmax"
-    for i in range(2,14):
+    for i in range(10,11):
         acc = (3*i-2,i)
         # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
         # SA_INT, SA_FRAC = adjust(acc_in[0])
-        SAD, SAFRAC = adjust(acc[0])
+        SAD, SAFRAC = 0, 0#adjust(acc[0])
         defs = f' PIPELINE_MULT=0 SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
         # lat = lat_test(acc, name, defs, params)
         # lat = 24*[lat]
