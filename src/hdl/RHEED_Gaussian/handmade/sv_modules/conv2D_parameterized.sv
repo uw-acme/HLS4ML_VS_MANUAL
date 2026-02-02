@@ -70,22 +70,34 @@ module conv2D_parameterized_testbench();
 		clock <= 0;
 		forever #(CLOCK_PERIOD/2) clock <= ~clock; // Forever toggle the clock
 	end
-	integer i,j;
-	
+
+	integer i;
 	initial begin
 		reset <= 1; @(posedge clock);
 		reset <= 0; 
+
+		$display("%p", currConvMatrix);
+
 		inputPixel = 16'd1;
-		repeat(8) @(posedge clock);
-		inputPixel = 16'd2; repeat(8) @(posedge clock);
-		inputPixel = 16'd3; repeat(8) @(posedge clock);
+		for (i=0; i<8; i++) begin
+			@(posedge clock);
+			$display("input pixel: %0d, matrix: %p", inputPixel, currConvMatrix);
+		end
+
+		inputPixel = 16'd2;
+		for (i=0; i<8; i++) begin
+			@(posedge clock);
+			$display("input pixel: %0d, matrix: %p", inputPixel, currConvMatrix);
+		end
+
+		inputPixel = 16'd3; 
+		for (i=0; i<8; i++) begin
+			@(posedge clock);
+			$display("input pixel: %0d, matrix: %p", inputPixel, currConvMatrix);
+		end
+
 		@(posedge clock);
 		$stop; // End the simulation.
 	end
 endmodule 
-	
-	
-	
-	
-	
 

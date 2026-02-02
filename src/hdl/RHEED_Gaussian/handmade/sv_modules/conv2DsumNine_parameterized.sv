@@ -8,7 +8,7 @@
 // Parameter whichFilt (ranges from 0 to however many filters being used in the covolution) indicatates which kernel (which weights) are 
 // being used in the current iteration
 module conv2DsumNine_parameterized
-	#(parameter filtDimension = 3, parameter bitWidth = 16, parameter inputWidth = 8, parameter weightWidth = 9, parameter NFRAC = 10, parameter whichFilt=0)
+	#(parameter filtDimension = 3, parameter bitWidth = 16, parameter inputWidth = 8, parameter NFRAC = 10, parameter whichFilt=0)
 	(clock, currMatrix, sum, bias);
 	input logic clock;
 	input logic signed [bitWidth-1:0] currMatrix [filtDimension-1:0][filtDimension-1:0];
@@ -37,6 +37,9 @@ module conv2DsumNine_parameterized
 	
 	// sum of all truncated products and the bias
 	output logic signed [bitWidth-1:0] sum; 
+
+	// for testing
+	// logic signed [bitWidth-1:0] weights [weightWidth-1:0];
 	
     genvar row;
     generate
@@ -46,7 +49,12 @@ module conv2DsumNine_parameterized
 			// assign it to a designated spot in weightsArr
          // assign weightsArr[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
 
-			shift_add #(data16_10::convWeights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC) // 3 = shift add depth
+			// actual
+			shift_add #(data16_10::convWeights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC, 5) // 3 = shift add depth, 5=DEPTH_FRAC
+			// for testing
+			// shift_add_with_mult #(weights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC) 
+
+			// shift_add #(data16_10::convWeights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC) // 3 = shift add depth
             // shift_add_with_mult #(data16_10::convWeights[(8*row)+whichFilt], 3, bitWidth, NFRAC) // Caroline's version
             // shift_add_with_mult #(data16_10::convWeights[8*whichFilt+row], 3, bitWidth, NFRAC) // past version (Caroline)
 
@@ -77,15 +85,17 @@ endmodule
  
 module conv2DsumNine_parameterized_testbench();
 
-	parameter filtDimension = 3, bitWidth = 17, inputWidth = 8, weightWidth = 9;
+	parameter filtDimension = 3, bitWidth = 16, inputWidth = 8;//, weightWidth = 9;
 
-	logic clock, reset;
+	logic clock; //, reset;
 	logic signed [bitWidth-1:0] currMatrix [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] weights [weightWidth-1:0];
+	// logic signed [bitWidth-1:0] weights [weightWidth-1:0];
 	logic signed [bitWidth-1:0] bias;
 	logic signed [bitWidth-1:0] sum;
 	
-	conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, 10) dut (.*);
+	// conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, 10, 0) dut (.*);
+	conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, 10, 0) dut (.*);
+
 	
 	// Set up a simulated clock.
 	parameter CLOCK_PERIOD=100;
@@ -94,25 +104,27 @@ module conv2DsumNine_parameterized_testbench();
 		forever #(CLOCK_PERIOD/2) clock <= ~clock; // Forever toggle the clock
 	end
 	
-	integer i,j;
-	
+	// test using the first 9 weights in the convWeights package in data16_10.sv
 	initial begin
-	reset <= 1; @(posedge clock);
-	reset <= 0;
-	currMatrix[0][0] <= 3'd6; currMatrix[0][1] <= 3'd6; currMatrix[0][2] <= 3'd6; currMatrix[1][0] <= 3'd7; 
-	currMatrix[1][1] <= 3'd7; currMatrix[1][2] <= 3'd7; currMatrix[2][0] <= 3'd0; currMatrix[2][1] <= 3'd0; 
-	currMatrix[2][2] <= 3'd0;  
-	bias <= 17'b00000000010001010; 
-    weights = { 17'b11111111100110111,
-	17'b00000000000100010,
-	17'b11111111110101111,
-	17'b11111111111111001,
-	17'b00000000010111101,
-	17'b00000000011001010,
-	17'b00000000001000101,
-	17'b11111111110110011,
-	17'b00000000110001111
-	}; @(posedge clock);
+	// reset <= 1; @(posedge clock);
+	// reset <= 0;
+	currMatrix[0][0] <= 3'd6; currMatrix[0][1] <= 3'd6; currMatrix[0][2] <= 3'd6; 
+	currMatrix[1][0] <= 3'd7; currMatrix[1][1] <= 3'd7; currMatrix[1][2] <= 3'd7; 
+	currMatrix[2][0] <= 3'd0; currMatrix[2][1] <= 3'd0; currMatrix[2][2] <= 3'd0;  
+	bias <= 16'b0000000010001010; 
+	
+    // weights = { 17'b11111111100110111,
+	// 17'b00000000000100010,
+	// 17'b11111111110101111,
+	// 17'b11111111111111001,
+	// 17'b00000000010111101,
+	// 17'b00000000011001010,
+	// 17'b00000000001000101,
+	// 17'b11111111110110011,
+	// 17'b00000000110001111
+	// }; 
+
+	repeat(10) @(posedge clock);
 	//currMatrix[0][0] <= 3'd1; @(posedge clock);
 	//currMatrix[0][1] <= 3'd2; @(posedge clock);
 	$stop; // End the simulation.
