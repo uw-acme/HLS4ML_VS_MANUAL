@@ -32,3 +32,4 @@ src/hdl/TopTagging-HLS/model_lstm_hls/hls4ml_prj/
 
 *.jou
 *.log
+*.rpt
