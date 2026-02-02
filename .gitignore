@@ -37,3 +37,5 @@ src/hdl/Batchnorm-JetTagging/python/output.log
 src/hdl/Quickdraw/keras/model_1/
 *.npy
 src/hdl/Batchnorm-JetTagging/handmade/vsim.wlf
+src/hdl/Quickdraw/keras/model_1/
+*.npy
