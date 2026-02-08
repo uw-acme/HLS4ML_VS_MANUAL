@@ -9,12 +9,6 @@
 // Essentially what happens in this module is we're performing element-wise multiplication
 // between the zeroed-matrix and the corresponding weights matrix (accessed via a file). 
 // Then we're adding them all up, truncating the result, and outputting this final single value.
-
-// Things to note: the whichFilt parameter is used because in Caroline's implementation, she only
-// used 2 filters. whichFilt is either a 0 or 1 and used in the calculations to determine which
-// weights to use. I will have to change how this works for multiple filters, but this
-// shouldn't be too hard. 
-
 module conv2DsumNine_parameterized
 #(parameter filtDimension = 3,parameter bitWidth = 16, parameter NFRAC = 10, parameter whichFilt=0)
 	(clock, zeroedMatrix, sum, bias);
@@ -27,7 +21,7 @@ module conv2DsumNine_parameterized
 	input logic signed [bitWidth-1:0] bias;
 	
 	// filled with the weights from a .sv file
-	logic signed [bitWidth-1:0] weightsArr [8:0];
+	//logic signed [bitWidth-1:0] weightsArr [8:0];
 
 	// non-truncated matrix which holds the multiplied values
 	// ex: productArr[0] holds the value of zeroedMatrix[0] * weightsCheck[row]
@@ -46,19 +40,21 @@ module conv2DsumNine_parameterized
     generate
         for(row=0; row< filtDimension**2; row++) begin: eachMult
 				// populate weights matrix 
-                assign weightsArr[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
+                //assign weightsArr[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
 
 				// change parameter to weightsCheck[row] (?)
 				// multiply the corresponding weight w/zeroed matrix value
               // shift_add_with_mult #(weightsArr[row], 3, bitWidth, NFRAC) 
-					shift_add_with_mult #(data16_10::convWeights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC) 
+					shift_add #(data16_10::convWeights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC, 5) 
                //shift_add_with_mult #(data16_10::convWeights[8*even+row], 3, bitWidth, NFRAC)
                 sa (.clk(clock),.data_in(zeroedMatrix[row/filtDimension][row%filtDimension]), .data_out(productArr[row]));  
 
 			   // does this account for the sign bit? maybe not 
 			   // possibly need to concacenate temp1[row][bitWidth*2-1] and then have [24:10]
-			   assign truncProductArr[row] = 
-			   		{productArr[row][bitWidth*2-1], productArr[row][NFRAC+bitWidth-2:NFRAC]};
+//			   assign truncProductArr[row] = 
+//			   		{productArr[row][bitWidth*2-1], productArr[row][NFRAC+bitWidth-2:NFRAC]};
+				assign truncProductArr[row] = 
+			   		productArr[row][NFRAC+bitWidth-1:NFRAC];
         end
    endgenerate 
 
@@ -77,46 +73,46 @@ module conv2DsumNine_parameterized
     
 endmodule
  
-module conv2DsumNine_parameterized_testbench();
-
-	parameter filtDimension = 3, bitWidth = 17, inputWidth = 8, weightWidth = 9;
-
-	logic clock, reset;
-	logic signed [bitWidth-1:0] zeroedMatrix [filtDimension-1:0][filtDimension-1:0];
-	logic signed [bitWidth-1:0] weights [weightWidth-1:0];
-	logic signed [bitWidth-1:0] bias;
-	logic signed [bitWidth-1:0] sum;
-	
-	conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, 10) dut (.*);
-	
-	// Set up a simulated clock.
-	parameter CLOCK_PERIOD=100;
-	initial begin
-		clock <= 0;
-		forever #(CLOCK_PERIOD/2) clock <= ~clock; // Forever toggle the clock
-	end
-	
-	integer i,j;
-	
-	initial begin
-	reset <= 1; @(posedge clock);
-	reset <= 0;
-	zeroedMatrix[0][0] <= 3'd6; zeroedMatrix[0][1] <= 3'd6; zeroedMatrix[0][2] <= 3'd6; zeroedMatrix[1][0] <= 3'd7; 
-	zeroedMatrix[1][1] <= 3'd7; zeroedMatrix[1][2] <= 3'd7; zeroedMatrix[2][0] <= 3'd0; zeroedMatrix[2][1] <= 3'd0; 
-	zeroedMatrix[2][2] <= 3'd0;  
-	bias <= 17'b00000000010001010; 
-    weights = { 17'b11111111100110111,
-	17'b00000000000100010,
-	17'b11111111110101111,
-	17'b11111111111111001,
-	17'b00000000010111101,
-	17'b00000000011001010,
-	17'b00000000001000101,
-	17'b11111111110110011,
-	17'b00000000110001111
-	}; @(posedge clock);
-	//zeroedMatrix[0][0] <= 3'd1; @(posedge clock);
-	//zeroedMatrix[0][1] <= 3'd2; @(posedge clock);
-	$stop; // End the simulation.
-	end
-endmodule 
+//module conv2DsumNine_parameterized_testbench();
+//
+//	parameter filtDimension = 3, bitWidth = 17, inputWidth = 8, weightWidth = 9;
+//
+//	logic clock, reset;
+//	logic signed [bitWidth-1:0] zeroedMatrix [filtDimension-1:0][filtDimension-1:0];
+//	logic signed [bitWidth-1:0] weights [weightWidth-1:0];
+//	logic signed [bitWidth-1:0] bias;
+//	logic signed [bitWidth-1:0] sum;
+//	
+//	conv2DsumNine_parameterized #(filtDimension, bitWidth, inputWidth, weightWidth, 10) dut (.*);
+//	
+//	// Set up a simulated clock.
+//	parameter CLOCK_PERIOD=100;
+//	initial begin
+//		clock <= 0;
+//		forever #(CLOCK_PERIOD/2) clock <= ~clock; // Forever toggle the clock
+//	end
+//	
+//	integer i,j;
+//	
+//	initial begin
+//	reset <= 1; @(posedge clock);
+//	reset <= 0;
+//	zeroedMatrix[0][0] <= 3'd6; zeroedMatrix[0][1] <= 3'd6; zeroedMatrix[0][2] <= 3'd6; zeroedMatrix[1][0] <= 3'd7; 
+//	zeroedMatrix[1][1] <= 3'd7; zeroedMatrix[1][2] <= 3'd7; zeroedMatrix[2][0] <= 3'd0; zeroedMatrix[2][1] <= 3'd0; 
+//	zeroedMatrix[2][2] <= 3'd0;  
+//	bias <= 17'b00000000010001010; 
+//    weights = { 17'b11111111100110111,
+//	17'b00000000000100010,
+//	17'b11111111110101111,
+//	17'b11111111111111001,
+//	17'b00000000010111101,
+//	17'b00000000011001010,
+//	17'b00000000001000101,
+//	17'b11111111110110011,
+//	17'b00000000110001111
+//	}; @(posedge clock);
+//	//zeroedMatrix[0][0] <= 3'd1; @(posedge clock);
+//	//zeroedMatrix[0][1] <= 3'd2; @(posedge clock);
+//	$stop; // End the simulation.
+//	end
+//endmodule 

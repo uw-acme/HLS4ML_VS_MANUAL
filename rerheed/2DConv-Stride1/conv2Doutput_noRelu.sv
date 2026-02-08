@@ -13,8 +13,7 @@ module conv2Doutput_noRelu
 	#(parameter filtDimension = 3,
 	  parameter bitWidth = 17,
 	  parameter inputWidth = 8, 
-	  parameter weightWidth = 18, 
-	  parameter biasWidth = 2, 
+	  parameter biasWidth = 1, 
 	  parameter NFRAC = 10)
 		
 	 (clk, 
@@ -31,7 +30,7 @@ module conv2Doutput_noRelu
 	localparam TOTAL_PIXELS = inputWidth**2;
 	// this represents the number of clock cycles until enough pixels have been 
 	// streamed in to start sumNine computations
-	localparam LOAD_TIME = (filtDimension-2)*(inputWidth) + filtDimension +3;//- 1;
+	localparam LOAD_TIME = (filtDimension-2)*(inputWidth) + filtDimension +2;//- 1;
 	// will count until computations have fully finished
 	output logic [$clog2(TOTAL_PIXELS+LOAD_TIME)-1:0] counter;
 
@@ -76,7 +75,7 @@ module conv2Doutput_noRelu
 	// increment counter 
 	always_ff @(posedge clk) begin
 		if (reset) counter <= 0;
-		else counter <= counter + 1;
+		else counter <= counter + 7'b1;
 	end
 
 	// assign sum values to output matrix 
@@ -89,24 +88,47 @@ module conv2Doutput_noRelu
 	end
 
 	// true once the last sumNine computation has been completed
-	assign complete = counter > (TOTAL_PIXELS + LOAD_TIME + 1);
+	//assign complete = counter > (TOTAL_PIXELS + LOAD_TIME);
+	assign complete = !$isunknown(outputMatrix[TOTAL_PIXELS - 1]);
 endmodule
 
 module conv2Doutput_noRelu_testbench();
-
+//	// currently using this to act as a single 3x3 filter
+//	localparam logic signed [15:0] convWeights [0:8] = '{
+//		16'b0000000001110010,
+//		16'b0000000111101100,
+//		16'b1111111100001011,
+//		16'b0000000001011111,
+//		16'b0000000000001110,
+//		16'b0000001000001101,
+//		16'b0000000110011111,
+//		16'b0000000011001100,
+//		16'b1111111100010110
+//	};
+	parameter filtDimension = 3;
+	parameter bitWidth = 16;
+	parameter inputWidth = 8;
+	parameter weightWidth = 9;
+	parameter biasWidth = 1;
+	parameter NFRAC = 10;
+	
+	localparam int LOAD_TIME =
+		(filtDimension-2)*(inputWidth) + filtDimension + 3;
+	
 	logic clk, reset;
 	// current pixel that is being processed
-	logic signed [16:0]  inputPixel;
+	logic signed [bitWidth-1:0]  inputPixel;
 	// corresponding biases for each filter
-	logic signed [16:0]  biases [1:0];
+	logic signed [bitWidth-1:0]  biases [biasWidth-1:0];
 
-	logic signed [16:0] outputMatrix [127:0]; 
+	logic signed [bitWidth-1:0] outputMatrix [inputWidth*inputWidth*biasWidth-1:0]; 
 	logic complete;
 	logic [6:0] counter;
-	logic signed [16:0] paddedMatrix       [2:0][2:0];
-	logic signed [16:0] sum 			   [1:0];
+	logic signed [bitWidth-1:0] paddedMatrix       [filtDimension-1:0][filtDimension-1:0];
+	logic signed [bitWidth-1:0] sum 			   [biasWidth-1:0];
 	
-	logic signed [16:0] currentConvMatrix [2:0][2:0];
+	logic signed [bitWidth-1:0] currentConvMatrix [filtDimension-1:0][filtDimension-1:0];
+
 	
 	parameter ClockDelay = 20000;
 
@@ -115,19 +137,46 @@ module conv2Doutput_noRelu_testbench();
 		forever #(ClockDelay/2) clk <= ~clk;
 	end
 		
-	conv2Doutput_noRelu #(3,17,8,18,2,10) dut (.*);
+	conv2Doutput_noRelu #(filtDimension,bitWidth,inputWidth,weightWidth,biasWidth,NFRAC) dut (.*);
 	
 	initial begin
 		reset = 1; @(posedge clk);
 		reset = 0;
 		for (int i = 0; i < 100; i++) begin
 			inputPixel = i;
-			biases[0] = 2;
-			biases[1] = 1;
+			biases[0] = 0;
+//			/biases[1] = 1;
 			@(posedge clk);
 		end
 		$stop;
 	end
 	
+//	logic signed [bitWidth-1:0] test_sum;
+//	logic signed [bitWidth-1:0] test_sum_d1, test_sum_d2;
+//	
+//	always_ff @(posedge clk) begin
+//	  test_sum_d1 <= test_sum;
+//	  test_sum_d2 <= test_sum_d1;
+//	end
+//
+//
+//	always @(posedge clk) begin
+//	  if (counter > LOAD_TIME && !complete) begin
+//		 test_sum = '0;
+//
+//		 for (int k = 0; k < filtDimension*filtDimension; k++) begin
+//			test_sum += dut.eachSumNine[0].sumBasedFilter1.truncProductArr[k];
+//		 end
+//
+//		 test_sum += biases[0];
+//
+//		 if (test_sum_d2 !== sum[0]) begin
+//			$display("MISMATCH idx=%0d TEST_SUM=%0d DUT=%0d",
+//						counter-LOAD_TIME-1, test_sum_d2, sum[0]);
+//		 end
+//	  end
+
+
+
 
 endmodule
