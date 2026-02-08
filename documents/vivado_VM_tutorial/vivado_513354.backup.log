@@ -1,0 +1,44 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Tue Oct 14 12:25:07 2025
+# Process ID         : 513354
+# Current directory  : /home/leo/HLS4ML_VS_MANUAL/documents/vivado_VM_tutorial
+# Command line       : vivado -mode batch -source Simple_Script.tcl -log vivado.log -nojournal -notrace
+# Log file           : /home/leo/HLS4ML_VS_MANUAL/documents/vivado_VM_tutorial/vivado.log
+# Journal file       : 
+# Running On         : hvm1
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 22.04.5 LTS
+# Processor Detail   : Intel Xeon Processor (Cascadelake)
+# CPU Frequency      : 2100.006 MHz
+# CPU Physical cores : 18
+# CPU Logical cores  : 18
+# Host memory        : 33648 MB
+# Swap memory        : 0 MB
+# Total Virtual      : 33648 MB
+# Available Virtual  : 19065 MB
+#-----------------------------------------------------------
+source Simple_Script.tcl -notrace
+Command: synth_design -top top -part xc7k160tfbg484-3
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7k160t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k160t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 513420
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1933.984 ; gain = 421.078 ; free physical = 1802 ; free virtual = 17226
+---------------------------------------------------------------------------------
+ERROR: [Synth 8-439] module 'top' not found
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2005.953 ; gain = 493.047 ; free physical = 1713 ; free virtual = 17137
+---------------------------------------------------------------------------------
+synthesize failed
+INFO: [Common 17-83] Releasing license: Synthesis
+5 Infos, 0 Warnings, 0 Critical Warnings and 2 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Tue Oct 14 12:25:19 2025...

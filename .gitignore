@@ -37,3 +37,13 @@ src/hdl/Batchnorm-JetTagging/python/hls4ml.log
 src/hdl/Batchnorm-JetTagging/python/output.log
 *vivado*
 src/hdl/Batchnorm-JetTagging/handmade/vsim.wlf
+
+src/hdl/TopTagging-HLS/model_gru_hls/hls4ml_prj/
+src/hdl/TopTagging-HLS/model_lstm_hls/hls4ml_prj/
+
+*.jou
+*.log
+*.rpt
+
+documents/Benchmarks/Toptag/Miniconda3-latest-Linux-x86_64.sh
+*.sh
