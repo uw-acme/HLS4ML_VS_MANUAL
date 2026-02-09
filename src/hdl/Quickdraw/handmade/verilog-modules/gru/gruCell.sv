@@ -176,8 +176,8 @@ module gruCell_tb();
                MEM_WIDTH       = 10,
                sigmoid_TABLE_SIZE_POW  = 10,
                tanh_TABLE_SIZE_POW = 9,
-               sigmoid_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/sigmoid_BRAM_binaries/memw10_size1024_sigmoidBRAM.mem",
-               tanh_BRAM_FILE = "U:/home/jiuyal2/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem";
+               sigmoid_BRAM_FILE = "./pkg_gen_gru/binaries/sigmoid_BRAM_binaries/memw10_size1024_sigmoidBRAM.mem",
+               tanh_BRAM_FILE = "./pkg_gen_gru/binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem";
    logic clk;
    logic reset;
    logic signed [WIDTH-1:0] x_t [0:x_SIZE-1];

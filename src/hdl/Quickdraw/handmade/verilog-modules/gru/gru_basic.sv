@@ -172,8 +172,8 @@ module gru_basic_tb;
         .NFRAC               ( 10 ),
         .SIGMOID_TABLE_SIZE_POW ( 10 ),
         .TANH_TABLE_SIZE_POW    ( 9 ),
-        .SIGMOID_BRAM_FILE   ( "memw10_size1024_sigmoidBRAM.mem" ),
-        .TANH_BRAM_FILE      ( "memw10_size512_tanhBRAM.mem" )
+        .SIGMOID_BRAM_FILE   ( "./pkg_gen_gru/binaries/sigmoid_BRAM_binaries/memw10_size1024_sigmoidBRAM.mem" ),
+        .TANH_BRAM_FILE      ( "./pkg_gen_gru/binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem" )
     ) dut (
         .clk(clk),
         .reset(reset),

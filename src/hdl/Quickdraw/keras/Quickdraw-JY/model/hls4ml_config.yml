@@ -1,0 +1,77 @@
+Backend: Vivado
+ClockPeriod: 5
+ClockUncertainty: 12.5%
+HLSConfig:
+  LayerName:
+    dense_27:
+      Precision:
+        bias: auto
+        result: auto
+        weight: auto
+      Trace: false
+    dense_27_linear:
+      Precision:
+        result: auto
+      Trace: false
+    dense_28:
+      Precision:
+        bias: auto
+        result: auto
+        weight: auto
+      Trace: false
+    dense_28_linear:
+      Precision:
+        result: auto
+      Trace: false
+    gru_13:
+      Precision:
+        bias: auto
+        recurrent_bias: auto
+        recurrent_weight: auto
+        result: auto
+        weight: auto
+      Trace: false
+    input_16:
+      Precision:
+        result: auto
+      Trace: false
+    rnn_densef:
+      Precision:
+        bias: auto
+        result: auto
+        weight: auto
+      Trace: false
+    rnn_densef_softmax:
+      Precision:
+        result: auto
+      Trace: false
+      implementation: argmax
+  Model:
+    BitExact: null
+    BramFactor: 1000000000
+    Precision:
+      default: ap_fixed<20,10>
+    ReuseFactor: 1
+    Strategy: Resource
+    TraceOutput: false
+IOType: io_stream
+InputData: null
+InputShapes:
+  input_16:
+  - 100
+  - 3
+KerasModel: !keras_model 'model//keras_model.keras'
+OutputDir: model/
+OutputPredictions: null
+OutputShapes:
+  layer8_out:
+  - 5
+Part: xc7vx690tffg1761-2
+ProjectName: myproject
+Stamp: bd4d38ef
+Version: 1.0.0
+WriterConfig:
+  Namespace: null
+  TBOutputStream: both
+  WriteTar: false
+  WriteWeightsTxt: true
