@@ -50,6 +50,7 @@ module conv2DsumNine_parameterized
          // assign weightsArr[row] = data16_10::convWeights[filtDimension**2*whichFilt+row];
 
 			// actual
+			// AT SOME POINT PARAMETERIZE THE FILE NAME OF WHERE THAT PACKAGE WITH THE CONVWEIGHTS IS LOCATED
 			shift_add #(data16_10::convWeights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC, 5) // 3 = shift add depth, 5=DEPTH_FRAC
 			// for testing
 			// shift_add_with_mult #(weights[filtDimension**2*whichFilt+row], 3, bitWidth, NFRAC) 
@@ -63,15 +64,17 @@ module conv2DsumNine_parameterized
 			// generate a shift add module for each spot within the filter
             sa (.clk(clock), .data_in(currMatrix[row/filtDimension][row%filtDimension]), .data_out(productArr[row]));  // store product in productArr
 
-			// NEW VERSION that preserves MSB from non-truncated version (MSB + productArr[NFRAC+bitWidth-2:NFRAC])
-			assign truncProductArr[row] = {productArr[row][bitWidth*2-1], productArr[row][NFRAC+bitWidth-2:NFRAC]}; 
+			// VERSION THAT PRESERVES MSB from non-truncated version (MSB + productArr[NFRAC+bitWidth-2:NFRAC])
+			// assign truncProductArr[row] = {productArr[row][bitWidth*2-1], productArr[row][NFRAC+bitWidth-2:NFRAC]}; 
+			// VERSION THAT TRUNCATES WITHOUT PRESERVING MSB
+			assign truncProductArr[row] = productArr[row][NFRAC+bitWidth-1:NFRAC];
 
 			// the line below truncates the value to the correct number of bits, but the MSB of the truncated version is NOT
 			// the MSB in the non-truncated version, which isn't how it's supposed to be. The MSB of the truncated version
 			// should be the MSB of the non-truncated version because that's the sign bit.
             // assign truncProductArr[row] = productArr[row][NFRAC+bitWidth-1:NFRAC];	// truncation to keep original number of integer and fractional bits
         end
-   endgenerate 
+    endgenerate 
 
 	// DO WE NEED TO DEAL WITH OVERFLOW???
     // then go through and sum up the current matrix every clock cycle
@@ -79,6 +82,7 @@ module conv2DsumNine_parameterized
     // assign tempSum = productArr[0] + productArr[1] + productArr[2] + productArr[3] + productArr[4] + productArr[5] + productArr[6] + productArr[7] + productArr[8];
  
     // add bias to sum
+	// DO WE NEED TO TRUNCATE AFTER ADDING BIAS? IS THERE RISK OF OVERFLOW?
     assign sum = tempSum + bias;
     
 endmodule

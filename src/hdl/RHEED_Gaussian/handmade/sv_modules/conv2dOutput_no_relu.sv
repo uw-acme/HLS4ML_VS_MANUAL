@@ -9,15 +9,15 @@
 // it also outputs when calculations are complete, the signal complete which for an
 // 8x8 input matrix is after 64 clock cycles.
 module conv2dOutput_no_relu  #(parameter filtDimension = 3, parameter bitWidth = 17,
-parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, parameter NFRAC = 10)
-(clk, reset, inputPixel, biases, outputMatrix, complete);
+parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
+(clk, reset, inputPixel, biases, outputMatrix, complete, newValidOutput, validOutputIdx, newOutputValues);
 
 	input logic clk, reset;
 	input logic signed [bitWidth-1:0]  inputPixel;
 
 	// biasWidth = # of filters = number of biases = number of output channels
 	// (1 bias value per filter)
-	input logic signed [bitWidth-1:0]  biases [biasWidth-1:0]; 
+	input logic signed [bitWidth-1:0]  biases [0:biasWidth-1]; 
 	
 	logic signed [bitWidth-1:0] currConvMatrix [filtDimension-1:0][filtDimension-1:0];
 
@@ -26,7 +26,7 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 	logic signed [bitWidth-1:0] sum [biasWidth-1:0];
 
 	// number of pixels in the OUTPUT image
-	localparam TOTAL_PIXELS = (inputWidth-2)*(inputWidth-2);
+	localparam TOTAL_PIXELS = (inputWidth-filtDimension+1)*(inputWidth-filtDimension+1);
 
 	// number of cycles needed to stream in enough input pixels to fill up the matrix for the first time
 	localparam LOAD_TIME = inputWidth*(filtDimension-1) + filtDimension;
@@ -43,14 +43,28 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
     logic [$clog2(inputWidth)-1:0] currCol;
 	
 	// keeps track of which output matrix index to assign the sums to
-	logic [$clog2(inputWidth-2)-1:0] currRow; 
+	logic [$clog2(inputWidth-filtDimension+1)-1:0] currRow; 
 	
-	// output matrix width is inputWidth-2 in case of no padding
+	// output matrix width is inputWidth-filtDimension+1 in case of no padding
 	// with padding, use [inputWidth*inputWidth*biasWidth:0] assuming stride 1
 	output logic signed [bitWidth-1:0] outputMatrix [TOTAL_PIXELS*biasWidth-1:0];
 
 	// signal that indicates that the convolution is complete
 	output logic complete;
+
+	// FOR TESTING
+	// signal that indicates when the output matrix is updated with a new output pixel.
+	output logic newValidOutput;
+
+	// FOR TESTING
+	// the index within the 1st output channel of the output matrix that just updated with a new output pixel
+	// when there are multiple output channels, add TOTAL_PIXELS to this index for however many output channels there are
+	// to get all the indices of the new pixels in the clock cycle
+	output logic [$clog2(TOTAL_PIXELS):0] validOutputIdx;
+
+	// FOR TESTING
+	// the list values added to the output matrix during a given clock cycle
+	output logic signed [bitWidth-1:0] newOutputValues [biasWidth-1:0];
 	
 
 	// input the new pixel and output the convolutional matrix
@@ -93,23 +107,28 @@ parameter inputWidth = 8, parameter weightWidth = 18, parameter biasWidth = 2, p
 
                 // if (currCol < (inputWidth - filtDimension + 2)) begin // while not skipping
 				if (currCol < (inputWidth - filtDimension + 1)) begin // while not skipping
-
                     /* 
                     assign dot products to the output matrix in the format:
 			        [(output channel 1 pixel 0~n), (output channel 2 pixel 0~n), ..., (output channel m pixel 0~n)]
 			        */
-					// subtracting 2*currRow accounts for skips in pixel assignments to the output due to no-padding implementation
+					// subtracting (filtDimension-1)*currRow accounts for skips in pixel assignments to the output due to no-padding implementation
                     for (j=0; j<biasWidth; j++) begin
-                        outputMatrix[counter-LOAD_TIME-COMPUTATION_TIME-1 - 2*currRow + TOTAL_PIXELS*j] <= sum[j]; 
+                        outputMatrix[counter-LOAD_TIME-COMPUTATION_TIME-1 - (filtDimension-1)*currRow + TOTAL_PIXELS*j] <= sum[j]; 
                     end
+
+					// FOR TESTING: 
+					newValidOutput <= 1'b1;
+					validOutputIdx <= counter-LOAD_TIME-COMPUTATION_TIME-1 - (filtDimension-1)*currRow;
+					newOutputValues <= sum;
                 end
+				// FOR TESTING
+				else begin // while skipping
+					newValidOutput <= 1'b0;
+				end
 			end
 		end
 	end
 
-	// when counter == LOAD_TIME + COMPUTATION_TIME + TOTAL_PIXELS, currConvMatrix for the last computation is determined
-	// when counter > LOAD_TIME + COMPUTATION_TIME + TOTAL_PIXELS, the last sum has been computed
-	// when counter > LOAD_TIME + COMPUTATION_TIME + TOTAL_PIXELS + 1, the last pixel has been assigned to the outputMatrix
 	//assign complete = (counter > (LOAD_TIME + COMPUTATION_TIME + inputWidth*inputWidth + 1));
 	assign complete = !$isunknown(outputMatrix[TOTAL_PIXELS-1]);
 
@@ -117,20 +136,23 @@ endmodule
 
 
 module conv2dOutput_no_relu_testbench();
-	parameter filtDimension = 3, bitWidth = 16, inputWidth = 8, weightWidth = 18, biasWidth = 2, NFRAC = 10;
+	parameter filtDimension = 3, bitWidth = 16, inputWidth = 8, biasWidth = 2, NFRAC = 10;
 
-	localparam TOTAL_PIXELS = (inputWidth-2)*(inputWidth-2);
+	localparam TOTAL_PIXELS = (inputWidth-filtDimension+1)*(inputWidth-filtDimension+1);
 	localparam LOAD_TIME = inputWidth*(filtDimension-1);
 	localparam COMPUTATION_TIME = 3;
 
 	logic clk, reset;
 	logic signed [bitWidth-1:0]  inputPixel;
-	logic signed [bitWidth-1:0]  biases [biasWidth-1:0]; 
+	logic signed [bitWidth-1:0]  biases [0:biasWidth-1]; 
 	logic signed [bitWidth-1:0] outputMatrix [TOTAL_PIXELS*biasWidth-1:0];
 	logic complete;
 
+
 	// dut
-	conv2Doutput_no_relu #(filtDimension, bitWidth, inputWidth, weightWidth, biasWidth, NFRAC) dut (.*);
+	conv2dOutput_no_relu #(filtDimension, bitWidth, inputWidth, biasWidth, NFRAC) dut (.*);
+
+	assign biases = data16_10::convBiases;
 
 	// set up simulated clock
 	parameter CLOCK_PERIOD = 100;
@@ -143,10 +165,6 @@ module conv2dOutput_no_relu_testbench();
 	initial begin
 		reset <= 1'b1;	@(posedge clk);
 		reset <= 1'b0;  
-		biases <= {
-			16'b0000000000000001, // index 1
-			16'b0000000000000000  // index 0
-			};
 		
 		for (i=0; i<inputWidth**2; i++) begin
 			inputPixel <= bitWidth'(i);
