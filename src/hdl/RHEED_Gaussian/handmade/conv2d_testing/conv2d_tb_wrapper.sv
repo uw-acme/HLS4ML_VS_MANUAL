@@ -25,18 +25,9 @@ module conv2d_tb_wrapper();
     logic signed [bitWidth-1:0] weights [0:filtDimension**2*biasWidth-1];
     logic signed [bitWidth-1:0] outputMatrixGT [TOTAL_PIXELS*biasWidth-1:0];
 
-    assign inputMatrix = '{
-    '{16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0, 16'd0},
-    '{16'd1, 16'd1, 16'd1, 16'd1, 16'd1, 16'd1, 16'd1, 16'd1},
-    '{16'd2, 16'd2, 16'd2, 16'd2, 16'd2, 16'd2, 16'd2, 16'd2},
-    '{16'd3, 16'd3, 16'd3, 16'd3, 16'd3, 16'd3, 16'd3, 16'd3},
-    '{16'd4, 16'd4, 16'd4, 16'd4, 16'd4, 16'd4, 16'd4, 16'd4},
-    '{16'd5, 16'd5, 16'd5, 16'd5, 16'd5, 16'd5, 16'd5, 16'd5},
-    '{16'd6, 16'd6, 16'd6, 16'd6, 16'd6, 16'd6, 16'd6, 16'd6},
-    '{16'd7, 16'd7, 16'd7, 16'd7, 16'd7, 16'd7, 16'd7, 16'd7}
-    };
-    assign biases = data16_10::convBiases;
-    assign weights = data16_10::convWeights;
+    assign inputMatrix = test_data::inputMatrix;
+    assign biases = test_data::convBiases;
+    assign weights = test_data::convWeights;
 
     // true output generation
     ground_truths #(inputWidth, filtDimension, bitWidth, biasWidth, NFRAC) true_outputs (.*);
@@ -49,20 +40,99 @@ module conv2d_tb_wrapper();
 		forever #(CLOCK_PERIOD/2) clk <= ~clk;
 	end
 
-    integer i, idx;
     // check that the output is correct at the time it shows up
+    integer i, idx;
     always_ff @(posedge clk) begin
         if (dut.newValidOutput) begin
             for (i=0; i<biasWidth; i++) begin
                 idx = TOTAL_PIXELS*i+ dut.validOutputIdx;
-                assert(dut.outputMatrix[idx] == true_outputs.outputMatrixGT[idx])
-                    $display("PASS      dut: %0d, expected: %0d", dut.outputMatrix[idx], true_outputs.outputMatrixGT[idx]);
+                assert(dut.newOutputValues[i] == true_outputs.outputMatrixGT[idx])
+                    $display("PASS      dut: %0d, expected: %0d", dut.newOutputValues[i], true_outputs.outputMatrixGT[idx]);
                 else 
-                    $error("FAIL      dut: %0d, expected: %0d", dut.outputMatrix[idx], true_outputs.outputMatrixGT[idx]);
+                    $error("FAIL      dut: %0d, expected: %0d", dut.newOutputValues[i], true_outputs.outputMatrixGT[idx]);
             end
         end 
     end
- 
+
+    // NOW: check that the outputs are produced at the correct timing
+    logic [$clog2(TOTAL_PIXELS+1):0] counter;
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            counter <= 0;
+        end
+        else begin
+            counter <= counter + 1;
+            // make sure the first valid output pixel is produced at the correct time
+            if(((counter <= LOAD_TIME + COMPUTATION_TIME) && dut.newValidOutput))
+                $error("output produced too early");
+            if((counter == LOAD_TIME + COMPUTATION_TIME + 1) && !dut.newValidOutput)
+                $error("initial output produced too late");
+        end
+    end
+    // check valid output sequence with correct pauses for no-padding implementation
+    logic [$clog2(inputWidth):0] validHighCount, validLowCount;
+    logic validHigh, firstTime; 
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            firstTime <= 1'b1;
+            validHighCount <= 0;
+            validLowCount <= 0;
+        end
+        else begin
+            if (!validHigh && dut.newValidOutput) begin // positive edge of dut.newValidOutput, low count still 0
+                validHigh <= 1'b1;
+                validHighCount <= 1;
+                if (firstTime) begin
+                    firstTime <= 1'b0;
+                end 
+                else begin
+                    assert(validLowCount == filtDimension-1);
+                end
+            end
+            else if (validHigh && dut.newValidOutput) begin // dut.newValidOutput already low
+                    validHighCount <= validHighCount + 1;
+            end
+            else if (validHigh && !dut.newValidOutput) begin // negative edge of dut.newValidOutput
+                validHigh <= 1'b0;
+                validLowCount <= 1;
+                assert(validHighCount == inputWidth-filtDimension+1);
+            end
+            else if (!validHigh && !dut.newValidOutput) begin // dut.newValidOutput already low
+                validLowCount <= validLowCount + 1;
+            end
+        end
+    end
+
+
+    /////////////////NOT SUPPORTED BY MODELSIM////////////////////
+    // // timing of valid output values to the output matrix resulting from no-padding implementation
+    // // (skipping at the end of every row)
+    // // high for inputWidth-filtDimension+1 cycles, low for filDimension-1 cycles
+    // sequence validOutputSeq;
+    //     dut.newValidOutput[*inputWidth-filtDimension+1] ##1 !dut.newValidOutput[*filtDimension-1];
+    // endsequence
+
+    // property noPaddingDelay;
+    //     @(posedge clk)
+    //     $rose(dut.newValidOutput) |=> validOutputSeq;
+    // endproperty
+
+    // assert property(noPaddingDelay) 
+    //     $display("PASS: noPAddingDelay");
+    // else 
+    //     $error("FAIL: noPaddingDelay");
+
+    // // check that valid outputs start after the correct delay
+    // property initialDelay;
+    //     @(posedge clk)
+    //     $fell(reset) |-> ##(LOAD_TIME + COMPUTATION_TIME) dut.newValidOutput;
+    // endproperty
+
+    // assert property(initialDelay) 
+    //     $display("PASS: initialDelay");
+    // else 
+    //     $error("FAIL: initialDelay");
+
 
     // stimulus
     integer j, k;
