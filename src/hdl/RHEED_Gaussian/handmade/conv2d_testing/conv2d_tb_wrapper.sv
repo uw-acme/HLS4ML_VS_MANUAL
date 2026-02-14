@@ -65,11 +65,18 @@ module conv2d_tb_wrapper();
             // make sure the first valid output pixel is produced at the correct time
             if(((counter <= LOAD_TIME + COMPUTATION_TIME) && dut.newValidOutput))
                 $error("output produced too early");
-            if((counter == LOAD_TIME + COMPUTATION_TIME + 1) && !dut.newValidOutput)
+            else if((counter == LOAD_TIME + COMPUTATION_TIME + 1) && !dut.newValidOutput)
                 $error("initial output produced too late");
+
+            // only for RHEED FOLO: check that newValidOutput is high for every clock cycle once outputs become valid,
+            // until the end of the computation when the "complete" signal goes high (check that outputs are continually
+            // produced until the end)
+            // else if ((counter >= LOAD_TIME + COMPUTATION_TIME + 1) && !complete && !dut.newValidOutput)
+            //     $error("failed to produce new valid output")
         end
     end
-    // check valid output sequence with correct pauses for no-padding implementation
+
+    // only for RHEED Gaussian: check valid output sequence with correct pauses for no-padding implementation
     logic [$clog2(inputWidth):0] validHighCount, validLowCount;
     logic validHigh, firstTime; 
     always_ff @(posedge clk) begin
