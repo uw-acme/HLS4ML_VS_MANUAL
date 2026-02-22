@@ -75,30 +75,52 @@ module LSTM #( parameter
     );
 
     // Split into 4 parts
-    logic [2*WIDTH-1:0] combined [INPUT_SIZE-1:0];
+    logic [2*WIDTH-1:0] combined [OUTPUT_SIZE*4-1:0];
     genvar i;
     generate
-    for (int i=0; i<INPUT_SIZE; i++) begin : combination
-            always_comb 
+    for (int i=0; i<OUTPUT_SIZE*4; i++) begin : combination
+            always_comb begin
                 combined[i] = dense_outputh[i]+dense_outputx[i];
+            end
         end
     endgenerate
 
-    logic [WIDTH-1:0] ft_a, it_a, c_t_a, ot_a;
+    logic [WIDTH-1:0] ft_a [OUTPUT_SIZE-1:0], it_a [OUTPUT_SIZE-1:0], c_t_a [OUTPUT_SIZE-1:0], ot_a [OUTPUT_SIZE-1:0];
+    logic [WIDTH-1:0] ft [OUTPUT_SIZE-1:0], it [OUTPUT_SIZE-1:0], c_t [OUTPUT_SIZE-1:0], ot [OUTPUT_SIZE-1:0], ht_n[OUTPUT_SIZE-1:0];
+
     assign {ft_a, it_a, c_t_a, ot_a} = combined;
-
-    
     // ft = sigmoid(Wfh*ht_1+Wfx*xt+bf) 
-
+    sigmoid #(.WIDTH(WIDTH),
+            .NFRAC(WIDTH-NINT)) sigmaf (.clk, .reset, .input_data(ft_a), .output_data(ft));
     // it = sigmoid(Wih*ht_1+Wix*xt+bi) 
-
+    sigmoid #(.WIDTH(WIDTH),
+            .NFRAC(WIDTH-NINT)) sigmai (.clk, .reset, .input_data(it_a), .output_data(it));
     // c~t = tanh(Wch*ht_1+Wcx*xt+bc 
-
-    // ct = ft*ct-1+it*c~t
-
+    sigmoid #(.WIDTH(WIDTH),
+            .NFRAC(WIDTH-NINT)) sigmac (.clk, .reset, .input_data(c_t_a), .output_data(c_t));
+    // ct = ft*ct_1+it*c~t
+    for (int i=0; i<OUTPUT_SIZE; i++){
+        assign ct[i] = ft[i]*ct_1[i]+it[i]*c_t[i];
+    }
+    
     // ot = sigmoid(Woh*ht_1+Wox*xt+bo) 
+    sigmoid #(.WIDTH(WIDTH),
+            .NFRAC(WIDTH-NINT)) 
+            sigmao 
+            (.clk, .reset, .input_data(ot_a), .output_data(ot));
 
     // ht = ot*tanh(ct)
+    tanhActivationLayer #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT), .SIZE(OUTPUT_SIZE))
+    newht (
+        .clk, .reset, .input_data(ct), .output_data(ht_n)
+    );
+    for (int i=0; i<OUTPUT_SIZE; i++){
+        always_ff @( posedge clk ) begin
+            ht[i] <= ht_n[i]*ot[i];
+        end
+    }
+
+
 
 
     
@@ -106,21 +128,5 @@ module LSTM #( parameter
     // Sigmoid !
     // Elementwise multiplier/dense layer
     // Tanh !
-
-endmodule
-
-
-module LSTM_cell #(parameter 
-        WIDTH=16,
-        NINT=6
-        )(
-            input logic [WIDTH-1:0] xt,
-            output logic [WIDTH-1:0] ht
-        );
-
-        logic [WIDTH-1:0] ht_1;
-        logic [WIDTH-1:0] ct_1;
-        logic [WIDTH-1:0] ct;
-        
 
 endmodule
