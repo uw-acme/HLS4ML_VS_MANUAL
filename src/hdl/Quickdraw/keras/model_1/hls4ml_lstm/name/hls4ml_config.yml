@@ -2,84 +2,6 @@ Backend: Vivado
 ClockPeriod: 5
 ClockUncertainty: 12.5%
 HLSConfig:
-  LayerName:
-    conv1d:
-      Precision:
-        bias: auto
-        result: auto
-        weight: auto
-      Trace: true
-    conv1d_1:
-      Precision:
-        bias: auto
-        result: auto
-        weight: auto
-      Trace: true
-    conv1d_1_linear:
-      Precision:
-        result: auto
-      Trace: true
-    conv1d_2:
-      Precision:
-        bias: auto
-        result: auto
-        weight: auto
-      Trace: true
-    conv1d_2_linear:
-      Precision:
-        result: auto
-      Trace: true
-    conv1d_linear:
-      Precision:
-        result: auto
-      Trace: true
-    input_1:
-      Precision:
-        result: auto
-      Trace: true
-    lstm_10:
-      Precision:
-        bias: auto
-        recurrent_bias: auto
-        recurrent_weight: auto
-        result: auto
-        weight: auto
-      Trace: true
-    lstm_11:
-      Precision:
-        bias: auto
-        recurrent_bias: auto
-        recurrent_weight: auto
-        result: auto
-        weight: auto
-      Trace: true
-    output_softmax:
-      Precision:
-        result: auto
-      Trace: true
-      implementation: argmax
-    relu_0:
-      Precision:
-        result: auto
-      Trace: true
-    relu_1:
-      Precision:
-        result: auto
-      Trace: true
-    relu_2:
-      Precision:
-        result: auto
-      Trace: true
-    rnn_densef:
-      Precision:
-        bias: auto
-        result: auto
-        weight: auto
-      Trace: true
-    rnn_densef_linear:
-      Precision:
-        result: auto
-      Trace: true
   Model:
     BitExact: null
     BramFactor: 1000000000
@@ -102,7 +24,7 @@ OutputShapes:
   - 5
 Part: xc7vx690tffg1761-2
 ProjectName: myproject
-Stamp: 6a8c5b39
+Stamp: 2d77fb71
 Version: 1.0.0
 WriterConfig:
   Namespace: null

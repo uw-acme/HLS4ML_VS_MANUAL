@@ -1,0 +1,87 @@
+LayerName:
+  conv1d:
+    Precision:
+      bias: ap_fixed<20,10>
+      result: ap_fixed<20,10>
+      weight: ap_fixed<20,10>
+    Trace: false
+  conv1d_1:
+    Precision:
+      bias: ap_fixed<20,10>
+      result: ap_fixed<20,10>
+      weight: ap_fixed<20,10>
+    Trace: false
+  conv1d_1_linear:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  conv1d_2:
+    Precision:
+      bias: ap_fixed<20,10>
+      result: ap_fixed<20,10>
+      weight: ap_fixed<20,10>
+    Trace: false
+  conv1d_2_linear:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  conv1d_linear:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  input_1:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  lstm_10:
+    Precision:
+      bias: ap_fixed<20,10>
+      recurrent_bias: ap_fixed<20,10>
+      recurrent_weight: ap_fixed<20,10>
+      result: ap_fixed<20,10>
+      weight: ap_fixed<20,10>
+    Trace: false
+    ReuseFactor: 1
+  lstm_11:
+    Precision:
+      bias: ap_fixed<20,10>
+      recurrent_bias: ap_fixed<20,10>
+      recurrent_weight: ap_fixed<20,10>
+      result: ap_fixed<20,10>
+      weight: ap_fixed<20,10>
+    Trace: false
+    ReuseFactor: 1
+  output_softmax:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  relu_0:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  relu_1:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  relu_2:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+  rnn_densef:
+    Precision:
+      bias: ap_fixed<20,10>
+      result: ap_fixed<20,10>
+      weight: ap_fixed<20,10>
+    Trace: false
+  rnn_densef_linear:
+    Precision:
+      result: ap_fixed<20,10>
+    Trace: false
+Model:
+  BitExact: null
+  BramFactor: 1000000000
+  Precision:
+    default: ap_fixed<20,10>
+  ReuseFactor: 1
+  Strategy: Latency
+  TraceOutput: false
