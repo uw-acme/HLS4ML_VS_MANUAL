@@ -7,9 +7,9 @@
 #define B13_H_
 
 #ifndef __SYNTHESIS__
-rnn_densef_bias_t b13[5];
+model_default_t b13[5];
 #else
-rnn_densef_bias_t b13[5] = {0.0212103501, 0.0401304141, 0.0390663445, -0.0109474417, -0.0685225800};
+model_default_t b13[5] = {0.0212103501, 0.0401304141, 0.0390663445, -0.0109474417, -0.0685225800};
 
 #endif
 
