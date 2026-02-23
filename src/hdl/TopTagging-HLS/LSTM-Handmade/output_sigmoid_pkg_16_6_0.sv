@@ -1,6 +1,6 @@
 //Width: 16
 //Int: 6
-package output_sigmoid_16_6;
+package output_sigmoid_0_16_6;
 
 localparam logic signed [15:0] weights [64][1] = '{
 {16'b0000000101001110},

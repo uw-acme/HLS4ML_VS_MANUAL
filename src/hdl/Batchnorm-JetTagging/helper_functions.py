@@ -205,7 +205,7 @@ def gen_weight(accuracy, model, output):
                 with open(filename, "w") as f:
                     # Writes the header to the file
                     f.write(f"//Width: {accuracy[0]}\n//Int: {accuracy[1]}\n")
-                    f.write(f"package {name}_{accuracy[0]}_{accuracy[1]};\n\n")
+                    f.write(f"package {name}_{i}_{accuracy[0]}_{accuracy[1]};\n\n")
                     f.write(f"localparam logic signed [{accuracy[0]-1}:0] weights [{len(weight)}][{len(weight[0])}] = '" + "{\n")
 
                     # Writes the main body of the function
