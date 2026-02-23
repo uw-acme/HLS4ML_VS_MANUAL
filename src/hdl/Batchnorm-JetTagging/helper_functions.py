@@ -107,7 +107,12 @@ def file_to_array(file, length):
          num = f.readline()
     f.close()
     return arr
-def gen_weight(accuracy):
+def dump_weights(model, output):
+    for layer in model.layers:
+        np.savetxt(f"{layer.name}_weights.txt", layer.get_weights()[0])
+        np.savetxt(f"{layer.name}_biases.txt", layer.get_weights()[1])
+
+def gen_weight_txt(accuracy, weights_file, biases_file, output):
     """
     Generate weight and bias packages from text files
     :param accuracy: Accuracy for packages. Formatted (width, integers)
@@ -127,8 +132,8 @@ def gen_weight(accuracy):
         ind = ind+1
 
         # Where the source weights and biases are
-        weights_file = f"../weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_weights.txt"
-        biases_file = f"../weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_biases.txt"
+        # weights_file = f"../weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_weights.txt"
+        # biases_file = f"../weights/dense_{ind}_weights_biases_pkgs/dense_{ind}_biases.txt"
 
         # Converting the files to arrays
         weight = file_to_array(weights_file, layer)
@@ -159,3 +164,63 @@ def gen_weight(accuracy):
                     num = dec_to_bin(bias[i]*(2**Nfrac), accuracy[0])
                     f.write(f"{head}{num}")
                     f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
+
+def gen_weight(accuracy, model, output):
+    """
+    Generate weight and bias packages from keras model
+    :param accuracy: Accuracy for packages. Formatted (width, integers)
+    :type accuracy: (int, int)
+
+    """
+    # The start of each number
+    head = f"{accuracy[0]}'b"
+
+    Nfrac = accuracy[0] - accuracy[1]
+    # The amount of weights for each layer
+    current = 0
+    for layer in model.layers:
+        contents = layer.get_weights()
+        if (contents!=None):
+            # contents = np.concatenate((contents, np.zeros(len(contents[1]))), axis=1)
+            weights = []
+            biases = []
+            for cont in contents:
+                try:
+                    len(cont[0])
+                    weights.append(cont)
+                except:
+                    biases.append(cont)
+            if (len(weights)!=len(biases)):
+                print(len(weights), len(biases))
+                biases.append(np.zeros_like(biases[0]))
+            for i in range(len(weights)):
+                name = layer.name
+                # Converting the files to arrays
+                weight = weights[i]
+                bias = biases[i]
+
+                # Output file name
+                filename = f"{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i/2}.sv"
+                if (not os.path.isfile(filename)):
+                    with open(filename, "w") as f:
+                        # Writes the header to the file
+                        f.write(f"//Width: {accuracy[0]}\n//Int: {accuracy[1]}\n")
+                        f.write(f"package {name}_{accuracy[0]}_{accuracy[1]};\n\n")
+                        f.write(f"localparam logic signed [{accuracy[0]-1}:0] weights [{len(weight)}][{len(weight[0])}] = '" + "{\n")
+
+                        # Writes the main body of the function
+                        for i in range(len(weight)):
+                            f.write("{")
+                            num = dec_to_bin(weight[i][0]*(2**(Nfrac)), accuracy[0])
+                            f.write(f"{head}{num}")
+                            for j in range(1, len(weight[0])):
+                                num = dec_to_bin(weight[i][j]*(2**(Nfrac)), accuracy[0])
+                                f.write(f", {head}{num}")
+                            if (i!=len(weight)-1): 
+                                f.write("},\n")
+                        f.write("}\n};\n")
+                        f.write(f"localparam logic signed [{accuracy[0]-1}:0] bias [{len(weight[0])}] = '"+"{\n")
+                        for i in range(0, len(bias)):
+                            num = dec_to_bin(bias[i]*(2**Nfrac), accuracy[0])
+                            f.write(f"{head}{num}")
+                            f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
