@@ -25,8 +25,10 @@ module FIFO
 	logic signed [bitWidth-1:0] data [CAPACITY-1:0];
 	
 	// Pointers to the next place to be written or read to. 
-	logic [$clog2(CAPACITY-1)-1:0] writeIndex;
-	logic [$clog2(CAPACITY-1)-1:0] readIndex;
+	logic [$clog2(CAPACITY-1):0] writeIndex;
+	logic [$clog2(CAPACITY-1):0] readIndex;
+	
+	assign readData = data[readIndex];
 	
 	// Sequential logic which updates values depending if we're reading, writing, or neither.
 	always_ff @(posedge clk) begin
@@ -35,7 +37,7 @@ module FIFO
 			readIndex  <= '0;
 		end else begin
 			if (read) begin
-				readData  <= data[readIndex];
+				//readData  <= data[readIndex];
 				readIndex <= readIndex == CAPACITY-1 ? 0 : readIndex + 1;
 			end
 			if (write) begin
@@ -101,4 +103,6 @@ module FIFO_testbench();
 		end
 		$stop;
 	end
+
+
 endmodule
