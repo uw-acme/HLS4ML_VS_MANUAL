@@ -16,9 +16,8 @@
 // - output_data
 
 `timescale 1ns / 1ps
-`include "pkg_sel_gru.svh"
-`include "pkg_sel.svh"
-
+`include "weights_sel.svh"
+`include "defines.svh"
 // Computes the dot product of the inputs and WEIGHTS then adds that to the BIASes
 module denseLayer #(
     parameter int WIDTH = 17, // width of fixed point numbers
@@ -85,14 +84,15 @@ module denseLayer #(
     
     
     // Determine what configuration DSPs will infer (single cycle or 3-cycle)
-    if (`THREE_CYCLE_MULT) begin
-        always_ff @(posedge clk) begin
-            mult_1 <= mult;
-            mult_out <= mult_1;
-        end
-    end else begin
+    // `ifdef THREE_CYCLE_MULT begin
+    //     always_ff @(posedge clk) begin
+    //         mult_1 <= mult;
+    //         mult_out <= mult_1;
+    //     end
+    
+    // end else begin
         assign mult_out = mult;
-    end
+    // end
     
     // Pipelined adder tree to accumulate the values in mult_out
     adderTree #(.WIDTH      ( WIDTH         ),

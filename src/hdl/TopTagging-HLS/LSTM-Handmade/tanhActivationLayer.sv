@@ -55,9 +55,17 @@ module tanhActivationLayer #(parameter
                  )(
     input clk,
     input reset,
+    input input_ready,
+    output output_ready,
     input logic signed [WIDTH-1:0] input_data [SIZE-1:0],
     output logic signed [WIDTH-1:0] output_data [SIZE-1:0]
 );
+    parameter cycle_length=3;
+    logic [cycle_length-1:0] counter;
+    assign output_ready = counter[0];
+    always_ff @(posedge clk) begin
+        counter<={input_ready, counter[cycle_length-1:1]};
+    end
     initial begin
         assert(WIDTH >= NFRAC);
         assert(WIDTH > 0 && NFRAC > 0 && MEM_WIDTH > 0 && TABLE_SIZE_POW > 0);
