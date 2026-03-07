@@ -50,7 +50,7 @@ module tanhActivationLayer #(parameter
                     NFRAC           = 5,  // number of fractional bits (must be <= width)
                     SIZE            = 32, // number of fixed point numbers going into dense latency layer
                     MEM_WIDTH       = 10, // precision of BRAM entries
-                    TABLE_SIZE_POW  = 10, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
+                    TABLE_SIZE_POW  = 9, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
                     BRAM_FILE       = "./binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem"
                  )(
     input clk,

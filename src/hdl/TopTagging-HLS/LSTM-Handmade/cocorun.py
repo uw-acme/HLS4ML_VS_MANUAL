@@ -9,13 +9,16 @@ def test_lstm():
 
     build_dir = "./"
 
-    runner = get_runner("xsim")
+    runner = get_runner("verilator")
 
     runner.build(
         sources=verilog_sources,
         hdl_toplevel="LSTM",
         waves=True,
         build_dir=build_dir,
+        # build_args = [
+        #     "-g2012"
+        # ],
         build_args=[
             "--trace",      # enable VCD tracing
             "--trace-structs"
@@ -25,7 +28,10 @@ def test_lstm():
     runner.test(
         hdl_toplevel="LSTM",
         test_module="cocotb_test",
-        waves=True
+        waves=True,
+        test_args=[
+            "-g2012"
+        ],
     )
 
 

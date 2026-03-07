@@ -1,0 +1,611 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade
+vadderTree
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1772872720
+!i10b 1
+!s100 ^48I31<zW@akX4DdbWEoX0
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I<nDT4<Yh[5=AV0DW9Z^7f3
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+Z5 w1772855683
+Z6 8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/adderTree.sv
+Z7 F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/adderTree.sv
+!i122 1
+L0 17 51
+Z8 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z9 !s108 1772872720.000000
+Z10 !s107 /home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/adderTree.sv|
+Z11 !s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/adderTree.sv|
+!i113 1
+Z12 o-work top -sv
+Z13 tCvgOpt 0
+nadder@tree
+vadderTree_1D
+R1
+R2
+!i10b 1
+!s100 z:JZio7bNd>TnW3^[QA:a1
+R3
+I7BHT[mn61N=fj:MhlSoiW3
+R4
+S1
+R0
+R5
+R6
+R7
+!i122 1
+L0 88 40
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+nadder@tree_1@d
+vadderTree_1D_p4
+R1
+R2
+!i10b 1
+!s100 @hdiT<J75l07YgicEaD0L2
+R3
+IhQjG;mS?Smlf@0Lhn_BUY3
+R4
+S1
+R0
+R5
+Z14 8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/adderTree_p4.sv
+Z15 F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/adderTree_p4.sv
+!i122 7
+L0 17 79
+R8
+r1
+!s85 0
+31
+R9
+Z16 !s107 /home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/adderTree_p4.sv|
+Z17 !s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/adderTree_p4.sv|
+!i113 1
+R12
+R13
+nadder@tree_1@d_p4
+vadderTree_1D_p4_tb
+R1
+R2
+!i10b 1
+!s100 FPnR@Rg>W_Fz4HjBn0:FQ0
+R3
+In4FP<^5I4ia=9eT`oS`U42
+R4
+S1
+R0
+R5
+R14
+R15
+!i122 7
+L0 99 73
+R8
+r1
+!s85 0
+31
+R9
+R16
+R17
+!i113 1
+R12
+R13
+nadder@tree_1@d_p4_tb
+vdenseLayer
+R1
+Z18 !s110 1772872721
+!i10b 1
+!s100 Um8VWbcVC;JU1W8_[C]ZX3
+R3
+IX8VG<ld3lmE>QT]3>bf4m0
+R4
+S1
+R0
+Z19 w1772870161
+Z20 8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/denseLayer.sv
+Z21 F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/denseLayer.sv
+!i122 10
+L0 22 117
+R8
+r1
+!s85 0
+31
+Z22 !s108 1772872721.000000
+Z23 !s107 defines.svh|weights_sel.svh|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/denseLayer.sv|
+Z24 !s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/denseLayer.sv|
+!i113 1
+R12
+R13
+ndense@layer
+vdenseLayer_tb
+R1
+R18
+!i10b 1
+!s100 oXR5N4iE8IlYnY8`gY6ch0
+R3
+IAbimha`9GYf6dVYCSKnJh1
+R4
+S1
+R0
+R19
+R20
+R21
+!i122 10
+L0 140 61
+R8
+r1
+!s85 0
+31
+R22
+R23
+R24
+!i113 1
+R12
+R13
+ndense@layer_tb
+vedge_check
+R1
+Z25 DXx4 work 13 layer1_0_16_6 0 22 P@NjmC_MUWFAIb<^Z`JO53
+Z26 DXx4 work 13 layer1_1_16_6 0 22 ^gZ1YS?gL27`doLiA0W8J1
+Z27 DXx4 work 12 LSTM_sv_unit 0 22 12GEJAMc1]RghiZoLO8:C2
+R18
+R4
+r1
+!s85 0
+!i10b 1
+!s100 Y>Rj7`H@5Aa?Y40;b?fM^0
+IiCUZ`Dh89EkhB7B_c0WfL0
+Z28 !s105 LSTM_sv_unit
+S1
+R0
+R5
+Z29 8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/LSTM.sv
+Z30 F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/LSTM.sv
+!i122 8
+L0 179 8
+R8
+31
+R9
+Z31 !s107 defines.svh|weights_sel.svh|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/LSTM.sv|
+Z32 !s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/LSTM.sv|
+!i113 1
+R12
+R13
+Xlayer1_0_16_6
+R1
+R2
+!i10b 1
+!s100 46G8?bUg7:Ni;VUFKdfBS3
+R3
+IP@NjmC_MUWFAIb<^Z`JO53
+VP@NjmC_MUWFAIb<^Z`JO53
+S1
+R0
+w1772858932
+8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer1_pkg_16_6_0.sv
+F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer1_pkg_16_6_0.sv
+!i122 6
+Z33 L0 3 0
+R8
+r1
+!s85 0
+31
+R9
+!s107 /home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer1_pkg_16_6_0.sv|
+!s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer1_pkg_16_6_0.sv|
+!i113 1
+R12
+R13
+Xlayer1_1_16_6
+R1
+R2
+!i10b 1
+!s100 ::5:b[XhCaU:[5EU3`ZgS1
+R3
+I^gZ1YS?gL27`doLiA0W8J1
+V^gZ1YS?gL27`doLiA0W8J1
+S1
+R0
+w1772858933
+8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer1_pkg_16_6_1.sv
+F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer1_pkg_16_6_1.sv
+!i122 3
+R33
+R8
+r1
+!s85 0
+31
+R9
+!s107 /home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer1_pkg_16_6_1.sv|
+!s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer1_pkg_16_6_1.sv|
+!i113 1
+R12
+R13
+Xlayer3_0_16_6
+R1
+R18
+!i10b 1
+!s100 AV>`zkRT:jzQ_i267_Tlm0
+R3
+INm`mL0;k=8h[AAXU_NJ952
+VNm`mL0;k=8h[AAXU_NJ952
+S1
+R0
+w1772858936
+8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer3_pkg_16_6_0.sv
+F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer3_pkg_16_6_0.sv
+!i122 9
+R33
+R8
+r1
+!s85 0
+31
+R22
+!s107 /home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer3_pkg_16_6_0.sv|
+!s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/layer3_pkg_16_6_0.sv|
+!i113 1
+R12
+R13
+vLSTM
+R1
+R25
+R26
+R27
+R18
+R4
+r1
+!s85 0
+!i10b 1
+!s100 972OTYRXFeWE9FRh2XNV91
+IFfifBn;`JYeoX<fT_^XZf0
+R28
+S1
+R0
+R5
+R29
+R30
+!i122 8
+L0 9 169
+R8
+31
+R9
+R31
+R32
+!i113 1
+R12
+R13
+n@l@s@t@m
+XLSTM_sv_unit
+R1
+R25
+R26
+R18
+V12GEJAMc1]RghiZoLO8:C2
+r1
+!s85 0
+!i10b 1
+!s100 Q>^nDPUS=]PUlm[n<:[N=1
+I12GEJAMc1]RghiZoLO8:C2
+!i103 1
+S1
+R0
+R5
+R29
+R30
+Fweights_sel.svh
+Fdefines.svh
+!i122 8
+R33
+R8
+31
+R9
+R31
+R32
+!i113 1
+R12
+R13
+n@l@s@t@m_sv_unit
+vLSTM_tb
+R1
+R25
+R26
+R27
+R18
+R4
+r1
+!s85 0
+!i10b 1
+!s100 6j?0M<YPY0NANR@zlnLgG0
+IW2`9=U`BFeH6nO;l7bR=11
+R28
+S1
+R0
+R5
+R29
+R30
+!i122 8
+L0 188 28
+R8
+31
+R9
+R31
+R32
+!i113 1
+R12
+R13
+n@l@s@t@m_tb
+vmult_op
+R1
+R18
+!i10b 1
+!s100 CLH3kK`YUPQLUb6FCU32X2
+R3
+IN;@??ED^GDhT7BjA8mP652
+R4
+S1
+R0
+Z34 w1772868425
+Z35 8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/shift_add.sv
+Z36 F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/shift_add.sv
+!i122 11
+L0 148 28
+R8
+r1
+!s85 0
+31
+R22
+!s107 defines.svh|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/shift_add.sv|
+Z37 !s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/shift_add.sv|
+!i113 1
+R12
+R13
+vmult_op_wrap
+R1
+R18
+!i10b 1
+!s100 J3ebBN8?Pmz?6VU6mLE9n3
+R3
+IIJdB_j@X7X5cV]LeifED01
+R4
+S1
+R0
+R34
+R35
+R36
+!i122 11
+L0 183 32
+R8
+r1
+!s85 0
+31
+R22
+Z38 !s107 defines.svh|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/shift_add.sv|
+R37
+!i113 1
+R12
+R13
+Xoutput_sigmoid_0_16_6
+R1
+R2
+!i10b 1
+!s100 K6@gTANgUkCV8Xg>7fWPf2
+R3
+Ig8:n83KED?R`Akk7<KiJV1
+Vg8:n83KED?R`Akk7<KiJV1
+S1
+R0
+w1772858940
+8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/output_sigmoid_pkg_16_6_0.sv
+F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/output_sigmoid_pkg_16_6_0.sv
+!i122 4
+R33
+R8
+r1
+!s85 0
+31
+R9
+!s107 /home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/output_sigmoid_pkg_16_6_0.sv|
+!s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/output_sigmoid_pkg_16_6_0.sv|
+!i113 1
+R12
+R13
+Xoutput_sigmoid_16_6
+R1
+R2
+!i10b 1
+!s100 g[S2BPBAQ4VlOc3WmJcIe1
+R3
+IRUfP`idC`9fBTC;hcKYzH0
+VRUfP`idC`9fBTC;hcKYzH0
+S1
+R0
+w1772858938
+8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/output_sigmoid_pkg_16_6_0.0.sv
+F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/output_sigmoid_pkg_16_6_0.0.sv
+!i122 0
+R33
+R8
+r1
+!s85 0
+31
+R9
+!s107 /home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/output_sigmoid_pkg_16_6_0.0.sv|
+!s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/output_sigmoid_pkg_16_6_0.0.sv|
+!i113 1
+R12
+R13
+vshift_add
+R1
+R18
+!i10b 1
+!s100 DNDhLTg:zCY<iF0TQEI:53
+R3
+ISA6CzGiIP<>JXfXPLYo3:0
+R4
+S1
+R0
+R34
+R35
+R36
+!i122 11
+L0 8 134
+R8
+r1
+!s85 0
+31
+R22
+R38
+R37
+!i113 1
+R12
+R13
+vshift_add_tb
+R1
+R18
+!i10b 1
+!s100 CP3cIcQ4MENQG@P>lIklz3
+R3
+I:[EizNLK10IFmOme9oJ2W2
+R4
+S1
+R0
+R34
+R35
+R36
+!i122 11
+L0 227 29
+R8
+r1
+!s85 0
+31
+R22
+R38
+R37
+!i113 1
+R12
+R13
+vsigmoid
+R1
+R2
+!i10b 1
+!s100 nzb9=;56NU9CcTzl0eoT90
+R3
+IJSTG4h2BEg:_cbFnUWoiY1
+R4
+S1
+R0
+R5
+Z39 8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/sigmoid.sv
+Z40 F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/sigmoid.sv
+!i122 5
+L0 47 117
+R8
+r1
+!s85 0
+31
+R9
+Z41 !s107 /home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/sigmoid.sv|
+Z42 !s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/sigmoid.sv|
+!i113 1
+R12
+R13
+vsigmoidActivationLayer_tb
+R1
+R2
+!i10b 1
+!s100 E5=J^S@ohkYaiaE2QDL2B1
+R3
+IADaogB@L5h<=V4R<5b_nB1
+R4
+S1
+R0
+R5
+R39
+R40
+!i122 5
+L0 165 68
+R8
+r1
+!s85 0
+31
+R9
+R41
+R42
+!i113 1
+R12
+R13
+nsigmoid@activation@layer_tb
+vtanhActivationLayer
+R1
+R2
+!i10b 1
+!s100 lWRe]z:of8k]=6g;fiZn<0
+R3
+Im:[eg14ZVkhJ>9_088d<?2
+R4
+S1
+R0
+Z43 w1772872288
+Z44 8/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/tanhActivationLayer.sv
+Z45 F/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/tanhActivationLayer.sv
+!i122 2
+L0 48 144
+R8
+r1
+!s85 0
+31
+R9
+Z46 !s107 /home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/tanhActivationLayer.sv|
+Z47 !s90 -incr|-work|top|-sv|/home/caleb/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-Handmade/tanhActivationLayer.sv|
+!i113 1
+R12
+R13
+ntanh@activation@layer
+vtanhActivationLayer_tb
+R1
+R2
+!i10b 1
+!s100 mDTLCKcVRB5]JjBK>hI_T1
+R3
+Iij[7o_jG3G3>blIXc>Kj23
+R4
+S1
+R0
+R43
+R44
+R45
+!i122 2
+L0 193 68
+R8
+r1
+!s85 0
+31
+R9
+R46
+R47
+!i113 1
+R12
+R13
+ntanh@activation@layer_tb

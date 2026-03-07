@@ -14,9 +14,6 @@ add wave -noupdate /LSTM_tb/ht
 add wave -noupdate /LSTM_tb/dut/ct_1
 add wave -noupdate /LSTM_tb/dut/ht_1
 add wave -noupdate /LSTM_tb/dut/ct
-add wave -noupdate /LSTM_tb/dut/next_ready
-add wave -noupdate /LSTM_tb/dut/edge_trig
-add wave -noupdate /LSTM_tb/dut/move_next
 add wave -noupdate /LSTM_tb/dut/dense_inputx_ready
 add wave -noupdate /LSTM_tb/dut/dense_outputx_ready
 add wave -noupdate /LSTM_tb/dut/dense_inputx
@@ -26,12 +23,15 @@ add wave -noupdate /LSTM_tb/dut/sig_ready2
 add wave -noupdate /LSTM_tb/dut/sig_ready3
 add wave -noupdate /LSTM_tb/dut/sig_ready4
 add wave -noupdate /LSTM_tb/dut/tanh_ready
+add wave -noupdate /LSTM_tb/dut/move_next
 add wave -noupdate /LSTM_tb/dut/dense_inputh_ready
 add wave -noupdate /LSTM_tb/dut/dense_outputh_ready
 add wave -noupdate /LSTM_tb/dut/dense_inputh
 add wave -noupdate /LSTM_tb/dut/dense_outputh
 add wave -noupdate /LSTM_tb/dut/curr_step
 add wave -noupdate /LSTM_tb/dut/reset_cell
+add wave -noupdate /LSTM_tb/dut/next_ready
+add wave -noupdate /LSTM_tb/dut/edge_trig
 add wave -noupdate /LSTM_tb/dut/combined
 add wave -noupdate /LSTM_tb/dut/ft_a
 add wave -noupdate /LSTM_tb/dut/it_a
@@ -43,10 +43,10 @@ add wave -noupdate /LSTM_tb/dut/c_t
 add wave -noupdate /LSTM_tb/dut/ot
 add wave -noupdate /LSTM_tb/dut/ht_n
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {750004 ps} 0}
+WaveRestoreCursors {{Cursor 1} {181718 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
-configure wave -valuecolwidth 170
+configure wave -valuecolwidth 258
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
 configure wave -snapdistance 10
@@ -59,4 +59,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {2815728 ps}
+WaveRestoreZoom {0 ps} {1087292 ps}
