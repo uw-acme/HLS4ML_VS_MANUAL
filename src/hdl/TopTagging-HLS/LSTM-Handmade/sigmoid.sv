@@ -44,19 +44,27 @@
 */
 
 `timescale 1ns / 1ps
-module sigmoidActivationLayer #(parameter
+module sigmoid #(parameter
                     WIDTH           = 10, // width of fixed point numbers
                     NFRAC           = 5,  // number of fractional bits (must be <= width)
                     SIZE            = 32, // number of fixed point numbers going into dense latency layer
                     MEM_WIDTH       = 10, // precision of BRAM entries
-                    TABLE_SIZE_POW  = 10, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
-                    BRAM_FILE       = "./binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem"
+                    TABLE_SIZE_POW  = 9, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
+                    BRAM_FILE       = "./binaries/sigmoid_BRAM_binaries/memw10_size1024_sigmoidBRAM.mem"
                  )(
     input clk,
     input reset,
+    input input_ready,
+    output output_ready,
     input logic signed [WIDTH-1:0] input_data [SIZE-1:0],
     output logic signed [WIDTH-1:0] output_data [SIZE-1:0]
 );
+    parameter cycle_length=3;
+    logic [cycle_length-1:0] counter;
+    assign output_ready = counter[0];
+    always_ff @(posedge clk) begin
+        counter<={input_ready, counter[cycle_length-1:1]};
+    end
     initial begin
         assert(WIDTH >= NFRAC);
         assert(WIDTH > 0 && NFRAC > 0 && MEM_WIDTH > 0 && TABLE_SIZE_POW > 0);

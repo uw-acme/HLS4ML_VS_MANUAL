@@ -1,0 +1,16 @@
+# Current time Sat Mar  7 00:26:07 2026
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vish
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# 0    0x086d5a16: '<unknown (@0x86d5a16)>'
+# 1    0x086d7ee2: 'dbg_sym_load_block + 0xb2' in '/opt/intelFPGA/20.1/modelsim_ase/linuxaloem/vish'
+# 2    0x086d8897: 'dbg_load_named_block + 0x37' in '/opt/intelFPGA/20.1/modelsim_ase/linuxaloem/vish'
+# 3    0x086db6ce: 'parser_sym_load_block + 0xce' in '/opt/intelFPGA/20.1/modelsim_ase/linuxaloem/vish'
+# 4    0x0841d0f2: 'tclprim_ParserGetFullPath + 0x1d2' in '/opt/intelFPGA/20.1/modelsim_ase/linuxaloem/vish'
+# 5    0x0820bc19: '<unknown (@0x820bc19)>'
+# 6    0x0857ec8b: 'TclInvokeStringCommand + 0x7b' in '/opt/intelFPGA/20.1/modelsim_ase/linuxaloem/vish'
+# 7    0x0b3c8333: '<unknown (@0xb3c8333)>'
+# 8    0x0ce567eb: '<unknown (@0xce567eb)>'

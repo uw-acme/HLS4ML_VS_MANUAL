@@ -1,0 +1,25 @@
+# vsim -c -onfinish exit -pli "/home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so" top.LSTM -do "log -recursive /*;run -all; quit" 
+# Start time: 00:38:41 on Mar 07,2026
+# Loading sv_std.std
+# Loading top.layer1_1_16_6
+# Loading top.layer1_0_16_6
+# Loading top.LSTM_sv_unit
+# Loading top.LSTM
+# Loading top.edge_check
+# Loading top.denseLayer
+# Loading top.adderTree
+# Loading top.sigmoid
+# Loading top.tanhActivationLayer
+# Loading top.adderTree_1D_p4
+# Loading top.shift_add
+# ** Warning: ** Warning: (vsim-3772) Failed to find the undefined symbols for shared library file "/home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so".
+# 
+#    Time: 0 ps  Iteration: 0  Root: /
+# Loading /home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so
+# ** Error: (vsim-125) The shared library /home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so being loaded was built on a 64-bit machine. A 64-bit shared library cannot be loaded in a 32-bit simulation. Please use compatible machines to build and load the library
+# ** Error (suppressible): (vsim-3197) Load of "/home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so" failed: /home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so: wrong ELF class: ELFCLASS64.
+# ** Error (suppressible): (vsim-PLI-3002) Failed to load PLI object file "/home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so".
+#    Time: 0 ps  Iteration: 0  Root: /
+# Error loading design
+# End time: 00:38:41 on Mar 07,2026, Elapsed time: 0:00:00
+# Errors: 3, Warnings: 1, Suppressed Warnings: 1
