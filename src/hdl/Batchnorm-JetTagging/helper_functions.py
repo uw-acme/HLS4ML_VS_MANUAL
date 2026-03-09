@@ -165,7 +165,7 @@ def gen_weight_txt(accuracy, weights_file, biases_file, output):
                     f.write(f"{head}{num}")
                     f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
 
-def gen_weight(accuracy, model, output):
+def gen_weight(accuracy, model):
     """
     Generate weight and bias packages from keras model
     :param accuracy: Accuracy for packages. Formatted (width, integers)

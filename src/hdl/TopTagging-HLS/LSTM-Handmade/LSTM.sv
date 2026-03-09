@@ -47,7 +47,7 @@ endfunction
     logic dense_inputh_ready, dense_outputh_ready;
     logic signed[WIDTH-1:0] dense_inputh [OUTPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] dense_outputh [OUTPUT_SIZE*4-1:0];
-    logic [$clog2(TIMESTEPS)-1:0] curr_step;
+    logic [$clog2(TIMESTEPS):0] curr_step =0;
     // assign dense_input = xt[curr_step];
     assign dense_inputx = xt;
     assign dense_inputh = ht_1;
@@ -128,7 +128,7 @@ endfunction
     );
 
     // Split into 4 parts
-    logic signed[2*WIDTH-1:0] combined [OUTPUT_SIZE*4-1:0];
+    logic signed[WIDTH-1:0] combined [OUTPUT_SIZE*4-1:0];
     generate
     for (i=0; i<OUTPUT_SIZE*4; i++) begin : combination
             always_comb begin
@@ -140,10 +140,14 @@ endfunction
     logic signed[WIDTH-1:0] ft_a [OUTPUT_SIZE-1:0], it_a [OUTPUT_SIZE-1:0], c_t_a [OUTPUT_SIZE-1:0], ot_a [OUTPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ft [OUTPUT_SIZE-1:0], it [OUTPUT_SIZE-1:0], c_t [OUTPUT_SIZE-1:0], ot [OUTPUT_SIZE-1:0], ht_n[OUTPUT_SIZE-1:0];
 
-    assign ft_a = combined[OUTPUT_SIZE*4-1:OUTPUT_SIZE*3];
-    assign it_a = combined[OUTPUT_SIZE*3-1:OUTPUT_SIZE*2];
-    assign c_t_a = combined[OUTPUT_SIZE*2-1:OUTPUT_SIZE*1];
-    assign ot_a = combined[OUTPUT_SIZE-1:0];
+    generate
+        for (i=0; i<OUTPUT_SIZE; i++) begin : gate_split
+            assign it_a[i]  = combined[OUTPUT_SIZE*3 + i];
+            assign ft_a[i]  = combined[OUTPUT_SIZE*2 + i];
+            assign c_t_a[i] = combined[OUTPUT_SIZE*1 + i];
+            assign ot_a[i]  = combined[i];
+        end
+    endgenerate
 
     // assign {ft_a, it_a, c_t_a, ot_a} = combined;
     
@@ -157,7 +161,7 @@ endfunction
             .NFRAC(WIDTH-NINT),
             .SIZE(OUTPUT_SIZE)) sigmai (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready2), .input_data(it_a), .output_data(it));
     // c~t = tanh(Wch*ht_1+Wcx*xt+bc 
-    sigmoid #(.WIDTH(WIDTH),
+    tanh #(.WIDTH(WIDTH),
             .NFRAC(WIDTH-NINT),
             .SIZE(OUTPUT_SIZE)) sigmac (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready3), .input_data(c_t_a), .output_data(c_t));
     // ot = sigmoid(Woh*ht_1+Wox*xt+bo) 
@@ -165,11 +169,16 @@ endfunction
             .SIZE(OUTPUT_SIZE)) 
                                 sigmao (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready4), .input_data(ot_a), .output_data(ot));
  // ct = ft*ct_1+it*c~t
+    logic ct_next;
+    logic ct_tanh;
+    assign ct_next=&(edge_trig[4:1]);
     generate
     for (i=0; i<OUTPUT_SIZE; i++) begin
-        always_ff @(posedge clk)
-            if (sig_ready3)
+        always_ff @(posedge clk) begin
+            if (ct_next)
                 ct[i] <= mult(ft[i], ct_1[i])+mult(it[i],c_t[i]);
+            ct_tanh<=ct_next;
+        end
     end
     endgenerate
    
@@ -178,7 +187,7 @@ endfunction
     
     tanh #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT), .SIZE(OUTPUT_SIZE))
     newht (
-        .clk, .reset(lstm_reset), .input_data(ct), .output_data(ht_n), .input_ready(sig_ready1), .output_ready(tanh_ready)
+        .clk, .reset(lstm_reset), .input_data(ct), .output_data(ht_n), .input_ready(ct_tanh), .output_ready(tanh_ready)
     );
     generate
     for (i=0; i<OUTPUT_SIZE; i++)begin
