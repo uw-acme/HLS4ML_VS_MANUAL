@@ -5,6 +5,8 @@ import `LSTM_H_WEIGHTS::*;
 
 
 // LSTM Currently designed for only outputting the last state
+
+// TODO: Rework multiplication to be correct for decimals
 `timescale 1ns / 1ps
 module LSTM #( parameter
     WIDTH = 16,
@@ -22,6 +24,13 @@ module LSTM #( parameter
     input logic signed[WIDTH-1:0] xt [INPUT_SIZE-1:0],
     output logic signed[WIDTH-1:0] ht [OUTPUT_SIZE-1:0]
 );
+    localparam NFRAC = WIDTH-NINT;
+    function automatic logic signed [WIDTH-1:0] mult(
+    input logic signed [WIDTH-1:0] in1,
+    input logic signed [WIDTH-1:0] in2
+);
+    return (in1 * in2) >>> NFRAC;
+endfunction
     // x: input
     // h: recurrent information/output
     // c: cell state
@@ -142,32 +151,32 @@ module LSTM #( parameter
     // ft = sigmoid(Wfh*ht_1+Wfx*xt+bf) 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(WIDTH-NINT),
-            .SIZE(OUTPUT_SIZE)) sigmaf (.clk, .reset(lstm_reset), .input_ready(dense_outputx_ready), .output_ready(sig_ready1), .input_data(ft_a), .output_data(ft));
+            .SIZE(OUTPUT_SIZE)) sigmaf (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready1), .input_data(ft_a), .output_data(ft));
     // it = sigmoid(Wih*ht_1+Wix*xt+bi) 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(WIDTH-NINT),
-            .SIZE(OUTPUT_SIZE)) sigmai (.clk, .reset(lstm_reset), .input_ready(dense_outputx_ready), .output_ready(sig_ready2), .input_data(it_a), .output_data(it));
+            .SIZE(OUTPUT_SIZE)) sigmai (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready2), .input_data(it_a), .output_data(it));
     // c~t = tanh(Wch*ht_1+Wcx*xt+bc 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(WIDTH-NINT),
-            .SIZE(OUTPUT_SIZE)) sigmac (.clk, .reset(lstm_reset), .input_ready(dense_outputx_ready), .output_ready(sig_ready3), .input_data(c_t_a), .output_data(c_t));
+            .SIZE(OUTPUT_SIZE)) sigmac (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready3), .input_data(c_t_a), .output_data(c_t));
     // ot = sigmoid(Woh*ht_1+Wox*xt+bo) 
     sigmoid #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT),
             .SIZE(OUTPUT_SIZE)) 
-                                sigmao (.clk, .reset(lstm_reset), .input_ready(dense_outputx_ready), .output_ready(sig_ready4), .input_data(ot_a), .output_data(ot));
+                                sigmao (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready4), .input_data(ot_a), .output_data(ot));
  // ct = ft*ct_1+it*c~t
     generate
     for (i=0; i<OUTPUT_SIZE; i++) begin
         always_ff @(posedge clk)
             if (sig_ready3)
-                ct[i] <= ft[i]*ct_1[i]+it[i]*c_t[i];
+                ct[i] <= mult(ft[i], ct_1[i])+mult(it[i],c_t[i]);
     end
     endgenerate
    
    
     // ht = ot*tanh(ct)
     
-    tanhActivationLayer #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT), .SIZE(OUTPUT_SIZE))
+    tanh #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT), .SIZE(OUTPUT_SIZE))
     newht (
         .clk, .reset(lstm_reset), .input_data(ct), .output_data(ht_n), .input_ready(sig_ready1), .output_ready(tanh_ready)
     );
@@ -175,7 +184,7 @@ module LSTM #( parameter
     for (i=0; i<OUTPUT_SIZE; i++)begin
         always_ff @( posedge clk ) begin
             if (tanh_ready)
-                ht[i] <= ht_n[i]*ot[i];
+                ht[i] <= mult(ht_n[i],ot[i]);
         end
     end
     endgenerate

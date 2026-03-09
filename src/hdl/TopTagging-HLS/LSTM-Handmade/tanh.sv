@@ -45,7 +45,7 @@
 */
 
 `timescale 1ns / 1ps
-module sigmoid #(parameter
+module tanh #(parameter
                     WIDTH           = 10, // width of fixed point numbers
                     NFRAC           = 5,  // number of fractional bits (must be <= width)
                     SIZE            = 32, // number of fixed point numbers going into dense latency layer
@@ -54,7 +54,7 @@ module sigmoid #(parameter
                     LOOKUP_WIDTH    = 10,
                     LOOKUP_NFRAC    = 7,
                     TABLE_SIZE_POW  = 10, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
-                    BRAM_FILE       = "./sigmoid_table_18_18_10_7.dat"
+                    BRAM_FILE       = "./tanh_table_18_18_10_7.dat"
                  )(
     input clk,
     input reset,
@@ -64,6 +64,7 @@ module sigmoid #(parameter
     output logic signed [WIDTH-1:0] output_data [SIZE-1:0]
 );
     genvar i;
+    
     parameter cycle_length=3;
     logic [cycle_length-1:0] counter;
     logic [cycle_length-1:0] signed_count [SIZE-1:0];
@@ -192,9 +193,9 @@ module sigmoid #(parameter
         for (i = 0; i < SIZE; i++) begin
             always_comb begin
                 if (signed_count[i][1])
-                    output_data[i] = (2**(NFRAC-1))-output_data_unsigned[i];
+                    output_data[i] = -output_data_unsigned[i];
                 else
-                    output_data[i] = (2**(NFRAC-1))+output_data_unsigned[i];
+                    output_data[i] = output_data_unsigned[i];
             end
         end
     endgenerate
@@ -202,14 +203,14 @@ module sigmoid #(parameter
 
 endmodule
 
-module sigmoidActivationLayer_tb();
+module tanhActivationLayer_tb();
 
     localparam  WIDTH           = 16,
                 NFRAC           = 12,
                 SIZE            = 8,
                 MEM_WIDTH       = 10,
                 TABLE_SIZE_POW  = 10,
-                BRAM_FILE       = "memw10_tsize1024_sigmoidBRAM.mem";
+                BRAM_FILE       = "memw10_tsize1024_tanhBRAM.mem";
     logic clk;
     logic reset;
     logic signed [WIDTH-1:0] input_data[0:SIZE-1];

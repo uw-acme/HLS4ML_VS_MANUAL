@@ -17,7 +17,7 @@ vlog "*.sv"
 #     testbench module you want to execute.
 
 
-vsim -voptargs="+acc" -t 1ps -lib work LSTM_tb
+vsim -voptargs="+acc" -t 1ps -lib work LSTM_tb -suppress 8607
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
