@@ -5,8 +5,6 @@ import `LSTM_H_WEIGHTS::*;
 
 
 // LSTM Currently designed for only outputting the last state
-
-// TODO: Rework multiplication to be correct for decimals
 `timescale 1ns / 1ps
 module LSTM #( parameter
     WIDTH = 16,
@@ -84,9 +82,9 @@ endfunction
         if (lstm_reset) begin
             next_ready<=1;
             curr_step<=0;
-            ht<='{default: 0};
+            // ht<='{default: 0};
             ht_1<='{default: 0};
-            ct<='{default: 0};
+            // ct<='{default: 0};
             ct_1<='{default: 0};
         end
     end
@@ -177,10 +175,11 @@ endfunction
         always_ff @(posedge clk) begin
             if (ct_next)
                 ct[i] <= mult(ft[i], ct_1[i])+mult(it[i],c_t[i]);
-            ct_tanh<=ct_next;
         end
     end
     endgenerate
+    always_ff @(posedge clk)
+        ct_tanh<=ct_next;
    
    
     // ht = ot*tanh(ct)
