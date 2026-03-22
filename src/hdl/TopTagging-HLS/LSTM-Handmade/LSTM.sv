@@ -4,7 +4,7 @@ import `LSTM_X_WEIGHTS::*;
 import `LSTM_H_WEIGHTS::*;
 
 
-// LSTM Currently designed for only outputting the last state
+
 `timescale 1ns / 1ps
 module LSTM #( parameter
     WIDTH = 16,
@@ -18,9 +18,8 @@ module LSTM #( parameter
     input reset,
     input input_ready,
     output logic output_ready,
-    output logic move_next,
-    input logic signed[WIDTH-1:0] xt [INPUT_SIZE-1:0],
-    output logic signed[WIDTH-1:0] ht [OUTPUT_SIZE-1:0]
+    input logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0],
+    output logic signed [WIDTH-1:0] ht [OUTPUT_SIZE-1:0]
 );
     localparam NFRAC = WIDTH-NINT;
     function automatic logic signed [WIDTH*2-1:0] mult(
@@ -33,6 +32,7 @@ endfunction
     // h: recurrent information/output
     // c: cell state
     genvar i;
+    logic move_next;
     logic signed[WIDTH-1:0] ct_1 [OUTPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ht_1 [OUTPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ct [OUTPUT_SIZE-1:0];
@@ -46,7 +46,8 @@ endfunction
     logic signed[WIDTH-1:0] dense_inputh [OUTPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] dense_outputh [OUTPUT_SIZE*4-1:0];
     logic [$clog2(TIMESTEPS):0] curr_step =0;
-    // assign dense_input = xt[curr_step];
+    logic signed [WIDTH-1:0] xt [INPUT_SIZE-1:0];
+    assign xt = input_v[curr_step];
     assign dense_inputx = xt;
     assign dense_inputh = ht_1;
     logic reset_cell;
@@ -215,14 +216,14 @@ module LSTM_tb;
     logic reset;
     logic input_ready;
     logic output_ready;
-    logic move_next;
+    // logic move_next;
     parameter INPUT_SIZE = 6;
     parameter TIMESTEPS = 20;
     parameter OUTPUT_SIZE = 20;
     parameter WIDTH = 16;
     parameter NINT = 6;
     parameter NFRAC = WIDTH-NINT;
-    logic signed[WIDTH-1:0] xt [INPUT_SIZE-1:0];
+    logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ht [OUTPUT_SIZE-1:0];
     LSTM #(.WIDTH(16), .NINT(6)) dut (.*);
     initial begin
@@ -230,10 +231,10 @@ module LSTM_tb;
         forever #1 clk<=~clk;
     end
     // max_tests = 166000;
-    localparam num_tests = 25;
-    logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
-    logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
-    integer i,j, fd;
+    localparam num_tests = 6;
+    logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][0:INPUT_SIZE-1];
+    logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
+    integer i, j, k, fd;
     `ifndef TESTFILE
         `define TESTFILE "X_test_16_6.txt"
     `endif
@@ -244,8 +245,10 @@ module LSTM_tb;
     initial begin
         $readmemb("X_test_16_6.txt", flat_mem);
         for (i=0; i<num_tests; i++) begin : tests
-            for (j=0; j<INPUT_SIZE; j++) begin : inputs
-                x_test[i][j] = flat_mem[i*INPUT_SIZE+j];
+            for (j=0; j<TIMESTEPS; j++) begin : steps
+                for (k=0; k<INPUT_SIZE; k++) begin : nums
+                    x_test[i][j][k] = flat_mem[i*INPUT_SIZE*TIMESTEPS+j*INPUT_SIZE+k];
+                end
             end
         end
     end
@@ -286,8 +289,8 @@ module LSTM_tb;
         i=0;
         input_ready<=1;
         repeat(num_tests) begin
-            xt<=x_test[i];
-            @(posedge move_next)
+            input_v<=x_test[i];
+            @(posedge output_ready)
             i++;
         end
         input_ready<=0;
