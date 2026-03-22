@@ -23,11 +23,11 @@ module LSTM #( parameter
     output logic signed[WIDTH-1:0] ht [OUTPUT_SIZE-1:0]
 );
     localparam NFRAC = WIDTH-NINT;
-    function automatic logic signed [WIDTH-1:0] mult(
+    function automatic logic signed [WIDTH*2-1:0] mult(
     input logic signed [WIDTH-1:0] in1,
     input logic signed [WIDTH-1:0] in2
 );
-    return (in1 * in2) >>> NFRAC;
+    return (in1 * in2) >>> (NFRAC);
 endfunction
     // x: input
     // h: recurrent information/output
@@ -164,8 +164,7 @@ endfunction
             .SIZE(OUTPUT_SIZE)) sigmac (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready3), .input_data(c_t_a), .output_data(c_t));
     // ot = sigmoid(Woh*ht_1+Wox*xt+bo) 
     sigmoid #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT),
-            .SIZE(OUTPUT_SIZE)) 
-                                sigmao (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready4), .input_data(ot_a), .output_data(ot));
+            .SIZE(OUTPUT_SIZE)) sigmao (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready4), .input_data(ot_a), .output_data(ot));
  // ct = ft*ct_1+it*c~t
     logic ct_next;
     logic ct_tanh;
@@ -173,7 +172,7 @@ endfunction
     generate
     for (i=0; i<OUTPUT_SIZE; i++) begin
         always_ff @(posedge clk) begin
-            if (ct_next)
+            // if (ct_next)
                 ct[i] <= mult(ft[i], ct_1[i])+mult(it[i],c_t[i]);
         end
     end

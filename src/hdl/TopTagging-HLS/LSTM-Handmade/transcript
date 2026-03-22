@@ -1,25 +1,869 @@
-# vsim -c -onfinish exit -pli "/home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so" top.LSTM -do "log -recursive /*;run -all; quit" 
-# Start time: 00:38:41 on Mar 07,2026
-# Loading sv_std.std
-# Loading top.layer1_1_16_6
-# Loading top.layer1_0_16_6
-# Loading top.LSTM_sv_unit
-# Loading top.LSTM
-# Loading top.edge_check
-# Loading top.denseLayer
-# Loading top.adderTree
-# Loading top.sigmoid
-# Loading top.tanhActivationLayer
-# Loading top.adderTree_1D_p4
-# Loading top.shift_add
-# ** Warning: ** Warning: (vsim-3772) Failed to find the undefined symbols for shared library file "/home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so".
+do modelsim/runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:12:09 on Mar 21,2026
+# vlog -reportprogress 300 layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv 
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
 # 
-#    Time: 0 ps  Iteration: 0  Root: /
-# Loading /home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so
-# ** Error: (vsim-125) The shared library /home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so being loaded was built on a 64-bit machine. A 64-bit shared library cannot be loaded in a 32-bit simulation. Please use compatible machines to build and load the library
-# ** Error (suppressible): (vsim-3197) Load of "/home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so" failed: /home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so: wrong ELF class: ELFCLASS64.
-# ** Error (suppressible): (vsim-PLI-3002) Failed to load PLI object file "/home/caleb/miniconda3/envs/hls4ml-tenv/lib/python3.10/site-packages/cocotb/libs/libcocotbvpi_modelsim.so".
-#    Time: 0 ps  Iteration: 0  Root: /
-# Error loading design
-# End time: 00:38:41 on Mar 07,2026, Elapsed time: 0:00:00
-# Errors: 3, Warnings: 1, Suppressed Warnings: 1
+# Top level modules:
+# 	--none--
+# End time: 17:12:09 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:12:10 on Mar 21,2026
+# vlog -reportprogress 300 defines.svh weights_sel.svh 
+# End time: 17:12:10 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:12:10 on Mar 21,2026
+# vlog -reportprogress 300 LSTM.sv adderTree.sv adderTree_p4.sv denseLayer.sv layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv output_sigmoid_pkg_16_6_0.0.sv output_sigmoid_pkg_16_6_0.sv shift_add.sv sigmoid.sv tanh.sv tanhActivationLayer.sv 
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package LSTM_sv_unit
+# -- Importing package layer1_0_16_6
+# -- Importing package layer1_1_16_6
+# -- Compiling module LSTM
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: LSTM.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module edge_check
+# -- Compiling module LSTM_tb
+# -- Compiling module adderTree
+# ** Warning: adderTree.sv(24): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D
+# ** Warning: adderTree.sv(91): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D_p4
+# ** Warning: adderTree_p4.sv(20): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: adderTree_p4.sv(80): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module adderTree_1D_p4_tb
+# -- Compiling module denseLayer
+# ** Warning: denseLayer.sv(37): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module denseLayer_tb
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# -- Compiling package output_sigmoid_16_6
+# -- Compiling package output_sigmoid_0_16_6
+# -- Compiling module shift_add
+# ** Warning: shift_add.sv(95): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(101): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(102): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(130): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module mult_op
+# -- Compiling module mult_op_wrap
+# -- Compiling module shift_add_tb
+# -- Compiling module sigmoid
+# ** Warning: sigmoid.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: sigmoid.sv(114): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(116): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(132): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(134): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(136): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(195): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(197): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module sigmoidActivationLayer_tb
+# -- Compiling module tanh
+# ** Warning: tanh.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanh.sv(115): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(117): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(135): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(137): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(196): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(198): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module tanhActivationLayer_tb
+# -- Compiling module tanhActivationLayer
+# ** Warning: tanhActivationLayer.sv(60): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanhActivationLayer.sv(103): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(105): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(121): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(123): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(183): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(185): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(193): (vlog-2275) Existing module 'tanhActivationLayer_tb' will be overwritten.
+# -- Compiling module tanhActivationLayer_tb
+# 
+# Top level modules:
+# 	LSTM_tb
+# 	adderTree_1D
+# 	adderTree_1D_p4_tb
+# 	denseLayer_tb
+# 	mult_op_wrap
+# 	shift_add_tb
+# 	sigmoidActivationLayer_tb
+# 	tanhActivationLayer_tb
+# 	tanhActivationLayer
+# End time: 17:12:10 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 38
+# vsim -voptargs=""+acc"" -t 1ps -lib work LSTM_tb -suppress 8607 
+# Start time: 17:12:10 on Mar 21,2026
+# Loading sv_std.std
+# Loading work.layer1_1_16_6
+# Loading work.layer1_0_16_6
+# Loading work.LSTM_sv_unit
+# Loading work.LSTM_tb
+# Loading work.LSTM
+# Loading work.edge_check
+# Loading work.denseLayer
+# Loading work.adderTree
+# Loading work.sigmoid
+# Loading work.tanh
+# Loading work.adderTree_1D_p4
+# Loading work.shift_add
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 151 of file "X_test_16_6.txt". (Current address [150], address range [0:149])    : LSTM.sv(245)
+#    Time: 0 ps  Iteration: 0  Instance: /LSTM_tb
+# ** Note: $stop    : LSTM.sv(296)
+#    Time: 1115 ns  Iteration: 1  Instance: /LSTM_tb
+# Break in Module LSTM_tb at LSTM.sv line 296
+do modelsim/runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:14:29 on Mar 21,2026
+# vlog -reportprogress 300 layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv 
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:14:29 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:14:29 on Mar 21,2026
+# vlog -reportprogress 300 defines.svh weights_sel.svh 
+# End time: 17:14:29 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:14:29 on Mar 21,2026
+# vlog -reportprogress 300 LSTM.sv adderTree.sv adderTree_p4.sv denseLayer.sv layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv output_sigmoid_pkg_16_6_0.0.sv output_sigmoid_pkg_16_6_0.sv shift_add.sv sigmoid.sv tanh.sv tanhActivationLayer.sv 
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package LSTM_sv_unit
+# -- Importing package layer1_0_16_6
+# -- Importing package layer1_1_16_6
+# -- Compiling module LSTM
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: LSTM.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module edge_check
+# -- Compiling module LSTM_tb
+# -- Compiling module adderTree
+# ** Warning: adderTree.sv(24): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D
+# ** Warning: adderTree.sv(91): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D_p4
+# ** Warning: adderTree_p4.sv(20): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: adderTree_p4.sv(80): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module adderTree_1D_p4_tb
+# -- Compiling module denseLayer
+# ** Warning: denseLayer.sv(37): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module denseLayer_tb
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# -- Compiling package output_sigmoid_16_6
+# -- Compiling package output_sigmoid_0_16_6
+# -- Compiling module shift_add
+# ** Warning: shift_add.sv(95): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(101): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(102): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(130): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module mult_op
+# -- Compiling module mult_op_wrap
+# -- Compiling module shift_add_tb
+# -- Compiling module sigmoid
+# ** Warning: sigmoid.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: sigmoid.sv(114): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(116): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(132): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(134): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(136): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(195): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(197): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module sigmoidActivationLayer_tb
+# -- Compiling module tanh
+# ** Warning: tanh.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanh.sv(115): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(117): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(135): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(137): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(196): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(198): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module tanhActivationLayer_tb
+# -- Compiling module tanhActivationLayer
+# ** Warning: tanhActivationLayer.sv(60): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanhActivationLayer.sv(103): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(105): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(121): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(123): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(183): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(185): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(193): (vlog-2275) Existing module 'tanhActivationLayer_tb' will be overwritten.
+# -- Compiling module tanhActivationLayer_tb
+# 
+# Top level modules:
+# 	LSTM_tb
+# 	adderTree_1D
+# 	adderTree_1D_p4_tb
+# 	denseLayer_tb
+# 	mult_op_wrap
+# 	shift_add_tb
+# 	sigmoidActivationLayer_tb
+# 	tanhActivationLayer_tb
+# 	tanhActivationLayer
+# End time: 17:14:29 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 38
+# End time: 17:14:30 on Mar 21,2026, Elapsed time: 0:02:20
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" -t 1ps -lib work LSTM_tb -suppress 8607 
+# Start time: 17:14:30 on Mar 21,2026
+# Loading sv_std.std
+# Loading work.layer1_1_16_6
+# Loading work.layer1_0_16_6
+# Loading work.LSTM_sv_unit
+# Loading work.LSTM_tb
+# Loading work.LSTM
+# Loading work.edge_check
+# Loading work.denseLayer
+# Loading work.adderTree
+# Loading work.sigmoid
+# Loading work.tanh
+# Loading work.adderTree_1D_p4
+# Loading work.shift_add
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 151 of file "X_test_16_6.txt". (Current address [150], address range [0:149])    : LSTM.sv(245)
+#    Time: 0 ps  Iteration: 0  Instance: /LSTM_tb
+# ** Note: $stop    : LSTM.sv(296)
+#    Time: 1115 ns  Iteration: 1  Instance: /LSTM_tb
+# Break in Module LSTM_tb at LSTM.sv line 296
+do modelsim/runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:17:27 on Mar 21,2026
+# vlog -reportprogress 300 layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv 
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:17:27 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:17:27 on Mar 21,2026
+# vlog -reportprogress 300 defines.svh weights_sel.svh 
+# End time: 17:17:27 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:17:27 on Mar 21,2026
+# vlog -reportprogress 300 LSTM.sv adderTree.sv adderTree_p4.sv denseLayer.sv layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv output_sigmoid_pkg_16_6_0.0.sv output_sigmoid_pkg_16_6_0.sv shift_add.sv sigmoid.sv tanh.sv tanhActivationLayer.sv 
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package LSTM_sv_unit
+# -- Importing package layer1_0_16_6
+# -- Importing package layer1_1_16_6
+# -- Compiling module LSTM
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: LSTM.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module edge_check
+# -- Compiling module LSTM_tb
+# -- Compiling module adderTree
+# ** Warning: adderTree.sv(24): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D
+# ** Warning: adderTree.sv(91): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D_p4
+# ** Warning: adderTree_p4.sv(20): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: adderTree_p4.sv(80): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module adderTree_1D_p4_tb
+# -- Compiling module denseLayer
+# ** Warning: denseLayer.sv(37): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module denseLayer_tb
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# -- Compiling package output_sigmoid_16_6
+# -- Compiling package output_sigmoid_0_16_6
+# -- Compiling module shift_add
+# ** Warning: shift_add.sv(95): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(101): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(102): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(130): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module mult_op
+# -- Compiling module mult_op_wrap
+# -- Compiling module shift_add_tb
+# -- Compiling module sigmoid
+# ** Warning: sigmoid.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: sigmoid.sv(114): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(116): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(132): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(134): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(136): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(195): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(197): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module sigmoidActivationLayer_tb
+# -- Compiling module tanh
+# ** Warning: tanh.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanh.sv(115): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(117): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(135): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(137): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(196): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(198): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module tanhActivationLayer_tb
+# -- Compiling module tanhActivationLayer
+# ** Warning: tanhActivationLayer.sv(60): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanhActivationLayer.sv(103): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(105): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(121): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(123): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(183): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(185): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(193): (vlog-2275) Existing module 'tanhActivationLayer_tb' will be overwritten.
+# -- Compiling module tanhActivationLayer_tb
+# 
+# Top level modules:
+# 	LSTM_tb
+# 	adderTree_1D
+# 	adderTree_1D_p4_tb
+# 	denseLayer_tb
+# 	mult_op_wrap
+# 	shift_add_tb
+# 	sigmoidActivationLayer_tb
+# 	tanhActivationLayer_tb
+# 	tanhActivationLayer
+# End time: 17:17:27 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 38
+# End time: 17:17:28 on Mar 21,2026, Elapsed time: 0:02:58
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" -t 1ps -lib work LSTM_tb -suppress 8607 
+# Start time: 17:17:28 on Mar 21,2026
+# Loading sv_std.std
+# Loading work.layer1_1_16_6
+# Loading work.layer1_0_16_6
+# Loading work.LSTM_sv_unit
+# Loading work.LSTM_tb
+# Loading work.LSTM
+# Loading work.edge_check
+# Loading work.denseLayer
+# Loading work.adderTree
+# Loading work.sigmoid
+# Loading work.tanh
+# Loading work.adderTree_1D_p4
+# Loading work.shift_add
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 151 of file "X_test_16_6.txt". (Current address [150], address range [0:149])    : LSTM.sv(245)
+#    Time: 0 ps  Iteration: 0  Instance: /LSTM_tb
+# ** Note: $stop    : LSTM.sv(296)
+#    Time: 1115 ns  Iteration: 1  Instance: /LSTM_tb
+# Break in Module LSTM_tb at LSTM.sv line 296
+do modelsim/runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:18:17 on Mar 21,2026
+# vlog -reportprogress 300 layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv 
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:18:17 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:18:17 on Mar 21,2026
+# vlog -reportprogress 300 defines.svh weights_sel.svh 
+# End time: 17:18:17 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:18:17 on Mar 21,2026
+# vlog -reportprogress 300 LSTM.sv adderTree.sv adderTree_p4.sv denseLayer.sv layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv output_sigmoid_pkg_16_6_0.0.sv output_sigmoid_pkg_16_6_0.sv shift_add.sv sigmoid.sv tanh.sv tanhActivationLayer.sv 
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package LSTM_sv_unit
+# -- Importing package layer1_0_16_6
+# -- Importing package layer1_1_16_6
+# -- Compiling module LSTM
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: LSTM.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module edge_check
+# -- Compiling module LSTM_tb
+# -- Compiling module adderTree
+# ** Warning: adderTree.sv(24): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D
+# ** Warning: adderTree.sv(91): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D_p4
+# ** Warning: adderTree_p4.sv(20): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: adderTree_p4.sv(80): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module adderTree_1D_p4_tb
+# -- Compiling module denseLayer
+# ** Warning: denseLayer.sv(37): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module denseLayer_tb
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# -- Compiling package output_sigmoid_16_6
+# -- Compiling package output_sigmoid_0_16_6
+# -- Compiling module shift_add
+# ** Warning: shift_add.sv(95): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(101): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(102): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(130): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module mult_op
+# -- Compiling module mult_op_wrap
+# -- Compiling module shift_add_tb
+# -- Compiling module sigmoid
+# ** Warning: sigmoid.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: sigmoid.sv(114): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(116): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(132): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(134): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(136): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(195): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(197): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module sigmoidActivationLayer_tb
+# -- Compiling module tanh
+# ** Warning: tanh.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanh.sv(115): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(117): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(135): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(137): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(196): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(198): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module tanhActivationLayer_tb
+# -- Compiling module tanhActivationLayer
+# ** Warning: tanhActivationLayer.sv(60): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanhActivationLayer.sv(103): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(105): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(121): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(123): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(183): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(185): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(193): (vlog-2275) Existing module 'tanhActivationLayer_tb' will be overwritten.
+# -- Compiling module tanhActivationLayer_tb
+# 
+# Top level modules:
+# 	LSTM_tb
+# 	adderTree_1D
+# 	adderTree_1D_p4_tb
+# 	denseLayer_tb
+# 	mult_op_wrap
+# 	shift_add_tb
+# 	sigmoidActivationLayer_tb
+# 	tanhActivationLayer_tb
+# 	tanhActivationLayer
+# End time: 17:18:17 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 38
+# End time: 17:18:18 on Mar 21,2026, Elapsed time: 0:00:50
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" -t 1ps -lib work LSTM_tb -suppress 8607 
+# Start time: 17:18:18 on Mar 21,2026
+# Loading sv_std.std
+# Loading work.layer1_1_16_6
+# Loading work.layer1_0_16_6
+# Loading work.LSTM_sv_unit
+# Loading work.LSTM_tb
+# Loading work.LSTM
+# Loading work.edge_check
+# Loading work.denseLayer
+# Loading work.adderTree
+# Loading work.sigmoid
+# Loading work.tanh
+# Loading work.adderTree_1D_p4
+# Loading work.shift_add
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 151 of file "X_test_16_6.txt". (Current address [150], address range [0:149])    : LSTM.sv(245)
+#    Time: 0 ps  Iteration: 0  Instance: /LSTM_tb
+# ** Note: $stop    : LSTM.sv(296)
+#    Time: 1115 ns  Iteration: 1  Instance: /LSTM_tb
+# Break in Module LSTM_tb at LSTM.sv line 296
+do modelsim/runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:19:38 on Mar 21,2026
+# vlog -reportprogress 300 layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv 
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:19:38 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:19:38 on Mar 21,2026
+# vlog -reportprogress 300 defines.svh weights_sel.svh 
+# End time: 17:19:38 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:19:38 on Mar 21,2026
+# vlog -reportprogress 300 LSTM.sv adderTree.sv adderTree_p4.sv denseLayer.sv layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv output_sigmoid_pkg_16_6_0.0.sv output_sigmoid_pkg_16_6_0.sv shift_add.sv sigmoid.sv tanh.sv tanhActivationLayer.sv 
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package LSTM_sv_unit
+# -- Importing package layer1_0_16_6
+# -- Importing package layer1_1_16_6
+# -- Compiling module LSTM
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: LSTM.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module edge_check
+# -- Compiling module LSTM_tb
+# -- Compiling module adderTree
+# ** Warning: adderTree.sv(24): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D
+# ** Warning: adderTree.sv(91): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D_p4
+# ** Warning: adderTree_p4.sv(20): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: adderTree_p4.sv(80): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module adderTree_1D_p4_tb
+# -- Compiling module denseLayer
+# ** Warning: denseLayer.sv(37): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module denseLayer_tb
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# -- Compiling package output_sigmoid_16_6
+# -- Compiling package output_sigmoid_0_16_6
+# -- Compiling module shift_add
+# ** Warning: shift_add.sv(95): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(101): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(102): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(130): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module mult_op
+# -- Compiling module mult_op_wrap
+# -- Compiling module shift_add_tb
+# -- Compiling module sigmoid
+# ** Warning: sigmoid.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: sigmoid.sv(114): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(116): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(132): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(134): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(136): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(195): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(197): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module sigmoidActivationLayer_tb
+# -- Compiling module tanh
+# ** Warning: tanh.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanh.sv(115): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(117): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(135): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(137): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(196): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(198): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module tanhActivationLayer_tb
+# -- Compiling module tanhActivationLayer
+# ** Warning: tanhActivationLayer.sv(60): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanhActivationLayer.sv(103): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(105): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(121): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(123): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(183): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(185): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(193): (vlog-2275) Existing module 'tanhActivationLayer_tb' will be overwritten.
+# -- Compiling module tanhActivationLayer_tb
+# 
+# Top level modules:
+# 	LSTM_tb
+# 	adderTree_1D
+# 	adderTree_1D_p4_tb
+# 	denseLayer_tb
+# 	mult_op_wrap
+# 	shift_add_tb
+# 	sigmoidActivationLayer_tb
+# 	tanhActivationLayer_tb
+# 	tanhActivationLayer
+# End time: 17:19:38 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 38
+# End time: 17:19:39 on Mar 21,2026, Elapsed time: 0:01:21
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" -t 1ps -lib work LSTM_tb -suppress 8607 
+# Start time: 17:19:39 on Mar 21,2026
+# Loading sv_std.std
+# Loading work.layer1_1_16_6
+# Loading work.layer1_0_16_6
+# Loading work.LSTM_sv_unit
+# Loading work.LSTM_tb
+# Loading work.LSTM
+# Loading work.edge_check
+# Loading work.denseLayer
+# Loading work.adderTree
+# Loading work.sigmoid
+# Loading work.tanh
+# Loading work.adderTree_1D_p4
+# Loading work.shift_add
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 151 of file "X_test_16_6.txt". (Current address [150], address range [0:149])    : LSTM.sv(245)
+#    Time: 0 ps  Iteration: 0  Instance: /LSTM_tb
+# ** Note: $stop    : LSTM.sv(296)
+#    Time: 1115 ns  Iteration: 1  Instance: /LSTM_tb
+# Break in Module LSTM_tb at LSTM.sv line 296
+do modelsim/runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:20:38 on Mar 21,2026
+# vlog -reportprogress 300 layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv 
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:20:38 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:20:38 on Mar 21,2026
+# vlog -reportprogress 300 defines.svh weights_sel.svh 
+# End time: 17:20:38 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:20:38 on Mar 21,2026
+# vlog -reportprogress 300 LSTM.sv adderTree.sv adderTree_p4.sv denseLayer.sv layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv output_sigmoid_pkg_16_6_0.0.sv output_sigmoid_pkg_16_6_0.sv shift_add.sv sigmoid.sv tanh.sv tanhActivationLayer.sv 
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package LSTM_sv_unit
+# -- Importing package layer1_0_16_6
+# -- Importing package layer1_1_16_6
+# -- Compiling module LSTM
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: LSTM.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module edge_check
+# -- Compiling module LSTM_tb
+# -- Compiling module adderTree
+# ** Warning: adderTree.sv(24): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D
+# ** Warning: adderTree.sv(91): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D_p4
+# ** Warning: adderTree_p4.sv(20): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: adderTree_p4.sv(80): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module adderTree_1D_p4_tb
+# -- Compiling module denseLayer
+# ** Warning: denseLayer.sv(37): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module denseLayer_tb
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# -- Compiling package output_sigmoid_16_6
+# -- Compiling package output_sigmoid_0_16_6
+# -- Compiling module shift_add
+# ** Warning: shift_add.sv(95): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(101): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(102): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(130): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module mult_op
+# -- Compiling module mult_op_wrap
+# -- Compiling module shift_add_tb
+# -- Compiling module sigmoid
+# ** Warning: sigmoid.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: sigmoid.sv(114): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(116): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(132): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(134): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(136): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(195): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(197): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module sigmoidActivationLayer_tb
+# -- Compiling module tanh
+# ** Warning: tanh.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanh.sv(115): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(117): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(135): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(137): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(196): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(198): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module tanhActivationLayer_tb
+# -- Compiling module tanhActivationLayer
+# ** Warning: tanhActivationLayer.sv(60): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanhActivationLayer.sv(103): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(105): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(121): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(123): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(183): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(185): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(193): (vlog-2275) Existing module 'tanhActivationLayer_tb' will be overwritten.
+# -- Compiling module tanhActivationLayer_tb
+# 
+# Top level modules:
+# 	LSTM_tb
+# 	adderTree_1D
+# 	adderTree_1D_p4_tb
+# 	denseLayer_tb
+# 	mult_op_wrap
+# 	shift_add_tb
+# 	sigmoidActivationLayer_tb
+# 	tanhActivationLayer_tb
+# 	tanhActivationLayer
+# End time: 17:20:38 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 38
+# End time: 17:20:39 on Mar 21,2026, Elapsed time: 0:01:00
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" -t 1ps -lib work LSTM_tb -suppress 8607 
+# Start time: 17:20:39 on Mar 21,2026
+# Loading sv_std.std
+# Loading work.layer1_1_16_6
+# Loading work.layer1_0_16_6
+# Loading work.LSTM_sv_unit
+# Loading work.LSTM_tb
+# Loading work.LSTM
+# Loading work.edge_check
+# Loading work.denseLayer
+# Loading work.adderTree
+# Loading work.sigmoid
+# Loading work.tanh
+# Loading work.adderTree_1D_p4
+# Loading work.shift_add
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 151 of file "X_test_16_6.txt". (Current address [150], address range [0:149])    : LSTM.sv(245)
+#    Time: 0 ps  Iteration: 0  Instance: /LSTM_tb
+# ** Note: $stop    : LSTM.sv(296)
+#    Time: 1115 ns  Iteration: 1  Instance: /LSTM_tb
+# Break in Module LSTM_tb at LSTM.sv line 296
+do modelsim/runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:24:11 on Mar 21,2026
+# vlog -reportprogress 300 layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv 
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# 
+# Top level modules:
+# 	--none--
+# End time: 17:24:11 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:24:11 on Mar 21,2026
+# vlog -reportprogress 300 defines.svh weights_sel.svh 
+# End time: 17:24:11 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:24:11 on Mar 21,2026
+# vlog -reportprogress 300 LSTM.sv adderTree.sv adderTree_p4.sv denseLayer.sv layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv output_sigmoid_pkg_16_6_0.0.sv output_sigmoid_pkg_16_6_0.sv shift_add.sv sigmoid.sv tanh.sv tanhActivationLayer.sv 
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package LSTM_sv_unit
+# -- Importing package layer1_0_16_6
+# -- Importing package layer1_1_16_6
+# -- Compiling module LSTM
+# ** Warning: LSTM.sv(22): (vlog-13314) Defaulting port 'xt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: LSTM.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module edge_check
+# -- Compiling module LSTM_tb
+# -- Compiling module adderTree
+# ** Warning: adderTree.sv(24): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D
+# ** Warning: adderTree.sv(91): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module adderTree_1D_p4
+# ** Warning: adderTree_p4.sv(20): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: adderTree_p4.sv(80): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module adderTree_1D_p4_tb
+# -- Compiling module denseLayer
+# ** Warning: denseLayer.sv(37): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module denseLayer_tb
+# -- Compiling package layer1_0_16_6
+# -- Compiling package layer1_1_16_6
+# -- Compiling package layer3_0_16_6
+# -- Compiling package output_sigmoid_16_6
+# -- Compiling package output_sigmoid_0_16_6
+# -- Compiling module shift_add
+# ** Warning: shift_add.sv(95): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(100): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(101): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(102): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: shift_add.sv(130): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module mult_op
+# -- Compiling module mult_op_wrap
+# -- Compiling module shift_add_tb
+# -- Compiling module sigmoid
+# ** Warning: sigmoid.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: sigmoid.sv(114): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(116): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(132): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(134): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(136): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(195): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: sigmoid.sv(197): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module sigmoidActivationLayer_tb
+# -- Compiling module tanh
+# ** Warning: tanh.sv(63): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanh.sv(115): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(117): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(133): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(135): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(137): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(196): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanh.sv(198): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module tanhActivationLayer_tb
+# -- Compiling module tanhActivationLayer
+# ** Warning: tanhActivationLayer.sv(60): (vlog-13314) Defaulting port 'input_data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: tanhActivationLayer.sv(103): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(105): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(121): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(123): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(183): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(185): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: tanhActivationLayer.sv(193): (vlog-2275) Existing module 'tanhActivationLayer_tb' will be overwritten.
+# -- Compiling module tanhActivationLayer_tb
+# 
+# Top level modules:
+# 	LSTM_tb
+# 	adderTree_1D
+# 	adderTree_1D_p4_tb
+# 	denseLayer_tb
+# 	mult_op_wrap
+# 	shift_add_tb
+# 	sigmoidActivationLayer_tb
+# 	tanhActivationLayer_tb
+# 	tanhActivationLayer
+# End time: 17:24:11 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 38
+# End time: 17:24:12 on Mar 21,2026, Elapsed time: 0:03:33
+# Errors: 0, Warnings: 1
+# vsim -voptargs=""+acc"" -t 1ps -lib work LSTM_tb -suppress 8607 
+# Start time: 17:24:12 on Mar 21,2026
+# Loading sv_std.std
+# Loading work.layer1_1_16_6
+# Loading work.layer1_0_16_6
+# Loading work.LSTM_sv_unit
+# Loading work.LSTM_tb
+# Loading work.LSTM
+# Loading work.edge_check
+# Loading work.denseLayer
+# Loading work.adderTree
+# Loading work.sigmoid
+# Loading work.tanh
+# Loading work.adderTree_1D_p4
+# Loading work.shift_add
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 151 of file "X_test_16_6.txt". (Current address [150], address range [0:149])    : LSTM.sv(245)
+#    Time: 0 ps  Iteration: 0  Instance: /LSTM_tb
+# ** Note: $stop    : LSTM.sv(296)
+#    Time: 1115 ns  Iteration: 1  Instance: /LSTM_tb
+# Break in Module LSTM_tb at LSTM.sv line 296
+# ** Fatal: Unable to read lock file necessary for use of uncounted nodelocked license. Exiting.
+# End time: 17:29:13 on Mar 21,2026, Elapsed time: 0:05:01
+# Errors: 0, Warnings: 1
