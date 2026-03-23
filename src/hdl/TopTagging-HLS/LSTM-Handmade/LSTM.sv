@@ -2,10 +2,9 @@
 `include "defines.svh"
 import `LSTM_X_WEIGHTS::*;
 import `LSTM_H_WEIGHTS::*;
-
-
-
 `timescale 1ns / 1ps
+
+
 module LSTM #( parameter
     WIDTH = 16,
     NINT = 6,
@@ -23,16 +22,17 @@ module LSTM #( parameter
 );
     localparam NFRAC = WIDTH-NINT;
     function automatic logic signed [WIDTH*2-1:0] mult(
-    input logic signed [WIDTH-1:0] in1,
-    input logic signed [WIDTH-1:0] in2
-);
-    return (in1 * in2) >>> (NFRAC);
-endfunction
+        input logic signed [WIDTH-1:0] in1,
+        input logic signed [WIDTH-1:0] in2
+    );
+        return (in1 * in2) >>> (NFRAC);
+    endfunction
     // x: input
     // h: recurrent information/output
     // c: cell state
     genvar i;
     logic move_next;
+    logic pos_tanh_ready;
     logic signed[WIDTH-1:0] ct_1 [OUTPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ht_1 [OUTPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ct [OUTPUT_SIZE-1:0];
@@ -52,22 +52,25 @@ endfunction
     assign dense_inputh = ht_1;
     logic reset_cell;
     logic next_ready;
-    assign dense_inputh_ready = input_ready&&next_ready&&(curr_step!=TIMESTEPS);
-    assign dense_inputx_ready = input_ready&&next_ready&&(curr_step!=TIMESTEPS);
+    // logic working;
+    assign dense_inputh_ready = (!reset_cell)&&next_ready&&(curr_step!=TIMESTEPS);
+    assign dense_inputx_ready = (!reset_cell)&&next_ready&&(curr_step!=TIMESTEPS);
     logic [4:0] edge_trig;
-    edge_check edging1 (.clk, .reset(move_next), .in(tanh_ready), .out(edge_trig[0]));
-    edge_check edging2 (.clk, .reset(move_next), .in(sig_ready1), .out(edge_trig[1]));
-    edge_check edging3 (.clk, .reset(move_next), .in(sig_ready2), .out(edge_trig[2]));
-    edge_check edging4 (.clk, .reset(move_next), .in(sig_ready3), .out(edge_trig[3]));
-    edge_check edging5 (.clk, .reset(move_next), .in(sig_ready4), .out(edge_trig[4]));
+    edge_check edging1 (.clk, .reset(next_ready), .in(pos_tanh_ready), .out(edge_trig[0]));
+    edge_check edging2 (.clk, .reset(next_ready), .in(sig_ready1), .out(edge_trig[1]));
+    edge_check edging3 (.clk, .reset(next_ready), .in(sig_ready2), .out(edge_trig[2]));
+    edge_check edging4 (.clk, .reset(next_ready), .in(sig_ready3), .out(edge_trig[3]));
+    edge_check edging5 (.clk, .reset(next_ready), .in(sig_ready4), .out(edge_trig[4]));
     assign move_next = &edge_trig;
-
     logic lstm_reset;
     assign lstm_reset=reset_cell|reset;
+    logic move_next_1;
     always_ff @(posedge clk) begin
         next_ready<=0;
         output_ready<=0;
-        if (move_next) begin
+        // if (curr_step==0&&input_ready)
+        move_next_1<=move_next;
+        if (move_next&&!move_next_1) begin
             next_ready<=1;
             curr_step<=curr_step+1;
             ht_1<=ht;
@@ -78,7 +81,7 @@ endfunction
             reset_cell<=1;
             output_ready<=1;
         end
-            
+        
             
         if (lstm_reset) begin
             next_ready<=1;
@@ -128,6 +131,7 @@ endfunction
 
     // Split into 4 parts
     logic signed[WIDTH-1:0] combined [OUTPUT_SIZE*4-1:0];
+    // posedge_m ht_check;s
     generate
     for (i=0; i<OUTPUT_SIZE*4; i++) begin : combination
             always_comb begin
@@ -173,8 +177,11 @@ endfunction
     generate
     for (i=0; i<OUTPUT_SIZE; i++) begin
         always_ff @(posedge clk) begin
-            // if (ct_next)
+            if (lstm_reset)
+                ct[i] <= 0;
+            if (ct_next)
                 ct[i] <= mult(ft[i], ct_1[i])+mult(it[i],c_t[i]);
+
         end
     end
     endgenerate
@@ -188,10 +195,14 @@ endfunction
     newht (
         .clk, .reset(lstm_reset), .input_data(ct), .output_data(ht_n), .input_ready(ct_tanh), .output_ready(tanh_ready)
     );
+    
+    posedge_m ht_check (.clk, .reset, .in(tanh_ready), .out(pos_tanh_ready));
     generate
     for (i=0; i<OUTPUT_SIZE; i++)begin
         always_ff @( posedge clk ) begin
-            if (tanh_ready)
+            if (lstm_reset)
+                ht[i]<=0;
+            else if (pos_tanh_ready)
                 ht[i] <= mult(ht_n[i],ot[i]);
         end
     end
@@ -201,7 +212,13 @@ endfunction
     // Figure out what the cell states reset to
 
 endmodule
-
+module posedge_m(input clk, input reset, input in, output logic out);
+    logic in_1;
+    always_ff @(posedge clk) begin
+        in_1<=in;
+        out<=in&&(!in_1)&&!reset;
+    end
+endmodule
 module edge_check(input clk, input reset, input in, output logic out);
     always_ff @(posedge clk) begin
         if (in)
@@ -295,7 +312,7 @@ module LSTM_tb;
         end
         input_ready<=0;
         
-        repeat(300) @(posedge clk);
+        repeat(5) @(posedge clk);
         $stop;
     end
 endmodule

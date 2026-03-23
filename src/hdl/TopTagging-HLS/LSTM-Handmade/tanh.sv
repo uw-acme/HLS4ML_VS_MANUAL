@@ -70,9 +70,10 @@ module tanh #(parameter
     logic [cycle_length-1:0] signed_count [SIZE-1:0];
     assign output_ready = counter[0];
     always_ff @(posedge clk) begin
-        counter<={input_ready, counter[cycle_length-1:1]};
-       
-        
+        if (reset)
+            counter<=0;
+        else
+            counter<={input_ready, counter[cycle_length-1:1]};
     end
      generate
             for (i=0; i<SIZE; i++) begin : volvo

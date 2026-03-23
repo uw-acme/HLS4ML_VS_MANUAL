@@ -7,6 +7,14 @@
     `define LSTM_H_WEIGHTS layer1_1_16_6
 `endif
 
+`ifndef DENSE1_WEIGHTS
+    `define DENSE1_WEIGHTS layer3_0_16_6
+`endif
+
+`ifndef DENSE2_WEIGHTS
+    `define DENSE2_WEIGHTS output_sigmoid_0_16_6
+`endif
+
 // // Package with weights and biases for update gate dense latency layer
 // `ifndef UPDATE_GATE_PKG
 //     `define UPDATE_GATE_PKG update_gate_16_10
