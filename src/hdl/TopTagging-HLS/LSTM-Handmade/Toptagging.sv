@@ -144,8 +144,8 @@ module Toptagging_tb;
         clk=0;
         forever #1 clk<=~clk;
     end
-    // max_tests = 166000;
-    localparam num_tests = 20;
+    // max_tests = 19951;
+    localparam num_tests = 50;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;
