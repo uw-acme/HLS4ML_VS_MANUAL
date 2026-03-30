@@ -47,9 +47,10 @@ def handmade_gen(acc, name, params, defs):
     # os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
     # patt = r"[0-9]{1,2}"
     gen_weight(acc)
-    params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
-    for i in range(1,5):
-        defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
+    params += f' NINT={acc[1]} WIDTH={acc[0]}'
+    # for i in range(1,5):
+    #     defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
+    defs+=f" LSTM_X_WEIGHTS=layer1_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=layer1_1_{acc[0]}_{acc[1]} DENSE1_WEIGHTS=layer3_0_{acc[0]}_{acc[1]} " 
     params = "{" + params + "}"
     defs = "{" + defs + "}"
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark*.sv')

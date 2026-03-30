@@ -10,7 +10,8 @@
 # read_verilog -sv "./pkg_sel.svh"
 # read_verilog -sv [glob ../weights/dense_*_weights_biases_pkgs/dense_*_*.sv]
 # --- Dense layer ---
-read_verilog -sv [glob *.sv]
+read_verilog -sv [glob layer* output_sigmoid*]
+read_verilog -sv LSTM.sv  Toptagging.sv  adderTree.sv  adderTree_p4.sv  denseLayer.sv  relu.sv shift_add.sv sigmoid.sv tanh.sv 
 # read_verilog -sv "./adderTree.sv"
 # read_verilog -sv "./shift_add.sv"
 # read_verilog -sv "./denseLayer.sv"
