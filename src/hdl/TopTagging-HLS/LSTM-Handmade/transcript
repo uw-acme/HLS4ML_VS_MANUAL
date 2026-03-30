@@ -1,7 +1,7 @@
 do modelsim/runlab.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:27:14 on Mar 22,2026
+# Start time: 21:30:02 on Mar 29,2026
 # vlog -reportprogress 300 layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv 
 # -- Compiling package layer1_0_16_6
 # -- Compiling package layer1_1_16_6
@@ -9,24 +9,24 @@ do modelsim/runlab.do
 # 
 # Top level modules:
 # 	--none--
-# End time: 18:27:14 on Mar 22,2026, Elapsed time: 0:00:00
+# End time: 21:30:02 on Mar 29,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:27:14 on Mar 22,2026
+# Start time: 21:30:02 on Mar 29,2026
 # vlog -reportprogress 300 output_sigmoid_pkg_16_6_0.sv 
 # -- Compiling package output_sigmoid_0_16_6
 # 
 # Top level modules:
 # 	--none--
-# End time: 18:27:14 on Mar 22,2026, Elapsed time: 0:00:00
+# End time: 21:30:02 on Mar 29,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:27:14 on Mar 22,2026
+# Start time: 21:30:02 on Mar 29,2026
 # vlog -reportprogress 300 defines.svh weights_sel.svh 
-# End time: 18:27:14 on Mar 22,2026, Elapsed time: 0:00:00
+# End time: 21:30:02 on Mar 29,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 18:27:14 on Mar 22,2026
+# Start time: 21:30:02 on Mar 29,2026
 # vlog -reportprogress 300 LSTM.sv Toptagging.sv adderTree.sv adderTree_p4.sv denseLayer.sv layer1_pkg_16_6_0.sv layer1_pkg_16_6_1.sv layer3_pkg_16_6_0.sv output_sigmoid_pkg_16_6_0.sv relu.sv shift_add.sv sigmoid.sv tanh.sv tanhActivationLayer.sv 
 # ** Warning: LSTM.sv(20): (vlog-13314) Defaulting port 'input_v' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # -- Compiling package LSTM_sv_unit
@@ -116,10 +116,10 @@ do modelsim/runlab.do
 # 	sigmoidActivationLayer_tb
 # 	tanhActivationLayer_tb
 # 	tanhActivationLayer
-# End time: 18:27:14 on Mar 22,2026, Elapsed time: 0:00:00
+# End time: 21:30:02 on Mar 29,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 41
 # vsim -voptargs=""+acc"" -t 1ps -lib work Toptagging_tb -suppress 8607 
-# Start time: 18:27:14 on Mar 22,2026
+# Start time: 21:30:02 on Mar 29,2026
 # Loading sv_std.std
 # Loading work.output_sigmoid_0_16_6
 # Loading work.layer3_0_16_6
@@ -144,8 +144,6 @@ do modelsim/runlab.do
 # .main_pane.objects.interior.cs.body.tree
 # ** Warning: (vsim-PLI-3407) Too many data words read on line 6001 of file "X_test_16_6.txt". (Current address [6000], address range [0:5999])    : Toptagging.sv(160)
 #    Time: 0 ps  Iteration: 0  Instance: /Toptagging_tb
-# ** Note: $stop    : Toptagging.sv(214)
-#    Time: 32237 ns  Iteration: 1  Instance: /Toptagging_tb
-# Break in Module Toptagging_tb at Toptagging.sv line 214
-# End time: 18:31:59 on Mar 22,2026, Elapsed time: 0:04:45
+# ** Fatal: Unable to read lock file necessary for use of uncounted nodelocked license. Exiting.
+# End time: 21:35:02 on Mar 29,2026, Elapsed time: 0:05:00
 # Errors: 0, Warnings: 1

@@ -35,13 +35,13 @@ read_verilog -sv [glob *.sv]
 # xq7vx980trf1930-1I is big, needs license
 # xcvu13p-fhga2104-3-e
 # xc7vx690tffg1761-2 is virtex 7, needs license
-synth_design -top LSTM -part xcvu13p-fhga2104-3-e 
+synth_design -top Toptagging -part xcvu13p-fhga2104-3-e 
 #-generic $generics -verilog_define $defs
 
 # --- Implementation flow ---
 opt_design
-# place_design
-# route_design
+place_design
+route_design
 
 # --- Reports ---
 #report_utilization -hierarchical -hierarchical_depth 1 -file reports/util_hier_SA4.rpt
