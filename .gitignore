@@ -46,4 +46,3 @@ src/hdl/TopTagging-HLS/model_lstm_hls/hls4ml_prj/
 *.rpt
 
 documents/Benchmarks/Toptag/Miniconda3-latest-Linux-x86_64.sh
-*.sh
