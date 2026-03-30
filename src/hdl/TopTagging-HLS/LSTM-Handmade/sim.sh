@@ -9,14 +9,14 @@ rm -rf xsim.dir/ toptagging_sim.jou toptagging_sim.log sim.log
 #xvlog --sv ./pkg_sel.svh
 export PATH=/tools/Disk_Xilinx/2025.1/Vivado/bin:$PATH
 # Dense weights
-xvlog --sv layer* sigmoid_table*
+xvlog --sv layer* output_sigmoid*
 # xvlog --sv ./weights/dense_1_weights_biases_pkgs/dense_1_*.sv
 # xvlog --sv ./weights/dense_2_weights_biases_pkgs/dense_2_*.sv
 # xvlog --sv ./weights/dense_3_weights_biases_pkgs/dense_3_*.sv
 # xvlog --sv ./weights/dense_4_weights_biases_pkgs/dense_4_*.sv
 
 # Dense layer
-xvlog --sv *.sv 
+xvlog --sv  LSTM.sv  Toptagging.sv  adderTree.sv  adderTree_p4.sv  denseLayer.sv  relu.sv shift_add.sv sigmoid.sv tanh.sv 
 #${1//' '/ -d }
 # xvlog --sv ./verilog-modules/adderTree.sv ${1//' '/ -d }
 # xvlog --sv ./verilog-modules/shift_add.sv ${1//' '/ -d }
@@ -40,4 +40,4 @@ xelab Toptagging_tb
 #${1//' '/ -d } ${2//' '/ -generic_top } -s waiz_tb_sim --debug typical 
 
 # Run simulation to completion (headless, no GUI waves)
-xsim waiz_tb_sim -runall
+xsim Toptagging_tb -runall
