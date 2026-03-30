@@ -25,7 +25,7 @@ module hls_tb;
         forever #1 ap_clk<=~ap_clk;
     end
     // max_tests = 166000;
-    localparam num_tests = 100;
+    localparam num_tests = 19951;
     // logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [INPUT_SIZE*TIMESTEPS*num_tests];
     logic signed [INPUT_SIZE*TIMESTEPS*WIDTH*num_tests-1:0] flatter_mem;
