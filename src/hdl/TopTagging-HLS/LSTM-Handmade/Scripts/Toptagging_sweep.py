@@ -17,7 +17,7 @@ from helper_functions import *
 import numpy as np
 from sklearn.metrics import accuracy_score
 y_test = np.load('y_test.npy')
-#model = load_model("python/model.h5")
+model = load_model("../../model_toptag_lstm.h5")
 features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 # for layer in layers:
 #     lay = model.get_layer(layer)
@@ -25,7 +25,7 @@ features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 def gen_test(accuracy):
     test = np.load("X_test.npy")
     test = test.flatten()
-    filename = f"X_test_{accuracy[0]}_{accuracy[1]}.txt"
+    filename = f"../testing_data/X_test_{accuracy[0]}_{accuracy[1]}.txt"
     if (not os.path.isfile(filename)):
         with open(filename, "w") as f:
             for num in test:
@@ -46,11 +46,11 @@ def handmade_gen(acc, name, params, defs):
         return newline
     # os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
     # patt = r"[0-9]{1,2}"
-    gen_weight(acc)
+    gen_weight(acc, model, "../weights_n_tables")
     params += f' NINT={acc[1]} WIDTH={acc[0]}'
     # for i in range(1,5):
     #     defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
-    defs+=f" LSTM_X_WEIGHTS=layer1_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=layer1_1_{acc[0]}_{acc[1]} DENSE1_WEIGHTS=layer3_0_{acc[0]}_{acc[1]} " 
+    defs+=f" LSTM_X_WEIGHTS=layer1_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=layer1_1_{acc[0]}_{acc[1]} DENSE1_WEIGHTS=layer3_0_{acc[0]}_{acc[1]} DENSE2_WEIGHTS output_sigmoid_0_{acc[0]}_{acc[1]}" 
     params = "{" + params + "}"
     defs = "{" + defs + "}"
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark*.sv')
@@ -112,11 +112,10 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
             params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
     res_file = f"{name}_{acc[0]}_{acc[1]}_results.csv"
 
-    defs += f' TESTFILE="../scripts/X_test_{acc[0]}_{acc[1]}.txt"'
+    defs += f' TESTFILE="../testing_data/X_test_{acc[0]}_{acc[1]}.txt"'
     defs += f' RESULTSFILE="../reports/{res_file}"'
-    if ("DENSE_LAYER_" not in defs):
-        for i in range(1,5):
-            defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
+    if ("LSTM_X_" not in defs):
+        defs+= f" LSTM_X_WEIGHTS=layer1_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=layer1_1_{acc[0]}_{acc[1]} DENSE1_WEIGHTS=layer3_0_{acc[0]}_{acc[1]} DENSE2_WEIGHTS output_sigmoid_0_{acc[0]}_{acc[1]}" 
     params = f" {params}"
     params = params.replace("{", "")
     params = params.replace("}", "")
@@ -124,7 +123,7 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     defs = defs.replace("  ", " ")
     # Generates the input files for testing and for weights
     gen_test(acc)
-    gen_weight(acc)
+    gen_weight(acc, model, "../weights_n_tables")
     # Runs the simulator through a bash script
     os.system(f'bash sim.sh "{defs}" "{params}"')
 
@@ -177,7 +176,7 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
     params = params.replace("  ", " ")
     defs = defs.replace("  ", " ")
     # Generates the input files for testing and for weights
-    gen_weight(acc)
+    gen_weight(acc, model, "../weights_n_tables")
     # Runs the simulator through a bash script
     os.system(f'bash lat.sh "{defs}" "{params}"')
     with open("../Results/hand_lat.csv", "r") as f:
@@ -237,21 +236,22 @@ def adjust(bits):
 # handmade_gen((16,6), name)
 # patt = r"[0-9]{1,2}"
 
-for pipeline in [3]:
+# for pipeline in [3]:
     # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
-    pipe_out=0
-    params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
-    name = f"expPipeNegmax"
-    for i in range(10,11):
-        acc = (3*i-2,i)
-        # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
-        # SA_INT, SA_FRAC = adjust(acc_in[0])
-        SAD, SAFRAC = 0, 0#adjust(acc[0])
-        defs = f' PIPELINE_MULT=0 SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-        # lat = lat_test(acc, name, defs, params)
-        # lat = 24*[lat]
-        # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
-        # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-        # # print((3*i-2,i))
-        handmade_gen(acc, name, params, defs)
+    # pipe_out=0
+    # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
+    # name = f"expPipeNegmax"
+name = "InitialToptag"
+for i in range(2,13):
+    acc = (3*i-2,i)
+    # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
+    # SA_INT, SA_FRAC = adjust(acc_in[0])
+    SAD, SAFRAC = 3, 0#adjust(acc[0])
+    defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+    # lat = lat_test(acc, name, defs, params)
+    # lat = 24*[lat]
+    # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
+    # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+    # # print((3*i-2,i))
+    handmade_gen(acc, name, params, defs)
         # accuracy_test(acc, y_test, name, defs, params, email=True)

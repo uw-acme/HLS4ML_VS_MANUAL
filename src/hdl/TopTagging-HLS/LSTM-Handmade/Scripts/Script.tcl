@@ -1,10 +1,10 @@
 # Create a project (optional if running non-project mode)
 # create_project waiz_benchmark ./vivado_proj -part xc7a200tsbg484-1
-# cd ../verilog-modules
+cd ../verilog-modules
 
-# set name [lindex $argv 0]
-# set defs [lindex $argv 1]
-# set generics [lindex $argv 2]
+set name [lindex $argv 0]
+set defs [lindex $argv 1]
+set generics [lindex $argv 2]
 
 # --- Dense weights ---
 # read_verilog -sv "./pkg_sel.svh"
@@ -36,8 +36,7 @@ read_verilog -sv LSTM.sv  Toptagging.sv  adderTree.sv  adderTree_p4.sv  denseLay
 # xq7vx980trf1930-1I is big, needs license
 # xcvu13p-fhga2104-3-e
 # xc7vx690tffg1761-2 is virtex 7, needs license
-synth_design -top Toptagging -part xcvu13p-fhga2104-3-e 
-#-generic $generics -verilog_define $defs
+synth_design -top Toptagging -part xcvu13p-fhga2104-3-e -generic $generics -verilog_define $defs
 
 # --- Implementation flow ---
 opt_design
@@ -47,7 +46,7 @@ route_design
 # --- Reports ---
 #report_utilization -hierarchical -hierarchical_depth 1 -file reports/util_hier_SA4.rpt
 # --- Save design checkpoint for GUI inspection ---
-# report_utilization -hierarchical -hierarchical_depth 1 -file ../reports/${name}_hier.rpt
-# report_utilization -file ../reports/${name}_util.rpt
-# report_timing_summary -file ../reports/${name}_timing.rpt
+report_utilization -hierarchical -hierarchical_depth 1 -file ../reports/${name}_hier.rpt
+report_utilization -file ../reports/${name}_util.rpt
+report_timing_summary -file ../reports/${name}_timing.rpt
 #write_checkpoint -force reports/[lindex $argv 0].dcp
