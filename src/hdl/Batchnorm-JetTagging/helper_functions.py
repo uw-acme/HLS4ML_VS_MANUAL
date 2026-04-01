@@ -165,7 +165,7 @@ def gen_weight_txt(accuracy, weights_file, biases_file, output):
                     f.write(f"{head}{num}")
                     f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
 
-def gen_weight(accuracy, model):
+def gen_weight(accuracy, model, target_dir="./"):
     """
     Generate weight and bias packages from keras model
     :param accuracy: Accuracy for packages. Formatted (width, integers)
@@ -200,7 +200,7 @@ def gen_weight(accuracy, model):
                 bias = biases[i]
 
                 # Output file name
-                filename = f"{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv"
+                filename = os.path.join(target_dir, f"{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv")
                 # if (not os.path.isfile(filename)):
                 with open(filename, "w") as f:
                     # Writes the header to the file
