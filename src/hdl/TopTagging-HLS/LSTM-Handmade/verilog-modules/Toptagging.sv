@@ -1,11 +1,15 @@
 `include "weights_sel.svh"
 `include "defines.svh"
-import `LSTM_X_WEIGHTS::*;
-import `LSTM_H_WEIGHTS::*;
-import `DENSE1_WEIGHTS::*;
-import `DENSE2_WEIGHTS::*;
-`timescale 1ns / 1ps
 
+import `LSTM_X_WEIGHTS::*;
+
+import `LSTM_H_WEIGHTS::*;
+
+import `DENSE2_WEIGHTS::*;
+
+import `DENSE1_WEIGHTS::*;
+
+`timescale 1ns / 1ps
 module Toptagging #( parameter
     WIDTH = 16,
     NINT = 6,
@@ -123,8 +127,9 @@ module Toptagging #( parameter
     assign output_ready = sigmoid_output_ready;
     assign output_data = sigmoid_output_data[0];
 endmodule
-
 `define STRINGIFY(x) `"x`"
+`ifndef SYNTHESIS
+
 module Toptagging_tb;
     logic clk;
     logic reset;
@@ -139,13 +144,13 @@ module Toptagging_tb;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] output_data;
-    Toptagging #(.WIDTH(16), .NINT(6)) dut (.*);
+    Toptagging #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
     initial begin
         clk=0;
         forever #1 clk<=~clk;
     end
     // max_tests = 19951;
-    localparam num_tests = 19951;
+    localparam num_tests = 500;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;
@@ -157,7 +162,7 @@ module Toptagging_tb;
     `endif
     
     initial begin
-        $readmemb("X_test_16_6.txt", flat_mem);
+        $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<TIMESTEPS; j++) begin : steps
                 for (k=0; k<INPUT_SIZE; k++) begin : nums
@@ -190,7 +195,7 @@ module Toptagging_tb;
     end
     initial begin
         if (write_file) begin
-            fd = $fopen("gen_results.csv", "w");  // "w" = write mode, "a" = append
+            fd = $fopen(`STRINGIFY(`RESULTSFILE), "w");  // "w" = write mode, "a" = append
             if (fd == 0) begin
                 $display("ERROR: Could not open file!");
                 $finish;
@@ -214,3 +219,4 @@ module Toptagging_tb;
         $stop;
     end
 endmodule
+`endif

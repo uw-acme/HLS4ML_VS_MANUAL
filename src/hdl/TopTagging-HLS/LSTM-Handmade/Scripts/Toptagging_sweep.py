@@ -1,29 +1,29 @@
+
+acc = []
+import os
+import re
+import numpy as np
+from tensorflow.keras.models import load_model # type: ignore
+import sys
 currentdir = os.getcwd()
 ind = currentdir.find("HLS4ML_VS_MANUAL")
 root_folder = currentdir[0:ind+len("HLS4ML_VS_MANUAL")]
 path = os.path.join(root_folder, "src/hdl/Batchnorm-JetTagging")
 sys.path.insert(1,path)
 
-import helper_functions
-
-acc = []
-import os
-import re
-import numpy as np
-#from tensorflow.keras.models import load_model # type: ignore
-import sys
-sys.path.insert(1,"/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/")
+# import helper_functions
+# sys.path.insert(1,"/home/caleb/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/")
 from helper_functions import *
 import numpy as np
 from sklearn.metrics import accuracy_score
-y_test = np.load('y_test.npy')
+y_test = np.load('../../y_test.npy')
 model = load_model("../../model_toptag_lstm.h5")
 features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 # for layer in layers:
 #     lay = model.get_layer(layer)
 #     weights[layer], biases[layer] = lay.get_weights()
 def gen_test(accuracy):
-    test = np.load("X_test.npy")
+    test = np.load("../../x_test.npy")
     test = test.flatten()
     filename = f"../testing_data/X_test_{accuracy[0]}_{accuracy[1]}.txt"
     if (not os.path.isfile(filename)):
@@ -50,7 +50,7 @@ def handmade_gen(acc, name, params, defs):
     params += f' NINT={acc[1]} WIDTH={acc[0]}'
     # for i in range(1,5):
     #     defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
-    defs+=f" LSTM_X_WEIGHTS=layer1_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=layer1_1_{acc[0]}_{acc[1]} DENSE1_WEIGHTS=layer3_0_{acc[0]}_{acc[1]} DENSE2_WEIGHTS output_sigmoid_0_{acc[0]}_{acc[1]}" 
+    defs+=f" LSTM_X_WEIGHTS=layer1_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=layer1_1_{acc[0]}_{acc[1]} DENSE1_WEIGHTS=layer3_0_{acc[0]}_{acc[1]} DENSE2_WEIGHTS=output_sigmoid_0_{acc[0]}_{acc[1]} " 
     params = "{" + params + "}"
     defs = "{" + defs + "}"
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark*.sv')
@@ -63,7 +63,7 @@ def handmade_gen(acc, name, params, defs):
     if len(results)!=len(features):
         raise ValueError("Report files not as expected")
     if (not os.path.isfile(f"../Results/util_{name}.csv")):
-        with open(f"../Results/util_{name}.csv", "x") as f:
+        with open(f"../Results/util_{name}.csv", "w") as f:
             f.write("Bits, Slice LUTs, Slice Registers, Block RAM Tile, DSPs, Bonded IOB, Timing, Accuracy\n")
     with open(f"../Results/util_{name}.csv", "a") as f:
         f.write(f"{acc[0]}")
@@ -109,13 +109,13 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
         if (not params):
             params = ""
         if ("WIDTH" not in params):
-            params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
+            params += f' NINT={acc[1]} WIDTH={acc[0]}'
     res_file = f"{name}_{acc[0]}_{acc[1]}_results.csv"
 
     defs += f' TESTFILE="../testing_data/X_test_{acc[0]}_{acc[1]}.txt"'
     defs += f' RESULTSFILE="../reports/{res_file}"'
     if ("LSTM_X_" not in defs):
-        defs+= f" LSTM_X_WEIGHTS=layer1_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=layer1_1_{acc[0]}_{acc[1]} DENSE1_WEIGHTS=layer3_0_{acc[0]}_{acc[1]} DENSE2_WEIGHTS output_sigmoid_0_{acc[0]}_{acc[1]}" 
+        defs+= f" LSTM_X_WEIGHTS=layer1_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=layer1_1_{acc[0]}_{acc[1]} DENSE2_WEIGHTS output_sigmoid_0_{acc[0]}_{acc[1]} DENSE1_WEIGHTS=layer3_0_{acc[0]}_{acc[1]} " 
     params = f" {params}"
     params = params.replace("{", "")
     params = params.replace("}", "")
@@ -129,7 +129,8 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
 
     # Grabs the output from the simulation and tests it
     res =  np.loadtxt(f"../reports/{res_file}", delimiter=",")
-    acc_res= accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
+    res = res.reshape(-1, 1)
+    acc_res= accuracy_score((y_test[0:len(res)]), np.round(res))
 
     # Writes the results to a file
     csv_name = f"../Results/{name}_acc.csv"
@@ -247,6 +248,7 @@ for i in range(2,13):
     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
     # SA_INT, SA_FRAC = adjust(acc_in[0])
     SAD, SAFRAC = 3, 0#adjust(acc[0])
+    params = ""
     defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
     # lat = lat_test(acc, name, defs, params)
     # lat = 24*[lat]
