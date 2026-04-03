@@ -10,13 +10,16 @@ module LSTM #( parameter
     NINT = 6,
     INPUT_SIZE = 6,
     TIMESTEPS = 20,
-    OUTPUT_SIZE = 20
+    OUTPUT_SIZE = 20,
+    OUTPUT_EACH_HT = 0
 )
 (
     input clk,
     input reset,
     input input_ready,
     output logic output_ready,
+    output logic ready,
+    input next_layer_ready,
     input logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0],
     output logic signed [WIDTH-1:0] ht [OUTPUT_SIZE-1:0]
 );
@@ -30,6 +33,11 @@ module LSTM #( parameter
     // x: input
     // h: recurrent information/output
     // c: cell state
+    logic processing;
+    assign processing = (next_layer_ready)||(!output_ready);
+    
+    assign ready = next_layer_ready&&output_ready;
+
     genvar i;
     logic move_next;
     logic pos_tanh_ready;
@@ -75,14 +83,14 @@ module LSTM #( parameter
             curr_step<=curr_step+1;
             ht_1<=ht;
             ct_1<=ct;
+            if (OUTPUT_EACH_HT)
+                output_ready<=1'b1;
         end
         reset_cell<=0;
         if (curr_step==TIMESTEPS&&next_ready) begin
             reset_cell<=1;
             output_ready<=1;
         end
-        
-            
         if (lstm_reset) begin
             next_ready<=1;
             curr_step<=0;
@@ -92,7 +100,7 @@ module LSTM #( parameter
             ct_1<='{default: 0};
         end
     end
-    
+    logic densex_ready;
     denseLayer #(
         .WIDTH          ( WIDTH                     ),
         .NFRAC          ( WIDTH-NINT                    ),
@@ -105,12 +113,14 @@ module LSTM #( parameter
     (
         .clk,
         .reset(lstm_reset),
+        .ready(densex_ready),
+        .next_layer_ready(),
         .input_ready(dense_inputx_ready),
         .output_ready(dense_outputx_ready),
         .input_data(dense_inputx),
         .output_data(dense_outputx)
     );
-
+    logic denseh_ready;
     denseLayer #(
         .WIDTH          ( WIDTH                     ),
         .NFRAC          ( WIDTH-NINT                     ),
@@ -123,6 +133,8 @@ module LSTM #( parameter
     (
         .clk,
         .reset(lstm_reset),
+        .ready(denseh_ready),
+        .next_layer_ready()
         .input_ready(dense_inputh_ready),
         .output_ready(dense_outputh_ready),
         .input_data(dense_inputh),

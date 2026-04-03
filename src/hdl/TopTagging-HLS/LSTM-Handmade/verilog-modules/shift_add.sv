@@ -12,6 +12,7 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
                                     DEPTH_FRAC = 5
                    )(
     input logic                 clk,
+    input                       ce,
     input logic [BITS-1:0]      data_in,
     output logic [BITS*2-1:0]   data_out
 );
@@ -102,9 +103,9 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
                 else if (shift[i] < 0) begin data_out_tmp = data_out_tmp - (data_in_ex << (abs_value(shift[i])-1)); end
             end
         end
-        always_ff @(posedge clk) begin
-            data_out <= $signed(data_out_tmp);
-        end
+        // always_ff @(posedge clk) begin
+        //     data_out <= $signed(data_out_tmp);
+        // end
         // if the number is too complex (i.e. the weight couldn't be turned into 2 shift terms)
         // either multiply with wrapper for niche cases with larger than DSP width ports and
         // a couple weight conditions
@@ -129,11 +130,12 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
             always_comb begin
                 data_out_tmp = $signed(data_in_reg) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
             end
-            always_ff @(posedge clk) begin
-                data_out <= $signed(data_out_tmp);
-            end
-        // end
     end
+
+    always_ff @(posedge clk) begin
+        if (ce) data_out <= $signed(data_out_tmp);
+    end
+        // end
     
     
     

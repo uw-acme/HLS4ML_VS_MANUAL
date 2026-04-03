@@ -18,7 +18,8 @@ module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32, PIPELINING = 1) 
     input  logic                        clk,
     input  logic                        reset,
     input  logic signed [WIDTH-1 : 0]   input_data  [INPUT_SIZE],
-    output logic signed [WIDTH-1 : 0]   output_data
+    output logic signed [WIDTH-1 : 0]   output_data,
+    input ce
 );
 	localparam integer POW_OF_2   = $clog2(INPUT_SIZE);
     localparam integer POW_OF_4   = (POW_OF_2+1)/2;
@@ -70,10 +71,11 @@ module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32, PIPELINING = 1) 
 	       for (j=4**i; j < 2*(4**i); j++) begin
                 if (i%PIPELINING==0) begin
                     always_ff @(posedge clk) begin
-                        tree[j] <= tree[4*j]
-                                    + tree[(4*j) + 1]
-                                    + tree[(4*j) + 2]
-                                    + tree[(4*j) + 3];
+                        if (ce)
+                            tree[j] <= tree[4*j]
+                                        + tree[(4*j) + 1]
+                                        + tree[(4*j) + 2]
+                                        + tree[(4*j) + 3];
                     end
                 end else begin
                     always_comb begin

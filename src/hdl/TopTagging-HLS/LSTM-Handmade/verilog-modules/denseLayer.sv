@@ -33,7 +33,9 @@ module denseLayer #(
     input  logic                    clk, 
     input  logic                    reset,
     input  logic                    input_ready,
-    output  logic                    output_ready,
+    output  logic                   ready,
+    output  logic                   output_ready,
+    input logic                     next_layer_ready,
     input  logic signed [WIDTH-1:0] input_data  [0:INPUT_SIZE-1],
     output logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1]
 );
@@ -44,7 +46,9 @@ module denseLayer #(
     initial assert($bits(WEIGHTS[0][0]) == WIDTH);
     localparam real ADDER_TREE_DEPTH = $ceil($clog2(INPUT_SIZE)/2.0); // Number of cycles for adderTree module
     localparam int ADDER_TREE_CYCLES = $ceil(ADDER_TREE_DEPTH/PIPELINING);
-
+    assign ready=processing;
+    logic processing;
+    assign processing = !((!next_layer_ready)&&(output_ready));
     logic signed [WIDTH-1:0]   mult         [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH*2-1:0] mult_temp    [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0]   accumulator  [0:OUTPUT_SIZE-1];
@@ -69,6 +73,7 @@ module denseLayer #(
                             .NFRAC  ( NFRAC                             )
                             ) sa (
                     .clk,
+                    .ce         (processing)
                     .data_in    ( input_data[row]       ),
                     .data_out   ( mult_temp[row][col]   )
                 );
@@ -102,6 +107,7 @@ module denseLayer #(
                 ) sum_all (
         .clk,
         .reset,
+        .ce(processing),
         .input_data ( mult_out      ),
         .output_data( accumulator   )
     );
@@ -125,14 +131,15 @@ module denseLayer #(
     end
     if (PIPE_OUT)
         always_ff @(posedge clk)
-            if (ready_buffer[1])
+            if (ready_buffer[1]&&(processing))
                 output_data<=result;
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
             ready_buffer<=0;
             // output_data<='{default: 0};
         end else begin
-            ready_buffer<={input_ready, ready_buffer[ready_buffer_top:1]};
+            if (processing)
+                ready_buffer<={input_ready, ready_buffer[ready_buffer_top:1]};
         end
     end
 endmodule

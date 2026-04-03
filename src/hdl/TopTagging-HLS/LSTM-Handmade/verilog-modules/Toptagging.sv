@@ -64,6 +64,7 @@ module Toptagging #( parameter
             dense1_input_data = LSTM_output_data;
     end
     assign dense1_input_ready = LSTM_output_ready;
+    logic dense1_ready;
     // assign dense1_input_data = LSTM_output_data;
     denseLayer #(
         .WIDTH(WIDTH), 
@@ -75,6 +76,8 @@ module Toptagging #( parameter
         ) dense1 (
         .clk,
         .reset,
+        .ready(dense1_ready),
+        .next_layer_ready(dense2_ready),
         .input_ready  (  dense1_input_ready),
         .output_ready (  dense1_output_ready),
         .input_data   (  dense1_input_data ),
@@ -93,6 +96,7 @@ module Toptagging #( parameter
         
     assign dense2_input_data = relu_output_data;
     assign dense2_input_ready = dense1_output_ready;
+    logic dense2_ready;
     denseLayer #(
         .WIDTH(WIDTH), 
         .NFRAC(WIDTH-NINT), 
@@ -103,6 +107,8 @@ module Toptagging #( parameter
         ) dense2 (
         .clk,
         .reset,
+        .ready(dense2_ready),
+        .next_layer_ready(sigmoid_ready),
         .input_ready  (  dense2_input_ready),
         .output_ready (  dense2_output_ready),
         .input_data   (  dense2_input_data ),
@@ -110,6 +116,7 @@ module Toptagging #( parameter
     );
     assign sigmoid_input_data = dense2_output_data;
     assign sigmoid_input_ready = dense2_output_ready;
+    logic sigmoid_ready;
     sigmoid #(
         .WIDTH(WIDTH), 
         .NFRAC(WIDTH-NINT),  
@@ -118,6 +125,8 @@ module Toptagging #( parameter
     (
         .clk,
         .reset,
+        .ready(sigmoid_ready),
+        .next_layer_ready(1'b1),
         .input_ready  (  sigmoid_input_ready),
         .output_ready (  sigmoid_output_ready),
         .input_data   (  sigmoid_input_data ),
