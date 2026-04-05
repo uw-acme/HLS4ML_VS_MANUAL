@@ -60,24 +60,26 @@ module tanh #(parameter
     input reset,
     input input_ready,
     output output_ready,
+    output ready,
+    input next_layer_ready,
     input logic signed [WIDTH-1:0] input_data [SIZE-1:0],
     output logic signed [WIDTH-1:0] output_data [SIZE-1:0]
 );
     genvar i;
-    
+    logic processing;
+    assign processing = !((!next_layer_ready)&&(output_ready));
     parameter cycle_length=3;
     logic [cycle_length-1:0] counter;
     logic [cycle_length-1:0] signed_count [SIZE-1:0];
     assign output_ready = counter[0];
     always_ff @(posedge clk) begin
-        if (reset)
-            counter<=0;
-        else
+        if (processing)
             counter<={input_ready, counter[cycle_length-1:1]};
     end
      generate
             for (i=0; i<SIZE; i++) begin : volvo
             always_ff @(posedge clk)
+            if (processing)
                 signed_count[i]<={input_data[i][WIDTH-1], signed_count[i][cycle_length-1:1]};
             end
     endgenerate
@@ -162,11 +164,13 @@ module tanh #(parameter
     generate
       for (i = 0; i < SIZE; i++) begin
         always_ff @(posedge clk) begin
+            if (processing) begin
                 if ($unsigned(index[i]) > $unsigned(TABLE_SIZE-1))// hits ceiling
                     final_index[i] <= TABLE_SIZE-1;
                 else                                                                            // something in the middle
                     final_index[i] <= index[i];
                     // round up the index for negative input values (rounds towards zero)
+            end
         end
 
                 
@@ -177,13 +181,15 @@ module tanh #(parameter
         always_ff @(posedge clk) begin
                 // read bram
                 // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
-                if (MEM_NFRAC == NFRAC)
-                    output_data_unsigned[i] <= bram[final_index[i]];
-                else if (MEM_NFRAC < NFRAC)
-                    output_data_unsigned[i] <= bram[final_index[i]]<<(NFRAC-MEM_WIDTH);
-                else
-                    output_data_unsigned[i] <= bram[final_index[i]]>>(MEM_NFRAC-NFRAC);
-//                    output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};  
+                if (processing) begin
+                    if (MEM_NFRAC == NFRAC)
+                        output_data_unsigned[i] <= bram[final_index[i]];
+                    else if (MEM_NFRAC < NFRAC)
+                        output_data_unsigned[i] <= bram[final_index[i]]<<(NFRAC-MEM_WIDTH);
+                    else
+                        output_data_unsigned[i] <= bram[final_index[i]]>>(MEM_NFRAC-NFRAC);
+    //                    output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};  
+                end
         end
       end
     endgenerate

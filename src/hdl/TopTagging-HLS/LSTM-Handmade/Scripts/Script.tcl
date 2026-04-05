@@ -30,7 +30,7 @@ read_verilog -sv LSTM.sv  Toptagging.sv  adderTree.sv  adderTree_p4.sv  denseLay
 
 # (Optional) Testbench files (if you want synthesis, usually skip these)
 # read_verilog -sv "./waiz_benchmark_tb.sv"
-# read_xdc ./const.xdc
+read_xdc const.xdc
 # --- Set top module ---
 # xc7k160tfbg484-3 is free, no license
 # xq7vx980trf1930-1I is big, needs license

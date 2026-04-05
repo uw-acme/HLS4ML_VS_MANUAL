@@ -47,7 +47,7 @@ module LSTM #( parameter
     logic dense_inputx_ready, dense_outputx_ready;
     logic signed[WIDTH-1:0] dense_inputx [INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] dense_outputx [OUTPUT_SIZE*4-1:0];
-    logic sig_ready1,sig_ready2,sig_ready3,sig_ready4;
+    logic sig_output_ready1,sig_output_ready2,sig_output_ready3,sig_output_ready4;
     logic tanh_ready;
     // logic move_next;
     logic dense_inputh_ready, dense_outputh_ready;
@@ -65,39 +65,41 @@ module LSTM #( parameter
     assign dense_inputx_ready = (!reset_cell)&&next_ready&&(curr_step!=TIMESTEPS);
     logic [4:0] edge_trig;
     edge_check edging1 (.clk, .reset(next_ready), .in(pos_tanh_ready), .out(edge_trig[0]));
-    edge_check edging2 (.clk, .reset(next_ready), .in(sig_ready1), .out(edge_trig[1]));
-    edge_check edging3 (.clk, .reset(next_ready), .in(sig_ready2), .out(edge_trig[2]));
-    edge_check edging4 (.clk, .reset(next_ready), .in(sig_ready3), .out(edge_trig[3]));
-    edge_check edging5 (.clk, .reset(next_ready), .in(sig_ready4), .out(edge_trig[4]));
+    edge_check edging2 (.clk, .reset(next_ready), .in(sig_output_ready1), .out(edge_trig[1]));
+    edge_check edging3 (.clk, .reset(next_ready), .in(sig_output_ready2), .out(edge_trig[2]));
+    edge_check edging4 (.clk, .reset(next_ready), .in(sig_output_ready3), .out(edge_trig[3]));
+    edge_check edging5 (.clk, .reset(next_ready), .in(sig_output_ready4), .out(edge_trig[4]));
     assign move_next = &edge_trig;
     logic lstm_reset;
     assign lstm_reset=reset_cell|reset;
     logic move_next_1;
     always_ff @(posedge clk) begin
-        next_ready<=0;
-        output_ready<=0;
-        // if (curr_step==0&&input_ready)
-        move_next_1<=move_next;
-        if (move_next&&!move_next_1) begin
-            next_ready<=1;
-            curr_step<=curr_step+1;
-            ht_1<=ht;
-            ct_1<=ct;
-            if (OUTPUT_EACH_HT)
-                output_ready<=1'b1;
-        end
-        reset_cell<=0;
-        if (curr_step==TIMESTEPS&&next_ready) begin
-            reset_cell<=1;
-            output_ready<=1;
-        end
-        if (lstm_reset) begin
-            next_ready<=1;
-            curr_step<=0;
-            // ht<='{default: 0};
-            ht_1<='{default: 0};
-            // ct<='{default: 0};
-            ct_1<='{default: 0};
+        if (processing) begin
+            next_ready<=0;
+            output_ready<=0;
+            // if (curr_step==0&&input_ready)
+            move_next_1<=move_next;
+            if (move_next&&!move_next_1) begin
+                next_ready<=1;
+                curr_step<=curr_step+1;
+                ht_1<=ht;
+                ct_1<=ct;
+                if (OUTPUT_EACH_HT)
+                    output_ready<=1'b1;
+            end
+            reset_cell<=0;
+            if (curr_step==TIMESTEPS&&next_ready) begin
+                reset_cell<=1;
+                output_ready<=1;
+            end
+            if (lstm_reset) begin
+                next_ready<=1;
+                curr_step<=0;
+                // ht<='{default: 0};
+                ht_1<='{default: 0};
+                // ct<='{default: 0};
+                ct_1<='{default: 0};
+            end
         end
     end
     logic densex_ready;
@@ -114,7 +116,7 @@ module LSTM #( parameter
         .clk,
         .reset(lstm_reset),
         .ready(densex_ready),
-        .next_layer_ready(),
+        .next_layer_ready(&sigmoid_ready&&tanh_ready),
         .input_ready(dense_inputx_ready),
         .output_ready(dense_outputx_ready),
         .input_data(dense_inputx),
@@ -134,13 +136,14 @@ module LSTM #( parameter
         .clk,
         .reset(lstm_reset),
         .ready(denseh_ready),
-        .next_layer_ready()
+        .next_layer_ready(&sigmoid_ready&&tanh_ready),
         .input_ready(dense_inputh_ready),
         .output_ready(dense_outputh_ready),
         .input_data(dense_inputh),
         .output_data(dense_outputh)
     );
-
+    logic denses_ready;
+    
     // Split into 4 parts
     logic signed[WIDTH-1:0] combined [OUTPUT_SIZE*4-1:0];
     // posedge_m ht_check;s
@@ -152,7 +155,7 @@ module LSTM #( parameter
         end
     endgenerate
 
-    logic signed[WIDTH-1:0] ft_a [OUTPUT_SIZE-1:0], it_a [OUTPUT_SIZE-1:0], c_t_a [OUTPUT_SIZE-1:0], ot_a [OUTPUT_SIZE-1:0];
+    logic signed[WIDTH-1:0] ft_a [OUTPUT_SIZE-1:0], it_a [OUTPUT_SIZE-1:0], c_t_a [OUTPUT_SIZE-1:0], ot_a [OUTPUT_SIZE-1:0], tanh_input [OUTPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ft [OUTPUT_SIZE-1:0], it [OUTPUT_SIZE-1:0], c_t [OUTPUT_SIZE-1:0], ot [OUTPUT_SIZE-1:0], ht_n[OUTPUT_SIZE-1:0];
 
     generate
@@ -166,22 +169,24 @@ module LSTM #( parameter
 
     // assign {ft_a, it_a, c_t_a, ot_a} = combined;
     
-    
+    logic [2:0] sigmoid_ready;
+    // logic tanh_ready;
     // ft = sigmoid(Wfh*ht_1+Wfx*xt+bf) 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(WIDTH-NINT),
-            .SIZE(OUTPUT_SIZE)) sigmaf (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready1), .input_data(ft_a), .output_data(ft));
+            .SIZE(OUTPUT_SIZE)) sigmaf (.clk, .next_layer_ready(), .ready(sigmoid_ready[0]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready1), .input_data(ft_a), .output_data(ft));
     // it = sigmoid(Wih*ht_1+Wix*xt+bi) 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(WIDTH-NINT),
-            .SIZE(OUTPUT_SIZE)) sigmai (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready2), .input_data(it_a), .output_data(it));
+            .SIZE(OUTPUT_SIZE)) sigmai (.clk, .next_layer_ready(), .ready(sigmoid_ready[1]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready2), .input_data(it_a), .output_data(it));
     // c~t = tanh(Wch*ht_1+Wcx*xt+bc 
+    assign tanh_input = ()
     tanh #(.WIDTH(WIDTH),
             .NFRAC(WIDTH-NINT),
-            .SIZE(OUTPUT_SIZE)) sigmac (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready3), .input_data(c_t_a), .output_data(c_t));
+            .SIZE(OUTPUT_SIZE)) sigmac (.clk, .next_layer_ready(), .ready(tanh_ready), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready3), .input_data(c_t_a), .output_data(c_t));
     // ot = sigmoid(Woh*ht_1+Wox*xt+bo) 
     sigmoid #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT),
-            .SIZE(OUTPUT_SIZE)) sigmao (.clk, .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_ready4), .input_data(ot_a), .output_data(ot));
+            .SIZE(OUTPUT_SIZE)) sigmao (.clk, .next_layer_ready(), .ready(sigmoid_ready[2]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready4), .input_data(ot_a), .output_data(ot));
  // ct = ft*ct_1+it*c~t
     logic ct_next;
     logic ct_tanh;
@@ -203,10 +208,10 @@ module LSTM #( parameter
    
     // ht = ot*tanh(ct)
     
-    tanh #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT), .SIZE(OUTPUT_SIZE))
-    newht (
-        .clk, .reset(lstm_reset), .input_data(ct), .output_data(ht_n), .input_ready(ct_tanh), .output_ready(tanh_ready)
-    );
+    // tanh #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT), .SIZE(OUTPUT_SIZE))
+    // newht (
+    //     .clk, .reset(lstm_reset), .input_data(ct), .output_data(ht_n), .input_ready(ct_tanh), .output_ready(tanh_ready)
+    // );
     
     posedge_m ht_check (.clk, .reset, .in(tanh_ready), .out(pos_tanh_ready));
     generate

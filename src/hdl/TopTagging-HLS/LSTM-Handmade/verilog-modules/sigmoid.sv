@@ -181,13 +181,15 @@ module sigmoid #(parameter
         always_ff @(posedge clk) begin
                 // read bram
                 // some truncation and filling necessary depending on the relative values of MEM_WIDTH and NFRAC
-                if (MEM_NFRAC == NFRAC)
-                    output_data_unsigned[i] <= bram[final_index[i]];
-                else if (MEM_NFRAC < NFRAC)
-                    output_data_unsigned[i] <= bram[final_index[i]]<<(NFRAC-MEM_WIDTH);
-                else
-                    output_data_unsigned[i] <= bram[final_index[i]]>>(MEM_NFRAC-NFRAC);
-//                    output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};  
+                if (processing) begin
+                    if (MEM_NFRAC == NFRAC)
+                        output_data_unsigned[i] <= bram[final_index[i]];
+                    else if (MEM_NFRAC < NFRAC)
+                        output_data_unsigned[i] <= bram[final_index[i]]<<(NFRAC-MEM_WIDTH);
+                    else
+                        output_data_unsigned[i] <= bram[final_index[i]]>>(MEM_NFRAC-NFRAC);
+    //                    output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};  
+                end
         end
       end
     endgenerate
