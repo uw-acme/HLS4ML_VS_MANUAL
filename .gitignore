@@ -35,3 +35,6 @@ src/hdl/Batchnorm-JetTagging/python/output.log
 
 documents/Benchmarks/Btagging/qkeras/models/*
 documents/Benchmarks/Btagging/qkeras/reports/*
+
+documents/Benchmarks/Btagging/qkeras/X_test_gen.txt
+documents/Benchmarks/Btagging/qkeras/acc/*
