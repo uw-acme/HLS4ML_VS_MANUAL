@@ -33,10 +33,11 @@ module LSTM #( parameter
     // x: input
     // h: recurrent information/output
     // c: cell state
+    logic ready_for_output;
     logic processing;
-    assign processing = (next_layer_ready)||(!output_ready);
-    
-    assign ready = next_layer_ready&&output_ready;
+    assign ready_for_output = (next_layer_ready)||(!output_ready);
+    // assign processing
+    // assign ready = next_layer_ready&&output_ready;
 
     genvar i;
     logic move_next;
@@ -61,8 +62,8 @@ module LSTM #( parameter
     logic reset_cell;
     logic next_ready;
     // logic working;
-    assign dense_inputh_ready = (!reset_cell)&&next_ready&&(curr_step!=TIMESTEPS);
-    assign dense_inputx_ready = (!reset_cell)&&next_ready&&(curr_step!=TIMESTEPS);
+    assign dense_inputh_ready = (!reset_cell)&&next_ready&&(curr_step!=TIMESTEPS)&&processing;
+    assign dense_inputx_ready = (!reset_cell)&&next_ready&&(curr_step!=TIMESTEPS)&&processing;
     logic [4:0] edge_trig;
     logic [2:0] sigmoid_ready;
     logic which_tanh;
@@ -75,12 +76,75 @@ module LSTM #( parameter
     logic lstm_reset;
     assign lstm_reset=reset_cell|reset;
     logic move_next_1;
+    logic paused;
+    enum logic [3:0] {READY, PROCESSING, PAUSED} state, next_state;
+    logic next_output_ready;
+    logic start_processing;
+    always_comb begin
+        next_state=state;
+        ready=0;
+        reset_cell=0;
+        next_output_ready=0;
+        processing=0;
+        start_processing=0;
+        paused=0;
+        case (state)
+            READY: begin
+                ready=1;
+                if (input_ready) begin
+                    next_state=PROCESSING;
+                    start_processing=1;
+                end
+            end
+            PROCESSING: begin
+                processing=1;
+                if (curr_step==TIMESTEPS&&next_ready) begin
+                    next_state=READY;
+                    reset_cell=1;
+                    next_output_ready=1;
+                end
+                if (!ready_for_output)
+                    next_state=PAUSED;
+            end
+            PAUSED: begin
+                paused=1;
+                if (ready_for_output)
+                    next_state=PROCESSING;
+            end
+        endcase
+    end
     always_ff @(posedge clk) begin
+        state<=next_state;
+        output_ready<=0;
+        next_ready<=start_processing;
+        
+        output_ready<=next_output_ready;
+        // reset_cell<=0;
+        if (lstm_reset) begin
+            state<=READY;
+            move_next_1<=0;
+            which_tanh<=0;
+            next_ready<=1;
+            curr_step<=0;
+            // processing<=0;
+            // ht<='{default: 0};
+            ht_1<='{default: 0};
+            // ct<='{default: 0};
+            ct_1<='{default: 0};
+        end
+        move_next_1<=move_next;
+        // next_ready<=0;
+        // if (input_ready)
+        //     processing<=1'b1;
+        // if (!ready_for_output) begin
+        //     paused<=(processing|input_ready);
+        //     processing<=1'b0;
+        // end
+        // if (paused&&ready_for_output) begin
+        //     processing<=1'b1;
+        // end
         if (processing) begin
-            next_ready<=0;
-            output_ready<=0;
             // if (curr_step==0&&input_ready)
-            move_next_1<=move_next;
             if (move_next&&!move_next_1) begin
                 which_tanh<=0;
                 next_ready<=1;
@@ -92,20 +156,10 @@ module LSTM #( parameter
             end
             if (tanh_output_ready)
                 which_tanh<=1;
-            reset_cell<=0;
-            if (curr_step==TIMESTEPS&&next_ready) begin
-                reset_cell<=1;
-                output_ready<=1;
-            end
-            if (lstm_reset) begin
-                which_tanh<=0;
-                next_ready<=1;
-                curr_step<=0;
-                // ht<='{default: 0};
-                ht_1<='{default: 0};
-                // ct<='{default: 0};
-                ct_1<='{default: 0};
-            end
+            // if (curr_step==TIMESTEPS&&next_ready) begin
+            //     // reset_cell<=1;
+            //     output_ready<=1;
+            // end
         end
     end
     logic densex_ready;
@@ -122,7 +176,7 @@ module LSTM #( parameter
         .clk,
         .reset(lstm_reset),
         .ready(densex_ready),
-        .next_layer_ready((&sigmoid_ready)&&tanh_ready),
+        .next_layer_ready((&sigmoid_ready)&&tanh_ready&&processing),
         .input_ready(dense_inputx_ready),
         .output_ready(dense_outputx_ready),
         .input_data(dense_inputx),
@@ -142,7 +196,7 @@ module LSTM #( parameter
         .clk,
         .reset(lstm_reset),
         .ready(denseh_ready),
-        .next_layer_ready((&sigmoid_ready)&&tanh_ready),
+        .next_layer_ready((&sigmoid_ready)&&tanh_ready&&processing),
         .input_ready(dense_inputh_ready),
         .output_ready(dense_outputh_ready),
         .input_data(dense_inputh),

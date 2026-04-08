@@ -1,6 +1,6 @@
 `include "weights_sel.svh"
 `include "defines.svh"
-
+`define MODELSIM
 import `LSTM_X_WEIGHTS::*;
 
 import `LSTM_H_WEIGHTS::*;
@@ -8,7 +8,7 @@ import `LSTM_H_WEIGHTS::*;
 import `DENSE2_WEIGHTS::*;
 
 import `DENSE1_WEIGHTS::*;
-`define MODELSIM
+
 `timescale 1ns / 1ps
 module Toptagging #( parameter
     WIDTH = 16,
@@ -21,6 +21,7 @@ module Toptagging #( parameter
     input clk,
     input reset,
     input input_ready,
+    output logic ready,
     output logic output_ready,
     input logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0],
     output logic signed [WIDTH-1:0] output_data
@@ -55,6 +56,7 @@ module Toptagging #( parameter
     logic dense1_ready;
     logic dense2_ready;
     logic sigmoid_ready;
+    assign ready=LSTM_ready;
     LSTM #(.WIDTH(WIDTH), .NINT(NINT)) lstm_layer (
         .clk,
         .reset,
