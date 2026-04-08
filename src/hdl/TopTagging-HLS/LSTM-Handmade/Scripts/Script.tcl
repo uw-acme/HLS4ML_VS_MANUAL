@@ -11,7 +11,7 @@ set generics [lindex $argv 2]
 # read_verilog -sv [glob ../weights/dense_*_weights_biases_pkgs/dense_*_*.sv]
 # --- Dense layer ---
 read_verilog -sv [glob ../weights_n_tables/*.sv]
-read_verilog -sv LSTM.sv  Toptagging.sv  adderTree.sv  adderTree_p4.sv  denseLayer.sv  relu.sv shift_add.sv sigmoid.sv tanh.sv 
+read_verilog -sv LSTM.sv  Toptagging.sv  Toptagging_top.sv adderTree.sv  adderTree_p4.sv  denseLayer.sv  relu.sv shift_add.sv sigmoid.sv tanh.sv 
 # read_verilog -sv "./adderTree.sv"
 # read_verilog -sv "./shift_add.sv"
 # read_verilog -sv "./denseLayer.sv"
@@ -36,7 +36,7 @@ read_xdc const.xdc
 # xq7vx980trf1930-1I is big, needs license
 # xcvu13p-fhga2104-3-e
 # xc7vx690tffg1761-2 is virtex 7, needs license
-synth_design -top Toptagging -part xcvu13p-fhga2104-3-e -generic $generics -verilog_define $defs
+synth_design -top Toptagging_top -part xcvu13p-fhga2104-3-e -generic $generics -verilog_define $defs
 
 # --- Implementation flow ---
 opt_design
