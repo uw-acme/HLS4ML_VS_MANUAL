@@ -68,6 +68,7 @@ module sigmoid #(parameter
     genvar i;
     logic processing;
     assign processing = !((!next_layer_ready)&&(output_ready));
+    assign ready=processing;
     parameter cycle_length=3;
     logic [cycle_length-1:0] counter;
     logic [cycle_length-1:0] signed_count [SIZE-1:0];

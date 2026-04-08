@@ -6,6 +6,7 @@ module Toptagging_top #( parameter
     OUTPUT_SIZE = 20
 )(
     input clk,
+    input shiftClk,
     input reset,
     input input_ready,
     output logic output_ready,

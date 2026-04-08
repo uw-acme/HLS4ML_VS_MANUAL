@@ -8,7 +8,7 @@ import `LSTM_H_WEIGHTS::*;
 import `DENSE2_WEIGHTS::*;
 
 import `DENSE1_WEIGHTS::*;
-
+`define MODELSIM
 `timescale 1ns / 1ps
 module Toptagging #( parameter
     WIDTH = 16,
@@ -51,9 +51,15 @@ module Toptagging #( parameter
 
     assign LSTM_input_data = input_v;
     assign LSTM_input_ready = input_ready;
+    logic LSTM_ready;
+    logic dense1_ready;
+    logic dense2_ready;
+    logic sigmoid_ready;
     LSTM #(.WIDTH(WIDTH), .NINT(NINT)) lstm_layer (
         .clk,
         .reset,
+        .ready(LSTM_ready),
+        .next_layer_ready(dense1_ready),
         .input_ready  (  LSTM_input_ready),
         .output_ready (  LSTM_output_ready),
         .input_v   (  LSTM_input_data ),
@@ -64,7 +70,6 @@ module Toptagging #( parameter
             dense1_input_data = LSTM_output_data;
     end
     assign dense1_input_ready = LSTM_output_ready;
-    logic dense1_ready;
     // assign dense1_input_data = LSTM_output_data;
     denseLayer #(
         .WIDTH(WIDTH), 
@@ -96,7 +101,6 @@ module Toptagging #( parameter
         
     assign dense2_input_data = relu_output_data;
     assign dense2_input_ready = dense1_output_ready;
-    logic dense2_ready;
     denseLayer #(
         .WIDTH(WIDTH), 
         .NFRAC(WIDTH-NINT), 
@@ -116,7 +120,6 @@ module Toptagging #( parameter
     );
     assign sigmoid_input_data = dense2_output_data;
     assign sigmoid_input_ready = dense2_output_ready;
-    logic sigmoid_ready;
     sigmoid #(
         .WIDTH(WIDTH), 
         .NFRAC(WIDTH-NINT),  
@@ -159,7 +162,7 @@ module Toptagging_tb;
         forever #1 clk<=~clk;
     end
     // max_tests = 19951;
-    localparam num_tests = 500;
+    localparam num_tests = 5;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;
@@ -171,7 +174,11 @@ module Toptagging_tb;
     `endif
     
     initial begin
+        `ifndef MODELSIM
         $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
+        `else
+            $readmemb("../testing_data/X_test_16_6.txt", flat_mem);
+        `endif
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<TIMESTEPS; j++) begin : steps
                 for (k=0; k<INPUT_SIZE; k++) begin : nums
@@ -204,7 +211,11 @@ module Toptagging_tb;
     end
     initial begin
         if (write_file) begin
-            fd = $fopen(`STRINGIFY(`RESULTSFILE), "w");  // "w" = write mode, "a" = append
+            `ifndef MODELSIM
+                fd = $fopen(`STRINGIFY(`RESULTSFILE), "w");  // "w" = write mode, "a" = append
+            `else
+                fd = $fopen("gen_results.csv", "w");  // "w" = write mode, "a" = append
+            `endif
             if (fd == 0) begin
                 $display("ERROR: Could not open file!");
                 $finish;

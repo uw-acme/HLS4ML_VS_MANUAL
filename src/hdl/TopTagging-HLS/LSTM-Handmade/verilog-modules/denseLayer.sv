@@ -46,14 +46,13 @@ module denseLayer #(
     initial assert($bits(WEIGHTS[0][0]) == WIDTH);
     localparam real ADDER_TREE_DEPTH = $ceil($clog2(INPUT_SIZE)/2.0); // Number of cycles for adderTree module
     localparam int ADDER_TREE_CYCLES = $ceil(ADDER_TREE_DEPTH/PIPELINING);
-    assign ready=processing;
     logic processing;
     assign processing = !((!next_layer_ready)&&(output_ready));
+    assign ready=processing;
     logic signed [WIDTH-1:0]   mult         [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH*2-1:0] mult_temp    [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0]   accumulator  [0:OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0]   result       [0:OUTPUT_SIZE-1];
-    logic                      processing;
     
     genvar  col, row;
     // multiplication doubles NFRAC bits in output, we only need NFRAC bits of fractional part,
@@ -73,7 +72,7 @@ module denseLayer #(
                             .NFRAC  ( NFRAC                             )
                             ) sa (
                     .clk,
-                    .ce         (processing)
+                    .ce         (processing),
                     .data_in    ( input_data[row]       ),
                     .data_out   ( mult_temp[row][col]   )
                 );
@@ -124,7 +123,7 @@ module denseLayer #(
 
     localparam ready_buffer_top = ADDER_TREE_CYCLES+PIPE_OUT+`PIPELINE_MULT;
     logic [ready_buffer_top:0] ready_buffer;
-    assign processing = |ready_buffer;
+    // assign processing = |ready_buffer;
     assign output_ready = ready_buffer[0];
     if (!PIPE_OUT) begin
         assign output_data = result;
