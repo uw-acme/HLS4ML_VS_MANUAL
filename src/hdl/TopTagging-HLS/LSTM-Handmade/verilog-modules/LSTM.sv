@@ -80,13 +80,15 @@ module LSTM #( parameter
     enum logic [3:0] {READY, PROCESSING, PAUSED} state, next_state;
     logic next_output_ready;
     logic start_processing;
+    logic future_reset_cell;
     always_comb begin
         next_state=state;
         ready=0;
-        reset_cell=0;
+        // reset_cell=0;
         next_output_ready=0;
         processing=0;
         start_processing=0;
+        future_reset_cell=0;
         paused=0;
         case (state)
             READY: begin
@@ -100,7 +102,7 @@ module LSTM #( parameter
                 processing=1;
                 if (curr_step==TIMESTEPS&&next_ready) begin
                     next_state=READY;
-                    reset_cell=1;
+                    future_reset_cell=1;
                     next_output_ready=1;
                 end
                 if (!ready_for_output)
@@ -116,6 +118,7 @@ module LSTM #( parameter
     always_ff @(posedge clk) begin
         state<=next_state;
         output_ready<=0;
+        reset_cell<=future_reset_cell;
         next_ready<=start_processing;
         
         output_ready<=next_output_ready;

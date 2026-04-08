@@ -121,8 +121,9 @@ module Toptagging_top_tb;
         @(posedge clk);
         reset=0;
         i=0;
-        input_ready<=1;
+        
         repeat(num_tests) begin
+            input_ready<=1;
             for (int j=0; j<TIMESTEPS; j++) begin
                 input_step<=x_test[i][j];
                 @(posedge shiftClk)
