@@ -166,6 +166,7 @@ module adderTree_1D_p4_tb();
         -17'd8
         };
         repeat(100) @(posedge clk);
+        // $stop;
         $finish;
     end
     
