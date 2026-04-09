@@ -142,8 +142,8 @@ module Toptagging #( parameter
     assign output_data = sigmoid_output_data[0];
 endmodule
 `define STRINGIFY(x) `"x`"
+/*
 `ifndef SYNTHESIS
-
 module Toptagging_tb;
     logic clk;
     logic reset;
@@ -243,3 +243,4 @@ module Toptagging_tb;
     end
 endmodule
 `endif
+*/

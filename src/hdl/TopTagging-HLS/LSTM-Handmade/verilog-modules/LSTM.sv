@@ -168,7 +168,7 @@ module LSTM #( parameter
     logic densex_ready;
     denseLayer #(
         .WIDTH          ( WIDTH                     ),
-        .NFRAC          ( WIDTH-NINT                    ),
+        .NFRAC          ( NFRAC                    ),
         .INPUT_SIZE     ( INPUT_SIZE                ),
         .OUTPUT_SIZE    ( OUTPUT_SIZE*4             ),
         .WEIGHTS        ( `LSTM_X_WEIGHTS::weights  ),
@@ -188,7 +188,7 @@ module LSTM #( parameter
     logic denseh_ready;
     denseLayer #(
         .WIDTH          ( WIDTH                     ),
-        .NFRAC          ( WIDTH-NINT                     ),
+        .NFRAC          ( NFRAC                     ),
         .INPUT_SIZE     ( OUTPUT_SIZE               ),
         .OUTPUT_SIZE    ( OUTPUT_SIZE*4             ),
         .WEIGHTS        ( `LSTM_H_WEIGHTS::weights  ),
@@ -238,15 +238,15 @@ module LSTM #( parameter
     // logic tanh_ready;
     // ft = sigmoid(Wfh*ht_1+Wfx*xt+bf) 
     sigmoid #(.WIDTH(WIDTH),
-            .NFRAC(WIDTH-NINT),
+            .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE)) sigmaf (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[0]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready1), .input_data(ft_a), .output_data(ft));
     // it = sigmoid(Wih*ht_1+Wix*xt+bi) 
     sigmoid #(.WIDTH(WIDTH),
-            .NFRAC(WIDTH-NINT),
+            .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE)) sigmai (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[1]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready2), .input_data(it_a), .output_data(it));
     // c~t = tanh(Wch*ht_1+Wcx*xt+bc 
     // ot = sigmoid(Woh*ht_1+Wox*xt+bo) 
-    sigmoid #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT),
+    sigmoid #(.WIDTH(WIDTH), .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE)) sigmao (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[2]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready4), .input_data(ot_a), .output_data(ot));
  // ct = ft*ct_1+it*c~t
     logic ct_next;
@@ -270,11 +270,11 @@ module LSTM #( parameter
    
    
     tanh #(.WIDTH(WIDTH),
-            .NFRAC(WIDTH-NINT),
+            .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE)) sigmac (.clk, .next_layer_ready(processing), .ready(tanh_ready), .reset(lstm_reset), .input_ready((dense_outputh_ready&&!which_tanh)||(ct_tanh&&which_tanh)), .output_ready(tanh_output_ready), .input_data(tanh_input), .output_data(tanh_output));
     // ht = ot*tanh(ct)
     
-    // tanh #(.WIDTH(WIDTH), .NFRAC(WIDTH-NINT), .SIZE(OUTPUT_SIZE))
+    // tanh #(.WIDTH(WIDTH), .NFRAC(NFRAC), .SIZE(OUTPUT_SIZE))
     // newht (
     //     .clk, .reset(lstm_reset), .input_data(ct), .output_data(ht_n), .input_ready(ct_tanh), .output_ready(tanh_ready)
     // );

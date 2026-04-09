@@ -93,7 +93,7 @@ module tanh #(parameter
     localparam TABLE_SIZE = 2**TABLE_SIZE_POW;
     
     // holds table
-    logic signed [MEM_WIDTH-1:0] bram [TABLE_SIZE];
+    logic unsigned [MEM_WIDTH-1:0] bram [TABLE_SIZE];
     
     // input_data*TABLE_SIZE/16 + TABLE_SIZE/2
     logic [TABLE_SIZE_POW-1:0] index [SIZE-1:0];
@@ -136,7 +136,7 @@ module tanh #(parameter
                     if (LOOKUP_NFRAC == NFRAC) 
                         index[i] = input_data_abs[i];
                     else if (LOOKUP_NFRAC < NFRAC)
-                        index[i] = (input_data_abs[i] >>> (NFRAC - LOOKUP_NFRAC));
+                        index[i] = (input_data_abs[i] >> (NFRAC - LOOKUP_NFRAC));
                     else
                         index[i] = (input_data_abs[i] << (LOOKUP_NFRAC - NFRAC));
                 // end
@@ -186,7 +186,7 @@ module tanh #(parameter
                     if (MEM_NFRAC == NFRAC)
                         output_data_unsigned[i] <= bram[final_index[i]];
                     else if (MEM_NFRAC < NFRAC)
-                        output_data_unsigned[i] <= bram[final_index[i]]<<(NFRAC-MEM_WIDTH);
+                        output_data_unsigned[i] <= bram[final_index[i]]<<(NFRAC-MEM_NFRAC);
                     else
                         output_data_unsigned[i] <= bram[final_index[i]]>>(MEM_NFRAC-NFRAC);
     //                    output_data[i] <= {bram[final_index[i]][MEM_WIDTH-1:MEM_WIDTH-NFRAC]};  
@@ -201,7 +201,7 @@ module tanh #(parameter
         for (i = 0; i < SIZE; i++) begin
             always_comb begin
                 if (signed_count[i][1])
-                    output_data[i] = -output_data_unsigned[i];
+                    output_data[i] = -$signed(output_data_unsigned[i]);
                 else
                     output_data[i] = output_data_unsigned[i];
             end

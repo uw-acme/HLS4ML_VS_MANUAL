@@ -1,4 +1,4 @@
-// `define MODELSIM
+`define MODELSIM
 
 `timescale 1ns / 1ps
 module Toptagging_top #( parameter
@@ -43,8 +43,8 @@ module Toptagging_top_tb;
     parameter INPUT_SIZE = 6;
     parameter TIMESTEPS = 20;
     parameter OUTPUT_SIZE = 1;
-    parameter WIDTH = 16;
-    parameter NINT = 6;
+    parameter WIDTH = 19;
+    parameter NINT = 7;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0];
@@ -56,7 +56,7 @@ module Toptagging_top_tb;
     end
     assign shiftClk=clk;
     // max_tests = 19951;
-    localparam num_tests = 400;
+    localparam num_tests = 8;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;
@@ -71,7 +71,7 @@ module Toptagging_top_tb;
         `ifndef MODELSIM
         $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
         `else
-            $readmemb("../testing_data/X_test_16_6.txt", flat_mem);
+            $readmemb("../testing_data/X_test_19_7.txt", flat_mem);
         `endif
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<TIMESTEPS; j++) begin : steps

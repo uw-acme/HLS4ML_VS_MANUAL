@@ -1,48 +1,34 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /Toptagging_top_tb/dut/toptag/clk
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense1_input_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense1_input_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/DENSE1_INPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense1_output_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense1_output_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/DENSE1_OUTPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense1_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense2_input_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense2_input_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/DENSE2_INPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense2_output_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense2_output_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/DENSE2_OUTPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/dense2_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/input_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/INPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/input_v
-add wave -noupdate /Toptagging_top_tb/dut/toptag/LSTM_input_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/LSTM_input_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/LSTM_INPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/LSTM_output_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/LSTM_output_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/LSTM_OUTPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/LSTM_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/NINT
-add wave -noupdate /Toptagging_top_tb/dut/toptag/output_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/output_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/OUTPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/relu_output_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/reset
-add wave -noupdate /Toptagging_top_tb/dut/toptag/sigmoid_input_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/sigmoid_input_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/SIGMOID_INPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/sigmoid_output_data
-add wave -noupdate /Toptagging_top_tb/dut/toptag/sigmoid_output_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/SIGMOID_OUTPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/sigmoid_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/TIMESTEPS
-add wave -noupdate /Toptagging_top_tb/dut/toptag/WIDTH
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/WIDTH
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/NFRAC
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/SIZE
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/MEM_WIDTH
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/MEM_NFRAC
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/LOOKUP_WIDTH
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/LOOKUP_NFRAC
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/TABLE_SIZE_POW
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/BRAM_FILE
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/cycle_length
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/TABLE_SIZE
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/clk
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/reset
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/input_ready
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/output_ready
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/ready
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/next_layer_ready
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/input_data
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/output_data
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/processing
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/counter
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/signed_count
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/bram
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/index
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/final_index
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/output_data_unsigned
+add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmac/input_data_abs
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {616410 ps} 0}
+WaveRestoreCursors {{Cursor 1} {74629 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -58,4 +44,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {487843 ps} {893275 ps}
+WaveRestoreZoom {55003 ps} {148215 ps}

@@ -93,7 +93,7 @@ module sigmoid #(parameter
     localparam TABLE_SIZE = 2**TABLE_SIZE_POW;
     
     // holds table
-    logic signed [MEM_WIDTH-1:0] bram [TABLE_SIZE];
+    logic unsigned [MEM_WIDTH-1:0] bram [TABLE_SIZE];
     
     // input_data*TABLE_SIZE/16 + TABLE_SIZE/2
     logic [TABLE_SIZE_POW-1:0] index [SIZE-1:0];
