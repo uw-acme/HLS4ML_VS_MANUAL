@@ -1,47 +1,5 @@
 /*
-    This layer takes SIZE number of fixed point numbers and applies the tanh.
-
-
-    Parameters:
-        WIDTH: Width of fixed point numbers
-        NFRAC: Number of fractional bits (must be <= width)
-        MEM_WIDTH: Precision of BRAM entries (anything > NFRAC is unnecessary)
-        TABLE_SIZE_POW: Determines number of table entries (2^TABLE_SIZE_POW)
-        BRAM_FILE: File containing bram entries in binary form;
-                   see associated jupyter notebook to generate bin files
-    
-    Inputs:
-        input_data: A single fixed-point number input
-    
-    Outputs:
-        output_data: A single fixe-point number output;
-                     Will be a fixed point number between 0 and 1 (not including 1),
-                     Integer bits will always be 0
-    
-    
-    A note on BRAM: 
-        The transfer function from index to bram range (+/- 8) is:
-                val = 2*8*(index - TABLE_SIZE/2)/TABLE_SIZE
-        
-                -8 ---------------- 0 -------------------- +8     (bram range)
-                ^                   ^                       ^
-                |                   |                       |
-                N/A --------------- 0 ----------- TABLE_SIZE (index)
-            
-        The value stored at bram[index] is tanh(vald).
-        The floating point value must be converted to the appropriate binary
-        when stored in bram (see associated jupyter notebook to generate 
-        binary files).
-        
-    What sigmoid does:
-        Given an input value X, the sigmoid layer applies the inverse of the
-        transfer function for abs value.
-                index = X*TABLE_SIZE/8
-            
-        This index holds tanh(X) without the work of calculating the
-        tanh function. If the input is outside [-8, 8], the index value
-        will map to a negative index or an index greater than TABLE_SIZE
-        and will be set to floor (0) or (TABLE_SIZE-1) respectivly.
+    This module calculates sigmoid on any number of inputs. The BRAM is meant to hold the positive half of the sigmoid function shifted down by .5 as to make it symmetric. The module then takes this value, restores the negative or positive sign, then adds .5 to it
 */
 
 `timescale 1ns / 1ps
@@ -50,10 +8,9 @@ module sigmoid #(parameter
                     NFRAC           = 5,  // number of fractional bits (must be <= width)
                     SIZE            = 32, // number of fixed point numbers going into dense latency layer
                     MEM_WIDTH       = 18, // precision of BRAM entries
-                    MEM_NFRAC       = 18,
-                    LOOKUP_WIDTH    = 10,
-                    LOOKUP_NFRAC    = 7,
-                    TABLE_SIZE_POW  = 10, // power of 2 of the number of table entries (e.g. 5 = 32 entries)
+                    MEM_NFRAC       = 18, // fractional bits in BRAM entries
+                    LOOKUP_WIDTH    = 10, // Width of lookup indicies
+                    LOOKUP_NFRAC    = 7, // Fractional bits in lookup indicies
                     BRAM_FILE       = "../weights_n_tables/sigmoid_table_18_18_10_7.dat"
                  )(
     input clk,
@@ -90,14 +47,14 @@ module sigmoid #(parameter
     end
     
     // Determine table size
-    localparam TABLE_SIZE = 2**TABLE_SIZE_POW;
+    localparam TABLE_SIZE = 2**LOOKUP_WIDTH;
     
     // holds table
     logic unsigned [MEM_WIDTH-1:0] bram [TABLE_SIZE];
     
     // input_data*TABLE_SIZE/16 + TABLE_SIZE/2
-    logic [TABLE_SIZE_POW-1:0] index [SIZE-1:0];
-    logic [TABLE_SIZE_POW-1:0] final_index [SIZE-1:0];
+    logic [LOOKUP_WIDTH-1:0] index [SIZE-1:0];
+    logic [LOOKUP_WIDTH-1:0] final_index [SIZE-1:0];
 
     // unsigned tanh(val) value from bram
     logic unsigned [WIDTH-1:0] output_data_unsigned [SIZE-1:0];
@@ -140,10 +97,10 @@ module sigmoid #(parameter
                     else
                         index[i] = (input_data_abs[i] << (LOOKUP_NFRAC - NFRAC));
                 // end
-                // if (TABLE_SIZE_POW < 4)
-                //     index[i] = ($signed(input_data_abs[i]) >>> (2-TABLE_SIZE_POW));
+                // if (LOOKUP_WIDTH < 4)
+                //     index[i] = ($signed(input_data_abs[i]) >>> (2-LOOKUP_WIDTH));
                 // else
-                //     index[i] = (input_data_abs[i] << (TABLE_SIZE_POW-2));
+                //     index[i] = (input_data_abs[i] << (LOOKUP_WIDTH-2));
             end
         
         // note: tablesize shifted over NFRAC bits to put result in
@@ -211,14 +168,11 @@ module sigmoid #(parameter
 
 endmodule
 
-module sigmoidActivationLayer_tb();
+module sigmoid_tb();
 
     localparam  WIDTH           = 16,
                 NFRAC           = 12,
-                SIZE            = 8,
-                MEM_WIDTH       = 10,
-                TABLE_SIZE_POW  = 10,
-                BRAM_FILE       = "memw10_tsize1024_sigmoidBRAM.mem";
+                SIZE            = 8;
     logic clk;
     logic reset;
     logic signed [WIDTH-1:0] input_data[0:SIZE-1];
@@ -229,10 +183,7 @@ module sigmoidActivationLayer_tb();
     activationLayer #( 
         .WIDTH          ( WIDTH             ),
         .NFRAC          ( NFRAC             ),
-        .SIZE           ( SIZE              ),
-        .MEM_WIDTH      ( MEM_WIDTH         ),
-        .TABLE_SIZE_POW ( TABLE_SIZE_POW    ),
-        .BRAM_FILE      ( BRAM_FILE         )
+        .SIZE           ( SIZE              )
     ) dut (
         .clk            ( clk               ),
         .reset          ( reset             ),

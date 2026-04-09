@@ -49,3 +49,4 @@ documents/Benchmarks/Toptag/Miniconda3-latest-Linux-x86_64.sh
 *.wlf
 *.vstf
 src/hdl/TopTagging-HLS/LSTM-Handmade/transcript
+transcript
