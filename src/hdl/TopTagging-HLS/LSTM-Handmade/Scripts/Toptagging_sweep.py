@@ -54,7 +54,8 @@ def handmade_gen(acc, name, params, defs):
     params = "{" + params + "}"
     defs = "{" + defs + "}"
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark*.sv')
-    os.system(f'vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name} "{defs}" "{params}"')
+    if (not os.path.isfile(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt")):
+        os.system(f'vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name} "{defs}" "{params}"')
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
     accuracy = accuracy_test(acc, y_test, name, defs, params)
     results = extract_data(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt", features)
@@ -243,7 +244,7 @@ def adjust(bits):
     # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
     # name = f"expPipeNegmax"
 name = "InitialToptag"
-for i in range(2,13):
+for i in range(4,13):
     acc = (3*i-2,i)
     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
     # SA_INT, SA_FRAC = adjust(acc_in[0])

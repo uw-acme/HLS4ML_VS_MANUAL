@@ -1,6 +1,6 @@
 `include "weights_sel.svh"
 `include "defines.svh"
-`define MODELSIM
+// `define MODELSIM
 import `LSTM_X_WEIGHTS::*;
 
 import `LSTM_H_WEIGHTS::*;
@@ -158,6 +158,7 @@ module Toptagging_tb;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] output_data;
+    logic ready;
     Toptagging #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
     initial begin
         clk=0;
