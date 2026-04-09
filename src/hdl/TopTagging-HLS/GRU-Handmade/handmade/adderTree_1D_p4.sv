@@ -107,6 +107,7 @@ module adderTree_1D_p4_tb();
     logic signed [WIDTH-1 : 0]   input_data  [INPUT_SIZE];
     logic signed [WIDTH-1 : 0]   output_data;
     
+    // Make a clock
     initial begin
         clk = 0;
         forever #(CLOCK_PERIOD/2) clk = ~clk;
@@ -123,6 +124,8 @@ module adderTree_1D_p4_tb();
     .output_data
     );
     
+    // The actual testbench
+    // Sums (1 + 2 + 3 + ... + 8) * 3 + (1 + 2 + 3 + ... + 7 + (-8)) = 128
     initial begin
         input_data =
         {

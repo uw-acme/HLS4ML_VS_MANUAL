@@ -242,11 +242,13 @@ module shift_add_tb();
     logic clk;
     localparam CLK_PERIOD = 10;
     
+    // Make a clock
     initial begin
         clk <= '0;
         forever #(CLK_PERIOD/2) clk <= ~clk;
     end
     
+    // The actual testbench
     initial begin
         data_in = 17'd5; repeat(3) @(posedge clk);
         $stop;
