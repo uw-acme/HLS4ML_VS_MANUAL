@@ -147,31 +147,31 @@ endmodule
 */
 module mult_op (clk, ce, a, b, p);
 
-parameter din_WIDTH     = 32'd1;
-parameter dweight_WIDTH = 32'd1;
-parameter dout_WIDTH    = 32'd1;
+    parameter din_WIDTH     = 32'd1;
+    parameter dweight_WIDTH = 32'd1;
+    parameter dout_WIDTH    = 32'd1;
 
-input clk;
-input ce;
-input[din_WIDTH-1 : 0]      a;
-input[dweight_WIDTH-1 : 0]  b;
-output[dout_WIDTH-1 : 0]    p;
+    input clk;
+    input ce;
+    input[din_WIDTH-1 : 0]      a;
+    input[dweight_WIDTH-1 : 0]  b;
+    output[dout_WIDTH-1 : 0]    p;
 
-reg signed  [din_WIDTH-1 : 0]     a_reg0;
-reg signed  [dweight_WIDTH-1 : 0] b_reg0;
-wire signed [dout_WIDTH-1 : 0]    tmp_product;
-reg signed  [dout_WIDTH-1 : 0]    buff0;
+    reg signed  [din_WIDTH-1 : 0]     a_reg0;
+    reg signed  [dweight_WIDTH-1 : 0] b_reg0;
+    wire signed [dout_WIDTH-1 : 0]    tmp_product;
+    reg signed  [dout_WIDTH-1 : 0]    buff0;
 
-assign p = buff0;
-assign tmp_product = a_reg0 * b_reg0;
+    assign p = buff0;
+    assign tmp_product = a_reg0 * b_reg0;
 
-always @ (posedge clk) begin
-    if (ce) begin
-        a_reg0 <= a;
-        b_reg0 <= b;
-        buff0 <= tmp_product;
+    always @ (posedge clk) begin
+        if (ce) begin
+            a_reg0 <= a;
+            b_reg0 <= b;
+            buff0 <= tmp_product;
+        end
     end
-end
 endmodule
 
 
@@ -189,27 +189,27 @@ module mult_op_wrap (
     dout
 );
 
-parameter din_WIDTH     = 32'd1;
-parameter dweight_WIDTH = 32'd1;
-parameter dout_WIDTH    = 32'd1;
-input clk;
-input reset;
-input ce;
-input [din_WIDTH-1:0]       din;
-input [dweight_WIDTH-1:0]   dweight;
-output [dout_WIDTH-1:0]     dout;
+    parameter din_WIDTH     = 32'd1;
+    parameter dweight_WIDTH = 32'd1;
+    parameter dout_WIDTH    = 32'd1;
+    input clk;
+    input reset;
+    input ce;
+    input [din_WIDTH-1:0]       din;
+    input [dweight_WIDTH-1:0]   dweight;
+    output [dout_WIDTH-1:0]     dout;
 
 
 
-mult_op #(.din_WIDTH    ( din_WIDTH     ),
-          .dweight_WIDTH( dweight_WIDTH ),
-          .dout_WIDTH   ( dout_WIDTH    )
-    ) internal_operation (
-    .clk( clk ),
-    .ce( ce     ),
-    .a( din     ),
-    .b( dweight ),
-    .p( dout    ));
+    mult_op #(.din_WIDTH    ( din_WIDTH     ),
+            .dweight_WIDTH( dweight_WIDTH ),
+            .dout_WIDTH   ( dout_WIDTH    )
+        ) internal_operation (
+        .clk( clk ),
+        .ce( ce     ),
+        .a( din     ),
+        .b( dweight ),
+        .p( dout    ));
 
 endmodule
 
@@ -225,7 +225,7 @@ endmodule
     ------------------------------------
 */
 module shift_add_tb();
-    localparam WEIGHT = -17'd5,
+    localparam WEIGHT = -17'd3,
                DEPTH  = 2,
                BITS   = 17,
                NFRAC  = 10;
