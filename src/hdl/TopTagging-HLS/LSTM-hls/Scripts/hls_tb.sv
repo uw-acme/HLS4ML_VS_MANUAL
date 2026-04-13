@@ -1,9 +1,10 @@
+
 // `define MODELSIM
 
 `timescale 1ns / 1ps
-module Toptagging_top #( parameter
-    WIDTH = 16,
-    NINT = 6,
+module hls_top #( parameter
+    WIDTH = 4,
+    NINT = 2,
     INPUT_SIZE = 6,
     TIMESTEPS = 20,
     OUTPUT_SIZE = 20
@@ -12,45 +13,71 @@ module Toptagging_top #( parameter
     input shiftClk,
     input reset,
     input input_ready,
-    output ready,
     output logic output_ready,
+    output ready,
     input logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0],
     output logic signed [WIDTH-1:0] output_data
 );
-    logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
-    logic input_ready_toptagging, output_ready_toptagging, Toptagging_ready;
-    assign output_ready = output_ready_toptagging;
-    logic [$clog2(TIMESTEPS):0] step=0;
+    logic ap_clk;
+    logic ap_rst;
+    logic ap_start;
 
+
+    // Status outputs
+    logic ap_done;
+    logic ap_idle;
+    logic ap_ready;
+
+    assign ap_rst=reset;
+    assign ap_clk = clk;
+    // Input interface
+    logic layer1_input_V_ap_vld, layer6_out_0_V_ap_vld;
+    logic [WIDTH*INPUT_SIZE*TIMESTEPS-1:0] layer1_input_V;
+
+    // Output interface
+    logic [WIDTH-1:0] layer6_out_0_V;
+    assign output_ready = layer6_out_0_V_ap_vld;
+    logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
+    logic [$clog2(TIMESTEPS):0] step=0;
+    assign ready = ap_ready;
     always_ff @(posedge shiftClk) begin
-        input_ready_toptagging<=0;
+        ap_start<=0;
         if (input_ready) begin
             input_v[step]<=input_step;
             step<=(step!=(TIMESTEPS-1) ? step+1 : 0);
-            input_ready_toptagging<=step==(TIMESTEPS-1);
+            ap_start<=step==(TIMESTEPS-1);
         end
     end
-    Toptagging #(.WIDTH(WIDTH), .NINT(NINT)) toptag (.clk, .reset, .ready(Toptagging_ready), .input_ready(input_ready_toptagging), .output_ready(output_ready_toptagging), .input_v, .output_data);
+    genvar i, j;
+    generate
+        for (i=0; i<TIMESTEPS; i++) begin
+            for (j=0; j<INPUT_SIZE; j++) begin
+                assign layer1_input_V[i*INPUT_SIZE*WIDTH+(j+1)*WIDTH-:WIDTH] = input_v[i][j];
+            end
+        end
+    endgenerate
+    myproject dut (.*);
 endmodule
 
 `ifndef SYNTHESIS
 `define STRINGIFY(x) `"x`"
-module Toptagging_top_tb;
+module hls_top_tb;
     logic clk, shiftClk;
     logic reset;
     logic input_ready;
     logic output_ready;
+    logic ready;
     // logic move_next;
     parameter INPUT_SIZE = 6;
     parameter TIMESTEPS = 20;
     parameter OUTPUT_SIZE = 1;
-    parameter WIDTH = 19;
-    parameter NINT = 7;
+    parameter WIDTH = 4;
+    parameter NINT = 2;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] output_data;
-    Toptagging_top #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
+    hls_top #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
     initial begin
         clk=0;
         forever #1 clk<=~clk;
@@ -61,19 +88,17 @@ module Toptagging_top_tb;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;
-    `ifndef TESTFILE
-        `define TESTFILE "X_test_16_6.txt"
-    `endif
-    `ifndef RESULTSFILE
-        `define RESULTSFILE "gen_results.csv"
-    `endif
+    // `ifndef TESTFILE
+    //     `define TESTFILE "X_test_gen.txt"
+    // `endif
+    // `ifndef RESULTSFILE
+    //     `define RESULTSFILE "gen_results.csv"
+    // `endif
     
     initial begin
-        `ifndef MODELSIM
-        $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
-        `else
-            $readmemb("../testing_data/X_test_19_7.txt", flat_mem);
-        `endif
+        // `ifndef MODELSIM
+        $readmemb("X_test_gen.txt", flat_mem);
+        
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<TIMESTEPS; j++) begin : steps
                 for (k=0; k<INPUT_SIZE; k++) begin : nums
@@ -106,11 +131,7 @@ module Toptagging_top_tb;
     end
     initial begin
         if (write_file) begin
-            `ifndef MODELSIM
-                fd = $fopen(`STRINGIFY(`RESULTSFILE), "w");  // "w" = write mode, "a" = append
-            `else
-                fd = $fopen("gen_results.csv", "w");  // "w" = write mode, "a" = append
-            `endif
+                fd = $fopen("hls_results.csv", "w");  // "w" = write mode, "a" = append
             if (fd == 0) begin
                 $display("ERROR: Could not open file!");
                 $finish;
@@ -132,7 +153,7 @@ module Toptagging_top_tb;
             end
             input_ready<=0;
             input_v<=x_test[i];
-            @(posedge output_ready)
+            @(posedge ready)
             i++;
         end
         input_ready<=0;
