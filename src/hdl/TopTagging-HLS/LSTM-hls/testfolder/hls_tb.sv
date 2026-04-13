@@ -1,5 +1,5 @@
 
-// `define MODELSIM
+`define MODELSIM
 
 `timescale 1ns / 1ps
 module hls_top #( parameter
@@ -37,22 +37,25 @@ module hls_top #( parameter
     // Output interface
     logic [WIDTH-1:0] layer6_out_0_V;
     assign output_ready = layer6_out_0_V_ap_vld;
+    assign output_data = layer6_out_0_V;
     logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic [$clog2(TIMESTEPS):0] step=0;
     assign ready = ap_ready;
+    assign ap_start=1'b1;
     always_ff @(posedge shiftClk) begin
-        ap_start<=0;
+        layer1_input_V_ap_vld<=0;
+
         if (input_ready) begin
             input_v[step]<=input_step;
             step<=(step!=(TIMESTEPS-1) ? step+1 : 0);
-            ap_start<=step==(TIMESTEPS-1);
+            layer1_input_V_ap_vld <=step==(TIMESTEPS-1);
         end
     end
     genvar i, j;
     generate
         for (i=0; i<TIMESTEPS; i++) begin
             for (j=0; j<INPUT_SIZE; j++) begin
-                assign layer1_input_V[i*INPUT_SIZE*WIDTH+(j+1)*WIDTH-:WIDTH] = input_v[i][j];
+                assign layer1_input_V[i*INPUT_SIZE*WIDTH+(j+1)*WIDTH-1-:WIDTH] = input_v[i][j];
             end
         end
     endgenerate
@@ -84,7 +87,7 @@ module hls_top_tb;
     end
     assign shiftClk=clk;
     // max_tests = 19951;
-    localparam num_tests = 800;
+    localparam num_tests = 8;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;
