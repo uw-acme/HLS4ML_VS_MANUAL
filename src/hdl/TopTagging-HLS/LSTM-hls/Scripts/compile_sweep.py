@@ -2,7 +2,7 @@
 import hls4ml
 import os
 import numpy as np
-
+import shutil
 from pprint import pprint
 from sys import argv, path
 import yaml
@@ -33,6 +33,8 @@ def HLS4ML_gen(acc : tuple[int, int]):
     name = f"hls_firstsweep"
     sweepname = name + f"_{acc[0]}_{acc[1]}"
     fullsweepname = f"../Sweeps/{sweepname}"
+    fullverilogpath = fullsweepname+"/myproject_prj/solution1/impl/verilog"
+    
     if (not os.path.isdir(fullsweepname)):
         config = hls4ml.utils.config_from_keras_model(model, granularity='model')
         # f = open("hls_config.yml", "r") #Use yml file for finer tuning
@@ -67,7 +69,10 @@ def HLS4ML_gen(acc : tuple[int, int]):
         if (len(argv)>1):
             return 0
         hls_model.build(csim=False, synth=True, vsynth=False, export=False)
-    
+    tbpath = fullverilogpath+"/hls_tb.sv"
+    if (os.path.isfile(tbpath)):
+        os.remove(tbpath)
+    shutil.copy2("hls_tb.sv", tbpath)
     #If the report has not previously been generated, run vivado synthesis
     if (not os.path.isfile(os.path.join("../reports", f"{sweepname}_util.rpt"))):
         os.system(f"vivado -mode batch -source hls_script.tcl -tclargs {sweepname}")
@@ -78,7 +83,7 @@ def HLS4ML_gen(acc : tuple[int, int]):
     
     #Run accuracy testing
     # fullverilogpath = os.path.join(fullsweepname, "/myproject_prj/solution1/impl/verilog")
-    fullverilogpath = fullsweepname+"/myproject_prj/solution1/impl/verilog"
+    
     print(fullsweepname)
     print(fullverilogpath)
     accuracy = test_accuracy(fullverilogpath, acc)
@@ -125,7 +130,7 @@ def HLS4ML_gen(acc : tuple[int, int]):
     Report = f"Gen {sweepname} finished. Results:\n"
     for i in range(len(features)):
         Report+= f"{features[i]}: {data[i]}\n"
-    Report+=f"Timing: {5-float(timing)}\n"
+    Report+=f"Timing: {10-float(timing)}\n"
     Report+=f"Cycle Latency: {cycle_latency}\n"
     Report+=f"Total Latency: {total_latency}\n"
 
@@ -144,7 +149,7 @@ def test_latency(model, acc):
 def keras_test(model, y_test):
     res =  np.loadtxt(f"{model}/hls_results.csv", delimiter=",")
     res = res[1:]
-    acc= accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
+    acc= accuracy_score((y_test[0:len(res)]), np.round(res))
     return acc
 #for i in range(len(scores)):
         #print(f"\n{models[i]} accuracy is: {scores[i]} \n")

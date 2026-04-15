@@ -15,7 +15,7 @@ if ! compgen -G "$DEST/*.csv" > /dev/null; then
     #     cp hls_tb_25.sv $DEST
     # else 
     cp hls_tb.sv $DEST
-    #fi
+    
     cd $DEST
     rm -rf xsim.dir/ waiz_tb_sim.jou waiz_tb_sim.log sim.log
     # Compile all sources with SystemVerilog enabled
