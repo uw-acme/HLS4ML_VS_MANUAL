@@ -53,11 +53,16 @@ module hls_top #( parameter
     end
     genvar i, j;
     generate
-        for (i=0; i<TIMESTEPS; i++) begin
-            for (j=0; j<INPUT_SIZE; j++) begin
-                assign layer1_input_V[i*INPUT_SIZE*WIDTH+(j+1)*WIDTH-1-:WIDTH] = input_v[i][j];
+        // for (i=0; i<TIMESTEPS; i++) begin
+        //     for (j=0; j<INPUT_SIZE; j++) begin
+        //         assign layer1_input_V[i*INPUT_SIZE*WIDTH+(j+1)*WIDTH-1-:WIDTH] = input_v[i][j];
+        //     end
+        // end
+            for (i=0; i<TIMESTEPS; i++) begin : steps
+                for (j=0; j<INPUT_SIZE; j++) begin : nums
+                    assign layer1_input_V[(i+1)*INPUT_SIZE*WIDTH-(j)*WIDTH-1-:WIDTH]  = input_v[i][j];
+                end
             end
-        end
     endgenerate
     myproject dut (.*);
 endmodule

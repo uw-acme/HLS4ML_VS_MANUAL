@@ -3,8 +3,8 @@
 
 `timescale 1ns / 1ps
 module hls_top #( parameter
-    WIDTH = 34,
-    NINT = 12,
+    WIDTH = 16,
+    NINT = 6,
     INPUT_SIZE = 6,
     TIMESTEPS = 20,
     OUTPUT_SIZE = 20
@@ -53,11 +53,16 @@ module hls_top #( parameter
     end
     genvar i, j;
     generate
-        for (i=0; i<TIMESTEPS; i++) begin
-            for (j=0; j<INPUT_SIZE; j++) begin
-                assign layer1_input_V[i*INPUT_SIZE*WIDTH+(j+1)*WIDTH-1-:WIDTH] = input_v[i][j];
+        // for (i=0; i<TIMESTEPS; i++) begin
+        //     for (j=0; j<INPUT_SIZE; j++) begin
+        //         assign layer1_input_V[i*INPUT_SIZE*WIDTH+(j+1)*WIDTH-1-:WIDTH] = input_v[i][j];
+        //     end
+        // end
+            for (i=0; i<TIMESTEPS; i++) begin : steps
+                for (j=0; j<INPUT_SIZE; j++) begin : nums
+                    assign layer1_input_V[(i+1)*INPUT_SIZE*WIDTH-(j)*WIDTH-1-:WIDTH]  = input_v[i][j];
+                end
             end
-        end
     endgenerate
     myproject dut (.*);
 endmodule
@@ -74,8 +79,8 @@ module hls_top_tb;
     parameter INPUT_SIZE = 6;
     parameter TIMESTEPS = 20;
     parameter OUTPUT_SIZE = 1;
-    parameter WIDTH = 34;
-    parameter NINT = 12;
+    parameter WIDTH = 16;
+    parameter NINT = 6;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0];
