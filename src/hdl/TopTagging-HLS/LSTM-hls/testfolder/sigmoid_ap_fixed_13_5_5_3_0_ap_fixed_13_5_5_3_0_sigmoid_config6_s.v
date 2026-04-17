@@ -7,7 +7,7 @@
 
 `timescale 1 ns / 1 ps 
 
-module sigmoid_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_sigmoid_config6_s (
+module sigmoid_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_sigmoid_config6_s (
         ap_clk,
         ap_rst,
         ap_start,
@@ -28,8 +28,8 @@ output   ap_done;
 output   ap_idle;
 output   ap_ready;
 input   ap_ce;
-input  [3:0] data_V_read;
-output  [1:0] ap_return;
+input  [12:0] data_V_read;
+output  [7:0] ap_return;
 
 reg ap_done;
 reg ap_idle;
@@ -48,10 +48,25 @@ wire   [9:0] sigmoid_table1_address0;
 reg    sigmoid_table1_ce0;
 wire   [9:0] sigmoid_table1_q0;
 reg    ap_block_pp0_stage0_subdone;
-wire   [63:0] zext_ln121_fu_67_p1;
-wire   [7:0] tmp_fu_49_p3;
-wire  signed [9:0] sext_ln115_fu_57_p1;
-wire   [9:0] index_fu_61_p2;
+wire   [63:0] zext_ln121_fu_197_p1;
+wire   [10:0] tmp_fu_85_p4;
+wire   [22:0] r_V_fu_77_p3;
+wire   [1:0] trunc_ln851_fu_105_p1;
+wire   [7:0] p_Result_4_fu_109_p3;
+wire  signed [11:0] sext_ln835_fu_95_p1;
+wire   [0:0] icmp_ln851_fu_117_p2;
+wire   [11:0] ret_V_fu_123_p2;
+wire   [0:0] p_Result_s_fu_99_p2;
+wire   [11:0] select_ln851_fu_129_p3;
+wire   [11:0] select_ln850_fu_137_p3;
+wire   [10:0] trunc_ln116_fu_145_p1;
+wire   [11:0] index_fu_149_p2;
+wire   [0:0] tmp_59_fu_161_p3;
+wire   [10:0] add_ln116_1_fu_155_p2;
+wire   [10:0] select_ln117_fu_169_p3;
+wire   [0:0] tmp_60_fu_181_p3;
+wire   [9:0] trunc_ln117_fu_177_p1;
+wire   [9:0] select_ln119_fu_189_p3;
 reg   [0:0] ap_NS_fsm;
 reg    ap_idle_pp0_0to0;
 reg    ap_reset_idle_pp0;
@@ -63,7 +78,7 @@ initial begin
 #0 ap_enable_reg_pp0_iter1 = 1'b0;
 end
 
-sigmoid_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_sigmoid_config6_s_sigmoid_table1 #(
+sigmoid_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_sigmoid_config6_s_sigmoid_tabbkb #(
     .DataWidth( 10 ),
     .AddressRange( 1024 ),
     .AddressWidth( 10 ))
@@ -160,6 +175,8 @@ always @ (*) begin
     endcase
 end
 
+assign add_ln116_1_fu_155_p2 = (11'd512 + trunc_ln116_fu_145_p1);
+
 assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
 
 assign ap_block_pp0_stage0 = ~(1'b1 == 1'b1);
@@ -182,16 +199,44 @@ assign ap_enable_pp0 = (ap_idle_pp0 ^ 1'b1);
 
 assign ap_enable_reg_pp0_iter0 = ap_start;
 
-assign ap_return = {{sigmoid_table1_q0[9:8]}};
+assign ap_return = {{sigmoid_table1_q0[9:2]}};
 
-assign index_fu_61_p2 = (sext_ln115_fu_57_p1 ^ 10'd512);
+assign icmp_ln851_fu_117_p2 = ((p_Result_4_fu_109_p3 == 8'd0) ? 1'b1 : 1'b0);
 
-assign sext_ln115_fu_57_p1 = $signed(tmp_fu_49_p3);
+assign index_fu_149_p2 = (12'd512 + select_ln850_fu_137_p3);
 
-assign sigmoid_table1_address0 = zext_ln121_fu_67_p1;
+assign p_Result_4_fu_109_p3 = {{trunc_ln851_fu_105_p1}, {6'd0}};
 
-assign tmp_fu_49_p3 = {{data_V_read}, {4'd0}};
+assign p_Result_s_fu_99_p2 = (($signed(r_V_fu_77_p3) < $signed(23'd8388593)) ? 1'b1 : 1'b0);
 
-assign zext_ln121_fu_67_p1 = index_fu_61_p2;
+assign r_V_fu_77_p3 = {{data_V_read}, {10'd0}};
 
-endmodule //sigmoid_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_sigmoid_config6_s
+assign ret_V_fu_123_p2 = ($signed(12'd1) + $signed(sext_ln835_fu_95_p1));
+
+assign select_ln117_fu_169_p3 = ((tmp_59_fu_161_p3[0:0] === 1'b1) ? 11'd0 : add_ln116_1_fu_155_p2);
+
+assign select_ln119_fu_189_p3 = ((tmp_60_fu_181_p3[0:0] === 1'b1) ? 10'd1023 : trunc_ln117_fu_177_p1);
+
+assign select_ln850_fu_137_p3 = ((p_Result_s_fu_99_p2[0:0] === 1'b1) ? select_ln851_fu_129_p3 : sext_ln835_fu_95_p1);
+
+assign select_ln851_fu_129_p3 = ((icmp_ln851_fu_117_p2[0:0] === 1'b1) ? sext_ln835_fu_95_p1 : ret_V_fu_123_p2);
+
+assign sext_ln835_fu_95_p1 = $signed(tmp_fu_85_p4);
+
+assign sigmoid_table1_address0 = zext_ln121_fu_197_p1;
+
+assign tmp_59_fu_161_p3 = index_fu_149_p2[32'd11];
+
+assign tmp_60_fu_181_p3 = select_ln117_fu_169_p3[32'd10];
+
+assign tmp_fu_85_p4 = {{data_V_read[12:2]}};
+
+assign trunc_ln116_fu_145_p1 = select_ln850_fu_137_p3[10:0];
+
+assign trunc_ln117_fu_177_p1 = select_ln117_fu_169_p3[9:0];
+
+assign trunc_ln851_fu_105_p1 = data_V_read[1:0];
+
+assign zext_ln121_fu_197_p1 = select_ln119_fu_189_p3;
+
+endmodule //sigmoid_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_sigmoid_config6_s

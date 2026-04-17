@@ -24,6 +24,8 @@ module LSTM #( parameter
     output logic signed [WIDTH-1:0] ht [OUTPUT_SIZE-1:0]
 );
     localparam NFRAC = WIDTH-NINT;
+    localparam PIPELINING = 4;
+    localparam PIPE_OUT = 0;
     function automatic logic signed [WIDTH*2-1:0] mult(
         input logic signed [WIDTH-1:0] in1,
         input logic signed [WIDTH-1:0] in2
@@ -171,6 +173,8 @@ module LSTM #( parameter
         .NFRAC          ( NFRAC                    ),
         .INPUT_SIZE     ( INPUT_SIZE                ),
         .OUTPUT_SIZE    ( OUTPUT_SIZE*4             ),
+        .PIPE_OUT       (PIPE_OUT),
+        .PIPELINING     (PIPELINING),
         .WEIGHTS        ( `LSTM_X_WEIGHTS::weights  ),
         .BIAS           ( `LSTM_X_WEIGHTS::bias     )
     ) 
@@ -191,6 +195,8 @@ module LSTM #( parameter
         .NFRAC          ( NFRAC                     ),
         .INPUT_SIZE     ( OUTPUT_SIZE               ),
         .OUTPUT_SIZE    ( OUTPUT_SIZE*4             ),
+        .PIPELINING     (PIPELINING),
+        .PIPE_OUT       (PIPE_OUT),
         .WEIGHTS        ( `LSTM_H_WEIGHTS::weights  ),
         .BIAS           ( `LSTM_H_WEIGHTS::bias     )
     ) 

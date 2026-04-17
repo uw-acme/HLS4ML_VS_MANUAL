@@ -4,11 +4,11 @@
 // ==============================================================
 `timescale 1 ns / 1 ps
 
-(* use_dsp = "yes" *) module myproject_mac_muladd_4s_4s_6ns_6_1_1_DSP48_0(
-    input  [4 - 1:0] in0,
-    input  [4 - 1:0] in1,
-    input  [6 - 1:0] in2,
-    output [6 - 1:0]  dout);
+module myproject_mac_muladd_13s_13s_21s_21_1_1_DSP48_1(
+    input  [13 - 1:0] in0,
+    input  [13 - 1:0] in1,
+    input  [21 - 1:0] in2,
+    output [21 - 1:0]  dout);
 
 wire signed [27 - 1:0]     a;
 wire signed [18 - 1:0]     b;
@@ -18,7 +18,7 @@ wire signed [48 - 1:0]     p;
 
 assign a  = $signed(in0);
 assign b  = $signed(in1);
-assign c  = $unsigned(in2);
+assign c  = $signed(in2);
 
 assign m  = a * b;
 assign p  = m + c;
@@ -27,7 +27,7 @@ assign dout = p;
 
 endmodule
 `timescale 1 ns / 1 ps
-module myproject_mac_muladd_4s_4s_6ns_6_1_1(
+module myproject_mac_muladd_13s_13s_21s_21_1_1(
     din0,
     din1,
     din2,
@@ -46,7 +46,7 @@ output[dout_WIDTH - 1:0] dout;
 
 
 
-myproject_mac_muladd_4s_4s_6ns_6_1_1_DSP48_0 myproject_mac_muladd_4s_4s_6ns_6_1_1_DSP48_0_U(
+myproject_mac_muladd_13s_13s_21s_21_1_1_DSP48_1 myproject_mac_muladd_13s_13s_21s_21_1_1_DSP48_1_U(
     .in0( din0 ),
     .in1( din1 ),
     .in2( din2 ),

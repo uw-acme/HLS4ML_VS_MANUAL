@@ -3,7 +3,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // ==============================================================
 `timescale 1 ns / 1 ps
-(* rom_style = "block" *) module tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom (
+(* rom_style = "block" *) module tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom (
 addr0, ce0, q0, addr1, ce1, q1, addr2, ce2, q2, addr3, ce3, q3, addr4, ce4, q4, addr5, ce5, q5, addr6, ce6, q6, addr7, ce7, q7, addr8, ce8, q8, addr9, ce9, q9, addr10, ce10, q10, addr11, ce11, q11, addr12, ce12, q12, addr13, ce13, q13, addr14, ce14, q14, addr15, ce15, q15, addr16, ce16, q16, addr17, ce17, q17, addr18, ce18, q18, addr19, ce19, q19, clk);
 
 parameter DWIDTH = 11;
@@ -84,16 +84,16 @@ input clk;
 (* ram_style = "block" *)reg [DWIDTH-1:0] ram9[0:MEM_SIZE-1];
 
 initial begin
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram0);
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram1);
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram2);
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram3);
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram4);
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram5);
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram6);
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram7);
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram8);
-    $readmemh("./tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram9);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram0);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram1);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram2);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram3);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram4);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram5);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram6);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram7);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram8);
+    $readmemh("./tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom.dat", ram9);
 end
 
 
@@ -301,7 +301,7 @@ end
 endmodule
 
 `timescale 1 ns / 1 ps
-module tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3(
+module tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3(
     reset,
     clk,
     address0,
@@ -433,7 +433,7 @@ output[DataWidth - 1:0] q19;
 
 
 
-tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom tanh_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_tanh_config2_s_tanh_table3_rom_U(
+tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom tanh_ap_fixed_13_5_5_3_0_ap_fixed_13_5_5_3_0_tanh_config2_s_tanh_table3_rom_U(
     .clk( clk ),
     .addr0( address0 ),
     .ce0( ce0 ),

@@ -115,8 +115,8 @@ module hls_lat_tb;
     parameter INPUT_SIZE = 6;
     parameter TIMESTEPS = 20;
     parameter OUTPUT_SIZE = 1;
-    parameter WIDTH = 4;
-    parameter NINT = 2;
+    parameter WIDTH = 13;
+    parameter NINT = 5;
     parameter NFRAC = WIDTH-NINT;
     logic ap_clk, ap_rst, ap_start, ap_done, ap_idle, ap_ready, layer1_input_V_ap_vld,layer6_out_0_V_ap_vld;
     logic [INPUT_SIZE*TIMESTEPS*WIDTH-1:0] layer1_input_V;
@@ -211,6 +211,7 @@ module hls_lat_tb;
         count=0;
         layer1_input_V<=flatter_mem[INPUT_SIZE*TIMESTEPS*WIDTH-1 -: INPUT_SIZE*TIMESTEPS*WIDTH];
         @(posedge ap_clk)
+        ap_start<=0;
         layer1_input_V_ap_vld<=0;
         //     // Wait for ap_ready
 //     while (!ap_ready) @(posedge ap_clk);
@@ -219,9 +220,9 @@ module hls_lat_tb;
 //     // Wait for output valid
 //     while (!layer6_out_0_V_ap_vld) @(posedge ap_clk);
 //     
-        @(posedge layer6_out_0_V_ap_vld)
+        @(posedge ap_ready)
         ii_count = count;
-        // @(posedge ap_done)
+        @(posedge ap_done)
         cycle_latency = count;
         $fwrite(fd, "%0d, %0d, %0d\n", wid, ii_count, cycle_latency);
         ap_start<=0;
