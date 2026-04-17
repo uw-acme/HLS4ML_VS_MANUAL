@@ -43,6 +43,8 @@ module hls_lat_tb;
             $display("Done");
 
     end
+    always_ff @(posedge ap_clk)
+        cycle_count<=cycle_count+1'b1;
     initial begin
         ap_clk = 0;
         ap_rst = 1;
@@ -64,12 +66,11 @@ module hls_lat_tb;
         $display("Starting");
         $display("clk: %0d, start: %0d, ready: %0d, idle: %0d, done: %0d\n", ap_clk, ap_start, ap_ready, ap_idle, ap_done);
         layer1_input_V_ap_vld=0;
-        // ap_start = 0;
+        ap_start = 0;
         // Wait for output_ready signal
         // wait (ap_done);
         @(posedge ap_ready)
             ii_count=cycle_count;
-        
         @(posedge layer6_out_0_V_ap_vld);
         $fwrite(fd, "%0d, %0d, %0d\n", wid, ii_count, cycle_count);
     endtask

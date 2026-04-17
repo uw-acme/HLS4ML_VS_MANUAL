@@ -1,9 +1,1 @@
-1, 0, 0, 1, 0
-clk: 1, start: 0, ready: 0, idle: 1, done: 0
-clk: 1, start: 0, ready: 0, idle: 1, done: 0
-clk: 1, start: 0, ready: 0, idle: 1, done: 0
-clk: 1, start: 0, ready: 0, idle: 1, done: 0
-clk: 1, start: 0, ready: 0, idle: 1, done: 0
-clk: 1, start: 0, ready: 0, idle: 1, done: 0
-clk: 1, start: 1, ready: 0, idle: 0, done: 0
-clk: 1, start: 1, ready: 0, idle: 0, done: 0
+
