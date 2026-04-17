@@ -25,7 +25,7 @@ xvlog *.v
 xvlog --sv hls_lat*.sv
 
 # Elaborate design
-xelab hls_lat_tb -s hls_tb_sim --debug typical
+xelab hls_lat_tb -s hls_lat_tb_sim --debug typical
 
 # Run simulation to completion (headless, no GUI waves)
-xsim hls_tb_sim -runall
+xsim hls_lat_tb_sim -runall

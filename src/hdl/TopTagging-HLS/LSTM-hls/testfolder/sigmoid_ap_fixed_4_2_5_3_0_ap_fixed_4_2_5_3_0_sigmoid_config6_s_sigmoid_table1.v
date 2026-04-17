@@ -3,7 +3,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // ==============================================================
 `timescale 1 ns / 1 ps
-module sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s_sigmoid_tabbkb_rom (
+module sigmoid_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_sigmoid_config6_s_sigmoid_table1_rom (
 addr0, ce0, q0, clk);
 
 parameter DWIDTH = 10;
@@ -18,7 +18,7 @@ input clk;
 reg [DWIDTH-1:0] ram[0:MEM_SIZE-1];
 
 initial begin
-    $readmemh("./sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s_sigmoid_tabbkb_rom.dat", ram);
+    $readmemh("./sigmoid_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_sigmoid_config6_s_sigmoid_table1_rom.dat", ram);
 end
 
 
@@ -36,7 +36,7 @@ end
 endmodule
 
 `timescale 1 ns / 1 ps
-module sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s_sigmoid_tabbkb(
+module sigmoid_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_sigmoid_config6_s_sigmoid_table1(
     reset,
     clk,
     address0,
@@ -54,7 +54,7 @@ output[DataWidth - 1:0] q0;
 
 
 
-sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s_sigmoid_tabbkb_rom sigmoid_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_sigmoid_config6_s_sigmoid_tabbkb_rom_U(
+sigmoid_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_sigmoid_config6_s_sigmoid_table1_rom sigmoid_ap_fixed_4_2_5_3_0_ap_fixed_4_2_5_3_0_sigmoid_config6_s_sigmoid_table1_rom_U(
     .clk( clk ),
     .addr0( address0 ),
     .ce0( ce0 ),
