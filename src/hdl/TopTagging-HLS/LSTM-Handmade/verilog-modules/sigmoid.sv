@@ -43,7 +43,7 @@ module sigmoid #(parameter
     endgenerate
     initial begin
         assert(WIDTH >= NFRAC);
-        assert(WIDTH > 0 && NFRAC > 0 && MEM_WIDTH > 0 && TABLE_SIZE_POW > 0);
+        assert(WIDTH > 0 && NFRAC > 0 && MEM_WIDTH > 0 && LOOKUP_WIDTH > 0);
     end
     
     // Determine table size

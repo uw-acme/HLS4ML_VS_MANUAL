@@ -3,8 +3,8 @@
 
 `timescale 1ns / 1ps
 module hls_top #( parameter
-    WIDTH = 16,
-    NINT = 6,
+    WIDTH = 4,
+    NINT = 2,
     INPUT_SIZE = 6,
     TIMESTEPS = 20,
     OUTPUT_SIZE = 20
@@ -79,8 +79,8 @@ module hls_top_tb;
     parameter INPUT_SIZE = 6;
     parameter TIMESTEPS = 20;
     parameter OUTPUT_SIZE = 1;
-    parameter WIDTH = 16;
-    parameter NINT = 6;
+    parameter WIDTH = 4;
+    parameter NINT = 2;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0];
@@ -92,7 +92,7 @@ module hls_top_tb;
     end
     assign shiftClk=clk;
     // max_tests = 19951;
-    localparam num_tests = 800;
+    localparam num_tests = 19951;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;

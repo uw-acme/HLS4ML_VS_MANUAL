@@ -21,7 +21,7 @@ module Toptagging_top #( parameter
     logic input_ready_toptagging, output_ready_toptagging, Toptagging_ready;
     assign output_ready = output_ready_toptagging;
     logic [$clog2(TIMESTEPS):0] step=0;
-
+    assign ready = Toptagging_ready;
     always_ff @(posedge shiftClk) begin
         input_ready_toptagging<=0;
         if (input_ready) begin
@@ -40,6 +40,7 @@ module Toptagging_top_tb;
     logic reset;
     logic input_ready;
     logic output_ready;
+    logic ready;
     // logic move_next;
     parameter INPUT_SIZE = 6;
     parameter TIMESTEPS = 20;
@@ -132,7 +133,7 @@ module Toptagging_top_tb;
             end
             input_ready<=0;
             input_v<=x_test[i];
-            @(posedge output_ready)
+            @(posedge ready)
             i++;
         end
         input_ready<=0;

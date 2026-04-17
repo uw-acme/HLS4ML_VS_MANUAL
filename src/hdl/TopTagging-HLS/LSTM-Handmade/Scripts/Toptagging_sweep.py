@@ -97,7 +97,7 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     # Regex pattern. Looks for 1 to 2 numbers, 0-9
     # patt = r"[0-9]{1,2}"
     # Uses sed to find NFRAC = NUMBER and WIDTH = NUMBER and replace the numbers with new numbers
-    # defs = f"WIDTH={acc[0]} NFRAC={acc[0]-acc[1]}"
+    # defs = f"WIDTH={acc[0]} NINT={acc[1]}"
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark_tb.sv')
     if (defs):
         defs = defs.replace("{", "")
@@ -155,7 +155,7 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
     # Regex pattern. Looks for 1 to 2 numbers, 0-9
     # patt = r"[0-9]{1,2}"
     # Uses sed to find NFRAC = NUMBER and WIDTH = NUMBER and replace the numbers with new numbers
-    # defs = f"WIDTH={acc[0]} NFRAC={acc[0]-acc[1]}"
+    # defs = f"WIDTH={acc[0]} NINT={acc[1]}"
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark_tb.sv')
     if (defs):
         defs = defs.replace("{", "")
@@ -168,10 +168,9 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
         if (not params):
             params = ""
         if ("WIDTH" not in params):
-            params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
-    if ("DENSE_LAYER_" not in defs):
-        for i in range(1,5):
-            defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
+            params += f' NINT={acc[1]} WIDTH={acc[0]}'
+    if ("LSTM_X_" not in defs):
+        defs+= f" LSTM_X_WEIGHTS=layer1_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=layer1_1_{acc[0]}_{acc[1]} DENSE2_WEIGHTS output_sigmoid_0_{acc[0]}_{acc[1]} DENSE1_WEIGHTS=layer3_0_{acc[0]}_{acc[1]} " 
     params = f" {params}"
     params = params.replace("{", "")
     params = params.replace("}", "")
@@ -184,11 +183,12 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
     with open("../Results/hand_lat.csv", "r") as f:
         cont = f.readlines()
         newest = cont[-1]
-        lat = newest.split(", ")[1]
+        lat = newest.split(", ")[2]
+        ii = newest.split(", ")[1]
     # Uses the Linux mail system to send the results to me
     if email:
-        os.system(f'printf "Acc test for {name} finished at %b with results: {lat}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
-    return lat
+        os.system(f'printf "Lat test for {name} finished at %b with results: {ii}, {lat}" "$(date)" | mail -s "Handmade lat" ceravcal@uw.edu')
+    return ii, lat
 # Generates a systemverilog package of weights of a proper accuracy from a file listing weights
 # Inputs: 
 # Accuracy: Tuple of acuracy (TOTAL_BITS, INTEGER_BITS)
@@ -243,12 +243,12 @@ def adjust(bits):
     # pipe_out=0
     # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
     # name = f"expPipeNegmax"
-name = "SecondToptag"
+name = "Toptag_BJT_SA"
 for i in range(2,13):
     acc = (3*i-2,i)
     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
     # SA_INT, SA_FRAC = adjust(acc_in[0])
-    SAD, SAFRAC = 3, 0#adjust(acc[0])
+    SAD, SAFRAC = adjust(acc[0])
     params = ""
     defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
     # lat = lat_test(acc, name, defs, params)

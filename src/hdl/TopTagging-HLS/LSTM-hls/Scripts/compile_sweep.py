@@ -30,7 +30,7 @@ def HLS4ML_gen(acc : tuple[int, int]):
     :param acc: 
     """
     #try:
-    name = f"hls_firstsweep"
+    name = f"hls_iitest"
     sweepname = name + f"_{acc[0]}_{acc[1]}"
     fullsweepname = f"../Sweeps/{sweepname}"
     fullverilogpath = fullsweepname+"/myproject_prj/solution1/impl/verilog"
@@ -86,43 +86,48 @@ def HLS4ML_gen(acc : tuple[int, int]):
     
     print(fullsweepname)
     print(fullverilogpath)
-    accuracy = test_accuracy(fullverilogpath, acc)
-    cycle_latency = -1
-    total_latency = -1
+    if (not os.path.isfile(fullverilogpath+"/hls_results.csv")):
+        accuracy = test_accuracy(fullverilogpath, acc)
+    # cycle_latency = -1
+    # total_latency = -1
     #latency file that the testbench writes new latency values into
-    # lat_file = f"../results/hls_latency.csv"
-    # patt = r"[0-9]{1,2}"
+    lat_file = f"../results/hls_latency.csv"
+    patt = r"[0-9]{1,2}"
 
-    # #Update testbench with new width values
-    # os.system(f'sed -i -E "s/NINT = {patt}/NINT = {acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" hls_lat_tb.sv')
+    #Update testbench with new width values
+    os.system(f'sed -i -E "s/NINT = {patt}/NINT = {acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" hls_lat_tb.sv')
 
-    # #Run shell script for getting latency, sending the updated testbench to the proper folder and testing it
-    # os.system(f"bash get_latency.sh /home/caleb/sweeps/{sweepname}/p_prj/solution1/impl/verilog")
+    #Run shell script for getting latency, sending the updated testbench to the proper folder and testing it
+    os.system(f"bash get_latency.sh {fullverilogpath}")
 
-    #Grab newest cycle latency value
-    # f = open(lat_file)
-    # new_lat = f.readlines()[-1]
-    # if (new_lat=="\n"):
-    #     new_lat = f.readlines()[-2]
-    # f.close()
-    # cycle_latency = new_lat.split(", ")[1]
-
-    # #Calculate total latency
-    # total_latency = int(cycle_latency)*(5-float(timing))
-
+    # Grab newest cycle latency value
+    f = open(lat_file)
+    
+    new_lat = f.readlines()[-1]
+    if (new_lat=="\n"):
+        new_lat = f.readlines()[-2]
+    f.close()
+    initiation_interval = new_lat.split(", ")[1]
+    cycle_latency = new_lat.split(", ")[2]
+    clock_period = (10-float(timing))
+    #Calculate total latency
+    total_latency = int(cycle_latency)*clock_period
+    total_initiation_interval = int(initiation_interval)*clock_period
     #Check to see if the csv file exists and create it if it doesn't
     csv_name = f"../results/util_{name}.csv"
     if (not os.path.isfile(csv_name)):
         with open(csv_name, "x") as f:
-            f.write("Bits, Slice LUTs, Slice Registers, Block RAM Tile, DSPs, Bonded IOB, Timing, Accuracy, Cycle Latency, Total Latency\n")
+            f.write("Bits, Slice LUTs, Slice Registers, Block RAM Tile, DSPs, Bonded IOB, Timing, Accuracy, II, Total II, Cycle Latency, Total Latency\n")
 
     #Open the csv file and add new data
     with open(csv_name, "a") as f:
         f.write(f"{acc[0]}")
         for dat in data:
             f.write(f", {dat}")
-        f.write(f", {timing}")
+        f.write(f", {clock_period}")
         f.write(f", {accuracy}")
+        f.write(f", {initiation_interval}")
+        f.write(f", {total_initiation_interval}")
         f.write(f", {cycle_latency}")
         f.write(f", {total_latency}\n")
 
@@ -130,9 +135,12 @@ def HLS4ML_gen(acc : tuple[int, int]):
     Report = f"Gen {sweepname} finished. Results:\n"
     for i in range(len(features)):
         Report+= f"{features[i]}: {data[i]}\n"
-    Report+=f"Timing: {10-float(timing)}\n"
+    Report+=f"Timing: {clock_period}\n"
+    Report+=f"II: {initiation_interval}\n"
+    Report+=f"Total II: {total_initiation_interval}\n"
     Report+=f"Cycle Latency: {cycle_latency}\n"
     Report+=f"Total Latency: {total_latency}\n"
+    Report+=f"Accuracy: {accuracy}\n"
 
     #Send report to email
     os.system(f'printf "{Report}" | mail -s "HLS Completion" ceravcal@uw.edu')
@@ -148,7 +156,6 @@ def test_latency(model, acc):
     os.system(f"bash get_latency.sh {model}")
 def keras_test(model, y_test):
     res =  np.loadtxt(f"{model}/hls_results.csv", delimiter=",")
-    res = res[1:]
     acc= accuracy_score((y_test[0:len(res)]), np.round(res))
     return acc
 #for i in range(len(scores)):

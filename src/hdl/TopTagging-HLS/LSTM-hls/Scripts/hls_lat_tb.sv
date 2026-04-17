@@ -1,9 +1,9 @@
 `timescale 1 ns / 1 ps 
 module hls_lat_tb;
     // Clock and control
-    localparam WIDTH = 28;
+    localparam WIDTH = 4;
     localparam INPUT_SIZE = 16;
-    localparam NFRAC = 18;
+    localparam NINT = 2;
     localparam TIMESTEPS = 20;
     logic ap_clk;
     logic ap_rst;
@@ -69,7 +69,7 @@ module hls_lat_tb;
     // end
     initial begin
         if (write_file) begin
-            fd = $fopen("/home/caleb/Scripts/ACME/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-hls/results/hls_latency.csv", "a");  // "w" = write mode, "a" = append
+            fd = $fopen("/home/caleb/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/LSTM-hls/results/hls_latency.csv", "a");  // "w" = write mode, "a" = append
             if (fd == 0) begin
                 $display("ERROR: Could not open file!");
                 $finish;
