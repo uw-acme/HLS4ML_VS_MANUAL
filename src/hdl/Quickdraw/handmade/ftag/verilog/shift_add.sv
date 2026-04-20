@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-`include "pkg_sel.svh"
+`include "defines.svh"
 
 /* This file contains the shiftAdd multiplication method.
 */
@@ -12,6 +12,7 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
                                     DEPTH_FRAC = 5
                    )(
     input logic                 clk,
+    input                       ce,
     input logic [BITS-1:0]      data_in,
     output logic [BITS*2-1:0]   data_out
 );
@@ -80,14 +81,6 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         assign data_in_ex = $signed(data_in);
         assign data_in_reg=data_in;
     end
-    initial begin
-        // $info("DONOVAN. BITS: %d", BITS);
-        // $warning("DONOVAN\nBITS: %d", BITS);
-        // $display("DONOVAN\nBITS: %d", BITS);
-        // $error("DONOVAN\nBITS: %d", BITS);
-        // $fatal("DONOVAN\nBITS: %d", BITS);
-        // $fflush();
-    end
    //if (shift[0] == '0) begin // Original 
     if ((shift[0]=='0)&&(( (abs_value(WEIGHT)%10)<DEPTH_FRAC )||(shift[DEPTH]==0))) begin// Modified
         always_comb begin
@@ -102,123 +95,21 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
                 else if (shift[i] < 0) begin data_out_tmp = data_out_tmp - (data_in_ex << (abs_value(shift[i])-1)); end
             end
         end
-        always_ff @(posedge clk) begin
-            data_out <= $signed(data_out_tmp);
-        end
-        // if the number is too complex (i.e. the weight couldn't be turned into 2 shift terms)
-        // either multiply with wrapper for niche cases with larger than DSP width ports and
-        // a couple weight conditions
-        // Otherwise just use a normal multiplier (likely to be done in LUTs)
     end else begin
-        // muliplication warapper
-        // if (BITS > 14) begin
-        //     mult_op_wrap #(.din_WIDTH       ( BITS      ),
-        //                    .dweight_WIDTH   ( BITS-num_signed_bits),
-        //                    .dout_WIDTH      ( BITS+NFRAC)
-        //                    ) mow(
-        //         .clk,
-        //         .reset  ( '0            ),
-        //         .ce     ( '1            ), // constant enable
-        //         .din    ( data_in       ),
-        //         .dweight( WEIGHT[BITS-num_signed_bits-1:0] ),
-        //         .dout   ( data_out_tmp  )
-        //     );
-        //     assign data_out = $signed(data_out_tmp);
-        // // Use normal multiplication operator
-        // end else begin
             always_comb begin
                 data_out_tmp = $signed(data_in_reg) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
             end
-            always_ff @(posedge clk) begin
-                data_out <= $signed(data_out_tmp);
-            end
-        // end
     end
+
+    always_ff @(posedge clk) begin
+        if (ce) data_out <= $signed(data_out_tmp);
+    end
+        // end
     
     
     
 	
 endmodule
-
-
-`timescale 1 ns / 1 ps
-
-/* Internal Multiplication module. Takes 2 clock cycles
-*/
-module mult_op (clk, ce, a, b, p);
-
-parameter din_WIDTH     = 32'd1;
-parameter dweight_WIDTH = 32'd1;
-parameter dout_WIDTH    = 32'd1;
-
-input clk;
-input ce;
-input[din_WIDTH-1 : 0]      a;
-input[dweight_WIDTH-1 : 0]  b;
-output[dout_WIDTH-1 : 0]    p;
-
-reg signed  [din_WIDTH-1 : 0]     a_reg0;
-reg signed  [dweight_WIDTH-1 : 0] b_reg0;
-wire signed [dout_WIDTH-1 : 0]    tmp_product;
-reg signed  [dout_WIDTH-1 : 0]    buff0;
-
-assign p = buff0;
-assign tmp_product = a_reg0 * b_reg0;
-
-always @ (posedge clk) begin
-    if (ce) begin
-        a_reg0 <= a;
-        b_reg0 <= b;
-        buff0 <= tmp_product;
-    end
-end
-endmodule
-
-
-
-`timescale 1 ns / 1 ps
-
-/* Wrapper for multiplication module
-*/
-module mult_op_wrap (
-    clk,
-    reset,
-    ce,
-    din,
-    dweight,
-    dout
-);
-
-parameter din_WIDTH     = 32'd1;
-parameter dweight_WIDTH = 32'd1;
-parameter dout_WIDTH    = 32'd1;
-input clk;
-input reset;
-input ce;
-input [din_WIDTH-1:0]       din;
-input [dweight_WIDTH-1:0]   dweight;
-output [dout_WIDTH-1:0]     dout;
-
-
-
-mult_op #(.din_WIDTH    ( din_WIDTH     ),
-          .dweight_WIDTH( dweight_WIDTH ),
-          .dout_WIDTH   ( dout_WIDTH    )
-    ) internal_operation (
-    .clk( clk ),
-    .ce( ce     ),
-    .a( din     ),
-    .b( dweight ),
-    .p( dout    ));
-
-endmodule
-
-
-
-
-
-
-
 
 /*  ------------------------------------
     Testbench for shift-add module
@@ -253,6 +144,7 @@ module shift_add_tb();
     end
     
 endmodule
+
 
 
 

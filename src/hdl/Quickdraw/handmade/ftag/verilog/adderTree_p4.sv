@@ -1,10 +1,10 @@
-
+`timescale 1ns / 1ps
 // Helper module
 // 
 // This module is an adder tree. The module takes in an input 1D array,
 // loads the data into a tree and fills any excess nodes with zeros,
 // and sum the data in a pipelined manner.
-// Adds 4 values per pipline stage
+// Adds 4 values per pipeline stage
 //
 // Inputs:
 // - clk
@@ -13,11 +13,13 @@
 //
 // Outputs:
 // - output_data: a single number of size WIDTH
-module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32) (
+`timescale 1ns / 1ps
+module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32, PIPELINING = 1) (
     input  logic                        clk,
     input  logic                        reset,
     input  logic signed [WIDTH-1 : 0]   input_data  [INPUT_SIZE],
-    output logic signed [WIDTH-1 : 0]   output_data
+    output logic signed [WIDTH-1 : 0]   output_data,
+    input ce
 );
 	localparam integer POW_OF_2   = $clog2(INPUT_SIZE);
     localparam integer POW_OF_4   = (POW_OF_2+1)/2;
@@ -67,20 +69,31 @@ module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32) (
 	generate
 	   for (i = 0; i < POW_OF_4; i++) begin
 	       for (j=4**i; j < 2*(4**i); j++) begin
-	           always_ff @(posedge clk) begin
-	               tree[j] <= tree[4*j]
-	                        + tree[(4*j) + 1]
-	                        + tree[(4*j) + 2]
-	                        + tree[(4*j) + 3];
-	           end
+                if (i%PIPELINING==0) begin
+                    always_ff @(posedge clk) begin
+                        if (ce)
+                            tree[j] <= tree[4*j]
+                                        + tree[(4*j) + 1]
+                                        + tree[(4*j) + 2]
+                                        + tree[(4*j) + 3];
+                    end
+                end else begin
+                    always_comb begin
+                        tree[j] = tree[4*j]
+                                    + tree[(4*j) + 1]
+                                    + tree[(4*j) + 2]
+                                    + tree[(4*j) + 3];
+                    end
+                end
 	       end
 	   end
 	endgenerate
 	
 	// Return the sum from the adder tree root
-	always_ff @(posedge clk) begin
-        output_data <= tree[1];
-    end
+    assign output_data = tree[1];
+	// always_ff @(posedge clk) begin
+    //     output_data <= tree[1];
+    // end
 endmodule
 
 

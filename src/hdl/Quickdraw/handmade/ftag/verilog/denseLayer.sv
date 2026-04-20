@@ -5,7 +5,7 @@
 // with weight matrix. Then the result of the matrix multiplication
 // is added with a matrix of BIASes.
 // NOTE: IDENTICAL to reluDenseLatencyLayer except that different packages
-// are specificed by macro header file
+// are specified by macro header file
 //
 // Inputs:
 // - clk
@@ -16,27 +16,39 @@
 // - output_data
 
 `timescale 1ns / 1ps
-`include "pkg_sel_gru.svh"
-`include "pkg_sel.svh"
-
+`include "weights_sel.svh"
+`include "defines.svh"
 // Computes the dot product of the inputs and WEIGHTS then adds that to the BIASes
 module denseLayer #(
     parameter int WIDTH = 17, // width of fixed point numbers
     parameter int NFRAC = 10, // number of fractional bits (must be <= WIDTH)
     parameter int INPUT_SIZE = 32, // number of fixed point numbers going into dense latency layer
     parameter int OUTPUT_SIZE = 32, // number of fixed point numbers coming out of dense latency layer
-    parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: '{default: 17'sd0}}, // WEIGHTS for each input to each output
-    parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0} // BIASes for each output
+    parameter logic signed [WIDTH-1:0] WEIGHTS [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1] = '{default: 0}, // WEIGHTS for each input to each output
+    parameter logic signed [WIDTH-1:0] BIAS [0:OUTPUT_SIZE-1] = '{default: 17'sd0}, // BIASes for each output
+    parameter real PIPELINING = 1,
+    parameter PIPE_OUT = 1
+    // parameter int ADDER_TREE_CYCLES = $ceil($clog2(INPUT_SIZE)/2)+1 // Number of cycles for adderTree module
 ) (
     input  logic                    clk, 
     input  logic                    reset,
+    input  logic                    input_ready,
+    output  logic                   ready,
+    output  logic                   output_ready,
+    input logic                     next_layer_ready,
     input  logic signed [WIDTH-1:0] input_data  [0:INPUT_SIZE-1],
     output logic signed [WIDTH-1:0] output_data [0:OUTPUT_SIZE-1]
 );
+    `ifndef PIPELINE_MULT
+        `define PIPELINE_MULT 0
+    `endif
     // check that the right package is being used
     initial assert($bits(WEIGHTS[0][0]) == WIDTH);
-    
-    
+    localparam real ADDER_TREE_DEPTH = $ceil($clog2(INPUT_SIZE)/2.0); // Number of cycles for adderTree module
+    localparam int ADDER_TREE_CYCLES = $ceil(ADDER_TREE_DEPTH/PIPELINING);
+    logic processing;
+    assign processing = !((!next_layer_ready)&&(output_ready));
+    assign ready=processing;
     logic signed [WIDTH-1:0]   mult         [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH*2-1:0] mult_temp    [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1];
     logic signed [WIDTH-1:0]   accumulator  [0:OUTPUT_SIZE-1];
@@ -49,15 +61,18 @@ module denseLayer #(
                BOTTOM   = NFRAC;
     // Generate a shift add module for each multiplication, shift-add will do optimizations
     // where it can and leave the rest to Xilinx tools
+    
     generate 
         for(row=0; row<INPUT_SIZE; row++) begin : INPUT_SIZE_rows
             for(col=0; col<OUTPUT_SIZE; col++) begin : OUTPUT_SIZE_cols
                 shift_add #(.WEIGHT ( WEIGHTS[row][col]                 ),
                             .DEPTH  ( `SA_DEPTH                         ),
+                            .DEPTH_FRAC (`SA_FRAC                       ),
                             .BITS   ( WIDTH                             ),
                             .NFRAC  ( NFRAC                             )
                             ) sa (
                     .clk,
+                    .ce         (processing),
                     .data_in    ( input_data[row]       ),
                     .data_out   ( mult_temp[row][col]   )
                 );
@@ -73,22 +88,25 @@ module denseLayer #(
     
     
     // Determine what configuration DSPs will infer (single cycle or 3-cycle)
-    if (`THREE_CYCLE_MULT) begin
-        always_ff @(posedge clk) begin
-            mult_1 <= mult;
-            mult_out <= mult_1;
-        end
-    end else begin
+    // `ifdef THREE_CYCLE_MULT begin
+    //     always_ff @(posedge clk) begin
+    //         mult_1 <= mult;
+    //         mult_out <= mult_1;
+    //     end
+    
+    // end else begin
         assign mult_out = mult;
-    end
+    // end
     
     // Pipelined adder tree to accumulate the values in mult_out
     adderTree #(.WIDTH      ( WIDTH         ),
                 .INPUT_SIZE ( INPUT_SIZE    ),
-                .OUTPUT_SIZE( OUTPUT_SIZE   )
+                .OUTPUT_SIZE( OUTPUT_SIZE   ),
+                .PIPELINING ( PIPELINING    )
                 ) sum_all (
         .clk,
         .reset,
+        .ce(processing),
         .input_data ( mult_out      ),
         .output_data( accumulator   )
     );
@@ -96,18 +114,34 @@ module denseLayer #(
     // Add BIASes to result
     integer i;
     always_comb begin
+        // if (input_ready) begin
         for (i=0; i < OUTPUT_SIZE;i++) begin
             result[i] = accumulator[i] + BIAS[i];
         end
+        // end
     end
-    
-    always_ff @(posedge clk) begin
-        output_data <= result;
+
+    localparam ready_buffer_top = ADDER_TREE_CYCLES+PIPE_OUT+`PIPELINE_MULT;
+    logic [ready_buffer_top:0] ready_buffer;
+    // assign processing = |ready_buffer;
+    assign output_ready = ready_buffer[0];
+    if (!PIPE_OUT) begin
+        assign output_data = result;
+    end
+    if (PIPE_OUT)
+        always_ff @(posedge clk)
+            if (ready_buffer[1]&&(processing))
+                output_data<=result;
+    always_ff @(posedge clk or posedge reset) begin
+        if (reset) begin
+            ready_buffer<=0;
+            // output_data<='{default: 0};
+        end else begin
+            if (processing)
+                ready_buffer<={input_ready, ready_buffer[ready_buffer_top:1]};
+        end
     end
 endmodule
-
-
-
 
 module denseLayer_tb();
     parameter WIDTH = 8, NFRAC = 0, INPUT_SIZE = 7, OUTPUT_SIZE = 5;
@@ -140,18 +174,18 @@ module denseLayer_tb();
         forever #(PERIOD/2) clk <= ~clk;
     end
     
-    denseLayer #(
-        .WIDTH          ( WIDTH             ),
-        .NFRAC          ( NFRAC             ),
-        .INPUT_SIZE     ( INPUT_SIZE        ),
-        .OUTPUT_SIZE    ( OUTPUT_SIZE       )
-    ) dut (
-        .clk(clk),  .reset(reset),
-        .input_data(input_data),
-        .output_data(output_data),
-        .WEIGHTS(WEIGHTS),
-        .BIAS(BIAS)
-    );
+    // denseLayer #(
+    //     .WIDTH          ( WIDTH             ),
+    //     .NFRAC          ( NFRAC             ),
+    //     .INPUT_SIZE     ( INPUT_SIZE        ),
+    //     .OUTPUT_SIZE    ( OUTPUT_SIZE       )
+    // ) dut (
+    //     .clk(clk),  .reset(reset),
+    //     .input_data(input_data),
+    //     .output_data(output_data),
+    //     .WEIGHTS(WEIGHTS),
+    //     .BIAS(BIAS)
+    // );
     
     initial begin
         reset = 0;

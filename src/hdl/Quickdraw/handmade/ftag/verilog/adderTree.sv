@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // Helper module
 // 
 // This module implements a submodule called adderTree_1D to
@@ -15,10 +16,12 @@
 
 module adderTree #(parameter WIDTH       = 17,
                              INPUT_SIZE  = 10,
-                             OUTPUT_SIZE = 32
+                             OUTPUT_SIZE = 32,
+							 int PIPELINING  = 1
                              ) (
     input logic                         clk,
     input logic                         reset,
+	input logic 						ce,
     input logic signed  [WIDTH-1 : 0]   input_data  [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1],
     output logic signed [WIDTH-1 : 0]   output_data [0:OUTPUT_SIZE-1]
 );
@@ -43,10 +46,12 @@ module adderTree #(parameter WIDTH       = 17,
 	   for (i = 0; i < OUTPUT_SIZE; i++) begin : col_trees
 	       // adder tree sums 4 terms at a time
 	       adderTree_1D_p4 #(.WIDTH        ( WIDTH         ),
-                             .INPUT_SIZE   ( INPUT_SIZE    )
+                             .INPUT_SIZE   ( INPUT_SIZE    ),
+							 .PIPELINING   ( PIPELINING  )
                              ) column_tree (
 	           .clk,
 	           .reset,
+			   .ce,
 	           .input_data  ( input_data_transpose[i]   ),
 	           .output_data ( temp_output_data[i]       )
 	       );
@@ -58,7 +63,7 @@ module adderTree #(parameter WIDTH       = 17,
 //	end
     
     // No need to add a pipeline stage since it hits a register
-    // at the end of the addder tree
+    // at the end of the adder tree
     assign output_data = temp_output_data;
     
 endmodule
@@ -69,7 +74,7 @@ endmodule
 // =====================
 // ***NO LONGER USED***
 // =====================
-// Replaced with adder tree that sums 4 values per pipline stage
+// Replaced with adder tree that sums 4 values per pipeline stage
 // 
 // This module is an adder tree. The module takes in an input 1D array,
 // loads the data into a tree and fills any excess nodes with zeros,

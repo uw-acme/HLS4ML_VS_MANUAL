@@ -8,9 +8,14 @@
     `define UPDATE_GATE_PKG update_gate_16_10
 `endif
 
-// Package with weights and biases for candidate gate dense latency layer
-`ifndef CANDIDATE_HIDDEN_STATE_PKG
-    `define CANDIDATE_HIDDEN_STATE_PKG candidate_gate_16_10
+// Package with weights and biases for candidate gate W dense layer
+`ifndef CANDIDATE_W_PKG
+    `define CANDIDATE_W_PKG candidate_gate_W_16_10
+`endif
+
+// Package with weights and biases for candidate gate U dense layer
+`ifndef CANDIDATE_U_PKG
+    `define CANDIDATE_U_PKG candidate_gate_U_16_10
 `endif
 
 // Dense 0
