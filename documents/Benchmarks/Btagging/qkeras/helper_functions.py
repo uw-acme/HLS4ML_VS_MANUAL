@@ -83,9 +83,9 @@ def extract_time(file : str):
     m = re.search(pat, text, re.IGNORECASE|re.DOTALL)
     if m:
         return m.group(1)
-def gen_test(accuracy : tuple[int,int], test, testname):
+def gen_test(accuracy : tuple[int,int], test, testpath, testname):
     test_l = test.flatten()
-    with open(f"./acc/testingData_noGru/{testname}_{accuracy[0]}_{accuracy[1]}.txt", "w") as f:
+    with open(f"./{testpath}{testname}_{accuracy[0]}_{accuracy[1]}.txt", "w") as f:
         for num in test_l:
             num=num*(2**(int(accuracy[0])-int(accuracy[1])))
             f.write(f"{dec_to_bin(num, accuracy[0])}\n")
@@ -167,7 +167,7 @@ def gen_weight_txt(accuracy): #, weights_file, biases_file
                     f.write(f"{head}{num}")
                     f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
 
-def gen_weight(accuracy, model):
+def gen_weight(accuracy, filepath, model):
     """
     Generate weight and bias packages from keras model
     :param accuracy: Accuracy for packages. Formatted (width, integers)
@@ -204,8 +204,9 @@ def gen_weight(accuracy, model):
                 # Output file name
                 #filename = f"{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv"
 
-                # added, include's quin's file path
-                filename = f"./weights/weights_{name}_weights_biases_pkgs/{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv"
+                # added, include's quin's file path 
+                # weights/weights_{name}_weights_biases_pkgs/{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv
+                filename = f"./{filepath}/weights_{name}_weights_biases_pkgs/{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv"
 
                 # if (not os.path.isfile(filename)):
                 with open(filename, "w") as f:
