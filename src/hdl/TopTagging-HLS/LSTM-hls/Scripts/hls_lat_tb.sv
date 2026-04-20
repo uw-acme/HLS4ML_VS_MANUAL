@@ -1,9 +1,9 @@
 `timescale 1 ns / 1 ps 
 // module hls_lat_tb;
 //     // Clock and control
-//     localparam WIDTH = 4;
+//     localparam WIDTH = 34;
 //     localparam INPUT_SIZE = 6;
-//     localparam NINT = 2;
+//     localparam NINT = 12;
 //     localparam TIMESTEPS = 20;
 //     logic ap_clk;
 //     logic ap_rst;
@@ -115,8 +115,8 @@ module hls_lat_tb;
     parameter INPUT_SIZE = 6;
     parameter TIMESTEPS = 20;
     parameter OUTPUT_SIZE = 1;
-    parameter WIDTH = 13;
-    parameter NINT = 5;
+    parameter WIDTH = 34;
+    parameter NINT = 12;
     parameter NFRAC = WIDTH-NINT;
     logic ap_clk, ap_rst, ap_start, ap_done, ap_idle, ap_ready, layer1_input_V_ap_vld,layer6_out_0_V_ap_vld;
     logic [INPUT_SIZE*TIMESTEPS*WIDTH-1:0] layer1_input_V;
@@ -184,7 +184,7 @@ module hls_lat_tb;
     always_ff @(posedge ap_clk) begin
         
         if (count>1000) begin
-//             // $fwrite(fd, "clk: %0d, start: %0d, ready: %0d, idle: %0d, done: %0d\n", ap_clk, ap_start, ap_ready, ap_idle, ap_done);
+            $fwrite(fd, "clk: %0d, start: %0d, ready: %0d, idle: %0d, done: %0d\n", ap_clk, ap_start, ap_ready, ap_idle, ap_done);
             $error("Cycle count too large, exiting");
             $finish;
         end

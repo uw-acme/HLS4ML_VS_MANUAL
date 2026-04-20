@@ -3,8 +3,8 @@
 
 `timescale 1ns / 1ps
 module hls_top #( parameter
-    WIDTH = 4,
-    NINT = 2,
+    WIDTH = 34,
+    NINT = 12,
     INPUT_SIZE = 6,
     TIMESTEPS = 20,
     OUTPUT_SIZE = 20
@@ -79,8 +79,8 @@ module hls_top_tb;
     parameter INPUT_SIZE = 6;
     parameter TIMESTEPS = 20;
     parameter OUTPUT_SIZE = 1;
-    parameter WIDTH = 4;
-    parameter NINT = 2;
+    parameter WIDTH = 34;
+    parameter NINT = 12;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0];
