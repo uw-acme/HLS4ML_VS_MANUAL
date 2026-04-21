@@ -11,7 +11,10 @@ module LSTM #( parameter
     INPUT_SIZE = 6,
     TIMESTEPS = 20,
     OUTPUT_SIZE = 20,
-    OUTPUT_EACH_HT = 0
+    OUTPUT_EACH_HT = 0,
+    PIPELINING = 1,
+    PIPE_OUT = 1,
+    REMOVE_PIPELINES = 0
 )
 (
     input clk,
@@ -24,8 +27,6 @@ module LSTM #( parameter
     output logic signed [WIDTH-1:0] ht [OUTPUT_SIZE-1:0] // Output data
 );
     localparam NFRAC = WIDTH-NINT;
-    localparam PIPELINING = 16;
-    localparam PIPE_OUT = 0;
     function automatic logic signed [WIDTH*2-1:0] mult(
         input logic signed [WIDTH-1:0] in1,
         input logic signed [WIDTH-1:0] in2
@@ -248,15 +249,21 @@ module LSTM #( parameter
     // ft = sigmoid(Wfh*ht_1+Wfx*xt+bf) 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
-            .SIZE(OUTPUT_SIZE)) sigmaf (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[0]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready1), .input_data(ft_a), .output_data(ft));
+            .SIZE(OUTPUT_SIZE),
+            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            ) sigmaf (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[0]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready1), .input_data(ft_a), .output_data(ft));
     // it = sigmoid(Wih*ht_1+Wix*xt+bi) 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
-            .SIZE(OUTPUT_SIZE)) sigmai (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[1]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready2), .input_data(it_a), .output_data(it));
+            .SIZE(OUTPUT_SIZE),
+            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            ) sigmai (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[1]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready2), .input_data(it_a), .output_data(it));
     // c~t = tanh(Wch*ht_1+Wcx*xt+bc 
     // ot = sigmoid(Woh*ht_1+Wox*xt+bo) 
     sigmoid #(.WIDTH(WIDTH), .NFRAC(NFRAC),
-            .SIZE(OUTPUT_SIZE)) sigmao (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[2]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready4), .input_data(ot_a), .output_data(ot));
+            .SIZE(OUTPUT_SIZE),
+            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            ) sigmao (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[2]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready4), .input_data(ot_a), .output_data(ot));
  // ct = ft*ct_1+it*c~t
     assign ct_next=&(edge_trig[4:1]);
     generate
@@ -280,7 +287,9 @@ module LSTM #( parameter
    
     tanh #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
-            .SIZE(OUTPUT_SIZE)) sigmac (.clk, .next_layer_ready(processing), .ready(tanh_ready), .reset(lstm_reset), .input_ready(tanh_input_ready), .output_ready(tanh_output_ready), .input_data(tanh_input), .output_data(tanh_output));
+            .SIZE(OUTPUT_SIZE),
+            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            ) sigmac (.clk, .next_layer_ready(processing), .ready(tanh_ready), .reset(lstm_reset), .input_ready(tanh_input_ready), .output_ready(tanh_output_ready), .input_data(tanh_input), .output_data(tanh_output));
     // ht = ot*tanh(ct)
     
     // tanh #(.WIDTH(WIDTH), .NFRAC(NFRAC), .SIZE(OUTPUT_SIZE))

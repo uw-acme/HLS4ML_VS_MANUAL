@@ -27,6 +27,9 @@ module Toptagging #( parameter
     output logic signed [WIDTH-1:0] output_data
 );
 
+    localparam PIPELINING = 16;
+    localparam PIPE_OUT = 0;
+    localparam LSTM_REMOVE_PIPELINES = 1;
 
     localparam LSTM_INPUT_SIZE=6, LSTM_OUTPUT_SIZE=20;
     logic signed[WIDTH-1:0] LSTM_input_data [TIMESTEPS-1:0][LSTM_INPUT_SIZE-1:0];
@@ -57,7 +60,16 @@ module Toptagging #( parameter
     logic dense2_ready;
     logic sigmoid_ready;
     assign ready=LSTM_ready;
-    LSTM #(.WIDTH(WIDTH), .NINT(NINT)) lstm_layer (
+    LSTM #(
+        .WIDTH(WIDTH), 
+        .NINT(NINT),
+        .INPUT_SIZE(LSTM_INPUT_SIZE),
+        .OUTPUT_SIZE(LSTM_OUTPUT_SIZE),
+        .TIMESTEPS(TIMESTEPS),
+        .PIPELINING(PIPELINING),
+        .PIPE_OUT(PIPE_OUT),
+        .REMOVE_PIPELINES(LSTM_REMOVE_PIPELINES)
+        ) lstm_layer (
         .clk,
         .reset,
         .ready(LSTM_ready),

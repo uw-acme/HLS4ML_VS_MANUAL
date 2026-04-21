@@ -12,7 +12,7 @@ module sigmoid #(parameter
                     LOOKUP_WIDTH    = 10, // Width of lookup indicies
                     LOOKUP_NFRAC    = 7, // Fractional bits in lookup indicies
                     BRAM_FILE       = "../weights_n_tables/sigmoid_table_18_18_10_7.dat",
-                    REMOVE_PIPELINES= 1
+                    REMOVE_PIPELINES= 0
                  )(
     input clk,
     input reset,
