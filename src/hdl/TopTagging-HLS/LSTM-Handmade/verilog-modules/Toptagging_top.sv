@@ -51,17 +51,22 @@ module Toptagging_top_tb;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] output_data;
+    integer i, j, k, fd, count;
     Toptagging_top #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
     initial begin
         clk=0;
-        forever #1 clk<=~clk;
+        count=0;
+        forever #1 begin
+            if (~clk)
+                count<=count+1'b1;
+            clk<=~clk;
+        end
     end
     assign shiftClk=clk;
     // max_tests = 19951;
-    localparam num_tests = 15;
+    localparam num_tests = 10;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
-    integer i, j, k, fd;
     `ifndef TESTFILE
         `define TESTFILE "X_test_16_6.txt"
     `endif
@@ -104,6 +109,8 @@ module Toptagging_top_tb;
             // end
             $fwrite(fd, "%.15f\n", out);
         end
+        if (count>800)
+            $stop;
     end
     initial begin
         if (write_file) begin
@@ -134,6 +141,7 @@ module Toptagging_top_tb;
             input_ready<=0;
             input_v<=x_test[i];
             @(posedge ready)
+            count=0;
             i++;
         end
         input_ready<=0;

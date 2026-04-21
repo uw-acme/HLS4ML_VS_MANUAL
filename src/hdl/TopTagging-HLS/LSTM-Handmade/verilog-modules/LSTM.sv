@@ -16,15 +16,15 @@ module LSTM #( parameter
 (
     input clk,
     input reset,
-    input input_ready,
-    output logic output_ready,
-    output logic ready,
-    input next_layer_ready,
-    input logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0],
-    output logic signed [WIDTH-1:0] ht [OUTPUT_SIZE-1:0]
+    input input_ready, // Tells LSTM that the input is valid
+    output logic output_ready, // Tells the next layer that the output is valid
+    output logic ready, // Tells the previous layer that the LSTM is ready for input
+    input next_layer_ready, // Tells the lstm if the next layer is ready for input
+    input logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0], // Input data
+    output logic signed [WIDTH-1:0] ht [OUTPUT_SIZE-1:0] // Output data
 );
     localparam NFRAC = WIDTH-NINT;
-    localparam PIPELINING = 4;
+    localparam PIPELINING = 16;
     localparam PIPE_OUT = 0;
     function automatic logic signed [WIDTH*2-1:0] mult(
         input logic signed [WIDTH-1:0] in1,
@@ -60,7 +60,7 @@ module LSTM #( parameter
     logic signed [WIDTH-1:0] xt [INPUT_SIZE-1:0];
     assign xt = input_v[curr_step];
     assign dense_inputx = xt;
-    assign dense_inputh = ht_1;
+    assign dense_inputh = ht;
     logic reset_cell;
     logic next_ready;
     // logic working;
@@ -80,6 +80,9 @@ module LSTM #( parameter
     logic move_next_1;
     logic paused;
     enum logic [3:0] {READY, PROCESSING, PAUSED} state, next_state;
+    logic ct_next;
+    logic ct_tanh;
+    logic ct_result_ready;
     logic next_output_ready;
     logic start_processing;
     logic future_reset_cell;
@@ -159,7 +162,7 @@ module LSTM #( parameter
                 if (OUTPUT_EACH_HT)
                     output_ready<=1'b1;
             end
-            if (tanh_output_ready)
+            if (ct_tanh)
                 which_tanh<=1;
             // if (curr_step==TIMESTEPS&&next_ready) begin
             //     // reset_cell<=1;
@@ -255,12 +258,12 @@ module LSTM #( parameter
     sigmoid #(.WIDTH(WIDTH), .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE)) sigmao (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[2]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready4), .input_data(ot_a), .output_data(ot));
  // ct = ft*ct_1+it*c~t
-    logic ct_next;
-    logic ct_tanh;
     assign ct_next=&(edge_trig[4:1]);
     generate
-    assign tanh_input = (which_tanh ? ct : c_t_a);
+    logic tanh_input_ready;
+    assign tanh_input_ready = (dense_outputh_ready&&!which_tanh)||(ct_result_ready&&which_tanh);
     posedge_m ht_check (.clk, .reset, .in(ct_next), .out(ct_tanh));
+    assign tanh_input = (which_tanh ? ct : c_t_a);
     for (i=0; i<OUTPUT_SIZE; i++) begin
         always_ff @(posedge clk) begin
             if (lstm_reset)
@@ -271,13 +274,13 @@ module LSTM #( parameter
         end
     end
     endgenerate
-    // always_ff @(posedge clk)
-    //     ct_tanh<=ct_next;
-   
+
+    always_ff @(posedge clk)
+        ct_result_ready<=ct_tanh;
    
     tanh #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
-            .SIZE(OUTPUT_SIZE)) sigmac (.clk, .next_layer_ready(processing), .ready(tanh_ready), .reset(lstm_reset), .input_ready((dense_outputh_ready&&!which_tanh)||(ct_tanh&&which_tanh)), .output_ready(tanh_output_ready), .input_data(tanh_input), .output_data(tanh_output));
+            .SIZE(OUTPUT_SIZE)) sigmac (.clk, .next_layer_ready(processing), .ready(tanh_ready), .reset(lstm_reset), .input_ready(tanh_input_ready), .output_ready(tanh_output_ready), .input_data(tanh_input), .output_data(tanh_output));
     // ht = ot*tanh(ct)
     
     // tanh #(.WIDTH(WIDTH), .NFRAC(NFRAC), .SIZE(OUTPUT_SIZE))
@@ -308,11 +311,17 @@ module posedge_m(input clk, input reset, input in, output logic out);
     end
 endmodule
 module edge_check(input clk, input reset, input in, output logic out);
-    always_ff @(posedge clk) begin
-        if (in)
-            out<=1'b1;
+    // always_ff @(posedge clk) begin
+    //     if (in)
+    //         out<=1'b1;
+    //     if (reset)
+    //         out<=1'b0;
+    // end
+    always_latch begin
         if (reset)
-            out<=1'b0;
+            out=0;
+        if (in)
+            out=1;
     end
 endmodule
 `define STRINGIFY(x) `"x`"
