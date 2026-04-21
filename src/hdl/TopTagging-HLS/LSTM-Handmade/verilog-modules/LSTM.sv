@@ -6,15 +6,15 @@ import `LSTM_H_WEIGHTS::*;
 
 
 module LSTM #( parameter
-    WIDTH = 16,
-    NINT = 6,
-    INPUT_SIZE = 6,
-    TIMESTEPS = 20,
-    OUTPUT_SIZE = 20,
-    OUTPUT_EACH_HT = 0,
-    PIPELINING = 1,
-    PIPE_OUT = 1,
-    REMOVE_PIPELINES = 0
+    WIDTH = 16, // Bitwidth of input values
+    NINT = 6, // Number of integers in input values
+    INPUT_SIZE = 6, // Number of numbers in each timestep
+    TIMESTEPS = 20, // Number of timesteps
+    OUTPUT_SIZE = 20, // Output size of the lstm
+    OUTPUT_EACH_HT = 0, // Put to 1 if you want to grab values after processing each timestep
+    PIPELINING = 1, // Rate of removal of pipelines in the dense adder trees. 1 means pipeline every section, 2 means every 2 sections, 3 every three sections and so forth
+    PIPE_OUT = 1, // 1 if you want an output pipeline for the dense layer, 0 if you don't. Affects timing
+    REMOVE_PIPELINES = 0 // 0 if you want regular piping in tanh and sigmoid, 1 if you want less.
 )
 (
     input clk,
