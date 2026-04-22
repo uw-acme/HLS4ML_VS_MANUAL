@@ -72,8 +72,9 @@ def handmade_gen(acc, name, params, defs):
             f.write(f", {result}")
         f.write(f", {time}")
         f.write(f", {accuracy}")
+        # f.write(f", {141*(10-int(time))}")
         f.write("\n")
-    output = ""
+    output = "\n"
     lengths = [len(feat) for feat in features]
     longest_feat = np.max(lengths)
     
@@ -82,6 +83,7 @@ def handmade_gen(acc, name, params, defs):
         output+=add_to(features[i], results[i])
     output+=add_to("Timing", time)
     output+=add_to("Accuracy", accuracy)
+    output+=add_to("Total Latency", 141*(10-float(time)))
 
     # output += f"\nTiming: {time}"
     # output += f"\nAccuracy: {accuracy}"
@@ -243,8 +245,8 @@ def adjust(bits):
     # pipe_out=0
     # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
     # name = f"expPipeNegmax"
-name = "Toptag_BJT_SA"
-for i in range(2,13):
+name = "Toptag_reduced_cycles"
+for i in range(2,14):
     acc = (3*i-2,i)
     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
     # SA_INT, SA_FRAC = adjust(acc_in[0])
