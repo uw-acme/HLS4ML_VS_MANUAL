@@ -136,7 +136,6 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     if email:
         os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
     return acc_res
-
 def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str = None, email : bool = False):
     """
     Runs a lat test with bit precision (WIDTH, NINT)\n
