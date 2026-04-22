@@ -46,7 +46,7 @@ module LSTM #( parameter
     logic move_next;
     // logic pos_tanh_ready;
     logic signed[WIDTH-1:0] ct_1 [OUTPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] ht_1 [OUTPUT_SIZE-1:0];
+    // logic signed[WIDTH-1:0] ht [OUTPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ct [OUTPUT_SIZE-1:0];
     logic dense_inputx_ready, dense_outputx_ready;
     logic signed[WIDTH-1:0] dense_inputx [INPUT_SIZE-1:0];
@@ -137,7 +137,7 @@ module LSTM #( parameter
             curr_step<=0;
             // processing<=0;
             // ht<='{default: 0};
-            ht_1<='{default: 0};
+            // ht<='{default: 0};
             // ct<='{default: 0};
             ct_1<='{default: 0};
         end
@@ -158,7 +158,7 @@ module LSTM #( parameter
                 which_tanh<=0;
                 next_ready<=1;
                 curr_step<=curr_step+1;
-                ht_1<=ht;
+                // ht<=ht;
                 ct_1<=ct;
                 if (OUTPUT_EACH_HT)
                     output_ready<=1'b1;
@@ -246,20 +246,20 @@ module LSTM #( parameter
     // assign {ft_a, it_a, c_t_a, ot_a} = combined;
     
     // logic tanh_ready;
-    // ft = sigmoid(Wfh*ht_1+Wfx*xt+bf) 
+    // ft = sigmoid(Wfh*ht+Wfx*xt+bf) 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
             .REMOVE_PIPELINES(REMOVE_PIPELINES)
             ) sigmaf (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[0]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready1), .input_data(ft_a), .output_data(ft));
-    // it = sigmoid(Wih*ht_1+Wix*xt+bi) 
+    // it = sigmoid(Wih*ht+Wix*xt+bi) 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
             .REMOVE_PIPELINES(REMOVE_PIPELINES)
             ) sigmai (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[1]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready2), .input_data(it_a), .output_data(it));
-    // c~t = tanh(Wch*ht_1+Wcx*xt+bc 
-    // ot = sigmoid(Woh*ht_1+Wox*xt+bo) 
+    // c~t = tanh(Wch*ht+Wcx*xt+bc 
+    // ot = sigmoid(Woh*ht+Wox*xt+bo) 
     sigmoid #(.WIDTH(WIDTH), .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
             .REMOVE_PIPELINES(REMOVE_PIPELINES)
