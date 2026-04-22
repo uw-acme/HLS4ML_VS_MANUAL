@@ -12,8 +12,8 @@ module tanh #(parameter
                     SIZE            = 32, // number of fixed point numbers going into dense latency layer
                     MEM_WIDTH       = 18, // precision of BRAM entries
                     MEM_NFRAC       = 18, // fractional bits in BRAM entries
-                    LOOKUP_WIDTH    = 10, // Width of lookup indicies
-                    LOOKUP_NFRAC    = 7, // Fractional bits in lookup indicies
+                    LOOKUP_WIDTH    = 10, // Width of lookup indices
+                    LOOKUP_NFRAC    = 7, // Fractional bits in lookup indices
                     BRAM_FILE       = "../weights_n_tables/tanh_table_18_18_10_7.dat",
                     REMOVE_PIPELINES= 0 // Set to 1 to remove some pipelines, 0 to keep them
                  )(

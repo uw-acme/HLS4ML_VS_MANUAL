@@ -14,7 +14,7 @@ module relu #(parameter
 );
     logic signed [WIDTH-1:0] out_buffer [SIZE-1:0];
 
-    // Activation fuction
+    // Activation function
     genvar j;
     generate
         for (j = 0; j<SIZE; j++) begin : buffer
