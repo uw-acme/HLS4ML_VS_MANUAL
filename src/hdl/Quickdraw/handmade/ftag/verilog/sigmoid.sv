@@ -1,8 +1,7 @@
 /*
-    This module calculates sigmoid on any number of inputs.
-    The BRAM is meant to hold the positive half of the sigmoid function shifted down by .5
-    as to make it symmetric. The module then takes this value, restores the negative or
-    positive sign, then adds .5 to it
+    This module calculates sigmoid on any number of inputs. The BRAM is meant to hold the positive half
+    of the sigmoid function shifted down by .5 as to make it symmetric. The module then takes this value,
+    restores the negative or positive sign, then adds .5 to it
 */
 
 `timescale 1ns / 1ps
@@ -14,7 +13,8 @@ module sigmoid #(parameter
                     MEM_NFRAC       = 18, // fractional bits in BRAM entries
                     LOOKUP_WIDTH    = 10, // Width of lookup indicies
                     LOOKUP_NFRAC    = 7, // Fractional bits in lookup indicies
-                    BRAM_FILE       = "../weights_n_tables/sigmoid_table_18_18_10_7.dat"
+                    BRAM_FILE       = "../weights_n_tables/sigmoid_table_18_18_10_7.dat",
+                    REMOVE_PIPELINES= 0 // Set to 1 to remove some pipelines, 0 to keep them
                  )(
     input clk,
     input reset,
@@ -27,26 +27,27 @@ module sigmoid #(parameter
 );
     genvar i;
     logic processing;
-    assign processing = !((!next_layer_ready)&&(output_ready));
+    assign processing = (next_layer_ready)||(!output_ready);
+    
     assign ready=processing;
-    parameter cycle_length=3;
+    parameter cycle_length=2-REMOVE_PIPELINES;
     logic [cycle_length-1:0] counter;
     logic [cycle_length-1:0] signed_count [SIZE-1:0];
     assign output_ready = counter[0];
     always_ff @(posedge clk) begin
         if (processing)
-            counter<={input_ready, counter[cycle_length-1:1]};
+            counter<={input_ready, counter}>>1;
     end
      generate
             for (i=0; i<SIZE; i++) begin : volvo
             always_ff @(posedge clk)
                 if (processing)
-                    signed_count[i]<={input_data[i][WIDTH-1], signed_count[i][cycle_length-1:1]};
+                    signed_count[i]<={input_data[i][WIDTH-1], signed_count[i]}>>1;
             end
     endgenerate
     initial begin
         assert(WIDTH >= NFRAC);
-        assert(WIDTH > 0 && NFRAC > 0 && MEM_WIDTH > 0 && TABLE_SIZE_POW > 0);
+        assert(WIDTH > 0 && NFRAC > 0 && MEM_WIDTH > 0 && LOOKUP_WIDTH > 0);
     end
     
     // Determine table size
@@ -124,16 +125,25 @@ module sigmoid #(parameter
     ////////////////////////////////////////////
     generate
       for (i = 0; i < SIZE; i++) begin
-        always_ff @(posedge clk) begin
-            if (processing) begin
+        if (REMOVE_PIPELINES) begin
+            always_comb begin
                 if ($unsigned(index[i]) > $unsigned(TABLE_SIZE-1))// hits ceiling
-                    final_index[i] <= TABLE_SIZE-1;
-                else                                                                            // something in the middle
-                    final_index[i] <= index[i];
-                    // round up the index for negative input values (rounds towards zero)
+                        final_index[i] = TABLE_SIZE-1;
+                    else                                                                            // something in the middle
+                        final_index[i] = index[i];
+            end
+            
+        end else begin
+            always_ff @(posedge clk) begin
+                if (processing) begin
+                    if ($unsigned(index[i]) > $unsigned(TABLE_SIZE-1))// hits ceiling
+                        final_index[i] <= TABLE_SIZE-1;
+                    else                                                                            // something in the middle
+                        final_index[i] <= index[i];
+                        // round up the index for negative input values (rounds towards zero)
+                end
             end
         end
-
                 
     end
     endgenerate
@@ -160,7 +170,7 @@ module sigmoid #(parameter
     generate
         for (i = 0; i < SIZE; i++) begin
             always_comb begin
-                if (signed_count[i][1])
+                if (signed_count[i][0])
                     output_data[i] = (2**(NFRAC-1))-output_data_unsigned[i];
                 else
                     output_data[i] = (2**(NFRAC-1))+output_data_unsigned[i];

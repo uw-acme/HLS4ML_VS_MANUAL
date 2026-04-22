@@ -1,4 +1,3 @@
-
 /*
 single GRU cell
 processes input x and previous hidden state h_t-1 to produce new hidden state h_t
@@ -36,10 +35,14 @@ module gruCell #(parameter
     NFRAC               = 6,    // number of fractional bits in data
     x_SIZE              = 6,    // input dimensionality (d)
     h_SIZE              = 120,  // hidden state / output dimensionality (e)
-    MEM_WIDTH           = 10,   // precision of BRAM entries
-    MEM_NFRAC           = 6,    // number of fractional bits in BRAM entries
-    SIGMOID_BRAM_FILE   = "memw10_size1024_sigmoidBRAM.mem",
-    TANH_BRAM_FILE      = "memw10_size512_tanhBRAM.mem"
+
+    // lookup table parameters - should just leave these as defaults unless you want to get fancy with it
+    MEM_WIDTH           = 18,   // precision of BRAM entries
+    MEM_NFRAC           = 18,   // number of fractional bits in BRAM entries
+    LOOKUP_WIDTH        = 10,   // width of lookup indices
+    LOOKUP_NFRAC        = 7,    // fractional bits in lookup indices
+    SIGMOID_BRAM_FILE   = "sigmoid_table_18_18_10_7.dat",
+    TANH_BRAM_FILE      = "tanh_table_18_18_19_7.dat"
 )(
     input clk,
     input reset,
@@ -64,17 +67,18 @@ module gruCell #(parameter
     localparam PIPE_OUT = 0;
     localparam logic signed [WIDTH-1:0] ONE_FP = 1 <<< NFRAC;       // fixed point equivalent of 1
 
+    // gate outputs
     logic signed [WIDTH-1:0] r_t [0:h_SIZE-1];                      // r_t: R^{e}
     logic signed [WIDTH-1:0] z_t [0:h_SIZE-1];                      // z_t: R^{e}
+    logic signed [WIDTH-1:0] h_tilde [0:h_SIZE-1];                  // h_tilde: R^{e}
+
+    // gate intermediates
     logic signed [WIDTH-1:0] r_t_raw [0:h_SIZE-1];                  // r_t: R^{e} before sigmoid activation
     logic signed [WIDTH-1:0] z_t_raw [0:h_SIZE-1];                  // z_t: R^{e} before sigmoid activation
-
     logic signed [WIDTH-1:0] h_tilde_raw_W [0:h_SIZE-1];
     logic signed [WIDTH-1:0] h_tilde_raw_U [0:h_SIZE-1];
     logic signed [WIDTH-1:0] h_tilde_raw_gate [0:h_SIZE-1];
     logic signed [WIDTH-1:0] h_tilde_raw [0:h_SIZE-1];              // h_tilde: R^{e} without tanh activation
-    logic signed [WIDTH-1:0] h_tilde [0:h_SIZE-1];                  // h_tilde: R^{e}
-
     logic signed [WIDTH-1:0] r_h_mult [0:h_SIZE-1];                 // r_t pointwise multiply
 
 
@@ -94,10 +98,10 @@ module gruCell #(parameter
     ) reset_gate_dense (
         .clk                ( clk                       ),
         .reset              ( reset                     ),
-        .input_ready        ( ),
+        .input_ready        ( 1'b1 ),
         .ready              ( ),
         .output_ready       ( ),
-        .next_layer_ready   ( ),
+        .next_layer_ready   ( 1'b1 ),
         .input_data         ( {x_t, h_t_minus_1}        ),
         .output_data        ( r_t_raw                   )
     );
@@ -109,16 +113,16 @@ module gruCell #(parameter
         .SIZE               ( h_SIZE            ),
         .MEM_WIDTH          ( MEM_WIDTH         ),
         .MEM_NFRAC          ( MEM_NFRAC         ),
-        .LOOKUP_WIDTH       ( WIDTH             ),
-        .LOOKUP_NFRAC       ( NFRAC             ),
+        .LOOKUP_WIDTH       ( LOOKUP_WIDTH      ),
+        .LOOKUP_NFRAC       ( LOOKUP_NFRAC      ),
         .BRAM_FILE          ( SIGMOID_BRAM_FILE )
     ) reset_gate_sigmoid (
         .clk                ( clk               ),
         .reset              ( reset             ),
-        .input_ready        ( ),
+        .input_ready        ( 1'b1 ),
         .output_ready       ( ),
         .ready              ( ),
-        .next_layer_ready   ( ),
+        .next_layer_ready   ( 1'b1 ),
         .input_data         ( r_t_raw           ),
         .output_data        ( r_t               )
     );
@@ -137,13 +141,13 @@ module gruCell #(parameter
         .BIAS               ( `UPDATE_GATE_PKG::bias    ),
         .PIPELINING         ( PIPELINING                ),
         .PIPE_OUT           ( PIPE_OUT                  )
-    ) reset_gate_dense (
+    ) update_gate_dense (
         .clk                ( clk                       ),
         .reset              ( reset                     ),
-        .input_ready        ( ),
+        .input_ready        ( 1'b1 ),
         .ready              ( ),
         .output_ready       ( ),
-        .next_layer_ready   ( ),
+        .next_layer_ready   ( 1'b1 ),
         .input_data         ( {x_t, h_t_minus_1}        ),
         .output_data        ( z_t_raw                   )
     );
@@ -155,16 +159,16 @@ module gruCell #(parameter
         .SIZE               ( h_SIZE            ),
         .MEM_WIDTH          ( MEM_WIDTH         ),
         .MEM_NFRAC          ( MEM_NFRAC         ),
-        .LOOKUP_WIDTH       ( WIDTH             ),
-        .LOOKUP_NFRAC       ( NFRAC             ),
+        .LOOKUP_WIDTH       ( LOOKUP_WIDTH      ),
+        .LOOKUP_NFRAC       ( LOOKUP_NFRAC      ),
         .BRAM_FILE          ( SIGMOID_BRAM_FILE )
-    ) reset_gate_sigmoid (
+    ) update_gate_sigmoid (
         .clk                ( clk               ),
         .reset              ( reset             ),
-        .input_ready        ( ),
+        .input_ready        ( 1'b1 ),
         .output_ready       ( ),
         .ready              ( ),
-        .next_layer_ready   ( ),
+        .next_layer_ready   ( 1'b1 ),
         .input_data         ( z_t_raw           ),
         .output_data        ( z_t               )
     );
@@ -183,13 +187,13 @@ module gruCell #(parameter
         .BIAS               ( `CANDIDATE_U_PKG::bias    ),
         .PIPELINING         ( PIPELINING                ),
         .PIPE_OUT           ( PIPE_OUT                  )
-    ) reset_gate_dense (
+    ) candidate_gate_dense_U (
         .clk                ( clk                       ),
         .reset              ( reset                     ),
-        .input_ready        ( ),
+        .input_ready        ( 1'b1 ),
         .ready              ( ),
         .output_ready       ( ),
-        .next_layer_ready   ( ),
+        .next_layer_ready   ( 1'b1 ),
         .input_data         ( h_t_minus_1               ),
         .output_data        ( h_tilde_raw_U             )
     );
@@ -204,13 +208,13 @@ module gruCell #(parameter
         .BIAS               ( `CANDIDATE_W_PKG::bias    ),
         .PIPELINING         ( PIPELINING                ),
         .PIPE_OUT           ( PIPE_OUT                  )
-    ) reset_gate_dense (
+    ) candidate_gate_dense_W (
         .clk                ( clk                       ),
         .reset              ( reset                     ),
-        .input_ready        ( ),
+        .input_ready        ( 1'b1 ),
         .ready              ( ),
         .output_ready       ( ),
-        .next_layer_ready   ( ),
+        .next_layer_ready   ( 1'b1 ),
         .input_data         ( x_t                       ),
         .output_data        ( h_tilde_raw_W             )
     );
@@ -229,7 +233,7 @@ module gruCell #(parameter
     generate
         for (i = 0; i < h_SIZE; i++) begin : pointwise_add_h_tilde
             always_comb begin
-                h_tilde_raw[i] = r_h_mult + h_tilde_raw_W;
+                h_tilde_raw[i] = r_h_mult[i] + h_tilde_raw_W[i];
             end
         end
     endgenerate
@@ -241,19 +245,19 @@ module gruCell #(parameter
         .SIZE           ( h_SIZE            ),
         .MEM_WIDTH      ( MEM_WIDTH         ),
         .MEM_NFRAC      ( MEM_NFRAC         ),
-        .LOOKUP_WIDTH   ( WIDTH             ),
-        .LOOKUP_NFRAC   ( NFRAC             ),
+        .LOOKUP_WIDTH   ( LOOKUP_WIDTH      ),
+        .LOOKUP_NFRAC   ( LOOKUP_NFRAC      ),
         .BRAM_FILE      ( TANH_BRAM_FILE    )
     ) candidate_hidden_state_tanh (
         .clk                ( clk           ),
         .reset              ( reset         ),
-        .input_ready        ( ),
+        .input_ready        ( 1'b1 ),
         .output_ready       ( ),
         .ready              ( ),
-        .next_layer_ready   ( ),
+        .next_layer_ready   ( 1'b1 ),
         .input_data         ( h_tilde_raw   ),
         .output_data        ( h_tilde       )
-    )
+    );
 
 
     // ----- HIDDEN STATE / OUTPUT -----
@@ -273,12 +277,7 @@ module gruCell_tb();
    localparam  WIDTH           = 16,
                NFRAC           = 6,
                x_SIZE          = 6,
-               h_SIZE          = 120,
-               MEM_WIDTH       = 10,
-               sigmoid_TABLE_SIZE_POW  = 10,
-               tanh_TABLE_SIZE_POW = 9,
-               sigmoid_BRAM_FILE = "./pkg_gen_gru/binaries/sigmoid_BRAM_binaries/memw10_size1024_sigmoidBRAM.mem",
-               tanh_BRAM_FILE = "./pkg_gen_gru/binaries/tanh_BRAM_binaries/memw10_size512_tanhBRAM.mem";
+               h_SIZE          = 120;
    logic clk;
    logic reset;
    logic signed [WIDTH-1:0] x_t [0:x_SIZE-1];
@@ -296,12 +295,7 @@ module gruCell_tb();
        .WIDTH              ( WIDTH             ),
        .NFRAC              ( NFRAC             ),
        .x_SIZE             ( x_SIZE            ),
-       .h_SIZE             ( h_SIZE            ),
-       .MEM_WIDTH          ( MEM_WIDTH         ),
-       .SIGMOID_TABLE_SIZE_POW     (sigmoid_TABLE_SIZE_POW                 ),
-       .TANH_TABLE_SIZE_POW        (tanh_TABLE_SIZE_POW                    ),
-       .SIGMOID_BRAM_FILE  (sigmoid_BRAM_FILE  ),
-       .TANH_BRAM_FILE     (tanh_BRAM_FILE     )
+       .h_SIZE             ( h_SIZE            )
    ) dut (
        .clk(clk),  .reset(reset),
        .x_t(x_t),  .h_t_minus_1(h_t_minus_1),
@@ -333,43 +327,43 @@ module gruCell_tb();
            h_t_minus_1[i] = 4'b0;
        end
         
-       repeat(30) @(posedge clk);
+       repeat(200) @(posedge clk);
 
-        for (j = 0; j < 14; j++) begin
-            for (i = 0; i < h_SIZE; i = i + 1) begin
-                h_t_minus_1[i] = h_t[i];
-            end
+        // for (j = 0; j < 14; j++) begin
+        //     for (i = 0; i < h_SIZE; i = i + 1) begin
+        //         h_t_minus_1[i] = h_t[i];
+        //     end
         
-            repeat(30) @(posedge clk);
-        end
+        //     repeat(30) @(posedge clk);
+        // end
 
-       x_t <= {{-16'd1},
-               {16'd2},
-               {-16'd3},
-               {16'd4},
-               {-16'd5},
-               {16'd6}
-               };
+    //    x_t <= {{-16'd1},
+    //            {16'd2},
+    //            {-16'd3},
+    //            {16'd4},
+    //            {-16'd5},
+    //            {16'd6}
+    //            };
         
-       for (i = 0; i < h_SIZE; i = i + 1) begin
-           h_t_minus_1[i] = 4'b0001;
-       end
+    //    for (i = 0; i < h_SIZE; i = i + 1) begin
+    //        h_t_minus_1[i] = 4'b0001;
+    //    end
         
-       repeat(30) @(posedge clk);
+    //    repeat(30) @(posedge clk);
 
-       x_t <= {{-16'd2},
-               {16'd2},
-               {-16'd3},
-               {16'd4},
-               {-16'd5},
-               {16'd6}
-               };
+    //    x_t <= {{-16'd2},
+    //            {16'd2},
+    //            {-16'd3},
+    //            {16'd4},
+    //            {-16'd5},
+    //            {16'd6}
+    //            };
 
-        for (i = 0; i < h_SIZE; i = i + 1) begin
-            h_t_minus_1[i] <= h_t[i];
-        end
+    //     for (i = 0; i < h_SIZE; i = i + 1) begin
+    //         h_t_minus_1[i] <= h_t[i];
+    //     end
 
-        repeat(30) @(posedge clk);
+    //     repeat(30) @(posedge clk);
 
         $stop;
 
