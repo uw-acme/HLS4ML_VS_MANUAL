@@ -36,7 +36,11 @@ X_test_gen.txt
 src/hdl/Batchnorm-JetTagging/python/hls4ml.log
 src/hdl/Batchnorm-JetTagging/python/output.log
 *vivado*
+src/hdl/Quickdraw/keras/model_1/
+*.npy
 src/hdl/Batchnorm-JetTagging/handmade/vsim.wlf
+src/hdl/Quickdraw/keras/model_1/
+*.npy
 
 src/hdl/TopTagging-HLS/model_gru_hls/hls4ml_prj/
 src/hdl/TopTagging-HLS/model_lstm_hls/hls4ml_prj/

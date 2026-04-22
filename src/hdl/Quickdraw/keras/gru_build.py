@@ -45,10 +45,10 @@ config_name["Model"]["Strategy"] = "Resource"
 
 for layer in config_name['LayerName'].keys():
     config_name['LayerName']['softmax']['implementation'] = 'argmax'
-    # config_name['LayerName']['dense']['reuse_factor'] = 128
-    # config_name['LayerName']['dense_1']['reuse_factor'] = 128
-    # config_name['LayerName']['rnn_densef']['reuse_factor'] = 128
-    config_name['LayerName']['gru']['reuse_factor'] = 128
+    config_name['LayerName']['dense']['reuse_factor'] = 64
+    config_name['LayerName']['dense_1']['reuse_factor'] = 64
+    config_name['LayerName']['rnn_densef']['reuse_factor'] = 64
+    config_name['LayerName']['gru']['reuse_factor'] = 64
 
 print("-----------------------------------")
 print("Configuration")
@@ -58,7 +58,7 @@ hls_model_name = hls4ml.converters.convert_from_keras_model(
     model,
     hls_config=config_name,
     backend='Vivado',
-    output_dir='model_1/hls4ml_gru/dense_only',
+    output_dir='model_1/hls4ml_gru/dense_gru_only',
     part='xc7vx690tffg1761-2',
     # part='xcu280-fsvh2892-2L-e',
     io_type='io_stream',
