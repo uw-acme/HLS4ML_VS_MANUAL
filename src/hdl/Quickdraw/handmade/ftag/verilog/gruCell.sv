@@ -17,6 +17,7 @@ h_t = (1 - z_t) • h_t-1 + z_t • h_tilde
 - where * is matrix multiplication and • is hadamard product (pointwise multiplication)
 - note that W and U matrices are concatenated into single matrix for reset/update gates
 - concatenated in order W, U so input should be concatenated as x, h_t-1
+- static GRU implementation
 */
 
 
@@ -42,18 +43,21 @@ module gruCell #(parameter
     LOOKUP_WIDTH        = 10,   // width of lookup indices
     LOOKUP_NFRAC        = 7,    // fractional bits in lookup indices
     SIGMOID_BRAM_FILE   = "sigmoid_table_18_18_10_7.dat",
-    TANH_BRAM_FILE      = "tanh_table_18_18_19_7.dat"
+    TANH_BRAM_FILE      = "tanh_table_18_18_10_7.dat"
 )(
-    input clk,
-    input reset,
-    input input_ready,          // input data valid
-    output logic output_ready,  // GRU output is valid
-    output logic ready,         // GRU is ready to accept new data from previous layer
-    input next_layer_ready,     // next layer is ready for input
-    input signed        [WIDTH-1:0] x_t [0:x_SIZE-1],               // x_t: R^{d}
-    input signed        [WIDTH-1:0] h_t_minus_1 [0:h_SIZE-1],       // h_t_minus_1: R^{e}
+    input logic clk,
+    input logic reset,
 
-    output logic signed       [WIDTH-1:0] h_t [0:h_SIZE-1]          // h_t: R^{e}
+    // handshake signals
+    input logic input_ready,        // input data valid
+    output logic output_ready,      // GRU output is valid
+    output logic ready,             // GRU is ready to accept new data from previous layer
+    input logic next_layer_ready,   // next layer is ready for input
+
+    // data input/output
+    input logic signed [WIDTH-1:0] x_t [0:x_SIZE-1],                // x_t: R^{d}
+    input logic signed [WIDTH-1:0] h_t_minus_1 [0:h_SIZE-1],        // h_t_minus_1: R^{e}
+    output logic signed [WIDTH-1:0] h_t [0:h_SIZE-1]                // h_t: R^{e}
 );
 
     function automatic logic signed [WIDTH*2-1:0] mult (
@@ -65,6 +69,7 @@ module gruCell #(parameter
 
     localparam PIPELINING = 4;
     localparam PIPE_OUT = 0;
+    localparam REMOVE_PIPELINES = 0;
     localparam logic signed [WIDTH-1:0] ONE_FP = 1 <<< NFRAC;       // fixed point equivalent of 1
 
     // gate outputs
@@ -73,14 +78,35 @@ module gruCell #(parameter
     logic signed [WIDTH-1:0] h_tilde [0:h_SIZE-1];                  // h_tilde: R^{e}
 
     // gate intermediates
-    logic signed [WIDTH-1:0] r_t_raw [0:h_SIZE-1];                  // r_t: R^{e} before sigmoid activation
-    logic signed [WIDTH-1:0] z_t_raw [0:h_SIZE-1];                  // z_t: R^{e} before sigmoid activation
+    logic signed [WIDTH-1:0] r_t_raw [0:h_SIZE-1];                  // r_t before sigmoid activation
+    logic signed [WIDTH-1:0] z_t_raw [0:h_SIZE-1];                  // z_t before sigmoid activation
     logic signed [WIDTH-1:0] h_tilde_raw_W [0:h_SIZE-1];
     logic signed [WIDTH-1:0] h_tilde_raw_U [0:h_SIZE-1];
     logic signed [WIDTH-1:0] h_tilde_raw_gate [0:h_SIZE-1];
-    logic signed [WIDTH-1:0] h_tilde_raw [0:h_SIZE-1];              // h_tilde: R^{e} without tanh activation
+    logic signed [WIDTH-1:0] h_tilde_raw [0:h_SIZE-1];              // h_tilde before tanh activation
     logic signed [WIDTH-1:0] r_h_mult [0:h_SIZE-1];                 // r_t pointwise multiply
 
+    // handshake signals between parts
+    //    new data          input ok                output ok               next layer new data
+    logic z_dense_ready,    z_dense_input_ready,    z_dense_output_ready,   z_dense_next_layer_ready;
+    logic z_sig_ready,      z_sig_input_ready,      z_sig_output_ready,     z_sig_next_layer_ready;
+    logic r_dense_ready,    r_dense_input_ready,    r_dense_output_ready,   r_dense_next_layer_ready;
+    logic r_sig_ready,      r_sig_input_ready,      r_sig_output_ready,     r_sig_next_layer_ready;
+    logic hU_dense_ready,   hU_dense_input_ready,   hU_dense_output_ready,  hU_dense_next_layer_ready;
+    logic hW_dense_ready,   hW_dense_input_ready,   hW_dense_output_ready,  hW_dense_next_layer_ready;
+    logic tanh_ready,       tanh_input_ready,       tanh_output_ready,      tanh_next_layer_ready;
+    
+    // first layers
+    assign ready = z_dense_ready && r_dense_ready && hU_dense_ready && hW_dense_ready;
+    assign z_dense_input_ready = input_ready;
+    assign r_dense_input_ready = input_ready;
+    assign hU_dense_input_ready = input_ready;
+    assign hW_dense_input_ready = input_ready;
+
+    // last layers
+    assign output_ready = z_sig_output_ready && tanh_output_ready;
+    assign tanh_next_layer_ready = next_layer_ready;
+    assign z_sig_next_layer_ready = next_layer_ready;
 
     // ----- RESET GATE -----
     // r_t = sigmoid(W_r * [x_t, h_t-1] + b_r)
@@ -98,13 +124,16 @@ module gruCell #(parameter
     ) reset_gate_dense (
         .clk                ( clk                       ),
         .reset              ( reset                     ),
-        .input_ready        ( 1'b1 ),
-        .ready              ( ),
-        .output_ready       ( ),
-        .next_layer_ready   ( 1'b1 ),
+        .input_ready        ( r_dense_input_ready       ),
+        .ready              ( r_dense_ready             ),
+        .output_ready       ( r_dense_output_ready      ),
+        .next_layer_ready   ( r_dense_next_layer_ready  ),
         .input_data         ( {x_t, h_t_minus_1}        ),
         .output_data        ( r_t_raw                   )
     );
+
+    assign r_sig_input_ready = r_dense_output_ready;
+    assign r_dense_next_layer_ready = r_sig_ready;
 
     // new
     sigmoid #(
@@ -115,14 +144,15 @@ module gruCell #(parameter
         .MEM_NFRAC          ( MEM_NFRAC         ),
         .LOOKUP_WIDTH       ( LOOKUP_WIDTH      ),
         .LOOKUP_NFRAC       ( LOOKUP_NFRAC      ),
-        .BRAM_FILE          ( SIGMOID_BRAM_FILE )
+        .BRAM_FILE          ( SIGMOID_BRAM_FILE ),
+        .REMOVE_PIPELINES   ( REMOVE_PIPELINES  )
     ) reset_gate_sigmoid (
         .clk                ( clk               ),
         .reset              ( reset             ),
-        .input_ready        ( 1'b1 ),
-        .output_ready       ( ),
-        .ready              ( ),
-        .next_layer_ready   ( 1'b1 ),
+        .input_ready        ( r_sig_input_ready         ),
+        .output_ready       ( r_sig_output_ready        ),
+        .ready              ( r_sig_ready               ),
+        .next_layer_ready   ( r_sig_next_layer_ready    ),
         .input_data         ( r_t_raw           ),
         .output_data        ( r_t               )
     );
@@ -144,13 +174,16 @@ module gruCell #(parameter
     ) update_gate_dense (
         .clk                ( clk                       ),
         .reset              ( reset                     ),
-        .input_ready        ( 1'b1 ),
-        .ready              ( ),
-        .output_ready       ( ),
-        .next_layer_ready   ( 1'b1 ),
+        .input_ready        ( z_dense_input_ready       ),
+        .ready              ( z_dense_ready             ),
+        .output_ready       ( z_dense_output_ready      ),
+        .next_layer_ready   ( z_dense_next_layer_ready  ),
         .input_data         ( {x_t, h_t_minus_1}        ),
         .output_data        ( z_t_raw                   )
     );
+
+    assign z_sig_input_ready = z_dense_output_ready;
+    assign z_dense_next_layer_ready = z_sig_ready;
 
     // new
     sigmoid #(
@@ -161,14 +194,15 @@ module gruCell #(parameter
         .MEM_NFRAC          ( MEM_NFRAC         ),
         .LOOKUP_WIDTH       ( LOOKUP_WIDTH      ),
         .LOOKUP_NFRAC       ( LOOKUP_NFRAC      ),
-        .BRAM_FILE          ( SIGMOID_BRAM_FILE )
+        .BRAM_FILE          ( SIGMOID_BRAM_FILE ),
+        .REMOVE_PIPELINES   ( REMOVE_PIPELINES  )
     ) update_gate_sigmoid (
         .clk                ( clk               ),
         .reset              ( reset             ),
-        .input_ready        ( 1'b1 ),
-        .output_ready       ( ),
-        .ready              ( ),
-        .next_layer_ready   ( 1'b1 ),
+        .input_ready        ( z_sig_input_ready         ),
+        .output_ready       ( z_sig_output_ready        ),
+        .ready              ( z_sig_ready               ),
+        .next_layer_ready   ( z_sig_next_layer_ready    ),
         .input_data         ( z_t_raw           ),
         .output_data        ( z_t               )
     );
@@ -190,10 +224,10 @@ module gruCell #(parameter
     ) candidate_gate_dense_U (
         .clk                ( clk                       ),
         .reset              ( reset                     ),
-        .input_ready        ( 1'b1 ),
-        .ready              ( ),
-        .output_ready       ( ),
-        .next_layer_ready   ( 1'b1 ),
+        .input_ready        ( hU_dense_input_ready      ),
+        .ready              ( hU_dense_ready            ),
+        .output_ready       ( hU_dense_output_ready     ),
+        .next_layer_ready   ( hU_dense_next_layer_ready ),
         .input_data         ( h_t_minus_1               ),
         .output_data        ( h_tilde_raw_U             )
     );
@@ -211,10 +245,10 @@ module gruCell #(parameter
     ) candidate_gate_dense_W (
         .clk                ( clk                       ),
         .reset              ( reset                     ),
-        .input_ready        ( 1'b1 ),
-        .ready              ( ),
-        .output_ready       ( ),
-        .next_layer_ready   ( 1'b1 ),
+        .input_ready        ( hW_dense_input_ready      ),
+        .ready              ( hW_dense_ready            ),
+        .output_ready       ( hW_dense_output_ready     ),
+        .next_layer_ready   ( hW_dense_next_layer_ready ),
         .input_data         ( x_t                       ),
         .output_data        ( h_tilde_raw_W             )
     );
@@ -238,6 +272,11 @@ module gruCell #(parameter
         end
     endgenerate
 
+    assign r_sig_next_layer_ready = tanh_ready;
+    assign hU_dense_next_layer_ready = tanh_ready;
+    assign hW_dense_next_layer_ready = tanh_ready;
+    assign tanh_input_ready = r_sig_output_ready && hU_dense_next_layer_ready && hW_dense_next_layer_ready;
+
     // apply tanh activation
     tanh #(
         .WIDTH          ( WIDTH             ),
@@ -247,14 +286,15 @@ module gruCell #(parameter
         .MEM_NFRAC      ( MEM_NFRAC         ),
         .LOOKUP_WIDTH   ( LOOKUP_WIDTH      ),
         .LOOKUP_NFRAC   ( LOOKUP_NFRAC      ),
-        .BRAM_FILE      ( TANH_BRAM_FILE    )
+        .BRAM_FILE      ( TANH_BRAM_FILE    ),
+        .REMOVE_PIPELINES   ( REMOVE_PIPELINES  )
     ) candidate_hidden_state_tanh (
         .clk                ( clk           ),
         .reset              ( reset         ),
-        .input_ready        ( 1'b1 ),
-        .output_ready       ( ),
-        .ready              ( ),
-        .next_layer_ready   ( 1'b1 ),
+        .input_ready        ( tanh_input_ready      ),
+        .output_ready       ( tanh_output_ready     ),
+        .ready              ( tanh_ready            ),
+        .next_layer_ready   ( tanh_next_layer_ready ),
         .input_data         ( h_tilde_raw   ),
         .output_data        ( h_tilde       )
     );
