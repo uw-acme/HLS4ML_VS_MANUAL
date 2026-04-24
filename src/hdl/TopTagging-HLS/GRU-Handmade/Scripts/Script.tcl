@@ -1,38 +1,42 @@
-# HLS4ML build script
+# Create a project (optional if running non-project mode)
+# create_project waiz_benchmark ./vivado_proj -part xc7a200tsbg484-1
+cd ../verilog-modules
 
-# --- Read design files ---
-# Read all generated Verilog files from the hls4ml project
-read_verilog [glob ./model_gru_hls/hls4ml_prj/myproject_prj/solution1/impl/verilog/*.v]
+set name [lindex $argv 0]
+set defs [lindex $argv 1]
+set generics [lindex $argv 2]
 
-# If you have an XDC constraints file next to the script, keep this:
-# (otherwise update the path accordingly)
-# read_xdc ./const.xdc
+# --- Dense weights ---
+# read_verilog -sv "./pkg_sel.svh"
+# read_verilog -sv [glob ../weights/dense_*_weights_biases_pkgs/dense_*_*.sv]
+# --- Dense layer ---
+read_verilog -sv [glob ../weights_n_tables/*.sv]
+read_verilog -sv LSTM.sv  Toptagging.sv  Toptagging_top.sv adderTree.sv  adderTree_p4.sv  denseLayer.sv  relu.sv shift_add.sv sigmoid.sv tanh.sv 
+# read_verilog -sv "./adderTree.sv"
+# read_verilog -sv "./shift_add.sv"
+# read_verilog -sv "./denseLayer.sv"
 
-# --- Set top module & part ---
-# Change 'waiz_benchmark' to your actual top module name from the .v files
-synth_design -top myproject -part xc7vx690tffg1761-2
+# # --- ReLU layer ---
+# read_verilog -sv "./reluActivationLayer.sv"
 
-# --- Implementation flow ---
-opt_design
-place_design
-route_design
+# # --- Softmax layer ---
+# #read_verilog -sv "./softmaxLayer.sv"
+# #read_verilog -sv "./softmaxArgmaxLayer.sv"
+# read_verilog -sv "./softmaxLayerNeg.sv"
 
-# --- Reports ---
-report_utilization -file reports/util_no_relu.rpt
-#report_timing_summary -file reports/timing_.rpt
-#report_power -file reports/power_post_route_RELU.rpt
+# # --- Top level module ---
+# read_verilog -sv "./waiz_benchmark_top_level.sv"
+# read_verilog -sv "./waiz_benchmark.sv"
 
-# --- Save design checkpoint for GUI inspection ---
-write_checkpoint -force reports/impl_no_relu.dcp
-
-
-# Read constraints file for timing analysis
-read_xdc ./const.xdc
+# (Optional) Testbench files (if you want synthesis, usually skip these)
+# read_verilog -sv "./waiz_benchmark_tb.sv"
+read_xdc const.xdc
 # --- Set top module ---
-# These are the devices I usually use
-# xc7k160tfbg484-3 is free, no license. Useful if you want to compile directly on your computer
+# xc7k160tfbg484-3 is free, no license
+# xq7vx980trf1930-1I is big, needs license
+# xcvu13p-fhga2104-3-e
 # xc7vx690tffg1761-2 is virtex 7, needs license
-synth_design -top waiz_benchmark -part xc7vx690tffg1761-2
+synth_design -top Toptagging_top -part xcvu13p-fhga2104-3-e -generic $generics -verilog_define $defs
 
 # --- Implementation flow ---
 opt_design
@@ -40,13 +44,9 @@ place_design
 route_design
 
 # --- Reports ---
-# Different report options can be chosen. For basic resource viewing, the below one can be used
-report_utilization -file reports/util_no_relu.rpt
 #report_utilization -hierarchical -hierarchical_depth 1 -file reports/util_hier_SA4.rpt
-#report_timing_summary -file reports/timing_.rpt
-# RP is removed pipeiles using SA4 and rand 4/10
-#report_power -file reports/power_post_route_RELU.rpt
-
 # --- Save design checkpoint for GUI inspection ---
-# If you want to view your project on your computer, download this onto your computer and open it in vivado
-write_checkpoint -force reports/impl_no_relu.dcp
+report_utilization -hierarchical -hierarchical_depth 1 -file ../reports/${name}_hier.rpt
+report_utilization -file ../reports/${name}_util.rpt
+report_timing_summary -file ../reports/${name}_timing.rpt
+#write_checkpoint -force reports/[lindex $argv 0].dcp
