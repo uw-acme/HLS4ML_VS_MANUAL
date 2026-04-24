@@ -14,7 +14,7 @@ module relu #(parameter
 );
     logic signed [WIDTH-1:0] out_buffer [SIZE-1:0];
 
-    // Activation fuction
+    // Activation function
     genvar j;
     generate
         for (j = 0; j<SIZE; j++) begin : buffer
@@ -29,3 +29,138 @@ module relu #(parameter
 //    end
 
 endmodule
+
+/*  ------------------------------------
+    Testbench for relu module
+    ------------------------------------
+*/
+module relu_tb();
+    localparam WIDTH = 16,
+               NFRAC = 10,
+               SIZE  = 8;
+    
+    logic signed [WIDTH-1:0] input_data  [SIZE-1:0];
+    logic signed [WIDTH-1:0] output_data [SIZE-1:0];
+    
+    relu  #(.WIDTH  ( WIDTH ),
+            .NFRAC  ( NFRAC  ),
+            .SIZE   ( SIZE   )
+    ) dut (.*);
+    
+    logic clk;
+    localparam CLK_PERIOD = 10;
+    
+     // Make a clock
+    initial begin
+        clk <= '0;
+        forever #(CLK_PERIOD/2) clk <= ~clk;
+    end
+    
+     // The actual testbench
+    initial begin
+        // Mixed signals
+        input_data = '{
+            16'sd1024,  // 1.0
+            16'sd512,   // 0.5
+            16'sd0,     // 0.0
+            -16'sd512,  // -0.5
+            -16'sd1024, // -1.0
+            16'sd2048,  // 2.0
+            -16'sd1,    // -1/1024
+            16'sd1      // 1/1024
+        }; @(posedge clk);
+
+        // Large magnitudes
+        input_data = '{
+            16'sd32767,  // largest positive
+            16'sd30000,
+            16'sd1,
+            16'sd0,
+            -16'sd1,
+            -16'sd30000,
+            -16'sd32768, // most negative
+            16'sd12345
+        }; @(posedge clk);
+
+        // Values close to zero
+        input_data = '{
+            -16'sd4,   // -4/1024
+            -16'sd3,
+            -16'sd2,
+            -16'sd1,
+            16'sd0,
+            16'sd1,
+            16'sd2,
+            16'sd3
+        }; @(posedge clk);
+        $stop;
+    end
+    
+endmodule
+
+On Thu, Apr 9, 2026 at 2:26 PM Leo Xie <ltxie27@uw.edu> wrote:
+input_data = '{
+    16'sd1024,   //  1.0
+    16'sd512,    //  0.5
+    16'sd0,      //  0.0
+    16'sd-512,   // -0.5
+    16'sd-1024,  // -1.0
+    16'sd2048,   //  2.0
+    16'sd-1,     // -1/1024
+    16'sd1       //  1/1024
+};
+
+output_data = '{
+    16'sd1024,
+    16'sd512,
+    16'sd0,
+    16'sd0,
+    16'sd0,
+    16'sd2048,
+    16'sd0,
+    16'sd1
+};
+
+input_data = '{
+    16'sd32767,  // largest positive
+    16'sd30000,
+    16'sd1,
+    16'sd0,
+    -16'sd1,
+    -16'sd30000,
+    -16'sd32768, // most negative
+    16'sd12345
+};
+
+output_data = '{
+    16'sd32767,
+    16'sd30000,
+    16'sd1,
+    16'sd0,
+    16'sd0,
+    16'sd0,
+    16'sd0,
+    16'sd12345
+};
+
+input_data = '{
+    -16'sd4,   // -4/1024
+    -16'sd3,
+    -16'sd2,
+    -16'sd1,
+    16'sd0,
+    16'sd1,
+    16'sd2,
+    16'sd3
+};
+
+output_data = '{
+    16'sd0,
+    16'sd0,
+    16'sd0,
+    16'sd0,
+    16'sd0,
+    16'sd1,
+    16'sd2,
+    16'sd3
+};
