@@ -188,7 +188,7 @@ module LSTM #( parameter
             curr_step<=0;
             // processing<=0;
             // ht<='{default: 0};
-            ht_1<='{default: 0};
+            // ht<='{default: 0};
             // ct<='{default: 0};
             ct_1<='{default: 0};
         end
@@ -199,7 +199,7 @@ module LSTM #( parameter
                 which_tanh<=0;
                 next_ready<=1;
                 curr_step<=curr_step+1;
-                ht_1<=ht;
+                // ht<=ht;
                 ct_1<=ct;
                 // if (OUTPUT_EACH_HT)
                 //     output_ready<=1'b1;
