@@ -25,6 +25,13 @@ void allocate_trace_storage(size_t element_size) {
     nnet::trace_enabled = true;
     nnet::trace_outputs = new std::map<std::string, void *>;
     nnet::trace_type_size = element_size;
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("gru", (void *) malloc(120 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("dense_0", (void *) malloc(50 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("dense_0_relu", (void *) malloc(50 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("dense_1", (void *) malloc(10 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("dense_1_relu", (void *) malloc(10 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("output_softmax", (void *) malloc(3 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("output_softmax_softmax", (void *) malloc(3 * element_size)));
 }
 
 void free_trace_storage() {

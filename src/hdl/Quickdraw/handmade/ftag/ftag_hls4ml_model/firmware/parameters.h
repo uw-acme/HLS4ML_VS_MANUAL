@@ -39,8 +39,8 @@ struct config2_1 : nnet::dense_config {
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef model_default_t accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef gru_bias_t bias_t;
+    typedef gru_weight_t weight_t;
     template<class data_T, class res_T, class CONFIG_T>
     using kernel = nnet::DenseLatency<data_T, res_T, CONFIG_T>;
     template<class x_T, class y_T>
@@ -57,8 +57,8 @@ struct config2_2 : nnet::dense_config {
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef model_default_t accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef gru_recurrent_bias_t bias_t;
+    typedef gru_recurrent_weight_t weight_t;
     template<class data_T, class res_T, class CONFIG_T>
     using kernel = nnet::DenseLatency<data_T, res_T, CONFIG_T>;
     template<class x_T, class y_T>
@@ -83,10 +83,10 @@ struct tanh_config2 : nnet::activ_config {
 
 struct config2 : nnet::gru_config {
     typedef model_default_t accum_t;
-    typedef model_default_t weight_t;  // Matrix
-    typedef model_default_t recurrent_weight_t;  // Matrix
-    typedef model_default_t bias_t;  // Vector
-    typedef model_default_t recurrent_bias_t;  // Vector
+    typedef gru_weight_t weight_t;  // Matrix
+    typedef gru_recurrent_weight_t recurrent_weight_t;  // Matrix
+    typedef gru_bias_t bias_t;  // Vector
+    typedef gru_recurrent_bias_t recurrent_bias_t;  // Vector
     typedef config2_1 mult_config1;
     typedef config2_2 mult_config2;
     typedef sigmoid_config2_recr ACT_CONFIG_GRU;
@@ -119,8 +119,8 @@ struct config3 : nnet::dense_config {
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef model_default_t accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef dense_0_bias_t bias_t;
+    typedef dense_0_weight_t weight_t;
     typedef layer3_index index_t;
     template<class data_T, class res_T, class CONFIG_T>
     using kernel = nnet::DenseLatency<data_T, res_T, CONFIG_T>;
@@ -149,8 +149,8 @@ struct config5 : nnet::dense_config {
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef model_default_t accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef dense_1_bias_t bias_t;
+    typedef dense_1_weight_t weight_t;
     typedef layer5_index index_t;
     template<class data_T, class res_T, class CONFIG_T>
     using kernel = nnet::DenseLatency<data_T, res_T, CONFIG_T>;
@@ -179,8 +179,8 @@ struct config7 : nnet::dense_config {
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef model_default_t accum_t;
-    typedef model_default_t bias_t;
-    typedef model_default_t weight_t;
+    typedef output_softmax_bias_t bias_t;
+    typedef output_softmax_weight_t weight_t;
     typedef layer7_index index_t;
     template<class data_T, class res_T, class CONFIG_T>
     using kernel = nnet::DenseLatency<data_T, res_T, CONFIG_T>;
@@ -206,7 +206,7 @@ struct softmax_config8 : nnet::activ_config {
     typedef output_softmax_softmax_inv_table_t inv_table_t;
     typedef model_default_t accum_t;
     typedef output_softmax_softmax_inv_inp_t inv_inp_t;
-    typedef ap_ufixed<15, 5> inp_norm_t;
+    typedef ap_ufixed<36, 24> inp_norm_t;
 };
 
 
