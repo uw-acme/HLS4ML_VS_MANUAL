@@ -1,44 +1,45 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from sys import argv
 # generate test data
-X_test = np.load('data/X_test.npy', allow_pickle=True)
-y_test = np.load('data/y_test.npy', allow_pickle=True)
+# X_test = np.load('data/X_test.npy', allow_pickle=True)
+# y_test = np.load('data/y_test.npy', allow_pickle=True)
 
-X_testzero = np.zeros((len(X_test), 100, 3))
+# X_testzero = np.zeros((len(X_test), 100, 3))
 
-for x in range(len(X_test)):
-    for y in range(100):
-        for z in range(3):
-            if y >= len(X_test[x]):
-                break
-            X_testzero[x][y][z] = X_test[x][y][z]
+# for x in range(len(X_test)):
+#     for y in range(100):
+#         for z in range(3):
+#             if y >= len(X_test[x]):
+#                 break
+#             X_testzero[x][y][z] = X_test[x][y][z]
 
-# encode labels for 5 classes
-num_classes = 5
-y_labhot = np.zeros((len(y_test),5))
+# # encode labels for 5 classes
+# num_classes = 5
+# y_labhot = np.zeros((len(y_test),5))
 
-y_labhot.shape
+# y_labhot.shape
 
-num = 0
-for x in y_test:
-  if x == 0:
-    y_labhot[num][0] = 1
-  elif x == 1: 
-    y_labhot[num][1] = 1
-  elif x == 2: 
-    y_labhot[num][2] = 1
-  elif x == 3: 
-    y_labhot[num][3] = 1
-  elif x == 4: 
-    y_labhot[num][4] = 1
-  num = num + 1
+# num = 0
+# for x in y_test:
+#   if x == 0:
+#     y_labhot[num][0] = 1
+#   elif x == 1: 
+#     y_labhot[num][1] = 1
+#   elif x == 2: 
+#     y_labhot[num][2] = 1
+#   elif x == 3: 
+#     y_labhot[num][3] = 1
+#   elif x == 4: 
+#     y_labhot[num][4] = 1
+#   num = num + 1
 import hls4ml
 import plotting
 from tensorflow.keras.models import load_model, Model
 
 from os.path import isdir
 import subprocess
-model = load_model('./lstm/Quickdraw5Class1_edit_8020.h5')
+model = load_model('./Quickdraw-JY/Quickdraw5ClassLSTMFinL.h5')
 def comp_layer(index):
   
   layer = model.get_layer(index=index)
@@ -105,7 +106,9 @@ hls_model_name = hls4ml.converters.convert_from_keras_model(
     model, hls_config=config_name, backend='Vivado', output_dir=f'model_1/hls4ml_lstm/{model_name}', part='xc7vx690tffg1761-2', io_type='io_stream'
 )
 
-hls4ml.utils.plot_model(hls_model_name, show_shapes=True, show_precision=True, to_file='lstm.png')
+hls4ml.utils.plot_model(hls_model_name, show_shapes=True, show_precision=True, to_file='lstm_new.png')
+
+exit(0)
 print("Compiling")
 # hls_model_name.compile()
 # print("Testing")
