@@ -50,8 +50,8 @@ module gruCell #(parameter
 
     // handshake signals
     input logic input_ready,        // input data valid
-    output logic output_ready,      // GRU output is valid
-    output logic ready,             // GRU is ready to accept new data from previous layer
+    output logic output_ready,      // GRU cell output is valid
+    output logic ready,             // GRU cell is ready to accept new data from previous layer
     input logic next_layer_ready,   // next layer is ready for input
 
     // data input/output
