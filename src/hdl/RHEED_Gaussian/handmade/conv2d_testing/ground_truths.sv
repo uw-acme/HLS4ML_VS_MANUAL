@@ -16,7 +16,7 @@ module ground_truths
 	  input logic signed [bitWidth-1:0] biases [0:biasWidth-1],
 	  
 	  // for each filter we're going to have a filtDimension x filtDimension matrix of weights
-	  input logic signed [bitWidth-1:0] weights [(filtDimension**2 * biasWidth)-1:0],
+	  input logic signed [bitWidth-1:0] weights [0:(filtDimension**2 * biasWidth)-1],
 	   
 	  // without padding the output matrix shrinks by 2 in each dimension
 	  output logic signed [bitWidth-1:0] outputMatrixGT [biasWidth*(inputWidth-filtDimension+1)**2-1:0]
@@ -27,7 +27,7 @@ module ground_truths
 	 
 	 logic signed [bitWidth*2-1:0] products       [filtDimension**2-1:0];
 	 logic signed [bitWidth-1:0]   trunc_products [filtDimension**2-1:0];
-	 logic signed [bitWidth-1:0]   sum;
+     logic signed [bitWidth-1:0]   sum;
 
 	 always_comb begin
 		// outer for loop executes for each filter
@@ -41,22 +41,35 @@ module ground_truths
 					// then need to do truncation stuff
 					for (int row = 0; row < filtDimension; row++) begin
 						for (int col = 0; col < filtDimension; col++) begin
+
 							products[row*filtDimension+col] = 
 								inputMatrix[i+row][j+col] * weights[filt*filtDimension**2 + row*filtDimension+col];
 							// right shift every element in inputMatrix (so we're not just doing the 
 							// exact same computation as in sumNine
-							products[row*filtDimension+col] = products[row*filtDimension+col] >>> NFRAC;
-							trunc_products[row*filtDimension+col] = 
-								products[row*filtDimension+col][bitWidth-1:0]; // ASSUMING WE DON'T NEED MSB
+
+							// products[row*filtDimension+col] = products[row*filtDimension+col] >>> NFRAC;
+							// trunc_products[row*filtDimension+col] = 
+							// 	products[row*filtDimension+col][bitWidth-1:0]; // ASSUMING WE DON'T NEED MSB
+
+                            trunc_products[row*filtDimension+col] = products[row*filtDimension+col][NFRAC+bitWidth-1:NFRAC];
+
+                            // $display("i=%0d j=%0d row=%0d col=%0d in=%0d weight=%0d prod=%0d, trunc_prod=%d", i,j,row,col,inputMatrix[i+row][j+col],weights[filt*filtDimension**2 + row*filtDimension + col], products[row*filtDimension+col], trunc_products[row*filtDimension+col]);
+
 						end
 					end
 					// once we have filled up our trunc_products, add them up w/bias
 					sum = '0;
 					for (int q = 0; q < filtDimension**2; q++) begin
+
 						sum += trunc_products[q];
+                        // sum = $signed(sum + trunc_products[q])[bitWidth-1:0];
 					end	
+
+
 					sum += biases[filt];
 					outputMatrixGT[TOTAL_PIXELS*filt + (inputWidth-filtDimension+1)*i + j] = sum;
+
+                    
 				end
 			end
 		end
