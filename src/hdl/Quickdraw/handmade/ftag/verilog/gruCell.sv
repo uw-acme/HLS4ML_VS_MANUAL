@@ -12,12 +12,13 @@ candidate hidden state:
 h_tilde = tanh(W_h * x_t + b_h + (r_t • (h_t-1 * U_h + b_h_rec)))
 
 hidden state (output):
-h_t = (1 - z_t) • h_t-1 + z_t • h_tilde
+h_t = (1 - z_t) • h_tilde + z_t • h_t-1
 
 - where * is matrix multiplication and • is hadamard product (pointwise multiplication)
 - note that W and U matrices are concatenated into single matrix for reset/update gates
 - concatenated in order W, U so input should be concatenated as x, h_t-1
 - static GRU implementation
+- order of hidden state computation reflects keras version
 */
 
 
@@ -305,11 +306,11 @@ module gruCell #(parameter
 
 
     // ----- HIDDEN STATE / OUTPUT -----
-    // h_t = (1 - z_t) • h_t-1 + z_t • h_tilde
+    // h_t = (1 - z_t) • h_tilde + z_t • h_t-1
     generate
         for (i = 0; i < h_SIZE; i++) begin: pointwise_mult_h_t
             always_comb begin
-                h_t[i] = mult((ONE_FP - z_t[i]), h_t_minus_1[i]) + mult(z_t[i], h_tilde[i]);
+                h_t[i] = mult((ONE_FP - z_t[i]), h_tilde[i]) + mult(z_t[i], h_t_minus_1[i]);
             end
         end
     endgenerate
