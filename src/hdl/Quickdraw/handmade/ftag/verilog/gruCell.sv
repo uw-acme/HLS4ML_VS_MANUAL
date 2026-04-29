@@ -49,8 +49,8 @@ module gruCell #(parameter
     input logic reset,
 
     // handshake signals
-    input logic input_ready,        // input data valid
-    output logic output_ready,      // GRU cell output is valid
+    input logic input_valid,        // input data valid
+    output logic output_valid,      // GRU cell output is valid
     output logic ready,             // GRU cell is ready to accept new data from previous layer
     input logic next_layer_ready,   // next layer is ready for input
 
@@ -85,6 +85,10 @@ module gruCell #(parameter
     logic signed [WIDTH-1:0] h_tilde_raw_gate [0:h_SIZE-1];
     logic signed [WIDTH-1:0] h_tilde_raw [0:h_SIZE-1];              // h_tilde before tanh activation
     logic signed [WIDTH-1:0] r_h_mult [0:h_SIZE-1];                 // r_t pointwise multiply
+
+    logic input_ready, output_ready;
+    assign input_ready = input_valid;
+    assign output_valid = output_ready;
 
     // handshake signals between parts
     //    new data          input ok                output ok               next layer new data
