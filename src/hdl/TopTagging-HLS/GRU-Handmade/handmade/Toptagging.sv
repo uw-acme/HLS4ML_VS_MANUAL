@@ -65,6 +65,20 @@ module Toptagging #( parameter
         .x_SIZE    ( GRU_INPUT_SIZE  ),
         .TIMESTEPS ( TIMESTEPS       ),
         .y_SIZE.   ( GRU_OUTPUT_SIZE )
+    ) gru_layer (
+        .clk(clk),
+        .reset(reset),
+
+        // handshake signals
+        .input_valid      (GRU_input_ready),  // input data valid
+        .output_valid     (GRU_output_ready), // GRU output is valid
+        .ready            (GRU_ready),        // GRU is ready to accept new data from previous layer
+        .next_layer_ready (dense1_ready),     // next layer is ready for input
+
+        // data input/output
+        // input is a single timestep (io_stream) - timesteps
+        .x_t(GRU_input_data), // TODO: Figure out input stream into GRU layer
+        .y_t(GRU_output_data)
     );
     always_latch begin : next_dense
         if (GRU_output_ready)
