@@ -84,7 +84,7 @@ def comp_layer(index):
 # create hls4ml model - higher precision (name)
 import yaml
 from sys import argv
-config_name = hls4ml.utils.config_from_keras_model(model, granularity='Model', default_precision='ap_fixed<20,10>', default_reuse_factor=16384)
+config_name = hls4ml.utils.config_from_keras_model(model, granularity='Model', default_precision='ap_fixed<20,10>')#default_reuse_factor=16384)
 config_name['Model']['Strategy'] = 'Resource'
 config_name['Flows'] = ['vivado:fifo_depth_optimization']
 hls4ml.model.optimizer.get_optimizer('vivado:fifo_depth_optimization').configure(profiling_fifo_depth=100_000)
@@ -131,10 +131,10 @@ print("Compiling")
 # yam = open("lstm_config_layer.yaml", "w")
 # yaml.safe_dump(config_name, yam)
 # yam.close()
-hls_model_name.build(csim=False)
-from os.path import isdir
-import subprocess
-if (isdir(f'model_1/hls4ml_lstm/{model_name}/myproject_prj/solution1/syn')):
-  subprocess.run(f'printf "Compilation of {model_name} successful" | mail -s "LSTM" ceravcal@uw.edu', shell=True)
-else:
-  subprocess.run(f'printf "Compilation of {model_name} Failed" | mail -s "LSTM" ceravcal@uw.edu', shell=True)
+# hls_model_name.build(csim=False)
+# from os.path import isdir
+# import subprocess
+# if (isdir(f'model_1/hls4ml_lstm/{model_name}/myproject_prj/solution1/syn')):
+#   subprocess.run(f'printf "Compilation of {model_name} successful" | mail -s "LSTM" ceravcal@uw.edu', shell=True)
+# else:
+#   subprocess.run(f'printf "Compilation of {model_name} Failed" | mail -s "LSTM" ceravcal@uw.edu', shell=True)
