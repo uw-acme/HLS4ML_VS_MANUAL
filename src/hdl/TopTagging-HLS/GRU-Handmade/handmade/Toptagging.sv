@@ -27,9 +27,8 @@ module Toptagging #( parameter
     output logic signed [WIDTH-1:0] output_data
 );
 
-    localparam PIPELINING = 16;
-    localparam PIPE_OUT = 0;
-    localparam GRU_REMOVE_PIPELINES = 1;
+    localparam SIGMOID_BRAM_FILE   = "sigmoid_table_18_18_10_7.dat";
+    localparam TANH_BRAM_FILE      = "tanh_table_18_18_10_7.dat";
 
     localparam GRU_INPUT_SIZE=6, GRU_OUTPUT_SIZE=20;
     logic signed[WIDTH-1:0] GRU_input_data [TIMESTEPS-1:0][GRU_INPUT_SIZE-1:0];
@@ -60,9 +59,13 @@ module Toptagging #( parameter
     logic dense2_ready;
     logic sigmoid_ready;
     assign ready=GRU_ready;
-    // GRU #(
-    //     // Ports
-    // );
+    GRU #(
+        .WIDTH.    ( WIDTH           ),
+        .NFRAC.    ( WIDTH-NINT      ),
+        .x_SIZE    ( GRU_INPUT_SIZE  ),
+        .TIMESTEPS ( TIMESTEPS       ),
+        .y_SIZE.   ( GRU_OUTPUT_SIZE )
+    );
     always_latch begin : next_dense
         if (GRU_output_ready)
             dense1_input_data = GRU_output_data;
