@@ -43,30 +43,29 @@ module oneLayerNN #(parameter
     // Memory Parameters
     MEM_WIDTH           = 10,
     TABLE_SIZE_POW      = 10,
-    BRAM_FILE           = "memw10_tsize1024_sigmoidBRAM.mem"
+    BRAM_FILE           = "../pkg_gen/sigmoid_BRAM_binaries/memw10_tsize1024_sigmoidBRAM.mem"
 )(
-    input                           clk_p,
-    input                           clk_n,
+    input                           clk,
     input                           reset,
     input  logic signed [WIDTH-1:0] input_data  [0:SYS_INPUT_SIZE-1],
     output logic signed [WIDTH-1:0] output_data
 );
     
-    logic clk, locked;
+    // logic clk, locked;
     logic rst;
-    
+    assign rst=reset;
     // Differential Clock Input
-    clkreset clkrst (
-        // Reset and clock from pads
-        .reset_in   (reset  ),
-        .clk_in1_p  (clk_p  ),
-        .clk_in1_n  (clk_n  ),
+    // clkreset clkrst (
+    //     // Reset and clock from pads
+    //     .reset_in   (reset  ),
+    //     .clk_in1_p  (clk_p  ),
+    //     .clk_in1_n  (clk_n  ),
     
-        // outputs
-        .clk        (clk    ),
-        .lock       (locked ),
-        .reset      (rst    )
-    );
+    //     // outputs
+    //     .clk        (clk    ),
+    //     .lock       (locked ),
+    //     .reset      (rst    )
+    // );
     
 //    assign clk = clk_p;
 //    assign rst = reset;
