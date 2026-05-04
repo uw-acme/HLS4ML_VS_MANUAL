@@ -205,8 +205,11 @@ def gen_weight(accuracy, filepath, model):
                 #filename = f"{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv"
 
                 # added, include's quin's file path 
-                # weights/weights_{name}_weights_biases_pkgs/{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv
-                filename = f"./{filepath}/weights_{name}_weights_biases_pkgs/{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv"
+                
+                if (filepath == "weights"):
+                    filename = f"./weights/weights_{name}_weights_biases_pkgs/{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv"
+                else:
+                    filename = f"./{filepath}weights_{name}_weights_biases_pkgs/{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv"
 
                 # if (not os.path.isfile(filename)):
                 with open(filename, "w") as f:

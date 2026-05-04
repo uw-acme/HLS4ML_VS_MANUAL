@@ -9,6 +9,8 @@ rm -rf xsim.dir/ btag_tb_sim.jou btag_tb_sim.log sim.log
 #xvlog --sv ./pkg_sel.svh
 export PATH=/tools/Disk_Xilinx/2025.1/Vivado/bin:$PATH
 # Dense weights
+xvlog --sv ../weights/weights_lstm1_weights_biases_pkgs/lstm1_*_*.sv
+xvlog --sv ../weights/tables/*.sv
 xvlog --sv ../weights/weights_dense_*_weights_biases_pkgs/dense_*_pkg_*.sv
 # xvlog --sv ../weights/dense_*_weights_biases_pkgs/dense_*_*.sv
 # xvlog --sv ./weights/dense_1_weights_biases_pkgs/dense_1_*.sv

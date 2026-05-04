@@ -7,18 +7,20 @@ import `DENSE_LAYER_3_PKG::*;
 
 module btag_benchmark #(
     parameter WIDTH = 16, NFRAC = 6,
-    parameter INPUT_SIZE = 120,
+    parameter INPUT_SIZE = 6, // 120
     parameter OUTPUT_SIZE = 3,
     // Parameter controlling how sparse the pipelines in the adder trees are. 1 is the minimum value (most pipelines)
     parameter PIPELINING = 1, 
     // Parameter controlling whether there is an output pipeline from dense layers. 1 means there is a pipeline
-    parameter PIPE_OUT = 1 
+    parameter PIPE_OUT = 1,
+    parameter timesteps = 15
 ) (
     input logic clk,
     input logic reset,
     input logic input_ready,
     output logic output_ready,
-    input logic signed [WIDTH-1:0] input_data [INPUT_SIZE-1:0],
+    // input logic signed [WIDTH-1:0] input_data [INPUT_SIZE-1:0],
+    input logic signed [WIDTH-1:0] input_data [timesteps-1:0][INPUT_SIZE-1:0],         // timesteps required for lstm
     output logic signed [WIDTH-1:0] output_data [OUTPUT_SIZE-1:0]
 );
     
@@ -28,6 +30,9 @@ module btag_benchmark #(
     //localparam INPUT_SIZE_3 = 32;
     //localparam OUTPUT_SIZE_3 = 32;
     //localparam INPUT_SIZE_4 = 32;
+
+    localparam OUTPUT_SIZE_0 = 120;
+    localparam INPUT_SIZE_1= 120;
 
     localparam OUTPUT_SIZE_1 = 50;
     localparam INPUT_SIZE_2 = 50;
@@ -40,6 +45,7 @@ module btag_benchmark #(
     // Declare real signals for the outputs to visualize as floating-point numbers
     `ifndef SYNTHESIS 
         real input_data_real [0:INPUT_SIZE-1];
+        real lstm0_output_real [0:OUTPUT_SIZE_0-1];
         real dense1_output_real [0:OUTPUT_SIZE_1-1];
         real dense2_input_real [0:OUTPUT_SIZE_1-1];
         real dense2_output_real [0:OUTPUT_SIZE_2-1];
@@ -50,6 +56,8 @@ module btag_benchmark #(
         real softmax_output_real [0:OUTPUT_SIZE-1];
     `endif
     // Fixed-point signals for each layer's outputs
+    logic signed [WIDTH-1:0] lstm0_output_data [OUTPUT_SIZE_0-1:0];
+
     logic signed [WIDTH-1:0] dense1_output_data [OUTPUT_SIZE_1-1:0];
     logic signed [WIDTH-1:0] dense2_input_data [INPUT_SIZE_2-1:0];
     logic signed [WIDTH-1:0] dense2_output_data [OUTPUT_SIZE_2-1:0];
@@ -58,14 +66,18 @@ module btag_benchmark #(
     logic signed [WIDTH-1:0] softmax_output_data [OUTPUT_SIZE-1:0];
 
     // Input and output ready signals for each layer
+
+    logic input_ready_0, output_ready_0;
+
     logic input_ready_1, output_ready_1;
     logic input_ready_2, output_ready_2;
     logic input_ready_3, output_ready_3;
     logic input_ready_4, output_ready_4;
 
-    assign input_ready_1 = input_ready;
+    assign input_ready_0 = input_ready;
     
     always_comb begin
+        input_ready_1 = output_ready_0;
         input_ready_2 = output_ready_1;
         input_ready_3 = output_ready_2;
         input_ready_4 = output_ready_3;
@@ -104,11 +116,35 @@ module btag_benchmark #(
     );
     */
 
+    // LSTM Layer
+    logic r_out;
+
+    LSTM #( 
+        .WIDTH              (WIDTH), // Bitwidth of input values
+        .NINT               (WIDTH - NFRAC), // Number of integers in input values
+        .INPUT_SIZE         (INPUT_SIZE), // Number of numbers in each timestep
+        .TIMESTEPS          (timesteps), // Number of timesteps
+        .OUTPUT_SIZE        (OUTPUT_SIZE_0), // Output size of the lstm
+        .OUTPUT_EACH_HT     (0), // Put to 1 if you want to grab values after processing each timestep
+        .PIPELINING         (PIPELINING), // Rate of removal of pipelines in the dense adder trees. 1 means pipeline every section, 2 means every 2 sections, 3 every three sections and so forth
+        .PIPE_OUT           (PIPE_OUT), // 1 if you want an output pipeline for the dense layer, 0 if you don't. Affects timing
+        .REMOVE_PIPELINES   (0) // 0 if you want regular piping in tanh and sigmoid, 1 if you want less.
+    ) lstmlayer0 (
+        .clk,
+        .reset,
+        .input_ready            (input_ready_0), // Tells LSTM that the input is valid
+        .output_ready           (output_ready_0), // Tells the next layer that the output is valid
+        .ready                  (r_out), // Tells the previous layer that the LSTM is ready for input
+        .next_layer_ready       (1'b1), // Tells the lstm if the next layer is ready for input
+        .input_v                (input_data), // Input data
+        .ht                     (lstm0_output_data) // Output data
+    );
+
     // Dense Layer 1
     denseLayer #(
         .WIDTH       ( WIDTH         ),
         .NFRAC       ( NFRAC         ),
-        .INPUT_SIZE  ( INPUT_SIZE    ),
+        .INPUT_SIZE  ( INPUT_SIZE_1    ),
         .OUTPUT_SIZE ( OUTPUT_SIZE_1 ),
         .WEIGHTS     ( `DENSE_LAYER_1_PKG::weights ),
         .BIAS        ( `DENSE_LAYER_1_PKG::bias    ),
@@ -118,8 +154,8 @@ module btag_benchmark #(
         .clk,
         .reset,
         .input_ready  (  input_ready_1),
-        .output_ready ( output_ready_1),
-        .input_data   (  input_data ),
+        .output_ready (  output_ready_1),
+        .input_data   (  lstm0_output_data ),
         .output_data  (  dense1_output_data)
     );
 
@@ -199,7 +235,7 @@ module btag_benchmark #(
         .input_ready(input_ready_4),
         .output_ready(output_ready_4)
     );
-    localparam use_softmax = 0; // 1;
+    localparam use_softmax = 1;
     always_comb begin
         if (use_softmax) begin
             output_data = softmax_output_data;
@@ -224,8 +260,11 @@ module btag_benchmark #(
     endfunction
 
     always_comb begin
-        foreach (input_data_real[i]) input_data_real[i] = to_real(input_data[i]);
-        foreach (softmax_output_real[i]) softmax_output_real[i] = to_real_unsigned(softmax_output_data[i]);
+        // foreach (input_data_real[i]) input_data_real[i] = to_real(input_data[i]);
+        // foreach (softmax_output_real[i]) softmax_output_real[i] = to_real_unsigned(softmax_output_data[i]);
+
+        // foreach (lstm0_output_real[i]) lstm0_output_real[i] = to_real(lstm0_output_data[i]);
+
         foreach (dense1_output_real[i]) dense1_output_real[i] = to_real(dense1_output_data[i]);
         foreach (dense2_input_real[i]) dense2_input_real[i] = to_real(dense2_input_data[i]);
         foreach (dense2_output_real[i]) dense2_output_real[i] = to_real(dense2_output_data[i]);
