@@ -31,41 +31,37 @@ import matplotlib.pyplot as plt
 import hls4ml
 import plotting
 
-model = load_model('./gru/Quickdraw5Class1_20.h5')
+model = load_model('./gru/QuickdrawEH.h5')
 
 # fixed<x,y> where x is total number, y is integer
-config_name = hls4ml.utils.config_from_keras_model(
+config = hls4ml.utils.config_from_keras_model(
     model,
     granularity='name',
     default_precision='ap_fixed<20,10>',
-    default_reuse_factor=2
+    default_reuse_factor=16
 )
 
-config_name["Model"]["Strategy"] = "Resource"
+config["Model"]["Strategy"] = "Resource"
 
-for layer in config_name['LayerName'].keys():
-    config_name['LayerName']['softmax']['implementation'] = 'argmax'
-    config_name['LayerName']['dense']['reuse_factor'] = 64
-    config_name['LayerName']['dense_1']['reuse_factor'] = 64
-    config_name['LayerName']['rnn_densef']['reuse_factor'] = 64
-    config_name['LayerName']['gru']['reuse_factor'] = 64
+for layer in config['LayerName'].keys():
+    # softmax
+    config['LayerName']['activation_2']['implementation'] = 'argmax'
 
 print("-----------------------------------")
 print("Configuration")
-plotting.print_dict(config_name)
+plotting.print_dict(config)
 print("-----------------------------------")
-hls_model_name = hls4ml.converters.convert_from_keras_model(
+hls_model = hls4ml.converters.convert_from_keras_model(
     model,
-    hls_config=config_name,
+    hls_config=config,
     backend='Vivado',
-    output_dir='model_1/hls4ml_gru/dense_gru_only',
-    part='xc7vx690tffg1761-2',
-    # part='xcu280-fsvh2892-2L-e',
-    io_type='io_stream',
+    output_dir='model_1/hls4ml_gru/EH_smaller_reuse',
+    part='xcu250-figd2104-2-e',
+    io_type='io_stream'
 )
 
 try:
-    hls_model_name.build(csim=False)
+    hls_model.build(csim=False)
     os.system(f'printf "gru build finished" | mail -s "complete" chanssen@uw.edu')
 except:
     os.system(f'printf "gru build failed" | mail -s "error" chanssen@uw.edu')
