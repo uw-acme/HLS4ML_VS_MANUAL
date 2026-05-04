@@ -3,30 +3,51 @@ ClockPeriod: 5
 ClockUncertainty: 12.5%
 HLSConfig:
   LayerName:
+    activation:
+      Precision:
+        result: auto
+      Trace: true
+    activation_1:
+      Precision:
+        result: auto
+      Trace: true
+    activation_2:
+      Precision:
+        result: auto
+      Trace: true
+      exp_table_t: ap_fixed<32,16>
+      inv_table_t: ap_fixed<32,16>
+      table_size: 4096
     dense:
       Precision:
         bias: auto
         result: auto
         weight: auto
-      Trace: false
+      Trace: true
     dense_1:
       Precision:
         bias: auto
         result: auto
         weight: auto
-      Trace: false
+      Trace: true
     dense_1_linear:
       Precision:
         result: auto
-      Trace: false
+      Trace: true
+    dense_2:
+      Precision:
+        bias: auto
+        result: auto
+        weight: auto
+      Trace: true
+    dense_2_linear:
+      Precision:
+        result: auto
+      Trace: true
     dense_linear:
       Precision:
         result: auto
-      Trace: false
-    flatten:
-      Precision:
-        result: auto
-      Trace: false
+      Trace: true
     gru:
       Precision:
         bias: auto
@@ -34,43 +55,20 @@ HLSConfig:
         recurrent_weight: auto
         result: auto
         weight: auto
-      Trace: false
+      Trace: true
     input_1:
       Precision:
         result: auto
-      Trace: false
-    relu_0:
-      Precision:
-        result: auto
-      Trace: false
-    relu_1:
-      Precision:
-        result: auto
-      Trace: false
-    rnn_densef:
-      Precision:
-        bias: auto
-        result: auto
-        weight: auto
-      Trace: false
-    rnn_densef_linear:
-      Precision:
-        result: auto
-      Trace: false
-    softmax:
-      Precision:
-        result: auto
-      Trace: false
-      implementation: argmax
+      Trace: true
   Model:
     BitExact: null
     BramFactor: 1000000000
     Precision:
       default: ap_fixed<20,10>
-    ReuseFactor: 4096
+    ReuseFactor: 48
     Strategy: Resource
     TraceOutput: false
-IOType: io_stream
+IOType: io_parallel
 InputData: null
 InputShapes:
   input_1:
@@ -80,11 +78,11 @@ KerasModel: !keras_model 'model_1/hls4ml_gru/name/keras_model.keras'
 OutputDir: model_1/hls4ml_gru/name
 OutputPredictions: null
 OutputShapes:
-  layer12_out:
+  layer11_out:
   - 5
-Part: xcu280-fsvh2892-2L-e
+Part: xc7vx690tffg1761-2
 ProjectName: myproject
-Stamp: f8636cbc
+Stamp: f00acfe5
 Version: 1.0.0
 WriterConfig:
   Namespace: null
