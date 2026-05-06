@@ -47,7 +47,7 @@ function automatic int_array determineShifts(input integer signed number, input 
 endfunction
 
 // The actual shiftAdd module
-module shift_add #(parameter signed WEIGHT  = 17'd1,
+module shift_add #(parameter signed [BITS-1:0] WEIGHT  = 64'd1,
                    parameter        DEPTH   = 3,
                                     BITS    = 17,
                                     NFRAC   = 8
@@ -56,7 +56,20 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
     input logic [BITS-1:0]      data_in,
     output logic [BITS*2-1:0]   data_out
 );
+    function automatic integer unsigned determine_signed_bits(input logic signed [BITS-1:0] weight);
+        int num_bits = 0;
+        logic sign_bit = weight[BITS-1];
+        for (integer i=BITS-1; i>=0; i--) begin
+            if (weight[i]==sign_bit)
+                num_bits++;
+            else
+                break;
+        end
+        return num_bits-1;
+    endfunction
     localparam integer signed shift[DEPTH:0] = determineShifts(WEIGHT, BITS, DEPTH);
+    localparam integer num_signed_bits = determine_signed_bits(WEIGHT);
+    // localparam integer signed shift[DEPTH:0] = determineShifts(WEIGHT, BITS, DEPTH);
     logic signed [BITS*2-1:0]       data_in_ex;
     logic signed [BITS*2-1:0]       data_out_accum;
     logic signed [BITS+NFRAC-1:0]   data_out_tmp;
@@ -84,34 +97,64 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
         // either multiply with wrapper for niche cases with larger than DSP width ports and
         // a couple weight conditions
         // Otherwise just use a normal multiplier (likely to be done in LUTs)
-    end else begin
-        // muliplication warapper
-        // if weight is small enough (in magnitude) it is not necessary to mutiply by
-        // all of the bits since the lower bits contain all the information
-        if (BITS > 18 && ((WEIGHT[BITS-1:17] == '1) || (WEIGHT[BITS-1:17] == '0))) begin
-            mult_op_wrap #(.din_WIDTH       ( BITS      ),
-                           .dweight_WIDTH   ( 18        ),
-                           .dout_WIDTH      ( BITS+NFRAC)
-                           ) mow(
-                .clk,
-                .reset  ( '0            ),
-                .ce     ( '1            ), // constant enable
-                .din    ( data_in       ),
-                .dweight( WEIGHT[17:0]  ),
-                .dout   ( data_out_tmp  )
-            );
-            assign data_out = $signed(data_out_tmp);
+    end 
+    // else begin
+    //     // muliplication warapper
+    //     // if weight is small enough (in magnitude) it is not necessary to mutiply by
+    //     // all of the bits since the lower bits contain all the information
+    //     if (BITS > 14) begin
+    //         mult_op_wrap #(.din_WIDTH       ( BITS      ),
+    //                        .dweight_WIDTH   ( BITS-num_signed_bits),
+    //                        .dout_WIDTH      ( BITS+NFRAC)
+    //                        ) mow(
+    //             .clk,
+    //             .reset  ( '0            ),
+    //             .ce     ( '1            ), // constant enable
+    //             .din    ( data_in       ),
+    //             .dweight( WEIGHT[BITS-num_signed_bits-1:0] ),
+    //             .dout   ( data_out_tmp  )
+    //         );
+    //         assign data_out = $signed(data_out_tmp);
         
-        // Use normal multiplication operator
-        end else begin
-            always_comb begin
-                data_out_tmp = $signed(data_in) * $signed(WEIGHT);
-            end
-            always_ff @(posedge clk) begin
-                data_out <= $signed(data_out_tmp);
-            end
+    //     // Use normal multiplication operator
+    //     end 
+        else begin
+            // always_comb begin
+            //     // data_out_tmp = $signed(data_in) * $signed(WEIGHT);
+            // end
+            // always_ff @(posedge clk) begin
+            //    (* use_dsp = "yes" *) data_out <= $signed(data_in) * $signed(WEIGHT);
+            // end
+            `ifndef WIDTHX2 
+            (* use_dsp = "yes" *) mult_basic #(
+                .din_WIDTH(BITS), 
+                .dweight_WIDTH(BITS-num_signed_bits),
+                .dout_WIDTH(BITS+NFRAC)
+                ) 
+                shiftAdd_mult
+                (
+                .num_i(data_in),
+                .weight_i(WEIGHT[BITS-num_signed_bits-1:0]),
+                .mult_o(data_out),
+                .clk
+                );
+                
+            `else 
+                (* use_dsp = "yes" *) mult_basic #(
+                .din_WIDTH(BITS), 
+                .dweight_WIDTH(BITS-num_signed_bits),
+                .dout_WIDTH(BITS*2)
+                ) 
+                shiftAdd_mult
+                (
+                .num_i(data_in),
+                .weight_i(WEIGHT[BITS-num_signed_bits-1:0]),
+                .mult_o(data_out),
+                .clk
+                );
+            `endif
         end
-    end
+    // end
     
     
     
@@ -121,6 +164,18 @@ endmodule
 
 `timescale 1 ns / 1 ps
 
+module mult_basic 
+#(parameter din_WIDTH, dweight_WIDTH, dout_WIDTH)
+    (
+    input logic [din_WIDTH-1:0]num_i, 
+    input logic [dweight_WIDTH-1:0]weight_i, 
+    output logic [dout_WIDTH-1:0]mult_o,
+    input logic clk
+    );
+    always_ff @(posedge clk) begin
+        mult_o<=num_i*weight_i;
+    end
+endmodule
 /* Internal Multiplication module
 */
 module mult_op (clk, ce, a, b, p);

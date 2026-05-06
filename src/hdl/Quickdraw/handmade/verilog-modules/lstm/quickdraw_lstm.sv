@@ -110,18 +110,19 @@ module Quickdraw_LSTM #( parameter
         .input_data   (  dense1_input_data ),
         .output_data  (  dense1_output_data)
         );
-    // relu #(
-    //     .WIDTH      ( WIDTH         ),
-    //     .NFRAC      ( WIDTH-NINT         ),
-    //     .SIZE       ( DENSE1_OUTPUT_SIZE )
-    // ) relulayer1 (
-    //     .clk,
-    //     .input_data ( dense1_output_data ),
-    //     .output_data( relu_output_data )
-    // );
+
+    relu #(
+        .WIDTH      ( WIDTH         ),
+        .NFRAC      ( WIDTH-NINT         ),
+        .SIZE       ( DENSE1_OUTPUT_SIZE )
+    ) relulayer1 (
+        .clk,
+        .input_data ( dense1_output_data ),
+        .output_data( relu1_output_data )
+    );
     
         
-    assign dense2_input_data = dense1_output_data;
+    assign dense2_input_data = relu_output_data;
     assign dense2_input_ready = dense1_output_ready;
     denseLayer #(
         .WIDTH(WIDTH), 
@@ -140,8 +141,18 @@ module Quickdraw_LSTM #( parameter
         .input_data   (  dense2_input_data ),
         .output_data  (  dense2_output_data)
     );
+    
+    relu #(
+        .WIDTH      ( WIDTH         ),
+        .NFRAC      ( WIDTH-NINT         ),
+        .SIZE       ( DENSE2_OUTPUT_SIZE )
+    ) relulayer1 (
+        .clk,
+        .input_data ( dense2_output_data ),
+        .output_data( relu2_output_data )
+    );
 
-    assign dense3_input_data = dense2_output_data;
+    assign dense3_input_data = relu2_output_data;
     assign dense3_input_ready = dense2_output_ready;
     denseLayer #(
         .WIDTH(WIDTH), 

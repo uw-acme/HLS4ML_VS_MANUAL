@@ -21,7 +21,7 @@ features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 
 # Things to change
 def return_packages(acc):
-    return f" SIGMOID_PKG=sigmoid{acc[0]}_{acc[0]-acc[1]} REULU_PKG=relu{acc[0]}_{acc[0]-acc[1]} "
+    return f" SIGMOID_PKG=sigmoid{acc[0]}_{acc[0]-acc[1]} RELU_PKG=relu{acc[0]}_{acc[0]-acc[1]} "
 
 # weights_dir = "../weights_n_tables/"
 # y_test = np.load('../../y_test.npy')
@@ -255,14 +255,14 @@ def adjust(bits):
     # pipe_out=0
     # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
     # name = f"expPipeNegmax"
-name = "onelayer"
+name = "onelayerBasic"
 for i in range(4,32):
     acc = (i,(int)(i/2))
     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
     # SA_INT, SA_FRAC = adjust(acc_in[0])
     SAD, SAFRAC = adjust(acc[0])
     params = ""
-    defs = ""
+    defs = " WIDTHX2=1"
     # defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
     # lat = lat_test(acc, name, defs, params)
     # lat = 24*[lat]

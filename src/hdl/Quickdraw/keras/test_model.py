@@ -39,7 +39,7 @@ from tensorflow.keras.models import load_model, Model
 
 from os.path import isdir
 import subprocess
-model = load_model('./Quickdraw-JY/Quickdraw5ClassLSTMFinL.h5')
+model = load_model('./lstm/QuickdrawEH.h5')
 def comp_layer(index):
   
   layer = model.get_layer(index=index)
@@ -84,7 +84,7 @@ def comp_layer(index):
 # create hls4ml model - higher precision (name)
 import yaml
 from sys import argv
-config_name = hls4ml.utils.config_from_keras_model(model, granularity='Model', default_precision='ap_fixed<20,10>')#default_reuse_factor=16384)
+config_name = hls4ml.utils.config_from_keras_model(model, granularity='Model', default_precision='ap_fixed<20,10>', default_reuse_factor=64)
 config_name['Model']['Strategy'] = 'Resource'
 config_name['Flows'] = ['vivado:fifo_depth_optimization']
 hls4ml.model.optimizer.get_optimizer('vivado:fifo_depth_optimization').configure(profiling_fifo_depth=100_000)
@@ -103,13 +103,13 @@ plotting.print_dict(config_name)
 print("-----------------------------------")
 model_name = f"Full"
 hls_model_name = hls4ml.converters.convert_from_keras_model(
-    model, hls_config=config_name, backend='Vivado', output_dir=f'model_1/hls4ml_lstm/{model_name}', part='xc7vx690tffg1761-2', io_type='io_stream'
+    model, hls_config=config_name, backend='Vivado', output_dir=f'model_1/hls4ml_lstm/{model_name}', part='xcu250-figd2104-2-e', io_type='io_stream'
 )
 
-hls4ml.utils.plot_model(hls_model_name, show_shapes=True, show_precision=True, to_file='lstm_new.png')
+hls4ml.utils.plot_model(hls_model_name, show_shapes=True, show_precision=True, to_file='lstm_chanssen_new.png')
 
-exit(0)
-print("Compiling")
+# exit(0)
+# print("Compiling")
 # hls_model_name.compile()
 # print("Testing")
 # y_hls_name = hls_model_name.predict(X_testzero)

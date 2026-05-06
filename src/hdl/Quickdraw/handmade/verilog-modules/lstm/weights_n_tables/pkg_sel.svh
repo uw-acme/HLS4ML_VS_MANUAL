@@ -1,22 +1,22 @@
 // Package with weights and biases for reset gate dense latency layer
 `ifndef LSTM_X_WEIGHTS
-    `define LSTM_X_WEIGHTS lstm_4_pkg_0_16_6
+    `define LSTM_X_WEIGHTS lstm_0_16_6
 `endif
 
 `ifndef LSTM_H_WEIGHTS
-    `define LSTM_H_WEIGHTS lstm_4_pkg_1_16_6
+    `define LSTM_H_WEIGHTS lstm_1_16_6
 `endif
 
 `ifndef DENSE1_WEIGHTS
-    `define DENSE1_WEIGHTS dense_8_pkg_0_16_6
+    `define DENSE1_WEIGHTS dense_0_16_6
 `endif
 
 `ifndef DENSE2_WEIGHTS
-    `define DENSE2_WEIGHTS dense_9_pkg_0_16_6
+    `define DENSE2_WEIGHTS dense_1_0_16_6
 `endif
 
 `ifndef DENSE3_WEIGHTS
-    `define DENSE3_WEIGHTS rnn_densef_pkg_0_16_6
+    `define DENSE3_WEIGHTS dense_2_0_16_6
 `endif
 
 // // Package with weights and biases for update gate dense latency layer
