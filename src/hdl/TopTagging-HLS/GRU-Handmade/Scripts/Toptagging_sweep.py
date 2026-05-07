@@ -57,8 +57,9 @@ def handmade_gen(acc, name, params, defs):
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark*.sv')
     if (not os.path.isfile(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt")):
         os.system(f'vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name} "{defs}" "{params}"')
-    #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
-    accuracy = accuracy_test(acc, y_test, name, defs, params)
+    #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ltxie27@uw.edu')
+    # accuracy = accuracy_test(acc, y_test, name, defs, params)
+    accuracy = -1.0 ## Placeholder so CSV write still works
     results = extract_data(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt", features)
     time = extract_time(f"../reports/{acc[0]}_{acc[1]}_{name}_timing.rpt")
     #accuracy_score = test_score()
@@ -88,7 +89,7 @@ def handmade_gen(acc, name, params, defs):
 
     # output += f"\nTiming: {time}"
     # output += f"\nAccuracy: {accuracy}"
-    os.system(f'printf "{name} finished at %b with parameters {acc} with results: {output}" "$(date)" | mail -s "Handmade made" ceravcal@uw.edu')
+    os.system(f'printf "{name} finished at %b with parameters {acc} with results: {output}" "$(date)" | mail -s "Handmade made" ltxie27@uw.edu')
 
 
 def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, params : str = None, email : bool = False):
@@ -147,7 +148,7 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     f.close()
     # Uses the Linux mail system to send the results to me
     if email:
-        os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ceravcal@uw.edu')
+        os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ltxie27@uw.edu')
     return acc_res
 
 def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str = None, email : bool = False):
@@ -190,7 +191,7 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
         ii = newest.split(", ")[1]
     # Uses the Linux mail system to send the results to me
     if email:
-        os.system(f'printf "Lat test for {name} finished at %b with results: {ii}, {lat}" "$(date)" | mail -s "Handmade lat" ceravcal@uw.edu')
+        os.system(f'printf "Lat test for {name} finished at %b with results: {ii}, {lat}" "$(date)" | mail -s "Handmade lat" ltxie27@uw.edu')
     return ii, lat
 # Generates a systemverilog package of weights of a proper accuracy from a file listing weights
 # Inputs: 
@@ -246,21 +247,29 @@ def adjust(bits):
     # pipe_out=0
     # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
     # name = f"expPipeNegmax"
-name = "Toptag_reduced_cycles"
-for i in range(2,14):
-    acc = (3*i-2,i)
-    # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
-    # SA_INT, SA_FRAC = adjust(acc_in[0])
-    SAD, SAFRAC = adjust(acc[0])
-    params = ""
-    defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-    # lat = lat_test(acc, name, defs, params)
-    # lat = 24*[lat]
-    # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
-    # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-    # # print((3*i-2,i))
-    handmade_gen(acc, name, params, defs)
-        # accuracy_test(acc, y_test, name, defs, params, email=True)
+# name = "Toptag_reduced_cycles"
+# for i in range(2,14):
+#     acc = (3*i-2,i)
+#     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
+#     # SA_INT, SA_FRAC = adjust(acc_in[0])
+#     SAD, SAFRAC = adjust(acc[0])
+#     params = ""
+#     defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+#     # lat = lat_test(acc, name, defs, params)
+#     # lat = 24*[lat]
+#     # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
+#     # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+#     # # print((3*i-2,i))
+#     handmade_gen(acc, name, params, defs)
+#         # accuracy_test(acc, y_test, name, defs, params, email=True)
+name = "Toptag_pipeclean"
+i = 6
+acc = (3*i-2, i)            # (16, 6)
+SAD, SAFRAC = adjust(acc[0])
+params = ""
+defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC} SKIP_GRU'
+handmade_gen(acc, name, params, defs)
+
 
 #########################################################################
 #########################################################################
