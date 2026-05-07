@@ -16,8 +16,9 @@
 // - output_data
 
 `timescale 1ns / 1ps
-`include "pkg_sel_gru.svh"
-`include "pkg_sel.svh"
+// `include "pkg_sel_gru.svh"
+// `include "pkg_sel.svh"
+`include "defines.svh"
 
 // Computes the dot product of the inputs and WEIGHTS then adds that to the BIASes
 module denseLayer #(

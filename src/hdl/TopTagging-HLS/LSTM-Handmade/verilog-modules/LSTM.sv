@@ -1,9 +1,11 @@
-`include "weights_sel.svh"
-`include "defines.svh"
+
+`include "pkg_sel.svh"
+
+// `include "defines.svh"
 import `LSTM_X_WEIGHTS::*;
 import `LSTM_H_WEIGHTS::*;
 `timescale 1ns / 1ps
-
+// `define MODELSIM
 
 module LSTM #( parameter
     WIDTH = 16, // Bitwidth of input values
@@ -28,7 +30,8 @@ module LSTM #( parameter
     output logic signed [WIDTH-1:0] ht [OUTPUT_SIZE-1:0] // Output data
 );
     localparam NFRAC = WIDTH-NINT;
-
+    localparam SIGMOID_BRAM_FILE = "weights_n_tables/sigmoid_table_18_18_10_7.dat"
+    localparam TANH_BRAM_FILE = "weights_n_tables/tanh_table_18_18_10_7.dat"
     // Multiplication module for fixed point multiplication
     function automatic logic signed [WIDTH*2-1:0] mult(
         input logic signed [WIDTH-1:0] in1,
@@ -97,11 +100,11 @@ module LSTM #( parameter
 
     // Edge triggered version of output ready signals for layers. Stays high until end of loop (next ready is high)
     logic [4:0] edge_trig;
-    edge_check edging1 (.clk, .reset(next_ready), .in(tanh_output_ready&&which_tanh), .out(edge_trig[0]));
-    edge_check edging2 (.clk, .reset(next_ready), .in(sig_output_ready1), .out(edge_trig[1]));
-    edge_check edging3 (.clk, .reset(next_ready), .in(sig_output_ready2), .out(edge_trig[2]));
-    edge_check edging4 (.clk, .reset(next_ready), .in(tanh_output_ready&&!which_tanh), .out(edge_trig[3]));
-    edge_check edging5 (.clk, .reset(next_ready), .in(sig_output_ready3), .out(edge_trig[4]));
+    edge_check edging1 ( .reset(next_ready), .in(tanh_output_ready&&which_tanh), .out(edge_trig[0]));
+    edge_check edging2 ( .reset(next_ready), .in(sig_output_ready1), .out(edge_trig[1]));
+    edge_check edging3 ( .reset(next_ready), .in(sig_output_ready2), .out(edge_trig[2]));
+    edge_check edging4 ( .reset(next_ready), .in(tanh_output_ready&&!which_tanh), .out(edge_trig[3]));
+    edge_check edging5 ( .reset(next_ready), .in(sig_output_ready3), .out(edge_trig[4]));
 
     // Next loop is ready when every layer has finished
     assign move_next = &edge_trig;
@@ -141,7 +144,7 @@ module LSTM #( parameter
             end
             PROCESSING: begin
                 processing=1;
-                generate
+                
                     if (IMPLEMENTATION) begin // if the implementation is io_parallel
                         if (curr_step==TIMESTEPS&&next_ready) begin
                             next_state=READY;
@@ -155,7 +158,7 @@ module LSTM #( parameter
                             future_reset_cell=(curr_step==TIMESTEPS);
                         end
                     end
-                endgenerate
+            //  endgenerate
                 if (!ready_for_output) // If the output is ready but the next layer isn't ready to take it
                     next_state=PAUSED;
             end
@@ -163,7 +166,7 @@ module LSTM #( parameter
                 paused=1;
                 if (ready_for_output) begin
                     next_state=PROCESSING;
-                    start_processing=1
+                    start_processing=1;
                 end
             end
         endcase
@@ -296,7 +299,7 @@ module LSTM #( parameter
             .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
             .REMOVE_PIPELINES(REMOVE_PIPELINES)
-            ) sigmaf (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[0]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready1), .input_data(ft_a), .output_data(ft));\
+            ) sigmaf (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[0]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready1), .input_data(ft_a), .output_data(ft));
 
     /*                      it = sigmoid(Wih*ht_1+Wix*xt+bi)             */
     sigmoid #(.WIDTH(WIDTH),
@@ -378,7 +381,7 @@ module edge_check(input reset, input in, output logic out);
             out=1;
     end
 endmodule
-
+`ifdef BALLS
 `define STRINGIFY(x) `"x`"
 module LSTM_tb;
     logic clk;
@@ -468,3 +471,4 @@ module LSTM_tb;
         $stop;
     end
 endmodule
+`endif

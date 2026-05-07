@@ -1,6 +1,6 @@
-`include "weights_sel.svh"
+`include "pkg_sel.svh"
 `include "defines.svh"
-// `define MODELSIM
+
 import `LSTM_X_WEIGHTS::*;
 
 import `LSTM_H_WEIGHTS::*;
@@ -25,7 +25,7 @@ module Quickdraw_LSTM #( parameter
     input input_ready,
     output logic ready,
     output logic output_ready,
-    input logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0],
+    input logic signed [WIDTH-1:0] input_v [INPUT_SIZE-1:0],
     output logic signed [WIDTH-1:0] output_data
 );
 
@@ -34,7 +34,7 @@ module Quickdraw_LSTM #( parameter
     localparam LSTM_REMOVE_PIPELINES = 1;
 
     localparam LSTM_INPUT_SIZE=INPUT_SIZE, LSTM_OUTPUT_SIZE=128;
-    logic signed[WIDTH-1:0] LSTM_input_data [TIMESTEPS-1:0][LSTM_INPUT_SIZE-1:0];
+    logic signed[WIDTH-1:0] LSTM_input_data [0:0][LSTM_INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] LSTM_output_data [LSTM_OUTPUT_SIZE-1:0];
 
     logic dense1_input_ready, dense1_output_ready;
@@ -52,7 +52,8 @@ module Quickdraw_LSTM #( parameter
     logic signed[WIDTH-1:0] dense3_input_data [DENSE3_INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] dense3_output_data [DENSE3_OUTPUT_SIZE-1:0];
 
-    // logic signed[WIDTH-1:0] relu_output_data [DENSE1_OUTPUT_SIZE-1:0];
+    logic signed[WIDTH-1:0] relu1_output_data [DENSE1_OUTPUT_SIZE-1:0];
+    logic signed[WIDTH-1:0] relu2_output_data [DENSE2_OUTPUT_SIZE-1:0];
 
     localparam softmax_INPUT_SIZE=DENSE3_OUTPUT_SIZE, softmax_OUTPUT_SIZE=OUTPUT_SIZE;
     logic signed[WIDTH-1:0] softmax_input_data [softmax_INPUT_SIZE-1:0];
@@ -60,7 +61,7 @@ module Quickdraw_LSTM #( parameter
     logic softmax_input_ready, softmax_output_ready;
 
 
-    assign LSTM_input_data = input_v;
+    assign LSTM_input_data[0] = input_v;
     assign LSTM_input_ready = input_ready;
     logic LSTM_ready;
     logic dense1_ready;
@@ -122,7 +123,7 @@ module Quickdraw_LSTM #( parameter
     );
     
         
-    assign dense2_input_data = relu_output_data;
+    assign dense2_input_data = relu1_output_data;
     assign dense2_input_ready = dense1_output_ready;
     denseLayer #(
         .WIDTH(WIDTH), 
@@ -146,7 +147,7 @@ module Quickdraw_LSTM #( parameter
         .WIDTH      ( WIDTH         ),
         .NFRAC      ( WIDTH-NINT         ),
         .SIZE       ( DENSE2_OUTPUT_SIZE )
-    ) relulayer1 (
+    ) relulayer2 (
         .clk,
         .input_data ( dense2_output_data ),
         .output_data( relu2_output_data )
@@ -177,8 +178,10 @@ module Quickdraw_LSTM #( parameter
     softmaxLayerNeg #(
         .WIDTH(WIDTH), 
         .NFRAC(WIDTH-NINT),  
-        .SIZE(DENSE2_OUTPUT_SIZE)
-    ) sig_layer
+        .N(DENSE3_OUTPUT_SIZE),
+        .EXP_TABLE_PATH("weights_n_tables/exp_neg_table_18_17_10_6.dat"),
+        .INVERT_TABLE_PATH("weights_n_tables/pos_invert_table_18_17_10_7.dat")
+    ) soft_layer
     (
         .clk,
         .reset,
@@ -195,6 +198,8 @@ module Quickdraw_LSTM #( parameter
 endmodule
 `define STRINGIFY(x) `"x`"
 
+`define MODELSIM
+
 `ifndef SYNTHESIS
 module Quickdraw_LSTM_tb;
     logic clk;
@@ -202,7 +207,7 @@ module Quickdraw_LSTM_tb;
     logic input_ready;
     logic output_ready;
     // logic move_next;
-    parameter INPUT_SIZE = 3, OUTPUT_SIZE = 5, TIMESTEPS = 100;
+    parameter INPUT_SIZE = 3, OUTPUT_SIZE = 5, TIMESTEPS = 100, WIDTH = 16;
     parameter NINT = 6;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [INPUT_SIZE-1:0];
@@ -287,6 +292,7 @@ module Quickdraw_LSTM_tb;
             for (j=0; j<INPUT_SIZE; j++) begin
                 input_v<=x_test[i][j];
                 @(posedge input_ready)
+                #0;
             end
             // @(posedge output_ready)
             i++;

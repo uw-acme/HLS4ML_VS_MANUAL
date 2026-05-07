@@ -1,76 +1,31 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/c_t
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/c_t_a
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/clk
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/combined
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ct
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ct_1
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ct_next
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ct_tanh
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/curr_step
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/dense_inputh
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/dense_inputh_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/dense_inputx
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/dense_inputx_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/dense_outputh
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/dense_outputh_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/dense_outputx
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/dense_outputx_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/denseh_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/densex_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/edge_trig
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ft
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ft_a
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/future_reset_cell
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ht
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ht_1
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/input_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/INPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/input_v
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/it
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/it_a
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/lstm_reset
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/move_next
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/move_next_1
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/next_layer_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/next_output_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/next_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/next_state
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/NFRAC
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/NINT
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ot
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ot_a
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/OUTPUT_EACH_HT
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/output_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/OUTPUT_SIZE
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/paused
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/PIPE_OUT
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/PIPELINING
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/processing
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/ready_for_output
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/reset
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/reset_cell
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sig_output_ready1
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sig_output_ready2
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sig_output_ready4
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/sigmoid_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/start_processing
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/state
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/tanh_input
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/tanh_input_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/tanh_output
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/tanh_output_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/tanh_ready
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/TIMESTEPS
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/which_tanh
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/WIDTH
-add wave -noupdate /Toptagging_top_tb/dut/toptag/lstm_layer/xt
+add wave -noupdate /Quickdraw_LSTM_tb/clk
+add wave -noupdate /Quickdraw_LSTM_tb/fd
+add wave -noupdate /Quickdraw_LSTM_tb/flat_mem
+add wave -noupdate /Quickdraw_LSTM_tb/i
+add wave -noupdate /Quickdraw_LSTM_tb/input_ready
+add wave -noupdate /Quickdraw_LSTM_tb/INPUT_SIZE
+add wave -noupdate /Quickdraw_LSTM_tb/input_v
+add wave -noupdate /Quickdraw_LSTM_tb/j
+add wave -noupdate /Quickdraw_LSTM_tb/k
+add wave -noupdate /Quickdraw_LSTM_tb/NFRAC
+add wave -noupdate /Quickdraw_LSTM_tb/NINT
+add wave -noupdate /Quickdraw_LSTM_tb/num_tests
+add wave -noupdate /Quickdraw_LSTM_tb/out
+add wave -noupdate /Quickdraw_LSTM_tb/output_data
+add wave -noupdate /Quickdraw_LSTM_tb/output_ready
+add wave -noupdate /Quickdraw_LSTM_tb/OUTPUT_SIZE
+add wave -noupdate /Quickdraw_LSTM_tb/ready
+add wave -noupdate /Quickdraw_LSTM_tb/reset
+add wave -noupdate /Quickdraw_LSTM_tb/TIMESTEPS
+add wave -noupdate /Quickdraw_LSTM_tb/WIDTH
+add wave -noupdate /Quickdraw_LSTM_tb/write_file
+add wave -noupdate /Quickdraw_LSTM_tb/x_test
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {7352054 ps} 0} {{Cursor 2} {429031 ps} 0} {{Cursor 3} {67000 ps} 0}
-quietly wave cursor active 3
-configure wave -namecolwidth 375
+WaveRestoreCursors {{Cursor 1} {166 ps} 0}
+quietly wave cursor active 1
+configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
@@ -84,4 +39,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {657297 ps}
+WaveRestoreZoom {0 ps} {1 ns}

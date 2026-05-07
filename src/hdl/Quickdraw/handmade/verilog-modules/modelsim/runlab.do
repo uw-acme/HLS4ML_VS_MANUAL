@@ -8,10 +8,9 @@ vlib work
 
 # Dense weights
 # vlog +define+SA_DEPTH=3 +define+SA_FRAC=0 +define+PIPELINE_MULT=1 "./verilog-modules/pkg_sel.svh"
-#vlog "../weights_n_tables/layer*pkg*.sv"
-#vlog ../weights_n_tables/output_sigmoid*
-vlog "lstm/weights_n_tables/*"
-vlog "/lstm/*.sv"
+
+vlog weights_n_tables/*.sv
+vlog *.svh
 vlog *.sv
 
 # Call vsim to invoke simulator
@@ -24,7 +23,7 @@ vsim -voptargs="+acc" -t 1ps -lib work Quickdraw_LSTM_tb -suppress 8607
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do "modelsim/wave.do"
+do "../modelsim/wave.do"
 
 # Set the window types
 view wave

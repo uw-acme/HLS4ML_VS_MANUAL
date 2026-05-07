@@ -1,4 +1,4 @@
-// `define MODELSIM
+`define MODELSIM
 
 `timescale 1ns / 1ps
 module Toptagging_top #( parameter

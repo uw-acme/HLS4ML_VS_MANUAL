@@ -255,7 +255,7 @@ def adjust(bits):
     # pipe_out=0
     # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
     # name = f"expPipeNegmax"
-name = "onelayerBasic"
+name = "magicOnly"
 for i in range(4,32):
     acc = (i,(int)(i/2))
     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)

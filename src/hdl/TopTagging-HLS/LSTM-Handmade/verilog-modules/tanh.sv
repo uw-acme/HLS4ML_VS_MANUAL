@@ -59,8 +59,8 @@ module tanh #(parameter
     logic unsigned [MEM_WIDTH-1:0] bram [TABLE_SIZE];
     
     // input_data*TABLE_SIZE/16 + TABLE_SIZE/2
-    logic [LOOKUP_WIDTH-1:0] index [SIZE-1:0];
-    logic [LOOKUP_WIDTH-1:0] final_index [SIZE-1:0];
+    logic unsigned [LOOKUP_WIDTH-1:0] index [SIZE-1:0];
+    logic unsigned [LOOKUP_WIDTH-1:0] final_index [SIZE-1:0];
 
     // unsigned tanh(val) value from bram
     logic unsigned [WIDTH-1:0] output_data_unsigned [SIZE-1:0];
@@ -183,13 +183,17 @@ module tanh #(parameter
 
 endmodule
 
-module tanhActivationLayer_tb();
+module tanh_tb();
 
-    localparam  WIDTH           = 16,
-                NFRAC           = 12,
-                SIZE            = 8;
+    localparam  WIDTH           = 32,
+                NFRAC           = 16,
+                SIZE            = 1;
     logic clk;
     logic reset;
+    logic input_ready;
+    logic output_ready;
+    logic ready;
+    logic next_layer_ready;
     logic signed [WIDTH-1:0] input_data[0:SIZE-1];
     logic signed [WIDTH-1:0] output_data[0:SIZE-1];
     
@@ -200,10 +204,7 @@ module tanhActivationLayer_tb();
         .NFRAC          ( NFRAC             ),
         .SIZE           ( SIZE              )
     ) dut (
-        .clk            ( clk               ),
-        .reset          ( reset             ),
-        .input_data     ( input_data        ),
-        .output_data    ( output_data       )
+        .*
     );
     
     localparam CLOCK_PERIOD = 10;
@@ -219,27 +220,16 @@ module tanhActivationLayer_tb();
     // Main stimulus
     initial begin
         reset = 1;
-        input_data =   {
-            'h0000, 'h0001, 'h0002, 'h0003,
-            'h0004, 'h0005, 'h0006, 'h0007
-                        };
-        repeat(3) @(posedge clk);
+        next_layer_ready=1;
+        input_ready=0;
+        @(posedge clk)
         reset = 0;
-        
-        repeat(30) @(posedge clk);
-        
-        
-//        input_data = 'hb900;
-//        repeat(1) @(posedge clk);
-//        input_data = 'hb901;
-//        repeat(1) @(posedge clk);
-//        input_data = 'h8000;
-//        repeat(1) @(posedge clk);
-//        input_data = 'hb900;
-//        repeat(1) @(posedge clk);
-//        input_data = 'hb901;
-        repeat(10) @(posedge clk);
-        
+        input_ready=1;
+        for (int i=0; i<$pow(2, WIDTH); i++)begin
+            
+            @(posedge clk)
+            input_data = '{i};
+        end
         $stop;
         
     end
