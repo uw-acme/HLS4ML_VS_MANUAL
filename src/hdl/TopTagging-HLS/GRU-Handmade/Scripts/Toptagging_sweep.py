@@ -16,7 +16,7 @@ sys.path.insert(1,path)
 # from helper_functions import *
 import numpy as np
 from sklearn.metrics import accuracy_score
-## y_test = np.load('../../y_test.npy')
+y_test = np.load('../../y_test.npy')
 model = load_model("../../model_gru.h5")
 features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 # for layer in layers:
@@ -58,8 +58,8 @@ def handmade_gen(acc, name, params, defs):
     if (not os.path.isfile(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt")):
         os.system(f'vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name} "{defs}" "{params}"')
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ltxie27@uw.edu')
-    # accuracy = accuracy_test(acc, y_test, name, defs, params)
-    accuracy = -1.0 ## Placeholder so CSV write still works
+    accuracy = accuracy_test(acc, y_test, name, defs, params)
+    # accuracy = -1.0 ## Placeholder so CSV write still works
     results = extract_data(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt", features)
     time = extract_time(f"../reports/{acc[0]}_{acc[1]}_{name}_timing.rpt")
     #accuracy_score = test_score()
@@ -493,7 +493,7 @@ def gen_weight(accuracy, model, target_dir="./"):
 #     # # print((3*i-2,i))
 #     handmade_gen(acc, name, params, defs)
 #         # accuracy_test(acc, y_test, name, defs, params, email=True)
-name = "Toptag_pipeclean"
+name = "Toptag_pipeclean_accuracy"
 i = 6
 acc = (3*i-2, i)            # (16, 6)
 SAD, SAFRAC = adjust(acc[0])
