@@ -1,4 +1,4 @@
-
+## Double hash-tag comments are Leo's temporary changes for pipe cleaning
 acc = []
 import os
 import re
@@ -6,7 +6,7 @@ import numpy as np
 from tensorflow.keras.models import load_model # type: ignore
 import sys
 currentdir = os.getcwd()
-ind = currentdir.find("HLS4ML_VS_MANUAL")
+ind = currentdir.find ("HLS4ML_VS_MANUAL")
 root_folder = currentdir[0:ind+len("HLS4ML_VS_MANUAL")]
 path = os.path.join(root_folder, "src/hdl/Batchnorm-JetTagging")
 sys.path.insert(1,path)
@@ -16,7 +16,7 @@ sys.path.insert(1,path)
 # from helper_functions import *
 import numpy as np
 from sklearn.metrics import accuracy_score
-y_test = np.load('../../y_test.npy')
+## y_test = np.load('../../y_test.npy')
 model = load_model("../../model_gru.h5")
 features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 # for layer in layers:
@@ -242,34 +242,6 @@ def adjust(bits):
 # handmade_gen((16,6), name)
 # patt = r"[0-9]{1,2}"
 
-# for pipeline in [3]:
-    # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
-    # pipe_out=0
-    # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
-    # name = f"expPipeNegmax"
-# name = "Toptag_reduced_cycles"
-# for i in range(2,14):
-#     acc = (3*i-2,i)
-#     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
-#     # SA_INT, SA_FRAC = adjust(acc_in[0])
-#     SAD, SAFRAC = adjust(acc[0])
-#     params = ""
-#     defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-#     # lat = lat_test(acc, name, defs, params)
-#     # lat = 24*[lat]
-#     # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
-#     # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-#     # # print((3*i-2,i))
-#     handmade_gen(acc, name, params, defs)
-#         # accuracy_test(acc, y_test, name, defs, params, email=True)
-name = "Toptag_pipeclean"
-i = 6
-acc = (3*i-2, i)            # (16, 6)
-SAD, SAFRAC = adjust(acc[0])
-params = ""
-defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC} SKIP_GRU'
-handmade_gen(acc, name, params, defs)
-
 
 #########################################################################
 #########################################################################
@@ -452,6 +424,9 @@ def gen_weight(accuracy, model, target_dir="./"):
     # The amount of weights for each layer
     current = 0
     for layer in model.layers:
+        ## GRU skip for pipe cleaning
+        if layer.__class__.__name__ == 'GRU':
+            continue
         contents = layer.get_weights()
         if (contents!=None):
             # contents = np.concatenate((contents, np.zeros(len(contents[1]))), axis=1)
@@ -497,3 +472,31 @@ def gen_weight(accuracy, model, target_dir="./"):
                         num = dec_to_bin(bias[i]*(2**Nfrac), accuracy[0])
                         f.write(f"{head}{num}")
                         f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
+
+# for pipeline in [3]:
+    # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
+    # pipe_out=0
+    # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
+    # name = f"expPipeNegmax"
+# name = "Toptag_reduced_cycles"
+# for i in range(2,14):
+#     acc = (3*i-2,i)
+#     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
+#     # SA_INT, SA_FRAC = adjust(acc_in[0])
+#     SAD, SAFRAC = adjust(acc[0])
+#     params = ""
+#     defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+#     # lat = lat_test(acc, name, defs, params)
+#     # lat = 24*[lat]
+#     # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
+#     # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+#     # # print((3*i-2,i))
+#     handmade_gen(acc, name, params, defs)
+#         # accuracy_test(acc, y_test, name, defs, params, email=True)
+name = "Toptag_pipeclean"
+i = 6
+acc = (3*i-2, i)            # (16, 6)
+SAD, SAFRAC = adjust(acc[0])
+params = ""
+defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC} SKIP_GRU'
+handmade_gen(acc, name, params, defs)

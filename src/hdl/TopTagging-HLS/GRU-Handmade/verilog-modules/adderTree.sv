@@ -21,6 +21,7 @@ module adderTree #(parameter WIDTH       = 17,
                              ) (
     input logic                         clk,
     input logic                         reset,
+	input logic 						ce,
     input logic signed  [WIDTH-1 : 0]   input_data  [0:INPUT_SIZE-1][0:OUTPUT_SIZE-1],
     output logic signed [WIDTH-1 : 0]   output_data [0:OUTPUT_SIZE-1]
 );
@@ -50,6 +51,7 @@ module adderTree #(parameter WIDTH       = 17,
                              ) column_tree (
 	           .clk,
 	           .reset,
+			   .ce,
 	           .input_data  ( input_data_transpose[i]   ),
 	           .output_data ( temp_output_data[i]       )
 	       );
