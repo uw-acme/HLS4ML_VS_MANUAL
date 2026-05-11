@@ -1,103 +1,95 @@
 `include "pkg_sel.svh"
 `include "defines.svh"
 
-import `LSTM_X_WEIGHTS::*;
-
-import `LSTM_H_WEIGHTS::*;
-
+import `RESET_GATE_PKG::*;
+import `UPDATE_GATE_PKG::*;
+import `CANDIDATE_W_PKG::*;
+import `CANDIDATE_U_PKG::*;
 import `DENSE3_WEIGHTS::*;
-
 import `DENSE2_WEIGHTS::*;
-
 import `DENSE1_WEIGHTS::*;
 
 `timescale 1ns / 1ps
 module quickdraw_gru #(parameter
-    WIDTH = 16,
-    NINT = 6,
+    WIDTH = 20,
+    NINT = 10,
     INPUT_SIZE = 3,
     OUTPUT_SIZE = 5,
     TIMESTEPS = 100
 )(
-    input clk,
-    input reset,
-    input input_ready,
+    input  logic clk,
+    input  logic reset,
+    input  logic input_ready,
     output logic ready,
     output logic output_ready,
-    input logic signed [WIDTH-1:0] input_v [INPUT_SIZE-1:0],
+    input  logic signed [WIDTH-1:0] input_v [INPUT_SIZE-1:0],
     output logic signed [WIDTH-1:0] output_data
 );
 
     localparam PIPELINING = 16;
     localparam PIPE_OUT = 0;
-    localparam LSTM_REMOVE_PIPELINES = 1;
 
-    localparam LSTM_INPUT_SIZE=INPUT_SIZE, LSTM_OUTPUT_SIZE=128;
-    logic signed[WIDTH-1:0] LSTM_input_data [0:0][LSTM_INPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] LSTM_output_data [LSTM_OUTPUT_SIZE-1:0];
+    localparam GRU_INPUT_SIZE=INPUT_SIZE, GRU_OUTPUT_SIZE=128;
+    logic signed [WIDTH-1:0] gru_input_data [GRU_INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] gru_output_data [GRU_OUTPUT_SIZE-1:0];
 
     logic dense1_input_ready, dense1_output_ready;
-    localparam DENSE1_INPUT_SIZE=LSTM_OUTPUT_SIZE, DENSE1_OUTPUT_SIZE=256;
-    logic signed[WIDTH-1:0] dense1_input_data [DENSE1_INPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] dense1_output_data [DENSE1_OUTPUT_SIZE-1:0];
+    localparam DENSE1_INPUT_SIZE=GRU_OUTPUT_SIZE, DENSE1_OUTPUT_SIZE=256;
+    logic signed [WIDTH-1:0] dense1_input_data [DENSE1_INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] dense1_output_data [DENSE1_OUTPUT_SIZE-1:0];
 
     logic dense2_input_ready, dense2_output_ready;
     localparam DENSE2_INPUT_SIZE=DENSE1_OUTPUT_SIZE, DENSE2_OUTPUT_SIZE=128;
-    logic signed[WIDTH-1:0] dense2_input_data [DENSE2_INPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] dense2_output_data [DENSE2_OUTPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] dense2_input_data [DENSE2_INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] dense2_output_data [DENSE2_OUTPUT_SIZE-1:0];
 
     logic dense3_input_ready, dense3_output_ready;
     localparam DENSE3_INPUT_SIZE=DENSE2_OUTPUT_SIZE, DENSE3_OUTPUT_SIZE=5;
-    logic signed[WIDTH-1:0] dense3_input_data [DENSE3_INPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] dense3_output_data [DENSE3_OUTPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] dense3_input_data [DENSE3_INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] dense3_output_data [DENSE3_OUTPUT_SIZE-1:0];
 
-    logic signed[WIDTH-1:0] relu1_output_data [DENSE1_OUTPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] relu2_output_data [DENSE2_OUTPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] relu1_output_data [DENSE1_OUTPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] relu2_output_data [DENSE2_OUTPUT_SIZE-1:0];
 
     localparam softmax_INPUT_SIZE=DENSE3_OUTPUT_SIZE, softmax_OUTPUT_SIZE=OUTPUT_SIZE;
-    logic signed[WIDTH-1:0] softmax_input_data [softmax_INPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] softmax_output_data [softmax_OUTPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] softmax_input_data [softmax_INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] softmax_output_data [softmax_OUTPUT_SIZE-1:0];
     logic softmax_input_ready, softmax_output_ready;
 
-
-    assign LSTM_input_data[0] = input_v;
-    assign LSTM_input_ready = input_ready;
-    logic LSTM_ready;
+    assign gru_input_data = input_v;
+    assign gru_input_ready = input_ready;
+    logic gru_ready;
     logic dense1_ready;
     logic dense2_ready;
     logic softmax_ready;
-    assign ready=LSTM_ready;
-    LSTM #(
-        .WIDTH(WIDTH), 
-        .NINT(NINT),
-        .INPUT_SIZE(LSTM_INPUT_SIZE),
-        .OUTPUT_SIZE(LSTM_OUTPUT_SIZE),
-        .TIMESTEPS(TIMESTEPS),
-        .PIPELINING(PIPELINING),
-        .PIPE_OUT(PIPE_OUT),
-        .REMOVE_PIPELINES(LSTM_REMOVE_PIPELINES),
-        .IMPLEMENTATION(0)
-        ) lstm_layer (
+    assign ready = gru_ready;
+
+    gru #(
+        .WIDTH          ( WIDTH             ), 
+        .NFRAC          ( WIDTH-NINT        ),
+        .x_SIZE         ( GRU_INPUT_SIZE    ),
+        .TIMESTEPS      ( TIMESTEPS         ),
+        .y_SIZE         ( GRU_OUTPUT_SIZE   )
+    ) gru_layer (
         .clk,
         .reset,
-        .ready(LSTM_ready),
-        .next_layer_ready(dense1_ready),
-        .input_ready  (  LSTM_input_ready),
-        .output_ready (  LSTM_output_ready),
-        .input_v   (  LSTM_input_data ),
-        .ht  (  LSTM_output_data)
+        .ready          ( gru_ready         ),
+        .next_layer_ready(dense1_ready      ),
+        .input_valid    ( gru_input_ready   ),
+        .output_valid   ( gru_output_ready  ),
+        .x_t            ( gru_input_data    ),
+        .y_t            ( gru_output_data   )
     );
     always_latch begin : next_dense
-        if (LSTM_output_ready)
-            dense1_input_data = LSTM_output_data;
+        if (gru_output_ready)
+            dense1_input_data = gru_output_data;
     end
-    assign dense1_input_ready = LSTM_output_ready;
-    // assign dense1_input_data = LSTM_output_data;
+    assign dense1_input_ready = gru_output_ready;
     denseLayer #(
-        .WIDTH(WIDTH), 
-        .NFRAC(WIDTH-NINT), 
-        .INPUT_SIZE(DENSE1_INPUT_SIZE), 
-        .OUTPUT_SIZE(DENSE1_OUTPUT_SIZE),
+        .WIDTH       (WIDTH), 
+        .NFRAC       (WIDTH-NINT), 
+        .INPUT_SIZE  (DENSE1_INPUT_SIZE), 
+        .OUTPUT_SIZE (DENSE1_OUTPUT_SIZE),
         .WEIGHTS     ( `DENSE1_WEIGHTS::weights ),
         .BIAS        ( `DENSE1_WEIGHTS::bias    )
         ) dense1 (
@@ -191,7 +183,6 @@ module quickdraw_gru #(parameter
         .input_data   (  softmax_input_data ),
         .output_data  (  softmax_output_data));
 
-
     assign output_ready = softmax_output_ready;
     assign output_data = softmax_output_data[0];
 endmodule
@@ -200,7 +191,7 @@ endmodule
 `define MODELSIM
 
 `ifndef SYNTHESIS
-module Quickdraw_LSTM_tb;
+module quickdraw_gru_tb();
     logic clk;
     logic reset;
     logic input_ready;
@@ -212,7 +203,7 @@ module Quickdraw_LSTM_tb;
     logic signed[WIDTH-1:0] input_v [INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] output_data;
     logic ready;
-    Quickdraw_LSTM #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
+    quickdraw_gru #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
     initial begin
         clk=0;
         forever #1 clk<=~clk;
@@ -303,3 +294,42 @@ module Quickdraw_LSTM_tb;
     end
 endmodule
 `endif
+
+// test module with randomly generated input
+module quickdraw_gru_tb_simple();
+
+    logic clk, reset, input_ready, output_ready, ready;
+    logic signed [WIDTH-1:0] input_v [INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] output_data;
+
+    quickdraw_gru
+        #(.WIDTH(WIDTH), .NINT(NINT), .INPUT_SIZE(INPUT_SIZE), .OUTPUT_SIZE(OUTPUT_SIZE), .TIMESTEPS(TIMESTEPS))
+        dut (.*);
+
+    localparam PERIOD = 10;
+    initial begin
+       clk <= 1'b1;
+       forever #(PERIOD/2) clk <= ~clk;
+    end
+
+    integer i;
+    initial begin
+        reset <= 1; repeat(1) @(posedge clk);
+
+        reset <= 0;
+        input_ready <= 1;
+
+        x_t <= {{32'b0},
+                {32'b0},
+                {32'b0},
+                {32'b0},
+                {32'b0},
+                {32'b0}
+               };
+
+        repeat(1000) @(posedge clk);
+
+        $stop;
+    end
+
+endmodule
