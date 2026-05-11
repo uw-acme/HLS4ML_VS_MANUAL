@@ -32,7 +32,7 @@ import `UPDATE_GATE_PKG::*;
 import `CANDIDATE_W_PKG::*;
 import `CANDIDATE_U_PKG::*;
 
-module gruCell #(parameter
+module gru_cell #(parameter
     WIDTH               = 10,   // data width
     NFRAC               = 6,    // number of fractional bits in data
     x_SIZE              = 6,    // input dimensionality (d)
@@ -83,7 +83,6 @@ module gruCell #(parameter
     logic signed [WIDTH-1:0] z_t_raw [0:h_SIZE-1];                  // z_t before sigmoid activation
     logic signed [WIDTH-1:0] h_tilde_raw_W [0:h_SIZE-1];
     logic signed [WIDTH-1:0] h_tilde_raw_U [0:h_SIZE-1];
-    logic signed [WIDTH-1:0] h_tilde_raw_gate [0:h_SIZE-1];
     logic signed [WIDTH-1:0] h_tilde_raw [0:h_SIZE-1];              // h_tilde before tanh activation
     logic signed [WIDTH-1:0] r_h_mult [0:h_SIZE-1];                 // r_t pointwise multiply
 
@@ -109,9 +108,15 @@ module gruCell #(parameter
     assign hW_dense_input_ready = input_ready;
 
     // last layers
-    assign output_ready = z_sig_output_ready && tanh_output_ready;
     assign tanh_next_layer_ready = next_layer_ready;
     assign z_sig_next_layer_ready = next_layer_ready;
+
+    // check that output is good to go
+    logic tanh_latch, z_sig_latch, restart;
+    latch latch_tanh (.reset(restart), .clk(clk), .in(tanh_output_ready), .out(tanh_latch));
+    latch latch_z_sig (.reset(restart), .clk(clk), .in(z_sig_output_ready), .out(z_sig_latch));
+    assign output_ready = z_sig_latch && tanh_latch;
+    assign restart = reset || (z_sig_latch && tanh_latch && next_layer_ready);
 
     // ----- RESET GATE -----
     // r_t = sigmoid(W_r * [x_t, h_t-1] + b_r)
@@ -317,10 +322,18 @@ module gruCell #(parameter
 
 endmodule
 
-module gruCell_tb();
+// holds high until a reset
+module latch(input reset, input clk, input in, output logic out);
+    always_ff @(posedge clk) begin
+        if (reset) out <= 0;
+        if (in) out <= 1;
+    end
+endmodule
 
-   localparam  WIDTH           = 16,
-               NFRAC           = 6,
+module gru_cell_tb();
+
+   localparam  WIDTH           = 32,
+               NFRAC           = 16,
                x_SIZE          = 6,
                h_SIZE          = 120;
    logic clk;
@@ -330,25 +343,28 @@ module gruCell_tb();
    logic signed [WIDTH-1:0] h_t [0:h_SIZE-1];
    integer i, j;
 
+   logic input_valid;        // input data valid
+   logic output_valid;      // GRU cell output is valid
+   logic ready;             // GRU cell is ready to accept new data from previous layer
+   logic next_layer_ready;   // next layer is ready for input
+
    localparam PERIOD = 10;
    initial begin
        clk <= 1'b1;
        forever #(PERIOD/2) clk <= ~clk;
    end
 
-   gruCell #(
+   gruCell1 #(
        .WIDTH              ( WIDTH             ),
        .NFRAC              ( NFRAC             ),
        .x_SIZE             ( x_SIZE            ),
        .h_SIZE             ( h_SIZE            )
-   ) dut (
-       .clk(clk),  .reset(reset),
-       .x_t(x_t),  .h_t_minus_1(h_t_minus_1),
-       .h_t(h_t)
-   );
+   ) dut (.*);
 
    initial begin
        reset <= 0;
+       input_valid <= 1;
+       next_layer_ready <= 1;
 
 /*
         x_t <= {{16'b1111111111111111},
@@ -360,19 +376,36 @@ module gruCell_tb();
                };
 */
 
-        x_t <= {{16'b0},
-               {16'b0},
-               {16'b0},
-               {16'b0},
-               {16'b0},
-               {16'b0}
+        x_t <= {{32'b0},
+               {32'b0},
+               {32'b0},
+               {32'b0},
+               {32'b0},
+               {32'b0}
                };
         
        for (i = 0; i < h_SIZE; i = i + 1) begin
            h_t_minus_1[i] = 4'b0;
        end
         
+       repeat(50) @(posedge clk);
+
+       input_valid <= 0;
        repeat(200) @(posedge clk);
+       
+
+       for (j = 0; j < 14; j++) begin
+          input_valid <= 1;
+          for (i = 0; i < h_SIZE; i = i + 1) begin
+             h_t_minus_1[i] = h_t[i];
+          end
+        
+          repeat(15) @(posedge clk);
+
+          input_valid <= 0;
+
+          repeat(15) @(posedge clk);
+       end
 
         // for (j = 0; j < 14; j++) begin
         //     for (i = 0; i < h_SIZE; i = i + 1) begin

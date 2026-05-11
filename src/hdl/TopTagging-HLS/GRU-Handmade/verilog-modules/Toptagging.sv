@@ -52,18 +52,17 @@ module Toptagging #( parameter
     logic sigmoid_ready;
 
 `ifdef SKIP_GRU
-    // ---------------- GRU bypass for pipe-clean ----------------
-    // The GRU normally maps input_v [20][6] -> 20-element vector.
-    // Slice the first feature of each timestep so the rest of
-    // the pipeline (dense1 -> relu -> dense2 -> sigmoid) gets exercised.
-    genvar gi;
-    generate
-        for (gi = 0; gi < DENSE1_INPUT_SIZE; gi++) begin : gru_bypass
-            assign dense1_input_data[gi] = input_v[gi][0];
-        end
-    endgenerate
     assign dense1_input_ready = input_ready;
-    assign ready              = dense1_ready;
+    logic ready_internal;
+    always_ff @(posedge clk or posedge reset) begin
+        if (reset)
+            ready_internal <= 1'b1;
+        else if (input_ready)
+            ready_internal <= 1'b0;
+        else if (sigmoid_output_ready)
+            ready_internal <= 1'b1;
+    end
+    assign ready = ready_internal;
 `else
     // ---------------- Original path with GRU -------------------
     localparam GRU_INPUT_SIZE=6, GRU_OUTPUT_SIZE=20;
