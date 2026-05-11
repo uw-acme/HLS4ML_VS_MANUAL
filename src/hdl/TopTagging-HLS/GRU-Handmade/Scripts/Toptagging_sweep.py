@@ -328,12 +328,12 @@ def extract_time(file : str):
     m = re.search(pat, text, re.IGNORECASE|re.DOTALL)
     if m:
         return m.group(1)
-def gen_test(accuracy : tuple[int,int], test):
-    test_l = test.flatten()
-    with open("X_test_gen.txt", "w") as f:
-        for num in test_l:
-            num=num*(2**(int(accuracy[0])-int(accuracy[1])))
-            f.write(f"{dec_to_bin(num, accuracy[0])}\n")
+# def gen_test(accuracy : tuple[int,int], test):
+#     test_l = test.flatten()
+#     with open("X_test_gen.txt", "w") as f:
+#         for num in test_l:
+#             num=num*(2**(int(accuracy[0])-int(accuracy[1])))
+#             f.write(f"{dec_to_bin(num, accuracy[0])}\n")
 def file_to_array(file, length):
     f = open(file, 'r')
     buffer = np.zeros(length)
@@ -493,7 +493,7 @@ def gen_weight(accuracy, model, target_dir="./"):
 #     # # print((3*i-2,i))
 #     handmade_gen(acc, name, params, defs)
 #         # accuracy_test(acc, y_test, name, defs, params, email=True)
-name = "Toptag_pipeclean_accuracy"
+name = "Toptag_pipeclean_accuracy_2"
 i = 6
 acc = (3*i-2, i)            # (16, 6)
 SAD, SAFRAC = adjust(acc[0])
