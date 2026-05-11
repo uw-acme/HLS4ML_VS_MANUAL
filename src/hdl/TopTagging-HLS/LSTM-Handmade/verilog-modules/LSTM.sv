@@ -30,8 +30,8 @@ module LSTM #( parameter
     output logic signed [WIDTH-1:0] ht [OUTPUT_SIZE-1:0] // Output data
 );
     localparam NFRAC = WIDTH-NINT;
-    localparam SIGMOID_BRAM_FILE = "weights_n_tables/sigmoid_table_18_18_10_7.dat"
-    localparam TANH_BRAM_FILE = "weights_n_tables/tanh_table_18_18_10_7.dat"
+    localparam SIGMOID_BRAM_FILE = "weights_n_tables/sigmoid_table_18_18_10_7.dat";
+    localparam TANH_BRAM_FILE = "weights_n_tables/tanh_table_18_18_10_7.dat";
     // Multiplication module for fixed point multiplication
     function automatic logic signed [WIDTH*2-1:0] mult(
         input logic signed [WIDTH-1:0] in1,
@@ -298,20 +298,23 @@ module LSTM #( parameter
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
-            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            .REMOVE_PIPELINES(REMOVE_PIPELINES),
+            .BRAM_FILE(SIGMOID_BRAM_FILE)
             ) sigmaf (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[0]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready1), .input_data(ft_a), .output_data(ft));
 
     /*                      it = sigmoid(Wih*ht_1+Wix*xt+bi)             */
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
-            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            .REMOVE_PIPELINES(REMOVE_PIPELINES),
+            .BRAM_FILE(SIGMOID_BRAM_FILE)
             ) sigmai (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[1]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready2), .input_data(it_a), .output_data(it));
 
     /*                      ot = sigmoid(Woh*ht_1+Wox*xt+bo)            */
     sigmoid #(.WIDTH(WIDTH), .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
-            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            .REMOVE_PIPELINES(REMOVE_PIPELINES),
+            .BRAM_FILE(SIGMOID_BRAM_FILE)
             ) sigmao (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[2]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready3), .input_data(ot_a), .output_data(ot));
 
 
@@ -347,7 +350,8 @@ module LSTM #( parameter
     tanh #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
-            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            .REMOVE_PIPELINES(REMOVE_PIPELINES),
+            .BRAM_FILE(TANH_BRAM_FILE)
             ) sigmac (.clk, .next_layer_ready(processing), .ready(tanh_ready), .reset(lstm_reset), .input_ready(tanh_input_ready), .output_ready(tanh_output_ready), .input_data(tanh_input), .output_data(tanh_output));
     
 

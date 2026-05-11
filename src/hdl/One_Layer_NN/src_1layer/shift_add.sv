@@ -119,42 +119,42 @@ module shift_add #(parameter signed [BITS-1:0] WEIGHT  = 64'd1,
         // Use normal multiplication operator
         end 
 
-        // else begin
-        //     // always_comb begin
-        //     //     // data_out_tmp = $signed(data_in) * $signed(WEIGHT);
-        //     // end
-        //     always_ff @(posedge clk) begin
-        //        data_out <= $signed(data_in) * $signed(WEIGHT);
-        //     end
-        //     // `ifndef WIDTHX2 
-        //     // (* use_dsp = "yes" *) mult_basic #(
-        //     //     .din_WIDTH(BITS), 
-        //     //     .dweight_WIDTH(BITS-num_signed_bits),
-        //     //     .dout_WIDTH(BITS+NFRAC)
-        //     //     ) 
-        //     //     shiftAdd_mult
-        //     //     (
-        //     //     .num_i(data_in),
-        //     //     .weight_i(WEIGHT[BITS-num_signed_bits-1:0]),
-        //     //     .mult_o(data_out),
-        //     //     .clk
-        //     //     );
+        else begin
+            // always_comb begin
+            //     // data_out_tmp = $signed(data_in) * $signed(WEIGHT);
+            // end
+            // always_ff @(posedge clk) begin
+            //    data_out <= $signed(data_in) * $signed(WEIGHT);
+            // end
+            `ifndef WIDTHX2 
+            (* use_dsp = "yes" *) mult_basic #(
+                .din_WIDTH(BITS), 
+                .dweight_WIDTH(BITS-num_signed_bits),
+                .dout_WIDTH(BITS+NFRAC)
+                ) 
+                shiftAdd_mult
+                (
+                .num_i(data_in),
+                .weight_i(WEIGHT[BITS-num_signed_bits-1:0]),
+                .mult_o(data_out),
+                .clk
+                );
                 
-        //     // `else 
-        //     //     (* use_dsp = "yes" *) mult_basic #(
-        //     //     .din_WIDTH(BITS), 
-        //     //     .dweight_WIDTH(BITS-num_signed_bits),
-        //     //     .dout_WIDTH(BITS*2)
-        //     //     ) 
-        //     //     shiftAdd_mult
-        //     //     (
-        //     //     .num_i(data_in),
-        //     //     .weight_i(WEIGHT[BITS-num_signed_bits-1:0]),
-        //     //     .mult_o(data_out),
-        //     //     .clk
-        //     //     );
-        //     // `endif
-        // end
+            `else 
+                (* use_dsp = "yes" *) mult_basic #(
+                .din_WIDTH(BITS), 
+                .dweight_WIDTH(BITS-num_signed_bits),
+                .dout_WIDTH(BITS*2)
+                ) 
+                shiftAdd_mult
+                (
+                .num_i(data_in),
+                .weight_i(WEIGHT[BITS-num_signed_bits-1:0]),
+                .mult_o(data_out),
+                .clk
+                );
+            `endif
+        end
     // end
     
     

@@ -235,7 +235,7 @@ module Quickdraw_LSTM_tb;
         `ifndef MODELSIM
         $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
         `else
-            $readmemb("../testing_data/X_test_16_6.txt", flat_mem);
+            $readmemb("testing_data/X_test_16_6.txt", flat_mem);
         `endif
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<TIMESTEPS; j++) begin : steps
@@ -289,10 +289,10 @@ module Quickdraw_LSTM_tb;
         i=0;
         input_ready<=1;
         repeat(num_tests) begin
-            for (j=0; j<INPUT_SIZE; j++) begin
+            for (j=0; j<TIMESTEPS; j++) begin
                 input_v<=x_test[i][j];
-                @(posedge input_ready)
-                #0;
+                @(posedge ready)
+                reset=0;
             end
             // @(posedge output_ready)
             i++;
