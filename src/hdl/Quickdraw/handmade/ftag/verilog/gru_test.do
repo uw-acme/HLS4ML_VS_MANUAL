@@ -11,21 +11,24 @@ vlog "./denseLayer.sv"
 # vlog "./ftag_gru.sv"
 # vlog "./gru_basic.sv"
 vlog "./weights/*.sv"
-vlog "./gruCell.sv"
+vlog "./gruCell1.sv"
 vlog "./reluActivationLayer.sv"
 vlog "./sigmoidActivationLayer.sv"
 # vlog "./softmaxLayer.sv"
 vlog "./tanhActivationLayer.sv"
+vlog "./sigmoid.sv"
+vlog "./tanh.sv"
+vlog "./gru.sv"
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work gruCell_tb
+vsim -voptargs="+acc" -t 1ps -lib work gru_tb
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do gruCell_wave.do
+do gru_wave.do
 
 # Set the window types
 view wave

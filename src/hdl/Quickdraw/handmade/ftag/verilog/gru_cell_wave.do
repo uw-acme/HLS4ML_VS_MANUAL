@@ -12,8 +12,16 @@ add wave -noupdate /gruCell_tb/dut/z_t
 add wave -noupdate /gruCell_tb/dut/h_tilde_raw
 add wave -noupdate /gruCell_tb/dut/h_tilde
 add wave -noupdate /gruCell_tb/dut/r_h_mult
+add wave -noupdate -expand -group {reset dense} /gruCell_tb/dut/reset_gate_dense/input_data
+add wave -noupdate -expand -group {reset dense} /gruCell_tb/dut/reset_gate_dense/output_data
+add wave -noupdate -expand -group {reset sigmoid} /gruCell_tb/dut/reset_gate_sigmoid/input_data
+add wave -noupdate -expand -group {reset sigmoid} /gruCell_tb/dut/reset_gate_sigmoid/output_data
+add wave -noupdate /gruCell_tb/input_valid
+add wave -noupdate /gruCell_tb/output_valid
+add wave -noupdate /gruCell_tb/ready
+add wave -noupdate /gruCell_tb/next_layer_ready
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {281078 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1510680 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -29,4 +37,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {619500 ps}
+WaveRestoreZoom {0 ps} {2089500 ps}
