@@ -2,10 +2,6 @@
 `include "defines.svh"
 // `define MODELSIM
 
-`ifndef SKIP_GRU
-import `GRU_X_WEIGHTS::*;
-`endif
-
 import `DENSE2_WEIGHTS::*;
 import `DENSE1_WEIGHTS::*;
 
@@ -64,17 +60,33 @@ module Toptagging #( parameter
     end
     assign ready = ready_internal;
 `else
-    // ---------------- Original path with GRU -------------------
     localparam GRU_INPUT_SIZE=6, GRU_OUTPUT_SIZE=20;
-    logic signed[WIDTH-1:0] GRU_input_data [TIMESTEPS-1:0][GRU_INPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] GRU_output_data [GRU_OUTPUT_SIZE-1:0];
-    logic GRU_input_ready, GRU_output_ready, GRU_ready;
 
-    assign GRU_input_data  = input_v;
-    assign GRU_input_ready = input_ready;
-    assign ready           = GRU_ready;
+    logic signed[WIDTH-1:0] gru_input_data [GRU_INPUT_SIZE-1:0];
+    logic signed[WIDTH-1:0] gru_output_data [GRU_OUTPUT_SIZE-1:0];
+    logic gru_input_valid, gru_output_valid, gru_ready;
+    logic [$clog2(TIMESTEPS)-1:0] timestep;
 
-    GRU #(
+    typedef enum logic [2:0] {
+        TOP_IDLE,
+        TOP_STREAM_GRU,
+        TOP_WAIT_GRU,
+        TOP_SEND_DENSE,
+        TOP_WAIT_OUTPUT
+    } top_state_t;
+    top_state_t state, next_state;
+
+    assign ready = (state == TOP_IDLE);
+    assign gru_input_valid = (state == TOP_STREAM_GRU);
+    assign dense1_input_ready = (state == TOP_SEND_DENSE);
+
+    always_comb begin
+        for (int i = 0; i < GRU_INPUT_SIZE; i++) begin
+            gru_input_data[i] = input_v[timestep][i];
+        end
+    end
+
+    gru #(
         .WIDTH     ( WIDTH           ),
         .NFRAC     ( WIDTH-NINT      ),
         .x_SIZE    ( GRU_INPUT_SIZE  ),
@@ -83,19 +95,68 @@ module Toptagging #( parameter
     ) gru_layer (
         .clk(clk),
         .reset(reset),
-        .input_valid      (GRU_input_ready),
-        .output_valid     (GRU_output_ready),
-        .ready            (GRU_ready),
+        .input_valid      (gru_input_valid),
+        .output_valid     (gru_output_valid),
+        .ready            (gru_ready),
         .next_layer_ready (dense1_ready),
-        .x_t(GRU_input_data),
-        .y_t(GRU_output_data)
+        .x_t(gru_input_data),
+        .y_t(gru_output_data)
     );
 
-    always_latch begin : next_dense
-        if (GRU_output_ready)
-            dense1_input_data = GRU_output_data;
+    always_ff @(posedge clk or posedge reset) begin
+        if (reset) begin
+            state <= TOP_IDLE;
+            timestep <= '0;
+            dense1_input_data <= '{default: '0};
+        end else begin
+            state <= next_state;
+
+            if (state == TOP_IDLE && input_ready) begin
+                timestep <= '0;
+            end else if (state == TOP_STREAM_GRU && gru_ready && timestep != TIMESTEPS - 1) begin
+                timestep <= timestep + 1'b1;
+            end
+
+            if (state == TOP_WAIT_GRU && gru_output_valid) begin
+                dense1_input_data <= gru_output_data;
+            end
+        end
     end
-    assign dense1_input_ready = GRU_output_ready;
+
+    always_comb begin
+        next_state = state;
+
+        unique case (state)
+            TOP_IDLE: begin
+                if (input_ready)
+                    next_state = TOP_STREAM_GRU;
+            end
+
+            TOP_STREAM_GRU: begin
+                if (gru_ready && timestep == TIMESTEPS - 1)
+                    next_state = TOP_WAIT_GRU;
+            end
+
+            TOP_WAIT_GRU: begin
+                if (gru_output_valid)
+                    next_state = TOP_SEND_DENSE;
+            end
+
+            TOP_SEND_DENSE: begin
+                if (dense1_ready)
+                    next_state = TOP_WAIT_OUTPUT;
+            end
+
+            TOP_WAIT_OUTPUT: begin
+                if (sigmoid_output_ready)
+                    next_state = TOP_IDLE;
+            end
+
+            default: begin
+                next_state = TOP_IDLE;
+            end
+        endcase
+    end
 `endif
 
     denseLayer #(

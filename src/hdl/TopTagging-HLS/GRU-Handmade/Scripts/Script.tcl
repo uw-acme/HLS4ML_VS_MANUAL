@@ -11,8 +11,7 @@ set generics [lindex $argv 2]
 # read_verilog -sv [glob ../weights/dense_*_weights_biases_pkgs/dense_*_*.sv]
 # --- Dense layer ---
 read_verilog -sv [glob ../weights_n_tables/*.sv]
-# read_verilog -sv LSTM.sv  Toptagging.sv  Toptagging_top.sv adderTree.sv  adderTree_p4.sv  denseLayer.sv  relu.sv shift_add.sv sigmoid.sv tanh.sv 
-read_verilog -sv Toptagging.sv  Toptagging_top.sv adderTree.sv  adderTree_p4.sv  denseLayer.sv  relu.sv shift_add.sv sigmoid.sv
+read_verilog -sv Toptagging.sv Toptagging_top.sv gru.sv gruCell.sv adderTree.sv adderTree_p4.sv denseLayer.sv relu.sv shift_add.sv sigmoid.sv tanh.sv
 
 # read_verilog -sv "./adderTree.sv"
 # read_verilog -sv "./shift_add.sv"
