@@ -1,12 +1,12 @@
 // `define MODELSIM
 
 `timescale 1ns / 1ps
-module btag_top #( parameter
-    WIDTH = 16,
-    NINT = 6,
-    INPUT_SIZE = 6,
-    TIMESTEPS = 15,
-    OUTPUT_SIZE = 3
+module btag_top #(
+    parameter WIDTH = 16,
+    parameter NINT = 6,
+    parameter INPUT_SIZE = 6,
+    parameter TIMESTEPS = 15,
+    parameter OUTPUT_SIZE = 3
 )(
     input clk,
     input shiftClk,

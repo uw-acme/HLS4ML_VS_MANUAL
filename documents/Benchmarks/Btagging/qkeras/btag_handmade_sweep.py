@@ -269,8 +269,8 @@ for i in range(1,9):
     # else:
     #     # acc = (3*i-2,i)
     #     acc = (2*i-2,i-1)
-    for j in range(0,2):
-        acc = ((2*(i+j)+1), ((j*2)+1))
+    for j in range(1,3):
+        acc = ((2*(i)+j+1), ((j)+1))
         # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
         # SA_INT, SA_FRAC = adjust(acc_in[0])
         SAD, SAFRAC = adjust(acc[0])

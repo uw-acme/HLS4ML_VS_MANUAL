@@ -6,7 +6,8 @@ import `DENSE_LAYER_3_PKG::*;
 // import `DENSE_LAYER_4_PKG::*;
 
 module btag_benchmark #(
-    parameter WIDTH = 16, NFRAC = 6,
+    parameter WIDTH = 16, 
+    parameter NFRAC = 6,
     parameter INPUT_SIZE = 6, // 120
     parameter OUTPUT_SIZE = 3,
     // Parameter controlling how sparse the pipelines in the adder trees are. 1 is the minimum value (most pipelines)
