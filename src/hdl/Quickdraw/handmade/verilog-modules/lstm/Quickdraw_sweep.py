@@ -21,11 +21,12 @@ features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 
 # Things to change
 def return_packages(acc):
-    return f" SIGMOID_PKG=sigmoid{acc[0]}_{acc[0]-acc[1]} RELU_PKG=relu{acc[0]}_{acc[0]-acc[1]} "
+    return f" LSTM_X_WEIGHTS=lstm_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=lstm_1_{acc[0]}_{acc[1]}\
+ DENSE1_WEIGHTS=dense_0_{acc[0]}_{acc[1]} DENSE2_WEIGHTS=dense_1_{acc[0]}_{acc[1]} DENSE3_WEIGHTS=dense_2_{acc[0]}_{acc[1]}"
 
-# weights_dir = "../weights_n_tables/"
-# y_test = np.load('../../y_test.npy')
-# model = load_model("../../model_toptag_lstm.h5")
+weights_dir = "weights_n_tables"
+y_test = np.load('y_test.npy')
+model = load_model("../../../keras/lstm/QuickdrawEH.h5")
 results_folder = "results"
 testing_folder = "testing_data"
 reports_folder = "reports"
@@ -64,7 +65,7 @@ def handmade_gen(acc, name, params, defs):
         return newline
     # os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
     # patt = r"[0-9]{1,2}"
-    # gen_weight(acc, model, weights_dir)
+    gen_weight(acc, model, weights_dir)
     params += get_widths(acc)
     # for i in range(1,5):
     #     defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
@@ -75,8 +76,8 @@ def handmade_gen(acc, name, params, defs):
     if (not os.path.isfile(f"{reports_folder}/{acc[0]}_{acc[1]}_{name}_util.rpt")):
         os.system(f'vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name} "{defs}" "{params}"')
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ceravcal@uw.edu')
-    # accuracy = accuracy_test(acc, y_test, name, defs, params)
-    accuracy = -1
+    accuracy = accuracy_test(acc, y_test, name, defs, params)
+    # accuracy = -1
     results = extract_data(f"{reports_folder}/{acc[0]}_{acc[1]}_{name}_util.rpt", features)
     time = extract_time(f"{reports_folder}/{acc[0]}_{acc[1]}_{name}_timing.rpt")
     #accuracy_score = test_score()
@@ -136,7 +137,7 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
 
     defs += f' TESTFILE="{testing_folder}/X_test_{acc[0]}_{acc[1]}.txt"'
     defs += f' RESULTSFILE="{reports_folder}/{res_file}"'
-    if ("LSTM_X_" not in defs):
+    if ("WEIGHTS" not in defs):
         defs+= return_packages(acc)
     params = f" {params}"
     params = params.replace("{", "")
@@ -190,7 +191,7 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
             params = ""
         if ("WIDTH" not in params):
             params += get_widths(acc)
-    if ("LSTM_X_" not in defs):
+    if ("WEIGHTS" not in defs):
         defs+= return_packages(acc)
     params = f" {params}"
     params = params.replace("{", "")

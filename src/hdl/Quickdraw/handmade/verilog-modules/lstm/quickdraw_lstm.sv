@@ -198,7 +198,7 @@ module Quickdraw_LSTM #( parameter
 endmodule
 `define STRINGIFY(x) `"x`"
 
-`define MODELSIM
+// `define MODELSIM
 
 `ifndef SYNTHESIS
 module Quickdraw_LSTM_tb;
@@ -219,7 +219,7 @@ module Quickdraw_LSTM_tb;
         forever #1 clk<=~clk;
     end
     // max_tests = 19951;
-    localparam num_tests = 5;
+    localparam num_tests = 100;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     // logic signed [WIDTH-1:0] x_final [num_tests-1:0][TIMESTEPS]
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
