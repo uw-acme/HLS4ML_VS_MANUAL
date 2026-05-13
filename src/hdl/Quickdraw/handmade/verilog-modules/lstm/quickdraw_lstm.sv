@@ -11,7 +11,7 @@ import `DENSE2_WEIGHTS::*;
 
 import `DENSE1_WEIGHTS::*;
 
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 module Quickdraw_LSTM #( parameter
     WIDTH = 16,
     NINT = 6,

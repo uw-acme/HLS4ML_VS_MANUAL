@@ -2,7 +2,7 @@
  The relu activation layer (no dense).
 */
 
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 module relu #(parameter
                     WIDTH           = 16, // width of fixed point numbers
                     NFRAC           = 10,  // number of fractional bits (must be <= width)

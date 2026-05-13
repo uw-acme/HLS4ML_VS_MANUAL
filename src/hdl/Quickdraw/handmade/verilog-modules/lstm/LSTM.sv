@@ -4,8 +4,8 @@
 // `include "defines.svh"
 import `LSTM_X_WEIGHTS::*;
 import `LSTM_H_WEIGHTS::*;
-`timescale 1ns / 1ps
-// `define MODELSIM
+`timescale 1ns / 1ns
+
 
 module LSTM #( parameter
     WIDTH = 16, // Bitwidth of input values
@@ -152,7 +152,7 @@ module LSTM #( parameter
                             next_output_ready=1;
                         end
                     end else begin
-                        if (next_ready) begin
+                        if (move_next) begin
                             next_state=READY;
                             next_output_ready=(OUTPUT_EACH_HT ? 1 : (curr_step==TIMESTEPS));
                             future_reset_cell=(curr_step==TIMESTEPS);
@@ -385,29 +385,33 @@ module edge_check(input reset, input in, output logic out);
             out=1;
     end
 endmodule
-`ifdef BALLS
+// `ifdef BALLS
 `define STRINGIFY(x) `"x`"
+`define MODELSIM
 module LSTM_tb;
     logic clk;
     logic reset;
     logic input_ready;
     logic output_ready;
+    logic ready, next_layer_ready;
+    assign next_layer_ready=1;
     // logic move_next;
-    parameter INPUT_SIZE = 6;
-    parameter TIMESTEPS = 20;
-    parameter OUTPUT_SIZE = 20;
+    parameter INPUT_SIZE = 3;
+    parameter TIMESTEPS = 100;
+    parameter OUTPUT_SIZE = 128;
     parameter WIDTH = 16;
     parameter NINT = 6;
     parameter NFRAC = WIDTH-NINT;
-    logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
+    parameter IMPLEMENTATION=0;
+    logic signed[WIDTH-1:0] input_v [(TIMESTEPS-1)*IMPLEMENTATION:0][INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ht [OUTPUT_SIZE-1:0];
-    LSTM #(.WIDTH(16), .NINT(6)) dut (.*);
+    LSTM #(.WIDTH(16), .NINT(6), .INPUT_SIZE(INPUT_SIZE), .OUTPUT_SIZE(OUTPUT_SIZE), .TIMESTEPS(TIMESTEPS), .IMPLEMENTATION(IMPLEMENTATION)) dut (.*);
     initial begin
         clk=0;
         forever #1 clk<=~clk;
     end
     // max_tests = 166000;
-    localparam num_tests = 6;
+    localparam num_tests = 1;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;
@@ -419,7 +423,7 @@ module LSTM_tb;
     `endif
     
     initial begin
-        $readmemb("X_test_16_6.txt", flat_mem);
+        $readmemb("testing_data/X_test_16_6.txt", flat_mem);
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<TIMESTEPS; j++) begin : steps
                 for (k=0; k<INPUT_SIZE; k++) begin : nums
@@ -464,10 +468,22 @@ module LSTM_tb;
         reset=0;
         i=0;
         input_ready<=1;
-        repeat(num_tests) begin
-            input_v<=x_test[i];
-            @(posedge output_ready)
-            i++;
+        if (IMPLEMENTATION==0)begin
+            for (i=0; i<num_tests; i++)begin
+                for (j=0; j<TIMESTEPS;)begin
+                    input_v[0]<=x_test[i][j];
+                    @(posedge ready)
+                    j++;
+                end
+            end
+
+        end else begin
+            repeat(num_tests) begin
+                
+                input_v<=x_test[i];
+                @(posedge output_ready)
+                i++;
+            end
         end
         input_ready<=0;
         
@@ -475,4 +491,4 @@ module LSTM_tb;
         $stop;
     end
 endmodule
-`endif
+// `endif

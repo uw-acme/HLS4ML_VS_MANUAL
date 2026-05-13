@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 // Helper module
 // 
 // This module is an adder tree. The module takes in an input 1D array,
@@ -13,7 +13,7 @@
 //
 // Outputs:
 // - output_data: a single number of size WIDTH
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 module adderTree_1D_p4 #(parameter WIDTH = 17, INPUT_SIZE = 32, PIPELINING = 1) (
     input  logic                        clk,
     input  logic                        reset,

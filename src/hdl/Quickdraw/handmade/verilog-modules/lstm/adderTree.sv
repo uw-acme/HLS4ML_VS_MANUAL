@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 // Helper module
 // 
 // This module implements a submodule called adderTree_1D to
@@ -12,7 +12,7 @@
 //
 // Outputs:
 // - output_data: an array of size OUTPUT_SIZE
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 
 module adderTree #(parameter WIDTH       = 17,
                              INPUT_SIZE  = 10,
