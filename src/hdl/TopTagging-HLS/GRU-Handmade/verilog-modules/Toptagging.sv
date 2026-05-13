@@ -77,7 +77,7 @@ module Toptagging #( parameter
     top_state_t state, next_state;
 
     assign ready = (state == TOP_IDLE);
-    assign gru_input_valid = (state == TOP_STREAM_GRU);
+    assign gru_input_valid = (state == TOP_STREAM_GRU) || (state == TOP_WAIT_GRU);
     assign dense1_input_ready = (state == TOP_SEND_DENSE);
 
     always_comb begin

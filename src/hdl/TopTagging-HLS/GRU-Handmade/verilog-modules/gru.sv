@@ -19,8 +19,8 @@ module gru #(parameter
     MEM_NFRAC           = 18,   // number of fractional bits in BRAM entries
     LOOKUP_WIDTH        = 10,   // width of lookup indices
     LOOKUP_NFRAC        = 7,    // fractional bits in lookup indices
-    SIGMOID_BRAM_FILE   = "sigmoid_table_18_18_10_7.dat",
-    TANH_BRAM_FILE      = "tanh_table_18_18_10_7.dat"
+    SIGMOID_BRAM_FILE   = "../weights_n_tables/sigmoid_table_18_18_10_7.dat",
+    TANH_BRAM_FILE      = "../weights_n_tables/tanh_table_18_18_10_7.dat"
 )(
     input  logic clk,
     input  logic reset,
@@ -61,13 +61,19 @@ module gru #(parameter
     always_comb begin
         case (ps)
             READY: begin
+                ns = ps;
                 if (start) ns = PROCESSING;
             end
             PROCESSING: begin
+                ns = ps;
                 if (done) ns = PAUSED;
             end
             PAUSED: begin
+                ns = ps;
                 if (next_layer_ready) ns = READY;
+            end
+            default: begin
+                ns = READY;
             end
         endcase
     end
@@ -121,6 +127,34 @@ module gru #(parameter
     end
 
     assign done = (count == TIMESTEPS - 1) && cell_output_valid;
+
+`ifndef SYNTHESIS
+    // =====================================================================
+    // DEBUG PRINT BLOCK - TEMPORARY REAL-GRU HANDSHAKE TRACE
+    // Remove this block after the streamed GRU path is producing outputs.
+    // =====================================================================
+    always_ff @(posedge clk) begin
+        if (!reset) begin
+            if (input_valid || ready || cell_input_valid || cell_ready || cell_output_valid || output_valid || done) begin
+                $display(
+                    "DBG_GRU t=%0t ps=%0d ns=%0d count=%0d input_valid=%0b ready=%0b next_layer_ready=%0b cell_in=%0b cell_ready=%0b cell_out=%0b output_valid=%0b done=%0b",
+                    $time,
+                    ps,
+                    ns,
+                    count,
+                    input_valid,
+                    ready,
+                    next_layer_ready,
+                    cell_input_valid,
+                    cell_ready,
+                    cell_output_valid,
+                    output_valid,
+                    done
+                );
+            end
+        end
+    end
+`endif
 
 endmodule
 
