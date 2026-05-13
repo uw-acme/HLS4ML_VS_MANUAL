@@ -62,12 +62,15 @@ module gru #(parameter
         case (ps)
             READY: begin
                 if (start) ns = PROCESSING;
+                else ns = READY;
             end
             PROCESSING: begin
                 if (done) ns = PAUSED;
+                else ns = PROCESSING;
             end
             PAUSED: begin
                 if (next_layer_ready) ns = READY;
+                else ns = PAUSED;
             end
         endcase
     end
