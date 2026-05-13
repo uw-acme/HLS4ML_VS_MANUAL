@@ -15,11 +15,16 @@
 #read_verilog -v [glob *.v]
 
 # change which model it pulls from
-cd /home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/models/nogru_floating_point/nogru_53_smallboard_reuse10_stream/hls4ml_prj/myproject_prj/solution1/impl/verilog
+cd /home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/models/lstm_floating_point/LSTM_6_3_reuse10_bigboard_stream/hls4ml_prj/myproject_prj/solution1/impl/verilog
+
+set name [lindex $argv 0]
+
 read_verilog -v [glob *.v]
 #gru_2int/gru_4frac_largeBoard_reuse4096/hls4ml_prj
 # (Optional) Testbench files (if you want synthesis, usually skip these)
 # read_verilog -sv "./waiz_benchmark_tb.sv"
+
+read_xdc /home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/HLS/scripts/const.xdc
 
 # --- Set top module ---
 # xc7k160tfbg484-3 is free, no license
@@ -30,13 +35,16 @@ read_verilog -v [glob *.v]
 # synth_design -top myproject -part xcvu13p-fhga2104-3-e
 
 # curr module
-synth_design -top myproject -part xcu250-figd2104-2L-e
+#synth_design -top myproject -part xcu250-figd2104-2L-e
 #synth_design -top myproject -part xc7vx690tffg1761-2 
 #synth_design -top myproject -part xcu280-fsvh2892-2L-e 
-#synth_design -top myproject -part xcvu13p-fhga2104-3-e
+synth_design -top myproject -part xcvu13p-fhga2104-3-e
+#xcvu13p-fhga2104-3-e
 
 # --- Implementation flow ---
 opt_design
+place_design
+route_design
 
 # --- Reports ---
 # report_utilization -hierarchical -file reports/util_hier_SA3_pre.rpt
@@ -44,20 +52,21 @@ opt_design
 # report_power -file reports/power_pre_SA3_route.rpt
 # write_checkpoint -force reports/impl_SA3_opt.dcp
 
-place_design
-route_design
-
 #cd ~/HLS4ML_VS_MANUAL/src/hdl/Batchnorm-JetTagging/python
-
 
 # --- Reports ---
 #cd $orig_dir
 cd /home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras
-report_utilization -file "reports/[lindex $argv 0]_util.rpt"
-report_utilization -hierarchical -hierarchical_depth 1 -file "reports/[lindex $argv 0]_util_hier.rpt"
-report_timing_summary -file "reports/[lindex $argv 0]_timing.rpt"
+# report_utilization -file "reports/[lindex $argv 0]_util.rpt"
+# report_utilization -hierarchical -hierarchical_depth 1 -file "reports/[lindex $argv 0]_util_hier.rpt"
+# report_timing_summary -file "reports/[lindex $argv 0]_timing.rpt"
+
 # RP is removed pipeiles using SA4 and rand 4/10
 #report_power -file reports/power_post_route_RELU.rpt
+
+report_utilization -hierarchical -hierarchical_depth 1 -file reports/lstm_hls/${name}_hier.rpt
+report_utilization -file reports/lstm_hls/${name}_util.rpt
+report_timing_summary -file reports/lstm_hls/${name}_timing.rpt
 
 # --- Save design checkpoint for GUI inspection ---
 #write_checkpoint -force "reports/[lindex $argv 0].dcp"

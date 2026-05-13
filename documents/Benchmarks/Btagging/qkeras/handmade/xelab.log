@@ -6,8 +6,8 @@ Multi-threading is on. Using 19 slave threads.
 WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by AMD, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running xelab with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3705] select index 3 into 'out' is out of bounds [/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/handmade/verilog-modules/btag_benchmark_tb.sv:61]
-WARNING: [VRFC 10-3705] select index 4 into 'out' is out of bounds [/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/handmade/verilog-modules/btag_benchmark_tb.sv:62]
+WARNING: [VRFC 10-3705] select index 3 into 'out' is out of bounds [/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/handmade/verilog-modules/btag_benchmark_tb_old.sv:61]
+WARNING: [VRFC 10-3705] select index 4 into 'out' is out of bounds [/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/handmade/verilog-modules/btag_benchmark_tb_old.sv:62]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis

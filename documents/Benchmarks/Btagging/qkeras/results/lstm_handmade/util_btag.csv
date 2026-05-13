@@ -1,0 +1,4 @@
+Bits, Slice LUTs, Slice Registers, Block RAM Tile, DSPs, Bonded IOB, Timing, Accuracy
+6, 0.16, 0.07, 0.04, 0.02, 2.88, 10.769, -1
+8, 21.98, 6.34, 4.50, 0.02, 9.38, 4.594, -1
+10, 32.18, 8.44, 4.50, 0.02, 11.54, 1.766, -1

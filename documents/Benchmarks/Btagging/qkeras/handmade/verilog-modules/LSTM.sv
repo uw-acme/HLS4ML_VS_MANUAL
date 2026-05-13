@@ -251,19 +251,22 @@ module LSTM #( parameter
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
-            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            .REMOVE_PIPELINES(REMOVE_PIPELINES),
+            .BRAM_FILE("/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/weights/tables/sigmoid_table_18_18_10_7.dat")
             ) sigmaf (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[0]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready1), .input_data(ft_a), .output_data(ft));
     // it = sigmoid(Wih*ht_1+Wix*xt+bi) 
     sigmoid #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
-            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            .REMOVE_PIPELINES(REMOVE_PIPELINES),
+            .BRAM_FILE("/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/weights/tables/sigmoid_table_18_18_10_7.dat")
             ) sigmai (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[1]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready2), .input_data(it_a), .output_data(it));
     // c~t = tanh(Wch*ht_1+Wcx*xt+bc 
     // ot = sigmoid(Woh*ht_1+Wox*xt+bo) 
     sigmoid #(.WIDTH(WIDTH), .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
-            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            .REMOVE_PIPELINES(REMOVE_PIPELINES),
+            .BRAM_FILE("/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/weights/tables/sigmoid_table_18_18_10_7.dat")
             ) sigmao (.clk, .next_layer_ready(processing), .ready(sigmoid_ready[2]), .reset(lstm_reset), .input_ready(dense_outputh_ready), .output_ready(sig_output_ready4), .input_data(ot_a), .output_data(ot));
  // ct = ft*ct_1+it*c~t
     assign ct_next=&(edge_trig[4:1]);
@@ -289,7 +292,8 @@ module LSTM #( parameter
     tanh #(.WIDTH(WIDTH),
             .NFRAC(NFRAC),
             .SIZE(OUTPUT_SIZE),
-            .REMOVE_PIPELINES(REMOVE_PIPELINES)
+            .REMOVE_PIPELINES(REMOVE_PIPELINES),
+            .BRAM_FILE("/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/weights/tables/tanh_table_18_18_10_7.dat")
             ) sigmac (.clk, .next_layer_ready(processing), .ready(tanh_ready), .reset(lstm_reset), .input_ready(tanh_input_ready), .output_ready(tanh_output_ready), .input_data(tanh_input), .output_data(tanh_output));
     // ht = ot*tanh(ct)
     

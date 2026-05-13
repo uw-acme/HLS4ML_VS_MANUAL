@@ -226,7 +226,9 @@ module btag_benchmark #(
     softmaxLayerNeg #(
         .N          ( OUTPUT_SIZE ),
         .WIDTH      ( WIDTH         ),
-        .NFRAC      ( NFRAC         )
+        .NFRAC      ( NFRAC         ),
+        .EXP_TABLE_PATH ("/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/weights/softmax/exp_neg_table_18_17_10_6.dat"),
+        .INVERT_TABLE_PATH ("/home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/weights/softmax/pos_invert_table_18_17_10_7.dat")
     ) softmax (
         .dataIn(dense3_output_data),
         .clk(clk),

@@ -8,6 +8,6 @@
 ## Clock: use system clock source
 # set_property PACKAGE_PIN E19 [get_ports clk]
 # set_property IOSTANDARD LVCMOS18 [get_ports clk]
-create_clock -name ap_clk -period 15.000 [get_ports ap_clk]  
+create_clock -name ap_clk -period 15.000 [get_ports clk]  
 ## 100 MHz
 ## End of constraints

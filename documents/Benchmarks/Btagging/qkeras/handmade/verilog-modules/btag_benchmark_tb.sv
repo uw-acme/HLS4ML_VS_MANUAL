@@ -1,4 +1,4 @@
-top// `define MODELSIM
+// `define MODELSIM
 
 `timescale 1ns / 1ps
 module btag_top #( parameter
@@ -6,7 +6,7 @@ module btag_top #( parameter
     NINT = 6,
     INPUT_SIZE = 6,
     TIMESTEPS = 15,
-    OUTPUT_SIZE = 20
+    OUTPUT_SIZE = 3
 )(
     input clk,
     input shiftClk,
@@ -15,13 +15,12 @@ module btag_top #( parameter
     output ready,
     output logic output_ready,
     input logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0],
-    output logic signed [WIDTH-1:0] output_data
+    output logic signed [WIDTH-1:0] output_data [OUTPUT_SIZE-1:0]
 );
     logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic input_ready_btag, output_ready_btag;
     assign output_ready = output_ready_btag;
     logic [$clog2(TIMESTEPS):0] step=0;
-    assign ready = btag_ready;
     always_ff @(posedge shiftClk) begin
         input_ready_btag<=0;
         if (input_ready) begin
@@ -50,7 +49,7 @@ module btag_top_tb;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] output_data;
+    logic signed[WIDTH-1:0] output_data [OUTPUT_SIZE-1:0];
     integer i, j, k, fd, count;
     btag_top #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
     initial begin
@@ -68,15 +67,15 @@ module btag_top_tb;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     `ifndef TESTFILE
-        `define TESTFILE "toptaggingData_16_6.txt"
+        `define TESTFILE "../acc/testingData_lstm/toptaggingData_16_6.txt"
     `endif
     `ifndef RESULTSFILE
-        `define RESULTSFILE "lstm_toptaggingData_gen_results.txt"
+        `define RESULTSFILE "reports/lstm_toptaggingData_gen_results.txt"
     `endif
     
     initial begin
         `ifndef MODELSIM
-        $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
+        $readmemb("../acc/testingData_lstm/toptaggingData_16_6.txt", flat_mem);
         `else
             $readmemb("../acc/testingData_lstm/toptaggingData_16_6.txt", flat_mem);
         `endif
@@ -115,9 +114,9 @@ module btag_top_tb;
     initial begin
         if (write_file) begin
             `ifndef MODELSIM
-                fd = $fopen(`STRINGIFY(`RESULTSFILE), "w");  // "w" = write mode, "a" = append
+                fd = $fopen("reports/lstm_toptaggingData_gen_results.txt", "w");  // "w" = write mode, "a" = append
             `else
-                fd = $fopen("lstm_toptaggingData_gen_results.txt", "w");  // "w" = write mode, "a" = append
+                fd = $fopen("reports/lstm_toptaggingData_gen_results.txt", "w");  // "w" = write mode, "a" = append
             `endif
             if (fd == 0) begin
                 $display("ERROR: Could not open file!");
