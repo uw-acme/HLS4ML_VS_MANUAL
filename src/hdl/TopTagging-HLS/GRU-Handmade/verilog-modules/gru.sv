@@ -128,33 +128,33 @@ module gru #(parameter
 
     assign done = (count == TIMESTEPS - 1) && cell_output_valid;
 
-`ifndef SYNTHESIS
-    // =====================================================================
-    // DEBUG PRINT BLOCK - TEMPORARY REAL-GRU HANDSHAKE TRACE
-    // Remove this block after the streamed GRU path is producing outputs.
-    // =====================================================================
-    always_ff @(posedge clk) begin
-        if (!reset) begin
-            if (input_valid || ready || cell_input_valid || cell_ready || cell_output_valid || output_valid || done) begin
-                $display(
-                    "DBG_GRU t=%0t ps=%0d ns=%0d count=%0d input_valid=%0b ready=%0b next_layer_ready=%0b cell_in=%0b cell_ready=%0b cell_out=%0b output_valid=%0b done=%0b",
-                    $time,
-                    ps,
-                    ns,
-                    count,
-                    input_valid,
-                    ready,
-                    next_layer_ready,
-                    cell_input_valid,
-                    cell_ready,
-                    cell_output_valid,
-                    output_valid,
-                    done
-                );
-            end
-        end
-    end
-`endif
+// `ifndef SYNTHESIS
+//     // =====================================================================
+//     // DEBUG PRINT BLOCK - TEMPORARY REAL-GRU HANDSHAKE TRACE
+//     // Remove this block after the streamed GRU path is producing outputs.
+//     // =====================================================================
+//     always_ff @(posedge clk) begin
+//         if (!reset) begin
+//             if (input_valid || ready || cell_input_valid || cell_ready || cell_output_valid || output_valid || done) begin
+//                 $display(
+//                     "DBG_GRU t=%0t ps=%0d ns=%0d count=%0d input_valid=%0b ready=%0b next_layer_ready=%0b cell_in=%0b cell_ready=%0b cell_out=%0b output_valid=%0b done=%0b",
+//                     $time,
+//                     ps,
+//                     ns,
+//                     count,
+//                     input_valid,
+//                     ready,
+//                     next_layer_ready,
+//                     cell_input_valid,
+//                     cell_ready,
+//                     cell_output_valid,
+//                     output_valid,
+//                     done
+//                 );
+//             end
+//         end
+//     end
+// `endif
 
 endmodule
 
