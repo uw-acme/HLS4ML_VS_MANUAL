@@ -330,8 +330,8 @@ module gru_cell #(parameter
         if (!reset && output_valid) begin
             for (dbg_i = 0; dbg_i < h_SIZE; dbg_i++) begin
                 $display(
-                    "DBG_GRUCELL t=%0t i=%0d r_t=%0d z_t=%0d h_tilde_raw=%0d",
-                    $time, dbg_i, r_t[dbg_i], z_t[dbg_i], h_tilde_raw[dbg_i]
+                    "DBG_GRUCELL t=%0t i=%0d h_t_minus_1=%0d h_t=%0d r_t=%0d z_t=%0d h_tilde=%0d r_t_raw=%0d z_t_raw=%0d h_tilde_raw_W=%0d h_tilde_raw_U=%0d h_tilde_raw=%0d r_h_mult=%0d",
+                    $time, dbg_i, h_t_minus_1[dbg_i], h_t[dbg_i], r_t[dbg_i], z_t[dbg_i], h_tilde[dbg_i], r_t_raw[dbg_i], z_t_raw[dbg_i], h_tilde_raw_W[dbg_i], h_tilde_raw_U[dbg_i], h_tilde_raw[dbg_i], r_h_mult[dbg_i]
                 );
             end
         end
