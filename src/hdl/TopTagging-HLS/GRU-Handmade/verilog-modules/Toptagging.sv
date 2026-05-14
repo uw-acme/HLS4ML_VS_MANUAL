@@ -74,11 +74,11 @@ module Toptagging #( parameter
         TOP_SEND_DENSE,
         TOP_WAIT_OUTPUT
     } top_state_t;
-    top_state_t state, next_state;
+    top_state_t ps, ns;
 
-    assign ready = (state == TOP_IDLE);
-    assign gru_input_valid = (state == TOP_STREAM_GRU) || (state == TOP_WAIT_GRU);
-    assign dense1_input_ready = (state == TOP_SEND_DENSE);
+    assign ready = (ps == TOP_IDLE);
+    assign gru_input_valid = (ps == TOP_STREAM_GRU) || (ps == TOP_WAIT_GRU);
+    assign dense1_input_ready = (ps == TOP_SEND_DENSE);
 
     always_comb begin
         for (int i = 0; i < GRU_INPUT_SIZE; i++) begin
@@ -105,55 +105,59 @@ module Toptagging #( parameter
 
     always_ff @(posedge clk or posedge reset) begin
         if (reset) begin
-            state <= TOP_IDLE;
+            ps <= TOP_IDLE;
             timestep <= '0;
             dense1_input_data <= '{default: '0};
         end else begin
-            state <= next_state;
+            ps <= ns;
 
-            if (state == TOP_IDLE && input_ready) begin
+            if (ps == TOP_IDLE && input_ready) begin
                 timestep <= '0;
-            end else if (state == TOP_STREAM_GRU && gru_ready && timestep != TIMESTEPS - 1) begin
+            end else if (ps == TOP_STREAM_GRU && gru_ready && timestep != TIMESTEPS - 1) begin
                 timestep <= timestep + 1'b1;
             end
 
-            if (state == TOP_WAIT_GRU && gru_output_valid) begin
+            if (ps == TOP_WAIT_GRU && gru_output_valid) begin
                 dense1_input_data <= gru_output_data;
             end
         end
     end
 
     always_comb begin
-        next_state = state;
 
-        unique case (state)
+        unique case (ps)
             TOP_IDLE: begin
+                ns = ps;
                 if (input_ready)
-                    next_state = TOP_STREAM_GRU;
+                    ns = TOP_STREAM_GRU;
             end
 
             TOP_STREAM_GRU: begin
+                ns = ps;
                 if (gru_ready && timestep == TIMESTEPS - 1)
-                    next_state = TOP_WAIT_GRU;
+                    ns = TOP_WAIT_GRU;
             end
 
             TOP_WAIT_GRU: begin
+                ns = ps;
                 if (gru_output_valid)
-                    next_state = TOP_SEND_DENSE;
+                    ns = TOP_SEND_DENSE;
             end
 
             TOP_SEND_DENSE: begin
+                ns = ps;
                 if (dense1_ready)
-                    next_state = TOP_WAIT_OUTPUT;
+                    ns = TOP_WAIT_OUTPUT;
             end
 
             TOP_WAIT_OUTPUT: begin
+                ns = ps;
                 if (sigmoid_output_ready)
-                    next_state = TOP_IDLE;
+                    ns = TOP_IDLE;
             end
 
             default: begin
-                next_state = TOP_IDLE;
+                ns = TOP_IDLE;
             end
         endcase
     end
@@ -225,4 +229,19 @@ module Toptagging #( parameter
 
     assign output_ready = sigmoid_output_ready;
     assign output_data  = sigmoid_output_data[0];
+
+    // `ifndef SYNTHESIS
+    // always_ff @(posedge clk) begin
+    //     if (!reset) begin
+    //         if (input_ready || gru_ready || gru_output_valid || dense1_input_ready || sigmoid_output_ready) begin
+    //             $display(
+    //                 "TOP t=%0t ps=%0d timestep=%0d input_ready=%0b gru_valid=%0b gru_ready=%0b gru_out=%0b dense1_in=%0b dense1_ready=%0b sig_out=%0b",
+    //                 $time, ps, timestep, input_ready, gru_input_valid, gru_ready,
+    //                 gru_output_valid, dense1_input_ready, dense1_ready, sigmoid_output_ready
+    //             );
+    //         end
+    //     end
+    // end
+    // `endif
+
 endmodule

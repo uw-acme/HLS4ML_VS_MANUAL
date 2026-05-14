@@ -72,9 +72,9 @@ module gru #(parameter
                 ns = ps;
                 if (next_layer_ready) ns = READY;
             end
-            default: begin
-                ns = READY;
-            end
+            // default: begin
+            //     ns = READY;
+            // end
         endcase
     end
 
