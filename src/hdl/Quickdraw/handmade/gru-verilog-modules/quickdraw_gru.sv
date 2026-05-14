@@ -80,111 +80,115 @@ module quickdraw_gru #(parameter
         .x_t            ( gru_input_data    ),
         .y_t            ( gru_output_data   )
     );
+
     always_latch begin : next_dense
         if (gru_output_ready)
             dense1_input_data = gru_output_data;
     end
     assign dense1_input_ready = gru_output_ready;
+
     denseLayer #(
-        .WIDTH       (WIDTH), 
-        .NFRAC       (WIDTH-NINT), 
-        .INPUT_SIZE  (DENSE1_INPUT_SIZE), 
-        .OUTPUT_SIZE (DENSE1_OUTPUT_SIZE),
+        .WIDTH       ( WIDTH                    ), 
+        .NFRAC       ( WIDTH-NINT               ), 
+        .INPUT_SIZE  ( DENSE1_INPUT_SIZE        ), 
+        .OUTPUT_SIZE ( DENSE1_OUTPUT_SIZE       ),
         .WEIGHTS     ( `DENSE1_WEIGHTS::weights ),
         .BIAS        ( `DENSE1_WEIGHTS::bias    )
         ) dense1 (
         .clk,
         .reset,
-        .ready(dense1_ready),
-        .next_layer_ready(dense2_ready),
-        .input_ready  (  dense1_input_ready),
-        .output_ready (  dense1_output_ready),
-        .input_data   (  dense1_input_data ),
-        .output_data  (  dense1_output_data)
+        .ready          ( dense1_ready          ),
+        .next_layer_ready(dense2_ready          ),
+        .input_ready    ( dense1_input_ready    ),
+        .output_ready   ( dense1_output_ready   ),
+        .input_data     ( dense1_input_data     ),
+        .output_data    ( dense1_output_data    )
         );
 
     relu #(
-        .WIDTH      ( WIDTH         ),
-        .NFRAC      ( WIDTH-NINT         ),
-        .SIZE       ( DENSE1_OUTPUT_SIZE )
+        .WIDTH      ( WIDTH                 ),
+        .NFRAC      ( WIDTH-NINT            ),
+        .SIZE       ( DENSE1_OUTPUT_SIZE    )
     ) relulayer1 (
         .clk,
-        .input_data ( dense1_output_data ),
-        .output_data( relu1_output_data )
+        .input_data ( dense1_output_data    ),
+        .output_data( relu1_output_data     )
     );
     
-        
     assign dense2_input_data = relu1_output_data;
     assign dense2_input_ready = dense1_output_ready;
+
     denseLayer #(
-        .WIDTH(WIDTH), 
-        .NFRAC(WIDTH-NINT), 
-        .INPUT_SIZE(DENSE2_INPUT_SIZE), 
-        .OUTPUT_SIZE(DENSE2_OUTPUT_SIZE),
-        .WEIGHTS     ( `DENSE2_WEIGHTS::weights ),
-        .BIAS        ( `DENSE2_WEIGHTS::bias    )
+        .WIDTH          ( WIDTH                     ), 
+        .NFRAC          ( WIDTH-NINT                ), 
+        .INPUT_SIZE     ( DENSE2_INPUT_SIZE         ), 
+        .OUTPUT_SIZE    ( DENSE2_OUTPUT_SIZE        ),
+        .WEIGHTS        ( `DENSE2_WEIGHTS::weights  ),
+        .BIAS           ( `DENSE2_WEIGHTS::bias     )
         ) dense2 (
         .clk,
         .reset,
-        .ready(dense2_ready),
-        .next_layer_ready(softmax_ready),
-        .input_ready  (  dense2_input_ready),
-        .output_ready (  dense2_output_ready),
-        .input_data   (  dense2_input_data ),
-        .output_data  (  dense2_output_data)
+        .ready          ( dense2_ready          ),
+        .next_layer_ready( softmax_ready        ),
+        .input_ready    ( dense2_input_ready    ),
+        .output_ready   ( dense2_output_ready   ),
+        .input_data     ( dense2_input_data     ),
+        .output_data    ( dense2_output_data    )
     );
     
     relu #(
-        .WIDTH      ( WIDTH         ),
-        .NFRAC      ( WIDTH-NINT         ),
-        .SIZE       ( DENSE2_OUTPUT_SIZE )
+        .WIDTH      ( WIDTH                 ),
+        .NFRAC      ( WIDTH-NINT            ),
+        .SIZE       ( DENSE2_OUTPUT_SIZE    )
     ) relulayer2 (
         .clk,
-        .input_data ( dense2_output_data ),
-        .output_data( relu2_output_data )
+        .input_data ( dense2_output_data    ),
+        .output_data( relu2_output_data     )
     );
 
     assign dense3_input_data = relu2_output_data;
     assign dense3_input_ready = dense2_output_ready;
+
     denseLayer #(
-        .WIDTH(WIDTH), 
-        .NFRAC(WIDTH-NINT), 
-        .INPUT_SIZE(DENSE3_INPUT_SIZE), 
-        .OUTPUT_SIZE(DENSE3_OUTPUT_SIZE),
-        .WEIGHTS     ( `DENSE3_WEIGHTS::weights ),
-        .BIAS        ( `DENSE3_WEIGHTS::bias    )
+        .WIDTH      ( WIDTH                     ), 
+        .NFRAC      ( WIDTH-NINT                ), 
+        .INPUT_SIZE ( DENSE3_INPUT_SIZE         ), 
+        .OUTPUT_SIZE( DENSE3_OUTPUT_SIZE        ),
+        .WEIGHTS    ( `DENSE3_WEIGHTS::weights  ),
+        .BIAS       ( `DENSE3_WEIGHTS::bias     )
         ) dense3 (
         .clk,
         .reset,
-        .ready(dense3_ready),
-        .next_layer_ready(softmax_ready),
-        .input_ready  (  dense3_input_ready),
-        .output_ready (  dense3_output_ready),
-        .input_data   (  dense3_input_data ),
-        .output_data  (  dense3_output_data)
+        .ready          ( dense3_ready          ),
+        .next_layer_ready(softmax_ready         ),
+        .input_ready    ( dense3_input_ready    ),
+        .output_ready   ( dense3_output_ready   ),
+        .input_data     ( dense3_input_data     ),
+        .output_data    ( dense3_output_data    )
     );
 
     assign softmax_input_data = dense3_output_data;
     assign softmax_input_ready = dense3_output_ready;
+
     softmaxLayerNeg #(
-        .WIDTH(WIDTH), 
-        .NFRAC(WIDTH-NINT),  
-        .N(DENSE3_OUTPUT_SIZE),
-        .EXP_TABLE_PATH("weights_n_tables/exp_neg_table_18_17_10_6.dat"),
-        .INVERT_TABLE_PATH("weights_n_tables/pos_invert_table_18_17_10_7.dat")
-    ) soft_layer
-    (
+        .WIDTH              ( WIDTH                 ), 
+        .NFRAC              ( WIDTH-NINT            ),  
+        .N                  ( DENSE3_OUTPUT_SIZE    ),
+        .EXP_TABLE_PATH     ( "weights_n_tables/exp_neg_table_18_17_10_6.dat"),
+        .INVERT_TABLE_PATH  ( "weights_n_tables/pos_invert_table_18_17_10_7.dat")
+    ) soft_layer (
         .clk,
         .reset,
-        .ready(softmax_ready),
+        .ready          (softmax_ready),
         .next_layer_ready(1'b1),
-        .input_ready  (  softmax_input_ready),
-        .output_ready (  softmax_output_ready),
-        .input_data   (  softmax_input_data ),
-        .output_data  (  softmax_output_data));
+        .input_ready    ( softmax_input_ready   ),
+        .output_ready   ( softmax_output_ready  ),
+        .input_data     ( softmax_input_data    ),
+        .output_data    ( softmax_output_data)  );
 
     assign output_ready = softmax_output_ready;
     assign output_data = softmax_output_data[0];
+
 endmodule
 `define STRINGIFY(x) `"x`"
 
