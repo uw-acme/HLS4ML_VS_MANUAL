@@ -320,6 +320,24 @@ module gru_cell #(parameter
         end
     endgenerate
 
+`ifndef SYNTHESIS
+    // =====================================================================
+    // DEBUG PRINT BLOCK - r_t / z_t TRACE
+    // Remove after gate values have been verified.
+    // =====================================================================
+    integer dbg_i;
+    always_ff @(posedge clk) begin
+        if (!reset && output_valid) begin
+            for (dbg_i = 0; dbg_i < h_SIZE; dbg_i++) begin
+                $display(
+                    "DBG_GRUCELL t=%0t i=%0d r_t=%0d z_t=%0d h_tilde_raw=%0d",
+                    $time, dbg_i, r_t[dbg_i], z_t[dbg_i], h_tilde_raw[dbg_i]
+                );
+            end
+        end
+    end
+`endif
+
 endmodule
 
 // holds high until a reset
