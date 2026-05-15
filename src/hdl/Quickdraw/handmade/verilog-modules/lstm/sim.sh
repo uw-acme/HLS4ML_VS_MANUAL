@@ -9,7 +9,7 @@ rm -rf xsim.dir/ quickdraw_lstm_sim.jou quickdraw_lstm_sim.log sim.log
 #xvlog --sv ./pkg_sel.svh
 export PATH=/tools/Disk_Xilinx/2025.1/Vivado/bin:$PATH
 # Dense weights
-xvlog --sv ../weights_n_tables/*.sv ${1//' '/ -d }
+xvlog --sv weights_n_tables/*.sv ${1//' '/ -d }
 # xvlog --sv ./weights/dense_1_weights_biases_pkgs/dense_1_*.sv
 # xvlog --sv ./weights/dense_2_weights_biases_pkgs/dense_2_*.sv
 # xvlog --sv ./weights/dense_3_weights_biases_pkgs/dense_3_*.sv
