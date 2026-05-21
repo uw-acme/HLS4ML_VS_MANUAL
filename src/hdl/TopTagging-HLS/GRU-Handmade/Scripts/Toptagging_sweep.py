@@ -57,7 +57,7 @@ def handmade_gen(acc, name, params, defs):
         return newline
     # os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
     # patt = r"[0-9]{1,2}"
-    ## gen_weight(acc, model, "../weights_n_tables")
+    gen_weight(acc, model, "../weights_n_tables")
     params += f' NINT={acc[1]} WIDTH={acc[0]}'
     # for i in range(1,5):
     #     defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
@@ -139,7 +139,7 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     defs = defs.replace("  ", " ")
     # Generates the input files for testing and for weights
     gen_test(acc)
-    ## gen_weight(acc, model, "../weights_n_tables")
+    gen_weight(acc, model, "../weights_n_tables")
     # Runs the simulator through a bash script
     os.system(f'bash sim.sh "{defs}" "{params}"')
 
@@ -192,7 +192,7 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
     params = params.replace("  ", " ")
     defs = defs.replace("  ", " ")
     # Generates the input files for testing and for weights
-    ## gen_weight(acc, model, "../weights_n_tables")
+    gen_weight(acc, model, "../weights_n_tables")
     # Runs the simulator through a bash script
     os.system(f'bash lat.sh "{defs}" "{params}"')
     with open("../Results/hand_lat.csv", "r") as f:
@@ -428,109 +428,172 @@ def gen_weight(accuracy, model, target_dir="./"):
     :type accuracy: (int, int)
 
     """
-    width, nint = accuracy
-    Nfrac = width - nint
-    head = f"{width}'b"
-    os.makedirs(target_dir, exist_ok=True)
+    # The start of each number
+    head = f"{accuracy[0]}'b"
 
-    def write_pkg(package_name, weight, bias, filename):
-        weight = np.asarray(weight)
-        bias = np.asarray(bias)
-
-        if weight.ndim != 2:
-            raise ValueError(f"{package_name}: expected 2D weights, got {weight.shape}")
-        if bias.ndim != 1:
-            raise ValueError(f"{package_name}: expected 1D bias, got {bias.shape}")
-        if weight.shape[1] != bias.shape[0]:
-            raise ValueError(
-                f"{package_name}: weights output dim {weight.shape[1]} "
-                f"does not match bias dim {bias.shape[0]}"
-            )
-
-        with open(filename, "w") as f:
-            f.write(f"//Width: {width}\n//Int: {nint}\n")
-            f.write(f"package {package_name};\n\n")
-            f.write(f"localparam logic signed [{width-1}:0] weights [{weight.shape[0]}][{weight.shape[1]}] = '" + "{\n")
-
-            for row in range(weight.shape[0]):
-                f.write("{")
-                num = dec_to_bin(weight[row][0]*(2**Nfrac), width)
-                f.write(f"{head}{num}")
-                for col in range(1, weight.shape[1]):
-                    num = dec_to_bin(weight[row][col]*(2**Nfrac), width)
-                    f.write(f", {head}{num}")
-                f.write("},\n" if row != weight.shape[0]-1 else "}\n")
-
-            f.write("};\n")
-            f.write(f"localparam logic signed [{width-1}:0] bias [{bias.shape[0]}] = '"+"{\n")
-            for idx in range(bias.shape[0]):
-                num = dec_to_bin(bias[idx]*(2**Nfrac), width)
-                f.write(f"{head}{num}")
-                f.write(",\n" if idx != bias.shape[0]-1 else "\n")
-            f.write("};\nendpackage")
-
-    def write_gru_pkgs(layer):
-        W, U, B = layer.get_weights()
-        units = layer.units
-
-        if B.shape != (2, 3*units):
-            raise ValueError(
-                f"{layer.name}: expected reset_after=True GRU bias shape "
-                f"(2, {3*units}), got {B.shape}"
-            )
-
-        # Keras GRU gate order is [z update, r reset, h candidate].
-        W_z = W[:, :units]
-        W_r = W[:, units:2*units]
-        W_h = W[:, 2*units:]
-        U_z = U[:, :units]
-        U_r = U[:, units:2*units]
-        U_h = U[:, 2*units:]
-
-        B_in_z = B[0, :units]
-        B_in_r = B[0, units:2*units]
-        B_in_h = B[0, 2*units:]
-        B_rec_z = B[1, :units]
-        B_rec_r = B[1, units:2*units]
-        B_rec_h = B[1, 2*units:]
-
-        gru_packages = [
-            (f"reset_gate_{width}_{nint}", np.concatenate((W_r, U_r), axis=0), B_in_r + B_rec_r),
-            (f"update_gate_{width}_{nint}", np.concatenate((W_z, U_z), axis=0), B_in_z + B_rec_z),
-            (f"candidate_gate_W_{width}_{nint}", W_h, B_in_h),
-            (f"candidate_gate_U_{width}_{nint}", U_h, B_rec_h),
-        ]
-
-        for package_name, weight, bias in gru_packages:
-            filename = os.path.join(target_dir, f"{package_name}.sv")
-            write_pkg(package_name, weight, bias, filename)
-
+    Nfrac = accuracy[0] - accuracy[1]
+    # The amount of weights for each layer
+    current = 0
     for layer in model.layers:
         contents = layer.get_weights()
-        if not contents:
-            continue
-
-        if layer.__class__.__name__ == 'GRU':
-            write_gru_pkgs(layer)
-            continue
-
-        # contents = np.concatenate((contents, np.zeros(len(contents[1]))), axis=1)
-        weights = []
-        biases = []
-        for cont in contents:
+        if (contents!=None):
+            # contents = np.concatenate((contents, np.zeros(len(contents[1]))), axis=1)
+            weights = []
+            biases = []
             try:
-                len(cont[0])
-                weights.append(cont)
+                for cont in contents:
+                    try:
+                        len(cont[0])
+                        weights.append(cont)
+                    except:
+                        biases.append(cont)
+                if (len(weights)!=len(biases)):
+                    print(len(weights), len(biases))
+                    biases.append(np.zeros_like(biases[0]))
+                for i in range(len(weights)):
+                    name = layer.name
+                    # Converting the files to arrays
+                    weight = weights[i]
+                    bias = biases[i]
+
+                    # Output file name
+                    filename = os.path.join(target_dir, f"{name}_pkg_{accuracy[0]}_{accuracy[1]}_{i}.sv")
+                    # if (not os.path.isfile(filename)):
+                    with open(filename, "w") as f:
+                        # Writes the header to the file
+                        f.write(f"//Width: {accuracy[0]}\n//Int: {accuracy[1]}\n")
+                        f.write(f"package {name}_{i}_{accuracy[0]}_{accuracy[1]};\n\n")
+                        f.write(f"localparam logic signed [{accuracy[0]-1}:0] weights [{len(weight)}][{len(weight[0])}] = '" + "{\n")
+
+                        # Writes the main body of the function
+                        for i in range(len(weight)):
+                            f.write("{")
+                            num = dec_to_bin(weight[i][0]*(2**(Nfrac)), accuracy[0])
+                            f.write(f"{head}{num}")
+                            for j in range(1, len(weight[0])):
+                                num = dec_to_bin(weight[i][j]*(2**(Nfrac)), accuracy[0])
+                                f.write(f", {head}{num}")
+                            if (i!=len(weight)-1): 
+                                f.write("},\n")
+                        f.write("}\n};\n")
+                        f.write(f"localparam logic signed [{accuracy[0]-1}:0] bias [{len(weight[0])}] = '"+"{\n")
+                        for i in range(0, len(bias)):
+                            num = dec_to_bin(bias[i]*(2**Nfrac), accuracy[0])
+                            f.write(f"{head}{num}")
+                            f.write(",\n" if i!=(len(bias)-1) else "\n};\nendpackage")
             except:
-                biases.append(cont)
-        if (len(weights)!=len(biases)):
-            print(len(weights), len(biases))
-            biases.append(np.zeros_like(biases[0]))
-        for i in range(len(weights)):
-            name = layer.name
-            package_name = f"{name}_{i}_{width}_{nint}"
-            filename = os.path.join(target_dir, f"{name}_pkg_{width}_{nint}_{i}.sv")
-            write_pkg(package_name, weights[i], biases[i], filename)
+                pass
+
+# def gen_weight(accuracy, model, target_dir="./"):
+#     """
+#     Generate weight and bias packages from keras model
+#     :param accuracy: Accuracy for packages. Formatted (width, integers)
+#     :type accuracy: (int, int)
+
+#     """
+#     width, nint = accuracy
+#     Nfrac = width - nint
+#     head = f"{width}'b"
+#     os.makedirs(target_dir, exist_ok=True)
+
+#     def write_pkg(package_name, weight, bias, filename):
+#         weight = np.asarray(weight)
+#         bias = np.asarray(bias)
+
+#         if weight.ndim != 2:
+#             raise ValueError(f"{package_name}: expected 2D weights, got {weight.shape}")
+#         if bias.ndim != 1:
+#             raise ValueError(f"{package_name}: expected 1D bias, got {bias.shape}")
+#         if weight.shape[1] != bias.shape[0]:
+#             raise ValueError(
+#                 f"{package_name}: weights output dim {weight.shape[1]} "
+#                 f"does not match bias dim {bias.shape[0]}"
+#             )
+
+#         with open(filename, "w") as f:
+#             f.write(f"//Width: {width}\n//Int: {nint}\n")
+#             f.write(f"package {package_name};\n\n")
+#             f.write(f"localparam logic signed [{width-1}:0] weights [{weight.shape[0]}][{weight.shape[1]}] = '" + "{\n")
+
+#             for row in range(weight.shape[0]):
+#                 f.write("{")
+#                 num = dec_to_bin(weight[row][0]*(2**Nfrac), width)
+#                 f.write(f"{head}{num}")
+#                 for col in range(1, weight.shape[1]):
+#                     num = dec_to_bin(weight[row][col]*(2**Nfrac), width)
+#                     f.write(f", {head}{num}")
+#                 f.write("},\n" if row != weight.shape[0]-1 else "}\n")
+
+#             f.write("};\n")
+#             f.write(f"localparam logic signed [{width-1}:0] bias [{bias.shape[0]}] = '"+"{\n")
+#             for idx in range(bias.shape[0]):
+#                 num = dec_to_bin(bias[idx]*(2**Nfrac), width)
+#                 f.write(f"{head}{num}")
+#                 f.write(",\n" if idx != bias.shape[0]-1 else "\n")
+#             f.write("};\nendpackage")
+
+#     def write_gru_pkgs(layer):
+#         W, U, B = layer.get_weights()
+#         units = layer.units
+
+#         if B.shape != (2, 3*units):
+#             raise ValueError(
+#                 f"{layer.name}: expected reset_after=True GRU bias shape "
+#                 f"(2, {3*units}), got {B.shape}"
+#             )
+
+#         # Keras GRU gate order is [z update, r reset, h candidate].
+#         W_z = W[:, :units]
+#         W_r = W[:, units:2*units]
+#         W_h = W[:, 2*units:]
+#         U_z = U[:, :units]
+#         U_r = U[:, units:2*units]
+#         U_h = U[:, 2*units:]
+
+#         B_in_z = B[0, :units]
+#         B_in_r = B[0, units:2*units]
+#         B_in_h = B[0, 2*units:]
+#         B_rec_z = B[1, :units]
+#         B_rec_r = B[1, units:2*units]
+#         B_rec_h = B[1, 2*units:]
+
+#         gru_packages = [
+#             (f"reset_gate_{width}_{nint}", np.concatenate((W_r, U_r), axis=0), B_in_r + B_rec_r),
+#             (f"update_gate_{width}_{nint}", np.concatenate((W_z, U_z), axis=0), B_in_z + B_rec_z),
+#             (f"candidate_gate_W_{width}_{nint}", W_h, B_in_h),
+#             (f"candidate_gate_U_{width}_{nint}", U_h, B_rec_h),
+#         ]
+
+#         for package_name, weight, bias in gru_packages:
+#             filename = os.path.join(target_dir, f"{package_name}.sv")
+#             write_pkg(package_name, weight, bias, filename)
+
+#     for layer in model.layers:
+#         contents = layer.get_weights()
+#         if not contents:
+#             continue
+
+#         if layer.__class__.__name__ == 'GRU':
+#             # write_gru_pkgs(layer)
+#             continue
+
+#         # contents = np.concatenate((contents, np.zeros(len(contents[1]))), axis=1)
+#         weights = []
+#         biases = []
+#         for cont in contents:
+#             try:
+#                 len(cont[0])
+#                 weights.append(cont)
+#             except:
+#                 biases.append(cont)
+#         if (len(weights)!=len(biases)):
+#             print(len(weights), len(biases))
+#             biases.append(np.zeros_like(biases[0]))
+#         for i in range(len(weights)):
+#             name = layer.name
+#             package_name = f"{name}_{i}_{width}_{nint}"
+#             filename = os.path.join(target_dir, f"{name}_pkg_{width}_{nint}_{i}.sv")
+#             write_pkg(package_name, weights[i], biases[i], filename)
 
 # for pipeline in [3]:
     # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
@@ -552,7 +615,7 @@ def gen_weight(accuracy, model, target_dir="./"):
 #     # # print((3*i-2,i))
 #     handmade_gen(acc, name, params, defs)
 #         # accuracy_test(acc, y_test, name, defs, params, email=True)
-name = "Toptag_gru_16_6_gruCellDBG_3"
+name = "Toptag_gru_16_6_gruCellDBG_4"
 i = 6
 acc = (3*i-2, i)            # (16, 6)
 SAD, SAFRAC = adjust(acc[0])

@@ -47,3 +47,6 @@ src/hdl/TopTagging-HLS/model_lstm_hls/hls4ml_prj/
 
 documents/Benchmarks/Toptag/Miniconda3-latest-Linux-x86_64.sh
 *.sh
+
+src/hdl/TopTagging-HLS/GRU-Handmade/hls4ml_prj_io_parallel/
+src/hdl/TopTagging-HLS/GRU-Handmade/hls4ml_prj_pipeclean/
