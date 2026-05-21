@@ -154,8 +154,8 @@ module LSTM #( parameter
                     end else begin
                         if (move_next) begin
                             next_state=READY;
-                            next_output_ready=(OUTPUT_EACH_HT ? 1 : (curr_step==TIMESTEPS));
-                            future_reset_cell=(curr_step==TIMESTEPS);
+                            next_output_ready=(OUTPUT_EACH_HT ? 1 : (curr_step==(TIMESTEPS-1)));
+                            future_reset_cell=(curr_step==(TIMESTEPS-1));
                         end
                     end
             //  endgenerate
@@ -387,7 +387,7 @@ module edge_check(input reset, input in, output logic out);
 endmodule
 // `ifdef BALLS
 `define STRINGIFY(x) `"x`"
-`define MODELSIM
+// `define MODELSIM
 module LSTM_tb;
     logic clk;
     logic reset;

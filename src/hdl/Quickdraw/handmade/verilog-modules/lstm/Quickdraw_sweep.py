@@ -22,7 +22,7 @@ features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
 # Things to change
 def return_packages(acc):
     return f" LSTM_X_WEIGHTS=lstm_0_{acc[0]}_{acc[1]} LSTM_H_WEIGHTS=lstm_1_{acc[0]}_{acc[1]}\
- DENSE1_WEIGHTS=dense_0_{acc[0]}_{acc[1]} DENSE2_WEIGHTS=dense_1_{acc[0]}_{acc[1]} DENSE3_WEIGHTS=dense_2_{acc[0]}_{acc[1]}"
+ DENSE1_WEIGHTS=dense_0_{acc[0]}_{acc[1]} DENSE2_WEIGHTS=dense_1_0_{acc[0]}_{acc[1]} DENSE3_WEIGHTS=dense_2_0_{acc[0]}_{acc[1]}"
 
 weights_dir = "weights_n_tables"
 y_test = np.load('y_test.npy')
@@ -31,7 +31,7 @@ results_folder = "results"
 testing_folder = "testing_data"
 reports_folder = "reports"
 def get_widths(acc):
-    return f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
+    return f' NINT={acc[0]-acc[1]} WIDTH={acc[0]}'
 def gen_test(accuracy):
     test = np.load("X_test.npy", allow_pickle=True)
     test = test.flatten()
@@ -265,20 +265,23 @@ def adjust(bits):
     # pipe_out=0
     # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
     # name = f"expPipeNegmax"
-gen_test((16,6))
-# name = "magicOnly"
-# for i in range(4,32):
-#     acc = (i,(int)(i/2))
-#     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
-#     # SA_INT, SA_FRAC = adjust(acc_in[0])
-#     SAD, SAFRAC = adjust(acc[0])
-#     params = ""
-#     defs = " WIDTHX2=1"
-#     # defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-#     # lat = lat_test(acc, name, defs, params)
-#     # lat = 24*[lat]
-#     # add_csv_column("{results_folder}/util_expPipeNegmax.csv", lat)
-#     # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-#     # # print((3*i-2,i))
-#     handmade_gen(acc, name, params, defs)
-#         # accuracy_test(acc, y_test, name, defs, params, email=True)
+# gen_test((16,6))
+try:
+    name = "initial"
+    for i in range(2,14):
+        acc = (3*i-2,i)
+        # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
+        # SA_INT, SA_FRAC = adjust(acc_in[0])
+        # SAD, SAFRAC = adjust(acc[0])
+        params = ""
+        defs = ""
+        # defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+        # lat = lat_test(acc, name, defs, params)
+        # lat = 24*[lat]
+        # add_csv_column("{results_folder}/util_expPipeNegmax.csv", lat)
+        # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+        # # print((3*i-2,i))
+        handmade_gen(acc, name, params, defs)
+            # accuracy_test(acc, y_test, name, defs, params, email=True)
+except:
+    os.system(f'printf "{name} sythesis failed" "$(date)" | mail -s "Handmade Failure" ceravcal@uw.edu')

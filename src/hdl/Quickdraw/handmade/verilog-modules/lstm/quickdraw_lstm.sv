@@ -224,12 +224,12 @@ module Quickdraw_LSTM_tb;
     // logic signed [WIDTH-1:0] x_final [num_tests-1:0][TIMESTEPS]
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;
-    `ifndef TESTFILE
-        `define TESTFILE "X_test_16_6.txt"
-    `endif
-    `ifndef RESULTSFILE
-        `define RESULTSFILE "gen_results.csv"
-    `endif
+    // `ifndef TESTFILE
+    //     `define TESTFILE "X_test_16_6.txt"
+    // `endif
+    // `ifndef RESULTSFILE
+    //     `define RESULTSFILE "gen_results.csv"
+    // `endif
     
     initial begin
         `ifndef MODELSIM
