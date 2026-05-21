@@ -552,7 +552,7 @@ def gen_weight(accuracy, model, target_dir="./"):
 #     # # print((3*i-2,i))
 #     handmade_gen(acc, name, params, defs)
 #         # accuracy_test(acc, y_test, name, defs, params, email=True)
-name = "Toptag_gru_16_6_gruCellDBG_2"
+name = "Toptag_gru_16_6_gruCellDBG_3"
 i = 6
 acc = (3*i-2, i)            # (16, 6)
 SAD, SAFRAC = adjust(acc[0])
