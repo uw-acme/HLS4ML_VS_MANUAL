@@ -57,7 +57,7 @@ def handmade_gen(acc, name, params, defs):
         return newline
     # os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
     # patt = r"[0-9]{1,2}"
-    gen_weight(acc, model, "../weights_n_tables")
+    ## gen_weight(acc, model, "../weights_n_tables")
     params += f' NINT={acc[1]} WIDTH={acc[0]}'
     # for i in range(1,5):
     #     defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
@@ -139,7 +139,7 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     defs = defs.replace("  ", " ")
     # Generates the input files for testing and for weights
     gen_test(acc)
-    gen_weight(acc, model, "../weights_n_tables")
+    ## gen_weight(acc, model, "../weights_n_tables")
     # Runs the simulator through a bash script
     os.system(f'bash sim.sh "{defs}" "{params}"')
 
@@ -192,7 +192,7 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
     params = params.replace("  ", " ")
     defs = defs.replace("  ", " ")
     # Generates the input files for testing and for weights
-    gen_weight(acc, model, "../weights_n_tables")
+    ## gen_weight(acc, model, "../weights_n_tables")
     # Runs the simulator through a bash script
     os.system(f'bash lat.sh "{defs}" "{params}"')
     with open("../Results/hand_lat.csv", "r") as f:
@@ -552,7 +552,7 @@ def gen_weight(accuracy, model, target_dir="./"):
 #     # # print((3*i-2,i))
 #     handmade_gen(acc, name, params, defs)
 #         # accuracy_test(acc, y_test, name, defs, params, email=True)
-name = "Toptag_gru_16_6_gruCellDBG"
+name = "Toptag_gru_16_6_gruCellDBG_2"
 i = 6
 acc = (3*i-2, i)            # (16, 6)
 SAD, SAFRAC = adjust(acc[0])

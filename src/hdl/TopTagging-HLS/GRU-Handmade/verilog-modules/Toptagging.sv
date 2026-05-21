@@ -1,4 +1,4 @@
-`include "weights_sel.svh"
+`include "pkg_sel_gru.svh"
 `include "defines.svh"
 // `define MODELSIM
 
