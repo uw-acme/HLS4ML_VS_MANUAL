@@ -139,7 +139,7 @@ module gru #(parameter
             dbg_count <= 0;
         end else begin
             if (input_valid || ready || cell_input_valid || cell_ready || cell_output_valid || output_valid || done) begin
-                if (dbg_count < 60) begin
+                if (dbg_count < 420) begin
                     $display(
                         "DBG_GRU t=%0t ps=%0d ns=%0d count=%0d input_valid=%0b ready=%0b next_layer_ready=%0b cell_in=%0b cell_ready=%0b cell_out=%0b output_valid=%0b done=%0b",
                         $time,
