@@ -18,12 +18,12 @@
     `define CANDIDATE_U_PKG candidate_gate_U_16_6
 `endif
 
-// Dense 0
-`ifndef DENSE_0_PKG
-    `define DENSE_0_PKG layer3_pkg_16_6_0
-`endif
-
 // Dense 1
 `ifndef DENSE_1_PKG
-    `define DENSE_1_PKG output_sigmoid_pkg_16_6_0
+    `define DENSE_1_PKG dense_1_16_10
+`endif
+
+// Dense 2
+`ifndef DENSE_2_PKG
+    `define DENSE_2_PKG dense_2_16_10
 `endif

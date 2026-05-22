@@ -19,8 +19,8 @@ module gru #(parameter
     MEM_NFRAC           = 18,   // number of fractional bits in BRAM entries
     LOOKUP_WIDTH        = 10,   // width of lookup indices
     LOOKUP_NFRAC        = 7,    // fractional bits in lookup indices
-    SIGMOID_BRAM_FILE   = "../weights_n_tables/sigmoid_table_18_18_10_7.dat",
-    TANH_BRAM_FILE      = "../weights_n_tables/tanh_table_18_18_10_7.dat"
+    SIGMOID_BRAM_FILE   = "./weights_n_tables/sigmoid_table_18_18_10_7.dat",
+    TANH_BRAM_FILE      = "./weights_n_tables/tanh_table_18_18_10_7.dat"
 )(
     input  logic clk,
     input  logic reset,

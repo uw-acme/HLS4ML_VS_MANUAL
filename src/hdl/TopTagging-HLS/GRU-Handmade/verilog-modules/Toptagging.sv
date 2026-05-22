@@ -2,9 +2,6 @@
 `include "defines.svh"
 // `define MODELSIM
 
-import `DENSE2_WEIGHTS::*;
-import `DENSE1_WEIGHTS::*;
-
 `timescale 1ns / 1ps
 module Toptagging #( parameter
     WIDTH = 16,
@@ -47,19 +44,6 @@ module Toptagging #( parameter
     logic dense2_ready;
     logic sigmoid_ready;
 
-`ifdef SKIP_GRU
-    assign dense1_input_ready = input_ready;
-    logic ready_internal;
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset)
-            ready_internal <= 1'b1;
-        else if (input_ready)
-            ready_internal <= 1'b0;
-        else if (sigmoid_output_ready)
-            ready_internal <= 1'b1;
-    end
-    assign ready = ready_internal;
-`else
     localparam GRU_INPUT_SIZE=6, GRU_OUTPUT_SIZE=20;
 
     logic signed[WIDTH-1:0] gru_input_data [GRU_INPUT_SIZE-1:0];
@@ -68,6 +52,7 @@ module Toptagging #( parameter
     logic [$clog2(TIMESTEPS)-1:0] timestep;
 
     assign gru_input_valid = input_ready;
+    assign dense1_input_data = gru_output_data;
     assign gru_input_data = input_v;
     assign dense1_input_ready =  gru_output_valid;
     assign ready = gru_ready;
@@ -89,17 +74,13 @@ module Toptagging #( parameter
         .y_t(gru_output_data)
     );
 
-
-    
-`endif
-
     denseLayer #(
         .WIDTH(WIDTH),
         .NFRAC(WIDTH-NINT),
         .INPUT_SIZE(DENSE1_INPUT_SIZE),
         .OUTPUT_SIZE(DENSE1_OUTPUT_SIZE),
-        .WEIGHTS ( `DENSE1_WEIGHTS::weights ),
-        .BIAS    ( `DENSE1_WEIGHTS::bias    )
+        .WEIGHTS ( `DENSE_1_PKG::weights ),
+        .BIAS    ( `DENSE_1_PKG::bias    )
     ) dense1 (
         .clk, .reset,
         .ready(dense1_ready),
@@ -128,8 +109,8 @@ module Toptagging #( parameter
         .NFRAC(WIDTH-NINT),
         .INPUT_SIZE(DENSE2_INPUT_SIZE),
         .OUTPUT_SIZE(DENSE2_OUTPUT_SIZE),
-        .WEIGHTS ( `DENSE2_WEIGHTS::weights ),
-        .BIAS    ( `DENSE2_WEIGHTS::bias    )
+        .WEIGHTS ( `DENSE_2_PKG::weights ),
+        .BIAS    ( `DENSE_2_PKG::bias    )
     ) dense2 (
         .clk, .reset,
         .ready(dense2_ready),
@@ -176,122 +157,72 @@ module Toptagging #( parameter
 
 endmodule
 
+module toptagging_tb_simple();
 
-`ifndef SYNTHESIS
-`define STRINGIFY(x) `"x`"
-module Toptagging_tb;
-    logic clk, shiftClk;
-    logic reset;
-    logic input_ready;
-    logic output_ready;
-    logic ready;
-    // logic move_next;
-    parameter INPUT_SIZE = 6;
-    parameter TIMESTEPS = 20;
-    parameter OUTPUT_SIZE = 1;
-    parameter WIDTH = 16;
-    parameter NINT = 6;
-    parameter NFRAC = WIDTH-NINT;
-    logic signed[WIDTH-1:0] input_v [INPUT_SIZE-1:0];
-    logic signed [WIDTH-1:0] input_step [INPUT_SIZE-1:0];
-    logic signed[WIDTH-1:0] output_data;
-    integer i, j, k, fd, count;
-    Toptagging #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
+    localparam WIDTH = 16;
+    localparam NINT = 6;
+    localparam INPUT_SIZE = 6;
+    localparam OUTPUT_SIZE = 1;
+    localparam TIMESTEPS = 20;
+
+    logic clk, reset, input_ready, output_ready, ready;
+    logic signed [WIDTH-1:0] input_v [INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] output_data;
+
+    Toptagging
+        #(.WIDTH(WIDTH), .NINT(NINT), .INPUT_SIZE(INPUT_SIZE), .OUTPUT_SIZE(OUTPUT_SIZE), .TIMESTEPS(TIMESTEPS))
+        dut (.*);
+
+    localparam PERIOD = 10;
     initial begin
-        clk=0;
-        count=0;
-        forever #1 begin
-            if (~clk)
-                count<=count+1'b1;
-            clk<=~clk;
-        end
+       clk <= 1'b1;
+       forever #(PERIOD/2) clk <= ~clk;
     end
-    assign shiftClk=clk;
-    // max_tests = 19951;
-    localparam num_tests = 19951;
-    logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
-    logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
-    `ifndef TESTFILE
-        `define TESTFILE "X_test_16_6.txt"
-    `endif
-    `ifndef RESULTSFILE
-        `define RESULTSFILE "gen_results.csv"
-    `endif
-    
+
+    localparam signed [15:0] INPUT [0:19][0:5] = '{
+        '{16'sd163, 16'sd434, 16'sd515, 16'sd160, 16'sd19,  16'sd538},
+        '{16'sd135, 16'sd434, 16'sd441, 16'sd134, 16'sd26,  16'sd542},
+        '{16'sd124, 16'sd435, 16'sd511, 16'sd121, 16'sd16,  16'sd542},
+        '{16'sd100, 16'sd437, 16'sd445, 16'sd99,  16'sd24,  16'sd542},
+        '{16'sd77,  16'sd433, 16'sd445, 16'sd76,  16'sd24,  16'sd463},
+        '{16'sd73,  16'sd435, 16'sd438, 16'sd73,  16'sd28,  16'sd542},
+        '{16'sd49,  16'sd435, 16'sd517, 16'sd48,  16'sd19,  16'sd463},
+        '{16'sd31,  16'sd432, 16'sd422, 16'sd31,  16'sd38,  16'sd0},
+        '{16'sd28,  16'sd436, 16'sd516, 16'sd28,  16'sd19,  16'sd538},
+        '{16'sd27,  16'sd466, 16'sd593, 16'sd27,  16'sd75,  16'sd463},
+        '{16'sd25,  16'sd437, 16'sd439, 16'sd25,  16'sd27,  16'sd561},
+        '{16'sd22,  16'sd429, 16'sd456, 16'sd22,  16'sd20,  16'sd561},
+        '{16'sd19,  16'sd431, 16'sd422, 16'sd19,  16'sd38,  16'sd561},
+        '{16'sd19,  16'sd439, 16'sd522, 16'sd18,  16'sd22,  16'sd463},
+        '{16'sd19,  16'sd442, 16'sd543, 16'sd18,  16'sd35,  16'sd561},
+        '{16'sd18,  16'sd442, 16'sd545, 16'sd18,  16'sd37,  16'sd561},
+        '{16'sd16,  16'sd441, 16'sd439, 16'sd16,  16'sd28,  16'sd586},
+        '{16'sd16,  16'sd452, 16'sd560, 16'sd16,  16'sd49,  16'sd542},
+        '{16'sd16,  16'sd449, 16'sd580, 16'sd16,  16'sd59,  16'sd542},
+        '{16'sd15,  16'sd436, 16'sd449, 16'sd15,  16'sd21,  16'sd463}
+    };
+
+    integer i;
     initial begin
-        `ifndef MODELSIM
-        $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
-        `else
-            $readmemb("../testing_data/X_test_16_6.txt", flat_mem);
-        `endif
-        for (i=0; i<num_tests; i++) begin : tests
-            for (j=0; j<TIMESTEPS; j++) begin : steps
-                for (k=0; k<INPUT_SIZE; k++) begin : nums
-                    x_test[i][j][k] = flat_mem[i*INPUT_SIZE*TIMESTEPS+(j+1)*INPUT_SIZE-k-1];
-                end
-            end
-        end
-    end
-    localparam write_file=1;
-    real out;
-    function real to_real(input logic signed [WIDTH-1:0] fixed_point_value);
-        real result;
-        result = fixed_point_value / (2.0 ** (NFRAC));  // Scale by the fractional part
-        return result;
-    endfunction
-    genvar g;
-    generate
-    // for (g=0; g<OUTPUT_SIZE; g++) begin
-    //     assign out[g] = to_real(ht[g]);
-    // end
-    assign out=to_real(output_data);
-    endgenerate
-    always_ff @(posedge clk) begin
-        if (write_file&&output_ready) begin
-            // for (int ii = 0; ii < OUTPUT_SIZE-1; ii++) begin
-            //     $fwrite(fd, "%.15f,",  out[ii]);
-            // end
-            $fwrite(fd, "%.15f\n", out);
-        end
-        if (count>30000)
-            $stop;
-    end
-    initial begin
-        if (write_file) begin
-            `ifndef MODELSIM
-                fd = $fopen(`STRINGIFY(`RESULTSFILE), "w");  // "w" = write mode, "a" = append
-            `else
-                fd = $fopen("gen_results.csv", "w");  // "w" = write mode, "a" = append
-            `endif
-            if (fd == 0) begin
-                $display("ERROR: Could not open file!");
-                $finish;
-            end
-        end
-        reset=1;
-        input_ready<=0;
+        reset <= 1; repeat(1) @(posedge clk);
+
+        reset <= 0;
+        input_ready <= 1;
+
+        input_v <= INPUT[0];
         @(posedge clk);
-        @(posedge clk);
-        reset=0;
-        i=0;
-        
-        repeat(num_tests) begin
-            input_ready<=1;
-            for (int j=0; j<TIMESTEPS; j++) begin
-                input_step<=x_test[i][j];
-                @(posedge shiftClk)
-                reset<=0;
-            end
-            input_ready<=0;
-            // input_v<=x_test[i];
-            @(posedge ready)
-            count=0;
-            i++;
+
+        for (i = 1; i < 20; i++) begin
+            @(posedge ready);
+            input_v <= INPUT[i];
         end
-        input_ready<=0;
         
-        repeat(5) @(posedge clk);
+        wait(output_ready == 1'b1);
+        repeat(10) @(posedge clk);
+
+        repeat(10) @(posedge clk);
+
         $stop;
     end
+
 endmodule
-`endif
