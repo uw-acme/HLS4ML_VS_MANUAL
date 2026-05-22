@@ -172,7 +172,7 @@ module Toptagging_tb;
     parameter WIDTH = 16;
     parameter NINT = 6;
     parameter NFRAC = WIDTH-NINT;
-    logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
+    logic signed[WIDTH-1:0] input_v [INPUT_SIZE-1:0];   // 1-D: one timestep per clk (matches Toptagging port)
     logic signed[WIDTH-1:0] output_data;
     integer i, j, k, fd, count;
     Toptagging #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
@@ -254,11 +254,14 @@ module Toptagging_tb;
         i=0;
 
         repeat(num_tests) begin
-            input_v<=x_test[i];        // load all 20 timesteps at once (Toptagging takes 2-D input_v)
             input_ready<=1;
-            @(posedge clk);
+            for (int j=0; j<TIMESTEPS; j++) begin
+                input_v<=x_test[i][j];   // stream one timestep per clk (Toptagging's input_v is 1-D)
+                @(posedge clk)
+                reset<=0;
+            end
             input_ready<=0;
-            @(posedge ready)           // wait for DUT to return to idle (TOP_IDLE)
+            @(posedge ready)             // wait for DUT to return to ready
             count=0;
             i++;
         end
