@@ -62,7 +62,9 @@ module Toptagging #( parameter
         .NFRAC     ( WIDTH-NINT      ),
         .x_SIZE    ( GRU_INPUT_SIZE  ),
         .TIMESTEPS ( TIMESTEPS       ),
-        .y_SIZE    ( GRU_OUTPUT_SIZE )
+        .y_SIZE    ( GRU_OUTPUT_SIZE ),
+        .SIGMOID_BRAM_FILE ( SIGMOID_BRAM_FILE ),
+        .TANH_BRAM_FILE    ( TANH_BRAM_FILE    )
     ) gru_layer (
         .clk(clk),
         .reset(reset),
@@ -127,7 +129,8 @@ module Toptagging #( parameter
     sigmoid #(
         .WIDTH(WIDTH),
         .NFRAC(WIDTH-NINT),
-        .SIZE (DENSE2_OUTPUT_SIZE)
+        .SIZE (DENSE2_OUTPUT_SIZE),
+        .BRAM_FILE (SIGMOID_BRAM_FILE)
     ) sig_layer (
         .clk, .reset,
         .ready(sigmoid_ready),
@@ -174,7 +177,7 @@ module Toptagging_tb;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [INPUT_SIZE-1:0];   // 1-D: one timestep per clk (matches Toptagging port)
     logic signed[WIDTH-1:0] output_data;
-    integer i, j, k, fd, count;
+    integer i, j, k, fd, count, ts;
     Toptagging #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
     initial begin
         clk=0;
@@ -254,14 +257,22 @@ module Toptagging_tb;
         i=0;
 
         repeat(num_tests) begin
-            input_ready<=1;
-            for (int j=0; j<TIMESTEPS; j++) begin
-                input_v<=x_test[i][j];   // stream one timestep per clk (Toptagging's input_v is 1-D)
-                @(posedge clk)
-                reset<=0;
+            input_ready <= 1;
+            input_v <= x_test[i][0];
+            @(posedge clk)
+            ts = 0;
+
+            forever begin
+                @ (posedge clk);
+                if (ready) begin
+                    ts = ts + 1;
+                    if (ts == TIMESTEPS) break;
+                    input_v <= x_test[i][ts];
+                end
             end
-            input_ready<=0;
-            @(posedge ready)             // wait for DUT to return to ready
+
+            input_ready <= 0;
+            @(posedge ready)
             count=0;
             i++;
         end
