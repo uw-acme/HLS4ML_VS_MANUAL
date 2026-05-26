@@ -109,7 +109,7 @@ module Toptagging_top_tb;
             // end
             $fwrite(fd, "%.15f\n", out);
         end
-        if (count>800)
+        if (count>30000)
             $stop;
     end
     initial begin

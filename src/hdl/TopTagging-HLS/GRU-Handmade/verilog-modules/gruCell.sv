@@ -43,8 +43,8 @@ module gru_cell #(parameter
     MEM_NFRAC           = 18,   // number of fractional bits in BRAM entries
     LOOKUP_WIDTH        = 10,   // width of lookup indices
     LOOKUP_NFRAC        = 7,    // fractional bits in lookup indices
-    SIGMOID_BRAM_FILE   = "sigmoid_table_18_18_10_7.dat",
-    TANH_BRAM_FILE      = "tanh_table_18_18_10_7.dat"
+    SIGMOID_BRAM_FILE   = "../weights_n_tables/sigmoid_table_18_18_10_7.dat",
+    TANH_BRAM_FILE      = "../weights_n_tables/tanh_table_18_18_10_7.dat"
 )(
     input logic clk,
     input logic reset,
@@ -319,6 +319,30 @@ module gru_cell #(parameter
             end
         end
     endgenerate
+
+`ifndef SYNTHESIS
+    // =====================================================================
+    // DEBUG PRINT BLOCK - r_t / z_t TRACE
+    // Remove after gate values have been verified.
+    // =====================================================================
+    integer dbg_i;
+    integer dbg_call_count;
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            dbg_call_count <= 0;
+        end else if (output_valid) begin
+            if (dbg_call_count < 21) begin
+                for (dbg_i = 0; dbg_i < 20; dbg_i++) begin
+                    $display(
+                        "DBG_GRUCELL t=%0t i=%0d h_t_minus_1=%0d h_t=%0d r_t=%0d z_t=%0d h_tilde=%0d r_t_raw=%0d z_t_raw=%0d h_tilde_raw_W=%0d h_tilde_raw_U=%0d h_tilde_raw=%0d r_h_mult=%0d",
+                        $time, dbg_i, h_t_minus_1[dbg_i], h_t[dbg_i], r_t[dbg_i], z_t[dbg_i], h_tilde[dbg_i], r_t_raw[dbg_i], z_t_raw[dbg_i], h_tilde_raw_W[dbg_i], h_tilde_raw_U[dbg_i], h_tilde_raw[dbg_i], r_h_mult[dbg_i]
+                    );
+                end
+                dbg_call_count <= dbg_call_count + 1;
+            end
+        end
+    end
+`endif
 
 endmodule
 

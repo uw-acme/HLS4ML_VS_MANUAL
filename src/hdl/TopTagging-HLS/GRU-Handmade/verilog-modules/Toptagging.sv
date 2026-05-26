@@ -1,9 +1,6 @@
-`include "weights_sel.svh"
+`include "pkg_sel_gru.svh"
 `include "defines.svh"
 // `define MODELSIM
-
-import `DENSE2_WEIGHTS::*;
-import `DENSE1_WEIGHTS::*;
 
 `timescale 1ns / 1ps
 module Toptagging #( parameter
@@ -19,7 +16,7 @@ module Toptagging #( parameter
     input input_ready,
     output logic ready,
     output logic output_ready,
-    input logic signed [WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0],
+    input logic signed [WIDTH-1:0] input_v [INPUT_SIZE-1:0],
     output logic signed [WIDTH-1:0] output_data
 );
 
@@ -47,19 +44,6 @@ module Toptagging #( parameter
     logic dense2_ready;
     logic sigmoid_ready;
 
-`ifdef SKIP_GRU
-    assign dense1_input_ready = input_ready;
-    logic ready_internal;
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset)
-            ready_internal <= 1'b1;
-        else if (input_ready)
-            ready_internal <= 1'b0;
-        else if (sigmoid_output_ready)
-            ready_internal <= 1'b1;
-    end
-    assign ready = ready_internal;
-`else
     localparam GRU_INPUT_SIZE=6, GRU_OUTPUT_SIZE=20;
 
     logic signed[WIDTH-1:0] gru_input_data [GRU_INPUT_SIZE-1:0];
@@ -67,31 +51,20 @@ module Toptagging #( parameter
     logic gru_input_valid, gru_output_valid, gru_ready;
     logic [$clog2(TIMESTEPS)-1:0] timestep;
 
-    typedef enum logic [2:0] {
-        TOP_IDLE,
-        TOP_STREAM_GRU,
-        TOP_WAIT_GRU,
-        TOP_SEND_DENSE,
-        TOP_WAIT_OUTPUT
-    } top_state_t;
-    top_state_t state, next_state;
-
-    assign ready = (state == TOP_IDLE);
-    assign gru_input_valid = (state == TOP_STREAM_GRU);
-    assign dense1_input_ready = (state == TOP_SEND_DENSE);
-
-    always_comb begin
-        for (int i = 0; i < GRU_INPUT_SIZE; i++) begin
-            gru_input_data[i] = input_v[timestep][i];
-        end
-    end
+    assign gru_input_valid = input_ready;
+    assign dense1_input_data = gru_output_data;
+    assign gru_input_data = input_v;
+    assign dense1_input_ready =  gru_output_valid;
+    assign ready = gru_ready;
 
     gru #(
         .WIDTH     ( WIDTH           ),
         .NFRAC     ( WIDTH-NINT      ),
         .x_SIZE    ( GRU_INPUT_SIZE  ),
         .TIMESTEPS ( TIMESTEPS       ),
-        .y_SIZE    ( GRU_OUTPUT_SIZE )
+        .y_SIZE    ( GRU_OUTPUT_SIZE ),
+        .SIGMOID_BRAM_FILE ( SIGMOID_BRAM_FILE ),
+        .TANH_BRAM_FILE    ( TANH_BRAM_FILE    )
     ) gru_layer (
         .clk(clk),
         .reset(reset),
@@ -103,69 +76,13 @@ module Toptagging #( parameter
         .y_t(gru_output_data)
     );
 
-    always_ff @(posedge clk or posedge reset) begin
-        if (reset) begin
-            state <= TOP_IDLE;
-            timestep <= '0;
-            dense1_input_data <= '{default: '0};
-        end else begin
-            state <= next_state;
-
-            if (state == TOP_IDLE && input_ready) begin
-                timestep <= '0;
-            end else if (state == TOP_STREAM_GRU && gru_ready && timestep != TIMESTEPS - 1) begin
-                timestep <= timestep + 1'b1;
-            end
-
-            if (state == TOP_WAIT_GRU && gru_output_valid) begin
-                dense1_input_data <= gru_output_data;
-            end
-        end
-    end
-
-    always_comb begin
-        next_state = state;
-
-        unique case (state)
-            TOP_IDLE: begin
-                if (input_ready)
-                    next_state = TOP_STREAM_GRU;
-            end
-
-            TOP_STREAM_GRU: begin
-                if (gru_ready && timestep == TIMESTEPS - 1)
-                    next_state = TOP_WAIT_GRU;
-            end
-
-            TOP_WAIT_GRU: begin
-                if (gru_output_valid)
-                    next_state = TOP_SEND_DENSE;
-            end
-
-            TOP_SEND_DENSE: begin
-                if (dense1_ready)
-                    next_state = TOP_WAIT_OUTPUT;
-            end
-
-            TOP_WAIT_OUTPUT: begin
-                if (sigmoid_output_ready)
-                    next_state = TOP_IDLE;
-            end
-
-            default: begin
-                next_state = TOP_IDLE;
-            end
-        endcase
-    end
-`endif
-
     denseLayer #(
         .WIDTH(WIDTH),
         .NFRAC(WIDTH-NINT),
         .INPUT_SIZE(DENSE1_INPUT_SIZE),
         .OUTPUT_SIZE(DENSE1_OUTPUT_SIZE),
-        .WEIGHTS ( `DENSE1_WEIGHTS::weights ),
-        .BIAS    ( `DENSE1_WEIGHTS::bias    )
+        .WEIGHTS ( `DENSE_1_PKG::weights ),
+        .BIAS    ( `DENSE_1_PKG::bias    )
     ) dense1 (
         .clk, .reset,
         .ready(dense1_ready),
@@ -194,8 +111,8 @@ module Toptagging #( parameter
         .NFRAC(WIDTH-NINT),
         .INPUT_SIZE(DENSE2_INPUT_SIZE),
         .OUTPUT_SIZE(DENSE2_OUTPUT_SIZE),
-        .WEIGHTS ( `DENSE2_WEIGHTS::weights ),
-        .BIAS    ( `DENSE2_WEIGHTS::bias    )
+        .WEIGHTS ( `DENSE_2_PKG::weights ),
+        .BIAS    ( `DENSE_2_PKG::bias    )
     ) dense2 (
         .clk, .reset,
         .ready(dense2_ready),
@@ -212,7 +129,8 @@ module Toptagging #( parameter
     sigmoid #(
         .WIDTH(WIDTH),
         .NFRAC(WIDTH-NINT),
-        .SIZE (DENSE2_OUTPUT_SIZE)
+        .SIZE (DENSE2_OUTPUT_SIZE),
+        .BRAM_FILE (SIGMOID_BRAM_FILE)
     ) sig_layer (
         .clk, .reset,
         .ready(sigmoid_ready),
@@ -225,4 +143,143 @@ module Toptagging #( parameter
 
     assign output_ready = sigmoid_output_ready;
     assign output_data  = sigmoid_output_data[0];
+
+    // `ifndef SYNTHESIS
+    // always_ff @(posedge clk) begin
+    //     if (!reset) begin
+    //         if (input_ready || gru_ready || gru_output_valid || dense1_input_ready || sigmoid_output_ready) begin
+    //             $display(
+    //                 "TOP t=%0t ps=%0d timestep=%0d input_ready=%0b gru_valid=%0b gru_ready=%0b gru_out=%0b dense1_in=%0b dense1_ready=%0b sig_out=%0b",
+    //                 $time, ps, timestep, input_ready, gru_input_valid, gru_ready,
+    //                 gru_output_valid, dense1_input_ready, dense1_ready, sigmoid_output_ready
+    //             );
+    //         end
+    //     end
+    // end
+    // `endif
+
 endmodule
+
+`ifndef SYNTHESIS
+`define STRINGIFY(x) `"x`"
+module Toptagging_tb;
+    logic clk;
+    logic reset;
+    logic input_ready;
+    logic output_ready;
+    logic ready;
+    // logic move_next;
+    parameter INPUT_SIZE = 6;
+    parameter TIMESTEPS = 20;
+    parameter OUTPUT_SIZE = 1;
+    parameter WIDTH = 16;
+    parameter NINT = 6;
+    parameter NFRAC = WIDTH-NINT;
+    logic signed[WIDTH-1:0] input_v [INPUT_SIZE-1:0];   // 1-D: one timestep per clk (matches Toptagging port)
+    logic signed[WIDTH-1:0] output_data;
+    integer i, j, k, fd, count, ts;
+    Toptagging #(.WIDTH(WIDTH), .NINT(NINT)) dut (.*);
+    initial begin
+        clk=0;
+        count=0;
+        forever #1 begin
+            if (~clk)
+                count<=count+1'b1;
+            clk<=~clk;
+        end
+    end
+    // max_tests = 19951;
+    localparam num_tests = 19951;
+    logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
+    `ifndef TESTFILE
+        `define TESTFILE "X_test_16_6.txt"
+    `endif
+    `ifndef RESULTSFILE
+        `define RESULTSFILE "gen_results.csv"
+    `endif
+
+    initial begin
+        `ifndef MODELSIM
+        $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
+        `else
+            $readmemb("../testing_data/X_test_16_6.txt", flat_mem);
+        `endif
+        for (i=0; i<num_tests; i++) begin : tests
+            for (j=0; j<TIMESTEPS; j++) begin : steps
+                for (k=0; k<INPUT_SIZE; k++) begin : nums
+                    x_test[i][j][k] = flat_mem[i*INPUT_SIZE*TIMESTEPS+(j+1)*INPUT_SIZE-k-1];
+                end
+            end
+        end
+    end
+    localparam write_file=1;
+    real out;
+    function real to_real(input logic signed [WIDTH-1:0] fixed_point_value);
+        real result;
+        result = fixed_point_value / (2.0 ** (NFRAC));  // Scale by the fractional part
+        return result;
+    endfunction
+    genvar g;
+    generate
+    // for (g=0; g<OUTPUT_SIZE; g++) begin
+    //     assign out[g] = to_real(ht[g]);
+    // end
+    assign out=to_real(output_data);
+    endgenerate
+    always_ff @(posedge clk) begin
+        if (write_file&&output_ready) begin
+            // for (int ii = 0; ii < OUTPUT_SIZE-1; ii++) begin
+            //     $fwrite(fd, "%.15f,",  out[ii]);
+            // end
+            $fwrite(fd, "%.15f\n", out);
+        end
+        if (count>30000)
+            $stop;
+    end
+    initial begin
+        if (write_file) begin
+            `ifndef MODELSIM
+                fd = $fopen(`STRINGIFY(`RESULTSFILE), "w");  // "w" = write mode, "a" = append
+            `else
+                fd = $fopen("gen_results.csv", "w");  // "w" = write mode, "a" = append
+            `endif
+            if (fd == 0) begin
+                $display("ERROR: Could not open file!");
+                $finish;
+            end
+        end
+        reset=1;
+        input_ready<=0;
+        @(posedge clk);
+        @(posedge clk);
+        reset=0;
+        i=0;
+
+        repeat(num_tests) begin
+            input_ready <= 1;
+            input_v <= x_test[i][0];
+            @(posedge clk)
+            ts = 0;
+
+            forever begin
+                @ (posedge clk);
+                if (ready) begin
+                    ts = ts + 1;
+                    if (ts == TIMESTEPS) break;
+                    input_v <= x_test[i][ts];
+                end
+            end
+
+            input_ready <= 0;
+            @(posedge ready)
+            count=0;
+            i++;
+        end
+        input_ready<=0;
+
+        repeat(5) @(posedge clk);
+        $stop;
+    end
+endmodule
+`endif
