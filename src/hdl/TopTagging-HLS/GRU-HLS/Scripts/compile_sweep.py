@@ -12,9 +12,10 @@ from tensorflow.keras.models import load_model # type: ignore
 
 model = load_model('../../model_gru.h5', compile=False)
 features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
-acc = []
-for i in range(2,14):
-    acc.append(({3*i-2},{i}))
+# acc = []
+# for i in range(2,14):
+#     acc.append(({3*i-2},{i}))
+acc = (16, 6)
 y_test = np.load('../../y_test.npy')
 # HLS4ML Model gen
 test = np.load("../../x_test.npy")
@@ -102,7 +103,7 @@ def HLS4ML_gen(acc : tuple[int, int]):
     :param acc: 
     """
     #try:
-    name = f"hls_iitest"
+    name = f"hls_toptag_gru"
     sweepname = name + f"_{acc[0]}_{acc[1]}"
     fullsweepname = f"../Sweeps/{sweepname}"
     fullverilogpath = fullsweepname+"/myproject_prj/solution1/impl/verilog"
@@ -263,15 +264,16 @@ def keras_test(model, y_test):
 #     score = accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
 #     print(acc, score)
 # accs = []
-for i in range(2,13):
-    # if not i==11:
-        acc = (3*i-2,i)
-        #print((3*i-2,i))
-        HLS4ML_gen((acc[0],acc[1]))
-        # arg = f"/home/caleb/sweeps/hls_please_{acc[0]}_{acc[1]}/p_prj/solution1/impl/verilog"
-        # os.system(f"rm {arg}/*.csv")
-        # accr = test_accuracy(arg, acc)
-        # os.system(f'printf "Acc fin at {acc[0]},{acc[1]} with {accr}"')
+# for i in range(2,13):
+#     # if not i==11:
+#         acc = (3*i-2,i)
+#         #print((3*i-2,i))
+#         HLS4ML_gen((acc[0],acc[1]))
+#         # arg = f"/home/caleb/sweeps/hls_please_{acc[0]}_{acc[1]}/p_prj/solution1/impl/verilog"
+#         # os.system(f"rm {arg}/*.csv")
+#         # accr = test_accuracy(arg, acc)
+#         # os.system(f'printf "Acc fin at {acc[0]},{acc[1]} with {accr}"')
+HLS4ML_gen(acc)
 # cs = pd.read_csv("../results/util_hls_please.csv", delimiter = ",")
 # cs["Accuracy"] = accsS
 # cs.to_csv("../results/util_hls_please.csv")
