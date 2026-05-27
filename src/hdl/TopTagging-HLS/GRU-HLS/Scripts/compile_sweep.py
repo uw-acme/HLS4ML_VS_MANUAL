@@ -102,7 +102,7 @@ def HLS4ML_gen(acc : tuple[int, int]):
     :param acc: 
     """
     #try:
-    name = f"hls_toptag_gru"
+    name = f"hls_toptag_gru_fullsweep"
     sweepname = name + f"_{acc[0]}_{acc[1]}"
     fullsweepname = f"../Sweeps/{sweepname}"
     fullverilogpath = fullsweepname+"/myproject_prj/solution1/impl/verilog"
