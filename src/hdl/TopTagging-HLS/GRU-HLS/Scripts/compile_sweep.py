@@ -12,10 +12,9 @@ from tensorflow.keras.models import load_model # type: ignore
 
 model = load_model('../../model_gru.h5', compile=False)
 features = ["LUTs", "Registers", "Block RAM Tile", "DSPs", "Bonded IOB"]
-# acc = []
-# for i in range(2,14):
-#     acc.append(({3*i-2},{i}))
-acc = (16, 6)
+accs = []
+for i in range(2, 14):
+    accs.append((3*i-2, i))
 y_test = np.load('../../y_test.npy')
 # HLS4ML Model gen
 test = np.load("../../x_test.npy")
@@ -273,7 +272,8 @@ def keras_test(model, y_test):
 #         # os.system(f"rm {arg}/*.csv")
 #         # accr = test_accuracy(arg, acc)
 #         # os.system(f'printf "Acc fin at {acc[0]},{acc[1]} with {accr}"')
-HLS4ML_gen(acc)
+for acc in accs:
+    HLS4ML_gen(acc)
 # cs = pd.read_csv("../results/util_hls_please.csv", delimiter = ",")
 # cs["Accuracy"] = accsS
 # cs.to_csv("../results/util_hls_please.csv")
