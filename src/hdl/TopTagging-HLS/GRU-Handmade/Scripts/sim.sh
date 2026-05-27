@@ -16,7 +16,7 @@ xvlog --sv ../weights_n_tables/*.sv ${1//' '/ -d }
 # xvlog --sv ./weights/dense_4_weights_biases_pkgs/dense_4_*.sv
 
 # Dense layer
-xvlog --sv gru.sv ${1//' '/ -d } gruCell.sv ${1//' '/ -d } Toptagging.sv ${1//' '/ -d } Toptagging_top.sv ${1//' '/ -d } adderTree.sv ${1//' '/ -d } adderTree_p4.sv ${1//' '/ -d } denseLayer.sv ${1//' '/ -d } relu.sv ${1//' '/ -d } shift_add.sv ${1//' '/ -d } sigmoid.sv ${1//' '/ -d } tanh.sv ${1//' '/ -d }
+xvlog --sv gru.sv ${1//' '/ -d } gruCell.sv ${1//' '/ -d } Toptagging.sv ${1//' '/ -d } adderTree.sv ${1//' '/ -d } adderTree_p4.sv ${1//' '/ -d } denseLayer.sv ${1//' '/ -d } relu.sv ${1//' '/ -d } shift_add.sv ${1//' '/ -d } sigmoid.sv ${1//' '/ -d } tanh.sv ${1//' '/ -d }
 
 # xvlog --sv ./verilog-modules/adderTree.sv ${1//' '/ -d }
 # xvlog --sv ./verilog-modules/shift_add.sv ${1//' '/ -d }
@@ -36,7 +36,7 @@ xvlog --sv gru.sv ${1//' '/ -d } gruCell.sv ${1//' '/ -d } Toptagging.sv ${1//' 
 
 
 # Elaborate design
-xelab Toptagging_top_tb ${1//' '/ -d } ${2//' '/ -generic_top } -s Toptagging_sim --debug typical 
+xelab Toptagging_tb ${1//' '/ -d } ${2//' '/ -generic_top } -s Toptagging_sim --debug typical 
 
 # Run simulation to completion (headless, no GUI waves)
 xsim Toptagging_sim -runall
