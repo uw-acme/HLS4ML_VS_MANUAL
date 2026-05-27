@@ -191,7 +191,7 @@ module hls_lat_tb;
     end
     initial begin
         if (write_file) begin
-            fd = $fopen("/home/caleb/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/GRU-HLS/results/hls_latency.csv", "a");  // "w" = write mode, "a" = append
+            fd = $fopen("/home/leo/HLS4ML_VS_MANUAL/src/hdl/TopTagging-HLS/GRU-HLS/results/hls_latency.csv", "w");  // "w" = write mode, "a" = append
             if (fd == 0) begin
                 $display("ERROR: Could not open file!");
                 $finish;
