@@ -201,8 +201,8 @@ module quickdraw_gru_tb();
     logic input_ready;
     logic output_ready;
     // logic move_next;
-    parameter INPUT_SIZE = 3, OUTPUT_SIZE = 5, TIMESTEPS = 100, WIDTH = 16;
-    parameter NINT = 6;
+    parameter INPUT_SIZE = 3, OUTPUT_SIZE = 5, TIMESTEPS = 100, WIDTH = 20;
+    parameter NINT = 10;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] output_data;
@@ -213,17 +213,17 @@ module quickdraw_gru_tb();
         forever #1 clk<=~clk;
     end
     // max_tests = 19951;
-    localparam num_tests = 5;
+    localparam num_tests = 100;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     // logic signed [WIDTH-1:0] x_final [num_tests-1:0][TIMESTEPS]
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     integer i, j, k, fd;
-    `ifndef TESTFILE
-        `define TESTFILE "X_test_16_6.txt"
-    `endif
-    `ifndef RESULTSFILE
-        `define RESULTSFILE "gen_results.csv"
-    `endif
+    // `ifndef TESTFILE
+    //     `define TESTFILE "X_test_16_6.txt"
+    // `endif
+    // `ifndef RESULTSFILE
+    //     `define RESULTSFILE "gen_results.csv"
+    // `endif
     
     initial begin
         `ifndef MODELSIM
@@ -298,42 +298,3 @@ module quickdraw_gru_tb();
     end
 endmodule
 `endif
-
-// test module with randomly generated input
-module quickdraw_gru_tb_simple();
-
-    logic clk, reset, input_ready, output_ready, ready;
-    logic signed [WIDTH-1:0] input_v [INPUT_SIZE-1:0];
-    logic signed [WIDTH-1:0] output_data;
-
-    quickdraw_gru
-        #(.WIDTH(WIDTH), .NINT(NINT), .INPUT_SIZE(INPUT_SIZE), .OUTPUT_SIZE(OUTPUT_SIZE), .TIMESTEPS(TIMESTEPS))
-        dut (.*);
-
-    localparam PERIOD = 10;
-    initial begin
-       clk <= 1'b1;
-       forever #(PERIOD/2) clk <= ~clk;
-    end
-
-    integer i;
-    initial begin
-        reset <= 1; repeat(1) @(posedge clk);
-
-        reset <= 0;
-        input_ready <= 1;
-
-        x_t <= {{32'b0},
-                {32'b0},
-                {32'b0},
-                {32'b0},
-                {32'b0},
-                {32'b0}
-               };
-
-        repeat(1000) @(posedge clk);
-
-        $stop;
-    end
-
-endmodule
