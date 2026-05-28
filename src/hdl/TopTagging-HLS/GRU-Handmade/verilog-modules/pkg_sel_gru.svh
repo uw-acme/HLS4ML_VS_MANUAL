@@ -19,11 +19,13 @@
 `endif
 
 // Dense 1
-`ifndef DENSE_1_PKG
-    `define DENSE_1_PKG dense_1_16_10
+`ifndef DENSE1_WEIGHTS
+    `define DENSE1_WEIGHTS layer3_0_16_6
 `endif
+`define DENSE_1_PKG `DENSE1_WEIGHTS
 
 // Dense 2
-`ifndef DENSE_2_PKG
-    `define DENSE_2_PKG dense_2_16_10
+`ifndef DENSE2_WEIGHTS
+    `define DENSE2_WEIGHTS output_sigmoid_0_16_6
 `endif
+`define DENSE_2_PKG `DENSE2_WEIGHTS
