@@ -148,7 +148,12 @@ def HLS4ML_gen(acc : tuple[int, int]):
 
     #If the report has not previously been generated, run vivado synthesis
     if (not os.path.isfile(os.path.join("../reports", f"{sweepname}_util.rpt"))):
-        os.system(f"vivado -mode batch -source hls_script.tcl -tclargs {sweepname}")
+        # Capture Vivado exit code — os.system() returns non-zero on any failure
+        # (license drop, synth error, etc.). Without this check, execution would
+        # fall through to extract_data() and crash on the missing .rpt file.
+        ret = os.system(f"vivado -mode batch -source hls_script.tcl -tclargs {sweepname}")
+        if ret != 0:
+            raise RuntimeError(f"Vivado exited with code {ret} — reports not generated for {sweepname}")
 
     #Grab data from reports
     data = extract_data(os.path.join("../reports", f"{sweepname}_util.rpt"), features)
@@ -273,7 +278,18 @@ def keras_test(model, y_test):
 #         # accr = test_accuracy(arg, acc)
 #         # os.system(f'printf "Acc fin at {acc[0]},{acc[1]} with {accr}"')
 for acc in accs:
-    HLS4ML_gen(acc)
+    # Attempt each bitwidth up to 2 times before skipping.
+    # Retrying once handles transient license drops between Vivado stages
+    # (e.g. license released after synth_design but not re-acquired for opt_design).
+    for attempt in range(2):
+        try:
+            HLS4ML_gen(acc)
+            break  # Success — stop retrying this acc and advance to the next
+        except Exception as e:
+            print(f"[ATTEMPT {attempt+1} FAILED] {acc}: {e}")
+            if attempt == 1:
+                # Both attempts exhausted — email and fall through to next acc
+                os.system(f'printf "[SKIP] {acc} failed twice: {e}" | mail -s "HLS Failure" ltxie27@uw.edu')
 # cs = pd.read_csv("../results/util_hls_please.csv", delimiter = ",")
 # cs["Accuracy"] = accsS
 # cs.to_csv("../results/util_hls_please.csv")

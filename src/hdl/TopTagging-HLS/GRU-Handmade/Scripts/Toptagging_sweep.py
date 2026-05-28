@@ -68,7 +68,9 @@ def handmade_gen(acc, name, params, defs):
     defs = "{" + defs + "}"
     # os.system(f'sed -i -E "s/NFRAC = {patt}/NFRAC = {acc[0]-acc[1]}/g; s/WIDTH = {patt}/WIDTH = {acc[0]}/g;" ../verilog-modules/waiz_benchmark*.sv')
     if (not os.path.isfile(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt")):
-        os.system(f'vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name} "{defs}" "{params}"')
+        ret = os.system(f'vivado -mode batch -source Script.tcl -tclargs {acc[0]}_{acc[1]}_{name} "{defs}" "{params}"')
+        if ret != 0:
+            raise RuntimeError(f"Vivado exited with code {ret} for {acc[0]}_{acc[1]}_{name} — reports not generated")
     #os.system(f'printf "Handmade gen finished at %b with {acc[0]},{acc[0]-acc[1]}" "$(date)" | mail -s "{acc[0]},{acc[0]-acc[1]}" ltxie27@uw.edu')
     accuracy = accuracy_test(acc, y_test, name, defs, params)
     # accuracy = -1.0 ## Placeholder so CSV write still works
@@ -715,7 +717,15 @@ def gen_gru_weight(accuracy, model, target_dir="./"):
 name = "handmade_toptag_gru_fullsweep"
 for i in range(2, 14):
     acc = (3*i-2, i)
-    SAD, SAFRAC = adjust(acc[0])
-    params = ""
-    defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-    handmade_gen(acc, name, params, defs)
+    for attempt in range(2):
+        try:
+            SAD, SAFRAC = adjust(acc[0])
+            params = ""
+            defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+            handmade_gen(acc, name, params, defs)
+            break  # success — move to next bitwidth
+        except Exception as e:
+            print(f"[ATTEMPT {attempt+1} FAILED] {acc}: {e}")
+            if attempt == 1:
+                err_msg = str(e).replace("'", "")
+                os.system(f'printf "[SKIP] {acc} failed twice: {err_msg}" | mail -s "Handmade Failure" ltxie27@uw.edu')
