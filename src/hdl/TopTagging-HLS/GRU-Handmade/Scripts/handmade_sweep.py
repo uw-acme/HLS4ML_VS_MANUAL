@@ -452,7 +452,7 @@ def adjust(bits):
 
 
 name = "handmade_toptag_gru_fullsweep"
-for i in range(2, 14):
+for i in range(5, 14):
     acc = (3*i-2, i)
     for attempt in range(2):
         try:
