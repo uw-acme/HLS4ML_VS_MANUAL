@@ -372,11 +372,23 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     gen_test(acc)
     gen_weight(acc, model, weights_dir)
     gen_gru_weight(acc, model, weights_dir)
-    os.system(f'bash sim.sh "{defs}" "{params}"')
+    result_path = f"{reports_folder}/{res_file}"
+    if os.path.exists(result_path):
+        os.remove(result_path)
+    sim_status = os.system(f'bash sim.sh "{defs}" "{params}"')
+    if sim_status != 0:
+        raise RuntimeError(f"Simulation failed for {acc} with exit status {sim_status}")
 
-    res =  np.loadtxt(f"{reports_folder}/{res_file}", delimiter=",")
+    if not os.path.exists(result_path):
+        raise RuntimeError(f"Simulation did not create results file {result_path}")
+    res =  np.loadtxt(result_path, delimiter=",")
     res = res.reshape(-1, 1)
-    acc_res= accuracy_score((y_test[0:len(res)]), np.round(res))
+    sample_count = min(len(y_test), len(res))
+    if sample_count == 0:
+        raise RuntimeError(f"No comparable samples for {acc}: y_test={len(y_test)}, res={len(res)}")
+    if len(res) != len(y_test):
+        print(f"[WARN] {acc} produced {len(res)} results for {len(y_test)} labels; scoring first {sample_count} samples")
+    acc_res= accuracy_score((y_test[0:sample_count]), np.round(res[0:sample_count]))
 
     csv_name = f"{results_folder}/{name}_acc.csv"
     if (not os.path.isfile(csv_name)):
