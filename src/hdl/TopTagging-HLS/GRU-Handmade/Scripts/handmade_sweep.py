@@ -451,7 +451,7 @@ def adjust(bits):
     return SA_INT, SA_FRAC
 
 
-name = "handmade_toptag_gru_fullsweep"
+name = "handmade_toptag_gru_fullsweep_i"
 for i in range(2, 14):
     acc = (3*i-2, i)
     for attempt in range(2):
@@ -460,7 +460,7 @@ for i in range(2, 14):
             params = ""
             defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
             handmade_gen(acc, name, params, defs)
-            # lat = lat_test(acc, name, defs, params)
+            lat = lat_test(acc, name, defs, params)
             break  # success — move to next bitwidth
         except Exception as e:
             print(f"[ATTEMPT {attempt+1} FAILED] {acc}: {e}")
