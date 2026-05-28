@@ -74,6 +74,7 @@ def handmade_gen(acc, name, params, defs):
     # accuracy = -1.0 ## Placeholder so CSV write still works
     results = extract_data(f"../reports/{acc[0]}_{acc[1]}_{name}_util.rpt", features)
     time = extract_time(f"../reports/{acc[0]}_{acc[1]}_{name}_timing.rpt")
+    clock_period = 10 - float(time)
     #accuracy_score = test_score()
     if len(results)!=len(features):
         raise ValueError("Report files not as expected")
@@ -84,7 +85,7 @@ def handmade_gen(acc, name, params, defs):
         f.write(f"{acc[0]}")
         for result in results:
             f.write(f", {result}")
-        f.write(f", {time}")
+        f.write(f", {clock_period}")
         f.write(f", {accuracy}")
         # f.write(f", {141*(10-int(time))}")
         f.write("\n")
@@ -95,9 +96,9 @@ def handmade_gen(acc, name, params, defs):
     
     for i in range(len(features)):
         output+=add_to(features[i], results[i])
-    output+=add_to("Timing", time)
+    output+=add_to("Timing", clock_period)
     output+=add_to("Accuracy", accuracy)
-    output+=add_to("Total Latency", 141*(10-float(time)))
+    output+=add_to("Total Latency", 141*clock_period)
 
     # output += f"\nTiming: {time}"
     # output += f"\nAccuracy: {accuracy}"
