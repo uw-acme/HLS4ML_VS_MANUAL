@@ -61,6 +61,19 @@ module gru_cell #(parameter
     output logic signed [WIDTH-1:0] h_t [0:h_SIZE-1]                // h_t: R^{e}
 );
 
+    always @(posedge output_valid) begin
+        for (int i = 0; i < h_SIZE; i++) begin
+            $display(
+                "T=%0t | i=%0d | r_t=%0d z_t=%0d h_tilde=%0d | r_t_raw=%0d z_t_raw=%0d | hW=%0d hU=%0d h_raw=%0d r_h_mult=%0d",
+                $time, i,
+                r_t[i], z_t[i], h_tilde[i],
+                r_t_raw[i], z_t_raw[i],
+                h_tilde_raw_W[i], h_tilde_raw_U[i],
+                h_tilde_raw[i], r_h_mult[i]
+            );
+        end
+    end
+
     function automatic logic signed [WIDTH*2-1:0] mult (
         input logic signed [WIDTH-1:0] in1,
         input logic signed [WIDTH-1:0] in2

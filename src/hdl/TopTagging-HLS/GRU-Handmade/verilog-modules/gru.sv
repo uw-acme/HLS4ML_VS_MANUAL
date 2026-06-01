@@ -41,6 +41,8 @@ module gru #(parameter
     logic signed [WIDTH-1:0] h_t_minus_1 [0:y_SIZE-1];
     logic cell_input_valid, cell_output_valid, cell_ready, cell_next_layer_ready;
     logic start, done;
+    logic [$clog2(TIMESTEPS) - 1 : 0] count;
+    logic cell_reset;
 
     enum logic [2:0] {READY=3'b100, PROCESSING=3'b010, PAUSED=3'b001} ps, ns;
 
@@ -50,8 +52,10 @@ module gru #(parameter
     assign start = input_valid && ready;
     assign output_valid = (ps == PAUSED);
 
+    assign cell_reset = reset || (ps == PAUSED && ns == READY);
+
     always_comb begin
-        if (ps == PROCESSING) begin
+        if (ps == PROCESSING && count != TIMESTEPS-1) begin
             ready = cell_output_valid;
         end else begin
             ready = (ps == READY);
@@ -96,7 +100,7 @@ module gru #(parameter
         .TANH_BRAM_FILE     ( TANH_BRAM_FILE    )
     ) gru_unit (
         .clk                ( clk               ),
-        .reset              ( reset             ),
+        .reset              ( cell_reset        ),
         .input_valid        ( cell_input_valid  ),
         .output_valid       ( cell_output_valid ),
         .ready              ( cell_ready        ),
@@ -108,7 +112,6 @@ module gru #(parameter
 
     // count number of times timestep computation has happened
     logic cell_output_posedge;
-    logic [$clog2(TIMESTEPS) - 1 : 0] count;
     always_ff @(posedge clk) begin
         if (reset) begin
             h_t_minus_1 <= '{default: 0};
@@ -128,39 +131,39 @@ module gru #(parameter
 
     assign done = (count == TIMESTEPS - 1) && cell_output_valid;
 
-// `ifndef SYNTHESIS
-//     // =====================================================================
-//     // DEBUG PRINT BLOCK - TEMPORARY REAL-GRU HANDSHAKE TRACE
-//     // Remove this block after the streamed GRU path is producing outputs.
-//     // =====================================================================
-//     integer dbg_count;
-//     always_ff @(posedge clk) begin
-//         if (reset) begin
-//             dbg_count <= 0;
-//         end else begin
-//             if (input_valid || ready || cell_input_valid || cell_ready || cell_output_valid || output_valid || done) begin
-//                 if (dbg_count < 420) begin
-//                     $display(
-//                         "DBG_GRU t=%0t ps=%0d ns=%0d count=%0d input_valid=%0b ready=%0b next_layer_ready=%0b cell_in=%0b cell_ready=%0b cell_out=%0b output_valid=%0b done=%0b",
-//                         $time,
-//                         ps,
-//                         ns,
-//                         count,
-//                         input_valid,
-//                         ready,
-//                         next_layer_ready,
-//                         cell_input_valid,
-//                         cell_ready,
-//                         cell_output_valid,
-//                         output_valid,
-//                         done
-//                     );
-//                     dbg_count <= dbg_count + 1;
-//                 end
-//             end
-//         end
-//     end
-// `endif
+`ifndef SYNTHESIS
+    // =====================================================================
+    // DEBUG PRINT BLOCK - TEMPORARY REAL-GRU HANDSHAKE TRACE
+    // Remove this block after the streamed GRU path is producing outputs.
+    // =====================================================================
+    integer dbg_count;
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            dbg_count <= 0;
+        end else begin
+            if (input_valid || ready || cell_input_valid || cell_ready || cell_output_valid || output_valid || done) begin
+                if (dbg_count < 420) begin
+                    $display(
+                        "DBG_GRU t=%0t ps=%0d ns=%0d count=%0d input_valid=%0b ready=%0b next_layer_ready=%0b cell_in=%0b cell_ready=%0b cell_out=%0b output_valid=%0b done=%0b",
+                        $time,
+                        ps,
+                        ns,
+                        count,
+                        input_valid,
+                        ready,
+                        next_layer_ready,
+                        cell_input_valid,
+                        cell_ready,
+                        cell_output_valid,
+                        output_valid,
+                        done
+                    );
+                    dbg_count <= dbg_count + 1;
+                end
+            end
+        end
+    end
+`endif
 
 endmodule
 
