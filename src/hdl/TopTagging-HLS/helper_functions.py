@@ -179,7 +179,7 @@ def gen_weight(accuracy, model):
     # The amount of weights for each layer
     current = 0
     for layer in model.layers:
-        if layer.name != 'gru':
+        if layer.name != 'layer1':
             contents = layer.get_weights()
             if (contents!=None):
                 # contents = np.concatenate((contents, np.zeros(len(contents[1]))), axis=1)
