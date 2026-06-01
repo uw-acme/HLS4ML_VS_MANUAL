@@ -99,8 +99,8 @@ module gru_cell #(parameter
     logic signed [WIDTH-1:0] h_tilde_raw [0:h_SIZE-1];              // h_tilde before tanh activation
     logic signed [WIDTH-1:0] r_h_mult [0:h_SIZE-1];                 // r_t pointwise multiply
 
-    logic input_ready, output_ready;
-    assign input_ready = input_valid;
+    logic input_ready, output_ready, input_accepted;
+    assign input_ready = input_accepted;
     assign output_valid = output_ready;
 
     // handshake signals between parts
@@ -113,23 +113,80 @@ module gru_cell #(parameter
     logic hW_dense_ready,   hW_dense_input_ready,   hW_dense_output_ready,  hW_dense_next_layer_ready;
     logic tanh_ready,       tanh_input_ready,       tanh_output_ready,      tanh_next_layer_ready;
     
-    // first layers
-    assign ready = z_dense_ready && r_dense_ready && hU_dense_ready && hW_dense_ready;
+    // Accept one cell transaction at a time so every branch result can be paired with the same h_t_minus_1.
+    // Backpressure holds these payloads until the wrapper consumes h_t.
+    logic transaction_valid;
+    assign ready = z_dense_ready && r_dense_ready && hU_dense_ready && hW_dense_ready && !transaction_valid;
+    assign input_accepted = input_valid && ready;
     assign z_dense_input_ready = input_ready;
     assign r_dense_input_ready = input_ready;
     assign hU_dense_input_ready = input_ready;
     assign hW_dense_input_ready = input_ready;
 
-    // last layers
-    assign tanh_next_layer_ready = next_layer_ready;
-    assign z_sig_next_layer_ready = next_layer_ready;
+    logic signed [WIDTH-1:0] r_t_hold [0:h_SIZE-1];
+    logic signed [WIDTH-1:0] h_tilde_raw_U_hold [0:h_SIZE-1];
+    logic signed [WIDTH-1:0] h_tilde_raw_W_hold [0:h_SIZE-1];
+    logic signed [WIDTH-1:0] z_t_hold [0:h_SIZE-1];
+    logic signed [WIDTH-1:0] h_tilde_hold [0:h_SIZE-1];
+    logic signed [WIDTH-1:0] h_t_minus_1_hold [0:h_SIZE-1];
+    logic h_prev_valid, r_hold_valid, hU_hold_valid, hW_hold_valid, z_hold_valid, tanh_hold_valid;
+    logic candidate_inflight, candidate_operands_valid, restart;
 
-    // check that output is good to go
-    logic tanh_latch, z_sig_latch, restart;
-    latch latch_tanh (.reset(restart), .clk(clk), .in(tanh_output_ready), .out(tanh_latch));
-    latch latch_z_sig (.reset(restart), .clk(clk), .in(z_sig_output_ready), .out(z_sig_latch));
-    assign output_ready = z_sig_latch && tanh_latch;
-    assign restart = reset || (z_sig_latch && tanh_latch && next_layer_ready);
+    // Reset clears both valid flags and held payloads; reset must win over new valid input.
+    // Otherwise a stale branch result can survive into the next transaction.
+    assign output_ready = h_prev_valid && z_hold_valid && tanh_hold_valid;
+    assign restart = reset || (output_ready && next_layer_ready);
+    assign transaction_valid = h_prev_valid || r_hold_valid || hU_hold_valid || hW_hold_valid ||
+                               z_hold_valid || tanh_hold_valid || candidate_inflight;
+
+    // The valid bit and payload are registered together; otherwise a later branch result
+    // can be combined with an earlier one when pipeline branches finish on different cycles.
+    always_ff @(posedge clk) begin
+        if (restart) begin
+            h_prev_valid <= 1'b0;
+            r_hold_valid <= 1'b0;
+            hU_hold_valid <= 1'b0;
+            hW_hold_valid <= 1'b0;
+            z_hold_valid <= 1'b0;
+            tanh_hold_valid <= 1'b0;
+            candidate_inflight <= 1'b0;
+            h_t_minus_1_hold <= '{default: 0};
+            r_t_hold <= '{default: 0};
+            h_tilde_raw_U_hold <= '{default: 0};
+            h_tilde_raw_W_hold <= '{default: 0};
+            z_t_hold <= '{default: 0};
+            h_tilde_hold <= '{default: 0};
+        end else begin
+            if (input_accepted) begin
+                h_t_minus_1_hold <= h_t_minus_1;
+                h_prev_valid <= 1'b1;
+            end
+            if (r_sig_output_ready && r_sig_next_layer_ready) begin
+                r_t_hold <= r_t;
+                r_hold_valid <= 1'b1;
+            end
+            if (hU_dense_output_ready && hU_dense_next_layer_ready) begin
+                h_tilde_raw_U_hold <= h_tilde_raw_U;
+                hU_hold_valid <= 1'b1;
+            end
+            if (hW_dense_output_ready && hW_dense_next_layer_ready) begin
+                h_tilde_raw_W_hold <= h_tilde_raw_W;
+                hW_hold_valid <= 1'b1;
+            end
+            if (z_sig_output_ready && z_sig_next_layer_ready) begin
+                z_t_hold <= z_t;
+                z_hold_valid <= 1'b1;
+            end
+            if (tanh_input_ready) begin
+                candidate_inflight <= 1'b1;
+            end
+            if (tanh_output_ready && tanh_next_layer_ready) begin
+                h_tilde_hold <= h_tilde;
+                tanh_hold_valid <= 1'b1;
+                candidate_inflight <= 1'b0;
+            end
+        end
+    end
 
     // ----- RESET GATE -----
     // r_t = sigmoid(W_r * [x_t, h_t-1] + b_r)
@@ -276,12 +333,13 @@ module gru_cell #(parameter
         .output_data        ( h_tilde_raw_W             )
     );
 
-    // applying reset gate: r_h_mult = r_t • h_tilde_raw_U
+    // Candidate math uses held operands, not live branch wires.
+    // Live wires may already be moving to another transaction by the time all operands are valid.
     genvar i;
     generate
         for (i = 0; i < h_SIZE; i++) begin : pointwise_mult_h_tilde
             always_comb begin
-                r_h_mult[i] = mult(r_t[i], h_tilde_raw_U[i]);
+                r_h_mult[i] = mult(r_t_hold[i], h_tilde_raw_U_hold[i]);
             end
         end
     endgenerate
@@ -290,15 +348,21 @@ module gru_cell #(parameter
     generate
         for (i = 0; i < h_SIZE; i++) begin : pointwise_add_h_tilde
             always_comb begin
-                h_tilde_raw[i] = r_h_mult[i] + h_tilde_raw_W[i];
+                h_tilde_raw[i] = r_h_mult[i] + h_tilde_raw_W_hold[i];
             end
         end
     endgenerate
 
-    assign r_sig_next_layer_ready = tanh_ready;
-    assign hU_dense_next_layer_ready = tanh_ready;
-    assign hW_dense_next_layer_ready = tanh_ready;
-    assign tanh_input_ready = r_sig_output_ready && hU_dense_next_layer_ready && hW_dense_next_layer_ready;
+    assign r_sig_next_layer_ready = !r_hold_valid;
+    assign hU_dense_next_layer_ready = !hU_hold_valid;
+    assign hW_dense_next_layer_ready = !hW_hold_valid;
+    assign z_sig_next_layer_ready = !z_hold_valid;
+    assign tanh_next_layer_ready = !tanh_hold_valid;
+    assign candidate_operands_valid = r_hold_valid && hU_hold_valid && hW_hold_valid;
+
+    // The reset gate, candidate-U, and candidate-W operands must all be held before tanh starts.
+    // This prevents the candidate path from using stale W/U data when branch latencies differ.
+    assign tanh_input_ready = candidate_operands_valid && tanh_ready && !candidate_inflight && !tanh_hold_valid;
 
     // apply tanh activation
     tanh #(
@@ -325,45 +389,48 @@ module gru_cell #(parameter
 
     // ----- HIDDEN STATE / OUTPUT -----
     // h_t = (1 - z_t) • h_tilde + z_t • h_t-1
+    // The final equation uses registered same-transaction operands.
+    // This prevents cross-timestep mixing between z_t, h_tilde, and h_t_minus_1.
     generate
         for (i = 0; i < h_SIZE; i++) begin: pointwise_mult_h_t
             always_comb begin
-                h_t[i] = mult((ONE_FP - z_t[i]), h_tilde[i]) + mult(z_t[i], h_t_minus_1[i]);
+                h_t[i] = mult((ONE_FP - z_t_hold[i]), h_tilde_hold[i]) + mult(z_t_hold[i], h_t_minus_1_hold[i]);
             end
         end
     endgenerate
 
-`ifndef SYNTHESIS
-    // =====================================================================
-    // DEBUG PRINT BLOCK - r_t / z_t TRACE
-    // Remove after gate values have been verified.
-    // =====================================================================
-    integer dbg_i;
-    integer dbg_call_count;
-    always_ff @(posedge clk) begin
-        if (reset) begin
-            dbg_call_count <= 0;
-        end else if (output_valid) begin
-            if (dbg_call_count < 21) begin
-                for (dbg_i = 0; dbg_i < 20; dbg_i++) begin
-                    $display(
-                        "DBG_GRUCELL t=%0t i=%0d h_t_minus_1=%0d h_t=%0d r_t=%0d z_t=%0d h_tilde=%0d r_t_raw=%0d z_t_raw=%0d h_tilde_raw_W=%0d h_tilde_raw_U=%0d h_tilde_raw=%0d r_h_mult=%0d",
-                        $time, dbg_i, h_t_minus_1[dbg_i], h_t[dbg_i], r_t[dbg_i], z_t[dbg_i], h_tilde[dbg_i], r_t_raw[dbg_i], z_t_raw[dbg_i], h_tilde_raw_W[dbg_i], h_tilde_raw_U[dbg_i], h_tilde_raw[dbg_i], r_h_mult[dbg_i]
-                    );
-                end
-                dbg_call_count <= dbg_call_count + 1;
-            end
-        end
-    end
-`endif
+// `ifndef SYNTHESIS
+//     // =====================================================================
+//     // DEBUG PRINT BLOCK - r_t / z_t TRACE
+//     // Remove after gate values have been verified.
+//     // =====================================================================
+//     integer dbg_i;
+//     integer dbg_call_count;
+//     always_ff @(posedge clk) begin
+//         if (reset) begin
+//             dbg_call_count <= 0;
+//         end else if (output_valid) begin
+//             if (dbg_call_count < 21) begin
+//                 for (dbg_i = 0; dbg_i < 20; dbg_i++) begin
+//                     $display(
+//                         "DBG_GRUCELL t=%0t i=%0d h_t_minus_1=%0d h_t=%0d r_t=%0d z_t=%0d h_tilde=%0d r_t_raw=%0d z_t_raw=%0d h_tilde_raw_W=%0d h_tilde_raw_U=%0d h_tilde_raw=%0d r_h_mult=%0d",
+//                         $time, dbg_i, h_t_minus_1[dbg_i], h_t[dbg_i], r_t[dbg_i], z_t[dbg_i], h_tilde[dbg_i], r_t_raw[dbg_i], z_t_raw[dbg_i], h_tilde_raw_W[dbg_i], h_tilde_raw_U[dbg_i], h_tilde_raw[dbg_i], r_h_mult[dbg_i]
+//                     );
+//                 end
+//                 dbg_call_count <= dbg_call_count + 1;
+//             end
+//         end
+//     end
+// `endif
 
 endmodule
 
 // holds high until a reset
 module latch(input reset, input clk, input in, output logic out);
     always_ff @(posedge clk) begin
+        // Reset is dominant so restart cannot leave a stale valid flag asserted.
         if (reset) out <= 0;
-        if (in) out <= 1;
+        else if (in) out <= 1;
     end
 endmodule
 
