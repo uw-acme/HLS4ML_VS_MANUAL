@@ -40,30 +40,18 @@ module gru #(parameter
     logic signed [WIDTH-1:0] h_t [0:y_SIZE-1];
     logic signed [WIDTH-1:0] h_t_minus_1 [0:y_SIZE-1];
     logic cell_input_valid, cell_output_valid, cell_ready, cell_next_layer_ready;
-<<<<<<< HEAD
     logic start, done;
     logic [$clog2(TIMESTEPS) - 1 : 0] count;
     logic cell_reset;
-=======
-    logic start, done, final_timestep, sequence_done;
-    localparam COUNT_WIDTH = (TIMESTEPS <= 1) ? 1 : $clog2(TIMESTEPS);
-    logic [COUNT_WIDTH - 1 : 0] count;
->>>>>>> 2ecdcafe1535c35d658c75188378aedea27d6580
 
-    // The wrapper separates "cell output completed" from "next timestep accepted".
-    // This commit phase exists so the next timestep sees the hidden state produced by the previous timestep.
-    enum logic [3:0] {READY=4'b1000, PROCESSING=4'b0100, COMMIT=4'b0010, PAUSED=4'b0001} ps, ns;
+    enum logic [2:0] {READY=3'b100, PROCESSING=3'b010, PAUSED=3'b001} ps, ns;
 
-    // Launch the cell only from READY, when h_t_minus_1 is already committed and stable.
-    // Starting the next cell on the same edge as a hidden-state update would sample stale recurrence.
-    assign cell_input_valid = start;
-    assign cell_next_layer_ready = (ps == PROCESSING);
+    assign cell_input_valid = (ps == READY && start && input_valid) || (ps == PROCESSING && cell_output_valid && input_valid);
+    assign cell_next_layer_ready = cell_ready;
 
     assign start = input_valid && ready;
     assign output_valid = (ps == PAUSED);
-    assign final_timestep = (count == TIMESTEPS - 1);
 
-<<<<<<< HEAD
     assign cell_reset = reset || (ps == PAUSED && ns == READY);
 
     always_comb begin
@@ -72,12 +60,6 @@ module gru #(parameter
         end else begin
             ready = (ps == READY);
         end
-=======
-    // ready is the safe input-accept point for the upstream layer.
-    // It stays low while a cell result is being committed into recurrent state.
-    always_comb begin
-        ready = (ps == READY) && cell_ready;
->>>>>>> 2ecdcafe1535c35d658c75188378aedea27d6580
     end
 
     always_comb begin
@@ -88,10 +70,7 @@ module gru #(parameter
             end
             PROCESSING: begin
                 ns = ps;
-                if (cell_output_valid) ns = COMMIT;
-            end
-            COMMIT: begin
-                ns = sequence_done ? PAUSED : READY;
+                if (done) ns = PAUSED;
             end
             PAUSED: begin
                 ns = ps;
@@ -132,41 +111,25 @@ module gru #(parameter
     );
 
     // count number of times timestep computation has happened
-<<<<<<< HEAD
     logic cell_output_posedge;
-=======
->>>>>>> 2ecdcafe1535c35d658c75188378aedea27d6580
     always_ff @(posedge clk) begin
         if (reset) begin
             h_t_minus_1 <= '{default: 0};
             y_t <= '{default: 0};
             count <= '0;
-            sequence_done <= 1'b0;
-        end else begin
-            if (ps == PROCESSING && cell_output_valid) begin
-                // A completed cell result is consumed even if upstream has already dropped input_valid.
-                // The next input is not accepted until this registered state is visible to the cell.
-                if (final_timestep) begin
-                    // Final output is captured before clearing recurrent state for the next sequence.
-                    // This keeps output_valid tied to a registered final hidden state, not a live cell result.
-                    y_t <= h_t;
-                    h_t_minus_1 <= '{default: 0};
-                    count <= '0;
-                    sequence_done <= 1'b1;
-                end else begin
-                    h_t_minus_1 <= h_t;
-                    count <= count + 1'b1;
-                    sequence_done <= 1'b0;
-                end
-            end else if (ps == PAUSED && next_layer_ready) begin
-                sequence_done <= 1'b0;
+        end else if (ps == PROCESSING && cell_output_valid && input_valid) begin
+            if (count == TIMESTEPS - 1) begin
+                h_t_minus_1 <= '{default: 0};
+                y_t <= h_t;
+                count <= '0;
             end else begin
-                sequence_done <= 1'b0;
+                h_t_minus_1 <= h_t;
+                count <= count + 1;
             end
         end
     end
 
-    assign done = sequence_done;
+    assign done = (count == TIMESTEPS - 1) && cell_output_valid;
 
 `ifndef SYNTHESIS
     // =====================================================================
