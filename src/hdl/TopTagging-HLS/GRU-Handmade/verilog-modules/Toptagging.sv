@@ -208,8 +208,7 @@ module Toptagging_tb;
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<TIMESTEPS; j++) begin : steps
                 for (k=0; k<INPUT_SIZE; k++) begin : nums
-                    // x_test[i][j][k] = flat_mem[i*INPUT_SIZE*TIMESTEPS+(j+1)*INPUT_SIZE-k-1];
-                    x_test[i][j][k] = flat_mem[i*INPUT_SIZE*TIMESTEPS + j*INPUT_SIZE + k];
+                    x_test[i][j][k] = flat_mem[i*INPUT_SIZE*TIMESTEPS+(j+1)*INPUT_SIZE-k-1];
                 end
             end
         end
