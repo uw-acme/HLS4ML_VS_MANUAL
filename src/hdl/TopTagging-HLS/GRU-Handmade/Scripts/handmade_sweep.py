@@ -189,18 +189,9 @@ def gen_gru_weight(accuracy, model, target_dir="./"):
     width, nint = accuracy
     nfrac = width - nint
     head = f"{width}'b"
-    max_val = (2**(width - 1) - 1) / (2**nfrac)
-    min_val = -(2**(width - 1)) / (2**nfrac)
-
-    def flip_bits(val, bits):
-        return ((val ^ (2**bits - 1)) + 1)
 
     def conv_to_str(num):
-        num = min(max(float(num), min_val), max_val)
-        scaled = round(float(num * (2**nfrac) // 1))
-        if scaled < 0:
-            scaled = flip_bits(scaled, width)
-        return format(scaled, f"0{width}b").replace('-', '')
+        return dec_to_bin(number=float(num) * (2**nfrac), bits=width)
 
     def write_pkg(package_name, weight, bias):
         weight = np.asarray(weight)
