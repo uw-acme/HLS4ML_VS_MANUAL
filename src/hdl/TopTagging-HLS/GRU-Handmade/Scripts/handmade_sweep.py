@@ -463,7 +463,7 @@ def adjust(bits):
     return SA_INT, SA_FRAC
 
 
-name = "handmade_toptag_gru_preFSM_debug_iv"
+name = "handmade_toptag_gru_preFSM_debug_v"
 for i in range(6, 7):
     acc = (3*i-2, i)
     for attempt in range(2):

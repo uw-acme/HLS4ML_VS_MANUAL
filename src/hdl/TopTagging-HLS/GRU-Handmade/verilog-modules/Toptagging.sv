@@ -160,6 +160,228 @@ module Toptagging #( parameter
 
 endmodule
 
+module toptagging_tb_simple();
+
+    localparam WIDTH = 16;
+    localparam NINT = 6;
+    localparam INPUT_SIZE = 6;
+    localparam OUTPUT_SIZE = 1;
+    localparam TIMESTEPS = 20;
+
+    logic clk, reset, input_ready, output_ready, ready;
+    logic signed [WIDTH-1:0] input_v [INPUT_SIZE-1:0];
+    logic signed [WIDTH-1:0] output_data;
+
+    Toptagging
+        #(.WIDTH(WIDTH), .NINT(NINT), .INPUT_SIZE(INPUT_SIZE), .OUTPUT_SIZE(OUTPUT_SIZE), .TIMESTEPS(TIMESTEPS))
+        dut (.*);
+
+    localparam PERIOD = 10;
+    initial begin
+       clk <= 1'b1;
+       forever #(PERIOD/2) clk <= ~clk;
+    end
+
+/*
+    // ENTRY 5969
+    localparam signed [15:0] INPUT [0:19][0:5] = '{
+        '{16'sd134, 16'sd393, 16'sd516, 16'sd135, 16'sd1,  16'sd542},
+        '{16'sd111, 16'sd396, 16'sd514, 16'sd112, 16'sd2,  16'sd538},
+        '{16'sd96,  16'sd394, 16'sd513, 16'sd96,  16'sd1,  16'sd542},
+        '{16'sd64,  16'sd393, 16'sd515, 16'sd65,  16'sd1,  16'sd463},
+        '{16'sd64,  16'sd396, 16'sd516, 16'sd65,  16'sd2,  16'sd538},
+        '{16'sd56,  16'sd394, 16'sd512, 16'sd56,  16'sd1,  16'sd538},
+        '{16'sd53,  16'sd394, 16'sd514, 16'sd53,  16'sd1,  16'sd538},
+        '{16'sd52,  16'sd395, 16'sd515, 16'sd52,  16'sd2,  16'sd561},
+        '{16'sd44,  16'sd391, 16'sd515, 16'sd44,  16'sd2,  16'sd538},
+        '{16'sd43,  16'sd393, 16'sd513, 16'sd44,  16'sd1,  16'sd586},
+        '{16'sd41,  16'sd392, 16'sd519, 16'sd41,  16'sd3,  16'sd586},
+        '{16'sd39,  16'sd390, 16'sd519, 16'sd40,  16'sd5,  16'sd1024},
+        '{16'sd37,  16'sd390, 16'sd516, 16'sd37,  16'sd4,  16'sd438},
+        '{16'sd36,  16'sd390, 16'sd517, 16'sd36,  16'sd4,  16'sd0},
+        '{16'sd32,  16'sd392, 16'sd512, 16'sd32,  16'sd2,  16'sd542},
+        '{16'sd30,  16'sd392, 16'sd513, 16'sd31,  16'sd1,  16'sd538},
+        '{16'sd28,  16'sd393, 16'sd515, 16'sd29,  16'sd0,  16'sd538},
+        '{16'sd24,  16'sd393, 16'sd514, 16'sd24,  16'sd1,  16'sd538},
+        '{16'sd20,  16'sd394, 16'sd515, 16'sd20,  16'sd1,  16'sd463},
+        '{16'sd18,  16'sd394, 16'sd513, 16'sd18,  16'sd1,  16'sd463}
+    };
+*/
+
+    // ENTRY 1
+    localparam signed [15:0] INPUT1 [0:19][0:5] = '{
+        '{16'sd163, 16'sd434, 16'sd515, 16'sd160, 16'sd19,  16'sd538},
+        '{16'sd135, 16'sd434, 16'sd441, 16'sd134, 16'sd26,  16'sd542},
+        '{16'sd124, 16'sd435, 16'sd511, 16'sd121, 16'sd16,  16'sd542},
+        '{16'sd100, 16'sd437, 16'sd445, 16'sd99,  16'sd24,  16'sd542},
+        '{16'sd77,  16'sd433, 16'sd445, 16'sd76,  16'sd24,  16'sd463},
+        '{16'sd73,  16'sd435, 16'sd438, 16'sd73,  16'sd28,  16'sd542},
+        '{16'sd49,  16'sd435, 16'sd517, 16'sd48,  16'sd19,  16'sd463},
+        '{16'sd31,  16'sd432, 16'sd422, 16'sd31,  16'sd38,  16'sd0},
+        '{16'sd28,  16'sd436, 16'sd516, 16'sd28,  16'sd19,  16'sd538},
+        '{16'sd27,  16'sd466, 16'sd593, 16'sd27,  16'sd75,  16'sd463},
+        '{16'sd25,  16'sd437, 16'sd439, 16'sd25,  16'sd27,  16'sd561},
+        '{16'sd22,  16'sd429, 16'sd456, 16'sd22,  16'sd20,  16'sd561},
+        '{16'sd19,  16'sd431, 16'sd422, 16'sd19,  16'sd38,  16'sd561},
+        '{16'sd19,  16'sd439, 16'sd522, 16'sd18,  16'sd22,  16'sd463},
+        '{16'sd19,  16'sd442, 16'sd543, 16'sd18,  16'sd35,  16'sd561},
+        '{16'sd18,  16'sd442, 16'sd546, 16'sd18,  16'sd37,  16'sd561},
+        '{16'sd16,  16'sd441, 16'sd439, 16'sd16,  16'sd28,  16'sd586},
+        '{16'sd16,  16'sd452, 16'sd560, 16'sd16,  16'sd49,  16'sd542},
+        '{16'sd16,  16'sd449, 16'sd580, 16'sd16,  16'sd59,  16'sd542},
+        '{16'sd15,  16'sd436, 16'sd449, 16'sd15,  16'sd21,  16'sd463}
+    };
+
+    // ENTRY 2
+    localparam signed [15:0] INPUT2 [0:19][0:5] = '{
+        '{16'sd149, 16'sd554, 16'sd516, 16'sd145, 16'sd11,  16'sd438},
+        '{16'sd119, 16'sd552, 16'sd521, 16'sd115, 16'sd15,  16'sd463},
+        '{16'sd98,  16'sd554, 16'sd517, 16'sd95,  16'sd12,  16'sd463},
+        '{16'sd82,  16'sd554, 16'sd514, 16'sd80,  16'sd9,   16'sd561},
+        '{16'sd74,  16'sd554, 16'sd430, 16'sd85,  16'sd59,  16'sd538},
+        '{16'sd71,  16'sd551, 16'sd428, 16'sd82,  16'sd61,  16'sd538},
+        '{16'sd65,  16'sd558, 16'sd532, 16'sd61,  16'sd24,  16'sd561},
+        '{16'sd62,  16'sd557, 16'sd536, 16'sd58,  16'sd27,  16'sd542},
+        '{16'sd61,  16'sd557, 16'sd517, 16'sd59,  16'sd12,  16'sd561},
+        '{16'sd46,  16'sd552, 16'sd425, 16'sd54,  16'sd62,  16'sd538},
+        '{16'sd41,  16'sd556, 16'sd524, 16'sd39,  16'sd17,  16'sd561},
+        '{16'sd36,  16'sd560, 16'sd531, 16'sd34,  16'sd24,  16'sd463},
+        '{16'sd35,  16'sd549, 16'sd427, 16'sd40,  16'sd62,  16'sd538},
+        '{16'sd28,  16'sd553, 16'sd531, 16'sd27,  16'sd23,  16'sd463},
+        '{16'sd22,  16'sd560, 16'sd517, 16'sd22,  16'sd14,  16'sd561},
+        '{16'sd21,  16'sd556, 16'sd527, 16'sd20,  16'sd19,  16'sd538},
+        '{16'sd20,  16'sd554, 16'sd524, 16'sd19,  16'sd18,  16'sd538},
+        '{16'sd18,  16'sd553, 16'sd533, 16'sd17,  16'sd25,  16'sd561},
+        '{16'sd17,  16'sd554, 16'sd514, 16'sd16,  16'sd9,   16'sd538},
+        '{16'sd16,  16'sd566, 16'sd527, 16'sd15,  16'sd25,  16'sd538}
+    };
+
+    localparam signed [15:0] INPUT3 [0:19][0:5] = '{
+        '{16'sd178, 16'sd554, 16'sd516, 16'sd175, 16'sd20, 16'sd542},
+        '{16'sd171, 16'sd554, 16'sd514, 16'sd168, 16'sd19, 16'sd586},
+        '{16'sd71,  16'sd559, 16'sd506, 16'sd70,  16'sd13, 16'sd561},
+        '{16'sd64,  16'sd558, 16'sd516, 16'sd63,  16'sd21, 16'sd463},
+        '{16'sd49,  16'sd557, 16'sd513, 16'sd48,  16'sd18, 16'sd538},
+        '{16'sd47,  16'sd554, 16'sd411, 16'sd48,  16'sd64, 16'sd561},
+        '{16'sd42,  16'sd559, 16'sd508, 16'sd42,  16'sd15, 16'sd463},
+        '{16'sd42,  16'sd554, 16'sd412, 16'sd42,  16'sd63, 16'sd586},
+        '{16'sd38,  16'sd559, 16'sd507, 16'sd38,  16'sd14, 16'sd538},
+        '{16'sd38,  16'sd554, 16'sd408, 16'sd38,  16'sd66, 16'sd515},
+        '{16'sd35,  16'sd557, 16'sd511, 16'sd34,  16'sd16, 16'sd542},
+        '{16'sd30,  16'sd559, 16'sd519, 16'sd30,  16'sd23, 16'sd561},
+        '{16'sd27,  16'sd550, 16'sd437, 16'sd27,  16'sd44, 16'sd542},
+        '{16'sd27,  16'sd561, 16'sd514, 16'sd27,  16'sd20, 16'sd463},
+        '{16'sd25,  16'sd563, 16'sd505, 16'sd25,  16'sd16, 16'sd561},
+        '{16'sd23,  16'sd557, 16'sd508, 16'sd23,  16'sd14, 16'sd538},
+        '{16'sd21,  16'sd545, 16'sd562, 16'sd20,  16'sd59, 16'sd561},
+        '{16'sd19,  16'sd550, 16'sd422, 16'sd19,  16'sd56, 16'sd0},
+        '{16'sd19,  16'sd560, 16'sd510, 16'sd19,  16'sd17, 16'sd538},
+        '{16'sd19,  16'sd549, 16'sd426, 16'sd19,  16'sd53, 16'sd538}
+    };
+
+    localparam signed [15:0] INPUT4 [0:19][0:5] = '{
+        '{16'sd151, 16'sd393, 16'sd516, 16'sd152, 16'sd13, 16'sd1024},
+        '{16'sd147, 16'sd393, 16'sd517, 16'sd147, 16'sd14, 16'sd542},
+        '{16'sd60,  16'sd393, 16'sd416, 16'sd60,  16'sd42, 16'sd538},
+        '{16'sd51,  16'sd438, 16'sd577, 16'sd48,  16'sd60, 16'sd542},
+        '{16'sd43,  16'sd434, 16'sd570, 16'sd41,  16'sd54, 16'sd538},
+        '{16'sd41,  16'sd390, 16'sd420, 16'sd42,  16'sd40, 16'sd561},
+        '{16'sd41,  16'sd438, 16'sd581, 16'sd38,  16'sd61, 16'sd542},
+        '{16'sd32,  16'sd380, 16'sd472, 16'sd33,  16'sd22, 16'sd542},
+        '{16'sd29,  16'sd394, 16'sd513, 16'sd29,  16'sd11, 16'sd538},
+        '{16'sd25,  16'sd385, 16'sd419, 16'sd26,  16'sd42, 16'sd561},
+        '{16'sd23,  16'sd446, 16'sd524, 16'sd22,  16'sd50, 16'sd542},
+        '{16'sd23,  16'sd393, 16'sd516, 16'sd23,  16'sd13, 16'sd463},
+        '{16'sd23,  16'sd393, 16'sd517, 16'sd23,  16'sd13, 16'sd538},
+        '{16'sd22,  16'sd385, 16'sd454, 16'sd22,  16'sd25, 16'sd561},
+        '{16'sd19,  16'sd395, 16'sd411, 16'sd19,  16'sd44, 16'sd463},
+        '{16'sd18,  16'sd387, 16'sd407, 16'sd18,  16'sd48, 16'sd463},
+        '{16'sd17,  16'sd382, 16'sd466, 16'sd18,  16'sd22, 16'sd463},
+        '{16'sd17,  16'sd433, 16'sd527, 16'sd16,  16'sd39, 16'sd1024},
+        '{16'sd16,  16'sd386, 16'sd413, 16'sd16,  16'sd45, 16'sd561},
+        '{16'sd16,  16'sd429, 16'sd492, 16'sd15,  16'sd31, 16'sd463}
+    };
+
+    localparam signed [15:0] INPUT5 [0:19][0:5] = '{
+        '{16'sd110, 16'sd476, 16'sd509, 16'sd109, 16'sd10, 16'sd542},
+        '{16'sd72,  16'sd476, 16'sd467, 16'sd71,  16'sd26, 16'sd561},
+        '{16'sd60,  16'sd471, 16'sd515, 16'sd60,  16'sd7,  16'sd561},
+        '{16'sd59,  16'sd456, 16'sd520, 16'sd59,  16'sd16, 16'sd1024},
+        '{16'sd52,  16'sd476, 16'sd511, 16'sd52,  16'sd10, 16'sd561},
+        '{16'sd48,  16'sd472, 16'sd514, 16'sd48,  16'sd7,  16'sd561},
+        '{16'sd43,  16'sd448, 16'sd514, 16'sd43,  16'sd25, 16'sd463},
+        '{16'sd40,  16'sd456, 16'sd523, 16'sd40,  16'sd18, 16'sd542},
+        '{16'sd40,  16'sd479, 16'sd507, 16'sd40,  16'sd14, 16'sd463},
+        '{16'sd39,  16'sd474, 16'sd507, 16'sd39,  16'sd8,  16'sd538},
+        '{16'sd39,  16'sd476, 16'sd507, 16'sd39,  16'sd10, 16'sd538},
+        '{16'sd38,  16'sd474, 16'sd496, 16'sd38,  16'sd11, 16'sd1024},
+        '{16'sd38,  16'sd455, 16'sd519, 16'sd38,  16'sd17, 16'sd1024},
+        '{16'sd37,  16'sd477, 16'sd505, 16'sd37,  16'sd12, 16'sd538},
+        '{16'sd34,  16'sd474, 16'sd507, 16'sd33,  16'sd8,  16'sd542},
+        '{16'sd32,  16'sd473, 16'sd528, 16'sd32,  16'sd14, 16'sd538},
+        '{16'sd31,  16'sd477, 16'sd475, 16'sd31,  16'sd22, 16'sd463},
+        '{16'sd30,  16'sd471, 16'sd519, 16'sd30,  16'sd8,  16'sd538},
+        '{16'sd27,  16'sd463, 16'sd458, 16'sd27,  16'sd30, 16'sd0},
+        '{16'sd26,  16'sd474, 16'sd520, 16'sd26,  16'sd11, 16'sd463}
+    };
+
+    integer i;
+    initial begin
+        reset <= 1; repeat(1) @(posedge clk);
+
+        reset <= 0;
+        input_ready <= 1;
+
+        input_v <= INPUT1[0];
+        @(posedge clk);
+
+        for (i = 1; i < 20; i++) begin
+            @(posedge ready);
+            input_v <= INPUT1[i];
+        end
+        
+        @(posedge ready);
+        input_v <= INPUT2[0];
+
+        for (i = 1; i < 20; i++) begin
+            @(posedge ready);
+            input_v <= INPUT2[i];
+        end
+
+        @(posedge ready);
+        input_v <= INPUT3[0];
+
+        for (i = 1; i < 20; i++) begin
+            @(posedge ready);
+            input_v <= INPUT3[i];
+        end
+
+        @(posedge ready);
+        input_v <= INPUT4[0];
+
+        for (i = 1; i < 20; i++) begin
+            @(posedge ready);
+            input_v <= INPUT4[i];
+        end
+
+        @(posedge ready);
+        input_v <= INPUT5[0];
+
+        for (i = 1; i < 20; i++) begin
+            @(posedge ready);
+            input_v <= INPUT5[i];
+        end
+        
+        wait(output_ready == 1'b1);
+        repeat(10) @(posedge clk);
+
+        repeat(10) @(posedge clk);
+
+        $stop;
+    end
+
+endmodule
+
 `ifndef SYNTHESIS
 `define STRINGIFY(x) `"x`"
 module Toptagging_tb;
@@ -201,9 +423,9 @@ module Toptagging_tb;
 
     initial begin
         `ifndef MODELSIM
-        $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
+            $readmemb(`STRINGIFY(`TESTFILE), flat_mem);
         `else
-            $readmemb("../testing_data/X_test_16_6.txt", flat_mem);
+            $readmemb("X_test_16_6.txt", flat_mem);
         `endif
         for (i=0; i<num_tests; i++) begin : tests
             for (j=0; j<TIMESTEPS; j++) begin : steps
@@ -249,36 +471,27 @@ module Toptagging_tb;
                 $finish;
             end
         end
-        reset=1;
+        reset<=1;
         input_ready<=0;
         @(posedge clk);
         @(posedge clk);
-        reset=0;
+        reset<=0;
         i=0;
 
-        repeat(num_tests) begin
+        for (i = 0; i < num_tests; i++) begin
             input_ready <= 1;
             input_v <= x_test[i][0];
-            @(posedge clk)
-            ts = 0;
-
-            forever begin
-                @ (posedge clk);
-                if (ready) begin
-                    ts = ts + 1;
-                    if (ts == TIMESTEPS) break;
-                    input_v <= x_test[i][ts];
-                end
-            end
-
-            input_ready <= 0;
             @(posedge ready)
-            count=0;
-            i++;
+
+            for (j = 1; j < TIMESTEPS; j++) begin
+                input_v <= x_test[i][j];
+                @(posedge ready);
+            end
         end
         input_ready<=0;
 
-        repeat(5) @(posedge clk);
+        @(posedge output_ready);
+        @(posedge clk);
         $stop;
     end
 endmodule
