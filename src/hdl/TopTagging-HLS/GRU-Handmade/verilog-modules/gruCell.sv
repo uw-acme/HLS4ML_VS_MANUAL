@@ -61,19 +61,6 @@ module gru_cell #(parameter
     output logic signed [WIDTH-1:0] h_t [0:h_SIZE-1]                // h_t: R^{e}
 );
 
-    always @(posedge output_valid) begin
-        for (int i = 0; i < h_SIZE; i++) begin
-            $display(
-                "T=%0t | i=%0d | r_t=%0d z_t=%0d h_tilde=%0d | r_t_raw=%0d z_t_raw=%0d | hW=%0d hU=%0d h_raw=%0d r_h_mult=%0d",
-                $time, i,
-                r_t[i], z_t[i], h_tilde[i],
-                r_t_raw[i], z_t_raw[i],
-                h_tilde_raw_W[i], h_tilde_raw_U[i],
-                h_tilde_raw[i], r_h_mult[i]
-            );
-        end
-    end
-
     function automatic logic signed [WIDTH*2-1:0] mult (
         input logic signed [WIDTH-1:0] in1,
         input logic signed [WIDTH-1:0] in2
@@ -130,6 +117,19 @@ module gru_cell #(parameter
     latch latch_z_sig (.reset(restart), .clk(clk), .in(z_sig_output_ready), .out(z_sig_latch));
     assign output_ready = z_sig_latch && tanh_latch;
     assign restart = reset || (z_sig_latch && tanh_latch && next_layer_ready);
+
+    always @(posedge output_valid) begin
+        for (int i = 0; i < h_SIZE; i++) begin
+            $display(
+                "T=%0t | i=%0d | r_t=%0d z_t=%0d h_tilde=%0d | r_t_raw=%0d z_t_raw=%0d | hW=%0d hU=%0d h_raw=%0d r_h_mult=%0d",
+                $time, i,
+                r_t[i], z_t[i], h_tilde[i],
+                r_t_raw[i], z_t_raw[i],
+                h_tilde_raw_W[i], h_tilde_raw_U[i],
+                h_tilde_raw[i], r_h_mult[i]
+            );
+        end
+    end
 
     // ----- RESET GATE -----
     // r_t = sigmoid(W_r * [x_t, h_t-1] + b_r)
