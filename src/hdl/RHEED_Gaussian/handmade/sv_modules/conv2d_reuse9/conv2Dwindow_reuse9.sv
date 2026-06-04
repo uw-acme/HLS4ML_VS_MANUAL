@@ -55,7 +55,11 @@ module conv2Dwindow_reuse9
 	always_comb begin
 		nextCol = currCol;
 		nextRow = currRow;
-		if (currCol == inputWidth - 1) begin // wrap around
+		if ((currCol == inputWidth - filtDimension) && (currRow == inputWidth - filtDimension)) begin // last location
+			nextCol = 0;
+			nextRow = 0;
+		end
+		else if (currCol == inputWidth - 1) begin // wrap around
 			nextCol = 0;
 			nextRow = currRow + 1;
 		end else begin
@@ -75,9 +79,12 @@ module conv2Dwindow_reuse9
 				// only increment until pixelCount == PIXELS_TO_FILL
 				pixelCount <= pixelCount + 1;
 			end
-			if (pixelCount >= PIXELS_TO_FILL) begin
+			else begin
 				currCol <= nextCol;
 				currRow <= nextRow;
+				if ((currCol == inputWidth - filtDimension) && (currRow == inputWidth - filtDimension)) begin // last location
+					pixelCount <= 0;
+				end
 			end
 		end
 	end
@@ -209,4 +216,3 @@ module conv2Dwindow_reuse9_tb ();
 		$stop; // End the simulation.
 	end
 endmodule 
-

@@ -9,7 +9,7 @@
 // Parameter whichFilt (ranges from 0 to however many filters being used in the covolution) indicatates which kernel (which weights)
 // are being used in the module instance
 module conv2Dsum_reuse9
-	#(parameter filtDimension = 3, parameter bitWidth = 16, parameter inputWidth = 8, parameter NFRAC = 10, parameter whichFilt=0)
+	#(parameter filtDimension = 3, parameter bitWidth = 16, parameter NFRAC = 10, parameter whichFilt=0)
 	(clock, reset, start, currMatrix, counter, bias, sum, outputValid);
 	input logic clock;
 	input logic reset, start; // new inputs for reuse 9
@@ -20,7 +20,6 @@ module conv2Dsum_reuse9
 	logic signed [2*bitWidth-1:0] rawProd;
 	logic signed [2*bitWidth-1:0] alignedBias; // decimal aligned to rawProd
 	logic started;
-	logic lastCycle;
 	logic signed [2*bitWidth+$clog2(filtDimension**2)-1:0] accumulator;
 	output logic signed [bitWidth-1:0] sum; 
 	output logic outputValid;
@@ -39,7 +38,6 @@ module conv2Dsum_reuse9
 			accumulator <= '0;
 			outputValid <= 0;
 			started <= 0;
-			lastCycle <= 0;
 		end
 		else begin
 			if (start) begin 
@@ -47,7 +45,7 @@ module conv2Dsum_reuse9
 				started <= 1;
 				outputValid <= 0;
 			end
-			if (started) begin // changed from else-if 
+			else if (started) begin // changed from else-if (can probably change back)
 				accumulator <= accumulator + rawProd;
 
 				if (counter == filtDimension**2-1) begin
@@ -62,10 +60,6 @@ module conv2Dsum_reuse9
 			end
 			else begin
 				outputValid <= 0;
-			end
-			// for very beginning
-			if (started && (counter == 0)) begin // counter == 0 makes sure very first cycle sum doesn't get a head start
-				accumulator <= alignedBias + rawProd;
 			end
 		end
 	end

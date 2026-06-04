@@ -30,7 +30,7 @@ parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 	logic startSum; // asserted for 1 cycle only at the start of each computation
 	logic [biasWidth-1:0] sumOutValid; 
 	logic allSumsValid; // sums are valid from all instances of conv2Dsum
-
+	logic sumWaiting; // high if next pixel is computed before previous pixel is consumed
 
 	// Takes the new inputPixel and outputs the convolutional matrix (window)
 	conv2Dwindow_reuse9 #(filtDimension, bitWidth, inputWidth) currMatrix 
@@ -42,12 +42,22 @@ parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 	genvar i;
 	generate
 	   for(i=0; i<biasWidth; i++) begin: eachSumNine // biasWidth = number of filters
-		   conv2Dsum_reuse9 #(filtDimension, bitWidth, inputWidth, NFRAC, i) conv2Dsum
+		   conv2Dsum_reuse9 #(filtDimension, bitWidth, NFRAC, i) conv2Dsum
 	       (.clock(clk), .reset(reset), .start(startSum), .currMatrix(currConvMatrix), .counter(counter), .bias(biases[i]), .sum(sum[i]), .outputValid(sumOutValid[i]));
 	   end
 	endgenerate 
 
 	assign allSumsValid = (sumOutValid == {biasWidth{1'b1}});
+
+	// sumWaiting
+	always_ff @(posedge clk) begin
+		if (allSumsValid && outputValid && !outputReady) begin
+			sumWaiting <= 1;
+		end
+		else if (sumWaiting && outputReady) begin
+			sumWaiting <= 0;
+		end
+	end
 
 
 	// Control FSM
@@ -78,6 +88,9 @@ parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 					shiftEnable = 0;
 				end
 				else if (counter == COMPUTATION_TIME -1) begin
+					// outputReady ensures previous pixel was consumed
+					// even if outputValid is still true at this time, the fact that outputReady is true means
+					// that the previous pixel will be consumed the next cycle, making room for the next computation
 					if (outputReady && inputValid) begin
 						shiftEnable = 1;
 						inputReady = 1;
@@ -95,22 +108,24 @@ parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 			end
 			STALL: begin
 				inputReady = 0;
-				if (outputReady) begin
-					inputReady = 1;
-					if (inputValid) begin
-						shiftEnable = 1;
-						if (nextPositionValid) begin
-							ns = COMPUTE;
-							startSum = 1;
+				// if (!outputValid || outputReady) begin  // otherwise stall: current pixel is not yet consumed
+					if (outputReady && outputValid) begin // added outputValid condition
+						inputReady = 1;
+						if (inputValid) begin
+							shiftEnable = 1;
+							if (nextPositionValid) begin
+								ns = COMPUTE;
+								// startSum = 1;
+							end
+							else begin
+								ns = FILL;
+							end
 						end
 						else begin
 							ns = FILL;
 						end
 					end
-					else begin
-						ns = FILL;
-					end
-				end
+				// end
 			end
 		endcase
 	end
@@ -159,10 +174,16 @@ parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 		end
 		else begin
 			if (allSumsValid && (positionValid || positionValid_delayed)) begin // while not skipping & sum is valid
+				if (!outputValid || outputReady) begin // if output is empty or currently clearing out
 					outputValid <= 1;
 					outputPixel <= sum;
+				end
 			end
-            if (outputValid && outputReady) begin // existing output is consumed by next layer
+			else if (sumWaiting && outputReady) begin
+				outputValid <= 1;
+				outputPixel <= sum;
+			end
+            else if (outputValid && outputReady && (!allSumsValid)) begin // existing output is consumed by next layer
                 outputValid <= 0; // inputValid signal
             end
 		end
