@@ -456,8 +456,8 @@ module Toptagging_tb;
             // end
             $fwrite(fd, "%.15f\n", out);
         end
-        if (count>30000)
-            $stop;
+        // if (count>30000)
+        //     $stop;
     end
     initial begin
         if (write_file) begin
