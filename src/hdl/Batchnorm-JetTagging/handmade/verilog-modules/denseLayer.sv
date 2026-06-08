@@ -71,7 +71,8 @@ module denseLayer #(
                             ) sa (
                     .clk,
                     .data_in    ( input_data[row]       ),
-                    .data_out   ( mult_temp[row][col]   )
+                    .data_out   ( mult_temp[row][col]   ),
+                    .ce(1'b1)
                 );
 //                assign mult_temp[row][col] = $signed(input_data[row]) * $signed(`SIGMOID_PKG::WEIGHTS[row*OUTPUT_SIZE + col]);
                 assign mult[row][col] = mult_temp[row][col][TOP:BOTTOM];

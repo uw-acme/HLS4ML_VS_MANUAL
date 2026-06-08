@@ -95,20 +95,33 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
                 else if (shift[i] < 0) begin data_out_tmp = data_out_tmp - (data_in_ex << (abs_value(shift[i])-1)); end
             end
         end
+        always_ff @(posedge clk) begin
+            if (ce) data_out <= $signed(data_out_tmp);
+        end
     end else begin
-            always_comb begin
-                data_out_tmp = $signed(data_in_reg) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
-            end
-    end
+    //         always_comb begin
+    //             data_out_tmp = $signed(data_in_reg) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
+    //         end
+    // end, 
+
+    // always_ff @(posedge clk) begin
+    //     if (ce) data_out <= $signed(data_out_tmp);
+    // end
+    (* use_dsp = "yes" *) basic_mult #(.WIDTH(BITS)) mult_m (.a($signed(data_in_reg)), .b(WEIGHT[BITS-num_signed_bits-1:0]), .out(data_out), .clk, .ce);
+        end
+	
+endmodule
+
+module basic_mult
+        #(parameter WIDTH=16) 
+        (input logic signed [WIDTH-1:0] a,
+        input logic signed [WIDTH-1:0] b, 
+        output logic signed [2*WIDTH-1:0] out,
+        input clk, input ce);
 
     always_ff @(posedge clk) begin
-        if (ce) data_out <= $signed(data_out_tmp);
+        if (ce) out <= a*b;
     end
-        // end
-    
-    
-    
-	
 endmodule
 
 /*  ------------------------------------

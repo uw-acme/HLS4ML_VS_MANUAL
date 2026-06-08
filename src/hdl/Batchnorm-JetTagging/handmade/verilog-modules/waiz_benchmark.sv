@@ -192,12 +192,15 @@ module waiz_benchmark #(
     softmaxLayerNeg #(
         .N          ( OUTPUT_SIZE ),
         .WIDTH      ( WIDTH         ),
-        .NFRAC      ( NFRAC         )
+        .NFRAC      ( NFRAC         ),
+        .EXP_TABLE_PATH("../weights/softmax/exp_neg_table_18_17_10_6.dat"),
+        .INVERT_TABLE_PATH("../weights/softmax/pos_invert_table_18_17_10_7.dat")
     ) softmax (
-        .dataIn(dense4_output_data),
+        .input_data(dense4_output_data),
+        .next_layer_ready(1'b1),
         .clk(clk),
         .reset(reset),
-        .dataOut(softmax_output_data),
+        .output_data(softmax_output_data),
         .input_ready(input_ready_5),
         .output_ready(output_ready_5)
     );

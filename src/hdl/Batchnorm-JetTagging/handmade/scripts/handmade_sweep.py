@@ -38,7 +38,7 @@ def handmade_gen(acc, name, params, defs):
         return newline
     # os.system("rm ../weights/dense_*_weights_biases_pkgs/*gen*")
     # patt = r"[0-9]{1,2}"
-    gen_weight(acc)
+    # gen_weight(acc)
     params += f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
     for i in range(1,5):
         defs+=f" DENSE_LAYER_{i}_PKG=dense_{i}_{acc[0]}_{acc[1]}"
@@ -115,7 +115,7 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     defs = defs.replace("  ", " ")
     # Generates the input files for testing and for weights
     gen_test(acc)
-    gen_weight(acc)
+    # gen_weight(acc)
     # Runs the simulator through a bash script
     os.system(f'bash sim.sh "{defs}" "{params}"')
 
@@ -167,7 +167,7 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
     params = params.replace("  ", " ")
     defs = defs.replace("  ", " ")
     # Generates the input files for testing and for weights
-    gen_weight(acc)
+    # gen_weight(acc)
     # Runs the simulator through a bash script
     os.system(f'bash lat.sh "{defs}" "{params}"')
     with open("../Results/hand_lat.csv", "r") as f:
@@ -227,21 +227,21 @@ def adjust(bits):
 # handmade_gen((16,6), name)
 # patt = r"[0-9]{1,2}"
 
-for pipeline in [3]:
+# for pipeline in [3]:
     # os.system(f'sed -i -E "s/localparam PIPELINING = {patt}/localparam PIPELINING = {pipeline}/g;" ../verilog-modules/waiz_benchmark.sv')
-    pipe_out=0
-    params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
-    name = f"expPipeNegmax"
-    for i in range(10,11):
-        acc = (3*i-2,i)
-        # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
-        # SA_INT, SA_FRAC = adjust(acc_in[0])
-        SAD, SAFRAC = 0, 0#adjust(acc[0])
-        defs = f' PIPELINE_MULT=0 SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-        # lat = lat_test(acc, name, defs, params)
-        # lat = 24*[lat]
-        # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
-        # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
-        # # print((3*i-2,i))
-        handmade_gen(acc, name, params, defs)
-        # accuracy_test(acc, y_test, name, defs, params, email=True)
+pipe_out=0
+params= f'PIPELINING=3 PIPE_OUT=0'
+name = f"my_mult"
+for i in range(2,14):
+    acc = (3*i-2,i)
+    # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
+    # SA_INT, SA_FRAC = adjust(acc_in[0])
+    SAD, SAFRAC = adjust(acc[0])
+    defs = f' PIPELINE_MULT=0 SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+    # lat = lat_test(acc, name, defs, params)
+    # lat = 24*[lat]
+    # add_csv_column("../Results/util_expPipeNegmax.csv", lat)
+    # defs = f'SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+    # # print((3*i-2,i))
+    handmade_gen(acc, name, params, defs)
+    # accuracy_test(acc, y_test, name, defs, params, email=True)

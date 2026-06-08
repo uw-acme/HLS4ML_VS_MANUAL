@@ -68,7 +68,9 @@ module Toptagging #( parameter
         .TIMESTEPS(TIMESTEPS),
         .PIPELINING(PIPELINING),
         .PIPE_OUT(PIPE_OUT),
-        .REMOVE_PIPELINES(LSTM_REMOVE_PIPELINES)
+        .REMOVE_PIPELINES(LSTM_REMOVE_PIPELINES),
+        .SIGMOID_BRAM_FILE("../weights_n_tables/sigmoid_table_18_18_10_7.dat"),
+        .TANH_BRAM_FILE("../weights_n_tables/tanh_table_18_18_10_7.dat")
         ) lstm_layer (
         .clk,
         .reset,

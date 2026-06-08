@@ -1,5 +1,5 @@
 
-`include "pkg_sel.svh"
+// `include "pkg_sel.svh"
 
 // `include "defines.svh"
 import `LSTM_X_WEIGHTS::*;
@@ -17,7 +17,9 @@ module LSTM #( parameter
     PIPELINING = 1, // Rate of removal of pipelines in the dense adder trees. 1 means pipeline every section, 2 means every 2 sections, 3 every three sections and so forth
     IMPLEMENTATION = 1, // 1 for io_parallel, 0 for io_stream
     PIPE_OUT = 1, // 1 if you want an output pipeline for the dense layer, 0 if you don't. Affects timing
-    REMOVE_PIPELINES = 0 // 0 if you want regular piping in tanh and sigmoid, 1 if you want less.
+    REMOVE_PIPELINES = 0, // 0 if you want regular piping in tanh and sigmoid, 1 if you want less.
+    SIGMOID_BRAM_FILE = "weights_n_tables/sigmoid_table_18_18_10_7.dat",
+    TANH_BRAM_FILE = "weights_n_tables/tanh_table_18_18_10_7.dat"
 )
 (
     input clk,
@@ -30,8 +32,8 @@ module LSTM #( parameter
     output logic signed [WIDTH-1:0] ht [OUTPUT_SIZE-1:0] // Output data
 );
     localparam NFRAC = WIDTH-NINT;
-    localparam SIGMOID_BRAM_FILE = "weights_n_tables/sigmoid_table_18_18_10_7.dat";
-    localparam TANH_BRAM_FILE = "weights_n_tables/tanh_table_18_18_10_7.dat";
+    // localparam SIGMOID_BRAM_FILE = "weights_n_tables/sigmoid_table_18_18_10_7.dat";
+    // localparam TANH_BRAM_FILE = "weights_n_tables/tanh_table_18_18_10_7.dat";
     // Multiplication module for fixed point multiplication
     function automatic logic signed [WIDTH*2-1:0] mult(
         input logic signed [WIDTH-1:0] in1,
