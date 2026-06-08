@@ -1,5 +1,5 @@
 
-// `include "pkg_sel.svh"
+`include "weights_sel.svh"
 
 // `include "defines.svh"
 import `LSTM_X_WEIGHTS::*;
@@ -18,8 +18,8 @@ module LSTM #( parameter
     IMPLEMENTATION = 1, // 1 for io_parallel, 0 for io_stream
     PIPE_OUT = 1, // 1 if you want an output pipeline for the dense layer, 0 if you don't. Affects timing
     REMOVE_PIPELINES = 0, // 0 if you want regular piping in tanh and sigmoid, 1 if you want less.
-    SIGMOID_BRAM_FILE = "weights_n_tables/sigmoid_table_18_18_10_7.dat",
-    TANH_BRAM_FILE = "weights_n_tables/tanh_table_18_18_10_7.dat"
+    SIGMOID_BRAM_FILE = "../weights_n_tables/sigmoid_table_18_18_10_7.dat",
+    TANH_BRAM_FILE = "../weights_n_tables/tanh_table_18_18_10_7.dat"
 )
 (
     input clk,
@@ -331,7 +331,7 @@ module LSTM #( parameter
             always_ff @(posedge clk) begin
                 if (lstm_reset)
                     ct[i] <= 0;
-                if (ct_tanh)
+                else if (ct_tanh)
                     ct[i] <= mult(ft[i], ct_1[i])+mult(it[i],tanh_output[i]);
             end
         end

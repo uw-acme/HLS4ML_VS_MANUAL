@@ -1,5 +1,19 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/BITS}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/ce}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/clk}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/data_in}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/data_in_ex}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/data_in_reg}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/data_out}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/data_out_accum}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/data_out_tmp}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/DEPTH}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/DEPTH_FRAC}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/NFRAC}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/num_signed_bits}
+add wave -noupdate {/LSTM_tb/dut/xt_mult/INPUT_SIZE_rows[5]/OUTPUT_SIZE_cols[79]/sa/WEIGHT}
 add wave -noupdate /LSTM_tb/dut/c_t
 add wave -noupdate /LSTM_tb/dut/c_t_a
 add wave -noupdate /LSTM_tb/dut/clk
@@ -72,7 +86,7 @@ add wave -noupdate /LSTM_tb/dut/which_tanh
 add wave -noupdate /LSTM_tb/dut/WIDTH
 add wave -noupdate /LSTM_tb/dut/xt
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {4178245 ps} 0} {{Cursor 2} {260439 ps} 0}
+WaveRestoreCursors {{Cursor 1} {4178245 ps} 0} {{Cursor 2} {44118 ps} 0}
 quietly wave cursor active 2
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -88,4 +102,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {747279 ps}
+WaveRestoreZoom {0 ps} {80721 ps}
