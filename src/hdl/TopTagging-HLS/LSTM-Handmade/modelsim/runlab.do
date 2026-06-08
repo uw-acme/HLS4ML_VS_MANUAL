@@ -18,12 +18,12 @@ vlog "*.sv"
 #     testbench module you want to execute.
 
 
-vsim -voptargs="+acc" -t 1ps -lib work tanh_tb -suppress 8607
+vsim -voptargs="+acc" -t 1ps -lib work LSTM_tb -suppress 8607
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do "../modelsim/tanh_wave.do"
+do "../modelsim/lstm_wave.do"
 
 # Set the window types
 view wave
