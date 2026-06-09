@@ -35,7 +35,8 @@ results_folder = "results/lstm_handmade"
 testing_folder = "acc/testingData_lstm"
 reports_folder = "reports/lstm_handmade"
 def get_widths(acc):
-    return f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
+    # return f' NFRAC={acc[0]-acc[1]} WIDTH={acc[0]}'
+    return f' NINT={acc[1]} WIDTH={acc[0]}'
 def gen_test(accuracy):
     test = np.load("../../x_test.npy")
     test = test.flatten()

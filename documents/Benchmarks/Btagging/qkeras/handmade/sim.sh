@@ -21,6 +21,7 @@ xvlog --sv ../weights/weights_dense_*_weights_biases_pkgs/dense_*_pkg_*.sv
 # Dense layer
 #xvlog --sv ./*.sv 
 xvlog --sv ./verilog-modules/*.sv 
+#xvlog --sv ./verilog-modules/*.svh 
 #${1//' '/ -d }
 # xvlog --sv ./verilog-modules/adderTree.sv ${1//' '/ -d }
 # xvlog --sv ./verilog-modules/shift_add.sv ${1//' '/ -d }
@@ -38,7 +39,7 @@ xvlog --sv ./verilog-modules/*.sv
 # xvlog --sv ./verilog-modules/waiz_benchmark_put_tb.sv ${1//' '/ -d }
 
 # Elaborate design
-xelab btag_benchmark_tb -s btag_tb_sim --debug typical 
+xelab btag_top_tb -s btag_tb_sim --debug typical 
 #${1//' '/ -d } ${2//' '/ -generic_top }
 
 # Run simulation to completion (headless, no GUI waves)

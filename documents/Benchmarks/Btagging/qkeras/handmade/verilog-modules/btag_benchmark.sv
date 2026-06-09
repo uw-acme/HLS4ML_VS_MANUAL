@@ -6,19 +6,22 @@ import `DENSE_LAYER_3_PKG::*;
 // import `DENSE_LAYER_4_PKG::*;
 
 module btag_benchmark #(
-    parameter WIDTH = 16, 
-    parameter NFRAC = 6,
+    parameter WIDTH = 5, 
+    parameter NFRAC = 2,
     parameter INPUT_SIZE = 6, // 120
     parameter OUTPUT_SIZE = 3,
     // Parameter controlling how sparse the pipelines in the adder trees are. 1 is the minimum value (most pipelines)
-    parameter PIPELINING = 1, 
+    // parameter PIPELINING = 1, 
+    parameter PIPELINING = 20, 
     // Parameter controlling whether there is an output pipeline from dense layers. 1 means there is a pipeline
-    parameter PIPE_OUT = 1,
+    // parameter PIPE_OUT = 1,
+    parameter PIPE_OUT = 0,
     parameter timesteps = 15
 ) (
     input logic clk,
     input logic reset,
     input logic input_ready,
+    output logic ready,
     output logic output_ready,
     // input logic signed [WIDTH-1:0] input_data [INPUT_SIZE-1:0],
     input logic signed [WIDTH-1:0] input_data [timesteps-1:0][INPUT_SIZE-1:0],         // timesteps required for lstm
@@ -118,7 +121,7 @@ module btag_benchmark #(
     */
 
     // LSTM Layer
-    logic r_out;
+    // logic r_out;
 
     LSTM #( 
         .WIDTH              (WIDTH), // Bitwidth of input values
@@ -135,7 +138,7 @@ module btag_benchmark #(
         .reset,
         .input_ready            (input_ready_0), // Tells LSTM that the input is valid
         .output_ready           (output_ready_0), // Tells the next layer that the output is valid
-        .ready                  (r_out), // Tells the previous layer that the LSTM is ready for input
+        .ready                  (ready), // Tells the previous layer that the LSTM is ready for input
         .next_layer_ready       (1'b1), // Tells the lstm if the next layer is ready for input
         .input_v                (input_data), // Input data
         .ht                     (lstm0_output_data) // Output data

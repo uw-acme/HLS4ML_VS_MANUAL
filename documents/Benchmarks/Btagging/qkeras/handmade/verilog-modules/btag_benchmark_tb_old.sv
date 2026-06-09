@@ -1,6 +1,6 @@
 `timescale 1ps / 1ps
 
-module btag_benchmark_tb;
+module btag_benchmark_tb_old;
 
     // Parameters
     parameter WIDTH = 16;

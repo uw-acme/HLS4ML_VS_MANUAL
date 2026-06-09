@@ -15,7 +15,7 @@
 #read_verilog -v [glob *.v]
 
 # change which model it pulls from
-cd /home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/models/lstm_floating_point/LSTM_6_3_reuse10_bigboard_stream/hls4ml_prj/myproject_prj/solution1/impl/verilog
+cd /home/quin/HLS4ML_VS_MANUAL/documents/Benchmarks/Btagging/qkeras/models/lstm_floating_point/LSTM_5_3_reuse1_stream/hls4ml_prj/myproject_prj/solution1/impl/verilog
 
 set name [lindex $argv 0]
 

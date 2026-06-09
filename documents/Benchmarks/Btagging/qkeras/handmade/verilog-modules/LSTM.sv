@@ -7,11 +7,11 @@ import `LSTM_H_WEIGHTS::*;
 
 
 module LSTM #( parameter
-    WIDTH = 16, // Bitwidth of input values
-    NINT = 6, // Number of integers in input values
+    WIDTH = 5, // Bitwidth of input values
+    NINT = 3, // Number of integers in input values
     INPUT_SIZE = 6, // Number of numbers in each timestep
-    TIMESTEPS = 20, // Number of timesteps
-    OUTPUT_SIZE = 20, // Output size of the lstm
+    TIMESTEPS = 15, // Number of timesteps
+    OUTPUT_SIZE = 120, // Output size of the lstm
     OUTPUT_EACH_HT = 0, // Put to 1 if you want to grab values after processing each timestep
     PIPELINING = 1, // Rate of removal of pipelines in the dense adder trees. 1 means pipeline every section, 2 means every 2 sections, 3 every three sections and so forth
     PIPE_OUT = 1, // 1 if you want an output pipeline for the dense layer, 0 if you don't. Affects timing
@@ -346,10 +346,10 @@ module LSTM_tb;
     logic output_ready;
     // logic move_next;
     parameter INPUT_SIZE = 6;
-    parameter TIMESTEPS = 20;
-    parameter OUTPUT_SIZE = 20;
-    parameter WIDTH = 16;
-    parameter NINT = 6;
+    parameter TIMESTEPS = 15;
+    parameter OUTPUT_SIZE = 3;
+    parameter WIDTH = 5;
+    parameter NINT = 3;
     parameter NFRAC = WIDTH-NINT;
     logic signed[WIDTH-1:0] input_v [TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed[WIDTH-1:0] ht [OUTPUT_SIZE-1:0];
