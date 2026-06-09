@@ -454,8 +454,8 @@ def adjust(bits):
     return SA_INT, SA_FRAC
 
 
-name = "handmade_toptag_gru_print"
-for i in range(6, 7):
+name = "handmade_toptag_gru_fixed_final"
+for i in range(2, 14):
     acc = (3*i-2, i)
     for attempt in range(2):
         try:
