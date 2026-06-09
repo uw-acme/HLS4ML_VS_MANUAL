@@ -36,16 +36,12 @@ model = load_model('./gru/QuickdrawEH.h5')
 # fixed<x,y> where x is total number, y is integer
 config = hls4ml.utils.config_from_keras_model(
     model,
-    granularity='name',
+    granularity='model',
     default_precision='ap_fixed<20,10>',
-    default_reuse_factor=16
+    default_reuse_factor=64
 )
 
 config["Model"]["Strategy"] = "Resource"
-
-for layer in config['LayerName'].keys():
-    # softmax
-    config['LayerName']['activation_2']['implementation'] = 'argmax'
 
 print("-----------------------------------")
 print("Configuration")
@@ -55,9 +51,9 @@ hls_model = hls4ml.converters.convert_from_keras_model(
     model,
     hls_config=config,
     backend='Vivado',
-    output_dir='model_1/hls4ml_gru/EH_smaller_reuse',
+    output_dir='model_1/hls4ml_gru/EH',
     part='xcu250-figd2104-2-e',
-    io_type='io_stream'
+    io_type='io_stream',
 )
 
 try:

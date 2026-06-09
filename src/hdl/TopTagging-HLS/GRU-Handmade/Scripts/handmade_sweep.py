@@ -328,7 +328,11 @@ def handmade_gen(acc, name, params, defs):
     output+=add_to("Accuracy", accuracy)
     output+=add_to("Total Latency", 141*clock_period)
 
+<<<<<<< HEAD
     os.system(f'printf "{name} finished at %b with parameters {acc} with results: {output}" "$(date)" | mail -s "Handmade made" ltxie27@uw.edu')
+=======
+    os.system(f'printf "{name} finished at %b with parameters {acc} with results: {output}" "$(date)" | mail -s "Handmade made" chanssen@uw.edu')
+>>>>>>> cca551a760ce2ffbc275a0eefeb781f1922cee9a
 
 
 def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, params : str = None, email : bool = False):
@@ -390,7 +394,16 @@ def accuracy_test(acc : tuple[int,int], y_test, name : str, defs : str = None, p
     f.write(f"\"{acc[0]}_{acc[1]}\", {acc_res}\n")
     f.close()
     if email:
+<<<<<<< HEAD
         os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" ltxie27@uw.edu')
+=======
+        os.system(f'printf "Acc test for {name} finished at %b with parameters {acc} with results: {acc_res}" "$(date)" | mail -s "Handmade acc" chanssen@uw.edu')
+
+    print('res:')
+    print(res)
+    print('y_test:')
+    print(y_test)
+>>>>>>> cca551a760ce2ffbc275a0eefeb781f1922cee9a
     return acc_res
 
 def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str = None, email : bool = False):
@@ -426,7 +439,11 @@ def lat_test(acc : tuple[int,int], name : str, defs : str = None, params : str =
         lat = newest.split(", ")[2]
         ii = newest.split(", ")[1]
     if email:
+<<<<<<< HEAD
         os.system(f'printf "Lat test for {name} finished at %b with results: {ii}, {lat}" "$(date)" | mail -s "Handmade lat" ltxie27@uw.edu')
+=======
+        os.system(f'printf "Lat test for {name} finished at %b with results: {ii}, {lat}" "$(date)" | mail -s "Handmade lat" chanssen@uw.edu')
+>>>>>>> cca551a760ce2ffbc275a0eefeb781f1922cee9a
     return ii, lat
 
 
@@ -454,6 +471,7 @@ def adjust(bits):
     return SA_INT, SA_FRAC
 
 
+<<<<<<< HEAD
 name = "handmade_toptag_gru_fixed_final"
 for i in range(2, 14):
     acc = (3*i-2, i)
@@ -470,3 +488,33 @@ for i in range(2, 14):
             if attempt == 1:
                 err_msg = str(e).replace("'", "")
                 os.system(f'printf "[SKIP] {acc} failed twice: {err_msg}" | mail -s "Handmade Failure" ltxie27@uw.edu')
+=======
+name = "YAY"
+try:
+    acc = (22, 8)
+    SAD, SAFRAC = adjust(acc[0])
+    params = ""
+    defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+    handmade_gen(acc, name, params, defs)
+except Exception as e:
+    print(f"[ATTEMPT FAILED] {acc}: {e}")
+    err_msg = str(e).replace("'", "")
+    os.system(f'printf "[SKIP] {acc} failed: {err_msg}" | mail -s "Handmade Failure" chanssen@uw.edu')
+
+
+# for i in range(2, 14):
+#     acc = (3*i-2, i)
+#     for attempt in range(2):
+#         try:
+#             SAD, SAFRAC = adjust(acc[0])
+#             params = ""
+#             defs = f' SA_DEPTH={SAD} SA_FRAC={SAFRAC}'
+#             handmade_gen(acc, name, params, defs)
+#             # lat = lat_test(acc, name, defs, params)
+#             break  # success — move to next bitwidth
+#         except Exception as e:
+#             print(f"[ATTEMPT {attempt+1} FAILED] {acc}: {e}")
+#             if attempt == 1:
+#                 err_msg = str(e).replace("'", "")
+#                 os.system(f'printf "[SKIP] {acc} failed twice: {err_msg}" | mail -s "Handmade Failure" chanssen@uw.edu')
+>>>>>>> cca551a760ce2ffbc275a0eefeb781f1922cee9a

@@ -16,8 +16,20 @@
 // - output_data
 
 `timescale 1ns / 1ps
+<<<<<<< HEAD
 // `include "weights_sel.svh"
 `include "defines.svh"
+=======
+<<<<<<<< HEAD:src/hdl/Quickdraw/handmade/verilog-modules/denseLayer.sv
+// `include "pkg_sel_gru.svh"
+// `include "pkg_sel.svh"
+`include "defines.svh"
+
+========
+// `include "weights_sel.svh"
+`include "defines.svh"
+>>>>>>>> cca551a760ce2ffbc275a0eefeb781f1922cee9a:src/hdl/TopTagging-HLS/GRU-Handmade/verilog-modules/denseLayer.sv
+>>>>>>> cca551a760ce2ffbc275a0eefeb781f1922cee9a
 // Computes the dot product of the inputs and WEIGHTS then adds that to the BIASes
 module denseLayer #(
     parameter int WIDTH = 17, // width of fixed point numbers
