@@ -64,3 +64,11 @@ src/hdl/TopTagging-HLS/GRU-Handmade/hls4ml_prj_io_parallel/
 src/hdl/TopTagging-HLS/GRU-Handmade/hls4ml_prj_pipeclean/
 src/hdl/TopTagging-HLS/GRU-HLS/Sweeps/
 src/hdl/TopTagging-HLS/model_gru.h5
+
+
+documents/Benchmarks/Btagging/qkeras/models/*
+documents/Benchmarks/Btagging/qkeras/reports/*
+
+documents/Benchmarks/Btagging/qkeras/X_test_gen.txt
+documents/Benchmarks/Btagging/qkeras/acc/*
+documents/Benchmarks/Btagging/qkeras/handmade/reports/*

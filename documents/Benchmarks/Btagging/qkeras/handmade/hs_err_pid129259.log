@@ -1,0 +1,17 @@
+#
+# An unexpected error has occurred (6)
+#
+Stack:
+/lib/x86_64-linux-gnu/libc.so.6(+0x42520) [0x7f3a6d619520]
+/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x12c) [0x7f3a6d66d9fc]
+/lib/x86_64-linux-gnu/libc.so.6(raise+0x16) [0x7f3a6d619476]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0xd3) [0x7f3a6d5ff7f3]
+/tools/Disk_Xilinx/2025.1/Vivado/lib/lnx64.o/Ubuntu/22/libstdc++.so.6(+0xa2bbe) [0x7f3a6dc78bbe]
+/tools/Disk_Xilinx/2025.1/Vivado/lib/lnx64.o/Ubuntu/22/libstdc++.so.6(+0xae24c) [0x7f3a6dc8424c]
+/tools/Disk_Xilinx/2025.1/Vivado/lib/lnx64.o/Ubuntu/22/libstdc++.so.6(+0xae2b7) [0x7f3a6dc842b7]
+/tools/Disk_Xilinx/2025.1/Vivado/lib/lnx64.o/Ubuntu/22/libstdc++.so.6(+0xae518) [0x7f3a6dc84518]
+/tools/Disk_Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_common.so(+0x7ddd91) [0x7f3a77a02d91]
+/tools/Disk_Xilinx/2025.1/Vivado/lib/lnx64.o/libxv_common.so(+0x925e59) [0x7f3a77b4ae59]
+/tools/Disk_Xilinx/2025.1/Vivado/lib/lnx64.o/libboost_thread.so.1.72.0(+0x15629) [0x7f3a7483b629]
+/lib/x86_64-linux-gnu/libc.so.6(+0x94ac3) [0x7f3a6d66bac3]
+/lib/x86_64-linux-gnu/libc.so.6(+0x1268d0) [0x7f3a6d6fd8d0]
