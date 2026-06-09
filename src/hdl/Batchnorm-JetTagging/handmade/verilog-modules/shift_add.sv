@@ -65,7 +65,7 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
     localparam integer signed shift[DEPTH:0] = determineShifts(WEIGHT, BITS, DEPTH);
     localparam integer num_signed_bits = determine_signed_bits(WEIGHT);
     logic signed [BITS*2-1:0]       data_in_ex;
-    logic signed [BITS*2-1:0]       data_out_accum;
+    // logic signed [BITS*2-1:0]       data_out_accum;
     logic signed [BITS+NFRAC-1:0]   data_out_tmp;
     logic signed [BITS-1:0] data_in_reg;
     `ifndef PIPELINE_MULT
@@ -95,35 +95,60 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
                 else if (shift[i] < 0) begin data_out_tmp = data_out_tmp - (data_in_ex << (abs_value(shift[i])-1)); end
             end
         end
+        always_ff @(posedge clk) begin
+            if (ce) data_out <= $signed(data_out_tmp);
+        end
     end else begin
-    //         always_comb begin
-    //             data_out_tmp = $signed(data_in_reg) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
-    //         end
     // end, 
 
+    // always_comb begin
+    //     data_out_tmp = $signed(data_in_reg) * $signed(WEIGHT[BITS-num_signed_bits-1:0]);
+    // end
     // always_ff @(posedge clk) begin
     //     if (ce) data_out <= $signed(data_out_tmp);
     // end
-    (* use_dsp = "yes" *) basic_mult #(.WIDTH(BITS)) mult_m (.a($signed(data_in_reg)), .b(WEIGHT[BITS-num_signed_bits-1:0]), .out(data_out), .clk, .ce);
+    (* use_dsp = "yes" *) mult_basic #(
+                .din_WIDTH(BITS), 
+                .dweight_WIDTH(BITS-num_signed_bits),
+                .dout_WIDTH(BITS+NFRAC)
+                ) 
+                shiftAdd_mult
+                (
+                .num_i(data_in),
+                .weight_i(WEIGHT[BITS-num_signed_bits-1:0]),
+                .mult_o(data_out),
+                .clk,
+                .ce
+                );
+    // (* use_dsp = "yes" *) basic_mult #(.WIDTH(BITS)) mult_m (.a($signed(data_in_reg)), .b(WEIGHT[BITS-num_signed_bits-1:0]), .out(data_out), .clk, .ce);
         end
-    
-    
-    
 	
 endmodule
 
-module basic_mult
-        #(parameter WIDTH=16) 
-        (input logic signed [WIDTH-1:0] a,
-        input logic signed [WIDTH-1:0] b, 
-        output logic signed [2*WIDTH-1:0] out,
-        input clk, input ce);
+// module basic_mult
+//         #(parameter WIDTH=16) 
+//         (input logic signed [WIDTH-1:0] a,
+//         input logic signed [WIDTH-1:0] b, 
+//         output logic signed [2*WIDTH-1:0] out,
+//         input clk, input ce);
 
+//     always_ff @(posedge clk) begin
+//         if (ce) out <= a*b;
+//     end
+// endmodule
+module mult_basic 
+#(parameter din_WIDTH, dweight_WIDTH, dout_WIDTH)
+    (
+    input logic [din_WIDTH-1:0]num_i, 
+    input logic [dweight_WIDTH-1:0]weight_i, 
+    output logic signed [dout_WIDTH-1:0]mult_o,
+    input logic clk,
+    input ce
+    );
     always_ff @(posedge clk) begin
-        if (ce) out <= a*b;
+        if (ce) mult_o<=$signed(num_i)*$signed(weight_i);
     end
 endmodule
-
 /*  ------------------------------------
     Testbench for shift-add module
     ------------------------------------

@@ -389,7 +389,7 @@ module edge_check(input reset, input in, output logic out);
 endmodule
 // `ifdef BALLS
 `define STRINGIFY(x) `"x`"
-`define MODELSIM
+// `define MODELSIM
 module LSTM_tb;
     logic clk;
     logic reset;

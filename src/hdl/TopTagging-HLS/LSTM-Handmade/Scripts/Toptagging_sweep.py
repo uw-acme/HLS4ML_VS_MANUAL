@@ -246,7 +246,7 @@ def adjust(bits):
     # params= f'PIPELINING={pipeline} PIPE_OUT={pipe_out}'
     # name = f"expPipeNegmax"
 name = "Toptag_my_mult"
-for i in [6]:
+for i in range(2,14):
     acc = (3*i-2,i)
     # acc_in = (2*i+4,6) if i > 6 else (3*i-2,i)
     # SA_INT, SA_FRAC = adjust(acc_in[0])

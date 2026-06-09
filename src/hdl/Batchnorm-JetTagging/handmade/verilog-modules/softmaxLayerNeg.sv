@@ -218,7 +218,7 @@ module softmaxLayer_tb;
 
     // Monitor the outputs
     initial begin
-        $monitor("Time = %0t | input_data = %p | output_data = %p", $time, input_data, output_data);
+        $monitor("Time = %0t | input_data = %d | output_data = %d", $time, input_data, output_data);
     end
 
 endmodule

@@ -1,4 +1,4 @@
-`define MODELSIM
+// `define MODELSIM
 
 `timescale 1ns / 1ps
 module Toptagging_top #( parameter
@@ -64,7 +64,7 @@ module Toptagging_top_tb;
     end
     assign shiftClk=clk;
     // max_tests = 19951;
-    localparam num_tests = 5;
+    localparam num_tests = 500;
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][TIMESTEPS-1:0][INPUT_SIZE-1:0];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests*TIMESTEPS-1];
     `ifndef TESTFILE
