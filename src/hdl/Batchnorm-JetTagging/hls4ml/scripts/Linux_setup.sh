@@ -13,8 +13,13 @@ if [ ! -d "miniconda3" ]; then
     wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
     bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3
 fi
+<<<<<<< HEAD
 if [ -d "$HOME/miniconda3/envs/hls4ml-env" ]; then
     conda remove -n hls4ml-env --all -y
+=======
+if [ -d "$HOME/miniconda3/envs/hls4ml-tenv" ]; then
+    conda remove -n hls4ml-tenv --all -y
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
 fi
 
 # Activate conda for this script
@@ -49,4 +54,8 @@ for module in "${MODULES[@]}"; do
 done
 
 # Register kernel
+<<<<<<< HEAD
 python -m ipykernel install --user --name hls4ml-env --display-name "Python (hls4ml-env)"
+=======
+python -m ipykernel install --user --name hls4ml-tenv --display-name "Python (hls4ml-tenv)"
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9

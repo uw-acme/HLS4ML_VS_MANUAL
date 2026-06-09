@@ -200,7 +200,11 @@ module waiz_benchmark #(
         .next_layer_ready(1'b1),
         .clk(clk),
         .reset(reset),
+<<<<<<< HEAD
         .output_data(softmax_output_data),
+=======
+        .dataOut(softmax_output_data),
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
         .input_ready(input_ready_5),
         .output_ready(output_ready_5)
     );

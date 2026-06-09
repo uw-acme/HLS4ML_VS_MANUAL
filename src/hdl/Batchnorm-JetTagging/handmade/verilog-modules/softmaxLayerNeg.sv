@@ -16,27 +16,42 @@ module softmaxLayerNeg # (
     parameter EXP_TABLE_PATH = "../weights/softmax/exp_neg_table_18_17_10_6.dat",
     parameter INVERT_TABLE_PATH = "../weights/softmax/pos_invert_table_18_17_10_7.dat"
 ) (
+<<<<<<< HEAD
     input logic signed [WIDTH-1:0] input_data [N-1:0],
     input logic clk,
     input logic reset,
     output ready,
     input next_layer_ready,
     output logic signed [WIDTH-1:0] output_data [N-1:0],
+=======
+    input logic signed [WIDTH-1:0] dataIn [N-1:0],
+    input logic clk,
+    input logic reset,
+    output logic signed [WIDTH-1:0] dataOut [N-1:0],
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
     input logic input_ready,
     output logic output_ready
 );
 
+<<<<<<< HEAD
     logic processing;
     assign processing = (next_layer_ready)||(!output_ready);
     
     assign ready=processing;
+=======
+    
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
     localparam num_cycles = 3;
     logic [num_cycles-1:0] ready_buffer = 0;
     assign output_ready = ready_buffer[0];
     // Lookup tables
     logic unsigned [TABLE_WIDTH_EXP-1:0] exp_table [2**MEM_WIDTH-1:0];
     logic unsigned [TABLE_WIDTH_INV-1:0] invert_table [2**MEM_WIDTH-1:0];
+<<<<<<< HEAD
     logic signed [MEM_WIDTH-1:0] input_data_parse [N-1:0];
+=======
+    logic signed [MEM_WIDTH-1:0] dataIn_parse [N-1:0];
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
     // Intermediate signals
     wire unsigned [TABLE_WIDTH_EXP+TABLE_WIDTH_INV:0] buffer [N-1:0];
     logic unsigned [TABLE_WIDTH_EXP-1:0] expResult [N-1:0];
@@ -62,6 +77,7 @@ module softmaxLayerNeg # (
         
         for (int i = 0; i < N; i++) begin
             if (MEM_NFRAC_EXP == NFRAC) 
+<<<<<<< HEAD
                 input_data_parse[i] = input_data[i];
             else if (MEM_NFRAC_EXP < NFRAC)
                 input_data_parse[i] = (input_data[i] >>> (NFRAC - MEM_NFRAC_EXP));
@@ -75,6 +91,21 @@ module softmaxLayerNeg # (
         end
         for (int i = 0; i < N; i++) begin
             lookupIndex[i] = maxIn-input_data_parse[i];
+=======
+                dataIn_parse[i] = dataIn[i];
+            else if (MEM_NFRAC_EXP < NFRAC)
+                dataIn_parse[i] = (dataIn[i] >>> (NFRAC - MEM_NFRAC_EXP));
+            else
+                dataIn_parse[i] = (dataIn[i] << (MEM_NFRAC_EXP - NFRAC));
+        end
+        maxIn = dataIn_parse[0];
+        for (int i=1; i < N; i++) begin
+            if (dataIn_parse[i]>maxIn)
+                maxIn=dataIn_parse[i];
+        end
+        for (int i = 0; i < N; i++) begin
+            lookupIndex[i] = maxIn-dataIn_parse[i];
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
             // expResult[i] = exp_table[$unsigned(lookupIndex[i])];
         end
     end
@@ -123,10 +154,17 @@ module softmaxLayerNeg # (
         expResultBuff<=expResult;
         for (int i = 0; i < N; i++) begin
             if (NFRAC<(TABLE_NFRAC_EXP+TABLE_NFRAC_INV)) begin
+<<<<<<< HEAD
                 output_data[i] <= buffer[i]>>(TABLE_NFRAC_EXP+TABLE_NFRAC_INV-NFRAC);
             end
             else begin
                 output_data[i] <= buffer[i]<<(NFRAC-TABLE_NFRAC_EXP-TABLE_NFRAC_INV);
+=======
+                dataOut[i] <= buffer[i]>>(TABLE_NFRAC_EXP+TABLE_NFRAC_INV-NFRAC);
+            end
+            else begin
+                dataOut[i] <= buffer[i]<<(NFRAC-TABLE_NFRAC_EXP-TABLE_NFRAC_INV);
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
             end
         end
     end
@@ -140,9 +178,15 @@ module softmaxLayer_tb;
     localparam NFRAC = 10;            // Number of fractional bits
 
     // Testbench signals
+<<<<<<< HEAD
     logic signed [WIDTH-1:0] input_data [N-1:0];
     logic clk;
     logic signed [WIDTH-1:0] output_data [N-1:0];
+=======
+    logic signed [WIDTH-1:0] dataIn [N-1:0];
+    logic clk;
+    logic signed [WIDTH-1:0] dataOut [N-1:0];
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
 
     // Instantiate the softmaxParameterized module
     softmaxLayer #(
@@ -150,9 +194,15 @@ module softmaxLayer_tb;
         .WIDTH(WIDTH),
         .NFRAC(NFRAC)
     ) uut (
+<<<<<<< HEAD
         .input_data(input_data),
         .clk(clk),
         .output_data(output_data)
+=======
+        .dataIn(dataIn),
+        .clk(clk),
+        .dataOut(dataOut)
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
     );
 
     // Clock generation
@@ -165,7 +215,11 @@ module softmaxLayer_tb;
     initial begin
         // Initialize inputs
 //        for (int i = 0; i < N; i++) begin
+<<<<<<< HEAD
 //            input_data[i] = $signed(i * 2); // Example data
+=======
+//            dataIn[i] = $signed(i * 2); // Example data
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
 //        end
         
 //        // Wait for a few clock cycles to observe the results
@@ -173,12 +227,17 @@ module softmaxLayer_tb;
 
 //        // Apply new data
 //        for (int i = 0; i < N; i++) begin
+<<<<<<< HEAD
 //            input_data[i] = $signed((i + 1) * 3); // Example data
+=======
+//            dataIn[i] = $signed((i + 1) * 3); // Example data
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
 //        end
 
 //        // Wait for a few clock cycles to observe the results
 //        #10;
         
+<<<<<<< HEAD
         input_data[0] = 16'sh0000;
         input_data[1] = 16'sh0000;
         input_data[2] = 16'sh0000;
@@ -209,6 +268,38 @@ module softmaxLayer_tb;
         // input_data[1] = 16'sh0005;
         // input_data[2] = 16'sh000a;
         // input_data[3] = 16'sh000a;
+=======
+        dataIn[0] = 16'sh0000;
+        dataIn[1] = 16'sh0000;
+        dataIn[2] = 16'sh0000;
+//        dataIn[3] = 16'sh0000;
+        
+        # 200
+
+        dataIn[0] = 16'sh1fff;
+        dataIn[1] = 16'sh0001;
+        dataIn[2] = 16'sh0001;
+//        dataIn[3] = 16'sh0001;
+
+        # 200
+        
+        dataIn[0] = 16'sh1c4a;
+        dataIn[1] = 16'sh117f;
+        dataIn[2] = 16'sha27b;
+//        dataIn[3] = 16'sh0001;
+
+        // dataIn[0] = -16'sh1005;
+        // dataIn[1] = -16'sh0005;
+        // dataIn[2] = -16'sh0005;
+        // dataIn[3] = -16'sh0005;
+
+        # 100
+
+        // dataIn[0] = 16'sh0005;
+        // dataIn[1] = 16'sh0005;
+        // dataIn[2] = 16'sh000a;
+        // dataIn[3] = 16'sh000a;
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
 
         // # 100
 
@@ -218,7 +309,11 @@ module softmaxLayer_tb;
 
     // Monitor the outputs
     initial begin
+<<<<<<< HEAD
         $monitor("Time = %0t | input_data = %d | output_data = %d", $time, input_data, output_data);
+=======
+        $monitor("Time = %0t | dataIn = %p | dataOut = %p", $time, dataIn, dataOut);
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
     end
 
 endmodule

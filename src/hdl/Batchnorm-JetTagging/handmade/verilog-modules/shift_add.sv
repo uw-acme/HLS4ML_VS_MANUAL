@@ -65,7 +65,11 @@ module shift_add #(parameter signed WEIGHT  = 17'd1,
     localparam integer signed shift[DEPTH:0] = determineShifts(WEIGHT, BITS, DEPTH);
     localparam integer num_signed_bits = determine_signed_bits(WEIGHT);
     logic signed [BITS*2-1:0]       data_in_ex;
+<<<<<<< HEAD
     // logic signed [BITS*2-1:0]       data_out_accum;
+=======
+    logic signed [BITS*2-1:0]       data_out_accum;
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
     logic signed [BITS+NFRAC-1:0]   data_out_tmp;
     logic signed [BITS-1:0] data_in_reg;
     `ifndef PIPELINE_MULT

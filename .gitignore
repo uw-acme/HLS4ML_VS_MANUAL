@@ -19,6 +19,7 @@ src/hdl/waiz-benchmark/work/
 *xvlog*
 *.dcp
 # *.npy
+*.npy
 src/hdl/Batchnorm-JetTagging/handmade-compilation/
 src/hdl/Batchnorm-JetTagging/hls4ml/model_5/
 src/hdl/Batchnorm-JetTagging/alveo-u250-xdc_20210909/
@@ -41,8 +42,9 @@ src/hdl/Quickdraw/keras/model_1/
 src/hdl/Batchnorm-JetTagging/handmade/vsim.wlf
 src/hdl/Quickdraw/keras/model_1/
 *.npy
+src/hdl/Batchnorm-JetTagging/handmade/vsim.wlf
 
-src/hdl/TopTagging-HLS/model_gru_hls/hls4ml_prj/
+src/hdl/TopTagging-HLS/GRU-Handmade/hls4ml_prj/
 src/hdl/TopTagging-HLS/model_lstm_hls/hls4ml_prj/
 
 *.jou
@@ -56,3 +58,9 @@ src/hdl/TopTagging-HLS/LSTM-Handmade/transcript
 transcript
 model_lstm_hls
 Sweeps
+# *.sh
+
+src/hdl/TopTagging-HLS/GRU-Handmade/hls4ml_prj_io_parallel/
+src/hdl/TopTagging-HLS/GRU-Handmade/hls4ml_prj_pipeclean/
+src/hdl/TopTagging-HLS/GRU-HLS/Sweeps/
+src/hdl/TopTagging-HLS/model_gru.h5

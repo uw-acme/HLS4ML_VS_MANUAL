@@ -83,7 +83,11 @@ module waiz_benchmark_put_tb;
         end
     end
     // max_tests = 166000;
+<<<<<<< HEAD
     localparam num_tests = 2000;
+=======
+    localparam num_tests = 166000;
+>>>>>>> be1827937e9966093df5ff45167240f3408b16e9
     logic signed [WIDTH-1:0] x_test [num_tests-1:0][0:INPUT_SIZE-1];
     logic signed [WIDTH-1:0] flat_mem [0:INPUT_SIZE*num_tests-1];
     integer i,j;
