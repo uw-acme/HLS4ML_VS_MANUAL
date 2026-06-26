@@ -72,3 +72,9 @@ documents/Benchmarks/Btagging/qkeras/reports/*
 documents/Benchmarks/Btagging/qkeras/X_test_gen.txt
 documents/Benchmarks/Btagging/qkeras/acc/*
 documents/Benchmarks/Btagging/qkeras/handmade/reports/*
+*.sh
+documents/Benchmarks/Toptag/train/
+documents/Benchmarks/Toptag/val/
+documents/Benchmarks/Toptag/hls4ml_LHCjet_30p_val.tar
+documents/Benchmarks/Toptag/hls4ml_toptag_train.tar
+documents/Benchmarks/Toptag/dump_test.txt
