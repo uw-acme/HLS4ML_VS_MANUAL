@@ -16,6 +16,7 @@
 module adderTree_1D #(parameter N = 32, WIDTH = 17, INPUT_SIZE = 32) (
     input  logic                        clk,
     input  logic                        reset,
+	 input logic advance,
     input  logic signed [WIDTH-1 : 0]   input_data  [INPUT_SIZE],
     output logic signed [WIDTH-1 : 0]   output_data
 );
@@ -68,10 +69,12 @@ module adderTree_1D #(parameter N = 32, WIDTH = 17, INPUT_SIZE = 32) (
 	   for (i = 0; i < POW_OF_4; i++) begin: outerLoop
 	       for (j=4**i; j < 2*(4**i); j++) begin: innerLoop
 	           always_ff @(posedge clk) begin
+						if (advance) begin
 	               tree[j] <= tree[4*j]
 	                        + tree[(4*j) + 1]
 	                        + tree[(4*j) + 2]
 	                        + tree[(4*j) + 3];
+						end
 	           end
 	       end
 	   end
@@ -79,7 +82,9 @@ module adderTree_1D #(parameter N = 32, WIDTH = 17, INPUT_SIZE = 32) (
 	
 	// Return the sum from the adder tree
 	always_ff @(posedge clk) begin
+		if (advance) begin
         output_data <= tree[1];
+		end
     end
 endmodule
 
