@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 // this implementation is for a multichannel 2D convolution with NO PADDING
 
-module conv2d_output_reuse9_multichannel  #(parameter inputChannels = 1, parameter filtDimension = 3, parameter bitWidth = 17,
+module conv2d_output_with_relu_reuse9_multichannel  #(parameter inputChannels = 1, parameter filtDimension = 3, parameter bitWidth = 17,
 parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 (clk, reset, inputPixel, biases, convWeights, inputValid, inputReady, outputReady, outputPixel, outputValid);
 
 	input logic clk, reset;
-	input logic signed [bitWidth-1:0]  biases [0:biasWidth-1]; 
+	input logic signed [bitWidth-1:0] biases [0:biasWidth-1]; 
 	input logic signed [bitWidth-1:0] convWeights [0:biasWidth*inputChannels*filtDimension*filtDimension-1];
 
 	// upstream handshake
@@ -21,6 +21,7 @@ parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 	
 	logic signed [bitWidth-1:0] currConvMatrix [0:inputChannels-1][filtDimension-1:0][filtDimension-1:0];
 	logic signed [bitWidth-1:0] sum [biasWidth-1:0]; // stores the outputs to all the instances of sumNine each clock cycle
+	logic signed [bitWidth-1:0] reluSum [biasWidth-1:0]; // stores the sums after applying RELU
 
 	localparam COMPUTATION_TIME = filtDimension**2; // number of clk cycles to compute dot product per spatial location of filter
 
@@ -49,6 +50,15 @@ parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 	endgenerate 
 
 	assign allSumsValid = (sumOutValid == {biasWidth{1'b1}});
+
+
+	// RELU
+	always_comb begin
+		for (int j=0; j<biasWidth; j++) begin
+			reluSum[j] = sum[j][biasWidth-1] ? '0 : sum[j];
+		end
+	end
+
 
 	// sumWaiting
 	always_ff @(posedge clk) begin
@@ -177,12 +187,12 @@ parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 			if (allSumsValid && (positionValid || positionValid_delayed)) begin // while not skipping & sum is valid
 				if (!outputValid || outputReady) begin // if output is empty or currently clearing out
 					outputValid <= 1;
-					outputPixel <= sum;
+					outputPixel <= reluSum;
 				end
 			end
 			else if (sumWaiting && outputReady) begin
 				outputValid <= 1;
-				outputPixel <= sum;
+				outputPixel <= reluSum;
 			end
             else if (outputValid && outputReady && (!allSumsValid)) begin // existing output is consumed by next layer
                 outputValid <= 0; // inputValid signal

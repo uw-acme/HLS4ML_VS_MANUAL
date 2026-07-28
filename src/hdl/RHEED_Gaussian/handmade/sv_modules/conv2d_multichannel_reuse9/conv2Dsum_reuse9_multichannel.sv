@@ -10,11 +10,12 @@
 // Parameter whichFilt (ranges from 0 to however many filters being used in the covolution) indicatates which kernel (which weights)
 // is being used in the module instance
 module conv2Dsum_reuse9_multichannel
-	#(parameter inputChannels = 1, parameter filtDimension = 3, parameter bitWidth = 16, parameter NFRAC = 10, parameter whichFilt=0)
-	(clock, reset, start, currMatrix, counter, bias, sum, outputValid);
+	#(parameter inputChannels = 1, parameter filtDimension = 3, parameter bitWidth = 16, parameter NFRAC = 10, parameter whichFilt=0, parameter biasWidth)
+	(clock, reset, start, currMatrix, counter, bias, convWeights, sum, outputValid);
 	input logic clock;
 	input logic reset, start;
 	input logic signed [bitWidth-1:0] currMatrix [0:inputChannels-1][filtDimension-1:0][filtDimension-1:0];
+	input logic signed [bitWidth-1:0] convWeights [0:biasWidth*inputChannels*filtDimension*filtDimension-1];
 	input logic signed [bitWidth-1:0] bias;	
 	input logic [$clog2(filtDimension*filtDimension)-1:0] counter;
 
@@ -39,7 +40,7 @@ module conv2Dsum_reuse9_multichannel
 	always_comb begin
 		spatialSum = '0;
 		for (ch=0; ch<inputChannels; ch++) begin
-			parallelProds[ch] = currMatrix[ch][counter/filtDimension][counter%filtDimension] * (conv2d_reuse9_multichannel_test_data::convWeights[(whichFilt*inputChannels+ch)*filtDimension**2+counter]);
+			parallelProds[ch] = currMatrix[ch][counter/filtDimension][counter%filtDimension] * (convWeights[(whichFilt*inputChannels+ch)*filtDimension**2+counter]);
 		
 			spatialSum = spatialSum + parallelProds[ch]; // accumulate sums accross depth
 		end
