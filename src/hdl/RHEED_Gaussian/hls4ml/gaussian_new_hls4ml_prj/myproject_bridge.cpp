@@ -25,6 +25,20 @@ void allocate_trace_storage(size_t element_size) {
     nnet::trace_enabled = true;
     nnet::trace_outputs = new std::map<std::string, void *>;
     nnet::trace_type_size = element_size;
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_conv2d_batchnorm", (void *) malloc(46*46*6 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_activation", (void *) malloc(46*46*6 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("max_pooling2d", (void *) malloc(11*11*6 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_conv2d_batchnorm_1", (void *) malloc(9*9*8 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_activation_1", (void *) malloc(9*9*8 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("max_pooling2d_1", (void *) malloc(4*4*8 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_conv2d_batchnorm_2", (void *) malloc(2*2*10 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_activation_2", (void *) malloc(2*2*10 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("max_pooling2d_2", (void *) malloc(1*1*10 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_dense", (void *) malloc(15 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_activation_3", (void *) malloc(15 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_dense_1", (void *) malloc(10 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_activation_4", (void *) malloc(10 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("q_dense_2", (void *) malloc(5 * element_size)));
 }
 
 void free_trace_storage() {

@@ -96,42 +96,84 @@ void myproject(
     #pragma HLS STREAM variable=layer21_out depth=1
 
     nnet::conv_2d_cl<input_t, layer2_t, config2>(q_conv2d_batchnorm_input, layer2_out, w2, b2); // q_conv2d_batchnorm
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer2_t>(layer2_out, "q_conv2d_batchnorm", 46*46*6);
+#endif
 
     nnet::linear<layer2_t, layer3_t, linear_config3>(layer2_out, layer3_out); // q_conv2d_batchnorm_linear
 
     nnet::relu<layer3_t, layer4_t, relu_config4>(layer3_out, layer4_out); // q_activation
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer4_t>(layer4_out, "q_activation", 46*46*6);
+#endif
 
     nnet::pooling2d_cl<layer4_t, layer5_t, config5>(layer4_out, layer5_out); // max_pooling2d
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer5_t>(layer5_out, "max_pooling2d", 11*11*6);
+#endif
 
     nnet::conv_2d_cl<layer5_t, layer6_t, config6>(layer5_out, layer6_out, w6, b6); // q_conv2d_batchnorm_1
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer6_t>(layer6_out, "q_conv2d_batchnorm_1", 9*9*8);
+#endif
 
     nnet::linear<layer6_t, layer7_t, linear_config7>(layer6_out, layer7_out); // q_conv2d_batchnorm_1_linear
 
     nnet::relu<layer7_t, layer8_t, relu_config8>(layer7_out, layer8_out); // q_activation_1
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer8_t>(layer8_out, "q_activation_1", 9*9*8);
+#endif
 
     nnet::pooling2d_cl<layer8_t, layer9_t, config9>(layer8_out, layer9_out); // max_pooling2d_1
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer9_t>(layer9_out, "max_pooling2d_1", 4*4*8);
+#endif
 
     nnet::conv_2d_cl<layer9_t, layer10_t, config10>(layer9_out, layer10_out, w10, b10); // q_conv2d_batchnorm_2
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer10_t>(layer10_out, "q_conv2d_batchnorm_2", 2*2*10);
+#endif
 
     nnet::linear<layer10_t, layer11_t, linear_config11>(layer10_out, layer11_out); // q_conv2d_batchnorm_2_linear
 
     nnet::relu<layer11_t, layer12_t, relu_config12>(layer11_out, layer12_out); // q_activation_2
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer12_t>(layer12_out, "q_activation_2", 2*2*10);
+#endif
 
     nnet::pooling2d_cl<layer12_t, layer13_t, config13>(layer12_out, layer13_out); // max_pooling2d_2
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer13_t>(layer13_out, "max_pooling2d_2", 1*1*10);
+#endif
 
     nnet::dense<layer13_t, layer15_t, config15>(layer14_out, layer15_out, w15, b15); // q_dense
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer15_t>(layer15_out, "q_dense", 15);
+#endif
 
     nnet::linear<layer15_t, layer16_t, linear_config16>(layer15_out, layer16_out); // q_dense_linear
 
     nnet::relu<layer16_t, layer17_t, relu_config17>(layer16_out, layer17_out); // q_activation_3
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer17_t>(layer17_out, "q_activation_3", 15);
+#endif
 
     nnet::dense<layer17_t, layer18_t, config18>(layer17_out, layer18_out, w18, b18); // q_dense_1
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer18_t>(layer18_out, "q_dense_1", 10);
+#endif
 
     nnet::linear<layer18_t, layer19_t, linear_config19>(layer18_out, layer19_out); // q_dense_1_linear
 
     nnet::relu<layer19_t, layer20_t, relu_config20>(layer19_out, layer20_out); // q_activation_4
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer20_t>(layer20_out, "q_activation_4", 10);
+#endif
 
     nnet::dense<layer20_t, layer21_t, config21>(layer20_out, layer21_out, w21, b21); // q_dense_2
+#ifndef __SYNTHESIS__
+    nnet::save_layer_output<layer21_t>(layer21_out, "q_dense_2", 5);
+#endif
 
     nnet::linear<layer21_t, result_t, linear_config22>(layer21_out, layer22_out); // q_dense_2_linear
 
