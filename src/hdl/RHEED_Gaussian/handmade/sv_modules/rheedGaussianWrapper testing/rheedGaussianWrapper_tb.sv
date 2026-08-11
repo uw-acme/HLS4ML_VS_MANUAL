@@ -24,8 +24,8 @@ module rheedGaussianWrapper_tb();
     // simulation clock
     parameter PERIOD = 10; // 10ns period(100MHz) -- match XDC clock constraint
     initial begin
-		clock <= 0;
-		forever #(CLOCK_PERIOD/2) clock <= ~clock; // Forever toggle the clock
+		clk <= 0;
+		forever #(PERIOD/2) clk <= ~clk; // Forever toggle the clock
 	end
 
     // pixel stream file (set via +PIXEL_FILE=path at sim invocation) 
@@ -148,54 +148,3 @@ module rheedGaussianWrapper_tb();
     end
 
 endmodule
-
-
-// `timescale 1ns / 1ps
-// module rheedGaussianWrapper_tb();
-//     logic clk;
-//     logic reset;
-//     logic signed [7:0] inputPixel;
-//     logic inputValid;
-//     logic inputReady;
-//     logic signed [7:0] finalOutput [4:0];
-//     logic finalOutputValid;
-
-//     rheedGaussianWrapper #(
-//         .bitWidth(8),
-//         .inputWidth(48),
-//         .NFRAC_first(7),
-//         .NFRAC(5),
-//         .outputSize(5)
-//     ) dut (
-//         .clk(clk),
-//         .reset(reset),
-//         .inputPixel(inputPixel),
-//         .inputValid(inputValid),
-//         .inputReady(inputReady),
-//         .finalOutput(finalOutput),
-//         .finalOutputValid(finalOutputValid)
-//     );
-
-
-//     // simulation clock
-//     parameter PERIOD = 100;
-//     initial begin
-// 		clock <= 0;
-// 		forever #(CLOCK_PERIOD/2) clock <= ~clock; // Forever toggle the clock
-// 	end
-
-//     initial begin
-//         if (dut.outputValidConv0) begin
-//             $display("Conv0 output:");
-//             $display("%d", dut.outputPixelConv0[0]);
-//             $display("%d", dut.outputPixelConv0[1]);
-//             $display("%d", dut.outputPixelConv0[2]);
-//             $display("%d", dut.outputPixelConv0[3]);
-//             $display("%d", dut.outputPixelConv0[4]);
-//             $display("%d", dut.outputPixelConv0[5]);
-//         end
-//     end
-
-
-
-// endmodule

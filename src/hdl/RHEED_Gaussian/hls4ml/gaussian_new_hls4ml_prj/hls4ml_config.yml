@@ -50,7 +50,7 @@ HLSConfig:
     q_conv2d_batchnorm:
       Precision:
         bias: ap_fixed<8,1>
-        result: ap_fixed<8,2>
+        result: ap_fixed<8,3>
         weight: ap_fixed<8,1>
       ReuseFactor: 9
       RoundingMode: AP_RND
@@ -58,18 +58,18 @@ HLSConfig:
       Trace: true
     q_conv2d_batchnorm_1:
       Precision:
-        bias: ap_fixed<8,2>
-        result: ap_fixed<8,2>
-        weight: ap_fixed<8,2>
+        bias: ap_fixed<8,3>
+        result: ap_fixed<8,3>
+        weight: ap_fixed<8,3>
       ReuseFactor: 9
       RoundingMode: AP_RND
       SaturationMode: AP_SAT
       Trace: true
     q_conv2d_batchnorm_2:
       Precision:
-        bias: ap_fixed<8,2>
-        result: ap_fixed<8,2>
-        weight: ap_fixed<8,2>
+        bias: ap_fixed<8,3>
+        result: ap_fixed<8,3>
+        weight: ap_fixed<8,3>
       ReuseFactor: 8
       RoundingMode: AP_RND
       SaturationMode: AP_SAT
@@ -80,27 +80,27 @@ HLSConfig:
       Trace: true
     q_dense:
       Precision:
-        bias: ap_fixed<8,2>
-        result: ap_fixed<8,2>
-        weight: ap_fixed<8,2>
+        bias: ap_fixed<8,3>
+        result: ap_fixed<8,3>
+        weight: ap_fixed<8,3>
       ReuseFactor: 10
       RoundingMode: AP_RND
       SaturationMode: AP_SAT
       Trace: true
     q_dense_1:
       Precision:
-        bias: ap_fixed<8,2>
-        result: ap_fixed<8,2>
-        weight: ap_fixed<8,2>
+        bias: ap_fixed<8,3>
+        result: ap_fixed<8,3>
+        weight: ap_fixed<8,3>
       ReuseFactor: 15
       RoundingMode: AP_RND
       SaturationMode: AP_SAT
       Trace: true
     q_dense_2:
       Precision:
-        bias: ap_fixed<8,2>
-        result: ap_fixed<8,2>
-        weight: ap_fixed<8,2>
+        bias: ap_fixed<8,3>
+        result: ap_fixed<8,3>
+        weight: ap_fixed<8,3>
       ReuseFactor: 10
       RoundingMode: AP_RND
       SaturationMode: AP_SAT
@@ -128,7 +128,7 @@ OutputShapes:
   - 5
 Part: xcku035-fbva676-2-e
 ProjectName: myproject
-Stamp: 3d5051b3
+Stamp: 1a586d2c
 Version: 1.0.0
 WriterConfig:
   Namespace: null
