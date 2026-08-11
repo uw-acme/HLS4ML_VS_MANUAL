@@ -142,7 +142,7 @@ struct config6_mult : nnet::dense_config {
     static const unsigned n_out = 8;
     static const unsigned reuse_factor = 9;
     static const unsigned strategy = nnet::resource;
-    static const unsigned n_zeros = 30;
+    static const unsigned n_zeros = 21;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     typedef model_default_t accum_t;
     typedef bias6_t bias_t;
@@ -170,7 +170,7 @@ struct config6 : nnet::conv2d_config {
     static const unsigned out_height = 9;
     static const unsigned out_width = 9;
     static const unsigned reuse_factor = 9;
-    static const unsigned n_zeros = 30;
+    static const unsigned n_zeros = 21;
     static const unsigned multiplier_limit =
         DIV_ROUNDUP(kernel_size * n_chan * n_filt, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
@@ -245,7 +245,7 @@ struct config10_mult : nnet::dense_config {
     static const unsigned n_out = 10;
     static const unsigned reuse_factor = 8;
     static const unsigned strategy = nnet::resource;
-    static const unsigned n_zeros = 54;
+    static const unsigned n_zeros = 40;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     typedef model_default_t accum_t;
     typedef bias10_t bias_t;
@@ -273,7 +273,7 @@ struct config10 : nnet::conv2d_config {
     static const unsigned out_height = 2;
     static const unsigned out_width = 2;
     static const unsigned reuse_factor = 8;
-    static const unsigned n_zeros = 54;
+    static const unsigned n_zeros = 40;
     static const unsigned multiplier_limit =
         DIV_ROUNDUP(kernel_size * n_chan * n_filt, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
@@ -349,8 +349,8 @@ struct config15 : nnet::dense_config {
     static const unsigned io_type = nnet::io_stream;
     static const unsigned strategy = nnet::resource;
     static const unsigned reuse_factor = 10;
-    static const unsigned n_zeros = 0;
-    static const unsigned n_nonzeros = 150;
+    static const unsigned n_zeros = 7;
+    static const unsigned n_nonzeros = 143;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef model_default_t accum_t;
@@ -388,8 +388,8 @@ struct config18 : nnet::dense_config {
     static const unsigned io_type = nnet::io_stream;
     static const unsigned strategy = nnet::resource;
     static const unsigned reuse_factor = 15;
-    static const unsigned n_zeros = 9;
-    static const unsigned n_nonzeros = 141;
+    static const unsigned n_zeros = 6;
+    static const unsigned n_nonzeros = 144;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef model_default_t accum_t;
@@ -427,8 +427,8 @@ struct config21 : nnet::dense_config {
     static const unsigned io_type = nnet::io_stream;
     static const unsigned strategy = nnet::resource;
     static const unsigned reuse_factor = 10;
-    static const unsigned n_zeros = 3;
-    static const unsigned n_nonzeros = 47;
+    static const unsigned n_zeros = 0;
+    static const unsigned n_nonzeros = 50;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef model_default_t accum_t;

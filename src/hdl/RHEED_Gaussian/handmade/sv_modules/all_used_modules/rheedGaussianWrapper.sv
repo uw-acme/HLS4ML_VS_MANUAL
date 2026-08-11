@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-import q_conv2d_batchnorm_0_8_0::*;
+import q_conv2d_batchnorm_0_8_1::*;
 import q_conv2d_batchnorm_1_0_8_2::*;
 import q_conv2d_batchnorm_2_0_8_2::*;
 import q_dense_0_8_2::*;
@@ -68,8 +68,8 @@ module rheedGaussianWrapper #(
         .clk         (clk),
         .reset       (reset),
         .inputPixel  (inputPixelConv0),
-        .biases      (q_conv2d_batchnorm_0_8_0::convBiases),
-        .convWeights (q_conv2d_batchnorm_0_8_0::convWeights),
+        .biases      (q_conv2d_batchnorm_0_8_1::convBiases),
+        .convWeights (q_conv2d_batchnorm_0_8_1::convWeights),
         .inputValid  (inputValid),
         .inputReady  (inputReadyConv0),
         .outputReady (outputReadyConv0),

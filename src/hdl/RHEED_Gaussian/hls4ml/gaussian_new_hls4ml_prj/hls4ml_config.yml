@@ -49,9 +49,9 @@ HLSConfig:
       Trace: true
     q_conv2d_batchnorm:
       Precision:
-        bias: ap_fixed<8,0>
+        bias: ap_fixed<8,1>
         result: ap_fixed<8,2>
-        weight: ap_fixed<8,0>
+        weight: ap_fixed<8,1>
       ReuseFactor: 9
       RoundingMode: AP_RND
       SaturationMode: AP_SAT
@@ -126,9 +126,9 @@ OutputPredictions: null
 OutputShapes:
   layer22_out:
   - 5
-Part: xcku035-fbva676-2
+Part: xcku035-fbva676-2-e
 ProjectName: myproject
-Stamp: a182e25c
+Stamp: 3d5051b3
 Version: 1.0.0
 WriterConfig:
   Namespace: null
