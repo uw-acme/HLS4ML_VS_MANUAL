@@ -46,6 +46,9 @@ module rheedGaussianWrapper_tb();
     // record start and end time to track total latency
     time start_time, end_time;
 
+    // boolean flag: final outputs are written to csv
+    logic final_written;
+
     initial begin
         // pass in file path of the flattened input image data (row-major)
         // pass in as command line argument "+PIXEL_FILE=..."
@@ -111,16 +114,16 @@ module rheedGaussianWrapper_tb();
         end
         inputValid <= 0; @(posedge clk);
 
-        // wait for the final output to appear (level-sensitive)
-        wait (finalOutputValid);
+        // wait for the final outputs to be written
+        wait(final_written);
 
         // check end time
         end_time = $time;
 
         // write every final output value (comma-seperated) to f_final
-        for (int i = 0; i < outputSize; i++) begin
-            $fwrite(f_final, "%0d%s", $signed(finalOutput[i]), (i == outputSize-1) ? "\n" : ",");
-        end 
+        // for (int i = 0; i < outputSize; i++) begin
+        //     $fwrite(f_final, "%0d%s", $signed(finalOutput[i]), (i == outputSize-1) ? "\n" : ",");
+        // end 
 
         // total latency
         $display("Latency = %0d cycles (%0t ns)", (end_time - start_time) / PERIOD, end_time - start_time);
@@ -176,6 +179,11 @@ module rheedGaussianWrapper_tb();
         if (dut.outputValidRelu1)
             for (int i = 0; i < 10; i++)
                 $fwrite(f_relu1, "%0d%s", $signed(dut.outputDataRelu1[i]), (i==9) ? "\n" : ",");
+
+        if (dut.finalOutputValid)   
+            for (int i = 0; i < outputSize; i++) 
+                $fwrite(f_final, "%0d%s", $signed(finalOutput[i]), (i == outputSize-1) ? "\n" : ",");
+            final_written <= 1'b1;
     end
 
 endmodule

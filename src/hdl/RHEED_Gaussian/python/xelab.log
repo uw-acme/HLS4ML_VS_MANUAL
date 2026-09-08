@@ -871,18 +871,18 @@ Environment is set as below at post-xsim.ini-loading:
 
 -- Dumping Relevant Environment Variables
 XILINX = /tools/Disk_Xilinx/Vivado/2019.1/ids_lite/ISE
-PATH = /tools/Disk_Xilinx/Vivado/2019.1/bin:/tools/Disk_Xilinx/Vivado/2019.1/tps/lnx64/jre9.0.4/bin:/tools/Disk_Xilinx/Vivado/2019.1/ids_lite/ISE/bin/lin64:/home/aya/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/aya/.vscode-server/cli/servers/Stable-e4c7e7b1d6d060162f4aa7f8225271b67ce1df75/server/bin/remote-cli:/home/aya/miniconda3/bin:/home/aya/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/aya/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts
+PATH = /tools/Disk_Xilinx/Vivado/2019.1/bin:/tools/Disk_Xilinx/Vivado/2019.1/tps/lnx64/jre9.0.4/bin:/tools/Disk_Xilinx/Vivado/2019.1/ids_lite/ISE/bin/lin64:/home/aya/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/aya/.vscode-server/cli/servers/Stable-110a328ea54b42367b803ec53ee0bf52ef26b419/server/bin/remote-cli:/home/aya/miniconda3/bin:/home/aya/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/aya/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts
 LD_LIBRARY_PATH = /tools/Disk_Xilinx/Vivado/2019.1/lib/lnx64.o/Ubuntu:/tools/Disk_Xilinx/Vivado/2019.1/lib/lnx64.o:/tools/Disk_Xilinx/Vivado/2019.1/tps/lnx64/jre9.0.4/lib/:/tools/Disk_Xilinx/Vivado/2019.1/tps/lnx64/jre9.0.4/lib//server:/home/aya/local_libs::/tools/Disk_Xilinx/Vivado/2019.1/bin/../lnx64/tools/dot/lib
 PWD = /home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/python
 CWD = /home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/python
 
 -- Dumping Operating System Information
 sysname = Linux
-release = 5.15.0-187-generic
-version = #197-Ubuntu SMP Fri Jul 17 19:17:01 UTC 2026
+release = 5.15.0-190-generic
+version = #200-Ubuntu SMP Fri Aug 7 15:06:04 UTC 2026
 machine = x86_64
 ram (total) = 32088 MB
-ram (free) = 17240 MB
+ram (free) = 15052 MB
 
 -- Dumping Loaded Modules
 
@@ -1365,7 +1365,6 @@ zynq_ultra_ps_e_vip_v1_0_5=/tools/Disk_Xilinx/Vivado/2019.1/data/xsim/ip/zynq_ul
 Starting static elaboration
 INFO: [VRFC 10-3232] compiling module 'rheedGaussianWrapper_tb' [/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/handmade/sv_modules/rheedGaussianWrapper_testing/rheedGaussianWrapper_tb.sv:3]
 INFO: [VRFC 10-3232] compiling module '$unit_q_dense_1_pkg_8_2_0_sv' [/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/handmade/sv_modules/all_used_modules/q_dense_1_pkg_8_2_0.sv:1]
-WARNING: [VRFC 10-3705] select index 9 into 'sum' is out of bounds [/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/handmade/sv_modules/all_used_modules/conv2d_output_with_relu_reuse9_multichannel.sv:58]
 Completed static elaboration
 Starting simulation data flow analysis
 INFO: [XSIM 43-4009] "spatialSum", written at line 41 in file "/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/handmade/sv_modules/all_used_modules/conv2Dsum_reuse9_multichannel.sv", has also been read in this always_comb/always_latch block and is not added to the sensitivity list.
@@ -1743,7 +1742,7 @@ INFO: [XSIM 43-4009] "data_out_tmp", written at line 101 in file "/home/aya/HLS4
 INFO: [XSIM 43-4009] "data_out_tmp", written at line 101 in file "/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/handmade/sv_modules/all_used_modules/shift_add_with_mult.sv", has also been read in this always_comb/always_latch block and is not added to the sensitivity list.
 INFO: [XSIM 43-4009] "data_out_tmp", written at line 101 in file "/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/handmade/sv_modules/all_used_modules/shift_add_with_mult.sv", has also been read in this always_comb/always_latch block and is not added to the sensitivity list.
 Completed simulation data flow analysis
-SDG Object Count: 46154, SDG Object Memory Usage: 6716 KB.
+SDG Object Count: 46164, SDG Object Memory Usage: 6717 KB.
 Time Resolution for simulation is 1ps
 Compiling package work.q_conv2d_batchnorm_0_8_1
 Compiling package work.q_conv2d_batchnorm_1_0_8_2
