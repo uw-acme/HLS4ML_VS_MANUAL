@@ -1,4 +1,5 @@
 // Top level module for max pooling 2D layer. 
+`timescale 1ns / 1ps
 module MaxPool2D
  #(
 	parameter inputWidth = 8,

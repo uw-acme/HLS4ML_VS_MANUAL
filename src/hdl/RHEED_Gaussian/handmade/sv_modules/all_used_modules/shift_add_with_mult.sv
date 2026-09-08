@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module shift_add_with_mult #(parameter signed WEIGHT  = 17'd1,
                    parameter        DEPTH   = 2,
                                     BITS    = 17,

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 //Width: 8
 //Int: 2
 package q_dense_2_0_8_2;

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 //Width: 8
 //Int: 0
 package q_conv2d_batchnorm_0_8_0;

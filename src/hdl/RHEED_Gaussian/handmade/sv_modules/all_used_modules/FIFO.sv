@@ -3,6 +3,7 @@
 // until it's empty.
 // Assumes that the FIFO will never be read while empty or written while full,
 // and that there will never be a read and write at the same time.
+`timescale 1ns / 1ps
 module FIFO
  #(
 	parameter inputWidth = 8,
