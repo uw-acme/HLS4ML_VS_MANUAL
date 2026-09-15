@@ -73,17 +73,30 @@ module rheedGaussianWrapper_tb();
         // build each output filename as traces/rtl_<idx>_<layername>.csv,
         // matching the hls4ml_<idx>_<layername>.csv / keras_<idx>_<layername>.csv
         // naming convention already used by the Python tracing script
-        f_conv0  = $fopen({"traces/rtl_", idx_str, "_conv0.csv"},  "w");
-        f_pool0  = $fopen({"traces/rtl_", idx_str, "_pool0.csv"},  "w");
-        f_conv1  = $fopen({"traces/rtl_", idx_str, "_conv1.csv"},  "w");
-        f_pool1  = $fopen({"traces/rtl_", idx_str, "_pool1.csv"},  "w");
-        f_conv2  = $fopen({"traces/rtl_", idx_str, "_conv2.csv"},  "w");
-        f_pool2  = $fopen({"traces/rtl_", idx_str, "_pool2.csv"},  "w");
-        f_dense0 = $fopen({"traces/rtl_", idx_str, "_dense0.csv"}, "w");
-        f_relu0  = $fopen({"traces/rtl_", idx_str, "_relu0.csv"},  "w");
-        f_dense1 = $fopen({"traces/rtl_", idx_str, "_dense1.csv"}, "w");
-        f_relu1  = $fopen({"traces/rtl_", idx_str, "_relu1.csv"},  "w");
-        f_final  = $fopen({"traces/rtl_", idx_str, "_final.csv"},  "w");
+        // f_conv0  = $fopen({"traces/rtl_", idx_str, "_conv0.csv"},  "w");
+        // f_pool0  = $fopen({"traces/rtl_", idx_str, "_pool0.csv"},  "w");
+        // f_conv1  = $fopen({"traces/rtl_", idx_str, "_conv1.csv"},  "w");
+        // f_pool1  = $fopen({"traces/rtl_", idx_str, "_pool1.csv"},  "w");
+        // f_conv2  = $fopen({"traces/rtl_", idx_str, "_conv2.csv"},  "w");
+        // f_pool2  = $fopen({"traces/rtl_", idx_str, "_pool2.csv"},  "w");
+        // f_dense0 = $fopen({"traces/rtl_", idx_str, "_dense0.csv"}, "w");
+        // f_relu0  = $fopen({"traces/rtl_", idx_str, "_relu0.csv"},  "w");
+        // f_dense1 = $fopen({"traces/rtl_", idx_str, "_dense1.csv"}, "w");
+        // f_relu1  = $fopen({"traces/rtl_", idx_str, "_relu1.csv"},  "w");
+        // f_final  = $fopen({"traces/rtl_", idx_str, "_final.csv"},  "w");
+
+        f_conv0  = $fopen({"round_up_traces/rtl_", idx_str, "_conv0.csv"},  "w");
+        f_pool0  = $fopen({"round_up_traces/rtl_", idx_str, "_pool0.csv"},  "w");
+        f_conv1  = $fopen({"round_up_traces/rtl_", idx_str, "_conv1.csv"},  "w");
+        f_pool1  = $fopen({"round_up_traces/rtl_", idx_str, "_pool1.csv"},  "w");
+        f_conv2  = $fopen({"round_up_traces/rtl_", idx_str, "_conv2.csv"},  "w");
+        f_pool2  = $fopen({"round_up_traces/rtl_", idx_str, "_pool2.csv"},  "w");
+        f_dense0 = $fopen({"round_up_traces/rtl_", idx_str, "_dense0.csv"}, "w");
+        f_relu0  = $fopen({"round_up_traces/rtl_", idx_str, "_relu0.csv"},  "w");
+        f_dense1 = $fopen({"round_up_traces/rtl_", idx_str, "_dense1.csv"}, "w");
+        f_relu1  = $fopen({"round_up_traces/rtl_", idx_str, "_relu1.csv"},  "w");
+        f_final  = $fopen({"round_up_traces/rtl_", idx_str, "_final.csv"},  "w");
+
 
         reset <= 1;
         inputValid <= 0;
