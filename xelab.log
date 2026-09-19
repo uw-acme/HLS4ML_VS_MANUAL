@@ -1,0 +1,5 @@
+Vivado Simulator 2019.1
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: /tools/Disk_Xilinx/Vivado/2019.1/bin/unwrapped/lnx64.o/xelab conv2Dwindow_isolated_tb -s window_multi_test 
+Multi-threading is on. Using 10 slave threads.
+ERROR: [XSIM 43-3225] Cannot find design unit work.conv2Dwindow_isolated_tb in library work located at xsim.dir/work.

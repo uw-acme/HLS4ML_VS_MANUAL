@@ -199,4 +199,17 @@ module rheedGaussianWrapper_tb();
             final_written <= 1'b1;
     end
 
+    // probe: watch conv1's channel-3 (whichFilt=3) accumulation live, cycle by cycle
+    always_ff @(posedge clk) begin
+        if (dut.conv1.eachSumNine[3].conv2Dsum.started || dut.conv1.eachSumNine[3].conv2Dsum.start) begin
+            $display("[conv1 ch3] t=%0t counter=%0d start=%0d spatialSum=%0d accumulator=%0d currMatrix_ch=%p",
+                      $time,
+                      dut.conv1.counter,
+                      dut.conv1.eachSumNine[3].conv2Dsum.start,
+                      dut.conv1.eachSumNine[3].conv2Dsum.spatialSum,
+                      dut.conv1.eachSumNine[3].conv2Dsum.accumulator,
+                      dut.conv1.currConvMatrix);
+        end
+    end
+
 endmodule

@@ -108,7 +108,7 @@ module rheedGaussianWrapper #(
     endgenerate
 
     // -- pool0 stage B: second 2x2/stride2 pass -> completes the equivalent 4x4/stride4 pool --
-    logic signed [bitWidth-1:0] outputPixelMaxPool0 [OUTPUT_CHANNELS_CONV0-1:0];
+    logic signed [bitWidth-1:0] outputPixelMaxPool0 [0:OUTPUT_CHANNELS_CONV0-1];
     logic [OUTPUT_CHANNELS_CONV0-1:0] inputReadyPool0B;
     logic [OUTPUT_CHANNELS_CONV0-1:0] outputValidPool0B;
     logic outputReadyPool0B;
@@ -165,7 +165,7 @@ module rheedGaussianWrapper #(
         .outputValid (outputValidConv1)
     );
 
-    logic signed [bitWidth-1:0] outputPixelMaxPool1 [OUTPUT_CHANNELS_CONV1-1:0];
+    logic signed [bitWidth-1:0] outputPixelMaxPool1 [0:OUTPUT_CHANNELS_CONV1-1];
     logic [OUTPUT_CHANNELS_CONV1-1:0] inputReadyPool1;
     logic [OUTPUT_CHANNELS_CONV1-1:0] outputValidPool1;
     logic outputReadyPool1;
@@ -222,7 +222,7 @@ module rheedGaussianWrapper #(
         .outputValid (outputValidConv2)
     );
 
-    logic signed [bitWidth-1:0] outputPixelMaxPool2 [OUTPUT_CHANNELS_CONV2-1:0];
+    logic signed [bitWidth-1:0] outputPixelMaxPool2 [0:OUTPUT_CHANNELS_CONV2-1];
     logic [OUTPUT_CHANNELS_CONV2-1:0] inputReadyPool2;
     logic [OUTPUT_CHANNELS_CONV2-1:0] outputValidPool2;
     logic outputReadyPool2; // driven from Flatten/Dense0
