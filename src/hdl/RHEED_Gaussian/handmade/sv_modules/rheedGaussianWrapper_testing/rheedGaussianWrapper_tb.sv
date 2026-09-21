@@ -33,11 +33,10 @@ module rheedGaussianWrapper_tb();
     integer pixel_file, scan_return;
     logic [bitWidth-1:0] pixel_val;
 
-    // one-hot sample index (set via +ONEHOT_IDX=N at sim invocation), used to
+    // test label (set via +TEST_LABEL=N at sim invocation), used to
     // build output filenames like rtl_<idx>_<layername>.csv, matching the
     // hls4ml/keras trace file naming convention (from training_aya_11.27.ipynb)
-    int onehot_idx;
-    string idx_str;
+    string test_label;
 
     // trace output files 
     integer f_conv0, f_pool0, f_conv1, f_pool1, f_conv2, f_pool2;
@@ -48,6 +47,10 @@ module rheedGaussianWrapper_tb();
 
     // boolean flag: final outputs are written to csv
     logic final_written;
+
+    // output directory
+    string out_dir;
+
 
     initial begin
         // pass in file path of the flattened input image data (row-major)
@@ -63,39 +66,31 @@ module rheedGaussianWrapper_tb();
         end
 
         // pass in which one-hot sample this run corresponds to (0-4),
-        // as command line argument "+ONEHOT_IDX=..."
-        if (!$value$plusargs("ONEHOT_IDX=%d", onehot_idx)) begin
-            $display("ERROR: pass +ONEHOT_IDX=<0-4> matching the one-hot sample being tested");
+        // as command line argument "+TEST_LABEL=..."
+        if (!$value$plusargs("TEST_LABEL=%s", test_label)) begin
+            $display("ERROR: pass +TEST_LABEL=populated_0 (or similar) describing the sample being tested");
             $finish;
         end
-        idx_str = $sformatf("%0d", onehot_idx);
+
+        if (!$value$plusargs("OUT_DIR=%s", out_dir)) begin
+            $display("ERROR: pass +OUT_DIR=traces (or similar)");
+            $finish;
+        end
 
         // build each output filename as traces/rtl_<idx>_<layername>.csv,
         // matching the hls4ml_<idx>_<layername>.csv / keras_<idx>_<layername>.csv
         // naming convention already used by the Python tracing script
-        // f_conv0  = $fopen({"traces/rtl_", idx_str, "_conv0.csv"},  "w");
-        // f_pool0  = $fopen({"traces/rtl_", idx_str, "_pool0.csv"},  "w");
-        // f_conv1  = $fopen({"traces/rtl_", idx_str, "_conv1.csv"},  "w");
-        // f_pool1  = $fopen({"traces/rtl_", idx_str, "_pool1.csv"},  "w");
-        // f_conv2  = $fopen({"traces/rtl_", idx_str, "_conv2.csv"},  "w");
-        // f_pool2  = $fopen({"traces/rtl_", idx_str, "_pool2.csv"},  "w");
-        // f_dense0 = $fopen({"traces/rtl_", idx_str, "_dense0.csv"}, "w");
-        // f_relu0  = $fopen({"traces/rtl_", idx_str, "_relu0.csv"},  "w");
-        // f_dense1 = $fopen({"traces/rtl_", idx_str, "_dense1.csv"}, "w");
-        // f_relu1  = $fopen({"traces/rtl_", idx_str, "_relu1.csv"},  "w");
-        // f_final  = $fopen({"traces/rtl_", idx_str, "_final.csv"},  "w");
-
-        f_conv0  = $fopen({"round_up_traces/rtl_", idx_str, "_conv0.csv"},  "w");
-        f_pool0  = $fopen({"round_up_traces/rtl_", idx_str, "_pool0.csv"},  "w");
-        f_conv1  = $fopen({"round_up_traces/rtl_", idx_str, "_conv1.csv"},  "w");
-        f_pool1  = $fopen({"round_up_traces/rtl_", idx_str, "_pool1.csv"},  "w");
-        f_conv2  = $fopen({"round_up_traces/rtl_", idx_str, "_conv2.csv"},  "w");
-        f_pool2  = $fopen({"round_up_traces/rtl_", idx_str, "_pool2.csv"},  "w");
-        f_dense0 = $fopen({"round_up_traces/rtl_", idx_str, "_dense0.csv"}, "w");
-        f_relu0  = $fopen({"round_up_traces/rtl_", idx_str, "_relu0.csv"},  "w");
-        f_dense1 = $fopen({"round_up_traces/rtl_", idx_str, "_dense1.csv"}, "w");
-        f_relu1  = $fopen({"round_up_traces/rtl_", idx_str, "_relu1.csv"},  "w");
-        f_final  = $fopen({"round_up_traces/rtl_", idx_str, "_final.csv"},  "w");
+        f_conv0  = $fopen({out_dir, "/rtl_", test_label, "_conv0.csv"},  "w");
+        f_pool0  = $fopen({out_dir, "/rtl_", test_label, "_pool0.csv"},  "w");
+        f_conv1  = $fopen({out_dir, "/rtl_", test_label, "_conv1.csv"},  "w");
+        f_pool1  = $fopen({out_dir, "/rtl_", test_label, "_pool1.csv"},  "w");
+        f_conv2  = $fopen({out_dir, "/rtl_", test_label, "_conv2.csv"},  "w");
+        f_pool2  = $fopen({out_dir, "/rtl_", test_label, "_pool2.csv"},  "w");
+        f_dense0 = $fopen({out_dir, "/rtl_", test_label, "_dense0.csv"}, "w");
+        f_relu0  = $fopen({out_dir, "/rtl_", test_label, "_relu0.csv"},  "w");
+        f_dense1 = $fopen({out_dir, "/rtl_", test_label, "_dense1.csv"}, "w");
+        f_relu1  = $fopen({out_dir, "/rtl_", test_label, "_relu1.csv"},  "w");
+        f_final  = $fopen({out_dir, "/rtl_", test_label, "_final.csv"},  "w");
 
 
         reset <= 1;
@@ -193,7 +188,7 @@ module rheedGaussianWrapper_tb();
             for (int i = 0; i < 10; i++)
                 $fwrite(f_relu1, "%0d%s", $signed(dut.outputDataRelu1[i]), (i==9) ? "\n" : ",");
 
-        if (dut.finalOutputValid)   
+        if (dut.finalOutputValid)
             for (int i = 0; i < outputSize; i++) 
                 $fwrite(f_final, "%0d%s", $signed(finalOutput[i]), (i == outputSize-1) ? "\n" : ",");
             final_written <= 1'b1;
