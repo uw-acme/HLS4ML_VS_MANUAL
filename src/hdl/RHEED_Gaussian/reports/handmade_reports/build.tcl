@@ -17,14 +17,16 @@ read_verilog -sv $module_files
 set_part xcku035-fbva676-2-e
 
 # put xdc file in the same directory as this script
-set xdc_file "/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/reports/timing_only.xdc"
-read_xdc $xdc_file
+# set xdc_file "/home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/reports/timing_only.xdc"
+# read_xdc $xdc_file
 
 # Elaborate only first, to catch hookup/syntax errors fast
 synth_design -top rheedGaussianWrapper -mode out_of_context -rtl
 # check for errors in the log here, then re-run full synthesis:
 
 synth_design -top rheedGaussianWrapper -mode out_of_context
+
+create_clock -name clk -period 10.000 [get_ports clk]
 
 # Implementation flow 
 opt_design

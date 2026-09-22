@@ -55,7 +55,7 @@ parameter inputWidth = 8, parameter biasWidth = 2, parameter NFRAC = 10)
 	// RELU
 	always_comb begin
 		for (int j=0; j<biasWidth; j++) begin
-			reluSum[j] = sum[j][biasWidth-1] ? '0 : sum[j];
+			reluSum[j] = sum[j][bitWidth-1] ? '0 : sum[j];
 		end
 	end
 

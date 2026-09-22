@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-| Date              : Mon Jul 27 22:07:45 2026
+| Date              : Tue Sep 22 06:43:53 2026
 | Host              : hvm1 running 64-bit Ubuntu 22.04.5 LTS
 | Command           : report_timing_summary -file /home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/reports/handmade_reports/gaussian_handmade_timing.rpt
 | Design            : rheedGaussianWrapper
@@ -54,7 +54,7 @@ Table of Contents
 
 1. checking no_clock
 --------------------
- There are 7575 register/latch pins with no clock driven by root clock pin: clk (HIGH)
+ There are 0 register/latch pins with no clock.
 
 
 2. checking constant_clock
@@ -69,7 +69,7 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 13263 pins that are not constrained for maximum delay. (HIGH)
+ There are 0 pins that are not constrained for maximum delay.
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
@@ -128,16 +128,20 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-         NA           NA                     NA                   NA           NA           NA                     NA                   NA           NA           NA                      NA                    NA  
+      1.174        0.000                      0                12083        0.025        0.000                      0                12083        4.332        0.000                       0                  7106  
 
 
-There are no user specified timing constraints.
+All user specified timing constraints are met.
 
 
 ------------------------------------------------------------------------------------------------
 | Clock Summary
 | -------------
 ------------------------------------------------------------------------------------------------
+
+Clock  Waveform(ns)       Period(ns)      Frequency(MHz)
+-----  ------------       ----------      --------------
+clk    {0.000 5.000}      10.000          100.000         
 
 
 ------------------------------------------------------------------------------------------------
@@ -147,6 +151,7 @@ There are no user specified timing constraints.
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+clk                 1.174        0.000                      0                12083        0.025        0.000                      0                12083        4.332        0.000                       0                  7106  
 
 
 ------------------------------------------------------------------------------------------------
@@ -171,5 +176,184 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 | Timing Details
 | --------------
 ------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk
+  To Clock:  clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        1.174ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.025ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        4.332ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             1.174ns  (required time - arrival time)
+  Source:                 conv1/counter_reg[1]_rep__8/C
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            conv1/eachSumNine[6].conv2Dsum/accumulator_reg[12]/D
+                            (rising edge-triggered cell FDRE clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk rise@10.000ns - clk rise@0.000ns)
+  Data Path Delay:        8.851ns  (logic 3.005ns (33.951%)  route 5.846ns (66.049%))
+  Logic Levels:           21  (CARRY8=9 LUT2=5 LUT3=1 LUT4=2 LUT5=3 LUT6=1)
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=7105, unset)         0.000     0.000    conv1/clk
+    SLICE_X19Y167        FDRE                                         r  conv1/counter_reg[1]_rep__8/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X19Y167        FDRE (Prop_EFF_SLICEL_C_Q)
+                                                      0.114     0.114 r  conv1/counter_reg[1]_rep__8/Q
+                         net (fo=118, routed)         0.507     0.621    conv1/eachSumNine[6].conv2Dsum/i__i_3__138_0
+    SLICE_X30Y167        LUT4 (Prop_A5LUT_SLICEM_I0_O)
+                                                      0.213     0.834 f  conv1/eachSumNine[6].conv2Dsum/i___27/O
+                         net (fo=144, routed)         0.838     1.672    conv1/currMatrix/i__i_1__134_0
+    SLICE_X15Y172        LUT6 (Prop_F6LUT_SLICEM_I1_O)
+                                                      0.192     1.864 f  conv1/currMatrix/i__i_9__37/O
+                         net (fo=1, routed)           0.241     2.105    conv1/currMatrix/i__i_9__37_n_0
+    SLICE_X15Y172        LUT5 (Prop_E6LUT_SLICEM_I2_O)
+                                                      0.134     2.239 r  conv1/currMatrix/i__i_4__122/O
+                         net (fo=7, routed)           0.450     2.689    conv1/currMatrix/currConvMatrix_reg[5][1][0][3]_5
+    SLICE_X13Y164        LUT5 (Prop_D6LUT_SLICEM_I0_O)
+                                                      0.118     2.807 r  conv1/currMatrix/accumulator[0]_i_412__2/O
+                         net (fo=3, routed)           0.390     3.197    conv1/currMatrix/counter_reg[1]_rep__8_19
+    SLICE_X12Y162        LUT5 (Prop_B6LUT_SLICEL_I4_O)
+                                                      0.071     3.268 r  conv1/currMatrix/accumulator[0]_i_382__0/O
+                         net (fo=2, routed)           0.350     3.618    conv1/eachSumNine[6].conv2Dsum/accumulator_reg[0]_i_327_0[2]
+    SLICE_X13Y162        CARRY8 (Prop_CARRY8_SLICEM_DI[4]_O[5])
+                                                      0.169     3.787 r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[0]_i_327/O[5]
+                         net (fo=2, routed)           0.276     4.063    conv1/eachSumNine[6].conv2Dsum/accumulator_reg[0]_i_327_n_10
+    SLICE_X15Y163        LUT2 (Prop_C5LUT_SLICEM_I1_O)
+                                                      0.196     4.259 r  conv1/eachSumNine[6].conv2Dsum/accumulator[0]_i_368/O
+                         net (fo=2, routed)           0.300     4.559    conv1/eachSumNine[6].conv2Dsum/accumulator[0]_i_368_n_0
+    SLICE_X15Y163        LUT4 (Prop_D6LUT_SLICEM_I3_O)
+                                                      0.074     4.633 r  conv1/eachSumNine[6].conv2Dsum/accumulator[0]_i_375/O
+                         net (fo=1, routed)           0.000     4.633    conv1/eachSumNine[6].conv2Dsum/accumulator[0]_i_375_n_0
+    SLICE_X15Y163        CARRY8 (Prop_CARRY8_SLICEM_S[3]_O[3])
+                                                      0.079     4.712 r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[0]_i_326/O[3]
+                         net (fo=2, routed)           0.323     5.035    conv1/eachSumNine[6].conv2Dsum/accumulator_reg[0]_i_326_n_12
+    SLICE_X16Y163        CARRY8 (Prop_CARRY8_SLICEL_DI[6]_O[7])
+                                                      0.187     5.222 r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[0]_i_302/O[7]
+                         net (fo=1, routed)           0.369     5.591    conv1/eachSumNine[6].conv2Dsum/accumulator_reg[0]_i_302_n_8
+    SLICE_X20Y162        LUT2 (Prop_H6LUT_SLICEM_I1_O)
+                                                      0.073     5.664 r  conv1/eachSumNine[6].conv2Dsum/accumulator[0]_i_236/O
+                         net (fo=1, routed)           0.000     5.664    conv1/eachSumNine[6].conv2Dsum/accumulator[0]_i_236_n_0
+    SLICE_X20Y162        CARRY8 (Prop_CARRY8_SLICEM_S[7]_CO[7])
+                                                      0.176     5.840 r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[0]_i_210/CO[7]
+                         net (fo=1, routed)           0.027     5.867    conv1/eachSumNine[6].conv2Dsum/accumulator_reg[0]_i_210_n_0
+    SLICE_X20Y163        CARRY8 (Prop_CARRY8_SLICEM_CI_O[0])
+                                                      0.099     5.966 r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[8]_i_43/O[0]
+                         net (fo=1, routed)           0.433     6.399    conv1/eachSumNine[6].conv2Dsum/accumulator_reg[8]_i_43_n_15
+    SLICE_X24Y161        LUT2 (Prop_A6LUT_SLICEM_I1_O)
+                                                      0.115     6.514 r  conv1/eachSumNine[6].conv2Dsum/accumulator[8]_i_37/O
+                         net (fo=1, routed)           0.000     6.514    conv1/eachSumNine[6].conv2Dsum/accumulator[8]_i_37_n_0
+    SLICE_X24Y161        CARRY8 (Prop_CARRY8_SLICEM_S[0]_O[0])
+                                                      0.073     6.587 r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[8]_i_30/O[0]
+                         net (fo=1, routed)           0.427     7.014    conv1/eachSumNine[6].conv2Dsum/accumulator_reg[8]_i_30_n_15
+    SLICE_X29Y159        LUT2 (Prop_A6LUT_SLICEM_I1_O)
+                                                      0.115     7.129 r  conv1/eachSumNine[6].conv2Dsum/accumulator[8]_i_24/O
+                         net (fo=1, routed)           0.000     7.129    conv1/eachSumNine[6].conv2Dsum/accumulator[8]_i_24_n_0
+    SLICE_X29Y159        CARRY8 (Prop_CARRY8_SLICEM_S[0]_O[0])
+                                                      0.073     7.202 r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[8]_i_17/O[0]
+                         net (fo=1, routed)           0.574     7.776    conv1/eachSumNine[6].conv2Dsum/C[8]
+    SLICE_X37Y164        LUT2 (Prop_A6LUT_SLICEL_I1_O)
+                                                      0.131     7.907 r  conv1/eachSumNine[6].conv2Dsum/accumulator[8]_i_13/O
+                         net (fo=1, routed)           0.000     7.907    conv1/eachSumNine[6].conv2Dsum/accumulator[8]_i_13_n_0
+    SLICE_X37Y164        CARRY8 (Prop_CARRY8_SLICEL_S[0]_O[2])
+                                                      0.238     8.145 r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[8]_i_2/O[2]
+                         net (fo=2, routed)           0.305     8.450    conv1/eachSumNine[6].conv2Dsum/in[10]
+    SLICE_X38Y164        LUT3 (Prop_C6LUT_SLICEM_I0_O)
+                                                      0.115     8.565 r  conv1/eachSumNine[6].conv2Dsum/accumulator[8]_i_5/O
+                         net (fo=1, routed)           0.000     8.565    conv1/eachSumNine[6].conv2Dsum/accumulator[8]_i_5_n_0
+    SLICE_X38Y164        CARRY8 (Prop_CARRY8_SLICEM_S[2]_O[4])
+                                                      0.250     8.815 r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[8]_i_1/O[4]
+                         net (fo=1, routed)           0.036     8.851    conv1/eachSumNine[6].conv2Dsum/accumulator_reg[8]_i_1_n_11
+    SLICE_X38Y164        FDRE                                         r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[12]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)       10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=7105, unset)         0.000    10.000    conv1/eachSumNine[6].conv2Dsum/clk
+    SLICE_X38Y164        FDRE                                         r  conv1/eachSumNine[6].conv2Dsum/accumulator_reg[12]/C
+                         clock pessimism              0.000    10.000    
+                         clock uncertainty           -0.035     9.965    
+    SLICE_X38Y164        FDRE (Setup_EFF_SLICEM_C_D)
+                                                      0.060    10.025    conv1/eachSumNine[6].conv2Dsum/accumulator_reg[12]
+  -------------------------------------------------------------------
+                         required time                         10.025    
+                         arrival time                          -8.851    
+  -------------------------------------------------------------------
+                         slack                                  1.174    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.025ns  (arrival time - required time)
+  Source:                 conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/sr_data_reg[31][1]_srl32/CLK
+                            (rising edge-triggered cell SRLC32E clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/sr_data_reg[44][1]_srl13/D
+                            (rising edge-triggered cell SRL16E clocked by clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk rise@0.000ns - clk rise@0.000ns)
+  Data Path Delay:        0.145ns  (logic 0.145ns (100.000%)  route 0.000ns (0.000%))
+  Logic Levels:           0  
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=7105, unset)         0.000     0.000    conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/clk
+    SLICE_X1Y150         SRLC32E                                      r  conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/sr_data_reg[31][1]_srl32/CLK
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y150         SRLC32E (Prop_D6LUT_SLICEM_CLK_Q31)
+                                                      0.145     0.145 r  conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/sr_data_reg[31][1]_srl32/Q31
+                         net (fo=1, routed)           0.000     0.145    conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/sr_data_reg[31][1]_srl32_n_1
+    SLICE_X1Y150         SRL16E                                       r  conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/sr_data_reg[44][1]_srl13/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk rise edge)        0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=7105, unset)         0.000     0.000    conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/clk
+    SLICE_X1Y150         SRL16E                                       r  conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/sr_data_reg[44][1]_srl13/CLK
+                         clock pessimism              0.000     0.000    
+    SLICE_X1Y150         SRL16E (Hold_C6LUT_SLICEM_CLK_D)
+                                                      0.120     0.120    conv0/currMatrix/channelBuffers[0].buffers[0].bufferEachRow/sr_data_reg[44][1]_srl13
+  -------------------------------------------------------------------
+                         required time                         -0.120    
+                         arrival time                           0.145    
+  -------------------------------------------------------------------
+                         slack                                  0.025    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         clk
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { clk }
+
+Check Type        Corner  Lib Pin     Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     RAMD32/CLK  n/a            1.336         10.000      8.664      SLICE_X11Y154  pool0Stage2[2].mp/fifo/data_reg_0_15_0_7/RAMA/CLK
+Low Pulse Width   Slow    RAMD32/CLK  n/a            0.668         5.000       4.332      SLICE_X11Y154  pool0Stage2[2].mp/fifo/data_reg_0_15_0_7/RAMA/CLK
+High Pulse Width  Slow    RAMD32/CLK  n/a            0.668         5.000       4.332      SLICE_X11Y154  pool0Stage2[2].mp/fifo/data_reg_0_15_0_7/RAMA/CLK
+
 
 

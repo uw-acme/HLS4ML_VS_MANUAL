@@ -1,0 +1,3 @@
+Design,Bits,Total LUTs,Logic LUTs,LUTRAMs,SRLs,FFs,RAMB36,RAMB18,URAM,DSP48,WNS (ns),Latency (cycles),Streaming Throughput (cycles/img),Mean Abs Error vs Keras,Total Latency (ns)
+Handmade RTL,8,20076,19787,160,129,6657,0,0,0,0,1.174,19225.0,19349.0,0.032805989583333334,192250.0
+HLS4ML,8,24618,23110,0,1508,15650,18,56,0,0,2.669,34571-34577 (HLS estimate),,0.10612630208333335,172855-172885 (HLS estimate)
