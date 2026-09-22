@@ -872,7 +872,7 @@ Environment is set as below at post-xsim.ini-loading:
 -- Dumping Relevant Environment Variables
 XILINX = /tools/Disk_Xilinx/Vivado/2019.1/ids_lite/ISE
 PATH = /tools/Disk_Xilinx/Vivado/2019.1/bin:/tools/Disk_Xilinx/Vivado/2019.1/tps/lnx64/jre9.0.4/bin:/tools/Disk_Xilinx/Vivado/2019.1/ids_lite/ISE/bin/lin64:/home/aya/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/aya/.vscode-server/cli/servers/Stable-110a328ea54b42367b803ec53ee0bf52ef26b419/server/bin/remote-cli:/home/aya/miniconda3/bin:/home/aya/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/aya/.vscode-server/extensions/ms-python.debugpy-2026.6.0-linux-x64/bundled/scripts/noConfigScripts
-LD_LIBRARY_PATH = /tools/Disk_Xilinx/Vivado/2019.1/lib/lnx64.o/Ubuntu:/tools/Disk_Xilinx/Vivado/2019.1/lib/lnx64.o:/tools/Disk_Xilinx/Vivado/2019.1/tps/lnx64/jre9.0.4/lib/:/tools/Disk_Xilinx/Vivado/2019.1/tps/lnx64/jre9.0.4/lib//server:/home/aya/local_libs:/home/aya/local_libs::/tools/Disk_Xilinx/Vivado/2019.1/bin/../lnx64/tools/dot/lib
+LD_LIBRARY_PATH = /tools/Disk_Xilinx/Vivado/2019.1/lib/lnx64.o/Ubuntu:/tools/Disk_Xilinx/Vivado/2019.1/lib/lnx64.o:/tools/Disk_Xilinx/Vivado/2019.1/tps/lnx64/jre9.0.4/lib/:/tools/Disk_Xilinx/Vivado/2019.1/tps/lnx64/jre9.0.4/lib//server:/home/aya/local_libs::/tools/Disk_Xilinx/Vivado/2019.1/bin/../lnx64/tools/dot/lib
 PWD = /home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/python
 CWD = /home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/python
 
@@ -882,7 +882,7 @@ release = 5.15.0-190-generic
 version = #200-Ubuntu SMP Fri Aug 7 15:06:04 UTC 2026
 machine = x86_64
 ram (total) = 32088 MB
-ram (free) = 5712 MB
+ram (free) = 12080 MB
 
 -- Dumping Loaded Modules
 
