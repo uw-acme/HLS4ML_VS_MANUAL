@@ -32,3 +32,8 @@ src/hdl/Batchnorm-JetTagging/python/hls4ml.log
 src/hdl/Batchnorm-JetTagging/python/output.log
 *vivado*
 *.h5
+*.log
+src/hdl/RHEED_Gaussian/Gaussian-Handmade/scripts/ref_models.py
+src/hdl/RHEED_Gaussian/Gaussian-Handmade/scripts/gen_test_data.py
+src/hdl/RHEED_Gaussian/Gaussian-Handmade/scripts/scratch.ipynb
+
