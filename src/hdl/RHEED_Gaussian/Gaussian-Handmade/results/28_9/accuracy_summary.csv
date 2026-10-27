@@ -1,0 +1,2 @@
+tag,images,ulp,rtl_vs_keras_mean,rtl_vs_keras_max,hls_vs_keras_mean,hls_vs_keras_max,rtl_vs_hls_mean,rtl_vs_hls_max,rtl_vs_keras_mean_ulp,hls_vs_keras_mean_ulp,rtl_vs_hls_mean_ulp,rtl_closer_to_keras
+28_9,50,3.814697265625e-06,0.11124165624380111,0.4761958122253418,0.07166319,0.305364,0.161229248046875,0.6209182739257812,29161.332734375,18786.076171875,42265.28,17

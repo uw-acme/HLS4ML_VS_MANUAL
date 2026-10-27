@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
-// Latency testbench for rheedGaussianWrapper.
-// Counts clock cycles from the very first input to the very first final output.
-
+// Feeds zeros. Prints, in clock cycles:
+// Latency  = first accepted input to first output
+// Interval = first accepted input to first accepted input of the next image
 
 module lat_tb #(
     parameter bitWidth    = 8,
@@ -10,8 +10,9 @@ module lat_tb #(
     parameter NFRAC_first = 7
 ) ();
 
-    localparam PERIOD = 10;                 // clock period in ns (simulation only)
-    localparam TIMEOUT_CYCLES = 200000;     // give up if there is still no output after this many cycles
+    localparam PERIOD = 10;
+    localparam TIMEOUT_CYCLES = 200000;
+    localparam PIXELS = 48 * 48;
     localparam outputSize = 5;
 
     logic clk = 0;
@@ -30,15 +31,11 @@ module lat_tb #(
         .finalOutput(finalOutput), .finalOutputValid(finalOutputValid)
     );
 
-
-    // clock
     initial begin
         clk <= 0;
         forever #(PERIOD/2) clk <= ~clk;
     end
 
-
-    // reset -> keep offering a zero input
     initial begin
         reset <= 1;
         inputValid <= 0;
@@ -48,26 +45,32 @@ module lat_tb #(
         inputValid <= 1;
     end
 
+    int cycle = 0;
+    int accepted = 0;
+    int first_input_cycle = 0;
+    int latency = -1;
+    int interval = -1;
 
-    // count cycles (stop at first output)
-    int cycle_count = 0;            
-    int first_input_cycle = -1;    // -1 means the first input has not been accepted yet
+    always @(posedge clk) begin
+        cycle <= cycle + 1;
 
-    always @(posedge clk) begin // don't need to synthesize to ff
-        cycle_count <= cycle_count + 1;
+        if (inputValid && inputReady) begin
+            if (accepted == 0) first_input_cycle <= cycle;
+            if (accepted == PIXELS) interval <= cycle - first_input_cycle;
+            accepted <= accepted + 1;
+        end
 
-        // very first input
-        if (first_input_cycle < 0 && inputValid && inputReady)
-            first_input_cycle <= cycle_count;
+        if (finalOutputValid && latency < 0)
+            latency <= cycle - first_input_cycle;
 
-        // very first output
-        if (finalOutputValid) begin
-            $display("Latency = %0d cycles", cycle_count - first_input_cycle);
+        if (latency >= 0 && interval >= 0) begin
+            $display("Latency = %0d cycles", latency);
+            $display("Interval = %0d cycles", interval);
             $finish;
         end
 
-        if (cycle_count > TIMEOUT_CYCLES) begin
-            $display("ERROR: TIMEOUT -- no final output after %0d cycles", TIMEOUT_CYCLES);
+        if (cycle > TIMEOUT_CYCLES) begin
+            $display("ERROR: TIMEOUT (latency %0d, interval %0d)", latency, interval);
             $finish;
         end
     end

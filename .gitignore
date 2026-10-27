@@ -33,7 +33,11 @@ src/hdl/Batchnorm-JetTagging/python/output.log
 *vivado*
 *.h5
 *.log
-src/hdl/RHEED_Gaussian/Gaussian-Handmade/scripts/ref_models.py
-src/hdl/RHEED_Gaussian/Gaussian-Handmade/scripts/gen_test_data.py
-src/hdl/RHEED_Gaussian/Gaussian-Handmade/scripts/scratch.ipynb
-
+/src/hdl/RHEED_Gaussian/python/
+/src/hdl/RHEED_Gaussian/hls4ml/
+/src/hdl/RHEED_Gaussian/reports/
+/src/hdl/RHEED_Gaussian/lat_debug/
+/src/hdl/RHEED_Gaussian/Gaussian-*/scripts/
+/src/hdl/RHEED_Gaussian/Gaussian-HLS/hls_projects/
+*.lock
+__pycache__/
