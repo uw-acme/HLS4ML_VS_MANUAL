@@ -1,0 +1,67 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date         : Tue Oct 13 18:11:22 2026
+| Host         : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 1 -file /home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/Gaussian-Handmade-new-dense-d6/reports/28_9_11.9ns_util.rpt
+| Design       : rheedGaussianWrapper
+| Device       : xcku035fbva676-2
+| Design State : Fully Placed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++--------------------------+-------------------------------------------------------------+------------+------------+---------+------+-------+--------+--------+------+--------------+
+|         Instance         |                            Module                           | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | URAM | DSP48 Blocks |
++--------------------------+-------------------------------------------------------------+------------+------------+---------+------+-------+--------+--------+------+--------------+
+| rheedGaussianWrapper     |                                                       (top) |      41842 |      41218 |     320 |  304 | 17279 |      0 |      0 |    0 |          850 |
+|   (rheedGaussianWrapper) |                                                       (top) |       1538 |       1538 |       0 |    0 |     0 |      0 |      0 |    0 |            0 |
+|   conv0                  |                 conv2d_output_with_relu_reuse9_multichannel |       1221 |       1109 |       0 |  112 |   784 |      0 |      0 |    0 |           24 |
+|   conv1                  | conv2d_output_with_relu_reuse9_multichannel__parameterized0 |       4919 |       4727 |       0 |  192 |  2154 |      0 |      0 |    0 |          192 |
+|   conv2                  | conv2d_output_with_relu_reuse9_multichannel__parameterized1 |      14893 |      14893 |       0 |    0 |  3274 |      0 |      0 |    0 |          320 |
+|   dense0                 |                              denseLatencyWithControl_dense0 |       3944 |       3944 |       0 |    0 |  3319 |      0 |      0 |    0 |          147 |
+|   dense1                 |                              denseLatencyWithControl_dense1 |       3734 |       3734 |       0 |    0 |  2760 |      0 |      0 |    0 |          128 |
+|   dense2                 |                              denseLatencyWithControl_dense2 |       1270 |       1270 |       0 |    0 |  1141 |      0 |      0 |    0 |           39 |
+|   pool0Stage1[0].mp      |                                                   MaxPool2D |        153 |        137 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage1[1].mp      |                                                 MaxPool2D_0 |        153 |        137 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage1[2].mp      |                                                 MaxPool2D_1 |        153 |        137 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage1[3].mp      |                                                 MaxPool2D_2 |        153 |        137 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage1[4].mp      |                                                 MaxPool2D_3 |        153 |        137 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage1[5].mp      |                                                 MaxPool2D_4 |        141 |        125 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage2[0].mp      |                                   MaxPool2D__parameterized0 |         81 |         65 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage2[1].mp      |                                 MaxPool2D__parameterized0_5 |         81 |         65 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage2[2].mp      |                                 MaxPool2D__parameterized0_6 |         80 |         64 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage2[3].mp      |                                 MaxPool2D__parameterized0_7 |         80 |         64 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage2[4].mp      |                                 MaxPool2D__parameterized0_8 |         80 |         64 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool0Stage2[5].mp      |                                 MaxPool2D__parameterized0_9 |        106 |         90 |      16 |    0 |   112 |      0 |      0 |    0 |            0 |
+|   pool1[0].mp            |                                   MaxPool2D__parameterized1 |         68 |         52 |      16 |    0 |   100 |      0 |      0 |    0 |            0 |
+|   pool1[1].mp            |                                MaxPool2D__parameterized1_10 |         69 |         53 |      16 |    0 |   100 |      0 |      0 |    0 |            0 |
+|   pool1[2].mp            |                                MaxPool2D__parameterized1_11 |         72 |         56 |      16 |    0 |   100 |      0 |      0 |    0 |            0 |
+|   pool1[3].mp            |                                MaxPool2D__parameterized1_12 |         69 |         53 |      16 |    0 |   100 |      0 |      0 |    0 |            0 |
+|   pool1[4].mp            |                                MaxPool2D__parameterized1_13 |         69 |         53 |      16 |    0 |   100 |      0 |      0 |    0 |            0 |
+|   pool1[5].mp            |                                MaxPool2D__parameterized1_14 |         70 |         54 |      16 |    0 |   100 |      0 |      0 |    0 |            0 |
+|   pool1[6].mp            |                                MaxPool2D__parameterized1_15 |         69 |         53 |      16 |    0 |   100 |      0 |      0 |    0 |            0 |
+|   pool1[7].mp            |                                MaxPool2D__parameterized1_16 |         68 |         52 |      16 |    0 |   100 |      0 |      0 |    0 |            0 |
+|   pool2[0].mp            |                                   MaxPool2D__parameterized2 |        232 |        232 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   pool2[1].mp            |                                MaxPool2D__parameterized2_17 |        408 |        408 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   pool2[2].mp            |                                MaxPool2D__parameterized2_18 |        892 |        892 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   pool2[3].mp            |                                MaxPool2D__parameterized2_19 |        604 |        604 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   pool2[4].mp            |                                MaxPool2D__parameterized2_20 |        650 |        650 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   pool2[5].mp            |                                MaxPool2D__parameterized2_21 |        229 |        229 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   pool2[6].mp            |                                MaxPool2D__parameterized2_22 |        332 |        332 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   pool2[7].mp            |                                MaxPool2D__parameterized2_23 |        249 |        249 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   pool2[8].mp            |                                MaxPool2D__parameterized2_24 |        254 |        254 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   pool2[9].mp            |                                MaxPool2D__parameterized2_25 |        260 |        260 |       0 |    0 |   113 |      0 |      0 |    0 |            0 |
+|   relu0                  |                                         reluActivationLayer |       3328 |       3328 |       0 |    0 |   354 |      0 |      0 |    0 |            0 |
+|   relu1                  |                         reluActivationLayer__parameterized0 |        999 |        999 |       0 |    0 |   219 |      0 |      0 |    0 |            0 |
++--------------------------+-------------------------------------------------------------+------------+------------+---------+------+-------+--------+--------+------+--------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
