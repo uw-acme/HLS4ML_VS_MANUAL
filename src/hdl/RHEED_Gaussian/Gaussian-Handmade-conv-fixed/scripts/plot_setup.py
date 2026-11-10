@@ -83,12 +83,11 @@ def plot_timing(row, tag, graph_dir):
     time_axis.set_xlim(-0.6, 1.6)
     time_axis.set_ylim(0, tallest * 1.3)
     time_axis.set_ylabel("Time (µs)")
-    time_axis.legend()
 
     tallest = 0
     for label, prefix, color, offset in designs:
         period = row[f"{prefix}_period_ns"]
-        bar = clock_axis.bar(offset, period, width, color=color)
+        bar = clock_axis.bar(offset, period, width, color=color, label=label)
         clock_axis.bar_label(bar, labels=[f"{period:g} ns"], padding=3, fontsize=12)
         tallest = max(tallest, period)
     clock_axis.set_xticks([0])
@@ -96,6 +95,7 @@ def plot_timing(row, tag, graph_dir):
     clock_axis.set_xlim(-0.6, 0.6)
     clock_axis.set_ylim(0, tallest * 1.3)
     clock_axis.set_ylabel("Clock period (ns)")
+    clock_axis.legend(loc="upper right")  # the Handmade / HLS4ML key for the whole figure
 
     figure.suptitle("Performance Comparison")
     figure.tight_layout()
