@@ -17,8 +17,8 @@ from common import BASE
 from synth_reports import DEVICE_BRAM_TILES, DEVICE_DSPS, DEVICE_FFS, DEVICE_LUTS
 
 RESULTS_CSV = BASE / "results" / "sweep_results.csv"
-HANDMADE_COLOR = "steelblue"
-HLS_COLOR = "darkorange"
+HANDMADE_COLOR = "darkorange"
+HLS_COLOR = "steelblue"
 
 plt.rcParams.update({"font.size": 14})
 
@@ -55,45 +55,66 @@ def plot_utilization(row, tag, graph_dir):
     axis.bar_label(hls_bars, fmt="%.1f%%", padding=3)
     axis.set_xticks(list(positions))
     axis.set_xticklabels(names)
-    axis.set_ylabel("Utilization (% of device)")
+    axis.set_ylabel("Usage (%)")
     axis.set_ylim(0, max(handmade + hls + [1]) * 1.2)
     axis.set_title("Resource Utilization")
     axis.legend()
     figure.savefig(graph_dir / "utilization.png", dpi=150, bbox_inches="tight")
 
 
-# Graph 2: interval and latency ------------
+# Graph 2: latency and initiation interval share one axis (both in µs); clock period (ns) sits to the right ------------
 def plot_timing(row, tag, graph_dir):
-    figure, panels = plt.subplots(1, 2, figsize=(12, 6))
+    width = 0.185
+    gap = 0.62 * width  # bar centres sit a little more than one bar width apart so the value labels fit
+    designs = [("Handmade", "handmade", HANDMADE_COLOR, -gap), ("HLS4ML", "hls", HLS_COLOR, gap)]
+    # panel widths are proportional to the x ranges below, so the bars have the same width in both panels
+    figure, (time_axis, clock_axis) = plt.subplots(1, 2, figsize=(15, 6), gridspec_kw={"width_ratios": [2.2, 1.2]})
 
-    for axis, metric, title in [(panels[0], "interval", "Initiation interval"), (panels[1], "latency", "Total latency")]:
-        cycles = [row["handmade_interval_cycles" if metric == "interval" else "handmade_cycles"],
-                  row["hls_interval_cycles" if metric == "interval" else "hls_cycles"]]
-        microseconds = [row[f"handmade_{metric}_ns"] / 1000, row[f"hls_{metric}_ns"] / 1000]
-        labels = [f"{us:.1f} µs\n{c:.0f} cycles" for us, c in zip(microseconds, cycles)]
-        bars = axis.bar(["Handmade", "HLS4ML"], microseconds, color=[HANDMADE_COLOR, HLS_COLOR])
-        axis.bar_label(bars, labels=labels, padding=3)
-        axis.set_ylabel(f"{title} (µs)")
-        axis.set_ylim(0, max(microseconds) * 1.25)
-        axis.set_title(title)
+    groups = [("Latency", "latency"), ("Initiation interval (II)", "interval")]
+    tallest = 0
+    for position, (name, metric) in enumerate(groups):
+        for label, prefix, color, offset in designs:
+            microseconds = row[f"{prefix}_{metric}_ns"] / 1000
+            bar = time_axis.bar(position + offset, microseconds, width, color=color, label=label if position == 0 else None)
+            time_axis.bar_label(bar, labels=[f"{microseconds:.1f} µs"], padding=3, fontsize=12)
+            tallest = max(tallest, microseconds)
+    time_axis.set_xticks(range(len(groups)))
+    time_axis.set_xticklabels([name for name, _ in groups])
+    time_axis.set_xlim(-0.6, 1.6)
+    time_axis.set_ylim(0, tallest * 1.3)
+    time_axis.set_ylabel("Time (µs)")
+    time_axis.legend()
 
-    figure.suptitle(f"Timing, setup {tag} (clock {row['handmade_period_ns']:g} ns handmade, {row['hls_period_ns']:g} ns HLS4ML)")
+    tallest = 0
+    for label, prefix, color, offset in designs:
+        period = row[f"{prefix}_period_ns"]
+        bar = clock_axis.bar(offset, period, width, color=color)
+        clock_axis.bar_label(bar, labels=[f"{period:g} ns"], padding=3, fontsize=12)
+        tallest = max(tallest, period)
+    clock_axis.set_xticks([0])
+    clock_axis.set_xticklabels(["Clock period"])
+    clock_axis.set_xlim(-0.6, 0.6)
+    clock_axis.set_ylim(0, tallest * 1.3)
+    clock_axis.set_ylabel("Clock period (ns)")
+
+    figure.suptitle("Performance Comparison")
     figure.tight_layout()
     figure.savefig(graph_dir / "timing.png", dpi=150, bbox_inches="tight")
 
 
 # Graph 3: accuracy ------------
 def plot_accuracy(row, tag, graph_dir):
-    """100 * (1 - mean error / mean |Keras output|); the last bar uses the same scale."""
-    names = ["HLS4ML vs Keras", "RTL vs Keras", "RTL vs HLS4ML"]
-    values = [row["hls_vs_keras_pct"], row["rtl_vs_keras_pct"], row["rtl_vs_hls_pct"]]
+    """100 * (1 - mean error / mean |Keras output|)."""
+    names = ["HLS4ML vs Keras", "RTL vs Keras"]
+    values = [row["hls_vs_keras_pct"], row["rtl_vs_keras_pct"]]
 
     figure, axis = plt.subplots(figsize=(9, 6))
-    bars = axis.bar(names, values, color=["tab:blue", "tab:orange", "tab:green"])
+    bars = axis.bar(names, values, width=0.224, color=["tab:blue", "tab:orange"])
+    axis.set_xlim(-0.6, 1.6)
     axis.bar_label(bars, fmt="%.1f%%", padding=3)
     axis.set_ylabel("Accuracy relative to Keras (%)")
     axis.set_ylim(min(0, min(values) * 1.2), 105)
-    axis.set_title(f"Accuracy relative to Keras: {tag}")
+    axis.set_title("Accuracy")
     figure.savefig(graph_dir / "accuracy.png", dpi=150, bbox_inches="tight")
 
 
