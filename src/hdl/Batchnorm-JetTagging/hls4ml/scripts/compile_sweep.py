@@ -172,11 +172,12 @@ def keras_test(model, y_test):
 #     score = accuracy_score((y_test[0:len(res)]).argmax(axis=1), res.argmax(axis=1))
 #     print(acc, score)
 # accs = []
-for i in range(2,10):
-    # if not i==11:
-        acc = (3*i-2,i)
-        #print((3*i-2,i))
-        HLS4ML_gen((acc[0],acc[1]))
+HLS4ML_gen((16,6))
+# for i in range(2,10):
+#     # if not i==11:
+#         acc = (3*i-2,i)
+#         #print((3*i-2,i))
+#         HLS4ML_gen((acc[0],acc[1]))
         # arg = f"/home/caleb/sweeps/hls_please_{acc[0]}_{acc[1]}/p_prj/solution1/impl/verilog"
         # os.system(f"rm {arg}/*.csv")
         # accr = test_accuracy(arg, acc)

@@ -9,9 +9,6 @@
 # set_property PACKAGE_PIN E19 [get_ports clk]
 # set_property IOSTANDARD LVCMOS18 [get_ports clk]
 create_clock -name ap_clk -period 5.000 [get_ports clk]  
-<<<<<<< HEAD
-## 100 MHz
-=======
 ## 200 MHz
 
 # ## Reset: map to CPU reset button
@@ -62,5 +59,4 @@ create_clock -name ap_clk -period 5.000 [get_ports clk]
 ## If input_ready toggles fast and you care about timing, you might make an input_ready
 ## derived clock or use false path etc. (not shown here)
 
->>>>>>> be1827937e9966093df5ff45167240f3408b16e9
 ## End of constraints

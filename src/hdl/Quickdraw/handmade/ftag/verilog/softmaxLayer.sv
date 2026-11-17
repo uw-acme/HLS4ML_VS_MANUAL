@@ -5,19 +5,12 @@ module softmaxLayer # (
     parameter WIDTH = 16,            // Width of input words
     parameter NFRAC = 10,            // Number of fractional bits
     parameter MEM_WIDTH = 10,        // Width of the memory lookup indices
-<<<<<<<< HEAD:src/hdl/Quickdraw/handmade/ftag/verilog/softmaxLayer.sv
-    parameter MEM_NFRAC_EXP = 4,        // Number of fractional bits in the memory lookup indices
-    parameter MEM_NFRAC_INV = 2,        // Number of fractional bits in the memory lookup indices
-    parameter TABLE_WIDTH = 18,      // Width of the table entries
-    parameter TABLE_NFRAC = 10             // Number of fractional bits
-========
     parameter MEM_NFRAC_EXP = 6,        // Number of fractional bits in the memory lookup indices
     parameter MEM_NFRAC_INV = 4,        // Number of fractional bits in the memory lookup indices
     parameter TABLE_WIDTH = 18,      // Width of the table entries
     parameter TABLE_NFRAC = 10,             // Number of fractional bits
     parameter EXP_TABLE_PATH = "../weights/softmax/exp_table_18_10_10_6.dat",
     parameter INVERT_TABLE_PATH = "../weights/softmax/invert_table_18_10_10_4.dat"
->>>>>>>> be1827937e9966093df5ff45167240f3408b16e9:src/hdl/Batchnorm-JetTagging/handmade/verilog-modules/softmaxLayer.sv
 ) (
     input logic signed [WIDTH-1:0] dataIn [N-1:0],
     input logic clk,
@@ -46,15 +39,9 @@ module softmaxLayer # (
         // assert that the integer width of word is smaller than that of memory lookup index
         assert(WIDTH - NFRAC <= MEM_WIDTH - MEM_NFRAC_EXP);
         // assert that Invert table entry have greater integer width than that of exp table entry
-<<<<<<<< HEAD:src/hdl/Quickdraw/handmade/ftag/verilog/softmaxLayer.sv
-        assert(MEM_NFRAC_EXP - MEM_NFRAC_INV > 0);
-        $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/exp_table_18_10.txt", exp_table, 0, 2**MEM_WIDTH-1);
-        $readmemh("C:/Users/ljy03/desktop/HLS4ML_VS_MANUAL/src/hdl/RNN/pkg_gen_gru/invert_table_18_10.txt", invert_table, 0, 2**MEM_WIDTH-1);
-========
         // assert(MEM_NFRAC_EXP < MEM_NFRAC_INV);
         $readmemb(EXP_TABLE_PATH, exp_table, 0, 2**MEM_WIDTH-1);
         $readmemb(INVERT_TABLE_PATH, invert_table, 0, 2**MEM_WIDTH-1);
->>>>>>>> be1827937e9966093df5ff45167240f3408b16e9:src/hdl/Batchnorm-JetTagging/handmade/verilog-modules/softmaxLayer.sv
     end
 
     // Calculate exponentials and sum
@@ -68,11 +55,7 @@ module softmaxLayer # (
             if (MEM_NFRAC_EXP == NFRAC) 
                 lookupIndex[i] = dataIn_parse[i];
             else if (MEM_NFRAC_EXP < NFRAC)
-<<<<<<<< HEAD:src/hdl/Quickdraw/handmade/ftag/verilog/softmaxLayer.sv
-                lookupIndex[i] = (dataIn[i] >> (NFRAC - MEM_NFRAC_EXP));
-========
                 lookupIndex[i] = (dataIn_parse[i] >>> (NFRAC - MEM_NFRAC_EXP));
->>>>>>>> be1827937e9966093df5ff45167240f3408b16e9:src/hdl/Batchnorm-JetTagging/handmade/verilog-modules/softmaxLayer.sv
             else
                 lookupIndex[i] = (dataIn_parse[i] << (MEM_NFRAC_EXP - NFRAC));
             expResult[i] = {{(TABLE_WIDTH){1'b0}}, exp_table[lookupIndex[i]]};
@@ -139,9 +122,6 @@ module softmaxLayer # (
             // else
             output_ready<=input_ready;
             // cap disabled
-<<<<<<<< HEAD:src/hdl/Quickdraw/handmade/ftag/verilog/softmaxLayer.sv
-            dataOut[i] = buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC];
-========
             if (NFRAC<2*TABLE_NFRAC) begin
                 dataOut[i] <= buffer[i][2*TABLE_NFRAC+WIDTH-NFRAC-1 : 2*TABLE_NFRAC - NFRAC];
             end
@@ -150,7 +130,6 @@ module softmaxLayer # (
                 dataOut[i] <= {buffer[i][WIDTH-BUFFER_EXT-1:0],{BUFFER_EXT{1'b0}}};
             end
             `endif
->>>>>>>> be1827937e9966093df5ff45167240f3408b16e9:src/hdl/Batchnorm-JetTagging/handmade/verilog-modules/softmaxLayer.sv
         end
     end
 endmodule
