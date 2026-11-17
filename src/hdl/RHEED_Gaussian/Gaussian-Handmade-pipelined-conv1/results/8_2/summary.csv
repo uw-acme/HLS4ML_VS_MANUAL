@@ -1,0 +1,3 @@
+design,bits,int_bits,clock_period_ns,slack_ns,latency_cycles,latency_ns,latency_us,ii_cycles,ii_ns,ii_us,luts,luts_pct,ffs,ffs_pct,bram_tiles,bram_pct,dsps,dsps_pct,accuracy_vs_keras_pct,mean_abs_error_vs_keras,error_ulp
+Handmade,8,2,6.5,0.01,16721,108686.5,108.69,19232,125008.0,125.01,15974,7.86,5592,1.38,0.0,0.0,0,0.0,93.12,0.037853515625,1.2113125
+HLS4ML,8,2,5.1,0.187,30593,156024.3,156.02,32306,164760.6,164.76,24616,12.12,15688,3.86,46.0,8.52,0,0.0,82.77,0.0947793,3.032937526702881

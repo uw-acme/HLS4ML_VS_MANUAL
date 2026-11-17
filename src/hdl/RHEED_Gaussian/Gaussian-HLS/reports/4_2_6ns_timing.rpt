@@ -1,0 +1,332 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date              : Mon Oct 12 20:14:29 2026
+| Host              : hvm1 running 64-bit Ubuntu 22.04.5 LTS
+| Command           : report_timing_summary -file /home/aya/HLS4ML_VS_MANUAL/src/hdl/RHEED_Gaussian/Gaussian-HLS/reports/4_2_6ns_timing.rpt
+| Design            : myproject
+| Device            : xcku035-fbva676
+| Speed File        : -2  PRODUCTION 1.25 12-04-2018
+| Temperature Grade : E
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock
+2. checking constant_clock
+3. checking pulse_width_clock
+4. checking unconstrained_internal_endpoints
+5. checking no_input_delay
+6. checking no_output_delay
+7. checking multiple_clock
+8. checking generated_clocks
+9. checking loops
+10. checking partial_input_delay
+11. checking partial_output_delay
+12. checking latch_loops
+
+1. checking no_clock
+--------------------
+ There are 0 register/latch pins with no clock.
+
+
+2. checking constant_clock
+--------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock
+-----------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints
+--------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay
+--------------------------
+ There are 12 input ports with no input delay specified. (HIGH)
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay
+---------------------------
+ There are 44 ports with no output delay specified. (HIGH)
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock
+--------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks
+----------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops
+-----------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay
+--------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay
+---------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops
+------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+      0.890        0.000                      0                19852        0.025        0.000                      0                19852        2.020        0.000                       0                  9585  
+
+
+All user specified timing constraints are met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock   Waveform(ns)         Period(ns)      Frequency(MHz)
+-----   ------------         ----------      --------------
+ap_clk  {0.000 3.000}        6.000           166.667         
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+ap_clk              0.890        0.000                      0                19852        0.025        0.000                      0                19852        2.020        0.000                       0                  9585  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  ap_clk
+  To Clock:  ap_clk
+
+Setup :            0  Failing Endpoints,  Worst Slack        0.890ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.025ns,  Total Violation        0.000ns
+PW    :            0  Failing Endpoints,  Worst Slack        2.020ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.890ns  (required time - arrival time)
+  Source:                 conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/ap_enable_reg_pp0_iter1_reg/C
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@3.000ns period=6.000ns})
+  Destination:            conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/res_5_V_write_assign_reg_11060_reg[3]/D
+                            (rising edge-triggered cell FDRE clocked by ap_clk  {rise@0.000ns fall@3.000ns period=6.000ns})
+  Path Group:             ap_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.000ns  (ap_clk rise@6.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        5.135ns  (logic 1.336ns (26.018%)  route 3.799ns (73.982%))
+  Logic Levels:           12  (CARRY8=2 LUT2=3 LUT3=2 LUT4=1 LUT5=2 LUT6=2)
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=9584, unset)         0.000     0.000    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/ap_clk
+    SLICE_X91Y7          FDRE                                         r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/ap_enable_reg_pp0_iter1_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X91Y7          FDRE (Prop_DFF2_SLICEL_C_Q)
+                                                      0.117     0.117 f  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/ap_enable_reg_pp0_iter1_reg/Q
+                         net (fo=13, routed)          0.213     0.330    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/myproject_mux_164_4_1_1_U157/data_44_V_read113_phi_reg_2110_reg[0]_0
+    SLICE_X91Y8          LUT2 (Prop_F6LUT_SLICEL_I1_O)
+                                                      0.072     0.402 f  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/myproject_mux_164_4_1_1_U157/acc_0_V_reg_10975[12]_i_1/O
+                         net (fo=268, routed)         0.155     0.557    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/myproject_mux_164_4_1_1_U157/ap_condition_473
+    SLICE_X91Y10         LUT2 (Prop_F6LUT_SLICEL_I1_O)
+                                                      0.041     0.598 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/myproject_mux_164_4_1_1_U157/mul_ln1118_70_fu_10601_p2[-1111111108]_i_5/O
+                         net (fo=136, routed)         0.491     1.089    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/myproject_mux_164_4_1_1_U157/do_init_reg_697_reg[0]
+    SLICE_X94Y2          LUT6 (Prop_G6LUT_SLICEM_I3_O)
+                                                      0.176     1.265 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/myproject_mux_164_4_1_1_U157/mul_ln1118_69_fu_10577_p2[-1111111109]_i_2/O
+                         net (fo=2, routed)           0.151     1.416    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/myproject_mux_646_4_1_1_U163/ap_phi_mux_data_8_V_read77_phi_phi_fu_1682_p4[2]
+    SLICE_X94Y4          LUT5 (Prop_E6LUT_SLICEM_I0_O)
+                                                      0.072     1.488 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/myproject_mux_646_4_1_1_U163/mul_ln1118_69_fu_10577_p2[-1111111109]_i_1/O
+                         net (fo=46, routed)          0.922     2.410    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/myproject_mux_646_4_1_1_U163_n_3
+    SLICE_X87Y16         LUT4 (Prop_D6LUT_SLICEL_I3_O)
+                                                      0.071     2.481 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[7]_i_109/O
+                         net (fo=5, routed)           0.531     3.012    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[7]_i_109_n_1
+    SLICE_X88Y16         LUT3 (Prop_D6LUT_SLICEL_I1_O)
+                                                      0.175     3.187 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[7]_i_64/O
+                         net (fo=2, routed)           0.382     3.569    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[7]_i_64_n_1
+    SLICE_X87Y16         LUT3 (Prop_C6LUT_SLICEL_I2_O)
+                                                      0.115     3.684 f  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[7]_i_26/O
+                         net (fo=2, routed)           0.147     3.831    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[7]_i_26_n_1
+    SLICE_X87Y17         LUT5 (Prop_H6LUT_SLICEL_I4_O)
+                                                      0.132     3.963 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[7]_i_4/O
+                         net (fo=2, routed)           0.356     4.319    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[7]_i_4_n_1
+    SLICE_X87Y17         CARRY8 (Prop_CARRY8_SLICEL_DI[4]_O[5])
+                                                      0.169     4.488 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000_reg[7]_i_2/O[5]
+                         net (fo=1, routed)           0.285     4.773    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000_reg[7]_i_2_n_11
+    SLICE_X86Y21         LUT2 (Prop_G6LUT_SLICEL_I0_O)
+                                                      0.071     4.844 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[12]_i_18/O
+                         net (fo=1, routed)           0.123     4.967    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[12]_i_18_n_1
+    SLICE_X86Y21         LUT6 (Prop_F6LUT_SLICEL_I5_O)
+                                                      0.041     5.008 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[12]_i_7/O
+                         net (fo=1, routed)           0.000     5.008    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000[12]_i_7_n_1
+    SLICE_X86Y21         CARRY8 (Prop_CARRY8_SLICEL_S[5]_O[5])
+                                                      0.084     5.092 r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_reg_11000_reg[12]_i_1/O[5]
+                         net (fo=2, routed)           0.043     5.135    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/acc_5_V_fu_8493_p2[12]
+    SLICE_X86Y21         FDRE                                         r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/res_5_V_write_assign_reg_11060_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     6.000     6.000 r  
+                                                      0.000     6.000 r  ap_clk (IN)
+                         net (fo=9584, unset)         0.000     6.000    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/ap_clk
+    SLICE_X86Y21         FDRE                                         r  conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/res_5_V_write_assign_reg_11060_reg[3]/C
+                         clock pessimism              0.000     6.000    
+                         clock uncertainty           -0.035     5.965    
+    SLICE_X86Y21         FDRE (Setup_FFF2_SLICEL_C_D)
+                                                      0.060     6.025    conv_2d_cl_array_ap_ufixed_6u_array_ap_fixed_4_3_5_3_0_8u_config6_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_8u_config6_s_fu_359/grp_dense_resource_rf_leq_nin_ap_ufixed_ap_fixed_config6_mult_0_0_0_0_0_0_0_0_0_fu_332/res_5_V_write_assign_reg_11060_reg[3]
+  -------------------------------------------------------------------
+                         required time                          6.025    
+                         arrival time                          -5.135    
+  -------------------------------------------------------------------
+                         slack                                  0.890    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (MET) :             0.025ns  (arrival time - required time)
+  Source:                 conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ShiftRegMem_reg[34][0]_srl32/CLK
+                            (rising edge-triggered cell SRLC32E clocked by ap_clk  {rise@0.000ns fall@3.000ns period=6.000ns})
+  Destination:            conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ShiftRegMem_reg[47][0]_srl13/D
+                            (rising edge-triggered cell SRL16E clocked by ap_clk  {rise@0.000ns fall@3.000ns period=6.000ns})
+  Path Group:             ap_clk
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (ap_clk rise@0.000ns - ap_clk rise@0.000ns)
+  Data Path Delay:        0.145ns  (logic 0.145ns (100.000%)  route 0.000ns (0.000%))
+  Logic Levels:           0  
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=9584, unset)         0.000     0.000    conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ap_clk
+    SLICE_X64Y3          SRLC32E                                      r  conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ShiftRegMem_reg[34][0]_srl32/CLK
+  -------------------------------------------------------------------    -------------------
+    SLICE_X64Y3          SRLC32E (Prop_D6LUT_SLICEM_CLK_Q31)
+                                                      0.145     0.145 r  conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ShiftRegMem_reg[34][0]_srl32/Q31
+                         net (fo=1, routed)           0.000     0.145    conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ShiftRegMem_reg[34][0]_srl32_n_2
+    SLICE_X64Y3          SRL16E                                       r  conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ShiftRegMem_reg[47][0]_srl13/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock ap_clk rise edge)     0.000     0.000 r  
+                                                      0.000     0.000 r  ap_clk (IN)
+                         net (fo=9584, unset)         0.000     0.000    conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ap_clk
+    SLICE_X64Y3          SRL16E                                       r  conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ShiftRegMem_reg[47][0]_srl13/CLK
+                         clock pessimism              0.000     0.000    
+    SLICE_X64Y3          SRL16E (Hold_C6LUT_SLICEM_CLK_D)
+                                                      0.120     0.120    conv_2d_cl_array_ap_ufixed_1u_array_ap_fixed_4_3_5_3_0_6u_config2_U0/grp_compute_output_buffer_2d_array_array_ap_fixed_4_3_5_3_0_6u_config2_s_fu_173/call_ret_shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_fu_208/line_buffer_Array_V_1410_0_U/shift_line_buffer_array_ap_ufixed_4_0_5_3_0_1u_config2_s_line_buffer_Array_V_bkb_core_U/ShiftRegMem_reg[47][0]_srl13
+  -------------------------------------------------------------------
+                         required time                         -0.120    
+                         arrival time                           0.145    
+  -------------------------------------------------------------------
+                         slack                                  0.025    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         ap_clk
+Waveform(ns):       { 0.000 3.000 }
+Period(ns):         6.000
+Sources:            { ap_clk }
+
+Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
+Min Period        n/a     RAMB18E2/CLKARDCLK  n/a            1.961         6.000       4.039      RAMB18_X9Y14  layer7_out_V_data_2_V_U/mem_reg_bram_0/CLKARDCLK
+Low Pulse Width   Slow    RAMB18E2/CLKARDCLK  n/a            0.980         3.000       2.020      RAMB18_X9Y14  layer7_out_V_data_2_V_U/mem_reg_bram_0/CLKARDCLK
+High Pulse Width  Slow    RAMB18E2/CLKARDCLK  n/a            0.980         3.000       2.020      RAMB18_X9Y14  layer7_out_V_data_2_V_U/mem_reg_bram_0/CLKARDCLK
+
+
+

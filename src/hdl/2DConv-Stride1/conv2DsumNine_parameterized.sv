@@ -21,7 +21,7 @@ module conv2DsumNine_parameterized
 	
     genvar row,col;
     generate
-        for(row=0; row< filtDimension**2; row++) begin
+        for(row=0; row<filtDimension**2; row++) begin
                 assign weightsCheck[row] = data16_10::convWeights[9*even+row];
                shift_add_with_mult #(data16_10::convWeights[(8*row)+even], 3, bitWidth, NFRAC) 
                //shift_add_with_mult #(data16_10::convWeights[8*even+row], 3, bitWidth, NFRAC)
